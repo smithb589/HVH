@@ -1,0 +1,5 @@
+"CustomHeroList"
+{
+	"npc_dota_hero_sniper"			"4"
+	"npc_dota_hero_night_stalker"	"1"
+}
