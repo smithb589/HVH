@@ -18,6 +18,10 @@ function HVHGameMode:_InitGameMode()
   GameRules:SetFirstBloodActive( ENABLE_FIRST_BLOOD )
   GameRules:SetHideKillMessageHeaders( HIDE_KILL_BANNERS )
 
+  GameRules:SetRuneSpawnTime(RUNE_SPAWN_TIME) 
+
+  ListenToGameEvent('player_connect_full', Dynamic_Wrap(self, 'OnConnectFull'), self)
+
   local count = 0
     for team,number in pairs(CUSTOM_TEAM_PLAYER_COUNT) do
       if count >= MAX_NUMBER_OF_TEAMS then
@@ -30,12 +34,12 @@ function HVHGameMode:_InitGameMode()
 end
 
 -- This function is called as the first player loads and sets up the GameMode parameters
-function HVHGameMode:_FirstPlayerSetupGameMode()
+function HVHGameMode:_SetupGameMode()
   if mode == nil then
     -- Set GameMode parameters
     mode = GameRules:GetGameModeEntity()        
     mode:SetRecommendedItemsDisabled( RECOMMENDED_BUILDS_DISABLED )
-    mode:SetCameraDistanceOverride( CAMERA_DISTANCE_OVERRIDE )
+    --mode:SetCameraDistanceOverride( CAMERA_DISTANCE_OVERRIDE )
     mode:SetCustomBuybackCostEnabled( CUSTOM_BUYBACK_COST_ENABLED )
     mode:SetCustomBuybackCooldownEnabled( CUSTOM_BUYBACK_COOLDOWN_ENABLED )
     mode:SetBuybackEnabled( BUYBACK_ENABLED )

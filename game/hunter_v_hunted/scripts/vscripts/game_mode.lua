@@ -4,6 +4,7 @@ if HVHGameMode == nil then
 end
 
 require("internal/game_mode")
+require("internal/event_handlers")
 
 -- Begins processing script for the custom game mode.  This "template_example" contains a main OnThink function.
 function HVHGameMode:InitGameMode()
