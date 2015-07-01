@@ -51,7 +51,6 @@ function HVHGameMode:_SetupGameMode()
     mode:SetCustomHeroMaxLevel ( MAX_LEVEL )
     mode:SetCustomXPRequiredToReachNextLevel( XP_PER_LEVEL_TABLE )
     mode:SetUseCustomHeroLevels ( USE_CUSTOM_HERO_LEVELS )
-    DeepPrintTable(XP_PER_LEVEL_TABLE)
 
     mode:SetBotThinkingEnabled( USE_STANDARD_DOTA_BOT_THINKING )
     mode:SetTowerBackdoorProtectionEnabled( ENABLE_TOWER_BACKDOOR_PROTECTION )
@@ -80,4 +79,22 @@ function HVHGameMode:_SetupGameMode()
 
     --self:OnFirstPlayerLoaded()
   end 
+end
+
+function HVHGameMode:_LevelUpReplacedHero(playerID)
+  local player = PlayerResource:GetPlayer(playerID)
+  if player then
+    local hero = player:GetAssignedHero()
+    if hero then
+      for level=1,MAX_LEVEL do
+        hero:HeroLevelUp(false)
+      end
+    else
+      print("No hero for player with ID " .. playerID)
+    end
+  else
+    print("Could not find player with ID " .. playerID)
+  end
+
+  
 end

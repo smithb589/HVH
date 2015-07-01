@@ -3,6 +3,8 @@ if HVHGameMode == nil then
   HVHGameMode = class({})
 end
 
+require("lib/timers")
+
 require("internal/game_mode")
 require("internal/event_handlers")
 
