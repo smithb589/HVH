@@ -21,5 +21,7 @@
 		"Ability3"			"treant_natures_guise"
 		"Ability4"			"doom_bringer_doom"
 		"Ability5"			"night_stalker_hunter_in_the_night"
+
+		"AbilityLayout"		"6"
 	}
 }
