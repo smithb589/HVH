@@ -7,7 +7,7 @@ function HVHGameMode:_InitGameMode()
   GameRules:SetPreGameTime( PRE_GAME_TIME)
   GameRules:SetPostGameTime( POST_GAME_TIME )
   GameRules:SetTreeRegrowTime( TREE_REGROW_TIME )
-  GameRules:SetUseCustomHeroXPValues ( USE_CUSTOM_XP_VALUES )
+  GameRules:SetUseCustomHeroXPValues( USE_CUSTOM_XP_VALUES )
   GameRules:SetGoldPerTick(GOLD_PER_TICK)
   GameRules:SetGoldTickTime(GOLD_TICK_TIME)
   GameRules:SetUseBaseGoldBountyOnHeroes(USE_STANDARD_HERO_GOLD_BOUNTY)
@@ -21,6 +21,9 @@ function HVHGameMode:_InitGameMode()
   GameRules:SetRuneSpawnTime(RUNE_SPAWN_TIME) 
 
   ListenToGameEvent('player_connect_full', Dynamic_Wrap(self, 'OnConnectFull'), self)
+  ListenToGameEvent('npc_spawned', Dynamic_Wrap(self, 'OnPlayerSpawn'), self)
+  ListenToGameEvent('entity_killed', Dynamic_Wrap(self, 'OnEntityKilled'), self)
+  
 
   local count = 0
     for team,number in pairs(CUSTOM_TEAM_PLAYER_COUNT) do
@@ -45,9 +48,10 @@ function HVHGameMode:_SetupGameMode()
     mode:SetBuybackEnabled( BUYBACK_ENABLED )
     mode:SetTopBarTeamValuesOverride ( USE_CUSTOM_TOP_BAR_VALUES )
     mode:SetTopBarTeamValuesVisible( TOP_BAR_VISIBLE )
-    mode:SetUseCustomHeroLevels ( USE_CUSTOM_HERO_LEVELS )
     mode:SetCustomHeroMaxLevel ( MAX_LEVEL )
     mode:SetCustomXPRequiredToReachNextLevel( XP_PER_LEVEL_TABLE )
+    mode:SetUseCustomHeroLevels ( USE_CUSTOM_HERO_LEVELS )
+    DeepPrintTable(XP_PER_LEVEL_TABLE)
 
     mode:SetBotThinkingEnabled( USE_STANDARD_DOTA_BOT_THINKING )
     mode:SetTowerBackdoorProtectionEnabled( ENABLE_TOWER_BACKDOOR_PROTECTION )

@@ -42,3 +42,10 @@ function HVHGameMode:OnPlayerPickHero(keys)
     print("Replaced hero.")
   end
 end
+
+function HVHGameMode:SetHeroDeathBounty(hero)
+  local heroLevel = hero:GetLevel()
+  local deathXP = XP_PER_LEVEL_TABLE[heroLevel + 1];
+  hero:SetCustomDeathXP(deathXP)
+  print("Set custom death xp: " .. deathXP)
+end
