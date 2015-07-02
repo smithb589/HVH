@@ -275,6 +275,11 @@
 	    		"var_type"							"FIELD_INTEGER"
 	    		"attack_speed_bonus"				"150"
 	    	}
+	    	"03"
+	    	{
+	    		"var_type"							"FIELD_INTEGER"
+	    		"bonus_night_vision_range"			"600"
+	    	}
 	    }
 
 	    "Modifiers"
@@ -305,8 +310,9 @@
 
 	    		"Properties"
 	    		{
-	    			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_speed_bonus"
-	    		    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_speed_bonus_percentage" 
+	    			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" 	"%attack_speed_bonus"
+	    		    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" 	"%move_speed_bonus_percentage"
+	    		    "MODIFIER_PROPERTY_BONUS_NIGHT_VISION"			"%bonus_night_vision_range"
 	    		}
 	    	}
 	    }
