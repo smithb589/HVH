@@ -1,5 +1,4 @@
-
-require("settings")
+require("hvh_settings")
 
 function HVHGameMode:_InitGameMode()
   GameRules:SetHeroRespawnEnabled( ENABLE_HERO_RESPAWN )

@@ -3,9 +3,7 @@ if HVHGameMode == nil then
   HVHGameMode = class({})
 end
 
-require("lib/timers")
-
-require("internal/game_mode")
+require("internal/hvh_game_mode")
 require("internal/event_handlers")
 
 -- Begins processing script for the custom game mode.  This "template_example" contains a main OnThink function.
