@@ -18,8 +18,8 @@
 		"Ability1"			"night_stalker_void"
 		"Ability2"			"mirana_leap"
 		"Ability3"			"treant_natures_guise"
-		"Ability4"			"doom_bringer_doom"
-		"Ability5"			"night_stalker_hunter_in_the_night"
-		"AbilityLayout"		"6"
+		"Ability4"			"night_stalker_hunter_in_the_night"
+		"Ability5"			"doom_bringer_doom"
+		"AbilityLayout"		"5"
 	}
 }

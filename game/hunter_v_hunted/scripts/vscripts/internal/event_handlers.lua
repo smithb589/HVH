@@ -1,4 +1,3 @@
-
 function HVHGameMode:OnConnectFull()
 	self:_SetupGameMode()
 end
@@ -34,8 +33,9 @@ function HVHGameMode:OnPlayerPickHero(keys)
     end
 
     print("Replacing hero for player with ID " .. playerID)
-    
-    PlayerResource:ReplaceHeroWith(playerID, newHero, 0, 0)
+    heroEntity:SetModel("models/development/invisiblebox.vmdl")
+    local newHeroEntity = PlayerResource:ReplaceHeroWith(playerID, newHero, 0, 0)
+    newHeroEntity:SetModelScale(1.3)
 
     --ReplaceHeroWith doesn't seem to give them the amount of XP indicated...
     Timers:CreateTimer(0.03,
