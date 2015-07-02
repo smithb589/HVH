@@ -279,9 +279,25 @@
 
 	    "Modifiers"
 	    {
-	    	"modifier_dread_hunter"
+	    	"modifier_dread_hunter_applicator"
 	    	{
 	    		"Passive" 			"1"
+	    		"IsHidden"			"1"
+
+	    		"ThinkInterval"  "0.1"
+	    		"OnIntervalThink"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"	"scripts/vscripts/SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"		"DreadHunterInTheNight"
+	    				"modifier"		"modifier_dread_hunter"
+	    			}
+	    		}
+	    	}
+
+	    	"modifier_dread_hunter"
+	    	{
 	    		"IsHidden"			"1"
 
 	    		//"EffectName"		"particle_name"
