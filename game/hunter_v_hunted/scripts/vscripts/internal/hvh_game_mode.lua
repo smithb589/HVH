@@ -1,5 +1,4 @@
-
-require("settings")
+require("hvh_settings")
 
 function HVHGameMode:_InitGameMode()
   GameRules:SetHeroRespawnEnabled( ENABLE_HERO_RESPAWN )
@@ -14,16 +13,13 @@ function HVHGameMode:_InitGameMode()
   GameRules:SetHeroMinimapIconScale( MINIMAP_ICON_SIZE )
   GameRules:SetCreepMinimapIconScale( MINIMAP_CREEP_ICON_SIZE )
   GameRules:SetRuneMinimapIconScale( MINIMAP_RUNE_ICON_SIZE )
-
   GameRules:SetFirstBloodActive( ENABLE_FIRST_BLOOD )
   GameRules:SetHideKillMessageHeaders( HIDE_KILL_BANNERS )
-
   GameRules:SetRuneSpawnTime(RUNE_SPAWN_TIME) 
 
   ListenToGameEvent('player_connect_full', Dynamic_Wrap(self, 'OnConnectFull'), self)
   ListenToGameEvent('npc_spawned', Dynamic_Wrap(self, 'OnPlayerSpawn'), self)
   ListenToGameEvent('entity_killed', Dynamic_Wrap(self, 'OnEntityKilled'), self)
-  
 
   local count = 0
     for team,number in pairs(CUSTOM_TEAM_PLAYER_COUNT) do
@@ -51,6 +47,7 @@ function HVHGameMode:_SetupGameMode()
     mode:SetCustomHeroMaxLevel ( MAX_LEVEL )
     mode:SetCustomXPRequiredToReachNextLevel( XP_PER_LEVEL_TABLE )
     mode:SetUseCustomHeroLevels ( USE_CUSTOM_HERO_LEVELS )
+    --DeepPrintTable(XP_PER_LEVEL_TABLE)
 
     mode:SetBotThinkingEnabled( USE_STANDARD_DOTA_BOT_THINKING )
     mode:SetTowerBackdoorProtectionEnabled( ENABLE_TOWER_BACKDOOR_PROTECTION )
