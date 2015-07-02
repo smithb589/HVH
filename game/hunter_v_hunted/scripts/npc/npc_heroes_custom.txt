@@ -6,10 +6,10 @@
 	"npc_dota_hero_sniper_hvh"
 	{
 		"override_hero" 	"npc_dota_hero_sniper"
-		"Ability1"			"viper_poison_attack"
-		"Ability2"			"shredder_timber_chain"
-
-		"Ability4"			"bloodseeker_thirst"
+		"Ability1"			"sniper_shrapnel_datadriven"
+		"Ability2"			"meepo_earthbind"
+		"Ability3"			"sniper_headshot"
+		"Ability4"			"bounty_hunter_track"
 	}
 
 	"npc_dota_hero_night_stalker_hvh"
@@ -17,8 +17,9 @@
 		"override_hero"		"npc_dota_hero_night_stalker"
 
 		"Ability1"			"night_stalker_void"
-		"Ability2"			"night_stalker_hunter_in_the_night"
+		"Ability2"			"mirana_leap"
 		"Ability3"			"treant_natures_guise"
-		"Ability4"			"night_stalker_darkness"
+		"Ability4"			"doom_bringer_doom"
+		"Ability5"			"night_stalker_hunter_in_the_night"
 	}
 }

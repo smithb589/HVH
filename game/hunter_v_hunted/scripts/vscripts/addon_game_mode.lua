@@ -2,6 +2,11 @@
 
 require('game_mode')
 
+require('lib/util')
+require('lib/timers')
+require('lib/physics')
+require('lib/barebones')
+
 -- If something was being created via script such as a new npc, it would need to be precached here
 function Precache( context )
   --[[
