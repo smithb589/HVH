@@ -54,7 +54,6 @@ if GameMode == nil then
     print ( '[BAREBONES] creating barebones game mode' )
     GameMode = class({})
 end
-end
 
 
 --[[

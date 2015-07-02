@@ -51,10 +51,7 @@ function HVHGameMode:_SetupGameMode()
     mode:SetCustomHeroMaxLevel ( MAX_LEVEL )
     mode:SetCustomXPRequiredToReachNextLevel( XP_PER_LEVEL_TABLE )
     mode:SetUseCustomHeroLevels ( USE_CUSTOM_HERO_LEVELS )
-<<<<<<< HEAD
     --DeepPrintTable(XP_PER_LEVEL_TABLE)
-=======
->>>>>>> origin/master
 
     mode:SetBotThinkingEnabled( USE_STANDARD_DOTA_BOT_THINKING )
     mode:SetTowerBackdoorProtectionEnabled( ENABLE_TOWER_BACKDOOR_PROTECTION )
