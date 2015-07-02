@@ -6,7 +6,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_datadriven"
+		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
@@ -230,15 +230,23 @@
 			"modifier_shrapnel_slow_datadriven"
 			{
 				"IsHidden"				"0"
-			
+				"IsPurgable"			"0"
+				"IsDebuff"				"1"
 				"Duration"				"%slow_duration"
 				
+				// http://dev.dota2.com/showthread.php?t=172622
+				"Priority"				"MODIFIER_PRIORITY_ULTRA"
+
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%slow_movement_speed"
 				}
+				// HVH reveals invisibility
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE"		"MODIFIER_STATE_VALUE_DISABLED"
+				}
 			}
 		}
 	}
-
 }
