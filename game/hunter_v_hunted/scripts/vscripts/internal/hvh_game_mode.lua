@@ -91,7 +91,6 @@ function HVHGameMode:_LevelUpReplacedHero(playerID)
     end
   else
     print("Could not find player with ID " .. playerID)
-  end
-
-  
+  end  
 end
+

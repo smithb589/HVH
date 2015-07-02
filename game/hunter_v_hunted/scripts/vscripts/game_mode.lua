@@ -5,10 +5,12 @@ end
 
 require("internal/hvh_game_mode")
 require("internal/event_handlers")
+require("convars")
 
 -- Begins processing script for the custom game mode.  This "template_example" contains a main OnThink function.
 function HVHGameMode:InitGameMode()
 	self:_InitGameMode()
+	HVHConvars:RegisterConvars()
 	ListenToGameEvent('dota_player_pick_hero', Dynamic_Wrap(self, 'OnPlayerPickHero'), self)
 	print("Hunter v Hunted loaded.")
 end
