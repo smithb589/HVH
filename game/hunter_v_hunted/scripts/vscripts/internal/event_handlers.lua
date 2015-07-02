@@ -24,7 +24,7 @@ function HVHGameMode:OnPlayerPickHero(keys)
     local heroEntity = EntIndexToHScript(keys.heroindex)
     local player = EntIndexToHScript(keys.player)
     local playerID = player:GetPlayerID()
-    local playerTeam = player(GetTeamNumber())
+    local playerTeam = player:GetTeamNumber()
 
     local newHero = nil
     if playerTeam == DOTA_TEAM_GOODGUYS then
@@ -37,7 +37,8 @@ function HVHGameMode:OnPlayerPickHero(keys)
     heroEntity:SetModel("models/development/invisiblebox.vmdl")
     local newHeroEntity = PlayerResource:ReplaceHeroWith(playerID, newHero, 0, 0)
     if playerTeam == DOTA_TEAM_BADGUYS then
-      newHeroEntity:SetModelScale(1.3)
+      newHeroEntity:SetModelScale(1.2)
+    end
 
     --ReplaceHeroWith doesn't seem to give them the amount of XP indicated...
     Timers:CreateTimer(0.03,
