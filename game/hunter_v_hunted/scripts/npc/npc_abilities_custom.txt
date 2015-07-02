@@ -249,4 +249,50 @@
 			}
 		}
 	}
+
+	"night_stalker_dread_hunter_in_the_night"
+	{
+		// General  
+	    // ----------------------------------------------------------------------------------------
+	    "BaseClass"              "ability_datadriven"
+	    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"     "night_stalker_hunter_in_the_night"
+
+	    //"AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
+	    "MaxLevel"               "1"
+	    "RequiredLevel"          "1"
+	    "LevelsBetweenUpgrades"  "0"
+
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"							"FIELD_INTEGER"
+	    		"move_speed_bonus_percentage"		"50"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"							"FIELD_INTEGER"
+	    		"attack_speed_bonus"				"150"
+	    	}
+	    }
+
+	    "Modifiers"
+	    {
+	    	"modifier_dread_hunter"
+	    	{
+	    		"Passive" 			"1"
+	    		"IsHidden"			"1"
+
+	    		//"EffectName"		"particle_name"
+	    		//"EffectAttachType"	"follow_origin"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_speed_bonus"
+	    		    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_speed_bonus_percentage" 
+	    		}
+	    	}
+	    }
+	}
 }

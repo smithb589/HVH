@@ -18,7 +18,7 @@
 		"Ability1"			"night_stalker_void"
 		"Ability2"			"mirana_leap"
 		"Ability3"			"treant_natures_guise"
-		"Ability4"			"night_stalker_hunter_in_the_night"
+		"Ability4"			"night_stalker_dread_hunter_in_the_night"
 		"Ability5"			"doom_bringer_doom"
 		"AbilityLayout"		"5"
 	}
