@@ -26,31 +26,12 @@ function Activate()
 	GameRules.AddonAdventure:InitGameMode()
 end
 
-function HVHGameMode:OnPlayerPickHero(keys)
-  local heroClass = keys.hero
-  if heroClass == "npc_dota_hero_axe" then
-    print("Hero being replaced " .. heroClass)
-    local heroEntity = EntIndexToHScript(keys.heroindex)
-    local player = EntIndexToHScript(keys.player)
-    local playerID = player:GetPlayerID()
-
-    local newHero = nil
-    if player:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
-      newHero = "npc_dota_hero_sniper"
-    else
-      newHero = "npc_dota_hero_night_stalker"
-    end
-
-    print("Replacing hero for player with ID " .. playerID)
-    
-    PlayerResource:ReplaceHeroWith(playerID, newHero, 0, 0)
-    print("Replaced hero.")
-  end
-end
-
 function HVHGameMode:SetHeroDeathBounty(hero)
   local heroLevel = hero:GetLevel()
   local deathXP = XP_PER_LEVEL_TABLE[heroLevel + 1];
   hero:SetCustomDeathXP(deathXP)
+  --Placeholder values
+  hero:SetBaseHealthRegen(10)
+  hero:SetBaseManaRegen(100)
   --print("Set custom death xp: " .. deathXP)
 end
