@@ -17,9 +17,10 @@ function HVHGameMode:_InitGameMode()
   GameRules:SetHideKillMessageHeaders( HIDE_KILL_BANNERS )
   GameRules:SetRuneSpawnTime(RUNE_SPAWN_TIME) 
 
-  ListenToGameEvent('player_connect_full', Dynamic_Wrap(self, 'OnConnectFull'), self)
-  ListenToGameEvent('npc_spawned', Dynamic_Wrap(self, 'OnPlayerSpawn'), self)
+  ListenToGameEvent('player_connect_full', Dynamic_Wrap(self, 'OnPlayerConnectFull'), self)
+  ListenToGameEvent('npc_spawned', Dynamic_Wrap(self, 'OnNPCSpawned'), self)
   ListenToGameEvent('entity_killed', Dynamic_Wrap(self, 'OnEntityKilled'), self)
+  ListenToGameEvent('game_rules_state_change', Dynamic_Wrap(self, 'OnGameRulesStateChange'), self)
 
   local count = 0
     for team,number in pairs(CUSTOM_TEAM_PLAYER_COUNT) do
@@ -78,14 +79,59 @@ function HVHGameMode:_SetupGameMode()
   end 
 end
 
-function HVHGameMode:_LevelUpReplacedHero(playerID)
+-- Increases the rate of the day/night cycle by a multiplier
+function HVHGameMode:_SetupFastTime(multiplier)
+  -- GetTimeOfDay() is expressed as a float from 0.0 to 1.0, where ~0.25 is sunrise and ~0.75 is sunset
+  local MINS_PER_CYCLE = 8 -- set to standard dota day/night cycle
+  local SECS_PER_CYCLE = MINS_PER_CYCLE * 60
+  local TIME_OF_DAY_PER_SECOND = 1 / SECS_PER_CYCLE
+  local extraFloatTimePerSecond = TIME_OF_DAY_PER_SECOND * (DAY_NIGHT_CYCLE_MULTIPLIER - 1)
+
+  Timers:CreateTimer(function()
+    local timeOfDay = GameRules:GetTimeOfDay()
+    --print ("Running immediately and then every second thereafter. Time of day is " .. timeOfDay )
+    GameRules:SetTimeOfDay(timeOfDay + extraFloatTimePerSecond)
+    return 1.0
+  end)
+end
+
+function HVHGameMode:SetupHero(playerID)
   local player = PlayerResource:GetPlayer(playerID)
   if player then
     local hero = player:GetAssignedHero()
     if hero then
-      for level=1,MAX_LEVEL do
+      
+      -- start at higher level
+      for level=2,STARTING_LEVEL do
         hero:HeroLevelUp(false)
       end
+
+      -- max out abilities
+      local ability = nil
+      for i=0,15 do
+        ability = hero:GetAbilityByIndex(i)
+        if ability then 
+          for level=1, ability:GetMaxLevel() do --ability:SetLevel(ability:GetMaxLevel()) IGNORES OnUpgrade
+            ability:UpgradeAbility(false)
+          end
+        end
+      end
+      hero:SetAbilityPoints(0)
+
+      -- starting gear
+      local playerTeam = PlayerResource:GetTeam(playerID)
+      if playerTeam == DOTA_TEAM_GOODGUYS then
+        hero:AddItemByName("item_boots")
+      else
+        hero:AddItemByName("item_phase_boots")
+        hero:AddItemByName("item_ultimate_scepter")
+      end
+
+      -- if bad guy, enlarge
+      if playerTeam == DOTA_TEAM_BADGUYS then
+        hero:SetModelScale(1.2)
+      end
+
     else
       print("No hero for player with ID " .. playerID)
     end
@@ -93,4 +139,3 @@ function HVHGameMode:_LevelUpReplacedHero(playerID)
     print("Could not find player with ID " .. playerID)
   end  
 end
-
