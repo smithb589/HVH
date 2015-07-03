@@ -305,8 +305,28 @@
 	    	{
 	    		"IsHidden"			"1"
 
-	    		//"EffectName"		"particle_name"
-	    		//"EffectAttachType"	"follow_origin"
+	    		"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_night_buff.vpcf"
+				"EffectAttachType"	"follow_origin"
+
+				"OnCreated"
+				{
+					"FireEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_change.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"		"CASTER"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"FireEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_change.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"		"CASTER"
+					}
+				}
 
 	    		"Properties"
 	    		{
