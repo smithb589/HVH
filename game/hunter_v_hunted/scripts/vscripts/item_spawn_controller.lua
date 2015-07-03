@@ -38,6 +38,7 @@ require("item_utils")
 require("lib/util")
 require("hvh_utils")
 
+-- Needs to be called during game mode initialization.
 function HVHItemSpawnController:Setup()
 	local spawnCoordinator = Entities:FindByName(nil, "hvh_item_spawn_coordinator")
 	spawnCoordinator:SetContextThink("HVHItemSpawnController", Dynamic_Wrap(HVHItemSpawnController, "Think"), self._ThinkInterval)
@@ -45,6 +46,7 @@ function HVHItemSpawnController:Setup()
 	self:_UpdateDayNightState()
 end
 
+-- Think method that is called to determine when to spawn items.
 function HVHItemSpawnController:Think()
 	if HVHItemSpawnController:DidDayNightStateChange() then
 		HVHItemSpawnController:RemoveUnclaimedItems()
@@ -56,6 +58,7 @@ function HVHItemSpawnController:Think()
 	return HVHItemSpawnController._ThinkInterval
 end
 
+-- Gets the available item classes depending on the day/night state.
 function HVHItemSpawnController:GetAvailableItemClasses()
 	local availableItemClasses = {}
 	if GameRules:IsDaytime() then
@@ -66,6 +69,7 @@ function HVHItemSpawnController:GetAvailableItemClasses()
 	return availableItemClasses
 end
 
+-- Spawns all items necessary for the current day/night cycle.
 function HVHItemSpawnController:SpawnItemsForCycle()
 	local availableItems = self:GetAvailableItemClasses()
 	local spawnLocations = self:_GetRandomSpawnLocations(self._ItemsPerCycle)
@@ -79,6 +83,7 @@ function HVHItemSpawnController:SpawnItemsForCycle()
 	end
 end
 
+-- Adds an item to the spawned item cache so that they can be reclaimed later.
 function HVHItemSpawnController:AddSpawnedItem(spawnedItem)
 	if spawnedItem then
 	    table.insert(self._SpawnedItems, spawnedItem)
@@ -87,6 +92,7 @@ function HVHItemSpawnController:AddSpawnedItem(spawnedItem)
 	end
 end
 
+-- spawns a random item at the indicated location.
 function HVHItemSpawnController:SpawnRandomItem(availableItems, location)
 	local spawnedItem = nil
 	if availableItems and location then
@@ -100,11 +106,13 @@ function HVHItemSpawnController:SpawnRandomItem(availableItems, location)
 	return spawnedItem
 end
 
+-- Indicates if the day/night cycle changes since the last think.
 function HVHItemSpawnController:DidDayNightStateChange()
 	local isDaytime = GameRules:IsDaytime()
 	return (isDaytime and not self._WasDayTimeLastThink) or (not isDaytime and self._WasDayTimeLastThink)
 end
 
+-- Removes all unclaimed items created by the spawner.
 function HVHItemSpawnController:RemoveUnclaimedItems()
 	for index,item in pairs(self._SpawnedItems) do
 		--print(string.format("Attempting to remove item %s", item:GetName()))
@@ -119,10 +127,12 @@ function HVHItemSpawnController:RemoveUnclaimedItems()
 	self._SpawnedItems = {}
 end
 
+-- Updates the day/night cycle for this think.
 function HVHItemSpawnController:_UpdateDayNightState()
 	self._WasDayTimeLastThink = GameRules:IsDaytime()
 end
 
+-- Gets n random spawn locations.
 function HVHItemSpawnController:_GetRandomSpawnLocations(numLocations)
 	local spawnerClone = DeepCopy(self._Spawners)
 	local spawnLocations = {}
