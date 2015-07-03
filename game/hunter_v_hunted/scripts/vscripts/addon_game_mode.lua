@@ -42,8 +42,8 @@ function Activate()
 	GameRules.AddonAdventure = HVHGameMode()
 	GameRules.AddonAdventure:InitGameMode()
 
-  local spawner = Entities:FindByName(nil, "RadiantCourierSpawner")
-  local courier = CreateUnitByName("npc_dota_courier", spawner:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_GOODGUYS)
+  --local courier = CreateUnitByName("npc_dota_courier", spawner:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_GOODGUYS)
+  
 end
 
 function HVHGameMode:SetHeroDeathBounty(hero)
