@@ -8,6 +8,12 @@ function HVHGameMode:OnGameRulesStateChange()
 	end
 end
 
+function HVHGameMode:OnRoundStart(gameInfo)
+	print("Creating courier.")
+	--local spawner = Entities:GetEntityByName("RadiantCourierSpawner")
+	--CreateUnitByName("npc_dota_courier", spawner:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_GOODGUYS)	
+end
+
 function HVHGameMode:OnNPCSpawned(spawnArgs)
 	local unit = EntIndexToHScript(spawnArgs.entindex)
 	if unit and unit:IsHero() then
