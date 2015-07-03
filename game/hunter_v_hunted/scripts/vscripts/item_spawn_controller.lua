@@ -42,9 +42,9 @@ end
 
 function HVHItemSpawnController:Think()
 	if HVHItemSpawnController:DidDayNightStateChange() then
-		HVHItemSpawnController.RemoveUnclaimedItems()
+		HVHItemSpawnController:RemoveUnclaimedItems()
 		local availableItems = HVHItemSpawnController:GetAvailableItemClasses()
-		HVHItemSpawnController.SpawnRandomItem(availableItems)
+		HVHItemSpawnController:SpawnRandomItem(availableItems)
 	end
 
 	HVHItemSpawnController:_UpdateDayNightState()
@@ -63,10 +63,11 @@ function HVHItemSpawnController:GetAvailableItemClasses()
 end
 
 function HVHItemSpawnController:SpawnRandomItem(availableItems)
+	print("Attempting to spawn item from table.")
 	if availableItems then
 		local maxItemIndex = table.getn(availableItems)
 		local itemIndex = RandomInt(0, maxItemIndex)
-		local spawnLocation = self._GetRandomSpawnLocation()
+		local spawnLocation = self:_GetRandomSpawnLocation()
 		if spawnLocation then
 			HVHItemUtils:SpawnItem(availableItems[itemIndex], spawnLocation)
 		end
