@@ -13,7 +13,7 @@ if HVHItemSpawnController == nil then
 	HVHItemSpawnController._BadGuyItems = {}
 	HVHItemSpawnController._BadGuyItems[0] = "item_force_staff"
 	HVHItemSpawnController._BadGuyItems[1] = "item_blink"
-	HVHItemSpawnController._BadGuyItems[2] = "item_invis_sword"
+	HVHItemSpawnController._BadGuyItems[2] = "item_meat_hook"
 	HVHItemSpawnController._BadGuyItems[3] = "item_sheepstick"
 
 	HVHItemSpawnController._Spawners = {}
