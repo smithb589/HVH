@@ -3,6 +3,54 @@
 "DOTAAbilities"
 {
 	"Version"		"1"
+	// -------------------------- Sniper's abilities --------------------------
+
+	// "sniper_shrapel" is custom
+
+	"meepo_earthbind"
+	{
+		"AbilityCooldown"				"30	25 20 15"
+	}
+
+	"sniper_headshot" {}
+
+	"bounty_hunter_track"
+	{
+		"AbilityManaCost"				"0"
+		"AbilityCooldown"				"60"
+	}
+
+	// -------------------------- Nightstalker's abilities --------------------------
+	"night_stalker_void"
+	{
+		"AbilityManaCost"				"0"
+	}
+
+	"mirana_leap"
+	{
+		"AbilityCooldown"				"10.0 8.0 6.0 4.0"
+		"AbilityManaCost"				"0"
+	}
+
+	"treant_natures_guise"
+	{
+		// doesn't work
+		//"AbilityUnitTargetType"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"30.0 25.0 20.0 15.0"
+		"AbilityManaCost"				"0"
+	}
+
+	// "night_stalker_hunter_in_the_night" is custom
+
+	"doom_bringer_doom"
+	{
+		"AbilityCastPoint"				"0.1" // 0.5
+		"AbilityCooldown"				"30.0" // 100
+		"AbilityManaCost"				"0"
+	}
+
+	// -------------------------- ITEMS --------------------------
 
 	// remove items from the game
 	"item_blink"			"REMOVE"
