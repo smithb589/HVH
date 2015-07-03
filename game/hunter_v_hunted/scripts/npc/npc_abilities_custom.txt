@@ -26,7 +26,7 @@
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"50" // 6.84
-		"AbilityCooldown"				"55.0" // 6.84
+		"AbilityCooldown"				"20.0"
 	
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -59,7 +59,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_delay"			"1.4" // 6.84
+				"damage_delay"			"0.7" //"1.4" // 6.84
 			}
 			"06"
 			{
@@ -80,7 +80,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"charge_replenish_time"	"55.0" // 6.84
+				"charge_replenish_time"	"45.0" // 6.84
 			}
 		}
 		
@@ -111,6 +111,7 @@
 				"Function"				"shrapnel_fire"
 				"Target"				"POINT"
 			}
+
 		}
 		
 		"Modifiers"
@@ -149,6 +150,13 @@
 						"EffectRadius"			"%radius"
 					}
 					
+					// HVH shrapnel destroys trees
+					"DestroyTrees"
+					{
+						"Target" 		"TARGET"
+						"Radius"		"%radius"
+					}
+
 					"ActOnTargets"
 					{
 						"Target"
@@ -241,7 +249,7 @@
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%slow_movement_speed"
 				}
-				// HVH reveals invisibility
+				// HVH shrapnel reveals invisibility
 				"States"
 				{
 					"MODIFIER_STATE_INVISIBLE"		"MODIFIER_STATE_VALUE_DISABLED"
@@ -249,6 +257,8 @@
 			}
 		}
 	}
+
+
 
 	"night_stalker_dread_hunter_in_the_night"
 	{

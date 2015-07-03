@@ -20,6 +20,7 @@
 		"Ability3"			"treant_natures_guise"
 		"Ability4"			"night_stalker_dread_hunter_in_the_night"
 		"Ability5"			"doom_bringer_doom"
+		"Ability10"         "attribute_bonus"  
 		"AbilityLayout"		"5"
 	}
 }

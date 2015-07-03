@@ -48,9 +48,40 @@
 		"AbilityCastPoint"				"0.1" // 0.5
 		"AbilityCooldown"				"30.0" // 100
 		"AbilityManaCost"				"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"20 35 50"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration_scepter"		"8.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_scepter"		"20 35 50" // nerfed
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"deniable_pct"			"25"
+			}
+		}
 	}
 
 	// -------------------------- ITEMS --------------------------
+
+	// Allowed: boots, phase boots, ultimate scepter
 
 	// remove items from the game
 	"item_blink"			"REMOVE"
@@ -82,7 +113,7 @@
 	"item_lifesteal"			"REMOVE"
 	"item_ring_of_regen"			"REMOVE"
 	"item_sobi_mask"			"REMOVE"
-	"item_boots"			"REMOVE"
+	//"item_boots"			"REMOVE"
 	"item_gem"			"REMOVE"
 	"item_cloak"			"REMOVE"
 	"item_talisman_of_evasion"			"REMOVE"
@@ -104,7 +135,7 @@
 	"item_recipe_travel_boots"			"REMOVE"
 	"item_travel_boots"			"REMOVE"
 	"item_recipe_phase_boots"			"REMOVE"
-	"item_phase_boots"			"REMOVE"
+	//"item_phase_boots"			"REMOVE"
 	"item_demon_edge"			"REMOVE"
 	"item_eagle"			"REMOVE"
 	"item_reaver"			"REMOVE"
@@ -172,7 +203,7 @@
 	"item_necronomicon_2"			"REMOVE"
 	"item_necronomicon_3"			"REMOVE"
 	"item_recipe_ultimate_scepter"			"REMOVE"
-	"item_ultimate_scepter"			"REMOVE"
+	//"item_ultimate_scepter"			"REMOVE"
 	"item_recipe_refresher"			"REMOVE"
 	"item_refresher"			"REMOVE"
 	"item_recipe_assault"			"REMOVE"
