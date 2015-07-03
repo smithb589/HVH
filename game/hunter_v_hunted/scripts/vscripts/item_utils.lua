@@ -5,9 +5,10 @@ end
 
 -- Takes the item class name of the item to spawn and the vector position to spawn the item at.
 function HVHItemUtils:SpawnItem(itemName, position)
+	local droppedItem = nil
 	local item = CreateItem(itemName, nil, nil)
 	if item then
-		local droppedItem = CreateItemOnPositionSync(position, forceStaff)
+		droppedItem = CreateItemOnPositionSync(position, item)
 		if droppedItem then
 			droppedItem:SetContainedItem(item)
 		else
@@ -16,4 +17,6 @@ function HVHItemUtils:SpawnItem(itemName, position)
 	else
 		print(string.format("Item %s not created.", itemName))
 	end
+
+	return droppedItem
 end
