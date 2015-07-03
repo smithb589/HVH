@@ -63,10 +63,9 @@ function HVHItemSpawnController:GetAvailableItemClasses()
 end
 
 function HVHItemSpawnController:SpawnRandomItem(availableItems)
-	print("Attempting to spawn item from table.")
 	if availableItems then
 		local maxItemIndex = table.getn(availableItems)
-		local itemIndex = RandomInt(0, maxItemIndex)
+		local itemIndex = RandomInt(0, maxItemIndex - 1)
 		local spawnLocation = self:_GetRandomSpawnLocation()
 		if spawnLocation then
 			HVHItemUtils:SpawnItem(availableItems[itemIndex], spawnLocation)
@@ -88,7 +87,7 @@ function HVHItemSpawnController:_UpdateDayNightState()
 end
 
 function HVHItemSpawnController:_GetRandomSpawnLocation()
-	local randomSpawnerIndex = RandomInt(0, table.getn(self._Spawners))
+	local randomSpawnerIndex = RandomInt(0, table.getn(self._Spawners) - 1)
 	local spawner = Entities:FindByName(nil, self._Spawners[randomSpawnerIndex])
 	local spawnLocation = nil
 	if spawner then
