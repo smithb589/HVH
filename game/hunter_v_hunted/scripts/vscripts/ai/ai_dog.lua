@@ -28,6 +28,8 @@ function Spawn( entityKeyValues )
 	-- Arbitraryly age this so the dog doesn't start fed.
 	thisEntity._FeedTime = GameRules:GetGameTime() - 60
 
+	thisEntity._PursuitTarget = nil
+
 	thisEntity:SetContextThink("ThinkDog", ThinkDog, 0.25)
 	behaviorSystem = AICore:CreateBehaviorSystem({
 		BehaviorWander,
@@ -105,8 +107,10 @@ function BehaviorWander:Evaluate()
 	local isFed = thisEntity:IsFed()
 	local wanderOrder = 1
 
-	if GameRules:IsDaytime() and isFed then
+	if GameRules:IsDaytime() and not isFed then
 		wanderOrder = 5
+	elseif GameRules:IsDaytime() then
+		wanderOrder = 2
 	end
 
 	return wanderOrder
@@ -162,8 +166,14 @@ BehaviorPursue =
 }
 
 function BehaviorPursue:Evaluate()
-	-- todo: determine if fed and is daytime
-	return 1
+	local isFed = thisEntity:IsFed()
+	local target = self:FindTarget()
+	local pursueOrder = 1
+	if GameRules:IsDaytime() and isFed and self:IsTargetValid(target) then
+		pursueOrder = 5
+	end
+
+	return pursueOrder
 end
 
 function BehaviorPursue:Initialize()
@@ -171,6 +181,12 @@ function BehaviorPursue:Initialize()
 end
 
 function BehaviorPursue:Begin()
+	local pursuitTarget = self:FindTarget()
+
+	if self:IsTargetValid(pursuitTarget) then
+		thisEntity._PursuitTarget = pursuitTarget
+	end
+
 	self.endTime = GameRules:GetGameTime() + 1
 end
 
@@ -179,11 +195,33 @@ function BehaviorPursue:Continue()
 end
 
 function BehaviorPursue:End()
-
+	thisEntity._PursuitTarget = nil
 end
 
 function BehaviorPursue:Think(dt)
+	-- No longer a valid target, so end this behavior.
+	if self:IsTargetValid(thisEntity._PursuitTarget) then
+		thisEntity:MoveToNPC(thisEntity._PursuitTarget)
+	else
+		self.endTime = GameRules:GetGameTime()
+	end
+end
 
+function BehaviorPursue:FindTarget()
+	local units = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
+								 	thisEntity:GetAbsOrigin(),
+									nil,
+									FIND_UNITS_EVERYWHERE,
+									DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+									DOTA_UNIT_TARGET_HERO,
+									DOTA_UNIT_TARGET_FLAG_NONE,
+									FIND_CLOSEST,
+									false)
+	return units[1]
+end
+
+function BehaviorPursue:IsTargetValid(target)
+	return target and not target:IsNull() and target:IsAlive()
 end
 
 --------------------------------------------------------------------------------------------------------
