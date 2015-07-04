@@ -112,7 +112,6 @@ function HVHItemSpawnController:_RemoveUnclaimedItems()
 		-- If the item was picked up, the world entity has been removed already
 		-- and checking the item handle for null catches this.
 		if not item:IsNull() then
-			print(string.format("Attempting to remove item %s", item:GetName()))
 			UTIL_Remove(item)
 		end
 	end
