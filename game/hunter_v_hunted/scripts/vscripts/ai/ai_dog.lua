@@ -28,8 +28,6 @@ function Spawn( entityKeyValues )
 	-- Arbitraryly age this so the dog doesn't start fed.
 	thisEntity._FeedTime = GameRules:GetGameTime() - 60
 
-	thisEntity._PursuitTarget = nil
-
 	thisEntity:SetContextThink("ThinkDog", ThinkDog, 0.25)
 	behaviorSystem = AICore:CreateBehaviorSystem({
 		BehaviorWander,
@@ -184,7 +182,7 @@ function BehaviorPursue:Begin()
 	local pursuitTarget = self:FindTarget()
 
 	if self:IsTargetValid(pursuitTarget) then
-		thisEntity._PursuitTarget = pursuitTarget
+		self.order.TargetIndex = pursuitTarget:GetEntityIndex()
 	end
 
 	self.endTime = GameRules:GetGameTime() + 1
@@ -195,13 +193,14 @@ function BehaviorPursue:Continue()
 end
 
 function BehaviorPursue:End()
-	thisEntity._PursuitTarget = nil
+	self.order.TargetIndex = nil
 end
 
 function BehaviorPursue:Think(dt)
 	-- No longer a valid target, so end this behavior.
-	if self:IsTargetValid(thisEntity._PursuitTarget) then
-		thisEntity:MoveToNPC(thisEntity._PursuitTarget)
+	local pursuitTarget = EntIndexToHScript(self.order.TargetIndex)
+	if self:IsTargetValid(pursuitTarget) then
+		thisEntity:MoveToNPC(pursuitTarget)
 	else
 		self.endTime = GameRules:GetGameTime()
 	end
