@@ -1,8 +1,10 @@
 
+require("../hvh_utils")
+
 function Spawn( entityKeyValues )
 
 	thisEntity:SetContextThink("ThinkDog", ThinkDog, 1)
-	print("Starting AI for "..thisEntity:GetUnitName().." "..thisEntity:GetEntityIndex())
+	HVHDebugPrint("Starting AI for "..thisEntity:GetUnitName().." "..thisEntity:GetEntityIndex())
 
 end
 
@@ -16,7 +18,7 @@ function ThinkDog()
 			if target then
 				Pursue(target)
 			else -- target dead or missing
-				print("Target not found.")
+				HVHDebugPrint("Target not found.")
 				Wander()
 			end
 
@@ -38,7 +40,7 @@ end
 
 -- returns the closest badguy hero
 function AcquireTarget()
-	print("Acquiring target...")
+	HVHDebugPrint("Acquiring target...")
 	local units = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
 		 	thisEntity:GetAbsOrigin(),
 			nil,
@@ -56,7 +58,7 @@ function AcquireTarget()
 end
 
 function Pursue(target)
-	print("Pursuing " .. target:GetUnitName() .. "!")
+	HVHDebugPrint("Pursuing " .. target:GetUnitName() .. "!")
 	thisEntity:MoveToNPC(target)
 end
 
@@ -69,12 +71,12 @@ function Wander()
 	if not thisEntity:IsIdle() then
 		thisEntity:Stop()
 	end
-	print("Wandering...")
+	HVHDebugPrint("Wandering...")
 end
 
 function Sleep()
 	if not thisEntity:IsIdle() then
 		thisEntity:Stop()
 	end
-	print("Sleeping...")
+	HVHDebugPrint("Sleeping...")
 end

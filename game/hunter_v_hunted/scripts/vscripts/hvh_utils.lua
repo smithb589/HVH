@@ -12,3 +12,19 @@ function DeepCopy(orig)
     end
     return copy
 end
+
+function HVHDebugPrint(...)
+  local doPrint = Convars:GetInt("hvh_debug_output") or 0
+
+  if doPrint == 1 then
+    print(...)
+  end
+end
+
+function HVHDebugPrintTable(...)
+  local doPrint = Convars:GetInt('hvh_debug_output') or 0
+
+  if doPrint == 1 then
+    PrintTable(...)
+  end
+end
