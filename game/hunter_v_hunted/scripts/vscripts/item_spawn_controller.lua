@@ -188,6 +188,7 @@ function HVHItemSpawnController:_OnItemPickedUp(keys)
 	end
 end
 
+-- Grants an item from the available items to the hero.
 function HVHItemSpawnController:_GrantItem(availableItems, hero)
 	local item = self:_GetRandomItemName(availableItems)
 
@@ -196,6 +197,7 @@ function HVHItemSpawnController:_GrantItem(availableItems, hero)
 	end
 end
 
+-- Prevents expending the chest by replacing it with another.
 function HVHItemSpawnController:_RejectPickup(chest, chestType)
 	local nearestSpawnLocation = self:_FindNearestSpawnLocation(chest:GetAbsOrigin())
 	if not nearestSpawnLocation then nearestSpawnLocation = chest:GetAbsOrigin() end
@@ -203,6 +205,7 @@ function HVHItemSpawnController:_RejectPickup(chest, chestType)
 	self:_AddSpawnedItem(replacedChest)
 end
 
+-- Finds the nearest spawner in a small radius.
 function HVHItemSpawnController:_FindNearestSpawnLocation(position)
 	local nearest = nil
 	for index,spawnerName in pairs(self._Spawners) do
