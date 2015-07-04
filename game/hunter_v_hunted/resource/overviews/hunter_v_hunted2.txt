@@ -1,0 +1,8 @@
+hunter_v_hunted2
+{
+	material materials/overviews/hunter_v_hunted2.vmat
+	pos_x -8192
+	pos_y 8320
+	scale 9.500
+}
+
