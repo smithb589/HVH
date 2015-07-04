@@ -30,7 +30,6 @@ function Spawn( entityKeyValues )
 
 	thisEntity:SetContextThink("ThinkDog", ThinkDog, 0.25)
 	behaviorSystem = AICore:CreateBehaviorSystem({
-		BehaviorWaitingForPlayers,
 		BehaviorWander,
 		BehaviorPursue,
 		BehaviorSleep
@@ -48,7 +47,8 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Waiting for game to start behavior
 
-
+-- This doesn't seem necessary at the moment.
+--[[
 BehaviorWaitingForPlayers = 
 {
 	order = 
@@ -86,6 +86,7 @@ end
 function BehaviorWaitingForPlayers:Think(dt)
 	-- nothing to do
 end
+]]
 
 --------------------------------------------------------------------------------------------------------
 -- Wander behavior
