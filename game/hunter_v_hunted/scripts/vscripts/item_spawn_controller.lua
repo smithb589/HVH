@@ -3,24 +3,30 @@
 if HVHItemSpawnController == nil then
 	HVHItemSpawnController = class({})
 	HVHItemSpawnController._GoodGuyItems = {}
+	HVHItemSpawnController._GoodGuyItems[1] = "item_treasure_chest_good_guys"
+	--[[
 	HVHItemSpawnController._GoodGuyItems[0] = "item_force_staff"
 	HVHItemSpawnController._GoodGuyItems[1] = "item_sphere"
 	HVHItemSpawnController._GoodGuyItems[2] = "item_lotus_orb"
 	HVHItemSpawnController._GoodGuyItems[3] = "item_black_king_bar"
 	HVHItemSpawnController._GoodGuyItems[4] = "item_ward_observer"
   	HVHItemSpawnController._GoodGuyItems[5] = "item_ward_sentry"
+  	]]
 
 	HVHItemSpawnController._BadGuyItems = {}
+	HVHItemSpawnController._BadGuyItems[1] = "item_treasure_chest_bad_guys"
+	--[[
 	HVHItemSpawnController._BadGuyItems[0] = "item_force_staff"
 	HVHItemSpawnController._BadGuyItems[1] = "item_blink"
 	HVHItemSpawnController._BadGuyItems[2] = "item_meat_hook"
 	HVHItemSpawnController._BadGuyItems[3] = "item_sheepstick"
+	]]
 
 	HVHItemSpawnController._Spawners = {}
-	HVHItemSpawnController._Spawners[0] = "hvh_item_spawn_north"
-	HVHItemSpawnController._Spawners[1] = "hvh_item_spawn_south"
-	HVHItemSpawnController._Spawners[2] = "hvh_item_spawn_east"
-	HVHItemSpawnController._Spawners[3] = "hvh_item_spawn_west"
+	HVHItemSpawnController._Spawners[1] = "hvh_item_spawn_north"
+	HVHItemSpawnController._Spawners[2] = "hvh_item_spawn_south"
+	HVHItemSpawnController._Spawners[3] = "hvh_item_spawn_east"
+	HVHItemSpawnController._Spawners[4] = "hvh_item_spawn_west"
 
 	HVHItemSpawnController._ThinkInterval = 0.1
 
@@ -98,7 +104,7 @@ function HVHItemSpawnController:SpawnRandomItem(availableItems, location)
 	if availableItems and location then
 		local maxItemIndex = table.getn(availableItems)
 		if maxItemIndex >= 0 then
-			local itemIndex = RandomInt(0, maxItemIndex - 1)
+			local itemIndex = RandomInt(1, maxItemIndex)
 			spawnedItem = HVHItemUtils:SpawnItem(availableItems[itemIndex], location)
 		end
 	end
@@ -139,7 +145,7 @@ function HVHItemSpawnController:_GetRandomSpawnLocations(numLocations)
 
 	-- This uses the clone to remove an item from the possible choices.
 	for locationCounter=1,numLocations do
-		local randomSpawnerIndex = RandomInt(0, table.getn(spawnerClone) - 1)
+		local randomSpawnerIndex = RandomInt(1, table.getn(spawnerClone))
 		local spawner = Entities:FindByName(nil, spawnerClone[randomSpawnerIndex])
 		if spawner then
 			table.insert(spawnLocations, spawner:GetAbsOrigin())

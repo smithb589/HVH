@@ -38,6 +38,8 @@ function Precache( context )
   PrecacheResource("model_folder", "models/heroes/nightstalker/", context)
   PrecacheResource("model_folder", "models/heroes/sniper/", context)
   PrecacheResource("model_folder", "models/heroes/lycan/", context)
+  PrecacheResource("model", "models/props_gameplay/treasure_chest001.vmdl", context)
+  PrecacheResource("model", "models/props_debris/merchant_debris_chest001.vmdl", context)
   PrecacheUnitByNameSync("npc_dota_hero_sniper", context) 
   PrecacheUnitByNameSync("npc_dota_hero_night_stalker", context)
 end
