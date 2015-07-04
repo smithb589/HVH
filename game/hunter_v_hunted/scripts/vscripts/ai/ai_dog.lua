@@ -12,13 +12,25 @@ function Spawn( entityKeyValues )
 		thisEntity._FeedDuration = feedDuration
 	end
 
+	thisEntity.IsFed = function()
+		--local currentTime = GameRules:GetGameTime() 
+		--return (thisEntity._FeedTime + thisEntity._FeedDuration) <= currentTime
+		-- todo: placeholder for testing
+		return true
+	end
+
+	-- This stores the location we started wandering from so the dog
+	-- can't just run across the entire map.
 	thisEntity._WanderingOrigin = Vector(0, 0)
+	thisEntity._MaxWanderingDistance = 300
+
 	thisEntity._FeedDuration = 0
 	-- Arbitraryly age this so the dog doesn't start fed.
 	thisEntity._FeedTime = GameRules:GetGameTime() - 60
 
 	thisEntity:SetContextThink("ThinkDog", ThinkDog, 0.25)
 	behaviorSystem = AICore:CreateBehaviorSystem({
+		BehaviorWaitingForPlayers,
 		BehaviorWander,
 		BehaviorPursue,
 		BehaviorSleep
@@ -31,6 +43,48 @@ function ThinkDog()
 		return nil -- deactivate this think function
 	end
 	return behaviorSystem:Think()
+end
+
+--------------------------------------------------------------------------------------------------------
+-- Waiting for game to start behavior
+
+
+BehaviorWaitingForPlayers = 
+{
+	order = 
+	{
+		UnitIndex = thisEntity:entindex(),
+		OrderType = DOTA_UNIT_ORDER_HOLD_POSITION
+	}
+}
+
+function BehaviorWaitingForPlayers:Evaluate()
+	local gameState = Convars:GetInt("dota_gamestate")
+	local waitingOrder = 1
+	if gameState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+		waitingOrder = 10
+	end
+	return waitingOrder
+end
+
+function BehaviorWaitingForPlayers:Initialize()
+end
+
+function BehaviorWaitingForPlayers:Begin()
+	-- Indicate how long the behavior should last
+	self.endTime = GameRules:GetGameTime() + 1
+end
+
+function BehaviorWaitingForPlayers:Continue()
+	self.endTime = GameRules:GetGameTime() + 1
+end
+
+function BehaviorWaitingForPlayers:End()
+	-- nothing to do
+end
+
+function BehaviorWaitingForPlayers:Think(dt)
+	-- nothing to do
 end
 
 --------------------------------------------------------------------------------------------------------
@@ -47,8 +101,14 @@ BehaviorWander =
 }
 
 function BehaviorWander:Evaluate()
-	-- todo: Determine if not fed and is daytime
-	return 2
+	local isFed = thisEntity:IsFed()
+	local wanderOrder = 1
+
+	if GameRules:IsDaytime() and isFed then
+		wanderOrder = 5
+	end
+
+	return wanderOrder
 end
 
 function BehaviorWander:Initialize()
@@ -56,19 +116,33 @@ function BehaviorWander:Initialize()
 end
 
 function BehaviorWander:Begin()
-	self.endTime = GameRules:GetGameTime() + 1
+	thisEntity._WanderingOrigin = thisEntity:GetAbsOrigin()
+
+	-- Indicate how long the wander behavior should last
+	self.endTime = GameRules:GetGameTime() + self:GetWanderDuration()
 end
 
 function BehaviorWander:Continue()
-	self.endTime = GameRules:GetGameTime() + 1
+	self.endTime = GameRules:GetGameTime() + self:GetWanderDuration()
 end
 
 function BehaviorWander:End()
-	self.endTime = GameRules:GetGameTime()
+	-- nothing to do
 end
 
 function BehaviorWander:Think(dt)
+	local wanderingDelta = RandomVector(thisEntity._MaxWanderingDistance)
+	local wanderingDestination = thisEntity._WanderingOrigin + wanderingDelta
+	thisEntity:MoveToPosition(wanderingDestination)
+end
 
+function BehaviorWander:GetWanderDuration()
+	local duration = thisEntity._FeedDuration
+	local deltaFeedTime = GameRules:GetGameTime() - thisEntity._FeedTime
+	if deltaFeedTime < duration then
+		duration = duration - deltaFeedTime
+	end
+	return duration
 end
 
 --------------------------------------------------------------------------------------------------------
@@ -104,7 +178,7 @@ function BehaviorPursue:Continue()
 end
 
 function BehaviorPursue:End()
-	self.endTime = GameRules:GetGameTime()
+
 end
 
 function BehaviorPursue:Think(dt)
@@ -141,7 +215,7 @@ function BehaviorSleep:Continue()
 end
 
 function BehaviorSleep:End()
-	self.endTime = GameRules:GetGameTime()
+
 end
 
 function BehaviorSleep:Think(dt)
