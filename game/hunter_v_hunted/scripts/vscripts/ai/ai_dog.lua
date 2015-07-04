@@ -22,7 +22,7 @@ function Spawn( entityKeyValues )
 	-- This stores the location we started wandering from so the dog
 	-- can't just run across the entire map.
 	thisEntity._WanderingOrigin = Vector(0, 0)
-	thisEntity._MaxWanderingDistance = 300
+	thisEntity._MaxWanderingDistance = 300.0
 
 	thisEntity._FeedDuration = 0
 	-- Arbitraryly age this so the dog doesn't start fed.
@@ -140,12 +140,9 @@ function BehaviorWander:Think(dt)
 end
 
 function BehaviorWander:GetWanderDuration()
-	local duration = thisEntity._FeedDuration
-	local deltaFeedTime = GameRules:GetGameTime() - thisEntity._FeedTime
-	if deltaFeedTime < duration then
-		duration = duration - deltaFeedTime
-	end
-	return duration
+	local moveSpeed = thisEntity:GetMoveSpeedModifier(thisEntity:GetBaseMoveSpeed())
+	local wanderDuration = thisEntity._MaxWanderingDistance / moveSpeed
+	return wanderDuration
 end
 
 --------------------------------------------------------------------------------------------------------
@@ -157,8 +154,6 @@ BehaviorPursue =
 	{
 		UnitIndex = thisEntity:entindex(),
 		OrderType = DOTA_UNIT_ORDER_MOVE_TO_TARGET,
-
-		-- todo: this is a guess
 		TargetIndex = nil
 	}
 }
@@ -199,9 +194,9 @@ end
 function BehaviorPursue:Think(dt)
 	-- No longer a valid target, so end this behavior.
 	local pursuitTarget = EntIndexToHScript(self.order.TargetIndex)
-	if self:IsTargetValid(pursuitTarget) then
-		thisEntity:MoveToNPC(pursuitTarget)
-	else
+	if not self:IsTargetValid(pursuitTarget) then
+		--thisEntity:MoveToNPC(pursuitTarget)
+	--else
 		self.endTime = GameRules:GetGameTime()
 	end
 end
