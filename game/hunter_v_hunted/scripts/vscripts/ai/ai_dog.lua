@@ -103,7 +103,7 @@ BehaviorWander =
 
 function BehaviorWander:Evaluate()
 	local isFed = thisEntity:IsFed()
-	local wanderOrder = 3
+	local wanderOrder = 1
 
 	if GameRules:IsDaytime() and not isFed then
 		wanderOrder = 3
@@ -238,8 +238,11 @@ BehaviorSleep =
 }
 
 function BehaviorSleep:Evaluate()
-	-- todo: determine if night time
-	return 1
+	local sleepPriority = 1
+	if not GameRules:IsDaytime() then
+		sleepPriority = 3
+	end
+	return sleepPriority
 end
 
 function BehaviorSleep:Initialize()
@@ -247,15 +250,19 @@ function BehaviorSleep:Initialize()
 end
 
 function BehaviorSleep:Begin()
+	self.order.OrderType = DOTA_UNIT_ORDER_HOLD_POSITION
 	self.endTime = GameRules:GetGameTime() + 1
 end
 
 function BehaviorSleep:Continue()
+	-- Without this, the animation will keep restarting similar to 
+	-- spamming hold position on a hero.
+	self.order.OrderType = DOTA_UNIT_ORDER_NONE
 	self.endTime = GameRules:GetGameTime() + 1
 end
 
 function BehaviorSleep:End()
-
+	self.order.OrderType = DOTA_UNIT_ORDER_HOLD_POSITION
 end
 
 function BehaviorSleep:Think(dt)

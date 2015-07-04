@@ -347,4 +347,40 @@
 	    	}
 	    }
 	}
+
+	"good_guy_dog_sleepy"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			""
+
+		"Modifiers"
+		{
+			"modifier_sleep_applicator"
+			{
+				"Passive" 			"1"
+	    		"IsHidden"			"1"
+
+	    		"ThinkInterval"  "0.25"
+	    		"OnIntervalThink"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"	"scripts/vscripts/SpellLibrary/good_guy_dog_sleep.lua"
+	    				"Function"		"GoToSleep"
+	    				"modifier"		"modifier_sleep"
+	    			}
+	    		}
+			}
+
+			"modifier_sleep"
+			{
+				"IsHidden"			"1"
+				
+				"EffectName"        "particles/newplayer_fx/npx_sleeping.vpcf"
+				"EffectAttachType"  "follow_overhead"
+				"Target"            "CASTER"
+			}
+		}
+	}
 }
