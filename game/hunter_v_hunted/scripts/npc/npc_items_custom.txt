@@ -20,7 +20,7 @@
 		"ItemDisplayCharges" "1"
 		"ItemRequiresCharges" "1"
 
-		"ItemStackable" "0"
+		"ItemStackable" "1"
 		"ItemPermanent" "0"
 
 		"ItemCastOnPickup" "0"
@@ -139,6 +139,15 @@
 			}
 		}
 
+		"OnProjectileFinish"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/SpellLibrary/item_meat_hook.lua"
+				"Function"		"ProjectileFinished"
+			}
+		}
+
 		"OnProjectileHitUnit"
 		{	
 			"DeleteOnHit"	"1"
@@ -177,15 +186,6 @@
 				"ModifierName"	"modifier_meat_hook_target_datadriven"
 				"Target"		"TARGET"
 			}
-
-			// This is needed to spend the surge if the projectile hits.
-			"SpendCharge" {}
-		}
-
-		"OnProjectileFinish"
-		{
-			// This is needed to spend the surge if the projectile misses.
-			"SpendCharge" {}
 		}
 
 		"Modifiers"

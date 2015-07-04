@@ -1,5 +1,6 @@
 hookTable = hookTable or {}
 
+require("../hvh_constants")
 --[[Author: Pizzalol
 	Date: 02.01.2015.
 	Changed: 10.01.2015.
@@ -9,7 +10,6 @@ hookTable = hookTable or {}
 		Fixed ability damage type to not be static]]
 function RetractMeatHook( keys )
 	-- Spell
-	print("Retracting hook")
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
@@ -71,8 +71,9 @@ function RetractMeatHook( keys )
 			-- This is to fix a visual bug when the target is very close to the caster
 			Timers:CreateTimer(0.03, function() hookTable[caster].bHitUnit = false end)
 		end
+	end)
 
-		end)
+	SpendMeatHookCharge(caster)
 end
 
 --[[Author: Pizzalol
@@ -139,4 +140,22 @@ function LaunchMeatHook( keys )
 			end)
 		end
 	end)
+end
+
+function ProjectileFinished(keys)
+	local caster = keys.caster
+	SpendMeatHookCharge(caster)
+end
+
+function SpendMeatHookCharge(caster)
+	for inventoryIndex=0,MAX_INVENTORY_ITEMS do
+		local item = caster:GetItemInSlot(inventoryIndex)
+		if item and item:GetAbilityName() == "item_meat_hook" then
+			item:SetCurrentCharges(item:GetCurrentCharges() - 1)
+
+			if item:GetCurrentCharges() < 1 then
+				caster:RemoveItem(item)
+			end
+		end
+	end
 end
