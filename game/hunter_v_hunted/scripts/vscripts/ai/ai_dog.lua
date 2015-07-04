@@ -103,10 +103,10 @@ BehaviorWander =
 
 function BehaviorWander:Evaluate()
 	local isFed = thisEntity:IsFed()
-	local wanderOrder = 1
+	local wanderOrder = 3
 
 	if GameRules:IsDaytime() and not isFed then
-		wanderOrder = 5
+		wanderOrder = 3
 	elseif GameRules:IsDaytime() then
 		wanderOrder = 2
 	end
@@ -168,7 +168,7 @@ function BehaviorPursue:Evaluate()
 	local target = self:FindTarget()
 	local pursueOrder = 1
 	if GameRules:IsDaytime() and isFed and self:IsTargetValid(target) then
-		pursueOrder = 5
+		pursueOrder = 3
 	end
 
 	return pursueOrder
