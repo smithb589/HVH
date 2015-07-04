@@ -31,7 +31,7 @@ if HVHItemSpawnController == nil then
 	HVHItemSpawnController._SpawnedItems = {}
   --[[TODO:
    hunters: timber chain
-   NS: pudge hook, shackle, dagon]]--
+   NS: shackle, dagon]]--
 end
 
 require("item_utils")
