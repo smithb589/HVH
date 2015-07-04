@@ -121,11 +121,14 @@ end
 function BehaviorWander:Begin()
 	thisEntity._WanderingOrigin = thisEntity:GetAbsOrigin()
 
+	self.order.Position = self:GetWanderDestination()
+
 	-- Indicate how long the wander behavior should last
 	self.endTime = GameRules:GetGameTime() + self:GetWanderDuration()
 end
 
 function BehaviorWander:Continue()
+	self.order.Position = self:GetWanderDestination()
 	self.endTime = GameRules:GetGameTime() + self:GetWanderDuration()
 end
 
@@ -134,15 +137,19 @@ function BehaviorWander:End()
 end
 
 function BehaviorWander:Think(dt)
-	local wanderingDelta = RandomVector(thisEntity._MaxWanderingDistance)
-	local wanderingDestination = thisEntity._WanderingOrigin + wanderingDelta
-	thisEntity:MoveToPosition(wanderingDestination)
+	-- Nothing to do
 end
 
 function BehaviorWander:GetWanderDuration()
 	local moveSpeed = thisEntity:GetMoveSpeedModifier(thisEntity:GetBaseMoveSpeed())
 	local wanderDuration = thisEntity._MaxWanderingDistance / moveSpeed
 	return wanderDuration
+end
+
+function BehaviorWander:GetWanderDestination()
+	local wanderingDelta = RandomVector(thisEntity._MaxWanderingDistance)
+	local wanderingDestination = thisEntity._WanderingOrigin + wanderingDelta
+	return wanderingDestination
 end
 
 --------------------------------------------------------------------------------------------------------
