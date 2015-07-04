@@ -495,5 +495,7 @@
 	
 		//Inventory
 		"HasInventory"				"0"
+
+		"vscripts"                    "ai_dog.lua"
 	}
 }
