@@ -86,7 +86,267 @@
 
 	// -------------------------- ITEMS --------------------------
 
-	// Allowed: boots, phase boots, ultimate scepter
+	"item_phase_boots"
+	{
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movement_speed"	"50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"0"
+			}			
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"phase_movement_speed"  "16"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"phase_duration"		"3.6"
+			}
+		}
+	}
+
+	"item_ultimate_scepter" // TODO: we should make this a Mangonian Scepter
+	{
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all_stats"		"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health"			"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"			"0"
+			}
+		}
+	}
+
+	"item_ward_observer"
+	{
+		   "ItemInitialCharges"	"2"
+	}
+
+	//"item_ward_sentry"
+	//{
+	//	   bugged
+	//	   "ItemRequiresCharges"	"0"
+	//}
+
+	"item_blink"
+	{
+		"ItemInitialCharges"  "1" //How many charges should the item start with - Tango x3 
+		"ItemDisplayCharges"  "1" //Hide the charges of the item - Aegis 
+		"ItemRequiresCharges" "1" //The active ability needs charges to be used - Urn
+
+		"ItemStackable" "0" // TODO: think about this
+		//"ItemPermanent" "0" // does not work
+	}
+
+	"item_sphere"
+	{
+		"ItemInitialCharges"  "1" //How many charges should the item start with - Tango x3 
+		"ItemDisplayCharges"  "1" //Hide the charges of the item - Aegis 
+		"ItemRequiresCharges" "1" //The active ability needs charges to be used - Urn
+
+		"ItemStackable" "0" // TODO: think about this
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all_stats"		"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana_regen"		"0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"block_cooldown"		"16.0"
+			}
+		}
+	}
+
+	"item_lotus_orb"
+	{
+		"ItemInitialCharges"  "3" //How many charges should the item start with - Tango x3 
+		"ItemDisplayCharges"  "1" //Hide the charges of the item - Aegis 
+		"ItemRequiresCharges" "1" //The active ability needs charges to be used - Urn
+
+		"ItemStackable" "0" // TODO: think about this
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana_regen"		"0"
+			}			
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"active_duration"		"6"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_range_tooltip"		"900"
+			}
+		}
+	}
+
+	"item_black_king_bar"
+	{
+		"ItemInitialCharges"  "1" //How many charges should the item start with - Tango x3 
+		"ItemDisplayCharges"  "1" //Hide the charges of the item - Aegis 
+		"ItemRequiresCharges" "1" //The active ability needs charges to be used - Urn
+
+		"ItemStackable" "0" // TODO: think about this
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_strength"		"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"10.0" // "10.0 9.0 8.0 7.0 6.0 5.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_level"				"1"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"model_scale"			"30"     // Percentage over model scale
+			}
+		}
+	}
+
+	"item_force_staff"
+	{
+		"ItemInitialCharges"  "2" //How many charges should the item start with - Tango x3 
+		"ItemDisplayCharges"  "1" //Hide the charges of the item - Aegis 
+		"ItemRequiresCharges" "1" //The active ability needs charges to be used - Urn
+
+		"ItemStackable" "0" // TODO: think about this
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"push_length"			"600"
+			}
+		}
+	}
+
+	"item_sheepstick"
+	{
+		"ItemInitialCharges"  "1" //How many charges should the item start with - Tango x3 
+		"ItemDisplayCharges"  "1" //Hide the charges of the item - Aegis 
+		"ItemRequiresCharges" "1" //The active ability needs charges to be used - Urn
+
+		"ItemStackable" "0" // TODO: think about this
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_strength"		"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agility"			"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana_regen"		"0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"sheep_duration"		"3.5"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"sheep_movement_speed"	"140"
+			}
+		}
+	}
 
 	// remove items from the game
 	//"item_blink"			"REMOVE"

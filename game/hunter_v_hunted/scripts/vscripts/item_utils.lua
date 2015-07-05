@@ -20,3 +20,23 @@ function HVHItemUtils:SpawnItem(itemName, position)
 
 	return droppedItem
 end
+
+-- Might need a whitelist to prevent default charged items from breaking
+function HVHItemUtils:IsChargedItem(item)
+	itemName = item:GetName()
+	if (itemName == "item_ward_sentry") or (itemName =="item_ward_observer") then
+		return false -- hack fix to ignore them
+	end
+	
+	return (item:GetInitialCharges() ~= 0)
+end
+
+function HVHItemUtils:ExpendCharge(item)
+    -- could not find LUA for this simple function
+    local hero = item:GetOwner()
+    local newCharges = item:GetCurrentCharges() - 1
+    item:SetCurrentCharges(newCharges)
+    if newCharges <= 0 then
+      hero:RemoveItem(item)
+    end
+end

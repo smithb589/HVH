@@ -60,3 +60,30 @@ function HVHGameMode:OnPlayerPickHero(keys)
     print("Replaced hero.")
   end
 end
+
+-- Overridden Valve items will not consume charges or get destroyed, even with ItemPermanent "0". This fixes that problem.
+-- BUG: This will BREAK existing charged items
+function HVHGameMode:OnAbilityUsed(keys)
+  local player = PlayerResource:GetPlayer(keys.PlayerID)
+  local abilityName = keys.abilityname
+  local hero = player:GetAssignedHero() -- BUG: won't work for using charged items on secondary heroes/creeps
+
+  -- don't waste our time on non-item abilities
+  if not hero:HasItemInInventory(abilityName) then
+      --print(abilityName .. " not found in " .. hero:GetName() .. "'s inventory.")
+      return
+  end
+
+  -- Check all 6 item slots for items with charges that match abilityName, then expend the charge
+  for i=0, 5 do
+    local item = hero:GetItemInSlot(i)
+    if item ~= nil and HVHItemUtils:IsChargedItem(item) then
+      local itemName = item:GetName()
+      if itemName == abilityName then
+        HVHItemUtils:ExpendCharge(item)
+        break
+      end
+    end
+  end
+
+end

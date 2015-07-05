@@ -22,6 +22,7 @@ function HVHGameMode:_InitGameMode()
   ListenToGameEvent('entity_killed', Dynamic_Wrap(self, 'OnEntityKilled'), self)
   ListenToGameEvent('game_rules_state_change', Dynamic_Wrap(self, 'OnGameRulesStateChange'), self)
   ListenToGameEvent('round_start', Dynamic_Wrap(self, 'OnRoundStart'), self)
+  ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(self, 'OnAbilityUsed'), self)
 
   local count = 0
     for team,number in pairs(CUSTOM_TEAM_PLAYER_COUNT) do
