@@ -40,3 +40,22 @@ function HVHItemUtils:ExpendCharge(item)
       hero:RemoveItem(item)
     end
 end
+
+--[[
+function HVHItemUtils:HeroHasRoomForItem(hero, itemName)
+	local hasRoom = hero:GetNumItemsInInventory() <= 6
+	local tempItem = CreateItem(itemName, nil, nil)
+
+	-- Handle charged items
+	if not hasRoom then
+		hasRoom = hero:HasItemInInventory(itemName) and self:IsChargedItem(tempItem)
+	end
+
+	-- Handle stackable items
+	if not hasRoom then
+		hasRoom = hero:HasItemInInventory(itemName) and tempItem:IsStackable()
+	end
+
+	return hasRoom
+end
+]]

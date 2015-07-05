@@ -29,7 +29,7 @@ if HVHItemSpawnController == nil then
 
 	HVHItemSpawnController._WasDayTimeLastThink = false
 
-	HVHItemSpawnController._ItemsPerCycle = 2
+	HVHItemSpawnController._ItemsPerCycle = 4
 
 	HVHItemSpawnController._SpawnedItems = {}
   --[[TODO:
@@ -40,6 +40,8 @@ end
 require("item_utils")
 require("lib/util")
 require("hvh_utils")
+require("lib/timers")
+require("hvh_constants")
 
 -- Needs to be called during game mode initialization.
 function HVHItemSpawnController:Setup()
@@ -160,7 +162,7 @@ end
 -- Gets the chest class depending on the time of day.
 function HVHItemSpawnController:_GetAvailableChestClass()
 	local availableChestClass = nil
-	if GameRules:IsDaytime() then
+	if not GameRules:IsDaytime() then
 		availableChestClass = self._GoodGuyChest
 	else
 		availableChestClass = self._BadGuyChest
@@ -173,26 +175,32 @@ end
 function HVHItemSpawnController:_OnItemPickedUp(keys)
 	local itemName = keys.itemname
 	--local playerID = keys.PlayerID
-	local item = EntIndexToHScript(keys.ItemEntityIndex)
+	local chestItem = EntIndexToHScript(keys.ItemEntityIndex)
 	local hero = EntIndexToHScript(keys.HeroEntityIndex)
 
-	if (itemName == self._GoodGuyChest) and (hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
-		local availableItems = self:_GetAvailableItemClasses(itemName)
-		self:_GrantItem(availableItems, hero)
-	elseif (itemName == self._BadGuyChest) and (hero:GetTeamNumber() == DOTA_TEAM_BADGUYS) then
-		local availableItems = self:_GetAvailableItemClasses(itemName)
-		self:_GrantItem(availableItems, hero)
-	else
-		self:_RejectPickup(item, itemName)
+	-- Ignore non-chest items.
+	if (itemName == self._GoodGuyChest) or (itemName == self._BadGuyChest) then
+		if (itemName == self._GoodGuyChest) and (hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
+			local availableItems = self:_GetAvailableItemClasses(itemName)
+			self:_GrantItem(availableItems, hero, chestItem)
+		elseif (itemName == self._BadGuyChest) and (hero:GetTeamNumber() == DOTA_TEAM_BADGUYS) then
+			local availableItems = self:_GetAvailableItemClasses(itemName)
+			self:_GrantItem(availableItems, hero, chestItem)
+		else
+			self:_RejectPickup(item, itemName)
+		end
 	end
 end
 
 -- Grants an item from the available items to the hero.
-function HVHItemSpawnController:_GrantItem(availableItems, hero)
-	local item = self:_GetRandomItemName(availableItems)
+function HVHItemSpawnController:_GrantItem(availableItems, hero, chestItem)
+	local itemName = self:_GetRandomItemName(availableItems)
 
-	if item and hero then
-		hero:AddItemByName(item)
+	if itemName and hero then
+		local spawnedItem = HVHItemUtils:SpawnItem(itemName, chestItem:GetAbsOrigin())
+		Timers:CreateTimer(SINGLE_FRAME_TIME, function()
+			hero:PickupDroppedItem(spawnedItem)
+		end)
 	end
 end
 
