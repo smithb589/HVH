@@ -273,6 +273,14 @@
 	    "RequiredLevel"          "1"
 	    "LevelsBetweenUpgrades"  "0"
 
+		"precache"
+		{
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+			"particle"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+			"particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
+		 
+		}
+
 	    "AbilitySpecial"
 	    {
 	    	"01"
@@ -287,33 +295,114 @@
 	    	}
 	    	"03"
 	    	{
-	    		"var_type"							"FIELD_INTEGER"
-	    		"bonus_night_vision_range"			"600"
+	    		"var_type"							"FIELD_FLOAT"
+	    		"invis_delay"						"3.0"
 	    	}
+
 	    }
 
 	    "Modifiers"
 	    {
-	    	"modifier_dread_hunter_applicator"
+	    	"modifier_dread_hunter_invis_applicator"
 	    	{
 	    		"Passive" 			"1"
 	    		"IsHidden"			"1"
 
-	    		"ThinkInterval"  "0.1"
-	    		"OnIntervalThink"
+	    		//"ThinkInterval"  "1.0"
+	    		//"OnIntervalThink"
+	    		//{
+	    		//	"RunScript"
+	    		//	{
+	    		//		"ScriptFile"		"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    		//		"Function"			"InvisThinker"
+	    		//		"mod_invis"			"modifier_dread_hunter_invis"
+	    		//	}
+	    		//}
+
+	    		"OnAttackLanded"
 	    		{
 	    			"RunScript"
 	    			{
-	    				"ScriptFile"	"scripts/vscripts/SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
-	    				"Function"		"DreadHunterInTheNight"
-	    				"modifier"		"modifier_dread_hunter"
+	    				"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"		"OnAttackLanded"
+	    			  	"mod_invis"		"modifier_dread_hunter_invis"
+	    			}
+	    		}
+
+	    		"OnAbilityExecuted"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"		"OnAbilityExecuted"
+	    			  	"mod_invis"		"modifier_dread_hunter_invis"
+	    			}
+	    		}
+
+	    		"OnUnitMoved"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"		"OnUnitMoved"
+	    			  	"mod_invis"		"modifier_dread_hunter_invis"
 	    			}
 	    		}
 	    	}
 
-	    	"modifier_dread_hunter"
+	    	"modifier_dread_hunter_invis"
 	    	{
+	    		"Passive"			"1"
+	    		"IsHidden"			"1" // hide this but allow modifier_invisible to do the lifting
+
+	    		"OnCreated"
+	    		{
+    				"ApplyModifier"
+					{
+						"ModifierName" 	"modifier_invisible"
+						"Target"		"CASTER"
+					}
+	    		}
+
+				"OnDestroy"
+				{
+					"AttachEffect"
+					{
+						"EffectName"		"particles/generic_hero_status/status_invisibility_start.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"            "CASTER"
+					}
+
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_invisible"
+						"Target"		"CASTER"
+					}
+				}
+
+	    	}
+
+	    	"modifier_dread_hunter_speed_applicator"
+	    	{
+	    		"Passive" 			"1"
 	    		"IsHidden"			"1"
+
+	    		"ThinkInterval"  "1.0"
+	    		"OnIntervalThink"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"		"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"			"SpeedThinker"
+	    				"mod_speed"			"modifier_dread_hunter_speed"
+	    			}
+	    		}
+
+	    	}
+
+	    	"modifier_dread_hunter_speed"
+	    	{
+	    		"IsHidden"			"0"
 
 	    		"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_night_buff.vpcf"
 				"EffectAttachType"	"follow_origin"
@@ -342,7 +431,7 @@
 	    		{
 	    			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" 	"%attack_speed_bonus"
 	    		    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" 	"%move_speed_bonus_percentage"
-	    		    "MODIFIER_PROPERTY_BONUS_NIGHT_VISION"			"%bonus_night_vision_range"
+	    		    //"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"			"%bonus_night_vision_range"
 	    		}
 	    	}
 	    }
