@@ -74,6 +74,17 @@ function RetractMeatHook( keys )
 	end)
 
 	SpendMeatHookCharge(caster)
+	FixNegativeZFowardVector(target)
+end
+
+-- This is needed to prevent the target from faceplanting if something interrupts the hook.
+function FixNegativeZFowardVector(target)
+	local original = target:GetForwardVector()
+	local forward = Vector(original.x, original.y, original.z)
+	if forward.z < 0 then
+		forward.z = 0
+	end
+	target:SetForwardVector(forward)
 end
 
 --[[Author: Pizzalol
