@@ -26,20 +26,25 @@
 		"AbilityManaCost"				"0"
 	}
 
+	//"night_stalker_crippling_fear"
+	//{
+	//	"AbilityManaCost"				"0"
+	//}
+
 	"mirana_leap"
 	{
 		"AbilityCooldown"				"10.0 8.0 6.0 4.0"
 		"AbilityManaCost"				"0"
 	}
 
-	"treant_natures_guise"
-	{
+	//"treant_natures_guise"
+	//{
 		// doesn't work
 		//"AbilityUnitTargetType"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityCastPoint"				"0.3"
-		"AbilityCooldown"				"30.0 25.0 20.0 15.0"
-		"AbilityManaCost"				"0"
-	}
+	//	"AbilityCastPoint"				"0.3"
+	//	"AbilityCooldown"				"30.0 25.0 20.0 15.0"
+	//	"AbilityManaCost"				"0"
+	//}
 
 	// "night_stalker_hunter_in_the_night" is custom
 
