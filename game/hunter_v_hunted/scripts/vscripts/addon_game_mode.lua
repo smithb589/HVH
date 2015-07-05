@@ -46,19 +46,9 @@ end
 
 -- Create the game mode class when we activate
 function Activate()
-	GameRules.AddonAdventure = HVHGameMode()
-	GameRules.AddonAdventure:InitGameMode()
+	GameRules.HVH = HVHGameMode()
+	GameRules.HVH:InitGameMode()
 
   --local courier = CreateUnitByName("npc_dota_courier", spawner:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_GOODGUYS)
   
-end
-
-function HVHGameMode:SetHeroDeathBounty(hero)
-  local heroLevel = hero:GetLevel()
-  local deathXP = XP_PER_LEVEL_TABLE[heroLevel-1]
-  hero:SetCustomDeathXP(deathXP)
-  --Placeholder values
-  hero:SetBaseHealthRegen(10)
-  hero:SetBaseManaRegen(100)
-  --print("Set custom death xp: " .. deathXP)
 end

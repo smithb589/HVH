@@ -140,3 +140,13 @@ function HVHGameMode:SetupHero(playerID)
     print("Could not find player with ID " .. playerID)
   end  
 end
+
+function HVHGameMode:SetHeroDeathBounty(hero)
+  local heroLevel = hero:GetLevel()
+  local deathXP = XP_PER_LEVEL_TABLE[heroLevel-1]
+  hero:SetCustomDeathXP(deathXP)
+  --Placeholder values
+  hero:SetBaseHealthRegen(10)
+  hero:SetBaseManaRegen(100)
+  --print("Set custom death xp: " .. deathXP)
+end
