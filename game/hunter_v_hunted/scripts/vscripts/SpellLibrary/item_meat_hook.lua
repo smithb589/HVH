@@ -73,7 +73,7 @@ function RetractMeatHook( keys )
 		end
 	end)
 
-	SpendMeatHookCharge(caster)
+	--SpendMeatHookCharge(caster)
 	FixNegativeZFowardVector(target)
 end
 
@@ -155,9 +155,10 @@ end
 
 function ProjectileFinished(keys)
 	local caster = keys.caster
-	SpendMeatHookCharge(caster)
+	--SpendMeatHookCharge(caster)
 end
 
+-- DEPRECATED
 function SpendMeatHookCharge(caster)
 	for inventoryIndex=0,MAX_INVENTORY_ITEMS do
 		local item = caster:GetItemInSlot(inventoryIndex)

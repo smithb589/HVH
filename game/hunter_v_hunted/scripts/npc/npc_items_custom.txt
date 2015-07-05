@@ -18,9 +18,9 @@
 
 		"ItemInitialCharges" "1"
 		"ItemDisplayCharges" "1"
-		"ItemRequiresCharges" "1"
+		"ItemRequiresCharges" "0"
 
-		"ItemStackable" "1"
+		"ItemStackable" "0"
 		"ItemPermanent" "0"
 
 		"ItemCastOnPickup" "0"
@@ -32,7 +32,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"pudge_meat_hook"
+		"AbilityTextureName"			"item_firecrackers" //"pudge_meat_hook"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
