@@ -383,4 +383,26 @@
 			}
 		}
 	}
+
+	"general_ability_invulnerable"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			""
+
+		"Modifiers"
+		{
+			"modifier_invulnerability"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}		
+	}
 }
