@@ -187,7 +187,7 @@ function HVHItemSpawnController:_OnItemPickedUp(keys)
 			local availableItems = self:_GetAvailableItemClasses(itemName)
 			self:_GrantItem(availableItems, hero, chestItem)
 		else
-			self:_RejectPickup(item, itemName)
+			self:_RejectPickup(chestItem, itemName)
 		end
 	end
 end
