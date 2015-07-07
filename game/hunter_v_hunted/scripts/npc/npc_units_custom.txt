@@ -116,6 +116,7 @@
 		"AttackRange"				"100"		// Range within a target can be attacked.
 		//"ProjectileModel"			"particles/units/heroes/hero_venomancer/venomancer_plague_ward_projectile.vpcf" // Particle system model for projectile.
 		//"ProjectileSpeed"			"1900"		// Speed of projectile.
+		"AutoAttacksByDefault"         "0"
 	
 		// Bounds
 		//----------------------------------------------------------------
