@@ -260,7 +260,7 @@
 
 
 
-	"night_stalker_dread_hunter_in_the_night"
+	"night_stalker_hunter_in_the_night_hvh"
 	{
 		// General  
 	    // ----------------------------------------------------------------------------------------
@@ -611,6 +611,201 @@
 				}
 			}
 		}
+	}
+
+// Rewrite of the Queen of Pain Sonic Wave ability
+	// Author: Pizzalol
+	// Date: 19.12.2014.
+	"night_stalker_echolocation_hvh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT"		   
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"queenofpain_sonic_wave"
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_queenofpain.vsndevts"
+			"particle"			"particles/units/heroes/hero_queenofpain/queen_sonic_wave.vpcf"
+			"particle"			"particles/units/heroes/hero_centaur/centaur_warstomp_shockwave.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.452 0.452 0.452"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"45" // hvh
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0" // hvh
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01" // ---------------scream variables
+			{
+				"var_type"			"FIELD_INTEGER"
+				"scream_starting_aoe"		"100"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"scream_distance"			"900"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"scream_final_aoe"			"450"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"scream_speed"				"1100"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"scream_damage"				"250"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"scream_knockback_duration"	"3.5"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"scream_knockback_distance"	"2200"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"scream_knockback_height"	"300"
+			}
+			"09" // --------------pushback variables
+			{
+				"var_type"			"FIELD_INTEGER"
+				"pushback_radius"			"300"
+			}
+			"10"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"pushback_duration"			"1.5"
+			}
+			"11"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"pushback_distance"			"800"
+			}
+			"12"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"pushback_height"			"100"
+			}
+
+		}
+	
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_QueenOfPain.SonicWave"
+				"Target"		"CASTER"
+			}
+	
+			// TODO: attach an effect to the pushback radius
+
+			// minor knockback to surrounding targets (after short delay)
+			// yo dawg: knockback can't knock back someone already being knocked back
+			// knockback also seems to destroy trees the unit encounters!
+			"DelayedAction"
+			{
+				"Delay"		"0.15" // if delay is too short, then targets are knocked back before scream hits
+				"Action"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"%pushback_radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+						}
+					
+						"Action"    
+						{
+							"Knockback"
+							{
+								"Target"            "TARGET"
+								"Center" 	        "CASTER"
+								"Distance"	        "%pushback_distance"
+								"Duration"	        "%pushback_duration"
+								"Height"	        "%pushback_height"
+								"IsFixedDistance"	"0"
+								"ShouldStun"        "1"
+							}
+						}
+					}
+				}
+			}
+
+			// scream creates projectiles to make the cone effect
+			"LinearProjectile"
+			{
+				"Target"      "POINT"
+			    "EffectName"  "particles/units/heroes/hero_queenofpain/queen_sonic_wave.vpcf"
+			    "MoveSpeed"   "%scream_speed"
+			    "StartRadius"   "%scream_starting_aoe"
+			    "StartPosition" "attach_origin"
+			    "EndRadius"     "%scream_final_aoe"
+			    "FixedDistance" "%scream_distance"
+			    "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+			    "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+			    "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+			    "HasFrontalCone"    "1"
+			    "ProvidesVision" "1" // he can see sound!!
+			    "VisionRadius"	"300"
+			}
+
+		
+		}
+	
+		// damage and severe knockback for targets hit by scream projectiles
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"		"DAMAGE_TYPE_PURE"
+				"Damage"	"%scream_damage"
+			}
+			"Knockback"
+			{
+				"Target"            "TARGET"
+				"Center" 	        "CASTER"
+				"Distance"	        "%scream_knockback_distance"
+				"Duration"	        "%scream_knockback_duration"
+				"Height"	        "%scream_knockback_height"
+				"IsFixedDistance"	"0"
+				"ShouldStun"        "1"	
+			}
+
+		}
+	
 	}
 
 	"sniper_feed_dog"
