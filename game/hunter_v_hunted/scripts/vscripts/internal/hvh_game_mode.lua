@@ -129,11 +129,6 @@ function HVHGameMode:SetupHero(playerID)
         hero:AddItemByName("item_ultimate_scepter")
       end
 
-      -- if bad guy, enlarge
-      if playerTeam == DOTA_TEAM_BADGUYS then
-        --hero:SetModelScale(1.2)
-      end
-
     else
       print("No hero for player with ID " .. playerID)
     end
