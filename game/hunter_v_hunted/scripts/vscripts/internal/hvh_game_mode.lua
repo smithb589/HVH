@@ -131,7 +131,7 @@ function HVHGameMode:SetupHero(playerID)
 
       -- if bad guy, enlarge
       if playerTeam == DOTA_TEAM_BADGUYS then
-        hero:SetModelScale(1.2)
+        --hero:SetModelScale(1.2)
       end
 
     else
