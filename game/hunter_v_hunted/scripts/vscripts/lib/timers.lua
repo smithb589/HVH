@@ -53,7 +53,7 @@ TIMERS_VERSION = "1.0"
 TIMERS_THINK = 0.01
 
 if Timers == nil then
-  print ( '[Timers] creating Timers' )
+  print ( '[TIMERS] creating Timers' )
   Timers = {}
   Timers.__index = Timers
 end
