@@ -5,7 +5,7 @@
 	"Version"		"1"
 	// -------------------------- Sniper's abilities --------------------------
 
-	// "sniper_shrapel" is custom
+	// "sniper_shrapnel_hvh" is custom
 
 	"meepo_earthbind"
 	{
@@ -26,10 +26,8 @@
 		"AbilityManaCost"				"0"
 	}
 
-	//"night_stalker_crippling_fear"
-	//{
-	//	"AbilityManaCost"				"0"
-	//}
+	// "night_stalker_crippling_fear_hvh" is custom
+
 
 	"mirana_leap"
 	{
@@ -37,57 +35,19 @@
 		"AbilityManaCost"				"0"
 	}
 
-	//"treant_natures_guise"
-	//{
-		// doesn't work
-		//"AbilityUnitTargetType"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	//	"AbilityCastPoint"				"0.3"
-	//	"AbilityCooldown"				"30.0 25.0 20.0 15.0"
-	//	"AbilityManaCost"				"0"
-	//}
+	// "night_stalker_hunter_in_the_night_hvh" is custom
 
-	// "night_stalker_hunter_in_the_night" is custom
-
-	"doom_bringer_doom"
-	{
-		"AbilityCastPoint"				"0.1" // 0.5
-		"AbilityCooldown"				"30.0" // 100
-		"AbilityManaCost"				"0"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8.0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"20 35 50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration_scepter"		"8.0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_scepter"		"20 35 50" // nerfed
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"deniable_pct"			"25"
-			}
-		}
+	// ------------------- STARTING ITEMS --------------------------
+	"item_boots"
+	{	
+		"ItemSellable" "0"
+		"ItemDroppable" "0"
 	}
 
-	// -------------------------- ITEMS --------------------------
-
 	"item_phase_boots"
-	{
+	{	
+		"ItemSellable" "0"
+		"ItemDroppable" "0"
 		"AbilitySpecial"
 		{
 			"01"
@@ -113,8 +73,11 @@
 		}
 	}
 
+	// LORE: "I slahsed a warlock's face for this.""
 	"item_ultimate_scepter" // TODO: we should make this a Mangonian Scepter
 	{
+		"ItemSellable" "0"
+		"ItemDroppable" "0"
 		"AbilitySpecial"
 		{
 			"01"
@@ -135,9 +98,11 @@
 		}
 	}
 
+	// -------------------------- ITEMS WITH VALVE CHARGES --------------------------
 	"item_ward_observer"
 	{
-		   "ItemInitialCharges"	"2"
+		"ItemSellable" "0"
+		"ItemInitialCharges"	"2"
 	}
 
 	//"item_ward_sentry"
@@ -146,22 +111,277 @@
 	//	   "ItemRequiresCharges"	"0"
 	//}
 
-	"item_blink"
+	"item_tango"
 	{
-		"ItemInitialCharges"  "1" //How many charges should the item start with - Tango x3 
-		"ItemDisplayCharges"  "1" //Hide the charges of the item - Aegis 
-		"ItemRequiresCharges" "1" //The active ability needs charges to be used - Urn
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "4"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 
-		"ItemStackable" "0" // TODO: think about this
-		//"ItemPermanent" "0" // does not work
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"total_heal"			"115"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"total_heal_ward_tooltip"			"230"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range_ward"			"450"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"buff_duration"			"16.0"
+			}
+		}	
 	}
 
-	"item_sphere"
+	"item_flask"
 	{
-		"ItemInitialCharges"  "1" //How many charges should the item start with - Tango x3 
-		"ItemDisplayCharges"  "1" //Hide the charges of the item - Aegis 
-		"ItemRequiresCharges" "1" //The active ability needs charges to be used - Urn
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "2"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"buff_duration"			"8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"total_health"			"400"
+			}
+		}		
+	}
+
+	"item_tango_single" // not added to loot table
+	{
+		"ItemSellable" "0"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+	}
+
+	"item_smoke_of_deceit"
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "2"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+	}
+
+	"item_dust"
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "2"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"AbilityManaCost" "0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"12"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"1050"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"movespeed"				"-20"
+			}
+		}		
+	}
+
+	"item_magic_stick" // BUG: not starting with charges
+	{
+		"ItemSellable" "0"
+		"ItemPermanent" "0"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_charges"			"17" // hvh
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"charge_radius"			"1200"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"restore_per_charge"	"15"
+			}
+		}
+	}
+
+	"item_diffusal_blade" // TODO: should it murder dog?
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "2" // It's also in AbilitySpecial
+		"ItemPermanent" "0"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agility"			"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"initial_charges"		"2"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"feedback_mana_burn"	"0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"feedback_mana_burn_ranged"	"0"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"purge_summoned_damage"	"99999"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"purge_rate"			"5"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"purge_root_duration"	"3.0"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"purge_slow_duration"	"4.0"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_per_burn"		"0.0"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range_tooltip"		"600"
+			}
+		}
+	}
+
+	"item_urn_of_shadows" // doesn't collect souls
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "3" // It's also in AbilitySpecial
+		"ItemPermanent"	"0"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_regen"			"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_strength"		"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"soul_radius"			"1400"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"soul_initial_charge"	"3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"soul_additional_charges"	"0"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"soul_heal_interval"	"0.25"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"soul_heal_amount"		"400"
+			}			
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"soul_damage_amount"	"150"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"soul_heal_duration"	"8.0"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"soul_damage_duration"	"8.0"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"soul_release_range_tooltip"	"950"
+			}
+		}		
+	}
+
+	// -------------------------- CHEST ITEMS --------------------------
+	"item_blink"
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "1"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"ItemStackable" "0" // TODO: think about this
+		//"ItemPermanent" "0" // does not work for items that normally lack charges
+	}
+
+	"item_sphere" // BUG: remove on spellblock proc
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "1"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 		"ItemStackable" "0" // TODO: think about this
 
 		"AbilitySpecial"
@@ -196,14 +416,14 @@
 
 	"item_lotus_orb"
 	{
-		"ItemInitialCharges"  "3" //How many charges should the item start with - Tango x3 
-		"ItemDisplayCharges"  "1" //Hide the charges of the item - Aegis 
-		"ItemRequiresCharges" "1" //The active ability needs charges to be used - Urn
-
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "3"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 		"ItemStackable" "0" // TODO: think about this
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost" "0"
+
 		"AbilitySpecial"
 		{
 			"01"
@@ -241,10 +461,11 @@
 
 	"item_black_king_bar"
 	{
-		"ItemInitialCharges"  "1" //How many charges should the item start with - Tango x3 
-		"ItemDisplayCharges"  "1" //Hide the charges of the item - Aegis 
-		"ItemRequiresCharges" "1" //The active ability needs charges to be used - Urn
-
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "1"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 		"ItemStackable" "0" // TODO: think about this
 
 		"AbilitySpecial"
@@ -279,11 +500,13 @@
 
 	"item_force_staff"
 	{
-		"ItemInitialCharges"  "2" //How many charges should the item start with - Tango x3 
-		"ItemDisplayCharges"  "1" //Hide the charges of the item - Aegis 
-		"ItemRequiresCharges" "1" //The active ability needs charges to be used - Urn
-
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "2"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 		"ItemStackable" "0" // TODO: think about this
+		"AbilityManaCost" "0"
 
 		"AbilitySpecial"
 		{
@@ -307,11 +530,13 @@
 
 	"item_sheepstick"
 	{
-		"ItemInitialCharges"  "1" //How many charges should the item start with - Tango x3 
-		"ItemDisplayCharges"  "1" //Hide the charges of the item - Aegis 
-		"ItemRequiresCharges" "1" //The active ability needs charges to be used - Urn
-
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "1"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 		"ItemStackable" "0" // TODO: think about this
+		"AbilityManaCost" "0"
 
 		"AbilitySpecial"
 		{
@@ -348,8 +573,977 @@
 		}
 	}
 
+	"item_quelling_blade" // TODO: super quelling blade
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "5"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"ItemStackable" "0" // TODO: think about this
+		"AbilityCooldown" "0.2"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_bonus"			"100"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_bonus_ranged"	"100"
+			}
+		}
+	}
+
+	"item_invis_sword"
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "1"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"ItemStackable" "0" // TODO: think about this
+		"AbilityManaCost" "0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"windwalk_duration"		"14.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"windwalk_movement_speed"	"20"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"windwalk_fade_time"	"0.3"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"windwalk_bonus_damage"	"175"
+			}
+		}
+	}
+
+	"item_ghost"
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "1"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"ItemStackable" "0" // TODO: think about this
+		"AbilityManaCost" "0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all_stats"		"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"4.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"extra_spell_damage_percent"	"-40"
+			}
+		}
+	}
+
+	"item_mekansm"
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "1"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"ItemStackable" "0" // TODO: think about this
+		"AbilityManaCost" "0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all_stats"		"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"0" 
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aura_radius"			"0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aura_health_regen"		"0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_amount"			"250"
+			}			
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_bonus_armor"		"2"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_armor_duration"	"25"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_radius"			"900"
+			}
+		}
+	}
+
+	"item_veil_of_discord"
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "1"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"ItemStackable" "0" // TODO: think about this
+		"AbilityManaCost" "0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_stats"		"0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"		"0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"resist_debuff"			"-25"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"debuff_radius"			"600"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"resist_debuff_duration"	"16.0"
+			}
+		}
+	}
+
+	"item_dagon"
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "1"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"ItemStackable" "0" // TODO: think about this
+		"AbilityManaCost" "0"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all_stats"		"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"400"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range_tooltip"			"600"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_delay"				"0"
+			}
+		}
+	}
+
+	"item_medallion_of_courage" // BUG: not properly adding armor
+	{
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "3"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"ItemStackable" "0" // TODO: think about this
+		"AbilityManaCost" "0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana_regen_pct"	"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction"		"-7"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"7"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"valor_cast_range_tooltip"				"1000"
+			}
+		}
+	}
+
+	"item_abyssal_blade" // BUG: have I disabled all procs on attack?
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "1"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"ItemStackable" "0" // TODO: think about this
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"				"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_strength"				"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bash_chance_melee"		"0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bash_chance_ranged"	"0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bash_duration"			"1.4"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_chance_damage"	"60"
+			}	
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bash_cooldown"			"2.3"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"				"2"
+			}
+		}
+	}
+
+	"item_blade_mail"
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "1"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"ItemStackable" "0" // TODO: think about this
+		"AbilityManaCost" "0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"4.5"
+			}
+		}
+	}
+
+	"item_manta" // BUG: not working on NS, but works for sniper? (might have to do with fast day/night)
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "2"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"ItemStackable" "0" // TODO: think about this
+		"AbilityManaCost" "0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_strength"		"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agility"			"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movement_speed"	"0"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"images_count"			"2"
+			}			
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tooltip_illusion_duration"			"20"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"images_do_damage_percent_melee"	"-67"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tooltip_damage_outgoing_melee"			"33"
+			}	
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"images_take_damage_percent_melee"	"250"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tooltip_damage_incoming_melee_total_pct"			"350"
+			}			
+			"12"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"images_do_damage_percent_ranged"	"-72"
+			}
+			"13"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tooltip_damage_outgoing_ranged"			"28"
+			}
+			"14"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"images_take_damage_percent_ranged"	"300"
+			}
+			"15"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tooltip_damage_incoming_ranged_total_pct"			"400"
+			}
+			"16"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown_melee"		"35.0"
+			}
+			"17"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown_ranged_tooltip"		"50"
+			}
+			"18"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"invuln_duration"		"0.1"
+			}
+			"19"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vision_radius"			"1000"
+			}			
+		}		
+	}
+
+	"item_satanic"
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "1"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"ItemStackable" "0" // TODO: think about this
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_strength"		"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal_percent"		"0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"unholy_lifesteal_percent"	"175"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"unholy_lifesteal_total_tooltip"	"200"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"unholy_duration"		"4"
+			}
+		}
+	}
+
+	"item_mask_of_madness"
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "2"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"ItemStackable" "0" // TODO: think about this
+		"AbilityManaCost" "0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal_percent"		"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"berserk_bonus_attack_speed"	"100"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"berserk_bonus_movement_speed"	"17"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"berserk_extra_damage"	"30"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"berserk_duration"		"12.0"
+			}
+		}		
+	}
+
+	"item_mjollnir"
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "1"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"ItemStackable" "0" // TODO: think about this
+		"AbilityManaCost" "0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"static_duration"		"15.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"static_chance"			"20"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"static_strikes"		"4"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"static_damage"			"200"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"static_primary_radius"	"600"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"static_seconary_radius"	"900"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"static_radius"			"900"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"static_cooldown"		"1.0"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chain_chance"			"0"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chain_damage"			"0"
+			}
+			"13"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chain_strikes"			"0"
+			}
+			"14"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chain_radius"			"900"
+			}
+			"15"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"chain_delay"			"0.25"
+			}
+		}		
+	}
+
+	"item_buckler"
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "1"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"ItemStackable" "0" // TODO: think about this
+		"AbilityManaCost" "0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all_stats"		"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_aoe_radius"		"900"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_aoe_armor"		"2"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_aoe_duration"	"30.0"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_aoe_duration_hero"	"25.0"
+			}
+		}
+	}
+
+	"item_pipe"
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "1"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"ItemStackable" "0" // TODO: think about this
+		"AbilityManaCost" "0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"health_regen"			"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"magic_resistance"		"0"
+			}			
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"barrier_debuff_duration"	"50.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tooltip_resist"			"0"
+			}			
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aura_health_regen"		"0"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"magic_resistance_aura"		"0"
+			}	
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aura_radius"			"1"
+			}			
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"barrier_block"			"400"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"barrier_duration"		"12.0"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"barrier_radius"		"900"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all_stats"		"0"
+			}			
+			"12"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"barrier_block_creep"	"400"
+			}
+		}		
+	}
+
+	"item_solar_crest" // friendly only BUG: not working
+	{
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "1"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"ItemStackable" "0" // TODO: think about this
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana_regen_pct"	"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_evasion"			"0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"allied_armor"			"10"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"allied_evasion"		"30"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction"		"-10"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"enemy_armor_reduction_tooltip"		"0"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"miss_chance"			"30"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"7"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"valor_cast_range_tooltip"				"1000"
+			}			
+		}		
+	}
+
+	"item_crimson_guard"
+	{
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "1"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"ItemStackable" "0" // TODO: think about this
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health"			"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all_stats"		"0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"block_chance"			"0"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"block_damage_melee"	"0"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"block_damage_ranged"	"0"
+			}			
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_aoe_armor"		"2"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"10"
+			}		
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_aoe_radius"		"900"
+			}		
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"block_damage_melee_active"	"55"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"block_damage_ranged_active"	"55"
+			}		
+			"13"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"block_chance_active"			"100"
+			}	
+		}
+	}
+
+	"item_cyclone"
+	{
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY" // TODO: think about this
+		"ItemSellable" "0"
+		"ItemInitialCharges"  "2"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"ItemStackable" "0" // TODO: think about this
+		"AbilityManaCost" "0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana_regen"		"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movement_speed"	"0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cyclone_duration"		"2.5"
+			}
+		}
+	}
+
 	// remove items from the game
-	//"item_blink"			"REMOVE"
 	"item_blades_of_attack"			"REMOVE"
 	"item_broadsword"			"REMOVE"
 	"item_chainmail"			"REMOVE"
@@ -359,7 +1553,6 @@
 	"item_mithril_hammer"			"REMOVE"
 	"item_platemail"			"REMOVE"
 	"item_quarterstaff"			"REMOVE"
-	"item_quelling_blade"			"REMOVE"
 	"item_ring_of_protection"			"REMOVE"
 	"item_stout_shield"			"REMOVE"
 	"item_gauntlets"			"REMOVE"
@@ -378,30 +1571,19 @@
 	"item_lifesteal"			"REMOVE"
 	"item_ring_of_regen"			"REMOVE"
 	"item_sobi_mask"			"REMOVE"
-	//"item_boots"			"REMOVE"
-	//"item_invis_sword"		"REMOVE"
 	"item_gem"			"REMOVE"
 	"item_cloak"			"REMOVE"
 	"item_talisman_of_evasion"			"REMOVE"
 	"item_cheese"			"REMOVE"
-	"item_magic_stick"			"REMOVE"
 	"item_recipe_magic_wand"			"REMOVE"
 	"item_magic_wand"			"REMOVE"
-	"item_ghost"			"REMOVE"
 	"item_clarity"			"REMOVE"
-	"item_flask"			"REMOVE"
-	"item_dust"			"REMOVE"
 	"item_bottle"			"REMOVE"
-	//"item_ward_observer"			"REMOVE"
-	//"item_ward_sentry"			"REMOVE"
-	"item_tango"			"REMOVE"
-	"item_tango_single"			"REMOVE"
 	"item_courier"			"REMOVE"
 	"item_tpscroll"			"REMOVE"
 	"item_recipe_travel_boots"			"REMOVE"
 	"item_travel_boots"			"REMOVE"
 	"item_recipe_phase_boots"			"REMOVE"
-	//"item_phase_boots"			"REMOVE"
 	"item_demon_edge"			"REMOVE"
 	"item_eagle"			"REMOVE"
 	"item_reaver"			"REMOVE"
@@ -430,34 +1612,26 @@
 	"item_recipe_null_talisman"			"REMOVE"
 	"item_null_talisman"			"REMOVE"
 	"item_recipe_mekansm"			"REMOVE"
-	"item_mekansm"			"REMOVE"
 	"item_recipe_vladmir"			"REMOVE"
 	"item_vladmir"			"REMOVE"
 	"item_flying_courier"			"REMOVE"
 	"item_recipe_buckler"			"REMOVE"
-	"item_buckler"			"REMOVE"
 	"item_recipe_ring_of_basilius"			"REMOVE"
 	"item_ring_of_basilius"			"REMOVE"
 	"item_recipe_pipe"			"REMOVE"
-	"item_pipe"			"REMOVE"
 	"item_recipe_urn_of_shadows"			"REMOVE"
-	"item_urn_of_shadows"			"REMOVE"
 	"item_recipe_headdress"			"REMOVE"
 	"item_headdress"			"REMOVE"
 	"item_recipe_sheepstick"			"REMOVE"
-	//"item_sheepstick"			"REMOVE"
 	"item_recipe_orchid"			"REMOVE"
 	"item_orchid"			"REMOVE"
 	"item_recipe_cyclone"			"REMOVE"
-	"item_cyclone"			"REMOVE"
 	"item_recipe_force_staff"			"REMOVE"
-	//"item_force_staff"			"REMOVE"
 	"item_recipe_dagon"			"REMOVE"
 	"item_recipe_dagon_2"			"REMOVE"
 	"item_recipe_dagon_3"			"REMOVE"
 	"item_recipe_dagon_4"			"REMOVE"
 	"item_recipe_dagon_5"			"REMOVE"
-	"item_dagon"			"REMOVE"
 	"item_dagon_2"			"REMOVE"
 	"item_dagon_3"			"REMOVE"
 	"item_dagon_4"			"REMOVE"
@@ -469,7 +1643,6 @@
 	"item_necronomicon_2"			"REMOVE"
 	"item_necronomicon_3"			"REMOVE"
 	"item_recipe_ultimate_scepter"			"REMOVE"
-	//"item_ultimate_scepter"			"REMOVE"
 	"item_recipe_refresher"			"REMOVE"
 	"item_refresher"			"REMOVE"
 	"item_recipe_assault"			"REMOVE"
@@ -477,18 +1650,15 @@
 	"item_recipe_heart"			"REMOVE"
 	"item_heart"			"REMOVE"
 	"item_recipe_black_king_bar"			"REMOVE"
-	//"item_black_king_bar"			"REMOVE"
 	"item_aegis"			"REMOVE"
 	"item_recipe_shivas_guard"			"REMOVE"
 	"item_shivas_guard"			"REMOVE"
 	"item_recipe_bloodstone"			"REMOVE"
 	"item_bloodstone"			"REMOVE"
 	"item_recipe_sphere"			"REMOVE"
-	//"item_sphere"			"REMOVE"
 	"item_recipe_reflex_energy_regen_booster"			"REMOVE"
 	"item_vanguard"			"REMOVE"
 	"item_recipe_blade_mail"			"REMOVE"
-	"item_blade_mail"			"REMOVE"
 	"item_recipe_soul_booster"			"REMOVE"
 	"item_soul_booster"			"REMOVE"
 	"item_recipe_hood_of_defiance"			"REMOVE"
@@ -508,19 +1678,15 @@
 	"item_recipe_bfury"			"REMOVE"
 	"item_bfury"			"REMOVE"
 	"item_recipe_manta"			"REMOVE"
-	"item_manta"			"REMOVE"
 	"item_recipe_lesser_crit"			"REMOVE"
 	"item_lesser_crit"			"REMOVE"
 	"item_recipe_armlet"			"REMOVE"
 	"item_armlet"			"REMOVE"
 	"item_recipe_invis_sword"			"REMOVE"
-	"item_invis_sword"			"REMOVE"
 	"item_recipe_sange_and_yasha"			"REMOVE"
 	"item_sange_and_yasha"			"REMOVE"
 	"item_recipe_satanic"			"REMOVE"
-	"item_satanic"			"REMOVE"
 	"item_recipe_mjollnir"			"REMOVE"
-	"item_mjollnir"			"REMOVE"
 	"item_recipe_skadi"			"REMOVE"
 	"item_skadi"			"REMOVE"
 	"item_recipe_sange"			"REMOVE"
@@ -534,10 +1700,8 @@
 	"item_recipe_yasha"			"REMOVE"
 	"item_yasha"			"REMOVE"
 	"item_recipe_mask_of_madness"			"REMOVE"
-	"item_mask_of_madness"			"REMOVE"
 	"item_recipe_diffusal_blade"			"REMOVE"
 	"item_recipe_diffusal_blade_2"			"REMOVE"
-	"item_diffusal_blade"			"REMOVE"
 	"item_diffusal_blade_2"			"REMOVE"
 	"item_recipe_ethereal_blade"			"REMOVE"
 	"item_ethereal_blade"			"REMOVE"
@@ -549,14 +1713,10 @@
 	"item_recipe_ancient_janggo"			"REMOVE"
 	"item_ancient_janggo"			"REMOVE"
 	"item_recipe_medallion_of_courage"			"REMOVE"
-	"item_medallion_of_courage"			"REMOVE"
-	"item_smoke_of_deceit"			"REMOVE"
 	"item_recipe_veil_of_discord"			"REMOVE"
-	"item_veil_of_discord"			"REMOVE"
 	"item_recipe_rod_of_atos"			"REMOVE"
 	"item_rod_of_atos"			"REMOVE"
 	"item_recipe_abyssal_blade"			"REMOVE"
-	"item_abyssal_blade"			"REMOVE"
 	"item_recipe_heavens_halberd"			"REMOVE"
 	"item_heavens_halberd"			"REMOVE"
 	"item_recipe_ring_of_aquila"			"REMOVE"
@@ -564,15 +1724,11 @@
 	"item_recipe_tranquil_boots"			"REMOVE"
 	"item_tranquil_boots"			"REMOVE"
 	"item_shadow_amulet"			"REMOVE"
-
 	//6.84 items
 	"item_enchanted_mango"			"REMOVE"
 	"item_moon_shard"			"REMOVE"
 	"item_guardian_greaves"			"REMOVE"
 	"item_octarine_core"			"REMOVE"
-	"item_solar_crest"			"REMOVE"
 	"item_glimmer_cape"			"REMOVE"
 	"item_silver_edge"			"REMOVE"
-	"item_crimson_guard"			"REMOVE"
-	//"item_lotus_orb"			"REMOVE"
 }

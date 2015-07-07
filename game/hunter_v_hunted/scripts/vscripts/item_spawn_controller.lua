@@ -2,36 +2,62 @@
 
 if HVHItemSpawnController == nil then
 	HVHItemSpawnController = class({})
+	HVHItemSpawnController._Spawners = {
+		"hvh_item_spawn_north",
+		"hvh_item_spawn_south",
+		"hvh_item_spawn_east",
+		"hvh_item_spawn_west"
+	}
+
+	HVHItemSpawnController._ThinkInterval = 1.0 -- //0.1
+	HVHItemSpawnController._WasDayTimeLastThink = false
+	HVHItemSpawnController._ItemsPerCycle = 4
+	HVHItemSpawnController._SpawnedItems = {}
 
 	HVHItemSpawnController._GoodGuyChest = "item_treasure_chest_good_guys"
-	HVHItemSpawnController._GoodGuyItems = {}
-	HVHItemSpawnController._GoodGuyItems[1] = "item_force_staff"
-	HVHItemSpawnController._GoodGuyItems[2] = "item_sphere"
-	HVHItemSpawnController._GoodGuyItems[3] = "item_lotus_orb"
-	HVHItemSpawnController._GoodGuyItems[4] = "item_black_king_bar"
-	HVHItemSpawnController._GoodGuyItems[5] = "item_ward_observer"
-  	HVHItemSpawnController._GoodGuyItems[6] = "item_ward_sentry"
+	HVHItemSpawnController._GoodGuyItems = {
+		"item_flask", -- healing salve
+		"item_dust",
+		"item_tango",
+		"item_force_staff",
+		--"item_sphere", --TODO: removed until i know what to do with it
+		"item_lotus_orb",
+		"item_black_king_bar",
+		"item_ward_observer",
+		"item_ward_sentry",
+		"item_urn_of_shadows",
+		"item_crimson_guard",
+		"item_solar_crest",
+		"item_pipe",
+		"item_buckler",
+		"item_ghost",
+		"item_mekansm",
+		"item_medallion_of_courage",
+		"item_manta",
+		"item_cyclone"
+	}
 
 	HVHItemSpawnController._BadGuyChest = "item_treasure_chest_bad_guys"
-	HVHItemSpawnController._BadGuyItems = {}
-	HVHItemSpawnController._BadGuyItems[1] = "item_force_staff"
-	HVHItemSpawnController._BadGuyItems[2] = "item_blink"
-	HVHItemSpawnController._BadGuyItems[3] = "item_meat_hook"
-	HVHItemSpawnController._BadGuyItems[4] = "item_sheepstick"
+	HVHItemSpawnController._BadGuyItems = {
+		"item_smoke_of_deceit",
+		"item_quelling_blade",
+		"item_force_staff",
+		"item_blink",
+		"item_meat_hook",
+		"item_sheepstick",
+		"item_invis_sword",
+		"item_magic_stick",
+		"item_veil_of_discord",
+		"item_dagon",
+		"item_abyssal_blade",
+		"item_blade_mail",
+		"item_manta",
+		"item_satanic",
+		"item_mask_of_madness",
+		"item_mjollnir",
+		"item_diffusal_blade"
+	}
 
-	HVHItemSpawnController._Spawners = {}
-	HVHItemSpawnController._Spawners[1] = "hvh_item_spawn_north"
-	HVHItemSpawnController._Spawners[2] = "hvh_item_spawn_south"
-	HVHItemSpawnController._Spawners[3] = "hvh_item_spawn_east"
-	HVHItemSpawnController._Spawners[4] = "hvh_item_spawn_west"
-
-	HVHItemSpawnController._ThinkInterval = 0.1
-
-	HVHItemSpawnController._WasDayTimeLastThink = false
-
-	HVHItemSpawnController._ItemsPerCycle = 4
-
-	HVHItemSpawnController._SpawnedItems = {}
   --[[TODO:
    hunters: timber chain
    NS: shackle, dagon]]--

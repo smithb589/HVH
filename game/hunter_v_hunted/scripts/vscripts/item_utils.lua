@@ -21,11 +21,18 @@ function HVHItemUtils:SpawnItem(itemName, position)
 	return droppedItem
 end
 
--- Might need a whitelist to prevent default charged items from breaking
 function HVHItemUtils:IsChargedItem(item)
 	itemName = item:GetName()
-	if (itemName == "item_ward_sentry") or (itemName =="item_ward_observer") then
-		return false -- hack fix to ignore them
+	if  (itemName == "item_ward_sentry") or
+		(itemName == "item_ward_observer") or
+		(itemName == "item_flask") or
+		(itemName == "item_tango") or
+		(itemName == "item_tango_single") or
+		(itemName == "item_smoke_of_deceit") or
+		(itemName == "item_dust") or
+		(itemName == "item_diffusal_blade") or
+		(itemName == "item_urn_of_shadows")	then
+		return false -- hack fix to ignore these items and let Valve subtract charges normally
 	end
 	
 	return (item:GetInitialCharges() ~= 0)
@@ -37,7 +44,10 @@ function HVHItemUtils:ExpendCharge(item)
     local newCharges = item:GetCurrentCharges() - 1
     item:SetCurrentCharges(newCharges)
     if newCharges <= 0 then
-      hero:RemoveItem(item)
+		Timers:CreateTimer(0.1, function()
+	    	hero:RemoveItem(item)
+	    end
+	  	)
     end
 end
 
