@@ -633,8 +633,8 @@
 		"precache"
 		{
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_queenofpain.vsndevts"
-			"particle"			"particles/units/heroes/hero_queenofpain/queen_sonic_wave.vpcf"
-			"particle"			"particles/units/heroes/hero_centaur/centaur_warstomp_shockwave.vpcf"
+			"particle"			"particles/echolocation.vpcf"
+			//"particle"		"particles/units/heroes/hero_centaur/centaur_warstomp_shockwave.vpcf"
 		}
 		
 		// Casting
@@ -766,7 +766,7 @@
 			"LinearProjectile"
 			{
 				"Target"      "POINT"
-			    "EffectName"  "particles/units/heroes/hero_queenofpain/queen_sonic_wave.vpcf"
+			    "EffectName"  "particles/echolocation.vpcf"
 			    "MoveSpeed"   "%scream_speed"
 			    "StartRadius"   "%scream_starting_aoe"
 			    "StartPosition" "attach_origin"
