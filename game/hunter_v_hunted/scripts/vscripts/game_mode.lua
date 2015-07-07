@@ -16,15 +16,5 @@ function HVHGameMode:InitGameMode()
 	HVHConvars:Setup()
 	ListenToGameEvent('dota_player_pick_hero', Dynamic_Wrap(self, 'OnPlayerPickHero'), self)
 
-	HVHItemSpawnController:Setup()
-
-	
-	local spawner = Entities:FindByName(nil, "RadiantCourierSpawner")
-	local position = spawner:GetAbsOrigin()
-	CreateUnitByName("npc_dota_good_guy_dog", position, true, nil, nil, DOTA_TEAM_GOODGUYS)
-	CreateUnitByName("npc_dota_good_guy_dog", position, true, nil, nil, DOTA_TEAM_GOODGUYS)
-	CreateUnitByName("npc_dota_good_guy_dog", position, true, nil, nil, DOTA_TEAM_GOODGUYS)
-	
-	
 	print("Hunter v Hunted loaded.")
 end

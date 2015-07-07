@@ -160,7 +160,7 @@ function BehaviorPursue:Continue()
 		if pursuitTarget:HasModifier("modifier_invisible") then
 			self.order.OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION		
 		else
-			self.order.OrderType = DOTA_UNIT_ORDER_MOVE_TO_TARGET
+			self.order.OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET
 		end
 	end
 

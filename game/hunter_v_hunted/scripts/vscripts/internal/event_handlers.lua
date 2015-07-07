@@ -4,7 +4,12 @@ end
 
 function HVHGameMode:OnGameRulesStateChange()
 	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-		self:_SetupFastTime()
+	 	self:_SetupFastTime()
+    HVHItemSpawnController:Setup()
+
+    local spawner = Entities:FindByName(nil, "RadiantCourierSpawner")
+    local position = spawner:GetAbsOrigin()
+    CreateUnitByName("npc_dota_good_guy_dog", position, true, nil, nil, DOTA_TEAM_GOODGUYS)
 	end
 end
 

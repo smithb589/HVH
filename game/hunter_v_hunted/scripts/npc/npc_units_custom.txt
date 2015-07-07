@@ -88,14 +88,14 @@
 		"Model"						"models/heroes/lycan/summon_wolves.vmdl"
 		"SoundSet"					"Hero_LycanWolves"
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts"
-		"Level"						"1"
-		"ModelScale" 				"1.0"
+		"Level"						"25"
+		"ModelScale" 				"1.2"
 
 		// Abilities
 		//----------------------------------------------------------------
 		"Ability1"					"good_guy_dog_sleepy"			// Ability 1.
-		"Ability2"					"general_ability_invulnerable"			// Ability 2.
-		"Ability3"					""			// Ability 3.
+		"Ability2"					"general_ability_invulnerable"	// Ability 2.
+		"Ability3"					"slardar_bash"					// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
 	
@@ -107,8 +107,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"1"			// Damage range min.
-		"AttackDamageMax"			"1"		// Damage range max.
+		"AttackDamageMin"			"50"			// Damage range min.
+		"AttackDamageMax"			"75"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"1"		// Speed of attack.
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
@@ -116,7 +116,6 @@
 		"AttackRange"				"100"		// Range within a target can be attacked.
 		//"ProjectileModel"			"particles/units/heroes/hero_venomancer/venomancer_plague_ward_projectile.vpcf" // Particle system model for projectile.
 		//"ProjectileSpeed"			"1900"		// Speed of projectile.
-		"AutoAttacksByDefault"         "0"
 	
 		// Bounds
 		//----------------------------------------------------------------
