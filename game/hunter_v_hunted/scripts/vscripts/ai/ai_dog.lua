@@ -116,7 +116,8 @@ BehaviorPursue =
 	order =
 	{
 		UnitIndex = thisEntity:entindex(),
-		OrderType = DOTA_UNIT_ORDER_MOVE_TO_TARGET,
+		OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+		Position = thisEntity:GetAbsOrigin(),
 		TargetIndex = nil
 	}
 }
@@ -141,12 +142,28 @@ function BehaviorPursue:Begin()
 
 	if self:IsTargetValid(pursuitTarget) then
 		self.order.TargetIndex = pursuitTarget:GetEntityIndex()
+		self.order.Position = pursuitTarget:GetAbsOrigin()
 	end
 
 	self.endTime = GameRules:GetGameTime() + 1
 end
 
 function BehaviorPursue:Continue()
+	-- important to constantly re-evaluate the closest target (illusions, etc.)
+	local pursuitTarget = self:FindTarget()
+
+	if self:IsTargetValid(pursuitTarget) then
+		self.order.TargetIndex = pursuitTarget:GetEntityIndex()
+		self.order.Position = pursuitTarget:GetAbsOrigin()
+
+		-- fixes error 27 (Invalid order: Target is invisible and is not on the unit's team.)
+		if pursuitTarget:HasModifier("modifier_invisible") then
+			self.order.OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION		
+		else
+			self.order.OrderType = DOTA_UNIT_ORDER_MOVE_TO_TARGET
+		end
+	end
+
 	self.endTime = GameRules:GetGameTime() + 1
 end
 
