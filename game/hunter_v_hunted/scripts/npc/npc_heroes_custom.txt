@@ -10,6 +10,8 @@
 		"Ability2"			"meepo_earthbind"
 		"Ability3"			"sniper_headshot"
 		"Ability4"			"bounty_hunter_track"
+		"Ability5"			"sniper_feed_dog"
+		"AbilityLayout"		"5"
 	}
 
 	"npc_dota_hero_night_stalker_hvh"

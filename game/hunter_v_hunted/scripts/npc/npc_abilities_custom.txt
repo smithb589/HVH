@@ -613,4 +613,66 @@
 		}
 	}
 
+	"sniper_feed_dog"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"			""
+		"AOERadius"						"%treat_radius"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"60"
+		"AbilityManaCost"				"0"
+
+		"Precache"
+		{
+			"particle"			"particles/good_guy_dog_treat.vpcf"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"treat_fly_speed"	"200"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"treat_width"		"50"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"treat_radius"		"200"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			// Need some sort of effect for the sniper to throw
+
+			"LinearProjectile"
+			{
+				"Target" 		"POINT"
+			    "EffectName"  	"particles/good_guy_dog_treat.vpcf"
+			    "MoveSpeed"   	"%treat_fly_speed"
+			    //"StartRadius"	"%treat_radius"
+			    //"EndRadius"		"%treat_radius"
+			    "StartPosition" "attach_origin"
+			    //"FixedDistance"	"300"
+			    "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+			    "TargetTypes"   "DOTA_UNIT_TARGET_BASIC"
+			    "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+			    "HasFrontalCone"    "0"
+			    "ProvidesVision" "0"
+			}
+		}
+	}
 }

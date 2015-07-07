@@ -32,6 +32,8 @@ function Precache( context )
   PrecacheResource("particle_folder", "particles/econ/items/sniper/", context) -- can't forget immortal FX!
   PrecacheResource("particle_folder", "particles/econ/items/nightstalker/", context)
   PrecacheResource("particle", "particles/newplayer_fx/npx_sleeping.vpcf", context)
+  PrecacheResource("particle", "particles/good_guy_dog_treat.vpcf", context)
+  PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion_flash_b.vpcf", context)
   PrecacheResource("model_folder", "models/items/nightstalker/", context) -- inexplicably, no underscore in name
   PrecacheResource("model_folder", "models/items/sniper/", context)
   PrecacheResource("model_folder", "models/items/lycan/", context)
