@@ -283,12 +283,12 @@
 	    	"01"
 	    	{
 	    		"var_type"							"FIELD_INTEGER"
-	    		"move_speed_bonus_percentage"		"50"
+	    		"move_speed_bonus_percentage"		"35"
 	    	}
 	    	"02"
 	    	{
 	    		"var_type"							"FIELD_INTEGER"
-	    		"attack_speed_bonus"				"150"
+	    		"attack_speed_bonus"				"90"
 	    	}
 	    	"03"
 	    	{
