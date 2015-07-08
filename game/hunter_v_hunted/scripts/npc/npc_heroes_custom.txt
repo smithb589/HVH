@@ -9,9 +9,8 @@
 		"Ability1"			"sniper_shrapnel_hvh"
 		"Ability2"			"meepo_earthbind"
 		"Ability3"			"sniper_headshot"
-		"Ability4"			"bounty_hunter_track"
-		"Ability5"			"sniper_feed_dog"
-		"AbilityLayout"		"5"
+		"Ability4"			"sniper_feed_dog"
+		"AbilityLayout"		"4"
 	}
 
 	"npc_dota_hero_night_stalker_hvh"
@@ -23,7 +22,7 @@
 		"Ability4"			"night_stalker_hunter_in_the_night_hvh"
 		"Ability5"			"night_stalker_echolocation_hvh"
 		"AbilityLayout"		"5"
-		//"Ability5"			"doom_bringer_doom"
+
 		"Ability10"         "attribute_bonus"  
 
 		"ModelScale" "1.1"

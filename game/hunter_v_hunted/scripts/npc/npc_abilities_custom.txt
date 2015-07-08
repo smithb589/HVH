@@ -255,8 +255,6 @@
 		}
 	}
 
-
-
 	"night_stalker_hunter_in_the_night_hvh"
 	{
 		// General  
@@ -895,4 +893,144 @@
 			}
 		}
 	}
-}
+
+	"dog_mans_best_friend"
+	{
+	// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityTextureName"			"crystal_maiden_brilliance_aura" // TODO
+		
+		"MaxLevel"               "1"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_health_regen_pct"	"1.5"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"aura_armor"		"10"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"600"
+			}
+
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"Modifiers"
+		{
+			"modifier_mans_best_friend_aura_caster"
+			{
+				"Passive"				"1"
+				"IsPurgable"			"0"
+				"IsHidden"				"1"
+				"Aura"					"modifier_mans_best_friend_aura_effect"
+				"Aura_Radius"			"%radius"
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_HERO"
+			}
+			
+			"modifier_mans_best_friend_aura_effect"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"%aura_health_regen_pct"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%aura_armor"
+				}
+			}
+		}
+	}
+
+	"dog_sprint"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName" 	"slardar_sprint"
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		 {
+			"soundfile"   "soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+			"particle"	"particles/units/heroes/hero_slardar/slardar_sprint.vpcf"
+		 }
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20" // "28"
+		
+		"AbilitySpecial"	
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_speed"				"33" // percentage
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"6.0"
+			}
+			// dog will only speed up when the target is far away
+			"04"	// accessed by ai_dog.lua pursuit routine
+			{
+				"var_type"			"FIELD_INTEGER"
+				"min_range"			"1200"
+			}	
+		}
+
+		"OnSpellStart"
+	    {
+	        "ApplyModifier"
+	        {
+	            "Target" "CASTER"
+	            "ModifierName" "modifier_dog_sprint"
+	        }
+	        "FireSound"
+	        {
+	        	"EffectName" "Hero_Slardar.Sprint"
+	        	"Target"	 "CASTER"
+	        }
+	    }
+	    "Modifiers"
+	    {
+	    	"modifier_dog_sprint"
+	    	{
+	    		"IsBuff" "1"
+	    		"Duration" "%duration"
+	    		"EffectName"	"particles/units/heroes/hero_slardar/slardar_sprint.vpcf"
+		    	"EffectAttachType"	"follow_origin"
+
+	    		"Properties"
+		    	{
+		    		"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_speed"
+		    	}
+	    	}
+	    }
+	}
+
+
+}	

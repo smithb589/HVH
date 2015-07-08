@@ -93,16 +93,17 @@
 
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					"good_guy_dog_sleepy"			// Ability 1.
-		"Ability2"					"general_ability_invulnerable"	// Ability 2.
-		"Ability3"					"slardar_bash"					// Ability 3.
-		"Ability4"					""			// Ability 4.
-		"Ability5"					""			// Ability 5.
+		"Ability1"					"dog_sprint"
+		//"Ability2"					"general_ability_invulnerable"
+		"Ability2"					"dog_mans_best_friend"
+		"Ability3"					"slardar_bash"
+		"Ability4"					"good_guy_dog_sleepy"
+		"AbilityLayout"	"4"
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"0"			// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"ArmorPhysical"				"6"			// Physical protection.
+		"MagicalResistance"			"25"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -136,7 +137,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"450"		// Base health.
+		"StatusHealth"				"1200"		// Base health.
 		"StatusHealthRegen"			"10"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.

@@ -156,7 +156,15 @@ function BehaviorPursue:Continue()
 		self.order.TargetIndex = pursuitTarget:GetEntityIndex()
 		self.order.Position = pursuitTarget:GetAbsOrigin()
 
-		-- fixes error 27 (Invalid order: Target is invisible and is not on the unit's team.)
+		local range = thisEntity:GetRangeToUnit(pursuitTarget)
+
+		local sprint_ability = thisEntity:FindAbilityByName("dog_sprint")
+		if range > sprint_ability:GetSpecialValueFor("min_range")
+				and sprint_ability:IsFullyCastable() then
+			thisEntity:CastAbilityNoTarget(sprint_ability, -1)
+		end
+
+		-- mostly fixes error 27 (Invalid order: Target is invisible and is not on the unit's team.)
 		if pursuitTarget:HasModifier("modifier_invisible") then
 			self.order.OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION		
 		else
