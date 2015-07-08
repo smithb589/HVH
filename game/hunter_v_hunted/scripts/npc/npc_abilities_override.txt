@@ -10,6 +10,31 @@
 	"meepo_earthbind"
 	{
 		"AbilityCooldown"				"30	25 20 15"
+		"AbilityManaCost"				"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3.0" //"2.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"220"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"857"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tooltip_range"			"500 750 1000 1250"
+			}
+		}
 	}
 
 	"sniper_headshot" {}

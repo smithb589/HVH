@@ -142,7 +142,7 @@ function HVHGameMode:SetHeroDeathBounty(hero)
   local deathXP = XP_PER_LEVEL_TABLE[heroLevel-1]
   hero:SetCustomDeathXP(deathXP)
   --Placeholder values
-  hero:SetBaseHealthRegen(10)
-  hero:SetBaseManaRegen(100)
+  --hero:SetBaseHealthRegen(10)
+  --hero:SetBaseManaRegen(100)
   --print("Set custom death xp: " .. deathXP)
 end

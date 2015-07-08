@@ -13,6 +13,7 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"sniper_shrapnel"
 		"AOERadius"						"%radius"
+		"AbilityProcsMagicStick" "1"	
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -21,16 +22,12 @@
 	
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"12 24 36 48"
+		"AbilityDamage"					"0" // "12 24 36 48"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50" // 6.84
+		"AbilityManaCost"				"0"
 		"AbilityCooldown"				"20.0"
-	
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"0.25"	// primarily about damage
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -39,7 +36,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow_movement_speed"	"-15 -20 -25 -30"
+				"slow_movement_speed"	"-20 -30 -35 -40" // "-15 -20 -25 -30"
 			}
 			"02"
 			{
@@ -59,12 +56,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_delay"			"0.7" //"1.4" // 6.84
+				"damage_delay"			"0.6" //"1.4" // 6.84
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"slow_duration"			"2.0 2.0 2.0 2.0"
+				"slow_duration"			"3.0" // 2.0
 			}
 			// Extra variables
 			"07"
@@ -295,7 +292,11 @@
 	    		"var_type"							"FIELD_FLOAT"
 	    		"invis_delay"						"3.0"
 	    	}
-
+	    	"04"
+	    	{
+	    		"var_type"							"FIELD_FLOAT"
+	    		"invis_regen_pct_per_sec"			"2.0"
+	    	}
 	    }
 
 	    "Modifiers"
@@ -359,6 +360,12 @@
 						"ModifierName" 	"modifier_invisible"
 						"Target"		"CASTER"
 					}
+
+					"ApplyModifier"
+					{
+						"ModifierName" 	"modifier_dread_hunter_regen"
+						"Target"		"CASTER"
+					}
 	    		}
 
 				"OnDestroy"
@@ -376,7 +383,25 @@
 						"ModifierName"	"modifier_invisible"
 						"Target"		"CASTER"
 					}
+
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_dread_hunter_regen"
+						"Target"		"CASTER"
+					}
 				}
+
+	    	}
+
+	    	"modifier_dread_hunter_regen"
+	    	{
+	    		"Passive"			"1"
+	    		"IsHidden"			"0"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%invis_regen_pct_per_sec"
+	    		}
 
 	    	}
 
