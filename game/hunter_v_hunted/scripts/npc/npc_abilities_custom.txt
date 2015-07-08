@@ -835,7 +835,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"treat_fly_speed"	"200"
+				"treat_fly_speed"	"300"
 			}
 			"02"
 			{
@@ -858,8 +858,8 @@
 				"Target" 		"POINT"
 			    "EffectName"  	"particles/good_guy_dog_treat.vpcf"
 			    "MoveSpeed"   	"%treat_fly_speed"
-			    //"StartRadius"	"%treat_radius"
-			    //"EndRadius"		"%treat_radius"
+			    "StartRadius"	"%treat_radius"
+			    "EndRadius"		"%treat_radius"
 			    "StartPosition" "attach_origin"
 			    //"FixedDistance"	"300"
 			    "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
