@@ -19,20 +19,20 @@ if HVHItemSpawnController == nil then
 		"item_flask", -- healing salve
 		"item_dust",
 		"item_tango",
+		"item_ward_observer",
+		"item_ward_sentry",
 		"item_force_staff",
 		--"item_sphere", --TODO: removed until i know what to do with it
 		"item_lotus_orb",
 		"item_black_king_bar",
-		"item_ward_observer",
-		"item_ward_sentry",
 		"item_urn_of_shadows",
 		"item_crimson_guard",
-		"item_solar_crest",
+		--"item_solar_crest", -- disabling broken items that need to be customized probably
 		"item_pipe",
 		"item_buckler",
 		"item_ghost",
 		"item_mekansm",
-		"item_medallion_of_courage",
+		--"item_medallion_of_courage",
 		"item_manta",
 		"item_cyclone"
 	}
@@ -41,18 +41,18 @@ if HVHItemSpawnController == nil then
 	HVHItemSpawnController._BadGuyItems = {
 		"item_smoke_of_deceit",
 		"item_quelling_blade",
+		"item_magic_stick",
 		"item_force_staff",
 		"item_blink",
 		"item_meat_hook",
 		"item_sheepstick",
 		"item_invis_sword",
-		"item_magic_stick",
 		"item_veil_of_discord",
 		"item_dagon",
 		"item_abyssal_blade",
 		"item_blade_mail",
 		"item_manta",
-		"item_satanic",
+		--"item_satanic",
 		"item_mask_of_madness",
 		"item_mjollnir",
 		"item_diffusal_blade"
