@@ -655,7 +655,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
 		{
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_queenofpain.vsndevts"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts"
 			"particle"			"particles/echolocation.vpcf"
 			//"particle"		"particles/units/heroes/hero_centaur/centaur_warstomp_shockwave.vpcf"
 		}
@@ -744,7 +744,8 @@
 		{
 			"FireSound"
 			{
-				"EffectName"	"Hero_QueenOfPain.SonicWave"
+				// Hero_Spectre.HauntCast would go well for Mirana leap
+				"EffectName"	"Hero_Nightstalker.Darkness"
 				"Target"		"CASTER"
 			}
 	
