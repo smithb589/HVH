@@ -38,17 +38,25 @@ function HVHItemUtils:IsChargedItem(item)
 	return (item:GetInitialCharges() ~= 0)
 end
 
+-- could not find LUA for this simple function
 function HVHItemUtils:ExpendCharge(item)
-    -- could not find LUA for this simple function
+
+	-- hack fix for magic stick not deleting on use
+    local remove = 0
+    if item:GetName() == "item_magic_stick" then
+    	remove = 1
+    end
+
     local hero = item:GetOwner()
     local newCharges = item:GetCurrentCharges() - 1
     item:SetCurrentCharges(newCharges)
-    if newCharges <= 0 then
+    if newCharges <= 0 or remove == 1 then
 		Timers:CreateTimer(0.1, function()
 	    	hero:RemoveItem(item)
 	    end
 	  	)
     end
+    
 end
 
 --[[
