@@ -53,7 +53,6 @@
 
 	// "night_stalker_crippling_fear_hvh" is custom
 
-
 	"mirana_leap"
 	{
 		"AbilityCooldown"				"10.0 8.0 6.0 4.0"
@@ -164,11 +163,10 @@
 		"ItemInitialCharges"	"2"
 	}
 
-	//"item_ward_sentry"
-	//{
-	//	   bugged
-	//	   "ItemRequiresCharges"	"0"
-	//}
+	"item_ward_sentry"
+	{
+	   "ItemSellable" "0"
+	}
 
 	"item_tango"
 	{
@@ -264,6 +262,7 @@
 
 	"item_magic_stick" // BUG: not starting with charges
 	{
+		"ItemInitialCharges"	"10"
 		"ItemSellable" "0"
 		"ItemPermanent" "0"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
@@ -358,7 +357,7 @@
 	"item_urn_of_shadows" // doesn't collect souls
 	{
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "3" // It's also in AbilitySpecial
+		"ItemInitialCharges"  "2" // It's also in AbilitySpecial
 		"ItemPermanent"	"0"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 
@@ -1016,7 +1015,7 @@
 	"item_manta" // BUG: not working on NS, but works for sniper? (might have to do with fast day/night)
 	{
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"ItemDisplayCharges"  "1"
 		"ItemRequiresCharges" "1"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
@@ -1305,7 +1304,7 @@
 	"item_buckler"
 	{
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "1"
+		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
 		"ItemRequiresCharges" "1"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
@@ -1426,7 +1425,7 @@
 	{
 		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "1"
+		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
 		"ItemRequiresCharges" "1"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
