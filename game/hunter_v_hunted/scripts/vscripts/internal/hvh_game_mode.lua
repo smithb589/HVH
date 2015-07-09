@@ -83,16 +83,10 @@ end
 
 -- Increases the rate of the day/night cycle by a multiplier
 function HVHGameMode:_SetupFastTime(multiplier)
-  -- GetTimeOfDay() is expressed as a float from 0.0 to 1.0, where ~0.25 is sunrise and ~0.75 is sunset
-  local MINS_PER_CYCLE = 8 -- set to standard dota day/night cycle
-  local SECS_PER_CYCLE = MINS_PER_CYCLE * 60
-  local TIME_OF_DAY_PER_SECOND = 1 / SECS_PER_CYCLE
-  local extraFloatTimePerSecond = TIME_OF_DAY_PER_SECOND * (DAY_NIGHT_CYCLE_MULTIPLIER - 1)
-
   Timers:CreateTimer(function()
     local timeOfDay = GameRules:GetTimeOfDay()
     --print ("Running immediately and then every second thereafter. Time of day is " .. timeOfDay )
-    GameRules:SetTimeOfDay(timeOfDay + extraFloatTimePerSecond)
+    GameRules:SetTimeOfDay(timeOfDay + EXTRA_FLOAT_TIME_PER_SECOND)
     return 1.0
   end)
 end
@@ -145,4 +139,18 @@ function HVHGameMode:SetHeroDeathBounty(hero)
   --hero:SetBaseHealthRegen(10)
   --hero:SetBaseManaRegen(100)
   --print("Set custom death xp: " .. deathXP)
+end
+
+function HVHGameMode:SpawnDog(random_spawn)
+  local spawner = nil
+  if random_spawn then
+    local possibleSpawners = Entities:FindAllByClassname("info_player_start_goodguys")
+    local r = RandomInt(1, #possibleSpawners)
+    spawner = possibleSpawners[r]
+  else
+    spawner = Entities:FindByClassname(nil, "info_courier_spawn_radiant")
+  end
+ 
+  local position = spawner:GetAbsOrigin()
+  CreateUnitByName("npc_dota_good_guy_dog", position, true, nil, nil, DOTA_TEAM_GOODGUYS)
 end

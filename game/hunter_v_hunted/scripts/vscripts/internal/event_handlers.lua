@@ -1,3 +1,5 @@
+require("timers_util")
+
 function HVHGameMode:OnPlayerConnectFull()
 	self:_SetupGameMode()
 end
@@ -6,10 +8,7 @@ function HVHGameMode:OnGameRulesStateChange()
 	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 	 	self:_SetupFastTime()
     HVHItemSpawnController:Setup()
-
-    local spawner = Entities:FindByName(nil, "RadiantCourierSpawner")
-    local position = spawner:GetAbsOrigin()
-    CreateUnitByName("npc_dota_good_guy_dog", position, true, nil, nil, DOTA_TEAM_GOODGUYS)
+    HVHGameMode:SpawnDog(false)
 	end
 end
 
@@ -29,10 +28,17 @@ end
 
 function HVHGameMode:OnEntityKilled(killedArgs)
  	local unit = EntIndexToHScript(killedArgs.entindex_killed)
- 	--print("Unit Killed.")
- 	if unit and unit:IsHero() then
- 		--print("XP bounty on killed unit: " .. unit:GetCustomDeathXP())
- 	end
+	--print("XP bounty on killed unit: " .. unit:GetCustomDeathXP())
+
+  if unit and unit:GetUnitName() == "npc_dota_good_guy_dog" then
+    Timers:CreateTimer({
+      endTime = HVHTimerUtils:GetSecondsUntilNextDawn(),
+      callback = function()
+        HVHGameMode:SpawnDog(true)
+    end
+    })
+  end
+
 end
 
 function HVHGameMode:OnPlayerPickHero(keys)
