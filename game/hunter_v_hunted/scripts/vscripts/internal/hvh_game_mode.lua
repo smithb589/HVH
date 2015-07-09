@@ -104,11 +104,11 @@ function HVHGameMode:SetupHero(playerID)
 
       -- max out abilities
       local ability = nil
-      for i=0,15 do
+      for i=0,hero:GetAbilityCount() do
         ability = hero:GetAbilityByIndex(i)
-        if ability then 
-          for level=1, ability:GetMaxLevel() do --ability:SetLevel(ability:GetMaxLevel()) IGNORES OnUpgrade
-            ability:UpgradeAbility(false)
+        if ability and not ability:IsAttributeBonus() then 
+          for level=1, ability:GetMaxLevel() do
+            ability:UpgradeAbility(false) -- SetLevel() ignores OnUpgrade events
           end
         end
       end
