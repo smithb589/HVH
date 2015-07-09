@@ -7,16 +7,14 @@ behaviorSystem = {}
 
 function Spawn( entityKeyValues )
 
-	thisEntity.Feed = function(feedDuration)
-		thisEntity._FeedTime = GameRules:GetGameTime()
-		thisEntity._FeedDuration = feedDuration
+	thisEntity.Feed = function(self, feedDuration)
+		self._FeedTime = GameRules:GetGameTime()
+		self._FeedDuration = feedDuration
 	end
 
-	thisEntity.IsFed = function()
-		--local currentTime = GameRules:GetGameTime() 
-		--return (thisEntity._FeedTime + thisEntity._FeedDuration) <= currentTime
-		-- todo: placeholder for testing
-		return true
+	thisEntity.IsFed = function(self)
+		local currentTime = GameRules:GetGameTime() 
+		return (self._FeedTime + self._FeedDuration) > currentTime
 	end
 
 	-- This stores the location we started wandering from so the dog

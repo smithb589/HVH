@@ -841,7 +841,7 @@
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"600"
+		"AbilityCastRange"				"900"
 		"AbilityCastPoint"				"0.3"
 		"AbilityCooldown"				"60"
 		"AbilityManaCost"				"0"
@@ -858,7 +858,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"treat_fly_speed"	"300"
+				"treat_fly_speed"	"400"
 			}
 			"02"
 			{
@@ -868,7 +868,12 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"treat_radius"		"200"
+				"treat_radius"		"350"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"feed_duration"		"15"
 			}
 		}
 
@@ -881,8 +886,8 @@
 				"Target" 		"POINT"
 			    "EffectName"  	"particles/good_guy_dog_treat.vpcf"
 			    "MoveSpeed"   	"%treat_fly_speed"
-			    "StartRadius"	"%treat_radius"
-			    "EndRadius"		"%treat_radius"
+			    //"StartRadius"	"%treat_radius"
+			    //"EndRadius"		"%treat_radius"
 			    "StartPosition" "attach_origin"
 			    //"FixedDistance"	"300"
 			    "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -890,6 +895,25 @@
 			    "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
 			    "HasFrontalCone"    "0"
 			    "ProvidesVision" "0"
+			    "DeleteOnHit"	"false"
+			}
+		}
+
+		"OnProjectileFinish"
+		{
+			"RunScript"
+			{
+				"Target"
+				{
+					"Center"	"POINT"
+					"Radius"	"%treat_radius"
+					"Teams"		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Types"		"DOTA_UNIT_TARGET_BASIC"
+				}
+				"ScriptFile"	"scripts/vscripts/SpellLibrary/sniper_feed_dog.lua"
+				"Function"		"Feed"
+				"feedDuration"	"%feed_duration"
+				//"treatRadius"	"%treat_radius"
 			}
 		}
 	}
