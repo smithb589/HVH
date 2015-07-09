@@ -458,67 +458,7 @@
 	    }
 	}
 
-	"good_guy_dog_sleepy"
-	{
-		"BaseClass"             		"ability_datadriven"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			""
-
-		"Modifiers"
-		{
-			"modifier_sleep_applicator"
-			{
-				"Passive" 			"1"
-	    		"IsHidden"			"1"
-
-	    		"ThinkInterval"  "0.25"
-	    		"OnIntervalThink"
-	    		{
-	    			"RunScript"
-	    			{
-	    				"ScriptFile"	"SpellLibrary/good_guy_dog_sleep.lua"
-	    				"Function"		"GoToSleep"
-	    				"modifier"		"modifier_sleep"
-	    			}
-	    		}
-			}
-
-			"modifier_sleep"
-			{
-				"IsHidden"			"1"
-				
-				"EffectName"        "particles/newplayer_fx/npx_sleeping.vpcf"
-				"EffectAttachType"  "follow_overhead"
-				"Target"            "CASTER"
-			}
-		}
-	}
-
-	"general_ability_invulnerable"
-	{
-		"BaseClass"             		"ability_datadriven"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			""
-
-		"Modifiers"
-		{
-			"modifier_invulnerability"
-			{
-				"Passive"			"1"
-				"IsHidden"			"0"
-				"IsDebuff"			"0"
-
-				"States"
-				{
-					"MODIFIER_STATE_INVULNERABLE" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}		
-	}
-
-	// Rewrite of the Nightstalker Crippling Fear ability
-	// Author: Pizzalol
-	// Date: 11.01.2015.
+	// Rewrite of the Nightstalker Crippling Fear ability // Author: Pizzalol // Date: 11.01.2015.
 	"night_stalker_crippling_fear_hvh"
 	{
 		// General
@@ -636,9 +576,7 @@
 		}
 	}
 
-// Rewrite of the Queen of Pain Sonic Wave ability
-	// Author: Pizzalol
-	// Date: 19.12.2014.
+	// Rewrite of the Queen of Pain Sonic Wave ability // Author: Pizzalol // Date: 19.12.2014.
 	"night_stalker_echolocation_hvh"
 	{
 		// General
@@ -832,6 +770,64 @@
 	
 	}
 
+	"good_guy_dog_sleepy"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			""
+
+		"Modifiers"
+		{
+			"modifier_sleep_applicator"
+			{
+				"Passive" 			"1"
+	    		"IsHidden"			"1"
+
+	    		"ThinkInterval"  "1.0"
+	    		"OnIntervalThink"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"	"SpellLibrary/good_guy_dog_sleep.lua"
+	    				"Function"		"GoToSleep"
+	    				"modifier"		"modifier_sleep"
+	    			}
+	    		}
+			}
+
+			"modifier_sleep"
+			{
+				"IsHidden"			"1"
+				
+				"EffectName"        "particles/newplayer_fx/npx_sleeping.vpcf"
+				"EffectAttachType"  "follow_overhead"
+				"Target"            "CASTER"
+			}
+		}
+	}
+
+	"general_ability_invulnerable"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			""
+
+		"Modifiers"
+		{
+			"modifier_invulnerability"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}		
+	}
+
 	"sniper_feed_dog"
 	{
 		"BaseClass"						"ability_datadriven"
@@ -952,13 +948,27 @@
 
 		}
 		
-		// Data driven
-		//-------------------------------------------------------------------------------------------------------------
 		"Modifiers"
 		{
+			"modifier_mans_best_friend_applicator"
+			{
+				"Passive" 			"1"
+	    		"IsHidden"			"1"
+
+	    		"ThinkInterval"  "1.0"
+	    		"OnIntervalThink"
+	    		{
+	    			"RunScript"
+	    			{
+						"ScriptFile"	"SpellLibrary/good_guy_dog_mans_best_friend.lua"
+						"Function"		"ManageAura"
+						"modifier"		"modifier_mans_best_friend_aura_caster"
+	    			}
+	    		}
+			}
 			"modifier_mans_best_friend_aura_caster"
 			{
-				"Passive"				"1"
+				"Passive"				"0"
 				"IsPurgable"			"0"
 				"IsHidden"				"1"
 				"Aura"					"modifier_mans_best_friend_aura_effect"
