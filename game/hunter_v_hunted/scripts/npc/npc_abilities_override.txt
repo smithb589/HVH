@@ -179,7 +179,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"total_heal"			"115"
+				"total_heal"			"175" // 115
 			}
 			"02"
 			{
@@ -215,7 +215,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"total_health"			"400"
+				"total_health"			"600" // 400
 			}
 		}		
 	}
@@ -224,6 +224,30 @@
 	{
 		"ItemSellable" "0"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"total_heal"			"175" // 115
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"total_heal_ward_tooltip"			"230"
+			}			
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range_ward"			"450"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"buff_duration"			"16.0"
+			}
+		}
 	}
 
 	"item_smoke_of_deceit"
@@ -260,7 +284,7 @@
 		}		
 	}
 
-	"item_magic_stick" // BUG: not starting with charges
+	"item_magic_stick" // BUG: not destroyed at 0 charges
 	{
 		"ItemInitialCharges"	"10"
 		"ItemSellable" "0"
@@ -282,7 +306,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"restore_per_charge"	"15"
+				"restore_per_charge"	"30" // 15
 			}
 		}
 	}
@@ -381,7 +405,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"soul_initial_charge"	"3"
+				"soul_initial_charge"	"2"
 			}
 			"05"
 			{
@@ -396,12 +420,12 @@
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"soul_heal_amount"		"400"
+				"soul_heal_amount"		"550" // 400
 			}			
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"soul_damage_amount"	"150"
+				"soul_damage_amount"	"225" // 150
 			}
 			"09"
 			{

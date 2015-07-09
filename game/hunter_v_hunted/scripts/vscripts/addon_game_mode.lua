@@ -42,7 +42,11 @@ function Precache( context )
   PrecacheResource("model_folder", "models/heroes/lycan/", context)
   PrecacheResource("model", "models/props_gameplay/treasure_chest001.vmdl", context)
   PrecacheResource("model", "models/props_debris/merchant_debris_chest001.vmdl", context)
-  PrecacheUnitByNameSync("npc_dota_hero_sniper", context) 
+ 
+  -- TODO: Custom Games: PrecacheUnitByNameSync and PrecacheUnitByNameAsync can optionally take a PlayerID as the last
+  -- argument and it will use the cosmetic items from that player when precaching. The player must be connected to the
+  -- game otherwise it will fall back to the default cosmetic items.
+  PrecacheUnitByNameSync("npc_dota_hero_sniper", context)
   PrecacheUnitByNameSync("npc_dota_hero_night_stalker", context)
 end
 
