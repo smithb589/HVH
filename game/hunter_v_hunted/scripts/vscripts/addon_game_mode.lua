@@ -20,8 +20,6 @@ function Precache( context )
   -- [ W ResourceSystem ]: WARNING: RESOURCE_TYPE_MATERIAL resource 'materials/vgui/hud/heroportraits/portraitbackground_moon.vmat' (4CCF3C8C8DA5EE3F) requested but is not in the system. (Missing from from a manifest?)
   -- BUG: Nightstalker immortal loses his wings at night
   -- BUG: These could be optimized. Also sound is missing.
-  PrecacheResource("particle_folder", "particles/units/heroes/hero_bounty_hunter/", context)
-  PrecacheResource("particle_folder", "particles/units/heroes/hero_treant/", context)
   PrecacheResource("particle_folder", "particles/units/heroes/hero_mirana/", context)
   PrecacheResource("particle_folder", "particles/units/heroes/hero_doom_bringer/", context)
   PrecacheResource("particle_folder", "particles/units/heroes/hero_meepo/", context)
@@ -52,8 +50,8 @@ end
 
 -- Create the game mode class when we activate
 function Activate()
-	GameRules.HVH = HVHGameMode()
-	GameRules.HVH:InitGameMode()
+	GameRules.HVHGameMode = HVHGameMode()
+	GameRules.HVHGameMode:InitGameMode()
 
   --local courier = CreateUnitByName("npc_dota_courier", spawner:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_GOODGUYS)
   

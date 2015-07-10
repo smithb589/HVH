@@ -11,7 +11,7 @@
 		"Ability3"			"sniper_headshot"
 		"Ability4"			"sniper_feed_dog"
 		"AbilityLayout"		"4"
-		"Ability10"         "attribute_bonus"  
+		"Ability10"         "attribute_bonus"
 	}
 
 	"npc_dota_hero_night_stalker_hvh"

@@ -39,12 +39,6 @@
 
 	"sniper_headshot" {}
 
-	"bounty_hunter_track"
-	{
-		"AbilityManaCost"				"0"
-		"AbilityCooldown"				"60"
-	}
-
 	// -------------------------- Nightstalker's abilities --------------------------
 	"night_stalker_void"
 	{

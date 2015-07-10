@@ -51,7 +51,7 @@ function HVHItemUtils:ExpendCharge(item)
     local newCharges = item:GetCurrentCharges() - 1
     item:SetCurrentCharges(newCharges)
     if newCharges <= 0 or remove == 1 then
-		Timers:CreateTimer(0.1, function()
+		Timers:CreateTimer(SINGLE_FRAME_TIME, function()
 	    	hero:RemoveItem(item)
 	    end
 	  	)
