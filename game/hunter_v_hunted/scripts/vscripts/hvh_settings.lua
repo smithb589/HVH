@@ -2,7 +2,13 @@
 
 -- HVH-specific
 STARTING_LEVEL		= 16
+STARTING_LEVELS_TO_ADD = STARTING_LEVEL - 1
 DAY_NIGHT_CYCLE_MULTIPLIER = 4			-- ex. 4 means each day/night will last 1 min each (4x faster)
+GOLD_PER_KILL 	= 0
+XP_MULTIPLIER_FOR_SNIPER_KILLS = 4
+XP_PER_KILL 	 = 3					-- ex. 3 when NS kills a sniper, or 12 when snipers kill NS
+XP_PER_TICK      = 1					-- every XP_TICK_INTERVAL seconds, living heroes get XP_PER_TICK
+XP_TICK_INTERVAL = 20
 
 ENABLE_HERO_RESPAWN = true              -- Should the heroes automatically respawn on a timer or stay dead until manually respawned
 UNIVERSAL_SHOP_MODE = false             -- Should the main shop contain Secret Shop items as well as regular items
@@ -29,7 +35,7 @@ BUYBACK_ENABLED = false                 -- Should we allow people to buyback whe
 
 DISABLE_FOG_OF_WAR_ENTIRELY = false     -- Should we disable fog of war entirely for both teams?
 USE_STANDARD_DOTA_BOT_THINKING = false  -- Should we have bots act like they would in Dota? (This requires 3 lanes, normal items, etc)
-USE_STANDARD_HERO_GOLD_BOUNTY = false   -- Should we give gold for hero kills the same as in Dota, or allow those values to be changed?
+USE_STANDARD_HERO_GOLD_BOUNTY = false    -- Should we give gold for hero kills the same as in Dota, or allow those values to be changed?
 
 USE_CUSTOM_TOP_BAR_VALUES = true        -- Should we do customized top bar values or use the default kill count per team?
 TOP_BAR_VISIBLE = true                  -- Should we display the top bar score/count at all?
@@ -42,14 +48,17 @@ DISABLE_GOLD_SOUNDS = false             -- Should we disable the gold sound when
 END_GAME_ON_KILLS = false               -- Should the game end after a certain number of kills?
 KILLS_TO_END_GAME_FOR_TEAM = 50         -- How many kills for a team should signify an end of game?
 
+-- custom hero levels means each entry = total XP you need to reach that level
+-- default hero levels means each entry = XP you need for next level (i think)
 USE_CUSTOM_HERO_LEVELS = true           -- Should we allow heroes to have custom levels?
 MAX_LEVEL = 25                          -- What level should we let heroes get to?
 USE_CUSTOM_XP_VALUES = true             -- Should we use custom XP values to level up heroes, or the default Dota numbers?
 
 -- Fill this table up with the required XP per level if you want to change it
+XP_FACTOR = 10
 XP_PER_LEVEL_TABLE = {}
 for i=1,MAX_LEVEL do
-  XP_PER_LEVEL_TABLE[i-1] = i * 100
+  XP_PER_LEVEL_TABLE[i] = (i-1) * XP_FACTOR
 end
 
 ENABLE_FIRST_BLOOD = true               -- Should we enable first blood for the first kill in this game?

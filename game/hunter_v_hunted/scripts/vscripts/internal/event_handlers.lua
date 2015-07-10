@@ -7,44 +7,23 @@ end
 function HVHGameMode:OnGameRulesStateChange()
 	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 	 	self:_SetupFastTime()
+    self:_SetupPassiveXP()
     HVHItemSpawnController:Setup()
     HVHGameMode:SpawnDog(false)
 	end
 end
 
-function HVHGameMode:OnRoundStart(gameInfo)
-	print("Creating courier.")
+--function HVHGameMode:OnRoundStart(gameInfo)
+	--print("Creating courier.")
 	--local spawner = Entities:GetEntityByName("RadiantCourierSpawner")
 	--CreateUnitByName("npc_dota_courier", spawner:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_GOODGUYS)	
-end
+--end
 
-function HVHGameMode:OnNPCSpawned(spawnArgs)
-	local unit = EntIndexToHScript(spawnArgs.entindex)
-	if unit and unit:IsHero() then
-		local playerID = unit:GetPlayerOwnerID()
-		self:SetHeroDeathBounty(unit)
-	end
-end
-
-function HVHGameMode:OnEntityKilled(killedArgs)
- 	local unit = EntIndexToHScript(killedArgs.entindex_killed)
-	--print("XP bounty on killed unit: " .. unit:GetCustomDeathXP())
-
-  if unit and unit:GetUnitName() == "npc_dota_good_guy_dog" then
-    Timers:CreateTimer({
-      endTime = HVHTimerUtils:GetSecondsUntilNextDawn(),
-      callback = function()
-        HVHGameMode:SpawnDog(true)
-    end
-    })
-  end
-
-end
 
 function HVHGameMode:OnPlayerPickHero(keys)
   local heroClass = keys.hero
   if heroClass == "npc_dota_hero_axe" then
-    print("Hero being replaced " .. heroClass)
+    --print("Hero being replaced " .. heroClass)
     local heroEntity = EntIndexToHScript(keys.heroindex)
     local player = EntIndexToHScript(keys.player)
     local playerID = player:GetPlayerID()
@@ -57,19 +36,59 @@ function HVHGameMode:OnPlayerPickHero(keys)
       newHero = "npc_dota_hero_night_stalker"
     end
 
-    print("Replacing hero for player with ID " .. playerID)
+    --print("Replacing hero for player with ID " .. playerID)
     heroEntity:SetModel("models/development/invisiblebox.vmdl")
-	local newHeroEntity = PlayerResource:ReplaceHeroWith(playerID, newHero, 0, 0)
+    local newHeroEntity = PlayerResource:ReplaceHeroWith(playerID, newHero, 0, 0)
 
     --ReplaceHeroWith doesn't seem to give them the amount of XP indicated...
-    Timers:CreateTimer(0.03,
-    	function() 
-    		self:SetupHero(playerID)
-		end
-	)
+    --Timers:CreateTimer(SINGLE_FRAME_TIME,
+    --  function() 
+    --    self:SetupHero(playerID)
+    --end
+    --)
 
-    print("Replaced hero.")
+  --print("Replaced hero.")
   end
+end
+
+
+function HVHGameMode:OnNPCSpawned(spawnArgs)
+  Timers:CreateTimer(SINGLE_FRAME_TIME, function() 
+
+  	local unit = EntIndexToHScript(spawnArgs.entindex)
+  	if unit and unit:IsHero() then
+       if unit.SuccessfulSetup ~= true then
+     
+          local playerID = unit:GetPlayerOwnerID()
+          self:SetupHero(unit)
+      end
+    self:SetHeroDeathBounty(unit)          
+    end
+
+  end)
+end
+
+function HVHGameMode:OnEntityKilled(killedArgs)
+ 	local unit = EntIndexToHScript(killedArgs.entindex_killed)
+	--print("XP bounty on killed unit: " .. unit:GetCustomDeathXP())
+
+  -- scoreboard
+  if unit and unit:IsRealHero() then
+    local team = unit:GetTeam()
+    local mode = GameRules:GetGameModeEntity()
+    --mode:SetTopBarTeamValue(team, 17)
+  end
+
+  -- dog respawning
+  if unit and unit:GetUnitName() == "npc_dota_good_guy_dog" then
+    Timers:CreateTimer({
+      endTime = HVHTimerUtils:GetSecondsUntilNextDawn(),
+      callback = function()
+        HVHGameMode:SpawnDog(true)
+    end
+    })
+  end
+
 end
 
 -- Overridden Valve items will not consume charges or get destroyed, even with ItemPermanent "0". This fixes that problem.

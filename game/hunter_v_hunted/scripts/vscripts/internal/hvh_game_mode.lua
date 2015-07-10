@@ -2,26 +2,26 @@ require("hvh_settings")
 
 function HVHGameMode:_InitGameMode()
   GameRules:SetHeroRespawnEnabled( ENABLE_HERO_RESPAWN )
+  GameRules:SetUseUniversalShopMode( UNIVERSAL_SHOP_MODE )
+  GameRules:SetSameHeroSelectionEnabled( ALLOW_SAME_HERO_SELECTION )
   GameRules:SetHeroSelectionTime( HERO_SELECTION_TIME )
   GameRules:SetPreGameTime( PRE_GAME_TIME)
   GameRules:SetPostGameTime( POST_GAME_TIME )
   GameRules:SetTreeRegrowTime( TREE_REGROW_TIME )
-  GameRules:SetUseCustomHeroXPValues( USE_CUSTOM_XP_VALUES )
+  GameRules:SetUseCustomHeroXPValues ( USE_CUSTOM_XP_VALUES )
   GameRules:SetGoldPerTick(GOLD_PER_TICK)
   GameRules:SetGoldTickTime(GOLD_TICK_TIME)
+  GameRules:SetRuneSpawnTime(RUNE_SPAWN_TIME)
   GameRules:SetUseBaseGoldBountyOnHeroes(USE_STANDARD_HERO_GOLD_BOUNTY)
   GameRules:SetHeroMinimapIconScale( MINIMAP_ICON_SIZE )
   GameRules:SetCreepMinimapIconScale( MINIMAP_CREEP_ICON_SIZE )
   GameRules:SetRuneMinimapIconScale( MINIMAP_RUNE_ICON_SIZE )
-  GameRules:SetFirstBloodActive( ENABLE_FIRST_BLOOD )
-  GameRules:SetHideKillMessageHeaders( HIDE_KILL_BANNERS )
-  GameRules:SetRuneSpawnTime(RUNE_SPAWN_TIME) 
 
   ListenToGameEvent('player_connect_full', Dynamic_Wrap(self, 'OnPlayerConnectFull'), self)
   ListenToGameEvent('npc_spawned', Dynamic_Wrap(self, 'OnNPCSpawned'), self)
   ListenToGameEvent('entity_killed', Dynamic_Wrap(self, 'OnEntityKilled'), self)
   ListenToGameEvent('game_rules_state_change', Dynamic_Wrap(self, 'OnGameRulesStateChange'), self)
-  ListenToGameEvent('round_start', Dynamic_Wrap(self, 'OnRoundStart'), self)
+  --ListenToGameEvent('round_start', Dynamic_Wrap(self, 'OnRoundStart'), self)
   ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(self, 'OnAbilityUsed'), self)
 
   local count = 0
@@ -47,9 +47,9 @@ function HVHGameMode:_SetupGameMode()
     mode:SetBuybackEnabled( BUYBACK_ENABLED )
     mode:SetTopBarTeamValuesOverride ( USE_CUSTOM_TOP_BAR_VALUES )
     mode:SetTopBarTeamValuesVisible( TOP_BAR_VISIBLE )
-    mode:SetCustomHeroMaxLevel ( MAX_LEVEL )
     mode:SetCustomXPRequiredToReachNextLevel( XP_PER_LEVEL_TABLE )
     mode:SetUseCustomHeroLevels ( USE_CUSTOM_HERO_LEVELS )
+    mode:SetCustomHeroMaxLevel ( MAX_LEVEL )
     --DeepPrintTable(XP_PER_LEVEL_TABLE)
 
     mode:SetBotThinkingEnabled( USE_STANDARD_DOTA_BOT_THINKING )
@@ -77,8 +77,40 @@ function HVHGameMode:_SetupGameMode()
       mode:SetRuneEnabled(rune, spawn)
     end
 
-    --self:OnFirstPlayerLoaded()
+    mode:SetModifyGoldFilter( Dynamic_Wrap( self, "ModifyGoldFilter" ), self )
+    mode:SetModifyExperienceFilter( Dynamic_Wrap( self, "ModifyExperienceFilter" ), self )
   end 
+end
+
+-- BUG: this does not VISUALLY work yet but perhaps one day...
+-- http://dev.dota2.com/showthread.php?t=173007
+-- https://moddota.com/forums/discussion/553/removing-all-gold-from-kills
+function HVHGameMode:ModifyGoldFilter(table)
+  --Disable gold gain from hero kills
+  if table["reason_const"] == DOTA_ModifyGold_HeroKill then
+    table["gold"] = GOLD_PER_KILL
+    return true
+  end
+  --Otherwise use normal logic
+  return false
+end
+
+function HVHGameMode:ModifyExperienceFilter(table)
+  --Static XP gain from hero kills
+  if table["reason_const"] == DOTA_ModifyXP_HeroKill then
+    
+    if PlayerResource:GetTeam(table["player_id_const"]) == DOTA_TEAM_GOODGUYS then
+      --print("XP to the good guys!")
+      table["experience"] = XP_PER_KILL * XP_MULTIPLIER_FOR_SNIPER_KILLS
+    else
+      --print("XP to the bad guys!")
+      table["experience"] = XP_PER_KILL
+    end
+    
+    return true
+  end
+  --Otherwise use normal logic
+  return false
 end
 
 -- Increases the rate of the day/night cycle by a multiplier
@@ -91,66 +123,91 @@ function HVHGameMode:_SetupFastTime(multiplier)
   end)
 end
 
-function HVHGameMode:SetupHero(playerID)
-  local player = PlayerResource:GetPlayer(playerID)
-  if player then
-    local hero = player:GetAssignedHero()
-    if hero then
-      
-      -- start at higher level
-      for level=2,STARTING_LEVEL do
-        hero:HeroLevelUp(false)
-      end
+function HVHGameMode:_SetupPassiveXP()
+  Timers:CreateTimer(XP_TICK_INTERVAL, function()
 
-      -- max out abilities
-      local ability = nil
-      for i=0,hero:GetAbilityCount() do
-        ability = hero:GetAbilityByIndex(i)
-        if ability and not ability:IsAttributeBonus() then 
-          for level=1, ability:GetMaxLevel() do
-            ability:UpgradeAbility(false) -- SetLevel() ignores OnUpgrade events
-          end
-        end
+    local heroList = HeroList:GetAllHeroes()
+    for _,hero in pairs(heroList) do
+      if hero:IsAlive() then
+        hero:AddExperience(XP_PER_TICK, DOTA_ModifyXP_Unspecified, false, true)
       end
-      hero:SetAbilityPoints(0)
-
-      -- starting gear
-      local playerTeam = PlayerResource:GetTeam(playerID)
-      if playerTeam == DOTA_TEAM_GOODGUYS then
-        hero:AddItemByName("item_boots")
-      else
-        hero:AddItemByName("item_phase_boots")
-        hero:AddItemByName("item_ultimate_scepter")
-      end
-
-    else
-      print("No hero for player with ID " .. playerID)
     end
-  else
-    print("Could not find player with ID " .. playerID)
-  end  
+
+    return XP_TICK_INTERVAL
+  end)
 end
 
+function HVHGameMode:SetupHero(hero)
+  -- axe, stop nosing around in here
+  if hero:GetClassname() == "npc_dota_hero_axe" then
+    return
+  end
+
+  -- start at higher level
+  for level=1,STARTING_LEVELS_TO_ADD do
+    hero:HeroLevelUp(false)
+  end
+
+  -- starting xp for that level
+  --startingXP = sum_table_through_row(XP_PER_LEVEL_TABLE, 15)
+  hero:AddExperience(STARTING_LEVELS_TO_ADD * XP_FACTOR,
+    DOTA_ModifyXP_Unspecified, false, true)
+
+  -- max out abilities
+  local ability = nil
+  for i=0,hero:GetAbilityCount()-1 do
+    ability = hero:GetAbilityByIndex(i)
+    if ability and not ability:IsAttributeBonus() then 
+      for level=1, ability:GetMaxLevel() do
+        ability:UpgradeAbility(false) -- SetLevel() ignores OnUpgrade events
+      end
+    end
+  end
+  hero:SetAbilityPoints(0)
+
+  -- starting gear
+  local heroTeam = hero:GetTeamNumber()
+  if heroTeam == DOTA_TEAM_GOODGUYS then
+    hero:AddItemByName("item_boots")
+  else
+    hero:AddItemByName("item_phase_boots")
+    hero:AddItemByName("item_ultimate_scepter")
+  end
+
+  --print("Succesful setup of new hero")
+  hero.SuccessfulSetup = true
+end
+
+-- TODO: this shit. this shit right here.
 function HVHGameMode:SetHeroDeathBounty(hero)
-  local heroLevel = hero:GetLevel()
-  local deathXP = XP_PER_LEVEL_TABLE[heroLevel-1]
-  hero:SetCustomDeathXP(deathXP)
-  --Placeholder values
-  --hero:SetBaseHealthRegen(10)
-  --hero:SetBaseManaRegen(100)
-  --print("Set custom death xp: " .. deathXP)
+  --PrintTable(XP_PER_LEVEL_TABLE)
+  --local heroLevel = hero:GetLevel()
+  --local deathXP = 100
+  --hero:SetDeathXP(deathXP)
+  --hero:SetMaximumGoldBounty(0)
+  --hero:SetMinimumGoldBounty(0)
+  --hero:AddExperience(13600, DOTA_ModifyXP_Unspecified, false, true)
+  --print("Current XP: " .. hero:GetCurrentXP())
+  --print("DeathXP: " .. deathXP)
+  --print("Bounty: " .. hero:GetGoldBounty())
 end
 
 function HVHGameMode:SpawnDog(random_spawn)
   local spawner = nil
   if random_spawn then
-    local possibleSpawners = Entities:FindAllByClassname("info_player_start_goodguys")
-    local r = RandomInt(1, #possibleSpawners)
-    spawner = possibleSpawners[r]
+    spawner = HVHGameMode:ChooseRandomSpawn("info_player_start_goodguys")
   else
     spawner = Entities:FindByClassname(nil, "info_courier_spawn_radiant")
   end
  
   local position = spawner:GetAbsOrigin()
   CreateUnitByName("npc_dota_good_guy_dog", position, true, nil, nil, DOTA_TEAM_GOODGUYS)
+end
+
+function HVHGameMode:ChooseRandomSpawn(classname)
+    local possibleSpawners = Entities:FindAllByClassname(classname)
+    local r = RandomInt(1, #possibleSpawners)
+    spawner = possibleSpawners[r]
+
+    return spawner
 end

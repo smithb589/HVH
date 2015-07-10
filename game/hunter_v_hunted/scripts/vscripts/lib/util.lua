@@ -1,3 +1,16 @@
+-- not needed for custom hero levels
+--[[function sum_table_through_row(table, lastrow)
+  local sum = 0
+  for row,value in pairs(table) do
+    sum = sum + value
+    print("Sum: " .. sum .. ", row: " .. row)
+    if row == lastrow then
+      break
+    end
+  end
+  return sum
+end]]
+
 function PrintTable(t, indent, done)
 	--print ( string.format ('PrintTable type %s', type(keys)) )
     if type(t) ~= "table" then return end
@@ -54,8 +67,6 @@ COLOR_PURPLE = '\x1A'
 COLOR_ORANGE = '\x1B'
 COLOR_LRED = '\x1C'
 COLOR_GOLD = '\x1D'
-
-
 
 --============ Copyright (c) Valve Corporation, All rights reserved. ==========
 --
