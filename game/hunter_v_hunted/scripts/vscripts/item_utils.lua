@@ -7,6 +7,11 @@ end
 function HVHItemUtils:SpawnItem(itemName, position)
 	local droppedItem = nil
 	local item = CreateItem(itemName, nil, nil)
+	return self:DropItem(item, position)
+end
+
+function HVHItemUtils:DropItem(item, position)
+	local droppedItem = nil
 	if item then
 		droppedItem = CreateItemOnPositionSync(position, item)
 		if droppedItem then

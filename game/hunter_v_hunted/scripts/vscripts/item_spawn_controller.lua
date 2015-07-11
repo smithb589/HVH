@@ -223,9 +223,9 @@ function HVHItemSpawnController:_GrantItem(availableItems, hero, chestItem)
 	local itemName = self:_GetRandomItemName(availableItems)
 
 	if itemName and hero then
-		local spawnedItem = HVHItemUtils:SpawnItem(itemName, chestItem:GetAbsOrigin())
+		hero:AddItemByName(itemName)
 		Timers:CreateTimer(SINGLE_FRAME_TIME, function()
-			hero:PickupDroppedItem(spawnedItem)
+			self:_DropStashItems(hero)
 		end)
 	end
 end
@@ -236,6 +236,24 @@ function HVHItemSpawnController:_RejectPickup(chest, chestType)
 	if not nearestSpawnLocation then nearestSpawnLocation = chest:GetAbsOrigin() end
 	local replacedChest = HVHItemUtils:SpawnItem(chestType, nearestSpawnLocation)
 	self:_AddSpawnedItem(replacedChest)
+end
+
+function HVHItemSpawnController:_DropStashItems(hero)
+	local hasItemsInStash = hero:GetNumItemsInStash() > 0
+	if hasItemsInStash then
+		for stashSlot=DOTA_STASH_SLOT_1,DOTA_STASH_SLOT_6 do
+			local stashItem = hero:GetItemInSlot(stashSlot)
+			self:_DropItemFromStash(stashItem, hero)
+		end
+	end
+end
+
+function HVHItemSpawnController:_DropItemFromStash(stashItem, hero)
+	if stashItem and hero then
+		local itemName = stashItem:GetName()
+		hero:RemoveItem(stashItem)
+		HVHItemUtils:SpawnItem(itemName, hero:GetAbsOrigin())
+	end
 end
 
 -- Finds the nearest spawner in a small radius.
