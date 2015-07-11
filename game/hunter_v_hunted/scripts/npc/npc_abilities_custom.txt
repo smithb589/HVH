@@ -550,7 +550,7 @@
 				"States"
 				{
 					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 	
@@ -570,7 +570,7 @@
 				"States"
 				{
 					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 		}
@@ -842,7 +842,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"900"
 		"AbilityCastPoint"				"0.3"
-		"AbilityCooldown"				"60"
+		"AbilityCooldown"				"30"
 		"AbilityManaCost"				"0"
 
 		"Precache"
@@ -1000,7 +1000,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20" // "28"
+		"AbilityCooldown"				"6" // "28"
 		
 		"AbilitySpecial"	
 		{
@@ -1012,7 +1012,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_speed"				"33" // percentage
+				"bonus_speed"				"100" // percentage
 			}
 			"03"
 			{
