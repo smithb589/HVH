@@ -32,7 +32,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"item_firecrackers" //"pudge_meat_hook"
+		"AbilityTextureName"			"item_hvh_meat_hook" // filename: hvh_meat_hook
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
