@@ -1,4 +1,4 @@
-require("timers_util")
+require("time_utils")
 
 function HVHGameMode:OnPlayerConnectFull()
 	self:_SetupGameMode()
@@ -70,23 +70,40 @@ end
 
 function HVHGameMode:OnEntityKilled(killedArgs)
  	local unit = EntIndexToHScript(killedArgs.entindex_killed)
-	--print("XP bounty on killed unit: " .. unit:GetCustomDeathXP())
 
   -- scoreboard
   if unit and unit:IsRealHero() then
     local team = unit:GetTeam()
     local mode = GameRules:GetGameModeEntity()
-    --mode:SetTopBarTeamValue(team, 17)
+
+    -- decrement remaining lives and set respawn timers
+    if team == DOTA_TEAM_GOODGUYS then
+      mode.GoodGuyLives = mode.GoodGuyLives - 1
+      mode:SetTopBarTeamValue(DOTA_TEAM_GOODGUYS, mode.GoodGuyLives)
+      unit:SetTimeUntilRespawn(HVHTimeUtils:GetRespawnTime(DOTA_TEAM_GOODGUYS))
+    elseif team == DOTA_TEAM_BADGUYS then
+      mode.BadGuyLives = mode.BadGuyLives - 1
+      mode:SetTopBarTeamValue(DOTA_TEAM_BADGUYS, mode.BadGuyLives)
+      unit:SetTimeUntilRespawn(HVHTimeUtils:GetRespawnTime(DOTA_TEAM_BADGUYS))
+    end
+
+    -- declare winners
+    if mode.GoodGuyLives <= 0 then
+      GameRules:SetSafeToLeave( true )
+      GameRules:SetGameWinner( DOTA_TEAM_BADGUYS )
+    elseif mode.BadGuyLives <= 0 then
+      GameRules:SetSafeToLeave( true )
+      GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
+    end
   end
 
-  -- dog respawning
+  -- dog respawning every morning exactly
   if unit and unit:GetUnitName() == "npc_dota_good_guy_dog" then
     Timers:CreateTimer({
-      endTime = HVHTimerUtils:GetSecondsUntilNextDawn(),
+      endTime = HVHTimeUtils:GetSecondsUntil(TIME_NEXT_DAWN),
       callback = function()
         HVHGameMode:SpawnDog(true)
-    end
-    })
+    end})
   end
 
 end

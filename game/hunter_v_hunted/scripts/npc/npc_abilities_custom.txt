@@ -587,7 +587,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
 		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"queenofpain_sonic_wave"
+		"AbilityTextureName"			"hvh_echolocation"
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -774,7 +774,7 @@
 	{
 		"BaseClass"             		"ability_datadriven"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			""
+		"AbilityTextureName"			"hvh_dog_sleep"
 
 		"Modifiers"
 		{
@@ -834,8 +834,8 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC"
-		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"			""
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE" //"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"			"hvh_feed_dog"
 		"AOERadius"						"%treat_radius"
 		
 		// Stats
@@ -912,7 +912,7 @@
 		"BaseClass"				"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityTextureName"			"crystal_maiden_brilliance_aura" // TODO
+		"AbilityTextureName"			"hvh_mans_best_friend" // TODO
 		
 		"MaxLevel"               "1"
 
@@ -984,7 +984,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_datadriven"
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityTextureName" 	"slardar_sprint"
+		"AbilityTextureName" 	"hvh_dog_sprint"
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
