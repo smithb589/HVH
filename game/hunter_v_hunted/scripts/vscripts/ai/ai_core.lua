@@ -32,6 +32,8 @@ DOTA_UNIT_ORDER_EJECT_ITEM_FROM_STASH
 DOTA_UNIT_ORDER_CAST_RUNE
 ]]
 
+require("hvh_utils")
+
 AICore = {}
 
 function AICore:RandomEnemyHeroInRange( entity, range )
@@ -118,6 +120,9 @@ function AICore:CreateBehaviorSystem( behaviors )
 				bestDesire = thisDesire
 			end
 		end
+
+		--HVHDebugPrint(string.format("Choosing behavior with score %d", bestDesire))
+		--HVHDebugPrintTable(result)
 
 		return result
 	end

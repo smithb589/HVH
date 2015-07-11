@@ -30,6 +30,7 @@ function Spawn( entityKeyValues )
 	behaviorSystem = AICore:CreateBehaviorSystem({
 		BehaviorWander,
 		BehaviorPursue,
+		BehaviorSprint,
 		BehaviorSleep
 	})
 	HVHDebugPrint(string.format("Starting AI for %s. Entity Index: %s", thisEntity:GetUnitName(), thisEntity:GetEntityIndex()))
@@ -40,6 +41,23 @@ function ThinkDog()
 		return nil -- deactivate this think function
 	end
 	return behaviorSystem:Think()
+end
+
+function FindNearestTarget(entity)
+	local units = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
+								 	entity:GetAbsOrigin(),
+									nil,
+									FIND_UNITS_EVERYWHERE,
+									DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+									DOTA_UNIT_TARGET_HERO,
+									DOTA_UNIT_TARGET_FLAG_NONE,
+									FIND_CLOSEST,
+									false)
+	return units[1]
+end
+
+function IsTargetValid(target)
+	return target and not target:IsNull() and target:IsAlive()
 end
 
 --------------------------------------------------------------------------------------------------------
@@ -56,16 +74,8 @@ BehaviorWander =
 }
 
 function BehaviorWander:Evaluate()
-	local isFed = thisEntity:IsFed()
-	local wanderOrder = 1
-
-	if GameRules:IsDaytime() and not isFed then
-		wanderOrder = 3
-	elseif GameRules:IsDaytime() then
-		wanderOrder = 2
-	end
-
-	return wanderOrder
+	local wanderDesire = 1
+	return wanderDesire
 end
 
 function BehaviorWander:Initialize()
@@ -121,11 +131,10 @@ BehaviorPursue =
 }
 
 function BehaviorPursue:Evaluate()
-	local isFed = thisEntity:IsFed()
-	local target = self:FindTarget()
-	local pursueOrder = 1
-	if GameRules:IsDaytime() and isFed and self:IsTargetValid(target) then
-		pursueOrder = 3
+	local target = FindNearestTarget(thisEntity)
+	local pursueOrder = 0
+	if GameRules:IsDaytime() and IsTargetValid(target) then
+		pursueOrder = 5
 	end
 
 	return pursueOrder
@@ -136,31 +145,23 @@ function BehaviorPursue:Initialize()
 end
 
 function BehaviorPursue:Begin()
-	local pursuitTarget = self:FindTarget()
+	local pursuitTarget = FindNearestTarget(thisEntity)
 
-	if self:IsTargetValid(pursuitTarget) then
+	if IsTargetValid(pursuitTarget) then
 		self.order.TargetIndex = pursuitTarget:GetEntityIndex()
 		self.order.Position = pursuitTarget:GetAbsOrigin()
 	end
 
-	self.endTime = GameRules:GetGameTime() + 1
+	self.endTime = GameRules:GetGameTime() + 0.1
 end
 
 function BehaviorPursue:Continue()
 	-- important to constantly re-evaluate the closest target (illusions, etc.)
-	local pursuitTarget = self:FindTarget()
+	local pursuitTarget = FindNearestTarget(thisEntity)
 
-	if self:IsTargetValid(pursuitTarget) then
+	if IsTargetValid(pursuitTarget) then
 		self.order.TargetIndex = pursuitTarget:GetEntityIndex()
 		self.order.Position = pursuitTarget:GetAbsOrigin()
-
-		local range = thisEntity:GetRangeToUnit(pursuitTarget)
-
-		local sprint_ability = thisEntity:FindAbilityByName("dog_sprint")
-		if range > sprint_ability:GetSpecialValueFor("min_range")
-				and sprint_ability:IsFullyCastable() then
-			thisEntity:CastAbilityNoTarget(sprint_ability, -1)
-		end
 
 		-- mostly fixes error 27 (Invalid order: Target is invisible and is not on the unit's team.)
 		if pursuitTarget:HasModifier("modifier_invisible") then
@@ -170,7 +171,7 @@ function BehaviorPursue:Continue()
 		end
 	end
 
-	self.endTime = GameRules:GetGameTime() + 1
+	self.endTime = GameRules:GetGameTime() + 0.1
 end
 
 function BehaviorPursue:End()
@@ -180,29 +181,79 @@ end
 function BehaviorPursue:Think(dt)
 	-- No longer a valid target, so end this behavior.
 	local pursuitTarget = EntIndexToHScript(self.order.TargetIndex)
-	if not self:IsTargetValid(pursuitTarget) then
-		--thisEntity:MoveToNPC(pursuitTarget)
-	--else
+	if not IsTargetValid(pursuitTarget) then
 		self.endTime = GameRules:GetGameTime()
 	end
 end
 
-function BehaviorPursue:FindTarget()
-	local units = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
-								 	thisEntity:GetAbsOrigin(),
-									nil,
-									FIND_UNITS_EVERYWHERE,
-									DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-									DOTA_UNIT_TARGET_HERO,
-									DOTA_UNIT_TARGET_FLAG_NONE,
-									FIND_CLOSEST,
-									false)
-	return units[1]
+
+
+--------------------------------------------------------------------------------------------------------
+-- Sprint behavior
+
+BehaviorSprint = 
+{
+	order = 
+	{
+		OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+		UnitIndex = thisEntity:entindex(),
+		AbilityIndex = nil -- This will be filled in later
+	}
+}
+
+function BehaviorSprint:Evaluate()
+	self.sprintAbility = thisEntity:FindAbilityByName("dog_sprint")
+	self.order.AbilityIndex = self.sprintAbility:entindex()
+	local sprintDesire = 0
+
+	if self:CanSprint() then
+		sprintDesire = 10
+	end
+
+	return sprintDesire
 end
 
-function BehaviorPursue:IsTargetValid(target)
-	return target and not target:IsNull() and target:IsAlive()
+function BehaviorSprint:Initialize()
+
 end
+
+function BehaviorSprint:Begin()
+	--thisEntity:CastAbilityNoTarget(self.sprintAbility, -1)
+	-- Indicate how long the wander behavior should last
+	self.endTime = GameRules:GetGameTime()
+end
+
+-- Continuing this behavior is the same as just beginning it
+BehaviorSprint.Continue = BehaviorSprint.Begin
+
+function BehaviorSprint:End()
+	-- nothing to do
+end
+
+function BehaviorSprint:Think(dt)
+	-- Nothing to do
+end
+
+function BehaviorSprint:CanSprint()
+	local isDaytime = GameRules:IsDaytime()
+	local isFed = thisEntity:IsFed()
+	local isOutsideMinRange = self:IsOutsideMinRange()
+	local canCastSprint = self.sprintAbility:IsFullyCastable() and (thisEntity:FindModifierByName("modifier_dog_sprint") == nil)
+
+	return isDaytime and isFed and isOutsideMinRange and canCastSprint
+end
+
+function BehaviorSprint:IsOutsideMinRange()
+	local range = 0
+	local pursuitTarget = FindNearestTarget(thisEntity)
+
+	if IsTargetValid(pursuitTarget) then
+		range = thisEntity:GetRangeToUnit(pursuitTarget)
+	end
+
+	return range > self.sprintAbility:GetSpecialValueFor("min_range")
+end
+
 
 --------------------------------------------------------------------------------------------------------
 -- Sleep behavior
@@ -219,7 +270,7 @@ BehaviorSleep =
 function BehaviorSleep:Evaluate()
 	local sleepPriority = 1
 	if not GameRules:IsDaytime() then
-		sleepPriority = 3
+		sleepPriority = 15
 	end
 	return sleepPriority
 end
