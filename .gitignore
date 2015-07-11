@@ -14,3 +14,6 @@
 *.bin
 *.vtex_c
 *.orig
+*.vxml_c
+*.vcss_c
+game/hunter_v_hunted/panorama/scripts/custom_game/barebones_hud_base.vjs_c
