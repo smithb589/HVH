@@ -77,8 +77,14 @@ function HVHGameMode:_SetupGameMode()
       mode:SetRuneEnabled(rune, spawn)
     end
 
+    -- HVH specific
     mode:SetModifyGoldFilter( Dynamic_Wrap( self, "ModifyGoldFilter" ), self )
     mode:SetModifyExperienceFilter( Dynamic_Wrap( self, "ModifyExperienceFilter" ), self )
+    mode.GoodGuyLives = GOODGUY_LIVES
+    mode.BadGuyLives  = BADGUY_LIVES
+    mode:SetTopBarTeamValue(DOTA_TEAM_GOODGUYS, GOODGUY_LIVES)
+    mode:SetTopBarTeamValue(DOTA_TEAM_BADGUYS, BADGUY_LIVES)
+
   end 
 end
 

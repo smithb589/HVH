@@ -9,6 +9,9 @@ XP_MULTIPLIER_FOR_SNIPER_KILLS = 4
 XP_PER_KILL 	 = 3					-- ex. 3 when NS kills a sniper, or 12 when snipers kill NS
 XP_PER_TICK      = 1					-- every XP_TICK_INTERVAL seconds, living heroes get XP_PER_TICK
 XP_TICK_INTERVAL = 20
+BADGUY_LIVES	 = 5
+GOODGUY_LIVES	 = 20
+MIN_RESPAWN_TIME = 20
 
 ENABLE_HERO_RESPAWN = true              -- Should the heroes automatically respawn on a timer or stay dead until manually respawned
 UNIVERSAL_SHOP_MODE = false             -- Should the main shop contain Secret Shop items as well as regular items
