@@ -15,31 +15,37 @@
 			m_nOpEndCapState = 1
 		},
 		{
+			_class = "C_OP_CPOffsetToPercentageBetweenCPs"
+			m_flInputMin = 1.000000
+			m_flInputMax = 0.000000
+			m_nOffsetCP = 1
+			m_bScaleOffset = true
+			m_vecOffset =
+			[
+				0.000000,
+				0.000000,
+				0.300000,
+			]
+		},
+		{
+			_class = "C_OP_MaxVelocity"
+			m_nOverrideCP = 2
+		},
+		{
 			_class = "C_OP_SetControlPointsToParticle"
 			m_nFirstControlPoint = 3
 			m_bSetOrientation = true
+		},
+		{
+			_class = "C_OP_RemapVelocityToVector"
+			m_nFieldOutput = 21
+			m_bNormalize = true
 		},
 		{
 			_class = "C_OP_RampScalarLinear"
 			m_RateMin = 5.000000
 			m_RateMax = 7.000000
 			m_nField = 12
-		},
-		{
-			_class = "C_OP_MovementPlaceOnGround"
-			m_flOffset = 70.000000
-			m_flMaxTraceLength = 1024.000000
-			m_flTolerance = 96.000000
-			m_flTraceOffset = 256.000000
-			m_CollisionGroupName = "DEBRIS"
-			m_nRefCP1 = 3
-			m_nLerpCP = 3
-			m_bIncludeWater = true
-		},
-		{
-			_class = "C_OP_RemapVelocityToVector"
-			m_nFieldOutput = 21
-			m_bNormalize = true
 		},
 	]
 	m_Renderers =
@@ -73,6 +79,15 @@
 		{
 			_class = "C_OP_InstantaneousEmitter"
 			m_nParticlesToEmit = 1
+		},
+	]
+	m_ForceGenerators =
+	[
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_fForceAmount = 900000.000000
+			m_fFalloffPower = 0.000000
+			m_nControlPointNumber = 4
 		},
 	]
 }
