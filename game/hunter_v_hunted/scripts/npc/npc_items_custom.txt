@@ -1,6 +1,45 @@
 "DOTAAbilities"
 {
 
+// This is a template for a custom run object. It worked in testing. All it really
+// needs is the information filled in and maybe the rune model/effect overridden.
+//	"item_hvh_rune"
+//	{
+//		"BaseClass"		"item_datadriven"
+//		"ItemKillable"		"1"
+//		"ItemSellable"		"0"
+//		"ItemPurchasable"	"0"
+//		"ItemDroppable" 	"1"
+//		"ItemShareability" 	"ITEM_NOT_SHAREABLE"
+//		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+//		"ItemDisplayCharges"  "0"
+//		"ItemRequiresCharges" "0"
+//		"ItemStackable" 	"0"
+//		"ItemPermanent" 	"0"
+//		"ItemCastOnPickup"	"1"
+//		"ItemInitialCharges"  "0"
+//		//"AbilityTextureName"	""
+//		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+//		"AbilityCooldown"				"20"
+//		"AbilityCastPoint"		"0.0"		
+//		"OnSpellStart"
+//		{
+//			"RunScript"
+//			{
+//				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+//				"Function"				"ForceCast"
+//				
+//				// Modify these
+//				"abilityName"			""
+//				"maxDuration"			""
+//			}
+//		}
+//
+//		"ID"	"1014"
+//		"Model" 	"models/props_gameplay/rune_doubledamage01.vmdl"
+//		"Effect" 	"particles/generic_gameplay/rune_doubledamage.vpcf"
+//	}
+
 	"item_firefly"
 	{
 		"BaseClass"		"item_datadriven"

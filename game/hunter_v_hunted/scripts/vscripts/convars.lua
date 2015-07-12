@@ -27,6 +27,7 @@ function HVHConvars:RegisterCommands()
   	-- this is already built into the engine
   	--Convars:RegisterCommand( "set_time_of_day", Dynamic_Wrap(self, 'ConvarSetTimeOfDay'), "Sets the time of day to the indicated value.", FCVAR_CHEAT )
     Convars:RegisterCommand( "hvh_fake_heroes", Dynamic_Wrap(self, 'FakeHeroes'), "Spawn heroes to fill in missing players.", FCVAR_CHEAT )
+    Convars:RegisterCommand("hvh_create_rune", Dynamic_Wrap(self, "CreateRune"), "Spawns a rune on the debug rune spawner.", FCVAR_CHEAT)
 end
 
 function HVHConvars:FakeHeroes()
