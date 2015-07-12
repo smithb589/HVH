@@ -121,8 +121,9 @@ function HVHGameMode:OnAbilityUsed(keys)
       return
   end
 
+  -- Won't this always use the first item in the inventory rather than the one that was actually cast?
   -- Check all 6 item slots for items with charges that match abilityName, then expend the charge
-  for i=0, 5 do
+  for i=DOTA_ITEM_SLOT_1, DOTA_ITEM_SLOT_6 do
     local item = hero:GetItemInSlot(i)
     if item ~= nil and HVHItemUtils:IsChargedItem(item) then
       local itemName = item:GetName()
