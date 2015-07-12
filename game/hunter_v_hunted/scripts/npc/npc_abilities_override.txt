@@ -37,7 +37,47 @@
 		}
 	}
 
-	"sniper_headshot" {}
+	//"sniper_headshot" {}
+
+	"shredder_timber_chain"
+	{
+		"MaxLevel"		"3" // 4
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"				"0.3 0.3 0.3"
+		"AbilityCastRange"				"1000 1200 1400"
+		"AbilityCooldown"				"40.0 35.0 30.0" // 4.0
+		"AbilityManaCost"				"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"chain_radius"		"90 90 90"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"range"				"1050 1250 1450"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage_radius"		"225 225 225"
+			}
+			"04"
+			{	
+				"var_type"			"FIELD_INTEGER"
+				"speed"				"2000 2400 2800"
+			}
+			"05"
+			{	
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"0" //"100 140 180 220"
+			}
+		}
+	}
+
 
 	// -------------------------- Nightstalker's abilities --------------------------
 	"night_stalker_void"
@@ -94,6 +134,15 @@
 	{	
 		"ItemSellable" "0"
 		"ItemDroppable" "0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movement_speed"	"75"	// 50
+			}
+		}
 	}
 
 	"item_phase_boots"
@@ -105,7 +154,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_movement_speed"	"50"
+				"bonus_movement_speed"	"75" // 50
 			}
 			"02"
 			{
@@ -128,6 +177,7 @@
 	// LORE: "I slahsed a warlock's face for this.""
 	"item_ultimate_scepter" // TODO: we should make this a Mangonian Scepter
 	{
+		"AbilityTextureName"	"item_hvh_mango_scepter" // filename: hvh_meat_hook			
 		"ItemSellable" "0"
 		"ItemDroppable" "0"
 		"AbilitySpecial"

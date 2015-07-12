@@ -31,6 +31,7 @@ function HVHTimeUtils:GetSecondsUntil(time_const)
   return secsTil
 end
 
+-- respawn between MIN and MAX minutes, preferably along the dawn/evening line
 function HVHTimeUtils:GetRespawnTime(team)
   local next_time = 0
 
@@ -43,6 +44,8 @@ function HVHTimeUtils:GetRespawnTime(team)
   --print("next_time: " .. next_time .. " and MIN_RESPAWN_TIME: " .. MIN_RESPAWN_TIME)
   if next_time <= MIN_RESPAWN_TIME then
     return MIN_RESPAWN_TIME
+  elseif next_time >= MAX_RESPAWN_TIME then
+    return MAX_RESPAWN_TIME
   else
     return next_time
   end
