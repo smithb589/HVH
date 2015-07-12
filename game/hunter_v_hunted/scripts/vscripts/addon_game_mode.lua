@@ -32,7 +32,7 @@ function Precache( context )
   PrecacheResource("particle", "particles/newplayer_fx/npx_sleeping.vpcf", context)
   PrecacheResource("particle", "particles/good_guy_dog_treat.vpcf", context)
   PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion_flash_b.vpcf", context)
-  PrecacheResource("particle", "particles/units/heroes/hero_slardar/slardar_sprint.vpcf")
+  PrecacheResource("particle", "particles/units/heroes/hero_slardar/slardar_sprint.vpcf", context)
   PrecacheResource("model_folder", "models/items/nightstalker/", context) -- inexplicably, no underscore in name
   PrecacheResource("model_folder", "models/items/sniper/", context)
   PrecacheResource("model_folder", "models/items/lycan/", context)
@@ -41,11 +41,13 @@ function Precache( context )
   PrecacheResource("model_folder", "models/heroes/lycan/", context)
   PrecacheResource("model", "models/props_gameplay/treasure_chest001.vmdl", context)
   PrecacheResource("model", "models/props_debris/merchant_debris_chest001.vmdl", context)
-  PrecacheResource("sound", "soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts")
+  PrecacheResource("sound", "soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts", context)
  
   -- TODO: Custom Games: PrecacheUnitByNameSync and PrecacheUnitByNameAsync can optionally take a PlayerID as the last
   -- argument and it will use the cosmetic items from that player when precaching. The player must be connected to the
   -- game otherwise it will fall back to the default cosmetic items.
+  PrecacheUnitByNameSync("npc_dota_hero_disruptor", context)
+  PrecacheUnitByNameSync("npc_dota_hero_centaur", context)
   PrecacheUnitByNameSync("npc_dota_hero_sniper", context)
   PrecacheUnitByNameSync("npc_dota_hero_night_stalker", context)
 end
