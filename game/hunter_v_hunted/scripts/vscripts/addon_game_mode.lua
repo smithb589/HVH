@@ -21,6 +21,10 @@ function Precache( context )
   -- BUG: Nightstalker immortal loses his wings at night
   -- BUG: These could be optimized. Also sound is missing.
   --PrecacheResource("particle_folder", "particles/units/heroes/hero_shredder/", context)  
+  PrecacheResource("particle_folder", "particles/units/heroes/hero_keeper_of_the_light/", context)
+  PrecacheResource("particle_folder", "particles/units/heroes/hero_windrunner/", context)
+  PrecacheResource("particle_folder", "particles/units/heroes/hero_batrider/", context)
+  PrecacheResource("particle_folder", "particles/units/heroes/hero_tidehunter/", context)
   PrecacheResource("particle_folder", "particles/units/heroes/hero_mirana/", context)
   PrecacheResource("particle_folder", "particles/units/heroes/hero_doom_bringer/", context)
   PrecacheResource("particle_folder", "particles/units/heroes/hero_meepo/", context)

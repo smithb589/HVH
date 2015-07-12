@@ -16,12 +16,18 @@ if HVHItemSpawnController == nil then
 
 	HVHItemSpawnController._GoodGuyChest = "item_treasure_chest_good_guys"
 	HVHItemSpawnController._GoodGuyItems = {
+		"item_windrun",
+		"item_blinding_light",
+		"item_summon_wolves",
+		"item_firefly",
+		"item_kinetic_field",
+		"item_stampede",
 		"item_flask", -- healing salve
 		"item_dust",
 		"item_tango",
 		"item_ward_observer",
 		"item_ward_sentry",
-		"item_force_staff",
+		"item_force_staff","item_force_staff","item_force_staff",
 		--"item_sphere", --TODO: removed until i know what to do with it
 		"item_lotus_orb",
 		"item_black_king_bar",
@@ -39,12 +45,15 @@ if HVHItemSpawnController == nil then
 
 	HVHItemSpawnController._BadGuyChest = "item_treasure_chest_bad_guys"
 	HVHItemSpawnController._BadGuyItems = {
+		"item_ravage",
+		"item_mirana_arrow",
+		"item_meat_hook_new",
 		"item_smoke_of_deceit",
 		"item_quelling_blade",
 		"item_magic_stick",
-		"item_force_staff",
-		"item_blink",
-		"item_meat_hook",
+		"item_force_staff","item_force_staff",
+		"item_blink","item_blink",
+		--"item_meat_hook",
 		"item_sheepstick",
 		"item_invis_sword",
 		"item_veil_of_discord",

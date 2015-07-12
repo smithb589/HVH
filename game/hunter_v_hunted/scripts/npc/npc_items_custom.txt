@@ -1,6 +1,204 @@
 "DOTAAbilities"
 {
 
+	"item_firefly"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1013"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_hvh_firefly" // filename: hvh_meat_hook	
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCooldown"				"20"
+		"AbilityCastPoint"		"0.0"		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"batrider_firefly"
+				"maxDuration"			"6.0"
+			}
+		}
+	}
+
+	"item_summon_wolves"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1012"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_hvh_summon_wolves" // filename: hvh_meat_hook	
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCooldown"		"20"
+		"AbilityCastPoint"		"0.3"		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"lycan_summon_wolves"
+				"maxDuration"			"6.0"
+			}
+		}
+	}
+
+	"item_blinding_light"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1011"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_hvh_blinding_light" // filename: hvh_meat_hook	
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT " // DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE
+		"AoERadius" "675"
+		"AbilityCooldown"	"20"
+		"AbilityCastRange"		"900"
+		"AbilityCastPoint"		"0.3"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"keeper_of_the_light_blinding_light"
+				"maxDuration"			"6.0"
+			}
+		}
+	}
+
+	"item_windrun"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1010"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_hvh_windrun" // filename: hvh_meat_hook	
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCooldown"		"20"
+		"AbilityCastPoint"		"0.3"		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"windrunner_windrun"
+				"maxDuration"			"6.0"
+			}
+		}
+	}
+
+	"item_mirana_arrow"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1009"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_hvh_mirana_arrow" // filename: hvh_meat_hook	
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityCooldown"		"20"
+		"AbilityCastRange"		"3000"
+		"AbilityCastPoint"		"0.5"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"mirana_arrow"
+				"maxDuration"			"6.0"
+			}
+		}
+	}
+
+	// TODO:
+	//"item_shackleshot" ID 1008
+
+	"item_ravage"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1007"
+		"ItemInitialCharges"  "1"
+		"AbilityTextureName"	"item_hvh_ravage" // filename: hvh_meat_hook	
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCooldown"		"20"
+		"AbilityCastPoint"		"0.3"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"tidehunter_ravage"
+				"maxDuration"			"6.0"
+			}
+		}
+	}
+
 	"item_stampede"
 	{
 		"BaseClass"		"item_datadriven"
@@ -10,15 +208,16 @@
 		"ItemDroppable" 	"1"
 		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
 		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
-		"ItemInitialCharges"  "8"
 		"ItemDisplayCharges"  "1"
 		"ItemRequiresCharges" "0"
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1006"
+		"ItemInitialCharges"  "1"
+		"AbilityTextureName"	"item_hvh_stampede" // filename: hvh_meat_hook	
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityCooldown"				"6"
+		"AbilityCooldown"				"20"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -40,18 +239,19 @@
 		"ItemDroppable" 	"1"
 		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
 		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
-		"ItemInitialCharges"  "8"
 		"ItemDisplayCharges"  "1"
 		"ItemRequiresCharges" "0"
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1005"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_hvh_kinetic_field" // filename: hvh_meat_hook	
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AoERadius" "325"
 		"AbilityCastRange"				"900"
 		"AbilityCastPoint"				"0.05"
-		"AbilityCooldown"				"8"
+		"AbilityCooldown"				"20"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -59,7 +259,7 @@
 				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"disruptor_kinetic_field"
-				"maxDuration"			"8.0"
+				"maxDuration"			"10.0"
 			}
 		}
 	}
@@ -73,18 +273,18 @@
 		"ItemDroppable" 	"1"
 		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
 		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
-		"ItemInitialCharges"  "8"
 		"ItemDisplayCharges"  "1"
 		"ItemRequiresCharges" "0"
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1004"
+		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_hvh_meat_hook" // filename: hvh_meat_hook	
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityCastRange"		"1300"
 		"AbilityCastPoint"		"0.3"
-		"AbilityCooldown"		"3"
+		"AbilityCooldown"		"6"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -92,7 +292,7 @@
 				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"pudge_meat_hook"
-				"maxDuration"			"3.0"
+				"maxDuration"			"6.0"
 			}
 		}
 	}
@@ -113,7 +313,7 @@
 
 		"ItemShareability" "ITEM_FULLY_SHAREABLE_STACKING"
 
-		"ItemInitialCharges" "1"
+		"ItemInitialCharges" "2"
 		"ItemDisplayCharges" "1"
 		"ItemRequiresCharges" "0"
 
