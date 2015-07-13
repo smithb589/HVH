@@ -877,7 +877,7 @@
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"feed_duration"		"15"
+				"feed_duration"		"8"
 			}
 		}
 
@@ -1005,7 +1005,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"6" // "28"
+		"AbilityCooldown"				"%duration" // "28"
 		
 		"AbilitySpecial"	
 		{
@@ -1022,18 +1022,49 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"6.0"
+				"duration"					"8.0"
 			}
 			// dog will only speed up when the target is far away
 			"04"	// accessed by ai_dog.lua pursuit routine
 			{
 				"var_type"			"FIELD_INTEGER"
-				"min_range"			"1200"
-			}	
+				"min_range"			"0"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"ally_radius"		"1800"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"ally_bonus_speed"				"25" // percentage
+			}
+
 		}
 
 		"OnSpellStart"
 	    {
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Center" "CASTER"
+	                "Radius" "%ally_radius"
+	                "Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY" 
+	                "Types" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				}
+	
+				"Action"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_dog_sprint_allies"
+						"Target"		"TARGET"
+					}
+				}
+			}
+
 	        "ApplyModifier"
 	        {
 	            "Target" "CASTER"
@@ -1059,6 +1090,20 @@
 		    		"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_speed"
 		    	}
 	    	}
+
+	    	"modifier_dog_sprint_allies"
+	    	{
+	    		"IsBuff" "1"
+	    		"Duration" "%duration"
+	    		"EffectName"	"particles/units/heroes/hero_slardar/slardar_sprint.vpcf"
+		    	"EffectAttachType"	"follow_origin"
+
+	    		"Properties"
+		    	{
+		    		"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%ally_bonus_speed"
+		    	}
+	    	}
+
 	    }
 	}
 
