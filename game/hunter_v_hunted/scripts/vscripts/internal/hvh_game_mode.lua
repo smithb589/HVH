@@ -137,8 +137,8 @@ end
 -- BUG?: half a second off every 60 mins (hypothetically)
 function HVHGameMode:_SetupFastTime(next_time_transition, rng_secs)
   local standardLengthOfOneCycle = (SECS_PER_CYCLE / 2) / DAY_NIGHT_CYCLE_MULTIPLIER
-  local thisCycleLength = standardLengthOfOneCycle + rng_secs
   if rng_secs == nil then rng_secs = 0 end
+  local thisCycleLength = standardLengthOfOneCycle + rng_secs
   Timers:CreateTimer(thisCycleLength, function()
     --print("This day/night has been " .. thisCycleLength .. " seconds long.")
     GameRules:SetTimeOfDay(next_time_transition)
