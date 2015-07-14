@@ -133,7 +133,7 @@ function HVHItemSpawnController:_GetRandomSpawnLocations(numLocations)
 	return spawnLocations
 end
 
--- Gets the available item classes depending on the chest type.
+--[[-- Gets the available item classes depending on the chest type.
 function HVHItemSpawnController:_GetAvailableItemClasses(chestType)
 	local availableItemClasses = {}
 	if chestType == self._GoodGuyChest then
@@ -144,6 +144,18 @@ function HVHItemSpawnController:_GetAvailableItemClasses(chestType)
 		HVHDebugPrint(string.format("Invalid chest type: %s", chestType))
 	end
 	return availableItemClasses
+end]]
+
+function HVHItemSpawnController:_GetItemRandomizer(chestName)
+	local itemRandomizer = nil
+	if chestType == self._GoodGuyChest then
+		itemRandomizer = self._GoodGuyItemRandomizer
+	elseif chestType == self._BadGuyChest then
+		itemRandomizer = self._BadGuyItemRandomizer
+	else
+		HVHDebugPrint(string.format("Invalid chest type: %s", chestType))
+	end
+	return itemRandomizer
 end
 
 -- Gets the chest class depending on the time of day.
@@ -161,33 +173,43 @@ end
 -- Handles a hero picking up a chest and either granting an item or rejecting the pickup
 function HVHItemSpawnController:_OnItemPickedUp(keys)
 	local itemName = keys.itemname
-	--local playerID = keys.PlayerID
 	local chestItem = EntIndexToHScript(keys.ItemEntityIndex)
 	local hero = EntIndexToHScript(keys.HeroEntityIndex)
 
-	-- Ignore non-chest items.
-	if (itemName == self._GoodGuyChest) or (itemName == self._BadGuyChest) then
-		if (itemName == self._GoodGuyChest) and (hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
-			local availableItems = self:_GetAvailableItemClasses(itemName)
-			self:_GrantItem(availableItems, hero, chestItem)
-		elseif (itemName == self._BadGuyChest) and (hero:GetTeamNumber() == DOTA_TEAM_BADGUYS) then
-			local availableItems = self:_GetAvailableItemClasses(itemName)
-			self:_GrantItem(availableItems, hero, chestItem)
-		else
-			self:_RejectPickup(chestItem, itemName)
-		end
+	if self:_CanGrantGoodGuyItem(itemName, hero) then
+		self:_GrantItem(self._GoodGuyItemRandomizer, hero, chestItem)
+	elseif self:_CanGrantBadGuyItem(itemName, hero) then
+		self:_GrantItem(self._BadGuyItemRandomizer, hero, chestItem)
+	elseif self:_IsChestItem(itemName) then
+		self:_RejectPickup(chestItem, itemName)
 	end
 end
 
--- Grants an item from the available items to the hero.
-function HVHItemSpawnController:_GrantItem(availableItems, hero, chestItem)
-	local itemName = self:_GetRandomItemName(availableItems)
+function HVHItemSpawnController:_IsChestItem(itemName)
+	return (itemName == self._GoodGuyChest) or (itemName == self._BadGuyChest)
+end
 
-	if itemName and hero then
-		hero:AddItemByName(itemName)
-		Timers:CreateTimer(SINGLE_FRAME_TIME, function()
-			self:_DropStashItems(hero)
-		end)
+function HVHItemSpawnController:_CanGrantGoodGuyItem(itemName, hero)
+	return (itemName == self._GoodGuyChest) and (hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS)
+end
+
+function HVHItemSpawnController:_CanGrantBadGuyItem(itemName, hero)
+	return (itemName == self._BadGuyChest) and (hero:GetTeamNumber() == DOTA_TEAM_BADGUYS)
+end
+
+-- Grants an item from the available items to the hero.
+function HVHItemSpawnController:_GrantItem(itemRandomizer, hero, chestItem)
+	if itemRandomizer then
+		local itemName = itemRandomizer:GetRandomValue()
+
+		if itemName and hero then
+			hero:AddItemByName(itemName)
+			Timers:CreateTimer(SINGLE_FRAME_TIME, function()
+				self:_DropStashItems(hero)
+			end)
+		end
+	else
+		HVHDebugPrint("No item randomizer to grant item with.")
 	end
 end
 
