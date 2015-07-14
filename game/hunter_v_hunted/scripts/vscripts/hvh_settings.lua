@@ -3,7 +3,8 @@
 -- HVH-specific
 STARTING_LEVEL		= 16
 STARTING_LEVELS_TO_ADD = STARTING_LEVEL - 1
-DAY_NIGHT_CYCLE_MULTIPLIER = 4			-- ex. 4 means each day/night will last 1 min each (4x faster)
+DAY_NIGHT_CYCLE_MULTIPLIER = 3			-- ex. 4 means each day/night will last 1 min each (4x faster)
+RANDOM_EXTRA_SECONDS 	   = 15.0 		-- randomly increase/decrease each cycle by -(Value) to Value seconds
 GOLD_PER_KILL 	= 0
 XP_MULTIPLIER_FOR_SNIPER_KILLS = 4
 XP_PER_KILL 	 = 3					-- ex. 3 when NS kills a sniper, or 12 when snipers kill NS

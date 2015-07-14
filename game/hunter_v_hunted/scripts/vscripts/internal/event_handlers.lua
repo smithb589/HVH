@@ -7,7 +7,7 @@ end
 function HVHGameMode:OnGameRulesStateChange()
   state = GameRules:State_Get()
 	if state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-	 	self:_SetupFastTime()
+	 	self:_SetupFastTime(TIME_NEXT_EVENING, RANDOM_EXTRA_SECONDS)
     self:_SetupPassiveXP()
     self:SpawnDog(false)
     HVHItemSpawnController:Setup()
