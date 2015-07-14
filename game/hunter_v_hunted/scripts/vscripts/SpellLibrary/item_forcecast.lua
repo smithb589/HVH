@@ -16,3 +16,11 @@ function ForceCast( keys )
 		caster:RemoveAbility(abilityName)
 	end)
 end
+
+
+--[[ Issues
+item_black_hole			nofx, nofx while channeling
+item_land_mines		no dmg after ability is gone
+item_tether			can't target friendlies
+item_walrus_punch	does nothing
+]]
