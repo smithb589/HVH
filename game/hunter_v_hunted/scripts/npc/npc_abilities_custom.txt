@@ -27,7 +27,7 @@
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"0"
-		"AbilityCooldown"				"20.0"
+		"AbilityCooldown"				"15.0" //"20.0"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -77,7 +77,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"charge_replenish_time"	"45.0" // 6.84
+				"charge_replenish_time"	"30.0" // "45.0"
 			}
 		}
 		
@@ -295,7 +295,7 @@
 	    	"04"
 	    	{
 	    		"var_type"							"FIELD_FLOAT"
-	    		"invis_regen_pct_per_sec"			"2.0"
+	    		"invis_regen_pct_per_sec"			"1.0"
 	    	}
 	    }
 
@@ -571,11 +571,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30" // hvh
+		"AbilityCooldown"				"40" // "30"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0" // hvh
+		"AbilityManaCost"				"0"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -609,12 +609,12 @@
 			"06"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"scream_knockback_duration"	"3.5"
+				"scream_knockback_duration"	"3.0" //"3.5"
 			}
 			"07"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"scream_knockback_distance"	"2200"
+				"scream_knockback_distance"	"1900" //"2200"
 			}
 			"08"
 			{
@@ -904,7 +904,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"radius"			"600"
+				"radius"			"1800"
 			}
 
 		}

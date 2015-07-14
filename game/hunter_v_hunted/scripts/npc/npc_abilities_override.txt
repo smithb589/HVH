@@ -8,7 +8,7 @@
 
 	"meepo_earthbind"
 	{
-		"AbilityCooldown"				"30	25 20 15"
+		"AbilityCooldown"				"21	18 15 12"
 		"AbilityManaCost"				"0"
 
 		"AbilitySpecial"
@@ -44,7 +44,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityCastPoint"				"0.3 0.3 0.3"
 		"AbilityCastRange"				"1000 1200 1400"
-		"AbilityCooldown"				"40.0 35.0 30.0" // 4.0
+		"AbilityCooldown"				"24.0 20.0 16.0" // 4.0
 		"AbilityManaCost"				"0"
 
 		"AbilitySpecial"
