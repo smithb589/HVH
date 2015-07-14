@@ -8,7 +8,7 @@
 
 	"meepo_earthbind"
 	{
-		"AbilityCooldown"				"30	25 20 15"
+		"AbilityCooldown"				"21	18 15 12"
 		"AbilityManaCost"				"0"
 
 		"AbilitySpecial"
@@ -44,7 +44,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityCastPoint"				"0.3 0.3 0.3"
 		"AbilityCastRange"				"1000 1200 1400"
-		"AbilityCooldown"				"40.0 35.0 30.0" // 4.0
+		"AbilityCooldown"				"24.0 20.0 16.0" // 4.0
 		"AbilityManaCost"				"0"
 
 		"AbilitySpecial"
@@ -76,7 +76,6 @@
 			}
 		}
 	}
-
 
 	// -------------------------- Nightstalker's abilities --------------------------
 	"night_stalker_void"
@@ -126,7 +125,24 @@
 		}
 	}
 
-	// "night_stalker_hunter_in_the_night_hvh" is custom
+	// provides animations and model changes for day/night transition
+	"night_stalker_hunter_in_the_night"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"bonus_movement_speed_pct_night"	"0"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"bonus_attack_speed_night"			"0"
+			}
+		}
+	}
 
 	// ------------------- STARTING ITEMS --------------------------
 	"item_boots"

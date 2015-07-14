@@ -27,7 +27,7 @@
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"0"
-		"AbilityCooldown"				"20.0"
+		"AbilityCooldown"				"15.0" //"20.0"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -77,7 +77,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"charge_replenish_time"	"45.0" // 6.84
+				"charge_replenish_time"	"30.0" // "45.0"
 			}
 		}
 		
@@ -264,13 +264,15 @@
 	    "AbilityTextureName"     "night_stalker_hunter_in_the_night"
 
 	    //"AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "1"
+	    "MaxLevel"               "3"
 	    "RequiredLevel"          "1"
 	    "LevelsBetweenUpgrades"  "0"
 
 		"precache"
 		{
-			"particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
+			//"particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
+			//"particle"	"particles/units/heroes/hero_night_stalker/nightstalker_night_buff.vpcf"
+			//"particle"	"particles/units/heroes/hero_night_stalker/nightstalker_change.vpcf"			
  		}
 
 	    "AbilitySpecial"
@@ -278,12 +280,12 @@
 	    	"01"
 	    	{
 	    		"var_type"							"FIELD_INTEGER"
-	    		"move_speed_bonus_percentage"		"35"
+	    		"move_speed_bonus_percentage"		"25 30 35"
 	    	}
 	    	"02"
 	    	{
 	    		"var_type"							"FIELD_INTEGER"
-	    		"attack_speed_bonus"				"90"
+	    		"attack_speed_bonus"				"60 75 90"
 	    	}
 	    	"03"
 	    	{
@@ -293,7 +295,7 @@
 	    	"04"
 	    	{
 	    		"var_type"							"FIELD_FLOAT"
-	    		"invis_regen_pct_per_sec"			"2.0"
+	    		"invis_regen_pct_per_sec"			"1.0"
 	    	}
 	    }
 
@@ -303,17 +305,6 @@
 	    	{
 	    		"Passive" 			"1"
 	    		"IsHidden"			"1"
-
-	    		//"ThinkInterval"  "1.0"
-	    		//"OnIntervalThink"
-	    		//{
-	    		//	"RunScript"
-	    		//	{
-	    		//		"ScriptFile"		"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
-	    		//		"Function"			"InvisThinker"
-	    		//		"mod_invis"			"modifier_dread_hunter_invis"
-	    		//	}
-	    		//}
 
 	    		"OnAttackLanded"
 	    		{
@@ -355,7 +346,7 @@
 	    		{
     				"ApplyModifier"
 					{
-						"ModifierName" 	"modifier_invisible"
+						"ModifierName" 	"modifier_invisible" // hardcoded
 						"Target"		"CASTER"
 					}
 
@@ -369,12 +360,12 @@
 				"OnDestroy"
 				{
 					// TODO: find a better effect for going invisible
-					"AttachEffect"
-					{
-						"EffectName"		"particles/generic_hero_status/status_invisibility_start.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"            "CASTER"
-					}
+					//"AttachEffect"
+					//{
+					//	"EffectName"		"particles/generic_hero_status/status_invisibility_start.vpcf"
+					//	"EffectAttachType"	"follow_origin"
+					//	"Target"            "CASTER"
+					//}
 
 					"RemoveModifier"
 					{
@@ -400,15 +391,14 @@
 	    		{
 	    			"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%invis_regen_pct_per_sec"
 	    		}
-
-	    	}
+		  	}
 
 	    	"modifier_dread_hunter_speed_applicator"
 	    	{
 	    		"Passive" 			"1"
 	    		"IsHidden"			"1"
 
-	    		"ThinkInterval"  "1.0"
+	    		"ThinkInterval"  "0.25"
 	    		"OnIntervalThink"
 	    		{
 	    			"RunScript"
@@ -425,34 +415,10 @@
 	    	{
 	    		"IsHidden"			"0"
 
-	    		"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_night_buff.vpcf"
-				"EffectAttachType"	"follow_origin"
-
-				"OnCreated"
-				{
-					"FireEffect"
-					{
-						"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_change.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"		"CASTER"
-					}
-				}
-
-				"OnDestroy"
-				{
-					"FireEffect"
-					{
-						"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_change.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"		"CASTER"
-					}
-				}
-
 	    		"Properties"
 	    		{
 	    			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" 	"%attack_speed_bonus"
 	    		    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" 	"%move_speed_bonus_percentage"
-	    		    //"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"			"%bonus_night_vision_range"
 	    		}
 	    	}
 	    }
@@ -605,11 +571,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30" // hvh
+		"AbilityCooldown"				"40" // "30"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0" // hvh
+		"AbilityManaCost"				"0"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -643,12 +609,12 @@
 			"06"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"scream_knockback_duration"	"3.5"
+				"scream_knockback_duration"	"3.0" //"3.5"
 			}
 			"07"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"scream_knockback_distance"	"2200"
+				"scream_knockback_distance"	"1900" //"2200"
 			}
 			"08"
 			{
@@ -938,7 +904,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"radius"			"600"
+				"radius"			"1800"
 			}
 
 		}

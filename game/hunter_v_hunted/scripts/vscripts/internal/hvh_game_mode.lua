@@ -21,7 +21,6 @@ function HVHGameMode:_InitGameMode()
   ListenToGameEvent('npc_spawned', Dynamic_Wrap(self, 'OnNPCSpawned'), self)
   ListenToGameEvent('entity_killed', Dynamic_Wrap(self, 'OnEntityKilled'), self)
   ListenToGameEvent('game_rules_state_change', Dynamic_Wrap(self, 'OnGameRulesStateChange'), self)
-  --ListenToGameEvent('round_start', Dynamic_Wrap(self, 'OnRoundStart'), self)
   ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(self, 'OnAbilityUsed'), self)
 
   local count = 0
@@ -39,7 +38,7 @@ end
 function HVHGameMode:_SetupGameMode()
   if mode == nil then
     -- Set GameMode parameters
-    mode = GameRules:GetGameModeEntity()        
+    mode = GameRules:GetGameModeEntity()
     mode:SetRecommendedItemsDisabled( RECOMMENDED_BUILDS_DISABLED )
     --mode:SetCameraDistanceOverride( CAMERA_DISTANCE_OVERRIDE )
     mode:SetCustomBuybackCostEnabled( CUSTOM_BUYBACK_COST_ENABLED )
@@ -88,6 +87,20 @@ function HVHGameMode:_SetupGameMode()
   end 
 end
 
+-- Custom Games: PrecacheUnitByNameSync and PrecacheUnitByNameAsync can optionally take a PlayerID as the last
+-- argument and it will use the cosmetic items from that player when precaching. The player must be connected to the
+-- game otherwise it will fall back to the default cosmetic items.
+function HVHGameMode:_PostLoadPrecache()
+  -- precache both heroes and cosmetics from each playerID, just in case we do team-switching logic later
+  for playerID = 0, DOTA_MAX_PLAYERS-1 do
+    if PlayerResource:IsValidPlayer(playerID) then
+      --print("PlayerID " .. playerID .. " is a valid player.")
+      PrecacheUnitByNameAsync("npc_dota_hero_sniper"       , function(...) end, playerID)
+      PrecacheUnitByNameAsync("npc_dota_hero_night_stalker", function(...) end, playerID)
+    end
+  end
+end
+
 -- BUG: this does not VISUALLY work yet but perhaps one day...
 -- http://dev.dota2.com/showthread.php?t=173007
 -- https://moddota.com/forums/discussion/553/removing-all-gold-from-kills
@@ -120,10 +133,42 @@ function HVHGameMode:ModifyExperienceFilter(table)
 end
 
 -- Increases the rate of the day/night cycle by a multiplier
-function HVHGameMode:_SetupFastTime(multiplier)
+-- OPTIONAL: random seconds to add or subtract to next cycle's timer
+-- BUG?: half a second off every 60 mins (hypothetically)
+function HVHGameMode:_SetupFastTime(next_time_transition, rng_secs)
+  local standardLengthOfOneCycle = (SECS_PER_CYCLE / 2) / DAY_NIGHT_CYCLE_MULTIPLIER
+  if rng_secs == nil then rng_secs = 0 end
+  local thisCycleLength = standardLengthOfOneCycle + rng_secs
+  Timers:CreateTimer(thisCycleLength, function()
+    --print("This day/night has been " .. thisCycleLength .. " seconds long.")
+    GameRules:SetTimeOfDay(next_time_transition)
+
+    -- setup next cycle
+    if next_time_transition == TIME_NEXT_EVENING then
+      next_time_transition = TIME_NEXT_DAWN
+    else
+      next_time_transition = TIME_NEXT_EVENING
+    end
+    rng_secs = RandomFloat(-1 * RANDOM_EXTRA_SECONDS, RANDOM_EXTRA_SECONDS)
+    self:_SetupFastTime(next_time_transition, rng_secs)
+  end)
+end
+
+-- Increases the rate of the day/night cycle by a multiplier
+-- BUG: about half a second off every minute (measured)
+--[[
+evening 1:00
+evening 3:01
+dawn  4:02
+dawn  6:03
+evening 7:03
+dawn  22:11
+evening 67:39
+]]
+function HVHGameMode:_SetupFastTime_DEPRECATED()
   Timers:CreateTimer(function()
     local timeOfDay = GameRules:GetTimeOfDay()
-    --print ("Running immediately and then every second thereafter. Time of day is " .. timeOfDay )
+    print ("Time: " .. Time() .. ", DOTA time: " .. GameRules:GetDOTATime(false,false) .. ", Game time: " .. timeOfDay)
     GameRules:SetTimeOfDay(timeOfDay + EXTRA_FLOAT_TIME_PER_SECOND)
     return 1.0
   end)

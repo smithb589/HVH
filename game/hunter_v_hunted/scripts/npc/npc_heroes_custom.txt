@@ -24,6 +24,7 @@
 		"Ability4"			"night_stalker_hunter_in_the_night_hvh"
 		"Ability5"			"night_stalker_echolocation_hvh"
 		"AbilityLayout"		"5"
+		"Ability9"			"night_stalker_hunter_in_the_night"
 		"Ability10"         "attribute_bonus"  
 
 		"ModelScale" "1.1"
