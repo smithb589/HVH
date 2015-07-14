@@ -5,20 +5,16 @@ function HVHGameMode:OnPlayerConnectFull()
 end
 
 function HVHGameMode:OnGameRulesStateChange()
-	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+  state = GameRules:State_Get()
+	if state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 	 	self:_SetupFastTime()
     self:_SetupPassiveXP()
+    self:SpawnDog(false)
     HVHItemSpawnController:Setup()
-    HVHGameMode:SpawnDog(false)
-	end
+  elseif state == DOTA_GAMERULES_STATE_HERO_SELECTION then
+    self:_PostLoadPrecache()
+  end
 end
-
---function HVHGameMode:OnRoundStart(gameInfo)
-	--print("Creating courier.")
-	--local spawner = Entities:GetEntityByName("RadiantCourierSpawner")
-	--CreateUnitByName("npc_dota_courier", spawner:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_GOODGUYS)	
---end
-
 
 function HVHGameMode:OnPlayerPickHero(keys)
   local heroClass = keys.hero

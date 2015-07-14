@@ -21,7 +21,6 @@ function HVHGameMode:_InitGameMode()
   ListenToGameEvent('npc_spawned', Dynamic_Wrap(self, 'OnNPCSpawned'), self)
   ListenToGameEvent('entity_killed', Dynamic_Wrap(self, 'OnEntityKilled'), self)
   ListenToGameEvent('game_rules_state_change', Dynamic_Wrap(self, 'OnGameRulesStateChange'), self)
-  --ListenToGameEvent('round_start', Dynamic_Wrap(self, 'OnRoundStart'), self)
   ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(self, 'OnAbilityUsed'), self)
 
   local count = 0
@@ -86,6 +85,20 @@ function HVHGameMode:_SetupGameMode()
     mode:SetTopBarTeamValue(DOTA_TEAM_BADGUYS, BADGUY_LIVES)
 
   end 
+end
+
+-- Custom Games: PrecacheUnitByNameSync and PrecacheUnitByNameAsync can optionally take a PlayerID as the last
+-- argument and it will use the cosmetic items from that player when precaching. The player must be connected to the
+-- game otherwise it will fall back to the default cosmetic items.
+function HVHGameMode:_PostLoadPrecache()
+  -- precache both heroes and cosmetics from each playerID, just in case we do team-switching logic later
+  for playerID = 0, DOTA_MAX_PLAYERS-1 do
+    if PlayerResource:IsValidPlayer(playerID) then
+      --print("PlayerID " .. playerID .. " is a valid player.")
+      PrecacheUnitByNameAsync("npc_dota_hero_sniper"       , function(...) end, playerID)
+      PrecacheUnitByNameAsync("npc_dota_hero_night_stalker", function(...) end, playerID)
+    end
+  end
 end
 
 -- BUG: this does not VISUALLY work yet but perhaps one day...
