@@ -1,4 +1,5 @@
 
+require("internal/item_randomizer")
 
 if HVHItemSpawnController == nil then
 	HVHItemSpawnController = class({})
@@ -15,9 +16,9 @@ if HVHItemSpawnController == nil then
 	HVHItemSpawnController._SpawnedItems = {}
 
 	HVHItemSpawnController._GoodGuyChest = "item_treasure_chest_good_guys"
-	HVHItemSpawnController._GoodGuyItems = {
-		"item_windrun",
-		"item_blinding_light",
+	HVHItemSpawnController._GoodGuyItems = LoadKeyValues("scripts/vscripts/kv/good_guy_items.kv")
+	HVHItemSpawnController._GoodGuyItemRandomizer = HVHRandomizer(HVHItemSpawnController._GoodGuyItems)
+	--[[	"item_blinding_light",
 		"item_summon_wolves",
 		"item_firefly",
 		"item_kinetic_field",
@@ -41,7 +42,7 @@ if HVHItemSpawnController == nil then
 		--"item_medallion_of_courage",
 		"item_manta",
 		"item_cyclone"
-	}
+	}]]
 
 	HVHItemSpawnController._BadGuyChest = "item_treasure_chest_bad_guys"
 	HVHItemSpawnController._BadGuyItems = {
@@ -49,7 +50,7 @@ if HVHItemSpawnController == nil then
 		"item_mirana_arrow",
 		"item_meat_hook_new",
 		"item_smoke_of_deceit",
-		"item_quelling_blade",
+		--"item_quelling_blade",
 		"item_magic_stick",
 		"item_force_staff","item_force_staff",
 		"item_blink","item_blink",
@@ -66,10 +67,6 @@ if HVHItemSpawnController == nil then
 		"item_mjollnir",
 		"item_diffusal_blade"
 	}
-
-  --[[TODO:
-   hunters: timber chain
-   NS: shackle, dagon]]--
 end
 
 require("item_utils")
@@ -83,6 +80,11 @@ function HVHItemSpawnController:Setup()
 	local spawnCoordinator = Entities:FindByName(nil, "hvh_item_spawn_coordinator")
 	spawnCoordinator:SetContextThink("HVHItemSpawnController", Dynamic_Wrap(self, "Think"), self._ThinkInterval)
 	ListenToGameEvent("dota_item_picked_up", Dynamic_Wrap(self, "_OnItemPickedUp"), self) 
+
+	for i=1,20 do
+		local randomValue = self._GoodGuyItemRandomizer:GetRandomValue()
+		
+	end
 
 	self:_UpdateDayNightState()
 end

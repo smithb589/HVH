@@ -13,6 +13,11 @@ function DeepCopy(orig)
     return copy
 end
 
+function CompareFloats(float1, float2, tolerance)
+    local difference = float1 - float2
+    return (difference < tolerance) or (-difference < tolerance)
+end
+
 function HVHDebugPrint(...)
   local doPrint = Convars:GetInt("hvh_debug_output") or 0
 
