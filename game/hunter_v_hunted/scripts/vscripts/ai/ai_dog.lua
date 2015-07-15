@@ -1,4 +1,4 @@
-
+require("ai/ai_dog_speech")
 require("ai/ai_core")
 require("hvh_utils")
 
@@ -89,6 +89,8 @@ function BehaviorWander:Begin()
 
 	-- Indicate how long the wander behavior should last
 	self.endTime = GameRules:GetGameTime() + self:GetWanderDuration()
+
+	--thisEntity:AddSpeechBubble(SPEECH_ID, SPEECH_WANDER_BEGIN, SPEECH_DUR, SP_X, SP_Y)
 end
 
 function BehaviorWander:Continue()
@@ -153,6 +155,8 @@ function BehaviorPursue:Begin()
 	end
 
 	self.endTime = GameRules:GetGameTime() + 0.1
+
+	--thisEntity:AddSpeechBubble(SPEECH_ID, SPEECH_PURSUE_BEGIN, SPEECH_DUR, SP_X, SP_Y)
 end
 
 function BehaviorPursue:Continue()
@@ -172,6 +176,10 @@ function BehaviorPursue:Continue()
 	end
 
 	self.endTime = GameRules:GetGameTime() + 0.1
+
+	--local distance = math.ceil(thisEntity:GetRangeToUnit(pursuitTarget) - 0.5) -- round to nearest int
+	--local speech = string.format(SPEECH_PURSUE_CONTINUE, distance)
+	--thisEntity:AddSpeechBubble(SPEECH_ID, speech, SPEECH_DUR_PURSUE, SP_X, SP_Y)
 end
 
 function BehaviorPursue:End()
@@ -221,6 +229,7 @@ function BehaviorSprint:Begin()
 	--thisEntity:CastAbilityNoTarget(self.sprintAbility, -1)
 	-- Indicate how long the wander behavior should last
 	self.endTime = GameRules:GetGameTime()
+	--thisEntity:AddSpeechBubble(SPEECH_ID, SPEECH_SPRINT_BEGIN, SPEECH_DUR, SP_X, SP_Y)
 end
 
 -- Continuing this behavior is the same as just beginning it
@@ -282,6 +291,7 @@ end
 function BehaviorSleep:Begin()
 	self.order.OrderType = DOTA_UNIT_ORDER_HOLD_POSITION
 	self.endTime = GameRules:GetGameTime() + 1
+	--thisEntity:AddSpeechBubble(SPEECH_ID, SPEECH_SLEEP_BEGIN, SPEECH_DUR, SP_X, SP_Y)
 end
 
 function BehaviorSleep:Continue()
