@@ -318,14 +318,14 @@
 	"item_smoke_of_deceit"
 	{
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "3"
+		"ItemInitialCharges"  "2"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 	}
 
 	"item_dust"
 	{
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "3"
+		"ItemInitialCharges"  "2"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 		"AbilityManaCost" "0"
 
@@ -379,7 +379,7 @@
 	"item_diffusal_blade" // TODO: should it murder dog?
 	{
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "3" // It's also in AbilitySpecial
+		"ItemInitialCharges"  "2" // It's also in AbilitySpecial
 		"ItemPermanent" "0"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 
@@ -470,7 +470,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"soul_initial_charge"	"2"
+				"soul_initial_charge"	"3"
 			}
 			"05"
 			{
@@ -974,7 +974,7 @@
 	{
 		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "5"
+		"ItemInitialCharges"  "4"
 		"ItemDisplayCharges"  "1"
 		"ItemRequiresCharges" "1"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
@@ -1263,7 +1263,7 @@
 	"item_mask_of_madness"
 	{
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "3"
+		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
 		"ItemRequiresCharges" "1"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
@@ -1514,7 +1514,7 @@
 	{
 		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "4"
+		"ItemInitialCharges"  "3"
 		"ItemDisplayCharges"  "1"
 		"ItemRequiresCharges" "1"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
@@ -1658,7 +1658,7 @@
 	{
 		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY" // TODO: think about this
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "3"
+		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
 		"ItemRequiresCharges" "1"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"

@@ -54,7 +54,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1031"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_hvh_amplify_damage" // filename: hvh_meat_hook	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -138,7 +138,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1029"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_hvh_assassinate" // filename: hvh_meat_hook	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET" // DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -181,7 +181,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1028"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_hvh_black_hole" // filename: hvh_meat_hook	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityCastPoint"		"0.3"
@@ -258,7 +258,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1026"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_hvh_hand_of_god" // filename: hvh_meat_hook	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastPoint"		"0.3"
@@ -330,7 +330,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1024"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "3"
 		"AbilityTextureName"	"item_hvh_frost_armor" // filename: hvh_meat_hook	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET" // DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -372,7 +372,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1023"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "4"
 		"AbilityTextureName"	"item_hvh_land_mines" // filename: hvh_meat_hook	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityCastPoint"		"0.0"
@@ -566,7 +566,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1018"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_hvh_eye_of_the_storm" // filename: hvh_meat_hook	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastPoint"		"0.3"
@@ -680,7 +680,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1015"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_hvh_culling_blade" // filename: hvh_meat_hook	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -947,7 +947,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1008"
-		"ItemInitialCharges"  "1"
+		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_hvh_shackleshot" // filename: hvh_meat_hook	
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
