@@ -83,11 +83,17 @@
 		"AbilityManaCost"				"0"
 	}
 
+	"night_stalker_crippling_fear"
+	{
+		"AbilityManaCost"				"0"
+	}
+
 	// "night_stalker_crippling_fear_hvh" is custom
 
 	"mirana_leap"
 	{
-		"AbilityCooldown"				"8.0"
+		"AbilityCooldown"				"14.0 12.0 10.0 8.0"
+		"AbilityDuration"				"0.0"
 		"AbilityManaCost"				"0"
 
 		"AbilitySpecial"
@@ -189,8 +195,7 @@
 		}
 	}
 
-	// LORE: "I slahsed a warlock's face for this.""
-	"item_ultimate_scepter" // TODO: we should make this a Mangonian Scepter
+	"item_ultimate_scepter"
 	{
 		"AbilityTextureName"	"item_hvh_mango_scepter" // filename: hvh_meat_hook			
 		"ItemSellable" "0"
@@ -344,7 +349,7 @@
 		}		
 	}
 
-	"item_magic_stick" // BUG: not destroyed at 0 charges
+	"item_magic_stick"
 	{
 		"ItemInitialCharges"	"10"
 		"ItemSellable" "0"
@@ -1096,7 +1101,7 @@
 		}
 	}
 
-	"item_manta" // BUG: not working on NS, but works for sniper? (might have to do with fast day/night)
+	"item_manta"
 	{
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"

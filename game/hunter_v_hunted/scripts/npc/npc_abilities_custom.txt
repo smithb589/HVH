@@ -27,7 +27,7 @@
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"0"
-		"AbilityCooldown"				"15.0" //"20.0"
+		"AbilityCooldown"				"30.0" //"20.0"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -255,6 +255,83 @@
 		}
 	}
 
+	"sniper_feed_dog"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"			"hvh_feed_dog"
+		"AOERadius"						"%treat_radius"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"900"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"60 50 40 30"
+		"AbilityManaCost"				"0"
+
+		"Precache"
+		{
+			"particle"			"particles/good_guy_dog_treat.vpcf"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"treat_fly_speed"	"600"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"treat_width"		"50"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"treat_radius"		"350"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"feed_duration"		"8"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			// Need some sort of effect for the sniper to throw
+
+			"TrackingProjectile"
+			{
+				"Target" 		"TARGET"
+			    "EffectName"  	"particles/good_guy_dog_treat.vpcf"
+			    "MoveSpeed"   	"%treat_fly_speed"
+			    //"StartRadius"	"%treat_radius"
+			    //"EndRadius"		"%treat_radius"
+			    "StartPosition" "attach_origin"
+			    //"FixedDistance"	"300"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"RunScript"
+			{
+				"Target"		"TARGET"
+				"ScriptFile"	"scripts/vscripts/SpellLibrary/sniper_feed_dog.lua"
+				"Function"		"Feed"
+				"feedDuration"	"%feed_duration"
+				//"treatRadius"	"%treat_radius"
+			}
+		}
+	}
+
 	"night_stalker_hunter_in_the_night_hvh"
 	{
 		// General  
@@ -413,7 +490,7 @@
 
 	    	"modifier_dread_hunter_speed"
 	    	{
-	    		"IsHidden"			"0"
+	    		"IsHidden"			"1"
 
 	    		"Properties"
 	    		{
@@ -641,7 +718,6 @@
 				"var_type"			"FIELD_INTEGER"
 				"pushback_height"			"100"
 			}
-
 		}
 	
 		"OnSpellStart"
@@ -736,11 +812,42 @@
 	
 	}
 
-	"good_guy_dog_sleepy"
+	"general_ability_invulnerable"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			""
+
+		"Modifiers"
+		{
+			"modifier_invulnerability"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}		
+	}
+
+	"dog_sleep"
 	{
 		"BaseClass"             		"ability_datadriven"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"hvh_dog_sleep"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"health_regen_pct"	"10"
+			}
+		}
 
 		"Modifiers"
 		{
@@ -771,114 +878,15 @@
 
 				"Properties"
 	    		{
-	    			"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "10"
+	    			"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%health_regen_pct"
 	    		}
-			}
-		}
-	}
-
-	"general_ability_invulnerable"
-	{
-		"BaseClass"             		"ability_datadriven"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			""
-
-		"Modifiers"
-		{
-			"modifier_invulnerability"
-			{
-				"Passive"			"1"
-				"IsHidden"			"0"
-				"IsDebuff"			"0"
-
-				"States"
-				{
-					"MODIFIER_STATE_INVULNERABLE" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}		
-	}
-
-	"sniper_feed_dog"
-	{
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC"
-		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"			"hvh_feed_dog"
-		"AOERadius"						"%treat_radius"
-		
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"900"
-		"AbilityCastPoint"				"0.3"
-		"AbilityCooldown"				"30"
-		"AbilityManaCost"				"0"
-
-		"Precache"
-		{
-			"particle"			"particles/good_guy_dog_treat.vpcf"
-		}
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"treat_fly_speed"	"600"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"treat_width"		"50"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"treat_radius"		"350"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"feed_duration"		"8"
-			}
-		}
-
-		"OnSpellStart"
-		{
-			// Need some sort of effect for the sniper to throw
-
-			"TrackingProjectile"
-			{
-				"Target" 		"TARGET"
-			    "EffectName"  	"particles/good_guy_dog_treat.vpcf"
-			    "MoveSpeed"   	"%treat_fly_speed"
-			    //"StartRadius"	"%treat_radius"
-			    //"EndRadius"		"%treat_radius"
-			    "StartPosition" "attach_origin"
-			    //"FixedDistance"	"300"
-			}
-		}
-
-		"OnProjectileHitUnit"
-		{
-			"RunScript"
-			{
-				"Target"		"TARGET"
-				"ScriptFile"	"scripts/vscripts/SpellLibrary/sniper_feed_dog.lua"
-				"Function"		"Feed"
-				"feedDuration"	"%feed_duration"
-				//"treatRadius"	"%treat_radius"
 			}
 		}
 	}
 
 	"dog_mans_best_friend"
 	{
-	// General
+		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
@@ -983,7 +991,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_speed"				"100" // percentage
+				"bonus_speed"				"65" // percentage (brings 325 movespeed up to ~522)
 			}
 			"03"
 			{
@@ -1004,7 +1012,7 @@
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"ally_bonus_speed"				"25" // percentage
+				"ally_bonus_speed"				"25" // constant
 			}
 
 		}
@@ -1042,6 +1050,7 @@
 	        	"Target"	 "CASTER"
 	        }
 	    }
+
 	    "Modifiers"
 	    {
 	    	"modifier_dog_sprint"
@@ -1059,6 +1068,7 @@
 
 	    	"modifier_dog_sprint_allies"
 	    	{
+	    		"ApplyToCaster" "0"
 	    		"IsBuff" "1"
 	    		"Duration" "%duration"
 	    		"EffectName"	"particles/units/heroes/hero_slardar/slardar_sprint.vpcf"
@@ -1066,7 +1076,7 @@
 
 	    		"Properties"
 		    	{
-		    		"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%ally_bonus_speed"
+		    		"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%ally_bonus_speed"
 		    	}
 	    	}
 

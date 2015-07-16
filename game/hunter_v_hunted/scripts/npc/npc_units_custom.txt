@@ -97,7 +97,7 @@
 		//"Ability2"					"general_ability_invulnerable"
 		"Ability2"					"dog_mans_best_friend"
 		"Ability3"					"slardar_bash"
-		"Ability4"					"good_guy_dog_sleepy"
+		"Ability4"					"dog_sleep"
 		"AbilityLayout"	"4"
 	
 		// Armor
