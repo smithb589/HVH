@@ -681,7 +681,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"scream_damage"				"250"
+				"scream_damage"				"100 175 250"
 			}
 			"06"
 			{
