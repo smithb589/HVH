@@ -76,11 +76,13 @@ function HVHGameMode:OnEntityKilled(killedArgs)
     if team == DOTA_TEAM_GOODGUYS then
       mode.GoodGuyLives = mode.GoodGuyLives - 1
       mode:SetTopBarTeamValue(DOTA_TEAM_GOODGUYS, mode.GoodGuyLives)
-      unit:SetTimeUntilRespawn(HVHTimeUtils:GetRespawnTime(DOTA_TEAM_GOODGUYS))
+      unit:SetTimeUntilRespawn(
+        HVHTimeUtils:GetRespawnTime(DOTA_TEAM_GOODGUYS))
     elseif team == DOTA_TEAM_BADGUYS then
       mode.BadGuyLives = mode.BadGuyLives - 1
       mode:SetTopBarTeamValue(DOTA_TEAM_BADGUYS, mode.BadGuyLives)
-      unit:SetTimeUntilRespawn(HVHTimeUtils:GetRespawnTime(DOTA_TEAM_BADGUYS))
+      unit:SetTimeUntilRespawn(
+        HVHTimeUtils:GetRespawnTime(DOTA_TEAM_BADGUYS))
     end
 
     -- declare winners
@@ -93,13 +95,26 @@ function HVHGameMode:OnEntityKilled(killedArgs)
     end
   end
 
-  -- dog respawning every morning exactly
+  -- dog dead for a minimum of 1 cycle + randomness, then check every second
+  -- to respawn when it's daytime
+
   if unit and unit:GetUnitName() == "npc_dota_good_guy_dog" then
+    local standardLengthOfOneCycle = (SECS_PER_CYCLE / 2) / DAY_NIGHT_CYCLE_MULTIPLIER
+    local maxLengthOfCycle = standardLengthOfOneCycle + RANDOM_EXTRA_SECONDS
+    Timers:CreateTimer(maxLengthOfCycle, function()
+      if GameRules:IsDaytime() then
+        HVHGameMode:SpawnDog(true)
+      else
+        return 1.0
+      end
+    end)
+    --[[-- dog respawning every morning exactly
     Timers:CreateTimer({
       endTime = HVHTimeUtils:GetSecondsUntil(TIME_NEXT_DAWN),
       callback = function()
         HVHGameMode:SpawnDog(true)
     end})
+    ]]
   end
 
 end

@@ -32,7 +32,7 @@ function HVHTimeUtils:GetSecondsUntil(time_const)
 end
 
 -- respawn between MIN and MAX minutes, preferably along the dawn/evening line
-function HVHTimeUtils:GetRespawnTime(team)
+function HVHTimeUtils:GetRespawnTime_DEPRECATED(team)
   local next_time = 0
 
   if team == DOTA_TEAM_GOODGUYS then
@@ -49,4 +49,9 @@ function HVHTimeUtils:GetRespawnTime(team)
   else
     return next_time
   end
+end
+
+-- random time between MIN and MAX
+function HVHTimeUtils:GetRespawnTime(team)
+  return RandomInt(MIN_RESPAWN_TIME, MAX_RESPAWN_TIME)
 end
