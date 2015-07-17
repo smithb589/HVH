@@ -14,7 +14,7 @@ BADGUY_LIVES	 = 5
 GOODGUY_LIVES	 = 20
 MIN_RESPAWN_TIME = 15
 MAX_RESPAWN_TIME = 25
-MAX_OUT_ABILITIES = false 				-- max out starting abilities or leave them unleveled?
+MAX_OUT_ABILITIES = true 				-- max out starting abilities or leave them unleveled?
 
 ENABLE_HERO_RESPAWN = true              -- Should the heroes automatically respawn on a timer or stay dead until manually respawned
 UNIVERSAL_SHOP_MODE = false             -- Should the main shop contain Secret Shop items as well as regular items

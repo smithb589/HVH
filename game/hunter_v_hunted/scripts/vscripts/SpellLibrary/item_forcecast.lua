@@ -17,6 +17,18 @@ function ForceCast( keys )
 	end)
 end
 
+-- unused for now
+function LearnTempAbility ( caster, abilityName, maxDuration )
+	print("learned " .. abilityName)
+	caster:AddAbility(abilityName)
+	local ability = caster:FindAbilityByName(abilityName)
+	ability:SetHidden(true)
+	ability:SetLevel(ability:GetMaxLevel())
+	Timers:CreateTimer(maxDuration+1, function()
+		caster:RemoveAbility(abilityName)
+		print("forgot " .. abilityName)
+	end)
+end
 
 --[[ Issues
 
