@@ -79,10 +79,10 @@ function HVHGameMode:_SetupGameMode()
     -- HVH specific
     mode:SetModifyGoldFilter( Dynamic_Wrap( self, "ModifyGoldFilter" ), self )
     mode:SetModifyExperienceFilter( Dynamic_Wrap( self, "ModifyExperienceFilter" ), self )
-    mode.GoodGuyLives = GOODGUY_LIVES
-    mode.BadGuyLives  = BADGUY_LIVES
     mode:SetTopBarTeamValue(DOTA_TEAM_GOODGUYS, GOODGUY_LIVES)
     mode:SetTopBarTeamValue(DOTA_TEAM_BADGUYS, BADGUY_LIVES)
+    mode.GoodGuyLives = GOODGUY_LIVES
+    mode.BadGuyLives  = BADGUY_LIVES
 
   end 
 end
@@ -139,6 +139,7 @@ function HVHGameMode:_SetupFastTime(next_time_transition, rng_secs)
   local standardLengthOfOneCycle = (SECS_PER_CYCLE / 2) / DAY_NIGHT_CYCLE_MULTIPLIER
   if rng_secs == nil then rng_secs = 0 end
   local thisCycleLength = standardLengthOfOneCycle + rng_secs
+
   Timers:CreateTimer(thisCycleLength, function()
     --print("This day/night has been " .. thisCycleLength .. " seconds long.")
     GameRules:SetTimeOfDay(next_time_transition)
@@ -205,16 +206,18 @@ function HVHGameMode:SetupHero(hero)
     DOTA_ModifyXP_Unspecified, false, true)
 
   -- max out abilities
-  local ability = nil
-  for i=0,hero:GetAbilityCount()-1 do
-    ability = hero:GetAbilityByIndex(i)
-    if ability and not ability:IsAttributeBonus() then 
-      for level=1, ability:GetMaxLevel() do
-        ability:UpgradeAbility(false) -- SetLevel() ignores OnUpgrade events
+  if MAX_OUT_ABILITIES then 
+    local ability = nil
+    for i=0,hero:GetAbilityCount()-1 do
+      ability = hero:GetAbilityByIndex(i)
+      if ability and not ability:IsAttributeBonus() then 
+        for level=1, ability:GetMaxLevel() do
+          ability:UpgradeAbility(false) -- SetLevel() ignores OnUpgrade events
+        end
       end
     end
+    hero:SetAbilityPoints(0)
   end
-  hero:SetAbilityPoints(0)
 
   -- starting gear
   local heroTeam = hero:GetTeamNumber()
@@ -256,9 +259,9 @@ function HVHGameMode:SpawnDog(random_spawn)
 end
 
 function HVHGameMode:ChooseRandomSpawn(classname)
-    local possibleSpawners = Entities:FindAllByClassname(classname)
-    local r = RandomInt(1, #possibleSpawners)
-    spawner = possibleSpawners[r]
+  local possibleSpawners = Entities:FindAllByClassname(classname)
+  local r = RandomInt(1, #possibleSpawners)
+  spawner = possibleSpawners[r]
 
-    return spawner
+  return spawner
 end

@@ -2,7 +2,7 @@
 
 -- HVH-specific
 STARTING_LEVEL		= 16
-STARTING_LEVELS_TO_ADD = STARTING_LEVEL - 1
+STARTING_LEVELS_TO_ADD = STARTING_LEVEL - 1	  -- do not modify
 DAY_NIGHT_CYCLE_MULTIPLIER = 3			-- ex. 4 means each day/night will last 1 min each (4x faster)
 RANDOM_EXTRA_SECONDS 	   = 15.0 		-- randomly increase/decrease each cycle by -(Value) to Value seconds
 GOLD_PER_KILL 	= 0
@@ -12,8 +12,9 @@ XP_PER_TICK      = 1					-- every XP_TICK_INTERVAL seconds, living heroes get XP
 XP_TICK_INTERVAL = 20
 BADGUY_LIVES	 = 5
 GOODGUY_LIVES	 = 20
-MIN_RESPAWN_TIME = 5
+MIN_RESPAWN_TIME = 15
 MAX_RESPAWN_TIME = 25
+MAX_OUT_ABILITIES = false 				-- max out starting abilities or leave them unleveled?
 
 ENABLE_HERO_RESPAWN = true              -- Should the heroes automatically respawn on a timer or stay dead until manually respawned
 UNIVERSAL_SHOP_MODE = false             -- Should the main shop contain Secret Shop items as well as regular items
