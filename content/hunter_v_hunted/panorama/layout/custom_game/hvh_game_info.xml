@@ -1,0 +1,61 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/dotastyles.css" />
+		<include src="file://{resources}/styles/custom_game/overthrow_game_info.css" />
+	</styles>
+	<Panel class="HVHGameInfo">
+		<Panel id="Title">
+			<Label id="TitleName" text="#addonname" />
+		</Panel>
+		<Label id="ObjectiveHeader" class="Header" html="true" text="#game_info_objective_header" />
+		<Label id="ObjectiveDescription" text="#game_info_objective_description" />
+		<Label id="HowToPlayHeader" class="Header" html="true" text="#game_info_howtoplay_header" />
+		<Panel id="CyclesRow" class="InfoRow">
+			<Label id="CyclesText" html="true" text="#game_info_howtoplay_description_cycles" />
+			<Image id="CyclesImage" src="file://{images}/custom_game/game_info/cycles.psd" />
+		</Panel>
+		<Panel id="HoundRow" class="InfoRow">
+			<Image id="HoundImage" src="file://{images}/custom_game/game_info/hound.psd" />
+			<Label id="HoundText" html="true" text="#game_info_howtoplay_description_hound" />
+		</Panel>
+		<Panel id="ItemsRow" class="InfoRow">
+			<Label id="ItemsText" html="true" text="#game_info_howtoplay_description_items" />
+			<Image id="ItemsImage" src="file://{images}/custom_game/game_info/items.psd" />
+		</Panel>
+
+		<Label id="PlayingSnipersHeader" class="Header" html="true" text="#game_info_playingSnipers_header" />
+		<Panel id="PlayingSnipersRow" class="InfoRow">
+			<Panel id="PlayingSnipersTextContainer">
+				<Label id="PlayingSnipersText01" class="PlayingSnipersText" html="true" text="#game_info_playingSnipers_description01" />		
+				<Label id="PlayingSnipersText02" class="PlayingSnipersText" html="true" text="#game_info_playingSnipers_description02" />		
+				<Label id="PlayingSnipersText03" class="PlayingSnipersText" html="true" text="#game_info_playingSnipers_description03" />		
+				<Label id="PlayingSnipersText04" class="PlayingSnipersText" html="true" text="#game_info_playingSnipers_description04" />
+			</Panel>
+			<DOTAHeroImage id="PlayingSnipersImage" heroname="npc_dota_hero_sniper" heroimagestyle="portrait" />
+		</Panel>
+
+		<Label id="PlayingNSHeader" class="Header" html="true" text="#game_info_playingNS_header" />
+		<Panel id="PlayingNSRow" class="InfoRow">
+			<DOTAHeroImage id="PlayingNSImage" heroname="npc_dota_hero_night_stalker" heroimagestyle="portrait" />
+			<Panel id="PlayingNSTextContainer">
+				<Label id="PlayingNSText01" class="PlayingNSText" html="true" text="#game_info_playingNS_description01" />
+				<Label id="PlayingNSText02" class="PlayingNSText" html="true" text="#game_info_playingNS_description02" />
+				<Label id="PlayingNSText03" class="PlayingNSText" html="true" text="#game_info_playingNS_description03" />
+				<Label id="PlayingNSText04" class="PlayingNSText" html="true" text="#game_info_playingNS_description04" />
+			</Panel>
+		</Panel>
+
+		<Label id="TipsHeader" class="Header" html="true" text="#game_info_tips_header" />
+		<Panel id="TipsRow" class="InfoRow">
+			<Label id="TipText01" class="TipText" html="true" text="#game_info_tips_tip01" />
+			<Label id="TipText02" class="TipText" html="true" text="#game_info_tips_tip02" />
+			<Label id="TipText03" class="TipText" html="true" text="#game_info_tips_tip03" />
+			<Label id="TipText04" class="TipText" html="true" text="#game_info_tips_tip04" />
+			<Label id="TipText05" class="TipText" html="true" text="#game_info_tips_tip05" />
+			<Label id="TipText06" class="TipText" html="true" text="#game_info_tips_tip06" />
+			<Label id="TipText07" class="TipText" html="true" text="#game_info_tips_tip07" />
+			<Label id="TipText08" class="TipText" html="true" text="#game_info_tips_tip08" />
+		</Panel>
+	</Panel>
+</root>
+
