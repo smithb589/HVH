@@ -1,7 +1,8 @@
 
 require("internal/item_randomizer")
-require("internal/hvh_item_chest")
+require("internal/hvh_chest_model")
 require("internal/hvh_location_collection")
+require("internal/hvh_world_chest")
 
 if HVHItemSpawnController == nil then
 	HVHItemSpawnController = class({})
@@ -11,11 +12,11 @@ if HVHItemSpawnController == nil then
 	HVHItemSpawnController._WasDayTimeLastThink = false
 
 	HVHItemSpawnController._SpawnLocations = nil
-	HVHItemSpawnController._SpawnedItems = {}
+	HVHItemSpawnController._SpawnedChests = {}
 
-	HVHItemSpawnController._GoodGuyItemChest = HVHItemChest("scripts/vscripts/kv/good_guy_items.kv")
-	HVHItemSpawnController._BadGuyItemChest = HVHItemChest("scripts/vscripts/kv/bad_guy_items.kv")
-	HVHItemSpawnController._CurrentItemChest = nil
+	HVHItemSpawnController._GoodGuyChestModel = HVHChestModel("scripts/vscripts/kv/good_guy_items.kv")
+	HVHItemSpawnController._BadGuyChestModel = HVHChestModel("scripts/vscripts/kv/bad_guy_items.kv")
+	HVHItemSpawnController._CurrentChestModel = nil
 end
 
 require("item_utils")
@@ -39,7 +40,7 @@ end
 function HVHItemSpawnController:Think()
 	if HVHItemSpawnController:_DidDayNightStateChange() then
 		HVHItemSpawnController:_RemoveUnclaimedItems()
-		HVHItemSpawnController:_UpdateCurrentItemChest()
+		HVHItemSpawnController:_UpdateCurrentChestModel()
 		HVHItemSpawnController:SpawnChestsForCycle()
 	end
 
@@ -50,12 +51,13 @@ end
 
 -- Spawns all items necessary for the current day/night cycle.
 function HVHItemSpawnController:SpawnChestsForCycle()
-	local availableChest = self._CurrentItemChest:GetChestName()
-	local spawnLocations = self._SpawnLocations:GetRandomLocations(self._CurrentItemChest:GetItemsPerCycle())
+	local availableChest = self._CurrentChestModel:GetChestName()
+	local spawnLocations = self._SpawnLocations:GetRandomLocations(self._CurrentChestModel:GetItemsPerCycle())
 
 	if spawnLocations then
-		for key,location in pairs(spawnLocations) do
-			local spawnedChest = HVHItemUtils:SpawnItem(availableChest, location)
+		for _,location in pairs(spawnLocations) do
+			local spawnedChest = HVHWorldChest()
+			spawnedChest:Spawn(location, availableChest)
 			self:_AddSpawnedItem(spawnedChest)
 		end
 	else
@@ -66,17 +68,18 @@ end
 -- Adds an item to the spawned item cache so that they can be reclaimed later.
 function HVHItemSpawnController:_AddSpawnedItem(spawnedItem)
 	if spawnedItem then
-	    table.insert(self._SpawnedItems, spawnedItem)
+	    table.insert(self._SpawnedChests, spawnedItem)
 	else
 		HVHDebugPrint("No item to add.")
 	end
 end
 
-function HVHItemSpawnController:_UpdateCurrentItemChest()
+-- Sets the current item chest to either the good guy or bad guy chest
+function HVHItemSpawnController:_UpdateCurrentChestModel()
 	if GameRules:IsDaytime() then
-		self._CurrentItemChest = self._BadGuyItemChest
+		self._CurrentChestModel = self._BadGuyChestModel
 	else
-		self._CurrentItemChest = self._GoodGuyItemChest
+		self._CurrentChestModel = self._GoodGuyChestModel
 	end
 end
 
@@ -88,16 +91,12 @@ end
 
 -- Removes all unclaimed items created by the spawner.
 function HVHItemSpawnController:_RemoveUnclaimedItems()
-	HVHDebugPrint(string.format("Attempting to remove %d items.", table.getn(self._SpawnedItems)))
-	for index,item in pairs(self._SpawnedItems) do
-		-- If the item was picked up, the world entity has been removed already
-		-- and checking the item handle for null catches this.
-		if not item:IsNull() then
-			UTIL_Remove(item)
-		end
+	HVHDebugPrint(string.format("Attempting to remove %d items.", table.getn(self._SpawnedChests)))
+	for _,worldChest in pairs(self._SpawnedChests) do
+		worldChest:Remove()
 	end
 
-	self._SpawnedItems = {}
+	self._SpawnedChests = {}
 end
 
 -- Updates the day/night cycle for this think.
@@ -112,43 +111,69 @@ function HVHItemSpawnController:_OnItemPickedUp(keys)
 	local hero = EntIndexToHScript(keys.HeroEntityIndex)
 
 	if self:_CanGrantGoodGuyItem(itemName, hero) then
-		self:_GrantItem(self._GoodGuyItemChest:GetRandomItemName(), hero, chestItem)
+		self:_GrantItem(self._GoodGuyChestModel:GetRandomItemName(), hero, chestItem)
 	elseif self:_CanGrantBadGuyItem(itemName, hero) then
-		self:_GrantItem(self._BadGuyItemChest:GetRandomItemName(), hero, chestItem)
+		self:_GrantItem(self._BadGuyChestModel:GetRandomItemName(), hero, chestItem)
 	elseif self:_IsChestItem(itemName) then
 		self:_RejectPickup(chestItem, itemName)
 	end
 end
 
 function HVHItemSpawnController:_IsChestItem(itemName)
-	return self._GoodGuyItemChest:IsChestItemName(itemName) or self._BadGuyItemChest:IsChestItemName(itemName)
+	return self._GoodGuyChestModel:IsChestItemName(itemName) or self._BadGuyChestModel:IsChestItemName(itemName)
 end
 
 function HVHItemSpawnController:_CanGrantGoodGuyItem(itemName, hero)
-	return self._GoodGuyItemChest:IsChestItemName(itemName) and (hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS)
+	return self._GoodGuyChestModel:IsChestItemName(itemName) and (hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS)
 end
 
 function HVHItemSpawnController:_CanGrantBadGuyItem(itemName, hero)
-	return self._BadGuyItemChest:IsChestItemName(itemName) and (hero:GetTeamNumber() == DOTA_TEAM_BADGUYS)
+	return self._BadGuyChestModel:IsChestItemName(itemName) and (hero:GetTeamNumber() == DOTA_TEAM_BADGUYS)
+end
+
+-- Looks up a world chest from the spawned chests using the entity index
+function HVHItemSpawnController:_GetWorldChest(location)
+	local worldChest = nil
+
+	for _,chest in pairs(self._SpawnedChests) do
+		if chest:IsSameChest(entityIndex) then
+			worldChest = chest
+			break
+		end
+	end
+
+	return worldChest
 end
 
 -- Grants an item from the available items to the hero.
-function HVHItemSpawnController:_GrantItem(itemName, hero, chestItem)
+function HVHItemSpawnController:_GrantItem(itemName, hero, worldChest)
 	if itemName and hero then
 		hero:AddItemByName(itemName)
 		Timers:CreateTimer(SINGLE_FRAME_TIME, function()
 			self:_DropStashItems(hero)
 		end)
 	else
-		HVHDebugPrint("No item randomizer to grant item with.")
+		HVHDebugPrint(string.format("Could not grant item %s to hero %d.", itemName, hero:GetEntityIndex()))
 	end
+
+	-- Note that the world chest here is likely not the same entity index that we have stored.
+	self:_CleanupWorldChest(worldChest:GetAbsOrigin())
+end
+
+function HVHItemSpawnController:_CleanupWorldChest(chestLocation)
+    local worldChest = self:_GetWorldChest(chestLocation)
+
+    if worldChest then
+    	worldChest:Remove()
+    end
 end
 
 -- Prevents expending the chest by replacing it with another.
 function HVHItemSpawnController:_RejectPickup(chest, chestType)
-	local nearestSpawnLocation = self:_FindNearestSpawnLocation(chest:GetAbsOrigin())
-	if not nearestSpawnLocation then nearestSpawnLocation = chest:GetAbsOrigin() end
-	local replacedChest = HVHItemUtils:SpawnItem(chestType, nearestSpawnLocation)
+	local nearestSpawnLocation = self:_FindNearestSpawnLocation(chest:GetLocation())
+	if not nearestSpawnLocation then nearestSpawnLocation = chest:GetLocation() end
+	local replacedChest = HVHWorldChest()
+	replacedChest:Spawn(nearestSpawnLocation, chestType)
 	self:_AddSpawnedItem(replacedChest)
 end
 

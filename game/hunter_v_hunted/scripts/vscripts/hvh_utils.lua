@@ -18,6 +18,14 @@ function CompareFloats(float1, float2, tolerance)
     return (difference < tolerance) or (-difference < tolerance)
 end
 
+function AreVectorsEqualWithinTolerance(vector1, vector2, tolerance)
+  local difference = vector1 - vector2
+  local xWithinTolerance = CompareFloats(vector1.x, vector2.x, tolerance)
+  local yWithinTolerance = CompareFloats(vector1.y, vector2.y, tolerance)
+  local zWithinTolerance = CompareFloats(vector1.z, vector2.z, tolerance)
+  return xWithinTolerance and yWithinTolerance and zWithinTolerance
+end
+
 function HVHDebugPrint(...)
   local doPrint = Convars:GetInt("hvh_debug_output") or 0
 
