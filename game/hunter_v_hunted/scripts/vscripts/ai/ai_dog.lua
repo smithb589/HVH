@@ -26,7 +26,7 @@ function Spawn( entityKeyValues )
 	-- Arbitraryly age this so the dog doesn't start fed.
 	thisEntity._FeedTime = GameRules:GetGameTime() - 60
 
-	thisEntity:SetContextThink("ThinkDog", ThinkDog, 0.25)
+	thisEntity:SetContextThink("ThinkDog", ThinkDog, 0.1)
 	behaviorSystem = AICore:CreateBehaviorSystem({
 		BehaviorWander,
 		BehaviorPursue,
