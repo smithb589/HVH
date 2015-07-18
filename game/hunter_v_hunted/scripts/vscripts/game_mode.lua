@@ -12,8 +12,8 @@ require("item_spawn_controller")
 
 -- Begins processing script for the custom game mode.  This "template_example" contains a main OnThink function.
 function HVHGameMode:InitGameMode()
-	self:_InitGameMode()
 	HVHConvars:Setup()
+	self:_InitGameMode()
 	ListenToGameEvent('dota_player_pick_hero', Dynamic_Wrap(self, 'OnPlayerPickHero'), self)
 
 	print("Hunter v Hunted loaded.")

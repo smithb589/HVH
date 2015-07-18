@@ -1,27 +1,21 @@
 
 require("internal/item_randomizer")
+require("internal/hvh_item_chest")
+require("internal/hvh_location_collection")
 
 if HVHItemSpawnController == nil then
 	HVHItemSpawnController = class({})
-	HVHItemSpawnController._Spawners = {
-		"hvh_item_spawn_north",
-		"hvh_item_spawn_south",
-		"hvh_item_spawn_east",
-		"hvh_item_spawn_west"
-	}
+	HVHItemSpawnController._Spawners = {}
 
 	HVHItemSpawnController._ThinkInterval = 1.0 -- //0.1
 	HVHItemSpawnController._WasDayTimeLastThink = false
-	HVHItemSpawnController._ItemsPerCycle = 4
+
+	HVHItemSpawnController._SpawnLocations = nil
 	HVHItemSpawnController._SpawnedItems = {}
 
-	HVHItemSpawnController._GoodGuyChest = "item_treasure_chest_good_guys"
-	HVHItemSpawnController._GoodGuyItems = LoadKeyValues("scripts/vscripts/kv/good_guy_items.kv")
-	HVHItemSpawnController._GoodGuyItemRandomizer = HVHRandomizer(HVHItemSpawnController._GoodGuyItems)
-
-	HVHItemSpawnController._BadGuyChest = "item_treasure_chest_bad_guys"
-	HVHItemSpawnController._BadGuyItems = LoadKeyValues("scripts/vscripts/kv/bad_guy_items.kv")
-	HVHItemSpawnController._BadGuyItemRandomizer = HVHRandomizer(HVHItemSpawnController._BadGuyItems)
+	HVHItemSpawnController._GoodGuyItemChest = HVHItemChest("scripts/vscripts/kv/good_guy_items.kv")
+	HVHItemSpawnController._BadGuyItemChest = HVHItemChest("scripts/vscripts/kv/bad_guy_items.kv")
+	HVHItemSpawnController._CurrentItemChest = nil
 end
 
 require("item_utils")
@@ -36,6 +30,8 @@ function HVHItemSpawnController:Setup()
 	spawnCoordinator:SetContextThink("HVHItemSpawnController", Dynamic_Wrap(self, "Think"), self._ThinkInterval)
 	ListenToGameEvent("dota_item_picked_up", Dynamic_Wrap(self, "_OnItemPickedUp"), self) 
 
+	HVHItemSpawnController._SpawnLocations = HVHLocationCollection("dota_item_spawner")
+
 	self:_UpdateDayNightState()
 end
 
@@ -43,6 +39,7 @@ end
 function HVHItemSpawnController:Think()
 	if HVHItemSpawnController:_DidDayNightStateChange() then
 		HVHItemSpawnController:_RemoveUnclaimedItems()
+		HVHItemSpawnController:_UpdateCurrentItemChest()
 		HVHItemSpawnController:SpawnChestsForCycle()
 	end
 
@@ -53,8 +50,9 @@ end
 
 -- Spawns all items necessary for the current day/night cycle.
 function HVHItemSpawnController:SpawnChestsForCycle()
-	local availableChest = self:_GetAvailableChestClass()
-	local spawnLocations = self:_GetRandomSpawnLocations(self._ItemsPerCycle)
+	local availableChest = self._CurrentItemChest:GetChestName()
+	local spawnLocations = self._SpawnLocations:GetRandomLocations(self._CurrentItemChest:GetItemsPerCycle())
+
 	if spawnLocations then
 		for key,location in pairs(spawnLocations) do
 			local spawnedChest = HVHItemUtils:SpawnItem(availableChest, location)
@@ -74,18 +72,12 @@ function HVHItemSpawnController:_AddSpawnedItem(spawnedItem)
 	end
 end
 
--- Creates a random item.
-function HVHItemSpawnController:_GetRandomItemName(availableItems)
-	local item = nil
-	if availableItems then
-		local maxItemIndex = table.getn(availableItems)
-		if maxItemIndex >= 0 then
-			local itemIndex = RandomInt(1, maxItemIndex)
-			item = availableItems[itemIndex]
-		end
+function HVHItemSpawnController:_UpdateCurrentItemChest()
+	if GameRules:IsDaytime() then
+		self._CurrentItemChest = self._BadGuyItemChest
+	else
+		self._CurrentItemChest = self._GoodGuyItemChest
 	end
-
-	return item
 end
 
 -- Indicates if the day/night cycle changes since the last think.
@@ -113,63 +105,6 @@ function HVHItemSpawnController:_UpdateDayNightState()
 	self._WasDayTimeLastThink = GameRules:IsDaytime()
 end
 
--- Gets n random spawn locations.
-function HVHItemSpawnController:_GetRandomSpawnLocations(numLocations)
-	local spawnerClone = DeepCopy(self._Spawners)
-	local spawnLocations = {}
-
-	-- This uses the clone to remove an item from the possible choices.
-	for locationCounter=1,numLocations do
-		local randomSpawnerIndex = RandomInt(1, table.getn(spawnerClone))
-		local spawner = Entities:FindByName(nil, spawnerClone[randomSpawnerIndex])
-		if spawner then
-			table.insert(spawnLocations, spawner:GetAbsOrigin())
-		else
-			HVHDebugPrint("No spawner to create item at.")
-		end
-		table.remove(spawnerClone, randomSpawnerIndex)
-	end
-
-	return spawnLocations
-end
-
---[[-- Gets the available item classes depending on the chest type.
-function HVHItemSpawnController:_GetAvailableItemClasses(chestType)
-	local availableItemClasses = {}
-	if chestType == self._GoodGuyChest then
-		availableItemClasses = self._GoodGuyItems
-	elseif chestType == self._BadGuyChest then
-		availableItemClasses = self._BadGuyItems
-	else
-		HVHDebugPrint(string.format("Invalid chest type: %s", chestType))
-	end
-	return availableItemClasses
-end]]
-
-function HVHItemSpawnController:_GetItemRandomizer(chestName)
-	local itemRandomizer = nil
-	if chestType == self._GoodGuyChest then
-		itemRandomizer = self._GoodGuyItemRandomizer
-	elseif chestType == self._BadGuyChest then
-		itemRandomizer = self._BadGuyItemRandomizer
-	else
-		HVHDebugPrint(string.format("Invalid chest type: %s", chestType))
-	end
-	return itemRandomizer
-end
-
--- Gets the chest class depending on the time of day.
-function HVHItemSpawnController:_GetAvailableChestClass()
-	local availableChestClass = nil
-	if not GameRules:IsDaytime() then
-		availableChestClass = self._GoodGuyChest
-	else
-		availableChestClass = self._BadGuyChest
-	end
-
-	return availableChestClass
-end
-
 -- Handles a hero picking up a chest and either granting an item or rejecting the pickup
 function HVHItemSpawnController:_OnItemPickedUp(keys)
 	local itemName = keys.itemname
@@ -177,37 +112,33 @@ function HVHItemSpawnController:_OnItemPickedUp(keys)
 	local hero = EntIndexToHScript(keys.HeroEntityIndex)
 
 	if self:_CanGrantGoodGuyItem(itemName, hero) then
-		self:_GrantItem(self._GoodGuyItemRandomizer, hero, chestItem)
+		self:_GrantItem(self._GoodGuyItemChest:GetRandomItemName(), hero, chestItem)
 	elseif self:_CanGrantBadGuyItem(itemName, hero) then
-		self:_GrantItem(self._BadGuyItemRandomizer, hero, chestItem)
+		self:_GrantItem(self._BadGuyItemChest:GetRandomItemName(), hero, chestItem)
 	elseif self:_IsChestItem(itemName) then
 		self:_RejectPickup(chestItem, itemName)
 	end
 end
 
 function HVHItemSpawnController:_IsChestItem(itemName)
-	return (itemName == self._GoodGuyChest) or (itemName == self._BadGuyChest)
+	return self._GoodGuyItemChest:IsChestItemName(itemName) or self._BadGuyItemChest:IsChestItemName(itemName)
 end
 
 function HVHItemSpawnController:_CanGrantGoodGuyItem(itemName, hero)
-	return (itemName == self._GoodGuyChest) and (hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS)
+	return self._GoodGuyItemChest:IsChestItemName(itemName) and (hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS)
 end
 
 function HVHItemSpawnController:_CanGrantBadGuyItem(itemName, hero)
-	return (itemName == self._BadGuyChest) and (hero:GetTeamNumber() == DOTA_TEAM_BADGUYS)
+	return self._BadGuyItemChest:IsChestItemName(itemName) and (hero:GetTeamNumber() == DOTA_TEAM_BADGUYS)
 end
 
 -- Grants an item from the available items to the hero.
-function HVHItemSpawnController:_GrantItem(itemRandomizer, hero, chestItem)
-	if itemRandomizer then
-		local itemName = itemRandomizer:GetRandomValue()
-
-		if itemName and hero then
-			hero:AddItemByName(itemName)
-			Timers:CreateTimer(SINGLE_FRAME_TIME, function()
-				self:_DropStashItems(hero)
-			end)
-		end
+function HVHItemSpawnController:_GrantItem(itemName, hero, chestItem)
+	if itemName and hero then
+		hero:AddItemByName(itemName)
+		Timers:CreateTimer(SINGLE_FRAME_TIME, function()
+			self:_DropStashItems(hero)
+		end)
 	else
 		HVHDebugPrint("No item randomizer to grant item with.")
 	end
@@ -221,6 +152,7 @@ function HVHItemSpawnController:_RejectPickup(chest, chestType)
 	self:_AddSpawnedItem(replacedChest)
 end
 
+-- Forces items from a hero's stash to be dropped at the hero's location.
 function HVHItemSpawnController:_DropStashItems(hero)
 	local hasItemsInStash = hero:GetNumItemsInStash() > 0
 	if hasItemsInStash then
@@ -231,6 +163,7 @@ function HVHItemSpawnController:_DropStashItems(hero)
 	end
 end
 
+-- Drops an item from a hero's stash at the hero's current location.
 function HVHItemSpawnController:_DropItemFromStash(stashItem, hero)
 	if stashItem and hero then
 		local itemName = stashItem:GetName()

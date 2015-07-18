@@ -17,7 +17,7 @@ function HVHConvars:RegisterConvars()
   		debugOutput = 1
   	end
 
-  	Convars:RegisterConvar("hvh_debug_output", tostring(debugOutput), "Set to 1 for debug output. Default: 0", 0)
+  	Convars:RegisterConvar("hvh_debug_output", tostring(debugOutput), "Set to 1 for debug output. Default: 0", FCVAR_CHEAT)
 end
 
 
