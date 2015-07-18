@@ -40,6 +40,7 @@
 
   <Panel>
     <!-- CustomUIElements go here.  They are not provided currently as valve's parser reads commented lines and attempts to link them in.-->
-    <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_hud_base.xml" /> 
+    <CustomUIElement type="Hud"      layoutfile="file://{resources}/layout/custom_game/barebones_hud_base.xml" /> 
+    <CustomUIElement type="GameInfo" layoutfile="file://{resources}/layout/custom_game/hvh_game_info.xml" />
   </Panel>
 </root>
