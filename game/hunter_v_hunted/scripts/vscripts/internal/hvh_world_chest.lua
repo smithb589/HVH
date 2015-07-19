@@ -27,11 +27,6 @@ function HVHWorldChest:Spawn(location, chestType)
 	self._spawnedChest = self:_CreateChest(location, chestType)
 	self:_CreateVisionEntity(location, DOTA_TEAM_GOODGUYS)
 	self:_CreateVisionEntity(location, DOTA_TEAM_BADGUYS)
-	if self._spawnedChest then
-		HVHDebugPrint(string.format("Created chest %s with index %d.", chestType, self._spawnedChest:GetEntityIndex()))
-	else
-		HVHDebugPrint(string.format("Failed to created %s.", chestType))
-	end
 end
 
 function HVHWorldChest:Remove()
@@ -62,6 +57,9 @@ end
 
 function HVHWorldChest:_CreateChest(location, chestType)
 	local spawnedChest = HVHItemUtils:SpawnItem(chestType, location)
+	if spawnedChest then
+		HVHDebugPrint(string.format("Created chest %s with index %d at (x=%f,y=%f).", chestType, spawnedChest:GetEntityIndex(), location.x, location.y))
+	end
 	return spawnedChest
 end
 

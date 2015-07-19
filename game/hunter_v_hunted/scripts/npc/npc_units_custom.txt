@@ -9,7 +9,7 @@
 		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
 		"MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE"
 
-		"Ability1"             "chest_vision_states"
+		"Ability1"             "chest_vision_dummy_hider"
 
 		"VisionDaytimeRange" "1"
 		"VisionNighttimeRange" "1"
