@@ -36,6 +36,22 @@ function HVHLocationCollection:GetRandomLocations(numberOfLocations)
 	return randomLocations
 end
 
+function HVHLocationCollection:GetNearestLocation(queryLocation)
+	local nearestLocation = nil
+	local nearestDistance = 99999
+
+	for _,storedLocation in pairs(self._locations) do
+		local currentDistance = Length2DBetweenVectors(storedLocation, queryLocation)
+
+		if currentDistance < nearestDistance then
+			nearestLocation = storedLocation
+			nearestDistance = currentDistance
+		end
+	end
+
+	return nearestLocation
+end
+
 function HVHLocationCollection:_GetShuffledLocations()
 	local locationsClone = DeepCopy(self._locations)
 	local numberOfLocations = table.getn(locationsClone)

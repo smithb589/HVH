@@ -6,7 +6,6 @@ require("internal/hvh_world_chest")
 
 if HVHItemSpawnController == nil then
 	HVHItemSpawnController = class({})
-	HVHItemSpawnController._Spawners = {}
 
 	HVHItemSpawnController._ThinkInterval = 1.0 -- //0.1
 	HVHItemSpawnController._WasDayTimeLastThink = false
@@ -117,7 +116,7 @@ function HVHItemSpawnController:_OnItemPickedUp(keys)
 	elseif self:_CanGrantBadGuyItem(itemName, hero) then
 		self:_GrantItem(self._BadGuyChestModel:GetRandomItemName(), hero, pickedUpItem)
 	elseif self:_IsChestItem(itemName) then
-		self:_RejectPickup(pickedUpItem, itemName)
+		self:_RejectPickup(hero:GetAbsOrigin(), itemName)
 	end
 end
 
@@ -172,9 +171,9 @@ function HVHItemSpawnController:_CleanupWorldChestForContainedItem(containedItem
 end
 
 -- Prevents expending the chest by replacing it with another.
-function HVHItemSpawnController:_RejectPickup(chest, chestType)
-	local nearestSpawnLocation = self:_FindNearestSpawnLocation(chest:GetLocation())
-	if not nearestSpawnLocation then nearestSpawnLocation = chest:GetLocation() end
+function HVHItemSpawnController:_RejectPickup(location, chestType)
+	local nearestSpawnLocation = self:_FindNearestSpawnLocation(location)
+	--if not nearestSpawnLocation then nearestSpawnLocation = pickedUpItem:GetLocation() end
 	local replacedChest = HVHWorldChest()
 	replacedChest:Spawn(nearestSpawnLocation, chestType)
 	self:_AddSpawnedItem(replacedChest)
@@ -202,12 +201,6 @@ end
 
 -- Finds the nearest spawner in a small radius.
 function HVHItemSpawnController:_FindNearestSpawnLocation(position)
-	local nearest = nil
-	for index,spawnerName in pairs(self._Spawners) do
-		local spawner = Entities:FindByNameNearest(spawnerName, position, 600)
-		if spawner then
-			nearest = spawner:GetAbsOrigin()
-		end
-	end
+	local nearest = self._SpawnLocations:GetNearestLocation(position)
 	return nearest
 end

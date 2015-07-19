@@ -45,7 +45,7 @@ end
 function HVHWorldChest:IsContainedItem(item)
 	local isSameChest = false
 
-	if item and self._spawnedChest then
+	if item and self._spawnedChest and not self._spawnedChest:IsNull() then
 		local itemIndex = item:GetEntityIndex()
 		local spawnedItemIndex = self._spawnedChest:GetContainedItem():GetEntityIndex()
 		isSameChest = itemIndex == spawnedItemIndex

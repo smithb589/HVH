@@ -26,6 +26,11 @@ function AreVectorsEqualWithinTolerance(vector1, vector2, tolerance)
   return xWithinTolerance and yWithinTolerance and zWithinTolerance
 end
 
+function Length2DBetweenVectors(vector1, vector2)
+  local difference = vector1 - vector2
+  return difference:Length2D()
+end
+
 function HVHDebugPrint(...)
   local doPrint = Convars:GetInt("hvh_debug_output") or 0
 
