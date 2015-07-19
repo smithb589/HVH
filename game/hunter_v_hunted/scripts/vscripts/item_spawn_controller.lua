@@ -33,7 +33,8 @@ function HVHItemSpawnController:Setup()
 
 	HVHItemSpawnController._SpawnLocations = HVHLocationCollection("dota_item_spawner")
 
-	self:_UpdateDayNightState()
+	-- This is a bit of a cheat to force spawns immediately.
+	self:Think()
 end
 
 -- Think method that is called to determine when to spawn items.
