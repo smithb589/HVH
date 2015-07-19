@@ -11,12 +11,3 @@ end
 ]]--
 
 require("item_utils")
-
-function HVHConvars:CreateRune()
-	local debugRunSpawner = Entities:FindByName(nil, "hvh_debug_rune_spawner")
-	if debugRunSpawner then
-		HVHItemUtils:SpawnItem("item_hvh_rune", debugRunSpawner:GetAbsOrigin())
-	else
-		print("No debug rune spawner.")
-	end
-end
