@@ -11,8 +11,8 @@
 
 		"Ability1"             "chest_vision_states"
 
-		"VisionDaytimeRange" "200"
-		"VisionNighttimeRange" "200"
+		"VisionDaytimeRange" "1"
+		"VisionNighttimeRange" "1"
 	}
 
 	// Made by BMD

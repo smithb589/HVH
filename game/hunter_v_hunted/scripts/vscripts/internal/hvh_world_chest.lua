@@ -25,7 +25,8 @@ end
 
 function HVHWorldChest:Spawn(location, chestType)
 	self._spawnedChest = self:_CreateChest(location, chestType)
-	self:_CreateVisionEntity(location)
+	self:_CreateVisionEntity(location, DOTA_TEAM_GOODGUYS)
+	self:_CreateVisionEntity(location, DOTA_TEAM_BADGUYS)
 	if self._spawnedChest then
 		HVHDebugPrint(string.format("Created chest %s with index %d.", chestType, self._spawnedChest:GetEntityIndex()))
 	else
@@ -46,11 +47,14 @@ function HVHWorldChest:GetLocation()
 	return location
 end
 
-function HVHWorldChest:IsSameChest(chest)
+function HVHWorldChest:IsContainedItem(item)
 	local isSameChest = false
 
-	if chest and chest.hvhUniqueChestName and self._spawnedChest then
-		isSameChest = chest.hvhUniqueChestName == self._spawnedChest.hvhUniqueChestName
+	if item and self._spawnedChest then
+		local itemIndex = item:GetEntityIndex()
+		local spawnedItemIndex = self._spawnedChest:GetContainedItem():GetEntityIndex()
+		isSameChest = itemIndex == spawnedItemIndex
+		HVHDebugPrint(string.format("Checking for contained item with indices: item=%d, spawendItem=%d", itemIndex, spawnedItemIndex))
 	end
 
 	return isSameChest
@@ -58,7 +62,6 @@ end
 
 function HVHWorldChest:_CreateChest(location, chestType)
 	local spawnedChest = HVHItemUtils:SpawnItem(chestType, location)
-	spawnedChest.hvhUniqueChestName = DoUniqueString("")
 	return spawnedChest
 end
 
@@ -78,8 +81,8 @@ function HVHWorldChest:_RemoveVisionEntities()
 	self._visionEntities = {}
 end
 
-function HVHWorldChest:_CreateVisionEntity(location)
-	local visionEntity = CreateUnitByName(self._visionUnit, location, false, nil, nil, DOTA_TEAM_GOODGUYS)
+function HVHWorldChest:_CreateVisionEntity(location, team)
+	local visionEntity = CreateUnitByName(self._visionUnit, location, false, nil, nil, team)
 	visionEntity:SetAbsOrigin(location)
 	visionEntity.visionrange = self._visionRange
 

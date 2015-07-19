@@ -107,15 +107,16 @@ end
 -- Handles a hero picking up a chest and either granting an item or rejecting the pickup
 function HVHItemSpawnController:_OnItemPickedUp(keys)
 	local itemName = keys.itemname
-	local chestItem = EntIndexToHScript(keys.ItemEntityIndex)
+	-- Note that for a chest this is the chest item that is INSIDE the world chest entity
+	local pickedUpItem = EntIndexToHScript(keys.ItemEntityIndex)
 	local hero = EntIndexToHScript(keys.HeroEntityIndex)
 
 	if self:_CanGrantGoodGuyItem(itemName, hero) then
-		self:_GrantItem(self._GoodGuyChestModel:GetRandomItemName(), hero, chestItem)
+		self:_GrantItem(self._GoodGuyChestModel:GetRandomItemName(), hero, pickedUpItem)
 	elseif self:_CanGrantBadGuyItem(itemName, hero) then
-		self:_GrantItem(self._BadGuyChestModel:GetRandomItemName(), hero, chestItem)
+		self:_GrantItem(self._BadGuyChestModel:GetRandomItemName(), hero, pickedUpItem)
 	elseif self:_IsChestItem(itemName) then
-		self:_RejectPickup(chestItem, itemName)
+		self:_RejectPickup(pickedUpItem, itemName)
 	end
 end
 
@@ -132,11 +133,11 @@ function HVHItemSpawnController:_CanGrantBadGuyItem(itemName, hero)
 end
 
 -- Looks up a world chest from the spawned chests using the entity index
-function HVHItemSpawnController:_GetWorldChest(location)
+function HVHItemSpawnController:_GetWorldChest(containedItem)
 	local worldChest = nil
 
 	for _,chest in pairs(self._SpawnedChests) do
-		if chest:IsSameChest(entityIndex) then
+		if chest:IsContainedItem(containedItem) then
 			worldChest = chest
 			break
 		end
@@ -146,7 +147,7 @@ function HVHItemSpawnController:_GetWorldChest(location)
 end
 
 -- Grants an item from the available items to the hero.
-function HVHItemSpawnController:_GrantItem(itemName, hero, worldChest)
+function HVHItemSpawnController:_GrantItem(itemName, hero, chestItem)
 	if itemName and hero then
 		hero:AddItemByName(itemName)
 		Timers:CreateTimer(SINGLE_FRAME_TIME, function()
@@ -157,11 +158,12 @@ function HVHItemSpawnController:_GrantItem(itemName, hero, worldChest)
 	end
 
 	-- Note that the world chest here is likely not the same entity index that we have stored.
-	self:_CleanupWorldChest(worldChest:GetAbsOrigin())
+	self:_CleanupWorldChestForContainedItem(chestItem)
 end
 
-function HVHItemSpawnController:_CleanupWorldChest(chestLocation)
-    local worldChest = self:_GetWorldChest(chestLocation)
+function HVHItemSpawnController:_CleanupWorldChestForContainedItem(containedItem)
+	local worldChest = self:_GetWorldChest(containedItem)
+	DoScriptAssert(worldChest ~= nil, "No chest found for cleanup.")
 
     if worldChest then
     	worldChest:Remove()
