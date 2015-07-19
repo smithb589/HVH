@@ -7,15 +7,15 @@ require("internal/hvh_world_chest")
 if HVHItemSpawnController == nil then
 	HVHItemSpawnController = class({})
 
-	HVHItemSpawnController._ThinkInterval = 1.0 -- //0.1
-	HVHItemSpawnController._WasDayTimeLastThink = false
+	HVHItemSpawnController._thinkInterval = 1.0 -- //0.1
+	HVHItemSpawnController._wasDayTimeLastThink = false
 
-	HVHItemSpawnController._SpawnLocations = nil
-	HVHItemSpawnController._SpawnedChests = {}
+	HVHItemSpawnController._spawnLocations = nil
+	HVHItemSpawnController._spawnedChests = {}
 
-	HVHItemSpawnController._GoodGuyChestModel = HVHChestModel("scripts/vscripts/kv/good_guy_items.kv")
-	HVHItemSpawnController._BadGuyChestModel = HVHChestModel("scripts/vscripts/kv/bad_guy_items.kv")
-	HVHItemSpawnController._CurrentChestModel = nil
+	HVHItemSpawnController._goodGuyChestDataModel = HVHChestModel("scripts/vscripts/kv/good_guy_items.kv")
+	HVHItemSpawnController._badGuyChestDataModel = HVHChestModel("scripts/vscripts/kv/bad_guy_items.kv")
+	HVHItemSpawnController._currentChestDataModel = nil
 end
 
 require("item_utils")
@@ -27,10 +27,10 @@ require("hvh_constants")
 -- Needs to be called during game mode initialization.
 function HVHItemSpawnController:Setup()
 	local spawnCoordinator = Entities:FindByName(nil, "hvh_item_spawn_coordinator")
-	spawnCoordinator:SetContextThink("HVHItemSpawnController", Dynamic_Wrap(self, "Think"), self._ThinkInterval)
+	spawnCoordinator:SetContextThink("HVHItemSpawnController", Dynamic_Wrap(self, "Think"), self._thinkInterval)
 	ListenToGameEvent("dota_item_picked_up", Dynamic_Wrap(self, "_OnItemPickedUp"), self) 
 
-	HVHItemSpawnController._SpawnLocations = HVHLocationCollection("dota_item_spawner")
+	HVHItemSpawnController._spawnLocations = HVHLocationCollection("dota_item_spawner")
 
 	-- This is a bit of a cheat to force spawns immediately.
 	self:Think()
@@ -46,13 +46,13 @@ function HVHItemSpawnController:Think()
 
 	HVHItemSpawnController:_UpdateDayNightState()
 	-- Returning this sets the next think time.
-	return HVHItemSpawnController._ThinkInterval
+	return HVHItemSpawnController._thinkInterval
 end
 
 -- Spawns all items necessary for the current day/night cycle.
 function HVHItemSpawnController:SpawnChestsForCycle()
-	local availableChest = self._CurrentChestModel:GetChestName()
-	local spawnLocations = self._SpawnLocations:GetRandomLocations(self._CurrentChestModel:GetItemsPerCycle())
+	local availableChest = self._currentChestDataModel:GetChestName()
+	local spawnLocations = self._spawnLocations:GetRandomLocations(self._currentChestDataModel:GetItemsPerCycle())
 
 	if spawnLocations then
 		for _,location in pairs(spawnLocations) do
@@ -68,7 +68,7 @@ end
 -- Adds an item to the spawned item cache so that they can be reclaimed later.
 function HVHItemSpawnController:_AddSpawnedItem(spawnedItem)
 	if spawnedItem then
-	    table.insert(self._SpawnedChests, spawnedItem)
+	    table.insert(self._spawnedChests, spawnedItem)
 	else
 		HVHDebugPrint("No item to add.")
 	end
@@ -77,31 +77,31 @@ end
 -- Sets the current item chest to either the good guy or bad guy chest
 function HVHItemSpawnController:_UpdateCurrentChestModel()
 	if GameRules:IsDaytime() then
-		self._CurrentChestModel = self._BadGuyChestModel
+		self._currentChestDataModel = self._badGuyChestDataModel
 	else
-		self._CurrentChestModel = self._GoodGuyChestModel
+		self._currentChestDataModel = self._goodGuyChestDataModel
 	end
 end
 
 -- Indicates if the day/night cycle changes since the last think.
 function HVHItemSpawnController:_DidDayNightStateChange()
 	local isDaytime = GameRules:IsDaytime()
-	return (isDaytime and not self._WasDayTimeLastThink) or (not isDaytime and self._WasDayTimeLastThink)
+	return (isDaytime and not self._wasDayTimeLastThink) or (not isDaytime and self._wasDayTimeLastThink)
 end
 
 -- Removes all unclaimed items created by the spawner.
 function HVHItemSpawnController:_RemoveUnclaimedItems()
-	HVHDebugPrint(string.format("Attempting to remove %d items.", table.getn(self._SpawnedChests)))
-	for _,worldChest in pairs(self._SpawnedChests) do
+	HVHDebugPrint(string.format("Attempting to remove %d items.", table.getn(self._spawnedChests)))
+	for _,worldChest in pairs(self._spawnedChests) do
 		worldChest:Remove()
 	end
 
-	self._SpawnedChests = {}
+	self._spawnedChests = {}
 end
 
 -- Updates the day/night cycle for this think.
 function HVHItemSpawnController:_UpdateDayNightState()
-	self._WasDayTimeLastThink = GameRules:IsDaytime()
+	self._wasDayTimeLastThink = GameRules:IsDaytime()
 end
 
 -- Handles a hero picking up a chest and either granting an item or rejecting the pickup
@@ -112,31 +112,31 @@ function HVHItemSpawnController:_OnItemPickedUp(keys)
 	local hero = EntIndexToHScript(keys.HeroEntityIndex)
 
 	if self:_CanGrantGoodGuyItem(itemName, hero) then
-		self:_GrantItem(self._GoodGuyChestModel:GetRandomItemName(), hero, pickedUpItem)
+		self:_GrantItem(self._goodGuyChestDataModel:GetRandomItemName(), hero, pickedUpItem)
 	elseif self:_CanGrantBadGuyItem(itemName, hero) then
-		self:_GrantItem(self._BadGuyChestModel:GetRandomItemName(), hero, pickedUpItem)
+		self:_GrantItem(self._badGuyChestDataModel:GetRandomItemName(), hero, pickedUpItem)
 	elseif self:_IsChestItem(itemName) then
 		self:_RejectPickup(hero:GetAbsOrigin(), itemName)
 	end
 end
 
 function HVHItemSpawnController:_IsChestItem(itemName)
-	return self._GoodGuyChestModel:IsChestItemName(itemName) or self._BadGuyChestModel:IsChestItemName(itemName)
+	return self._goodGuyChestDataModel:IsChestItemName(itemName) or self._badGuyChestDataModel:IsChestItemName(itemName)
 end
 
 function HVHItemSpawnController:_CanGrantGoodGuyItem(itemName, hero)
-	return self._GoodGuyChestModel:IsChestItemName(itemName) and (hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS)
+	return self._goodGuyChestDataModel:IsChestItemName(itemName) and (hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS)
 end
 
 function HVHItemSpawnController:_CanGrantBadGuyItem(itemName, hero)
-	return self._BadGuyChestModel:IsChestItemName(itemName) and (hero:GetTeamNumber() == DOTA_TEAM_BADGUYS)
+	return self._badGuyChestDataModel:IsChestItemName(itemName) and (hero:GetTeamNumber() == DOTA_TEAM_BADGUYS)
 end
 
 -- Looks up a world chest from the spawned chests using the entity index
 function HVHItemSpawnController:_GetWorldChest(containedItem)
 	local worldChest = nil
 
-	for _,chest in pairs(self._SpawnedChests) do
+	for _,chest in pairs(self._spawnedChests) do
 		if chest:IsContainedItem(containedItem) then
 			worldChest = chest
 			break
@@ -201,6 +201,6 @@ end
 
 -- Finds the nearest spawner in a small radius.
 function HVHItemSpawnController:_FindNearestSpawnLocation(position)
-	local nearest = self._SpawnLocations:GetNearestLocation(position)
+	local nearest = self._spawnLocations:GetNearestLocation(position)
 	return nearest
 end
