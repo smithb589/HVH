@@ -24,22 +24,40 @@ function HVHLocationCollection.new(entityClassname, hvhClassname)
 end
 
 function HVHLocationCollection:GetRandomLocations(numberOfLocations)
-	local locationsClone = DeepCopy(self._locations)
-	local randomLocations = {}
-
-	-- This uses the clone to remove an item from the possible choices.
-	for locationCounter=1,numberOfLocations do
-		local randomLocationIndex = RandomInt(1, table.getn(locationsClone))
-		local location = self._locations[randomLocationIndex]
-		if location then
-			table.insert(randomLocations, location)
-		else
-			HVHDebugPrint("No random locations.")
-		end
-		table.remove(locationsClone, randomLocationIndex)
+	local shuffledLocations = self:_GetShuffledLocations()
+	if numberOfLocations > table.getn(shuffledLocations) then
+		numberOfLocations = table.getn(shuffledLocations)
+		HVHDebugPrint("Attempted to get more random locations than existed.")
 	end
 
+	local randomLocations = self:_GetFirstNLocations(shuffledLocations, numberOfLocations)
+	--HVHDebugPrint(string.format("Created %d random locations:", numberOfLocations))
+	--HVHDebugPrintTable(randomLocations)
 	return randomLocations
+end
+
+function HVHLocationCollection:_GetShuffledLocations()
+	local locationsClone = DeepCopy(self._locations)
+	local numberOfLocations = table.getn(locationsClone)
+
+	-- Take all of the locations and perform a Fisher–Yates shuffle
+	for currentIndex=1,numberOfLocations do
+		local exchangeIndex = RandomInt(currentIndex, numberOfLocations)
+		local temp = locationsClone[currentIndex]
+		locationsClone[currentIndex] = locationsClone[exchangeIndex]
+		locationsClone[exchangeIndex] = temp
+	end
+
+	return locationsClone
+end
+
+function HVHLocationCollection:_GetFirstNLocations(locations, n)
+	local nLocations = {}
+	for locationCounter=1,n do
+		table.insert(nLocations, locations[locationCounter])
+	end
+
+	return nLocations
 end
 
 function HVHLocationCollection:_SetupLocations(entityClassname, hvhClassname)
