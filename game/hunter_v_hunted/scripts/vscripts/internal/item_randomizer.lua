@@ -1,3 +1,8 @@
+--[[
+Handles randomizing arbitrary objects based on "proportional" or "relative" probabilty.
+For example, object A with a relative probability of 1 and object B with a relative probability
+of 2 implies that object B is twice as common as object A.
+]]
 
 require("hvh_utils")
 
@@ -70,7 +75,6 @@ function HVHRandomizer:_GetValueForRandomProbability(probability)
 	local randomValue = nil
 	for index, objectProbabilityPair in pairs(self._relativeProbabilities) do
 		probabilitySum = probabilitySum + self:_GetRelativeProbability(objectProbabilityPair)
-		-- TODO: probably need to make this a comparison with tolerance
 		if probabilitySum >= probability then
 			randomValue = objectProbabilityPair.value
 			break

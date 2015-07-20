@@ -1,3 +1,6 @@
+--[[
+Object that stores a collection of locations for manipulation.
+]]
 
 require("hvh_utils")
 
@@ -52,6 +55,7 @@ function HVHLocationCollection:GetNearestLocation(queryLocation)
 	return nearestLocation
 end
 
+-- Shuffles the collection of locations to support randomly accessing them
 function HVHLocationCollection:_GetShuffledLocations()
 	local locationsClone = DeepCopy(self._locations)
 	local numberOfLocations = table.getn(locationsClone)

@@ -20,7 +20,7 @@ function Spawn( entityKeyValues )
 	-- This stores the location we started wandering from so the dog
 	-- can't just run across the entire map.
 	thisEntity._WanderingOrigin = Vector(0, 0)
-	thisEntity._MaxWanderingDistance = 300.0
+	thisEntity._MaxWanderingDistance = 150.0
 
 	thisEntity._FeedDuration = 0
 	-- Arbitraryly age this so the dog doesn't start fed.
@@ -75,6 +75,14 @@ BehaviorWander =
 
 function BehaviorWander:Evaluate()
 	local wanderDesire = 1
+
+	local nearestTarget = FindNearestTarget(thisEntity)
+	if IsTargetValid(nearestTarget) then
+		if not self:_CanFindTarget(nearestTarget) then
+			wanderDesire = 10
+		end
+	end
+
 	return wanderDesire
 end
 
@@ -83,7 +91,7 @@ function BehaviorWander:Initialize()
 end
 
 function BehaviorWander:Begin()
-	thisEntity._WanderingOrigin = thisEntity:GetAbsOrigin()
+	self:_DetermineWanderOrigin()
 
 	self.order.Position = self:GetWanderDestination()
 
@@ -116,6 +124,22 @@ function BehaviorWander:GetWanderDestination()
 	local wanderingDelta = RandomVector(thisEntity._MaxWanderingDistance)
 	local wanderingDestination = thisEntity._WanderingOrigin + wanderingDelta
 	return wanderingDestination
+end
+
+function BehaviorWander:_DetermineWanderOrigin()
+	-- This should maybe be a different behavior since it branches...
+	local nearestTarget = FindNearestTarget(thisEntity)
+	if IsTargetValid(nearestTarget) and not self:_CanFindTarget(nearestTarget) then
+		thisEntity._WanderingOrigin = nearestTarget:GetAbsOrigin()
+	else
+		thisEntity._WanderingOrigin = thisEntity:GetAbsOrigin()
+	end
+end
+
+function BehaviorWander:_CanFindTarget(target)
+	local targetVisible = not target:IsInvisible()
+	local targetInWanderRange = (target:GetAbsOrigin() - thisEntity:GetAbsOrigin()):Length2D() < thisEntity._MaxWanderingDistance
+	return targetVisible and targetInWanderRange
 end
 
 --------------------------------------------------------------------------------------------------------

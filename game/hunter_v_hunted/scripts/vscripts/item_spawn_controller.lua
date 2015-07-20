@@ -4,6 +4,13 @@ require("internal/hvh_chest_model")
 require("internal/hvh_location_collection")
 require("internal/hvh_world_chest")
 
+require("lib/timers")
+require("lib/util")
+
+require("item_utils")
+require("hvh_utils")
+require("hvh_constants")
+
 if HVHItemSpawnController == nil then
 	HVHItemSpawnController = class({})
 
@@ -17,12 +24,6 @@ if HVHItemSpawnController == nil then
 	HVHItemSpawnController._badGuyChestDataModel = HVHChestModel("scripts/vscripts/kv/bad_guy_items.kv")
 	HVHItemSpawnController._currentChestDataModel = nil
 end
-
-require("item_utils")
-require("lib/util")
-require("hvh_utils")
-require("lib/timers")
-require("hvh_constants")
 
 -- Needs to be called during game mode initialization.
 function HVHItemSpawnController:Setup()
@@ -161,6 +162,7 @@ function HVHItemSpawnController:_GrantItem(itemName, hero, chestItem)
 	self:_CleanupWorldChestForContainedItem(chestItem)
 end
 
+-- Removes the world chest that contains the passed in item.
 function HVHItemSpawnController:_CleanupWorldChestForContainedItem(containedItem)
 	local worldChest = self:_GetWorldChest(containedItem)
 	DoScriptAssert(worldChest ~= nil, "No chest found for cleanup.")
@@ -173,7 +175,6 @@ end
 -- Prevents expending the chest by replacing it with another.
 function HVHItemSpawnController:_RejectPickup(location, chestType)
 	local nearestSpawnLocation = self:_FindNearestSpawnLocation(location)
-	--if not nearestSpawnLocation then nearestSpawnLocation = pickedUpItem:GetLocation() end
 	local replacedChest = HVHWorldChest()
 	replacedChest:Spawn(nearestSpawnLocation, chestType)
 	self:_AddSpawnedItem(replacedChest)
