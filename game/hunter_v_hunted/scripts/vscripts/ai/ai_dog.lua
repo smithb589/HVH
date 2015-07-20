@@ -77,11 +77,14 @@ function BehaviorWander:Evaluate()
 	local wanderDesire = 1
 
 	local nearestTarget = FindNearestTarget(thisEntity)
-	if IsTargetValid(nearestTarget) then
-		if not self:_CanFindTarget(nearestTarget) then
+	if IsTargetValid(nearestTarget) and self:_IsTargetInWanderRange(nearestTarget) then
+		if nearestTarget:IsInvisible() then
+			HVHDebugPrint("The hound found Night Stalker, but cannot target him.")
 			wanderDesire = 10
 		end
 	end
+
+	print(string.format("Wander desire: %d", wanderDesire))
 
 	return wanderDesire
 end
@@ -129,17 +132,22 @@ end
 function BehaviorWander:_DetermineWanderOrigin()
 	-- This should maybe be a different behavior since it branches...
 	local nearestTarget = FindNearestTarget(thisEntity)
-	if IsTargetValid(nearestTarget) and not self:_CanFindTarget(nearestTarget) then
+	if IsTargetValid(nearestTarget) and nearestTarget:IsInvisible() then
 		thisEntity._WanderingOrigin = nearestTarget:GetAbsOrigin()
 	else
 		thisEntity._WanderingOrigin = thisEntity:GetAbsOrigin()
 	end
 end
 
-function BehaviorWander:_CanFindTarget(target)
+--[[function BehaviorWander:_CanAttackTarget(target)
 	local targetVisible = not target:IsInvisible()
-	local targetInWanderRange = (target:GetAbsOrigin() - thisEntity:GetAbsOrigin()):Length2D() < thisEntity._MaxWanderingDistance
 	return targetVisible and targetInWanderRange
+end]]
+
+function BehaviorWander:_IsTargetInWanderRange(target)
+	local rangeToTarget = thisEntity:GetRangeToUnit(target)
+	local targetInWanderRange = rangeToTarget < thisEntity._MaxWanderingDistance
+	return targetInWanderRange
 end
 
 --------------------------------------------------------------------------------------------------------
