@@ -360,7 +360,7 @@
 	    	"04"
 	    	{
 	    		"var_type"							"FIELD_FLOAT"
-	    		"invis_regen_pct_per_sec"			"1.0"
+	    		"invis_regen_pct_per_sec"			"0.75 1.00 1.25"
 	    	}
 	    }
 

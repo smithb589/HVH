@@ -13,6 +13,9 @@
 
 		"VisionDaytimeRange" "1"
 		"VisionNighttimeRange" "1"
+
+		"MinimapIcon"               "minimap_candybucket"
+		"MinimapIconSize"           "600"
 	}
 
 	// Made by BMD
