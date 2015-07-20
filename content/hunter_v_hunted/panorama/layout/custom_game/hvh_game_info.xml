@@ -1,7 +1,7 @@
 <root>
 	<styles>
 		<include src="file://{resources}/styles/dotastyles.css" />
-		<include src="file://{resources}/styles/custom_game/overthrow_game_info.css" />
+		<include src="file://{resources}/styles/custom_game/hvh_game_info.css" />
 	</styles>
 	<Panel class="HVHGameInfo">
 		<Panel id="Title">
@@ -31,12 +31,12 @@
 				<Label id="PlayingSnipersText03" class="PlayingSnipersText" html="true" text="#game_info_playingSnipers_description03" />		
 				<Label id="PlayingSnipersText04" class="PlayingSnipersText" html="true" text="#game_info_playingSnipers_description04" />
 			</Panel>
-			<DOTAHeroImage id="PlayingSnipersImage" heroname="npc_dota_hero_sniper" heroimagestyle="portrait" />
+			<Image id="PlayingSnipersImage" src="file://{images}/custom_game/game_info/snipers.psd" />
 		</Panel>
 
 		<Label id="PlayingNSHeader" class="Header" html="true" text="#game_info_playingNS_header" />
 		<Panel id="PlayingNSRow" class="InfoRow">
-			<DOTAHeroImage id="PlayingNSImage" heroname="npc_dota_hero_night_stalker" heroimagestyle="portrait" />
+			<Image id="PlayingNSImage" src="file://{images}/custom_game/game_info/ns.psd" />
 			<Panel id="PlayingNSTextContainer">
 				<Label id="PlayingNSText01" class="PlayingNSText" html="true" text="#game_info_playingNS_description01" />
 				<Label id="PlayingNSText02" class="PlayingNSText" html="true" text="#game_info_playingNS_description02" />

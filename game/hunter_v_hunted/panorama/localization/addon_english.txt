@@ -37,7 +37,7 @@
 	"game_info_playingNS_description04"	"<span class='ability'>Echolocation</span> can be used to separate the Sniper pack. Careful positioning is key!"
 
 	"game_info_playingSnipers_header"		"Playing the Snipers:"
-	"game_info_playingSnipers_description01"	"<span class='ability'>Shrapnel Tracers</span> deal no damage, but they disable the Night Stalker's invisibility and slow him down."
+	"game_info_playingSnipers_description01"	"<span class='ability'>Shrapnel Tracers</span> disable the Night Stalker's invisibility and slow him down."
 	"game_info_playingSnipers_description02"	"<span class='ability'>Meepo's Earthbind</span> can be used to immobilize the Night Stalker. Coordinate your nets!"
 	"game_info_playingSnipers_description03"	"<span class='ability'>Toss Bone</span> gives the Hound a burst of speed. Nearby Snipers are also hastened!"
 	"game_info_playingSnipers_description04"	"<span class='ability'>Rizzrack's Timber Chain</span> can be used for escaping and chasing."

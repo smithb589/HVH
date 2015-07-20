@@ -39,9 +39,7 @@ Label
 
 #CyclesText,
 #HoundText,
-#ItemsText,
-#PlayingSnipersText,
-#PlayingNSText
+#ItemsText
 {
     width: 50%;
 }
@@ -79,10 +77,9 @@ Label
 
 #CyclesImage
 {
-    width: 180px;
+    width: 256px;
     height: 192px;
-    margin-right: 12px; 
-    margin-left: 36px;  
+    margin-left: 0px;
 }
 
 #HoundRow
@@ -97,7 +94,7 @@ Label
     width: 180px;
     height: 192px;
     margin-right: 36px; 
-    margin-left: 12px;      
+    margin-left: 18px;      
 }
 
 #HoundText
@@ -115,10 +112,9 @@ Label
 
 #ItemsImage
 {
-    width: 180px;
+    width: 256px;
     height: 192px;
-    margin-right: 12px; 
-    margin-left: 36px;       
+    margin-left: 0px;   
 }
 
 #ItemsText
@@ -137,14 +133,15 @@ Label
 #PlayingSnipersRow
 {
     margin-top: 8px;
+    margin-right: 24px;    
 }
 
 #PlayingSnipersTextContainer
 {
     flow-children: down; 
     width: 40%;
-    margin-left: 8px;
-    margin-right: 16px;
+    margin-left: 0px;
+    margin-right: 12px;
 }
 
 .PlayingSnipersText
@@ -154,7 +151,7 @@ Label
 
 #PlayingSnipersImage
 {
-    width: 284px;
+    width: 312px;
     height: 376px;
 }
 
@@ -168,6 +165,7 @@ Label
 #PlayingNSRow
 {
     margin-top: 12px;
+    margin-right: 24px;    
 }
 
 #PlayingNSTextContainer
@@ -176,7 +174,6 @@ Label
     width: 60%;
     margin-top: -16px;
     margin-left: 16px;
-    margin-right: 24px;
 }
 
 .PlayingNSText
@@ -188,7 +185,7 @@ Label
 {
     width: 213px;
     height: 282px;
-    margin-top: 12px;  
+    margin-top: 18px;  
 }
 
 
