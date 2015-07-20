@@ -84,8 +84,6 @@ function BehaviorWander:Evaluate()
 		end
 	end
 
-	print(string.format("Wander desire: %d", wanderDesire))
-
 	return wanderDesire
 end
 
