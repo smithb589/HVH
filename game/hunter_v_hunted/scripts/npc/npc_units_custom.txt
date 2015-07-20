@@ -11,8 +11,8 @@
 
 		"Ability1"             "chest_vision_dummy_hider"
 
-		"VisionDaytimeRange" "1"
-		"VisionNighttimeRange" "1"
+		"VisionDaytimeRange" "100"
+		"VisionNighttimeRange" "100"
 
 		"MinimapIcon"               "minimap_candybucket"
 		"MinimapIconSize"           "600"
