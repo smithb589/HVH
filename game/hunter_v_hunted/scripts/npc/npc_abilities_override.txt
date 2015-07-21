@@ -1906,6 +1906,186 @@
 	"item_glimmer_cape"			"REMOVE"
 	"item_silver_edge"			"REMOVE"
 
+	// ---- manual tweaks and balance considerations
+
+	// no need for quas-wex-exort
+	"invoker_cold_snap"
+	{
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6.0" // "3.0 3.5 4.0 4.5 5.0 5.5 6.0"
+				"levelkey"				"quaslevel"	
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"freeze_duration"		"0.4"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"freeze_cooldown"		"0.60" // "0.77 0.74 0.71 0.69 0.66 0.63 0.60"
+				"levelkey"				"quaslevel"	
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"freeze_damage"			"49" // "7 14 21 28 35 42 49"
+				"levelkey"				"quaslevel"	
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_trigger"		"10.0"
+			}
+		}
+	}
+
+	// no need for quas-wex-exort	
+	"invoker_sun_strike"
+	{
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"1.7"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"area_of_effect"		"175"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage"				"475" //"100 162.5 225 287.5 350 412.5 475"
+				"levelkey"				"exortlevel"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vision_distance"		"400"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"vision_duration"		"4.0"
+			}
+		}
+	}
+
+	// no need for quas-wex-exort
+	"invoker_tornado"
+	{
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"travel_distance"		"3200" //"800 1200 1600 2000 2400 2800 3200"
+				"levelkey"				"wexlevel"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"travel_speed"			"1000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"area_of_effect"		"200"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vision_distance"		"600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"end_vision_duration"	"1.75"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"lift_duration"			"2.5" //"0.8 1.1 1.4 1.7 2.0 2.3 2.5"
+				"levelkey"				"quaslevel"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_damage"			"70"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"quas_damage"			"0 0 0 0 0 0 0"
+				"levelkey"				"quaslevel"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"wex_damage"			"315" //"45 90 135 180 225 270 315"
+				"levelkey"				"wexlevel"
+			}
+		}
+	}
+
+	// no need for quas-wex-exort
+	"invoker_ice_wall"
+	{
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"12.0" //"3.0 4.5 6.0 7.5 9.0 10.5 12.0"
+				"levelkey"				"quaslevel"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow"					"-140" //"-20 -40 -60 -80 -100 -120 -140"
+				"levelkey"				"quaslevel"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"slow_duration"			"2.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_per_second"		"42" //"6 12 18 24 30 36 42"
+				"levelkey"				"exortlevel"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"wall_place_distance"	"200"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"num_wall_elements"		"15"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"wall_element_spacing"	"80"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"wall_element_radius"	"105"
+			}
+		}
+	}
+
 	// no need for quas-wex-exort
 	"invoker_deafening_blast"
 	{
@@ -2014,6 +2194,37 @@
 				"var_type"				"FIELD_FLOAT"
 				"burn_dps"				"32.5" //"11.5 15 18.5 22 25.5 29 32.5"
 				"levelkey"				"exortlevel"
+			}
+		}
+	}
+
+	// make it behave like you don't have a scepter
+	"zuus_thundergods_wrath"
+	{
+		"AbilitySpecial"
+		{
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_scepter"		"225 350 475"
+			}
+		}
+	}
+
+	// make it behave like you don't have a scepter
+	"faceless_void_chronosphere"
+	{
+		"AbilitySpecial"
+		{
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration_scepter"		"4.0 4.5 5.0" //"4.0 5.0 6.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown_scepter"		"130.0 115.0 100.0"
 			}
 		}
 	}
