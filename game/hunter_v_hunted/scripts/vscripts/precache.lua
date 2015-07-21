@@ -1,5 +1,27 @@
 -- Sniper/NS asynchronous precaching handled by HVHGameMode:_PostLoadPrecache()
 
+--[[
+
+[ W ResourceSystem ]: File error loading resource header "panorama/images/textures/startup_background_logo.vtex_c" (Error: ERROR_FILEOPEN)
+[ W ResourceSystem ]: File error loading resource header "panorama/images/heroes/selection/npc_dota_hero_default_png.vtex_c" (Error: ERROR_FILEOPEN)
+[ W ResourceSystem ]: File error loading resource header "sky_day01_01rt.vmat_c" (Error: ERROR_FILEOPEN)
+[ W ResourceSystem ]: File error loading resource header "sky_day01_01bk.vmat_c" (Error: ERROR_FILEOPEN)
+[ W ResourceSystem ]: File error loading resource header "sky_day01_01lf.vmat_c" (Error: ERROR_FILEOPEN)
+[ W ResourceSystem ]: File error loading resource header "sky_day01_01ft.vmat_c" (Error: ERROR_FILEOPEN)
+[ W ResourceSystem ]: File error loading resource header "sky_day01_01up.vmat_c" (Error: ERROR_FILEOPEN)
+[ W ResourceSystem ]: File error loading resource header "sky_day01_01dn.vmat_c" (Error: ERROR_FILEOPEN)
+[ W ResourceSystem ]: File error loading resource header "particles/econ/items/effigies/status_fx_effigies/frosty_base_statue_destruction_generic.vpcf_c" (Error: ERROR_FILEOPEN)
+[ W ResourceSystem ]: File error loading resource header "materials/models/props_gameplay/dota_ar_frame/dota_ar_frame.vmat_c" (Error: ERROR_FILEOPEN)
+[ W ResourceSystem ]: File error loading resource header "materials/sky_day01_01rt.vmat_c" (Error: ERROR_FILEOPEN)
+[ W ResourceSystem ]: File error loading resource header "materials/sky_day01_01bk.vmat_c" (Error: ERROR_FILEOPEN)
+[ W ResourceSystem ]: File error loading resource header "materials/sky_day01_01lf.vmat_c" (Error: ERROR_FILEOPEN)
+[ W ResourceSystem ]: File error loading resource header "materials/sky_day01_01ft.vmat_c" (Error: ERROR_FILEOPEN)
+[ W ResourceSystem ]: File error loading resource header "materials/sky_day01_01up.vmat_c" (Error: ERROR_FILEOPEN)
+[ W ResourceSystem ]: File error loading resource header "materials/sky_day01_01dn.vmat_c" (Error: ERROR_FILEOPEN)
+[ W ResourceSystem ]: File error loading resource header "materials/effects/fog_world_00.vtex_c" (Error: ERROR_FILEOPEN)
+
+]]
+
 PRECACHE_ITEMS = {
 	"item_nightmare",
 	"item_chronosphere",
@@ -67,14 +89,13 @@ PRECACHE_ITEMS = {
 
 -- TODO: optimize these by finding the correct particles
 PRECACHE_UNITS = {
-	"npc_dota_hero_juggernaut",
+	--[["npc_dota_hero_juggernaut",
 	"npc_dota_hero_winter_wyvern",
 	"npc_dota_hero_shadow_demon",
 	"npc_dota_hero_disruptor",
 	"npc_dota_hero_techies",
 	"npc_dota_hero_zuus",
 	"npc_dota_hero_tiny",
-	"npc_dota_hero_bloodseeker",
 	"npc_dota_hero_undying",
 	"npc_dota_hero_warlock",
 	"npc_dota_hero_earthaker",
@@ -89,7 +110,7 @@ PRECACHE_UNITS = {
 	"npc_dota_hero_batrider",
 	"npc_dota_hero_windrunner", -- only missing tree shackle
 	"npc_dota_hero_disruptor",
-	"npc_dota_hero_tidehunter",
+	"npc_dota_hero_tidehunter",]]
 	"npc_dota_good_guy_dog"
 	--"npc_dota_hero_sniper",
 	--"npc_dota_hero_night_stalker",

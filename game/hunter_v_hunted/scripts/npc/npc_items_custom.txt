@@ -27,6 +27,10 @@
 		"AbilityCooldown"		"20"
 		"precache"
 		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_disruptor.vsndevts"
+			"particle"			"particles/units/heroes/hero_disruptor/disruptor_glimpse_targetstart.vpcf"
+			"particle"			"particles/units/heroes/hero_disruptor/disruptor_glimpse_targetend.vpcf"
+			"particle"			"particles/units/heroes/hero_disruptor/disruptor_glimpse_travel.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -62,6 +66,8 @@
 		"AbilityCooldown"		"20"
 		"precache"
 		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
+			"particle"			"particles/units/heroes/hero_zuus/zuus_thundergods_wrath.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -215,6 +221,9 @@
 		"AbilityCooldown"		"30"
 		"precache"
 		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"particle"		"particles/units/heroes/hero_juggernaut/juggernaut_healing_ward.vpcf"
+			"model"			"models/heroes/juggernaut/jugg_healing_ward.vmdl"
 		}
 		"OnSpellStart"
 		{
@@ -294,6 +303,7 @@
 		"AbilityCooldown"		"20"
 		"precache"
 		{
+			"particle"	"particles/units/heroes/hero_furion/furion_teleport.vpcf"
 			"particle"  "particles/units/heroes/hero_furion/furion_teleport_end.vpcf"
 			"particle"  "particles/units/heroes/hero_furion/furion_teleport_end_team.vpcf"
 			"particle"  "particles/units/heroes/hero_furion/furion_teleport.vpcf"
@@ -456,6 +466,8 @@
 		"AbilityCooldown"		"20"
 		"precache"
 		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_razor.vsndevts"
+			"particle"			"particles/units/heroes/hero_razor/razor_plasmafield.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -494,6 +506,9 @@
 		"AbilityCooldown"		"20"
 		"precache"
 		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_witchdoctor.vsndevts"
+			"particle"			"particles/units/heroes/hero_witchdoctor/witchdoctor_cask.vpcf"
+			"particle"			"particles/units/heroes/hero_witchdoctor/witchdoctor_paralyzing_cask.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -607,6 +622,10 @@
 		"AbilityCooldown"		"40"
 		"precache"
 		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+			"particle"			"particles/units/heroes/hero_tusk/tusk_frozen_sigil_status.vpcf"
+			"particle"			"particles/units/heroes/hero_tusk/tusk_frozen_sigil.vpcf"
+			"model"				"models/heroes/tuskarr/tuskarr_sigil.vmdl"
 		}
 		"OnSpellStart"
 		{
@@ -645,6 +664,9 @@
 		"AbilityCooldown"		"20"
 		"precache"
 		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
+			"particle"			"particles/units/heroes/hero_earthshaker/earthshaker_fissure.vpcf"
+			"model"				"models/particle/earthshaker_fissure_rocks_v1.vmdl"
 		}
 		"OnSpellStart"
 		{
@@ -683,6 +705,10 @@
 		"AbilityCooldown"		"30"
 		"precache"
 		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"
+			"particle"			"particles/units/heroes/hero_warlock/warlock_fatal_bonds_icon.vpcf"
+			"particle"			"particles/units/heroes/hero_warlock/warlock_fatal_bonds_pulse.vpcf"
+			"particle"			"particles/units/heroes/hero_warlock/warlock_fatal_bonds_hit.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -722,6 +748,11 @@
 		"AbilityCooldown"		"20"
 		"precache"
 		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
+			"particle"			"particles/units/heroes/hero_undying/undying_decay.vpcf"
+			"particle"			"particles/units/heroes/hero_undying/undying_decay_strength_buff.vpcf"
+			"particle"			"particles/units/heroes/hero_undying/undying_decay_strength_xfer.vpcf"
+			"particle"			"particles/units/heroes/hero_undying/undying_decay_strength_debuff.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -799,6 +830,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
+			"particle"	"particles/units/heroes/hero_terrorblade/terrorblade_mirror_image.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -830,12 +862,20 @@
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_hvh_blood_bath" // filename: hvh_meat_hook	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AOERadius"				"600"
+		"AoERadius"				"600"
 		"AbilityCastPoint"		"0.4"
 		"AbilityCastRange"		"1500"		
 		"AbilityCooldown"		"20"
 		"precache"
 		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
+			"particle"		"particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf"
+			"particle"		"particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath_heal.vpcf"
+			"particle"		"particles/units/heroes/hero_bloodseeker/bloodseeker_spell_bloodbath_bubbles_.vpcf"
+			"particle"		"particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_impact.vpcf"
+			"particle"		"particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_ring_lv.vpcf"
+			"particle"		"particles/units/heroes/hero_bloodseeker/bloodseeker_spell_bloodbath_bubbles.vpcf"
+			"particle"		"particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_ring.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -875,7 +915,7 @@
 		"precache"
 		{
 			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"		
-			"particle"		"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"		
+			"particle"		"particles/units/heroes/hero_bane/bane_sap.vpcf"		
 		}
 		"OnSpellStart"
 		{
@@ -907,11 +947,15 @@
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_hvh_avalanche" // filename: hvh_meat_hook	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AoERadius"			"275"
 		"AbilityCastPoint"		"0.0"
-		"AbilityCastRange"		"600"		
+		"AbilityCastRange"		"600"
 		"AbilityCooldown"		"20"
 		"precache"
 		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts"
+			"particle"			"particles/units/heroes/hero_tiny/tiny_avalanche.vpcf"
+			"particle"			"particles/units/heroes/hero_tiny/tiny_avalanche_projectile.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -920,7 +964,7 @@
 				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"tiny_avalanche"
-				"maxDuration"			"6.0"
+				"maxDuration"			"8.0"
 			}
 		}
 	}
@@ -951,6 +995,11 @@
 		"AbilityCooldown"		"20"
 		"precache"
 		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+			"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_tgt_status.vpcf"
+			"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_tgt.vpcf"
+			"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_txt_ult.vpcf"
+			"particle"		"particles/generic_gameplay/generic_stunned.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -1030,7 +1079,7 @@
 		"precache"
 		{
 			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"		
-			"particle"		"particles/units/heroes/hero_techies/techies_suicide_base.vpcf"
+			"particle"		"particles/units/heroes/hero_techies/techies_suicide.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -1110,6 +1159,8 @@
 		"AbilityCooldown"		"20"
 		"precache"
 		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_shadow_demon.vsndevts"
+			"particle"			"particles/units/heroes/hero_shadow_demon/shadow_demon_disruption.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -1148,6 +1199,10 @@
 		"AbilityCooldown"		"20"
 		"precache"
 		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+			"particle"		"particles/units/heroes/hero_invoker/invoker_cold_snap.vpcf"
+			"particle"		"particles/units/heroes/hero_invoker/invoker_cold_snap_status.vpcf"
+			"particle"		"particles/status_fx/status_effect_frost.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -1186,6 +1241,9 @@
 		"AbilityCooldown"		"20"
 		"precache"
 		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_winter_wyvern.vsndevts"
+			"particle"			"particles/units/heroes/hero_winter_wyvern/wyvern_cold_embrace_start.vpcf"
+			"particle"			"particles/units/heroes/hero_winter_wyvern/wyvern_cold_embrace_buff.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -1217,12 +1275,15 @@
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_hvh_chilling_touch" // filename: hvh_meat_hook	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AOERadius"				"525"
+		"AoERadius"				"525"
 		"AbilityCastPoint"		"0.01"
 		"AbilityCastRange"		"800"
 		"AbilityCooldown"		"30"
 		"precache"
 		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_ancient_apparition.vsndevts"
+			"particle"			"particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch.vpcf"
+			"particle"			"particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch_buff.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -1574,6 +1635,17 @@
 		"AbilityCastPoint"		"0.3"
 		"AbilityCastRange"		"1050"		
 		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile.vpcf"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_death.vpcf"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_target.vpcf"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_homing_missile_fuse.vpcf"
+			"model"			"models/heroes/gyro/gyro_missile.vmdl"
+
+		}
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -1778,6 +1850,16 @@
 		"AbilityCastPoint"		"0"
 		"AbilityCastRange"		"128"		
 		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+			"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_hand.vpcf"
+			"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_start.vpcf"
+			"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_status.vpcf"
+			"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_tgt.vpcf"
+			"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_txt.vpcf"
+			"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_txt_ult.vpcf"
+		}
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -1810,6 +1892,14 @@
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastPoint"		"0"
 		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_slark.vsndevts"
+			"particle"		"particles/units/heroes/hero_slark/slark_pounce_start.vpcf"
+			"particle"		"particles/units/heroes/hero_slark/slark_pounce_trail.vpcf"
+			"particle"		"particles/units/heroes/hero_slark/slark_pounce_leash.vpcf"
+			"particle"		"particles/units/heroes/hero_slark/slark_pounce_ground.vpcf"
+		}
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -1842,6 +1932,12 @@
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastPoint"		"0.3"
 		"AbilityCooldown"		"30"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_razor.vsndevts"
+			"particle"		"particles/units/heroes/hero_razor/razor_loadout.vpcf"
+			"particle"		"particles/units/heroes/hero_razor/razor_rain_storm.vpcf"
+		}
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -1966,6 +2062,7 @@
 			"particle"			"particles/units/heroes/hero_axe/axe_culling_blade_boost.vpcf"
 			"particle"			"particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf"
 			"particle"			"particles/units/heroes/hero_axe/axe_cullingblade_sprint.vpcf"
+			"particle"			"particles/units/heroes/hero_axe/axe_cull_footprints.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -2039,6 +2136,13 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityCooldown"		"20"
 		"AbilityCastPoint"		"0.0"		
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_batrider.vsndevts"
+			"particle"		"particles/units/heroes/hero_batrider/batrider_firefly.vpcf"
+			"particle"		"particles/units/heroes/hero_batrider/batrider_firefly_debuff.vpcf"
+			"particle"		"particles/units/heroes/hero_batrider/batrider_firefly_ember.vpcf"
+		}
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -2190,6 +2294,9 @@
 		{
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
 			"particle"			"particles/units/heroes/hero_mirana/mirana_spell_arrow.vpcf"
+			"particle"			"particles/units/heroes/hero_mirana/mirana_spell_arrow_launch.vpcf"
+			"particle"			"particles/units/heroes/hero_mirana/mirana_spell_arrow_fx.vpcf"
+			"particle"			"particles/units/heroes/hero_mirana/mirana_spell_arrow_trail_shadow.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -2231,6 +2338,9 @@
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
 			"particle"			"particles/units/heroes/hero_windrunner/windrunner_shackleshot.vpcf"
 			"particle"			"particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair.vpcf"
+			"particle"			"particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair_tree.vpcf"
+			"particle"			"particles/units/heroes/hero_windrunner/windrunner_shackleshot_rope.vpcf"
+			"particle"			"particles/units/heroes/hero_windrunner/windrunner_shackleshot_single.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -2264,6 +2374,12 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCooldown"		"20"
 		"AbilityCastPoint"		"0.3"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
+			"particle"		"particles/units/heroes/hero_tidehunter/tidehunter_spell_ravage.vpcf"
+			"particle"		"particles/units/heroes/hero_tidehunter/tidehunter_spell_ravage_hit.vpcf"
+		}
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -2335,6 +2451,13 @@
 		"AbilityCastRange"				"900"
 		"AbilityCastPoint"				"0.05"
 		"AbilityCooldown"				"20"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_disruptor.vsndevts"
+			"particle"		"particles/units/heroes/hero_disruptor/disruptor_kineticfield.vpcf"
+			"particle"		"particles/units/heroes/hero_disruptor/disruptor_kineticfield_formation.vpcf"
+			"particle"		"particles/units/heroes/hero_disruptor/disruptor_kineticfield_formation_markers.vpcf"
+		}
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -2370,9 +2493,9 @@
 		"AbilityCooldown"		"20"
 		"precache"
 		{
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_pudge.vsndevts"
-			"particle"			"particles/units/heroes/hero_pudge/pudge_meathook_chain.vpcf"
-			"particle"			"particles/units/heroes/hero_pudge/pudge_meathook_impact.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_pudge.vsndevts"
+			"particle"		"particles/units/heroes/hero_pudge/pudge_meathook.vpcf"
+			"particle"		"particles/units/heroes/hero_pudge/pudge_meathook_impact.vpcf"
 		}
 		"OnSpellStart"
 		{
