@@ -42,6 +42,12 @@ function HVHChestModel:IsChestItemName(itemName)
 	return itemName == self._chestName
 end
 
+function HVHChestModel:DisplayChestProbabilties()
+	if self._itemRandomizer then
+		self._itemRandomizer:DisplayProbabilties()
+	end
+end
+
 -- Parses out relevant information from the items kv file.
 function HVHChestModel:_LoadItemFile(itemConfigFilename)
 	local itemConfig = LoadKeyValues(itemConfigFilename)

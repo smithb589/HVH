@@ -35,7 +35,7 @@ function HVHRandomizer.new(relativeProbabilityObjects)
 	self._totalProbability = 0.0
 	self._relativeProbabilities = relativeProbabilityObjects
 
-	self._CalculateTotalProbability(self, relativeProbabilityObjects)
+	self._CalculateTotalProbability(self)
 	return self
 end
 
@@ -45,6 +45,19 @@ function HVHRandomizer:GetRandomValue()
 	local randomValue = self:_GetValueForRandomProbability(randomFloat)
 	HVHDebugPrint(string.format("Got value "..randomValue.." for float %f.", randomFloat))
 	return randomValue
+end
+
+function HVHRandomizer:DisplayProbabilties()
+	local totalProbabilityPercent = 0.0;
+	if self._relativeProbabilities then
+		for _,objectProbabilityPair in pairs(self._relativeProbabilities) do
+			local probabilityPercent = (self:_GetRelativeProbability(objectProbabilityPair) / self._totalProbability) * 100.0
+			print(string.format("(value=%s, probability=%f%%)", objectProbabilityPair.value, probabilityPercent))
+			totalProbabilityPercent = totalProbabilityPercent + probabilityPercent
+		end
+	end
+
+	print(string.format("Total probability: %f%%", totalProbabilityPercent))
 end
 
 -- Determines the total probabilty to use for weighting.

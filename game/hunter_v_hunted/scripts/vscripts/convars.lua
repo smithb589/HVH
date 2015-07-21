@@ -4,6 +4,7 @@ end
 
 require("internal/convars")
 require("../hvh_constants")
+require("item_spawn_controller")
 
 function HVHConvars:Setup()
 	self:RegisterConvars()
@@ -27,6 +28,7 @@ function HVHConvars:RegisterCommands()
   	-- this is already built into the engine
   	--Convars:RegisterCommand( "set_time_of_day", Dynamic_Wrap(self, 'ConvarSetTimeOfDay'), "Sets the time of day to the indicated value.", FCVAR_CHEAT )
     Convars:RegisterCommand( "hvh_fake_heroes", Dynamic_Wrap(self, 'FakeHeroes'), "Spawn heroes to fill in missing players.", FCVAR_CHEAT )
+    Convars:RegisterCommand( "hvh_chest_probabilties", Dynamic_Wrap(self, 'DisplayChestProbabilties'), "Outputs item drop probabilities.", FCVAR_CHEAT )
 end
 
 function HVHConvars:FakeHeroes()
@@ -58,4 +60,8 @@ function HVHConvars:FakeHeroes()
     empty_bg = empty_bg - 1
   end
 
+end
+
+function HVHConvars:DisplayChestProbabilties()
+  HVHItemSpawnController:DisplayChestProbabilties()
 end

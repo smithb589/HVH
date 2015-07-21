@@ -66,6 +66,13 @@ function HVHItemSpawnController:SpawnChestsForCycle()
 	end
 end
 
+function HVHItemSpawnController:DisplayChestProbabilties()
+	print("Good guy chest probabilties:")
+	self._goodGuyChestDataModel:DisplayChestProbabilties()
+	print("Bad guy chest probabilties:")
+	self._badGuyChestDataModel:DisplayChestProbabilties()
+end
+
 -- Adds an item to the spawned item cache so that they can be reclaimed later.
 function HVHItemSpawnController:_AddSpawnedItem(spawnedItem)
 	if spawnedItem then
