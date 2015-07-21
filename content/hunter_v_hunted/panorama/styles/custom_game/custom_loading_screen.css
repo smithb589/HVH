@@ -33,16 +33,13 @@
 .SeqImg
 {
   background-repeat: no-repeat;
-  background-position: 50% 50%;
   background-size: 100% 100%;
 }
 
 #CustomBg
 {
 
-  margin-top: 350px;
     overflow: clip;
-  pre-transform-scale2d: 1.0;
   animation-name: gamemode_anim;
   animation-delay: AnimationDelay;
   animation-duration: TotalLength;
@@ -59,14 +56,15 @@
 
 @keyframes 'gamemode_anim'
 {
-  0%
-  {
-    transform: translateX( 0px ) translateY( 0px );
-    pre-transform-scale2d: .8;
+  0% {
+    transform: translate3d(-100%, 0, 0) rotate3d(1, 1, 1, -120deg);
   }
 
-  100%
-  {
-    transform: translateX( 0px ) translateY( -200px );
+  20% {
+  	pre-transform-scale2d: 2.0;
+   }
+
+  100% {
+  	pre-transform-scale2d: 3.0;
   }
 }
