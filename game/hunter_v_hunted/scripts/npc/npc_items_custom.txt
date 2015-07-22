@@ -39,7 +39,7 @@
 				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"disruptor_glimpse"
-				"maxDuration"			"6.0"
+				"maxDuration"			"10.0"
 			}
 		}
 	}
@@ -884,7 +884,7 @@
 				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"bloodseeker_blood_bath"
-				"maxDuration"			"6.0"
+				"maxDuration"			"12.0"
 			}
 		}
 	}
