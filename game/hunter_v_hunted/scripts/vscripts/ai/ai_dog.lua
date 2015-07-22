@@ -26,9 +26,12 @@ function Spawn( entityKeyValues )
 	-- Arbitraryly age this so the dog doesn't start fed.
 	thisEntity._FeedTime = GameRules:GetGameTime() - 60
 
+	thisEntity._LastWarnTime = 0.0
+
 	thisEntity:SetContextThink("ThinkDog", ThinkDog, 0.1)
 	behaviorSystem = AICore:CreateBehaviorSystem({
 		BehaviorWander,
+		BehaviorWarn,
 		BehaviorPursue,
 		BehaviorSprint,
 		BehaviorSleep
@@ -60,6 +63,12 @@ function IsTargetValid(target)
 	return target and not target:IsNull() and target:IsAlive()
 end
 
+function IsInvisibleTargetInWanderRange(target)
+	local rangeToTarget = thisEntity:GetRangeToUnit(target)
+	local targetInWanderRange = rangeToTarget < thisEntity._MaxWanderingDistance
+	return IsTargetValid(target) and targetInWanderRange and target:IsInvisible()
+end
+
 --------------------------------------------------------------------------------------------------------
 -- Wander behavior
 
@@ -77,11 +86,9 @@ function BehaviorWander:Evaluate()
 	local wanderDesire = 1
 
 	local nearestTarget = FindNearestTarget(thisEntity)
-	if IsTargetValid(nearestTarget) and self:_IsTargetInWanderRange(nearestTarget) then
-		if nearestTarget:IsInvisible() then
-			HVHDebugPrint("The hound found Night Stalker, but cannot target him.")
-			wanderDesire = 10
-		end
+	if IsInvisibleTargetInWanderRange(nearestTarget) then
+		HVHDebugPrint("The hound found Night Stalker, but cannot target him.")
+		wanderDesire = 10
 	end
 
 	return wanderDesire
@@ -137,15 +144,57 @@ function BehaviorWander:_DetermineWanderOrigin()
 	end
 end
 
---[[function BehaviorWander:_CanAttackTarget(target)
-	local targetVisible = not target:IsInvisible()
-	return targetVisible and targetInWanderRange
-end]]
+--------------------------------------------------------------------------------------------------------
+-- Warn behavior
 
-function BehaviorWander:_IsTargetInWanderRange(target)
-	local rangeToTarget = thisEntity:GetRangeToUnit(target)
-	local targetInWanderRange = rangeToTarget < thisEntity._MaxWanderingDistance
-	return targetInWanderRange
+BehaviorWarn = 
+{
+	order = 
+	{
+		UnitIndex = thisEntity:entindex(),
+		OrderType = DOTA_UNIT_ORDER_NONE
+	},
+
+	warnDuration = 1
+}
+
+function BehaviorWarn:Evaluate()
+	local target = FindNearestTarget(thisEntity)
+	local warnDesire = 0
+	if IsInvisibleTargetInWanderRange(target) and self:_CanWarn() then
+		warnDesire = 13
+	end
+
+	return warnDesire
+end
+
+function BehaviorWarn:Begin()
+	self:_DoWarn()
+
+	self.endTime = GameRules:GetGameTime() + self.warnDuration
+end
+
+
+function BehaviorWarn:Continue()
+	self:_DoWarn()
+
+	self.endTime = GameRules:GetGameTime() + self.warnDuration
+end
+
+function BehaviorWarn:End()
+
+end
+
+function BehaviorWarn:_DoWarn()
+	thisEntity:Stop()
+	thisEntity:StartGesture(ACT_DOTA_ATTACK)
+	thisEntity:EmitSound("Lycan_Wolf.PreAttack")
+	thisEntity._LastWarnTime = GameRules:GetGameTime()
+end
+
+function BehaviorWarn:_CanWarn()
+	-- Only try to warn every 2 seconds.
+	return thisEntity._LastWarnTime < (GameRules:GetGameTime() - 2)
 end
 
 --------------------------------------------------------------------------------------------------------

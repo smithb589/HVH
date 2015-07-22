@@ -959,8 +959,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
 		 {
-			"soundfile"   "soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
-			"particle"	"particles/units/heroes/hero_slardar/slardar_sprint.vpcf"
+			"soundfile"   "sounds/weapons/hero/lycan/howl.vsnd"
+			"particle"	"particles/generic_gameplay/rune_haste_owner.vpcf"
 		 }
 
 		// Casting
@@ -1037,7 +1037,7 @@
 	        }
 	        "FireSound"
 	        {
-	        	"EffectName" "Hero_Slardar.Sprint"
+	        	"EffectName" "Hero_Lycan.Howl"
 	        	"Target"	 "CASTER"
 	        }
 	    }
@@ -1048,7 +1048,7 @@
 	    	{
 	    		"IsBuff" "1"
 	    		"Duration" "%duration"
-	    		"EffectName"	"particles/units/heroes/hero_slardar/slardar_sprint.vpcf"
+	    		"EffectName"	"particles/generic_gameplay/rune_haste_owner.vpcf"
 		    	"EffectAttachType"	"follow_origin"
 
 	    		"Properties"
@@ -1062,7 +1062,7 @@
 	    		"ApplyToCaster" "0"
 	    		"IsBuff" "1"
 	    		"Duration" "%duration"
-	    		"EffectName"	"particles/units/heroes/hero_slardar/slardar_sprint.vpcf"
+	    		"EffectName"	"particles/generic_gameplay/rune_haste_owner.vpcf"
 		    	"EffectAttachType"	"follow_origin"
 
 	    		"Properties"
