@@ -1,13 +1,20 @@
 <root>
   <styles>
+    <include src="file://{resources}/styles/dotastyles.css" />
     <include src="file://{resources}/styles/custom_game/custom_loading_screen.css" />
   </styles>
   <Panel class="AddonLoadingRoot">
     <Panel id="CustomBg" >
-      <Image id="gamemode" class="SeqImg" src="file://{images}/custom_game/loading_screen/snipers_full.psd" />
-    </Panel>
-    <Panel id="TitlePanel">
-      <Label id="AddonTitle" text="#addon_game_name" style="" />
+      <Image id="nightstalkerWings" class="SeqImg" src="file://{images}/custom_game/loading_screen/ns_wings.psd" /> 
+      <Image id="nightstalker" class="SeqImg" src="file://{images}/custom_game/loading_screen/ns_head.psd" />
+      <Image id="sniper4" class="SeqImg" src="file://{images}/custom_game/loading_screen/sniper_4.psd" />
+      <Image id="sniper3" class="SeqImg" src="file://{images}/custom_game/loading_screen/sniper_3.psd" />
+      <Image id="sniper2" class="SeqImg" src="file://{images}/custom_game/loading_screen/sniper_2.psd" />
+      <Image id="sniper1" class="SeqImg" src="file://{images}/custom_game/loading_screen/sniper_1.psd" />
+      <Image id="foliage" class="SeqImg" src="file://{images}/custom_game/loading_screen/foliage.psd" />
+      <Panel id="TitlePanel">
+        <Label id="AddonTitle" text="#addon_game_name" style="" />
+      </Panel>
     </Panel>
   </Panel>
 </root>

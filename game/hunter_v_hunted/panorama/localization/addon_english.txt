@@ -21,7 +21,7 @@
 	"OverthrowTextPickup"							"HAS PICKED UP"
 	"OverthrowItemPickup"							"{s:item_id}!"
 
-	"addonname"							"Hunter v Hunted"
+	"addonname"							"HUNTER v HUNTED"
 	"game_info_objective_header"		"Objective:"
 	"game_info_objective_description"	"Each team has limited lives. Kill the other team before they kill you!"
 

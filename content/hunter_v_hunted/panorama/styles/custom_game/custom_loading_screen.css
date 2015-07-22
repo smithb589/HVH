@@ -1,70 +1,224 @@
-@define TotalLength: 40s;
+@define TotalLength: 15s;
 @define TimingFunc: linear;
 @define IterationCount: 1;
-@define AnimationDelay: 0s;
 
 .AddonLoadingRoot
 {
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    overflow: clip;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	overflow: clip;
 }
 
 #TitlePanel
 {
-  horizontal-align: left;
-  vertical-align: bottom;
-  margin-bottom: 150px;
-  margin-left: 100px;
-  flow-children: right;
+	horizontal-align: left;
+	vertical-align: bottom;
+	margin-bottom: 120px;
+	margin-left: 70px;
+	flow-children: right;
 }
 
 #AddonTitle
 {
-  margin-bottom: -15px;
-  vertical-align: center;
-  text-transform: uppercase;
-  font-size: 80px;
-  color: #cccccc;
-  text-shadow: 2px 2px 2px #000000;
-}
-
-.SeqImg
-{
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+	margin-bottom: -15px;
+	vertical-align: center;
+	font-size: 80px;
+	font-family: "Goudy Trajan Medium";
+	color: #99CCFF;
+	text-shadow: 4px 4px 4px #212C38;
 }
 
 #CustomBg
 {
-
+	margin-left: 0px;
+	margin-top: 0px;
     overflow: clip;
-  animation-name: gamemode_anim;
-  animation-delay: AnimationDelay;
-  animation-duration: TotalLength;
-  animation-timing-function: TimingFunc;
-  animation-iteration-count: IterationCount;
+	pre-transform-scale2d: 1.0, 1.0;
 }
 
-#gamemode
+.SeqImg
 {
-  margin-left: 160px;
-  /*margin-bottom: 0px;*/
-  
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: 100% 100%;
 }
 
-@keyframes 'gamemode_anim'
+#foliage
 {
-  0% {
-    transform: translate3d(-100%, 0, 0) rotate3d(1, 1, 1, -120deg);
-  }
+	margin-left: 150px;
+	margin-top: 610px;
+	pre-transform-scale2d: 1.0, 1.0;
+}
 
-  20% {
-  	pre-transform-scale2d: 2.0;
-   }
+#sniper1
+{
+	margin-left: 40px;
+	margin-top: 160px;
+	animation-name: sniper1_anim;
+	animation-duration: TotalLength;
+	animation-timing-function: TimingFunc;
+	animation-iteration-count: IterationCount;
+}
 
-  100% {
-  	pre-transform-scale2d: 3.0;
-  }
+@keyframes 'sniper1_anim'
+{
+	0%
+	{
+		transform: translateX( 0px ) translateY( 100px );
+	}
+
+	100%
+	{
+	}
+}
+
+#sniper2
+{
+	margin-left: 40px;
+	margin-top: 180px;
+	animation-name: sniper2_anim;
+	animation-duration: TotalLength;
+	animation-timing-function: TimingFunc;
+	animation-iteration-count: IterationCount;
+}
+
+@keyframes 'sniper2_anim'
+{
+	0%
+	{
+		transform: translateX( 100px ) translateY( 0px );
+        pre-transform-scale2d: 0.50;
+	}
+
+	100%
+	{
+	}
+}
+
+#sniper3
+{
+	margin-left: 40px;
+	margin-top: 180px;
+	animation-name: sniper3_anim;
+	animation-duration: TotalLength;
+	animation-timing-function: TimingFunc;
+	animation-iteration-count: IterationCount;
+}
+
+@keyframes 'sniper3_anim'
+{
+	0%
+	{
+		transform: translateX( -100px ) translateY( 0px );
+        pre-transform-scale2d: 0.50;
+	}
+
+	100%
+	{
+	}
+}
+
+#sniper4
+{
+	margin-left: 40px;
+	margin-top: 180px;
+	opacity: 0;
+	animation-name: sniper4_anim;
+	animation-duration: TotalLength;
+	animation-timing-function: TimingFunc;
+	animation-iteration-count: IterationCount;
+}
+
+@keyframes 'sniper4_anim'
+{
+	0%
+	{
+		transform: translateX( 0px ) translateY( -100px );
+        pre-transform-scale2d: 0.30;
+		opacity: 1;        
+	}
+
+	60%
+	{
+		transform: translateX( 0px ) translateY( 0px );
+        pre-transform-scale2d: .80;
+		opacity: 1;
+	}
+
+	80%
+	{
+		pre-transform-scale2d: 0.60, 0.50;
+		transform: translateX( 0px ) translateY( 150px );
+		opacity: 1;
+	}
+
+	100%
+	{
+		pre-transform-scale2d: .60, 0.50;
+		transform: translateX( 0px ) translateY( 150px );
+		opacity: 0;
+	}
+}
+
+#nightstalker
+{
+	margin-left: 400px;
+	margin-top: 155px;
+    pre-transform-scale2d: 1.20;
+    animation-name: nightstalker_anim;
+	animation-duration: TotalLength;
+	animation-timing-function: TimingFunc; 
+	animation-iteration-count: IterationCount;
+}
+
+@keyframes 'nightstalker_anim'
+{
+	0%
+	{
+        pre-transform-scale2d: 0.80;
+        opacity: 0;
+	}
+
+	80%
+	{
+        opacity: 0;
+	}
+
+	100%
+	{
+        pre-transform-scale2d: 1.20;
+        opacity: 1;
+	}
+}
+
+#nightstalkerWings
+{
+	margin-left: 80px;
+	margin-top: 150px;
+    pre-transform-scale2d: 1.20;
+    animation-name: nightstalkerWings_anim;
+	animation-duration: TotalLength;
+	animation-timing-function: TimingFunc; 
+	animation-iteration-count: IterationCount;
+}
+
+@keyframes 'nightstalkerWings_anim'
+{
+	0%
+	{
+        pre-transform-scale2d: 0.80;
+        opacity: 0;
+	}
+
+	90%
+	{
+        opacity: 0;
+	}
+
+	100%
+	{
+        pre-transform-scale2d: 1.20;
+        opacity: 1;
+	}
 }
