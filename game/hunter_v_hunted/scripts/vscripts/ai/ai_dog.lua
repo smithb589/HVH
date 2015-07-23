@@ -64,9 +64,15 @@ function IsTargetValid(target)
 end
 
 function IsInvisibleTargetInWanderRange(target)
-	local rangeToTarget = thisEntity:GetRangeToUnit(target)
-	local targetInWanderRange = rangeToTarget < thisEntity._MaxWanderingDistance
-	return IsTargetValid(target) and targetInWanderRange and target:IsInvisible()
+	local targetInWanderRange = false
+	local targetValid = IsTargetValid(target)
+
+	if targetValid then
+		local rangeToTarget = thisEntity:GetRangeToUnit(target)
+		targetInWanderRange = rangeToTarget < thisEntity._MaxWanderingDistance
+	end
+	
+	return targetValid and targetInWanderRange and target:IsInvisible()
 end
 
 --------------------------------------------------------------------------------------------------------
