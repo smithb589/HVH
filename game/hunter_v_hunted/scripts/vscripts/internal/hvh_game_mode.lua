@@ -196,7 +196,8 @@ function HVHGameMode:SetupHero(hero)
   end
 
   -- start at higher level
-  for level=1,STARTING_LEVELS_TO_ADD do
+  local startingLevelsToAdd = STARTING_LEVEL - 1
+  for level=1,startingLevelsToAdd do
     hero:HeroLevelUp(false)
   end
 
