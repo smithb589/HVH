@@ -132,7 +132,7 @@ function HVHItemSpawnController:_OnItemPickedUp(keys)
 	elseif self:_CanGrantBadGuyItem(itemName, hero) then
 		self:_GrantItem(self._badGuyChestDataModel:GetRandomItemName(), hero, pickedUpItem)
 	elseif self:_IsChestItem(itemName) then
-		self:_RejectPickup(hero:GetAbsOrigin(), itemName)
+		self:_RejectPickup(hero:GetAbsOrigin(), itemName, pickedUpItem)
 	end
 end
 
@@ -188,7 +188,8 @@ function HVHItemSpawnController:_CleanupWorldChestForContainedItem(containedItem
 end
 
 -- Prevents expending the chest by replacing it with another.
-function HVHItemSpawnController:_RejectPickup(location, chestType)
+function HVHItemSpawnController:_RejectPickup(location, chestType, itemInChest)
+	self:_CleanupWorldChestForContainedItem(itemInChest)
 	local nearestSpawnLocation = self:_FindNearestSpawnLocation(location)
 	local replacedChest = HVHWorldChest()
 	replacedChest:Spawn(nearestSpawnLocation, chestType)
