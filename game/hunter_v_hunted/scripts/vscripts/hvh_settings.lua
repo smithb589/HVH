@@ -1,20 +1,24 @@
 -- In this file you can set up all the properties and settings for your game mode.
 
--- HVH-specific
-STARTING_LEVEL		= 16
-STARTING_LEVELS_TO_ADD = STARTING_LEVEL - 1	  -- do not modify
+-- HVH Leveling and XP
+STARTING_LEVEL		= 16			
+MAX_LEVEL 			= 16
+XP_MULTIPLIER_FOR_SNIPER_KILLS = 4
+XP_PER_KILL 		= 2	-- NS gets this XP. Snipers get this times XP_MULTIPLIER_FOR_SNIPER_KILLS
+XP_PER_TICK      	= 1	-- every XP_TICK_INTERVAL seconds, living heroes get XP_PER_TICK
+XP_TICK_INTERVAL 	= 30
+MAX_OUT_ABILITIES = true 	-- max out starting abilities or leave them unleveled?
+
+-- HVH Time
 DAY_NIGHT_CYCLE_MULTIPLIER = 3			-- ex. 4 means each day/night will last 1 min each (4x faster)
 RANDOM_EXTRA_SECONDS 	   = 15.0 		-- randomly increase/decrease each cycle by -(Value) to Value seconds
-GOLD_PER_KILL 	= 0
-XP_MULTIPLIER_FOR_SNIPER_KILLS = 4
-XP_PER_KILL 	 = 2					-- ex. 3 when NS kills a sniper, or 12 when snipers kill NS
-XP_PER_TICK      = 1					-- every XP_TICK_INTERVAL seconds, living heroes get XP_PER_TICK
-XP_TICK_INTERVAL = 30
-BADGUY_LIVES	 = 5
-GOODGUY_LIVES	 = 20
 MIN_RESPAWN_TIME = 15
 MAX_RESPAWN_TIME = 25
-MAX_OUT_ABILITIES = true 				-- max out starting abilities or leave them unleveled?
+
+-- HVH Other
+BADGUY_LIVES  = 5
+GOODGUY_LIVES = 20
+GOLD_PER_KILL = 0
 
 ENABLE_HERO_RESPAWN = true              -- Should the heroes automatically respawn on a timer or stay dead until manually respawned
 UNIVERSAL_SHOP_MODE = false             -- Should the main shop contain Secret Shop items as well as regular items
@@ -57,7 +61,6 @@ KILLS_TO_END_GAME_FOR_TEAM = 50         -- How many kills for a team should sign
 -- custom hero levels means each entry = total XP you need to reach that level
 -- default hero levels means each entry = XP you need for next level (i think)
 USE_CUSTOM_HERO_LEVELS = true           -- Should we allow heroes to have custom levels?
-MAX_LEVEL = 20                          -- What level should we let heroes get to?
 USE_CUSTOM_XP_VALUES = true             -- Should we use custom XP values to level up heroes, or the default Dota numbers?
 
 -- Fill this table up with the required XP per level if you want to change it
