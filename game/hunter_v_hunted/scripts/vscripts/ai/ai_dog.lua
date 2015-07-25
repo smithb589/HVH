@@ -23,7 +23,7 @@ function Spawn( entityKeyValues )
 	thisEntity._MaxWanderingDistance = 150.0
 
 	thisEntity._FeedDuration = 0
-	-- Arbitraryly age this so the dog doesn't start fed.
+	-- Arbitrarily age this so the dog doesn't start fed.
 	thisEntity._FeedTime = GameRules:GetGameTime() - 60
 
 	thisEntity._LastWarnTime = 0.0
