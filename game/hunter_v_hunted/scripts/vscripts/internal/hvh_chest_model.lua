@@ -39,7 +39,10 @@ function HVHChestModel:GetRandomItemName()
 	-- TODO: Need to re-evaluate this strategy once item groups are actually configured.
 	for _, itemGroup in pairs(self._itemGroups) do
 		randomItem = itemGroup:GetRandomItemName()
-		if randomItem then break end
+		if randomItem then
+			self:_DisplayRandomItem(itemGroup:GetGroupName(), randomItem)
+			break 
+		end
 	end
 	return randomItem
 end
@@ -89,4 +92,8 @@ function HVHChestModel:_LoadItemGroups(itemData, itemGroups)
 	for _, groupConfig in pairs(itemGroups) do
 		table.insert(self._itemGroups, HVHItemGroup(groupConfig, itemData))
 	end
+end
+
+function HVHChestModel:_DisplayRandomItem(groupName, itemName)
+	HVHDebugPrint(string.format("Got item %s for group %s.", itemName, groupName))
 end

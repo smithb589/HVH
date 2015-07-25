@@ -38,6 +38,7 @@ function HVHItemGroup:GetRandomItemName()
     local item = nil
     if self:HasItemsRemainingThisCycle() then
          item = self._itemRandomizer:GetRandomValue()
+         self._itemsRemainingThisCycle = self._itemsRemainingThisCycle - 1
     else
         HVHDebugPrint("Tried to get a random item with no items remaining in cycle.")
     end

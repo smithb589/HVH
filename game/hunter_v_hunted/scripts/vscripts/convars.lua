@@ -29,6 +29,7 @@ function HVHConvars:RegisterCommands()
   	--Convars:RegisterCommand( "set_time_of_day", Dynamic_Wrap(self, 'ConvarSetTimeOfDay'), "Sets the time of day to the indicated value.", FCVAR_CHEAT )
     Convars:RegisterCommand( "hvh_fake_heroes", Dynamic_Wrap(self, 'FakeHeroes'), "Spawn heroes to fill in missing players.", FCVAR_CHEAT )
     Convars:RegisterCommand( "hvh_chest_probabilties", Dynamic_Wrap(self, 'DisplayChestProbabilties'), "Outputs item drop probabilities.", FCVAR_CHEAT )
+    Convars:RegisterCommand("hvh_test_item_cycle", Dynamic_Wrap(self, "DisplayTestItemSpawnCycle"), "Runs a test cycle displaying items.", FCVAR_CHEAT)
 end
 
 function HVHConvars:FakeHeroes()
@@ -64,4 +65,8 @@ end
 
 function HVHConvars:DisplayChestProbabilties()
   HVHItemSpawnController:DisplayChestProbabilties()
+end
+
+function HVHConvars:DisplayTestItemSpawnCycle()
+  HVHItemSpawnController:RunTestCycle()
 end

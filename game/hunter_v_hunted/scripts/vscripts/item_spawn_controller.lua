@@ -42,6 +42,7 @@ function HVHItemSpawnController:Think()
 		HVHItemSpawnController:_RemoveUnclaimedItems()
 		HVHItemSpawnController:_UpdateCurrentChestModel()
 		HVHItemSpawnController:SpawnChestsForCycle()
+		HVHItemSpawnController._currentChestDataModel:ResetItemsRemainingThisCycle()
 	end
 
 	HVHItemSpawnController:_UpdateDayNightState()
@@ -68,6 +69,16 @@ end
 function HVHItemSpawnController:DisplayChestProbabilties()
 	self._goodGuyChestDataModel:DisplayChestProbabilties()
 	self._badGuyChestDataModel:DisplayChestProbabilties()
+end
+
+function HVHItemSpawnController:RunTestCycle()
+	local itemsToGet = self._currentChestDataModel:GetItemsPerCycle()
+	print(string.format("Running test for %d items.", itemsToGet))
+	for itemCount=1, itemsToGet do
+		local itemName = self._currentChestDataModel:GetRandomItemName()
+	end
+
+	self._currentChestDataModel:ResetItemsRemainingThisCycle()
 end
 
 -- Adds an item to the spawned item cache so that they can be reclaimed later.
