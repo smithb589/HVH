@@ -4,6 +4,15 @@ function HVHGameMode:OnPlayerConnectFull()
 	self:_SetupGameMode()
 end
 
+function HVHGameMode:WakeUpHeroes()
+  local heroList = HeroList:GetAllHeroes()
+  for _,hero in pairs(heroList) do
+    if hero:IsAlive() and hero:HasModifier("modifier_tutorial_sleep") then
+      hero:RemoveModifierByName("modifier_tutorial_sleep")
+    end
+  end
+end
+
 function HVHGameMode:OnGameRulesStateChange()
   state = GameRules:State_Get()
   if state == DOTA_GAMERULES_STATE_HERO_SELECTION then
@@ -11,6 +20,7 @@ function HVHGameMode:OnGameRulesStateChange()
   elseif state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
     self:_SetupFastTime(TIME_NEXT_EVENING, RANDOM_EXTRA_SECONDS)
     self:_SetupPassiveXP()
+    self:WakeUpHeroes()
     self:SpawnDog(false)
     HVHItemSpawnController:Setup()
   end

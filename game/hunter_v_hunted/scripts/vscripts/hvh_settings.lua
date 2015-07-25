@@ -19,7 +19,7 @@ MAX_RESPAWN_TIME = 25
 BADGUY_LIVES  = 5
 GOODGUY_LIVES = 20
 MINIMUM_RESPAWN_RANGE = 1750			-- if it's too high then no valid respawn points might be found
-KILL_PLAYERS_ON_FIRST_SPAWN = true 		-- set to false for debugging
+PREGAME_SLEEP = true
 
 -- HVH Other
 GOLD_PER_KILL = 0

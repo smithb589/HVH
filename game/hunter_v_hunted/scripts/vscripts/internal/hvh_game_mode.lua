@@ -229,16 +229,16 @@ function HVHGameMode:SetupHero(hero)
     hero:AddItemByName("item_ultimate_scepter")
   end
 
-  -- if we're spawning during pregame, then kill player to initiate a PRE_GAME_TIME countdown
-  -- also compensate the team's score for his untimely death
-  if KILL_PLAYERS_ON_FIRST_SPAWN and GameRules:GetDOTATime(false,false) == 0 then
-    if heroTeam == DOTA_TEAM_GOODGUYS then
-      mode.GoodGuyLives = mode.GoodGuyLives + 1
-    else
-      mode.BadGuyLives = mode.BadGuyLives + 1
-    end
-    hero:ForceKill(false)
-    hero:SetTimeUntilRespawn(PRE_GAME_TIME)
+  -- force the hero to sleep until the horn blows
+  -- also move to random respawn point and lock camera for 3 seconds
+  if PREGAME_SLEEP and GameRules:GetDOTATime(false,false) == 0 then
+    local playerID = hero:GetPlayerID()
+    hero:SetOrigin(HVHGameMode:ChooseFarSpawn(heroTeam))
+    hero:AddNewModifier(hero, nil, "modifier_tutorial_sleep", {})
+    PlayerResource:SetCameraTarget(playerID, hero)
+    Timers:CreateTimer(3, function()
+      PlayerResource:SetCameraTarget(playerID, nil)
+    end)
   end
 
   --print("Succesful setup of new hero")
@@ -334,4 +334,13 @@ function HVHGameMode:DetermineRespawn(unit)
     local pos = HVHGameMode:ChooseFarSpawn(team)
     unit:SetRespawnPosition(pos)
   end)
+end
+
+function HVHGameMode:WakeUpHeroes()
+  local heroList = HeroList:GetAllHeroes()
+  for _,hero in pairs(heroList) do
+    if hero:IsAlive() and hero:HasModifier("modifier_tutorial_sleep") then
+      hero:RemoveModifierByName("modifier_tutorial_sleep")
+    end
+  end
 end
