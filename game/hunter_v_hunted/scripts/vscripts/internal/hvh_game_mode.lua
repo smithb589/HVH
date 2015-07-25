@@ -229,12 +229,24 @@ function HVHGameMode:SetupHero(hero)
     hero:AddItemByName("item_ultimate_scepter")
   end
 
+  -- if we're spawning during pregame, then kill player to initiate a PRE_GAME_TIME countdown
+  -- also compensate the team's score for his untimely death
+  if KILL_PLAYERS_ON_FIRST_SPAWN and GameRules:GetDOTATime(false,false) == 0 then
+    if heroTeam == DOTA_TEAM_GOODGUYS then
+      mode.GoodGuyLives = mode.GoodGuyLives + 1
+    else
+      mode.BadGuyLives = mode.BadGuyLives + 1
+    end
+    hero:ForceKill(false)
+    hero:SetTimeUntilRespawn(PRE_GAME_TIME)
+  end
+
   --print("Succesful setup of new hero")
   hero.SuccessfulSetup = true
 end
 
 -- TODO: this shit. this shit right here.
-function HVHGameMode:SetHeroDeathBounty(hero)
+function HVHGameMode:SetHeroDeathBounty_DEPRECATED(hero)
   --PrintTable(XP_PER_LEVEL_TABLE)
   --local heroLevel = hero:GetLevel()
   --local deathXP = 100
@@ -247,22 +259,79 @@ function HVHGameMode:SetHeroDeathBounty(hero)
   --print("Bounty: " .. hero:GetGoldBounty())
 end
 
+-- spawn the dog at the radiant courier spawn (game start) or a random good guy spawner
 function HVHGameMode:SpawnDog(random_spawn)
-  local spawner = nil
+  local position = nil
   if random_spawn then
-    spawner = HVHGameMode:ChooseRandomSpawn("info_player_start_goodguys")
+    position = HVHGameMode:ChooseFarSpawn(DOTA_TEAM_GOODGUYS)
   else
-    spawner = Entities:FindByClassname(nil, "info_courier_spawn_radiant")
+    local spawner = Entities:FindByClassname(nil, "info_courier_spawn_radiant")
+    position = spawner:GetAbsOrigin()
   end
  
-  local position = spawner:GetAbsOrigin()
   CreateUnitByName("npc_dota_good_guy_dog", position, true, nil, nil, DOTA_TEAM_GOODGUYS)
 end
 
-function HVHGameMode:ChooseRandomSpawn(classname)
+function HVHGameMode:ChooseRandomSpawn_DEPRECATED(classname)
   local possibleSpawners = Entities:FindAllByClassname(classname)
   local r = RandomInt(1, #possibleSpawners)
   spawner = possibleSpawners[r]
 
   return spawner
+end
+
+-- return the position of a random valid spawner
+-- a valid spawner has no enemy units or heroes within MINIMUM_RESPAWN_RANGE
+-- if no valid spawners are found, fallback on any possible spawner
+function HVHGameMode:ChooseFarSpawn(team)
+  local possibleSpawners = nil
+  local oppositeTeam = nil
+  if team == DOTA_TEAM_GOODGUYS then
+    possibleSpawners = Entities:FindAllByClassname("info_player_start_goodguys")
+    oppositeTeam = DOTA_TEAM_BADGUYS
+  else
+    possibleSpawners = Entities:FindAllByClassname("info_player_start_badguys")
+    oppositeTeam = DOTA_TEAM_GOODGUYS
+  end
+
+  local validSpawners = {}
+  for _,spawner in pairs(possibleSpawners) do
+    local units = FindUnitsInRadius(oppositeTeam,
+                  spawner:GetAbsOrigin(),
+                  nil,
+                  MINIMUM_RESPAWN_RANGE,
+                  team,
+                  DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO,
+                  DOTA_UNIT_TARGET_FLAG_NONE,
+                  FIND_ANY_ORDER,
+                  false)
+    if units[1] == nil then
+      table.insert(validSpawners, spawner)
+      --print("No units found in radius.")
+    else
+      --print("Units found in radius: " .. #units)
+    end
+  end
+
+  local spawnPoint = nil
+  if validSpawners ~= nil then
+    local r = RandomInt(1, #validSpawners)
+    spawnPoint = validSpawners[r]:GetAbsOrigin()
+  else -- fallback
+    local r = RandomInt(1, #possibleSpawners)
+    spawnPoint = possibleSpawners[r]:GetAbsOrigin()
+  end
+
+  return spawnPoint
+end
+
+function HVHGameMode:DetermineRespawn(unit)
+  local team = unit:GetTeam()
+  local respawnTime = HVHTimeUtils:GetRespawnTime(team)
+  unit:SetTimeUntilRespawn(respawnTime)
+
+  Timers:CreateTimer(respawnTime - 1, function() 
+    local pos = HVHGameMode:ChooseFarSpawn(team)
+    unit:SetRespawnPosition(pos)
+  end)
 end

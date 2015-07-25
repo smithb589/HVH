@@ -6,13 +6,13 @@ end
 
 function HVHGameMode:OnGameRulesStateChange()
   state = GameRules:State_Get()
-	if state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-	 	self:_SetupFastTime(TIME_NEXT_EVENING, RANDOM_EXTRA_SECONDS)
+  if state == DOTA_GAMERULES_STATE_HERO_SELECTION then
+    self:_PostLoadPrecache()
+  elseif state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+    self:_SetupFastTime(TIME_NEXT_EVENING, RANDOM_EXTRA_SECONDS)
     self:_SetupPassiveXP()
     self:SpawnDog(false)
     HVHItemSpawnController:Setup()
-  elseif state == DOTA_GAMERULES_STATE_HERO_SELECTION then
-    self:_PostLoadPrecache()
   end
 end
 
@@ -21,6 +21,7 @@ function HVHGameMode:OnPlayerPickHero(keys)
   if heroClass == "npc_dota_hero_axe" then
     --print("Hero being replaced " .. heroClass)
     local heroEntity = EntIndexToHScript(keys.heroindex)
+
     local player = EntIndexToHScript(keys.player)
     local playerID = player:GetPlayerID()
     local playerTeam = player:GetTeamNumber()
@@ -58,7 +59,7 @@ function HVHGameMode:OnNPCSpawned(spawnArgs)
           local playerID = unit:GetPlayerOwnerID()
           self:SetupHero(unit)
       end
-    self:SetHeroDeathBounty(unit)          
+    --self:SetHeroDeathBounty(unit)          
     end
 
   end)
@@ -76,13 +77,11 @@ function HVHGameMode:OnEntityKilled(killedArgs)
     if team == DOTA_TEAM_GOODGUYS then
       mode.GoodGuyLives = mode.GoodGuyLives - 1
       mode:SetTopBarTeamValue(DOTA_TEAM_GOODGUYS, mode.GoodGuyLives)
-      unit:SetTimeUntilRespawn(
-        HVHTimeUtils:GetRespawnTime(DOTA_TEAM_GOODGUYS))
+      HVHGameMode:DetermineRespawn(unit)
     elseif team == DOTA_TEAM_BADGUYS then
       mode.BadGuyLives = mode.BadGuyLives - 1
       mode:SetTopBarTeamValue(DOTA_TEAM_BADGUYS, mode.BadGuyLives)
-      unit:SetTimeUntilRespawn(
-        HVHTimeUtils:GetRespawnTime(DOTA_TEAM_BADGUYS))
+      HVHGameMode:DetermineRespawn(unit)
     end
 
     -- declare winners
@@ -97,7 +96,6 @@ function HVHGameMode:OnEntityKilled(killedArgs)
 
   -- dog dead for a minimum of 1 cycle + randomness, then check every second
   -- to respawn when it's daytime
-
   if unit and unit:GetUnitName() == "npc_dota_good_guy_dog" then
     local standardLengthOfOneCycle = (SECS_PER_CYCLE / 2) / DAY_NIGHT_CYCLE_MULTIPLIER
     local maxLengthOfCycle = standardLengthOfOneCycle + RANDOM_EXTRA_SECONDS
