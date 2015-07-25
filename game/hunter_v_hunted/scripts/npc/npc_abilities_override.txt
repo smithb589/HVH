@@ -251,19 +251,19 @@
 	"item_ward_observer"
 	{
 		"ItemSellable" "0"
-		"ItemInitialCharges"	"3"
+		"ItemInitialCharges"	"2"
 	}
 
 	"item_ward_sentry"
 	{
 		"ItemSellable" "0"
-		"ItemInitialCharges"	"3"
+		"ItemInitialCharges"	"2"
 	}
 
 	"item_tango"
 	{
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "6"
+		"ItemInitialCharges"  "4"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 
 		"AbilitySpecial"
@@ -271,22 +271,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"total_heal"			"175" // 115
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"total_heal_ward_tooltip"			"230"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range_ward"			"450"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"buff_duration"			"16.0"
+				"total_heal"			"115" // 115
 			}
 		}	
 	}
@@ -294,7 +279,7 @@
 	"item_flask"
 	{
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "3"
+		"ItemInitialCharges"  "2"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 
 		"AbilitySpecial"
@@ -307,7 +292,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"total_health"			"600" // 400
+				"total_health"			"400" // 400
 			}
 		}		
 	}
@@ -322,22 +307,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"total_heal"			"175" // 115
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"total_heal_ward_tooltip"			"230"
-			}			
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range_ward"			"450"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"buff_duration"			"16.0"
+				"total_heal"			"115" // 115
 			}
 		}
 	}
@@ -388,7 +358,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_charges"			"20" // hvh
+				"max_charges"			"20" // 17
 			}
 			"02"
 			{
@@ -473,7 +443,7 @@
 	"item_urn_of_shadows" // doesn't collect souls
 	{
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "3" // It's also in AbilitySpecial
+		"ItemInitialCharges"  "2" // It's also in AbilitySpecial
 		"ItemPermanent"	"0"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 
@@ -512,12 +482,12 @@
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"soul_heal_amount"		"550" // 400
+				"soul_heal_amount"		"400" // 400
 			}			
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"soul_damage_amount"	"225" // 150
+				"soul_damage_amount"	"150" // 150
 			}
 			"09"
 			{
@@ -1916,7 +1886,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"6.0" // "3.0 3.5 4.0 4.5 5.0 5.5 6.0"
+				"duration"				"4.5" // "3.0 3.5 4.0 4.5 5.0 5.5 6.0"
 				"levelkey"				"quaslevel"	
 			}
 			"02"
@@ -1927,13 +1897,13 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"freeze_cooldown"		"0.60" // "0.77 0.74 0.71 0.69 0.66 0.63 0.60"
+				"freeze_cooldown"		"0.69" // "0.77 0.74 0.71 0.69 0.66 0.63 0.60"
 				"levelkey"				"quaslevel"	
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"freeze_damage"			"49" // "7 14 21 28 35 42 49"
+				"freeze_damage"			"28" // "7 14 21 28 35 42 49"
 				"levelkey"				"quaslevel"	
 			}
 			"05"
@@ -1962,7 +1932,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"475" //"100 162.5 225 287.5 350 412.5 475"
+				"damage"				"287.5" //"100 162.5 225 287.5 350 412.5 475"
 				"levelkey"				"exortlevel"
 			}
 			"04"
@@ -1986,7 +1956,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"travel_distance"		"3200" //"800 1200 1600 2000 2400 2800 3200"
+				"travel_distance"		"2000" //"800 1200 1600 2000 2400 2800 3200"
 				"levelkey"				"wexlevel"
 			}
 			"02"
@@ -2012,7 +1982,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"lift_duration"			"2.5" //"0.8 1.1 1.4 1.7 2.0 2.3 2.5"
+				"lift_duration"			"1.7" //"0.8 1.1 1.4 1.7 2.0 2.3 2.5"
 				"levelkey"				"quaslevel"
 			}
 			"07"
@@ -2029,7 +1999,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"wex_damage"			"315" //"45 90 135 180 225 270 315"
+				"wex_damage"			"180" //"45 90 135 180 225 270 315"
 				"levelkey"				"wexlevel"
 			}
 		}
@@ -2043,13 +2013,13 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"12.0" //"3.0 4.5 6.0 7.5 9.0 10.5 12.0"
+				"duration"				"7.5" //"3.0 4.5 6.0 7.5 9.0 10.5 12.0"
 				"levelkey"				"quaslevel"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow"					"-140" //"-20 -40 -60 -80 -100 -120 -140"
+				"slow"					"-80" //"-20 -40 -60 -80 -100 -120 -140"
 				"levelkey"				"quaslevel"
 			}
 			"03"
@@ -2060,7 +2030,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_per_second"		"42" //"6 12 18 24 30 36 42"
+				"damage_per_second"		"24" //"6 12 18 24 30 36 42"
 				"levelkey"				"exortlevel"
 			}
 			"05"
@@ -2119,19 +2089,19 @@
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"280" //"40 80 120 160 200 240 280"
+				"damage"				"160" //"40 80 120 160 200 240 280"
 				"levelkey"				"exortlevel"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"knockback_duration"	"1.75" //"0.25 0.5 0.75 1.0 1.25 1.5 1.75"
+				"knockback_duration"	"1.0" //"0.25 0.5 0.75 1.0 1.25 1.5 1.75"
 				"levelkey"				"quaslevel"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"disarm_duration"		"4.0" //"1.0 1.5 2.0 2.5 3.0 3.5 4.0"
+				"disarm_duration"		"2.5" //"1.0 1.5 2.0 2.5 3.0 3.5 4.0"
 				"levelkey"				"wexlevel"
 			}
 		}
@@ -2155,7 +2125,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"travel_distance"		"1410" //"465 615 780 930 1095 1245 1410"
+				"travel_distance"		"930" //"465 615 780 930 1095 1245 1410"
 				"levelkey"				"wexlevel"
 			}
 			"04"
@@ -2181,7 +2151,7 @@
 			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"main_damage"			"162.5" //"57.5 75 92.5 110 127.5 145 162.5"
+				"main_damage"			"110" //"57.5 75 92.5 110 127.5 145 162.5"
 				"levelkey"				"exortlevel"
 			}
 			"09"
@@ -2192,7 +2162,7 @@
 			"10"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"burn_dps"				"32.5" //"11.5 15 18.5 22 25.5 29 32.5"
+				"burn_dps"				"22" //"11.5 15 18.5 22 25.5 29 32.5"
 				"levelkey"				"exortlevel"
 			}
 		}
@@ -2284,6 +2254,70 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"coil_stun_duration_scepter"	"1.5 2.25 3.0" //"1.5 3 4.5"
+			}
+		}
+	}
+
+	// nerfed to L1 ult values
+	"slardar_amplify_damage"
+	{
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction"		"-10" //"-10 -15 -20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"25.0 25.0 25.0"
+			}
+		}
+	}
+
+	// nerfed to L1 ult values
+	"ancient_apparition_chilling_touch"
+	{
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"525"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_attacks"			"3" //"3 4 5 6"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"50" //"50 60 70 80"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"attack_speed_pct"		"-20"
+			}
+		}
+	}
+
+	// nerfed to L1 ult values
+	"troll_warlord_battle_trance"
+	{
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"trance_duration"		"5.0"		
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"attack_speed"		"60" //"60 120 180"
 			}
 		}
 	}

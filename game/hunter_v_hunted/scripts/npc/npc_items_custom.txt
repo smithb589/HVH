@@ -1548,7 +1548,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1027"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_hvh_ensnare" // filename: hvh_meat_hook	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1627,7 +1627,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1025"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_hvh_homing_missile" // filename: hvh_meat_hook	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
