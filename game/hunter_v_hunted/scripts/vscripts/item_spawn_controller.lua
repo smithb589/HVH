@@ -1,5 +1,4 @@
 
-require("internal/item_randomizer")
 require("internal/hvh_chest_model")
 require("internal/hvh_location_collection")
 require("internal/hvh_world_chest")
@@ -20,8 +19,8 @@ if HVHItemSpawnController == nil then
 	HVHItemSpawnController._spawnLocations = nil
 	HVHItemSpawnController._spawnedChests = {}
 
-	HVHItemSpawnController._goodGuyChestDataModel = HVHChestModel("scripts/vscripts/kv/good_guy_items.kv")
-	HVHItemSpawnController._badGuyChestDataModel = HVHChestModel("scripts/vscripts/kv/bad_guy_items.kv")
+	HVHItemSpawnController._goodGuyChestDataModel = HVHChestModel("scripts/vscripts/kv/good_guy_chests.kv")
+	HVHItemSpawnController._badGuyChestDataModel = HVHChestModel("scripts/vscripts/kv/bad_guy_chests.kv")
 	HVHItemSpawnController._currentChestDataModel = nil
 end
 
@@ -67,9 +66,7 @@ function HVHItemSpawnController:SpawnChestsForCycle()
 end
 
 function HVHItemSpawnController:DisplayChestProbabilties()
-	print("Good guy chest probabilties:")
 	self._goodGuyChestDataModel:DisplayChestProbabilties()
-	print("Bad guy chest probabilties:")
 	self._badGuyChestDataModel:DisplayChestProbabilties()
 end
 

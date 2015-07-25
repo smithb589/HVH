@@ -22,18 +22,18 @@ end
 	{
 		{
 			value = something,
-			relativeProbability = value between .001 and 1000
+			weight = value between .001 and 1000
 		},
 		{
 			-- another
 		}
 	}
 ]]
-function HVHRandomizer.new(relativeProbabilityObjects)
+function HVHRandomizer.new(weightedValueObjects)
 	local self = setmetatable({}, HVHRandomizer)
 
 	self._totalProbability = 0.0
-	self._relativeProbabilities = relativeProbabilityObjects
+	self._weightedValues = weightedValueObjects
 
 	self._CalculateTotalProbability(self)
 	return self
@@ -49,10 +49,10 @@ end
 
 function HVHRandomizer:DisplayProbabilties()
 	local totalProbabilityPercent = 0.0;
-	if self._relativeProbabilities then
-		for _,objectProbabilityPair in pairs(self._relativeProbabilities) do
-			local probabilityPercent = (self:_GetRelativeProbability(objectProbabilityPair) / self._totalProbability) * 100.0
-			print(string.format("(value=%s, probability=%f%%)", objectProbabilityPair.value, probabilityPercent))
+	if self._weightedValues then
+		for _,weightValuePair in pairs(self._weightedValues) do
+			local probabilityPercent = (self:_GetWeight(weightValuePair) / self._totalProbability) * 100.0
+			print(string.format("(value=%s, probability=%f%%)", weightValuePair.value, probabilityPercent))
 			totalProbabilityPercent = totalProbabilityPercent + probabilityPercent
 		end
 	end
@@ -63,33 +63,33 @@ end
 -- Determines the total probabilty to use for weighting.
 function HVHRandomizer:_CalculateTotalProbability()
 	local totalProbability = 0.0
-	for index, objectProbabilityPair in pairs(self._relativeProbabilities) do
-		local relativeProbability = self:_GetRelativeProbability(objectProbabilityPair)
-		totalProbability = totalProbability + relativeProbability
-		HVHDebugPrint(string.format("Adding probability %f for item " .. objectProbabilityPair.value, relativeProbability))
+	for index, weightValuePair in pairs(self._weightedValues) do
+		local weight = self:_GetWeight(weightValuePair)
+		totalProbability = totalProbability + weight
+		HVHDebugPrint(string.format("Adding probability %f for item " .. weightValuePair.value, weight))
 	end
 	self._totalProbability = totalProbability
 end
 
 -- Extracts the relative probability from a value-probability paired object.
-function HVHRandomizer:_GetRelativeProbability(objectProbabilityPair)
-	local relativeProbability = 0.0
-	if objectProbabilityPair and objectProbabilityPair.relativeProbability then
-		relativeProbability = objectProbabilityPair.relativeProbability
+function HVHRandomizer:_GetWeight(weightValuePair)
+	local weight = 0.0
+	if weightValuePair and weightValuePair.weight then
+		weight = weightValuePair.weight
 	else
-		HVHDebugPrint("Missing relative probability for " .. relativeProbability.value)
+		HVHDebugPrint("Missing relative probability for " .. weightValuePair.value)
 	end
-	return relativeProbability
+	return weight
 end
 
 -- Determines a random value by summing relative probabilities until it is >= to the probability value.
 function HVHRandomizer:_GetValueForRandomProbability(probability)
 	local probabilitySum = 0.0
 	local randomValue = nil
-	for index, objectProbabilityPair in pairs(self._relativeProbabilities) do
-		probabilitySum = probabilitySum + self:_GetRelativeProbability(objectProbabilityPair)
+	for index, weightValuePair in pairs(self._weightedValues) do
+		probabilitySum = probabilitySum + self:_GetWeight(weightValuePair)
 		if probabilitySum >= probability then
-			randomValue = objectProbabilityPair.value
+			randomValue = weightValuePair.value
 			break
 		end
 	end
