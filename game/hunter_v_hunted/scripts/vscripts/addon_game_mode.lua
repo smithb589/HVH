@@ -2,6 +2,7 @@
 
 require('game_mode')
 require('precache')
+require('convars')
 
 require('lib/util')
 require('lib/timers')
@@ -42,6 +43,7 @@ end
 
 -- Create the game mode class when we activate
 function Activate()
+  HVHConvars:Setup()
 	GameRules.HVHGameMode = HVHGameMode()
 	GameRules.HVHGameMode:InitGameMode()
 

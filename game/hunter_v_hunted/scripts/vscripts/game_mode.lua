@@ -5,14 +5,12 @@ end
 
 require("internal/hvh_game_mode")
 require("internal/event_handlers")
-require("convars")
 
 require("item_utils")
 require("item_spawn_controller")
 
 -- Begins processing script for the custom game mode.  This "template_example" contains a main OnThink function.
 function HVHGameMode:InitGameMode()
-	HVHConvars:Setup()
 	self:_InitGameMode()
 	ListenToGameEvent('dota_player_pick_hero', Dynamic_Wrap(self, 'OnPlayerPickHero'), self)
 
