@@ -385,7 +385,7 @@
 		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
 		"AbilityCastPoint"		"0.5"
 		"AbilityCastRange"		"650"		
-		"AbilityCooldown"		"20"
+		"AbilityCooldown"		"30"
 		"precache"
 		{
 			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"		
@@ -745,7 +745,7 @@
 		"AoERadius"			 "325"
 		"AbilityCastPoint"		"0.45"
 		"AbilityCastRange"		"625"		
-		"AbilityCooldown"		"20"
+		"AbilityCooldown"		"10"
 		"precache"
 		{
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
@@ -761,7 +761,7 @@
 				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"undying_decay"
-				"maxDuration"			"60.0"
+				"maxDuration"			"10.0"
 			}
 		}
 	}
@@ -826,7 +826,7 @@
 		"AbilityTextureName"	"item_hvh_conjure_image" // filename: hvh_meat_hook	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastPoint"		"0.5"
-		"AbilityCooldown"		"20"
+		"AbilityCooldown"		"16"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
@@ -839,7 +839,7 @@
 				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"terrorblade_conjure_image"
-				"maxDuration"			"40.0"
+				"maxDuration"			"16.0"
 			}
 		}
 	}
@@ -1278,7 +1278,7 @@
 		"AoERadius"				"525"
 		"AbilityCastPoint"		"0.01"
 		"AbilityCastRange"		"800"
-		"AbilityCooldown"		"30"
+		"AbilityCooldown"		"40"
 		"precache"
 		{
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_ancient_apparition.vsndevts"
@@ -1292,7 +1292,7 @@
 				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"ancient_apparition_chilling_touch"
-				"maxDuration"			"35.0"
+				"maxDuration"			"30.0"
 			}
 		}
 	}
@@ -1634,7 +1634,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityCastPoint"		"0.3"
 		"AbilityCastRange"		"1050"		
-		"AbilityCooldown"		"20"
+		"AbilityCooldown"		"60"
 		"precache"
 		{
 			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"

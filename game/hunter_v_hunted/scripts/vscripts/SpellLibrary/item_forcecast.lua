@@ -6,6 +6,11 @@ function ForceCast( keys )
 	local abilityName = keys.abilityName
 	local maxDuration = keys.maxDuration
 
+	if caster:HasAbility(abilityName) then
+		print(caster:GetName() .. " already has " .. abilityName)
+		return
+	end
+
 	caster:AddAbility(abilityName)
 	local ability = caster:FindAbilityByName(abilityName)
 	ability:SetHidden(true)
@@ -13,7 +18,9 @@ function ForceCast( keys )
 	ability:EndCooldown()
 	ability:OnSpellStart()
 	Timers:CreateTimer(maxDuration, function()
-		caster:RemoveAbility(abilityName)
+		if caster:HasAbility(abilityName) then
+			caster:RemoveAbility(abilityName)
+		end
 	end)
 end
 
@@ -29,42 +36,3 @@ function LearnTempAbility ( caster, abilityName, maxDuration )
 		print("forgot " .. abilityName)
 	end)
 end
-
---[[ Issues
-
-item_black_hole		nofx, nofx while channeling
-item_land_mines		no dmg after ability is gone
-item_walrus_punch	does nothing
-
-]]
-
---[[ Future
-
---SNIPERS
-battle_trance
-chilling_touch
-cold_embrace
-cold_snap
-disruption
-glimpse
-mist_coil
-suicide_squad
-surge
-walrus_kick
-
---NS
-avalanche/toss
-bane_brain_sap
-bloodseeker_blood_rite
-conjure_image
-crypt_swarm
-decay
-fatal_bonds
-fissure
-frozen_sigil
-gust
-ice_wall
-paralyzing_cask
-plasma_field
-sunder
---]]
