@@ -203,7 +203,7 @@ function HVHGameMode:SetupHero(hero)
 
   -- starting xp for that level
   --startingXP = sum_table_through_row(XP_PER_LEVEL_TABLE, 15)
-  hero:AddExperience(STARTING_LEVELS_TO_ADD * XP_FACTOR,
+  hero:AddExperience(startingLevelsToAdd * XP_FACTOR,
     DOTA_ModifyXP_Unspecified, false, true)
 
   -- max out abilities
