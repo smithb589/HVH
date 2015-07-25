@@ -2,7 +2,6 @@ require("ai/ai_dog_speech")
 require("ai/ai_core")
 require("hvh_utils")
 
--- todo: not sure if this needs to be put on the entity since there are multiple
 behaviorSystem = {}
 
 function Spawn( entityKeyValues )
@@ -36,6 +35,7 @@ function Spawn( entityKeyValues )
 		BehaviorSprint,
 		BehaviorSleep
 	})
+	behaviorSystem.thinkDuration = 0.1
 	HVHDebugPrint(string.format("Starting AI for %s. Entity Index: %s", thisEntity:GetUnitName(), thisEntity:GetEntityIndex()))
 end
 
@@ -279,7 +279,84 @@ function BehaviorPursue:Think(dt)
 	end
 end
 
+--------------------------------------------------------------------------------------------------------
+-- Attack behavior
 
+--[[
+BehaviorAttack = 
+{
+	order =
+	{
+		UnitIndex = thisEntity:entindex(),
+		OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+		TargetIndex = nil
+	}
+}
+
+function BehaviorAttack:Evaluate()
+	local target = FindNearestTarget(thisEntity)
+	local attackDesire = 0
+	if GameRules:IsDaytime() and IsTargetValid(target) not not target:IsInvisible() then
+		attackDesire = 5
+	end
+
+	return attackDesire
+end
+
+function BehaviorAttack:Initialize()
+
+end
+
+function BehaviorAttack:Begin()
+	local target = FindNearestTarget(thisEntity)
+
+	if IsTargetValid(target) then
+		self.order.TargetIndex = target:GetEntityIndex()
+		self.order.Position = target:GetAbsOrigin()
+	end
+
+	self.endTime = GameRules:GetGameTime() + 0.1
+
+	--thisEntity:AddSpeechBubble(SPEECH_ID, SPEECH_PURSUE_BEGIN, SPEECH_DUR, SP_X, SP_Y)
+end
+
+function BehaviorAttack:Continue()
+	-- important to constantly re-evaluate the closest target (illusions, etc.)
+	local target = FindNearestTarget(thisEntity)
+
+	if IsTargetValid(target) then
+		self.order.TargetIndex = target:GetEntityIndex()
+		self.order.Position = target:GetAbsOrigin()
+
+		-- mostly fixes error 27 (Invalid order: Target is invisible and is not on the unit's team.)
+		if target:HasModifier("modifier_invisible") then
+			self.order.OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION		
+		else
+			self.order.OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET
+		end
+	end
+
+	self.endTime = GameRules:GetGameTime() + 0.1
+
+	--local distance = math.ceil(thisEntity:GetRangeToUnit(target) - 0.5) -- round to nearest int
+	--local speech = string.format(SPEECH_PURSUE_CONTINUE, distance)
+	--thisEntity:AddSpeechBubble(SPEECH_ID, speech, SPEECH_DUR_PURSUE, SP_X, SP_Y)
+end
+
+function BehaviorAttack:End()
+	self.order.TargetIndex = nil
+end
+
+function BehaviorAttack:Think(dt)
+	-- No longer a valid target, so end this behavior.
+	local target = EntIndexToHScript(self.order.TargetIndex)
+	if not IsTargetValid(target) or target:IsInvisible() then
+		self.endTime = GameRules:GetGameTime()
+	else
+		self.endTime = GameRules:GetGameTime() + 0.5
+	end
+end
+]]
 
 --------------------------------------------------------------------------------------------------------
 -- Sprint behavior
