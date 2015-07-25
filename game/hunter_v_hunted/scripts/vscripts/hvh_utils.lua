@@ -31,6 +31,20 @@ function Length2DBetweenVectors(vector1, vector2)
   return difference:Length2D()
 end
 
+-- Note that the array must be indexed by 1..n
+function HVHShuffle(array)
+  local numberOfItems = table.getn(array)
+
+  -- Take all of the items and perform a Fisher–Yates shuffle
+  for currentIndex=1,numberOfItems do
+    local exchangeIndex = RandomInt(currentIndex, numberOfItems)
+    local temp = array[currentIndex]
+    array[currentIndex] = array[exchangeIndex]
+    array[exchangeIndex] = temp
+  end
+  return array
+end
+
 function HVHDebugPrint(...)
   local doPrint = Convars:GetInt("hvh_debug_output") or 0
 

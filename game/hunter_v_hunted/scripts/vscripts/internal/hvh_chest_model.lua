@@ -22,6 +22,7 @@ function HVHChestModel.new(chestConfigFileName)
 
 	self._chestName = nil
 	self._itemGroups = {}
+	self._groupsWithItemsRemainingInCycle = {}
 
 	self:_LoadChestConfig(chestConfigFileName)
 
@@ -36,21 +37,26 @@ end
 
 function HVHChestModel:GetRandomItemName()
 	local randomItem = nil
-	-- TODO: Need to re-evaluate this strategy once item groups are actually configured.
-	for _, itemGroup in pairs(self._itemGroups) do
+	local groups = self:_GetShuffledGroupsWithItemsRemainingThisCycle()
+
+	for index, itemGroup in pairs(groups) do
 		randomItem = itemGroup:GetRandomItemName()
 		if randomItem then
 			self:_DisplayRandomItem(itemGroup:GetGroupName(), randomItem)
-			break 
+			self._groupsWithItemsRemainingInCycle = self:_RemoveGroupIfNoItemsRemainingInCycle(index, itemGroup, groups)
+			break
 		end
 	end
 	return randomItem
 end
 
 function HVHChestModel:ResetItemsRemainingThisCycle()
+	self._groupsWithItemsRemainingInCycle = {}
 	for _, itemGroup in pairs(self._itemGroups) do
 		itemGroup:ResetItemsRemainingThisCycle()
+		table.insert(self._groupsWithItemsRemainingInCycle, itemGroup)
 	end
+	
 end
 
 function HVHChestModel:GetItemsPerCycle()
@@ -96,4 +102,16 @@ end
 
 function HVHChestModel:_DisplayRandomItem(groupName, itemName)
 	HVHDebugPrint(string.format("Got item %s for group %s.", itemName, groupName))
+end
+
+function HVHChestModel:_GetShuffledGroupsWithItemsRemainingThisCycle()
+	local shuffledGroups = HVHShuffle(self._groupsWithItemsRemainingInCycle)
+	return shuffledGroups
+end
+
+function HVHChestModel:_RemoveGroupIfNoItemsRemainingInCycle(index, group, groupArray)
+	if not group:HasItemsRemainingThisCycle() then
+		table.remove(groupArray, index)
+	end
+	return groupArray
 end

@@ -57,17 +57,7 @@ end
 
 -- Shuffles the collection of locations to support randomly accessing them
 function HVHLocationCollection:_GetShuffledLocations()
-	local locationsClone = DeepCopy(self._locations)
-	local numberOfLocations = table.getn(locationsClone)
-
-	-- Take all of the locations and perform a Fisher–Yates shuffle
-	for currentIndex=1,numberOfLocations do
-		local exchangeIndex = RandomInt(currentIndex, numberOfLocations)
-		local temp = locationsClone[currentIndex]
-		locationsClone[currentIndex] = locationsClone[exchangeIndex]
-		locationsClone[exchangeIndex] = temp
-	end
-
+	local locationsClone = HVHShuffle(self._locations)
 	return locationsClone
 end
 
