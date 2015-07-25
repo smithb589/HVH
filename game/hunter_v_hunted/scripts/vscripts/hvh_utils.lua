@@ -45,6 +45,12 @@ function HVHShuffle(array)
   return array
 end
 
+function HVHAssert(value, message)
+  if not value then
+    print(message)
+  end
+end
+
 function HVHDebugPrint(...)
   local doPrint = Convars:GetInt("hvh_debug_output") or 0
 
