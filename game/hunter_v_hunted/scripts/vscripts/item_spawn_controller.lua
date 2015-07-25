@@ -180,7 +180,7 @@ end
 -- Removes the world chest that contains the passed in item.
 function HVHItemSpawnController:_CleanupWorldChestForContainedItem(containedItem)
 	local worldChest = self:_GetWorldChest(containedItem)
-	DoScriptAssert(worldChest ~= nil, "No chest found for cleanup.")
+	HVHAssert(worldChest ~= nil, "No chest found for cleanup.")
 
     if worldChest then
     	worldChest:Remove()
