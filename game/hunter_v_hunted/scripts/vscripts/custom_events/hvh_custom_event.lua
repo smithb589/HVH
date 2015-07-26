@@ -22,5 +22,5 @@ function HVHCustomEvent:GetEventName()
 end]]
 
 function HVHCustomEvent:ConvertToPayload()
-    return { continue = true }
+    return { continue = false }
 end
