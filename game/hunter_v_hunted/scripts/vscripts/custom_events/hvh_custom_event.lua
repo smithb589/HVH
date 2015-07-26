@@ -6,15 +6,21 @@ if HVHCustomEvent == nil then
     setmetatable(HVHCustomEvent, {
         __call = function (event, ...)
             local self = setmetatable({}, event)
-            return self:new(...)
+            self:new(...)
+            return self
         end
     })
 end
 
-function HVHCustomEvent:new(eventID)
-    self._eventID = eventID
+function HVHCustomEvent:new()
+    --self._eventName = eventName
 end
 
-function HVHCustomEvent:GetEventID()
-    return self._eventID
+--[[
+function HVHCustomEvent:GetEventName()
+    return self._eventName
+end]]
+
+function HVHCustomEvent:ConvertToPayload()
+    return { continue = true }
 end

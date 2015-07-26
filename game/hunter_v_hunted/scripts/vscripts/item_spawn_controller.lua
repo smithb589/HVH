@@ -5,6 +5,9 @@ require("internal/hvh_world_chest")
 
 require("lib/timers")
 require("lib/util")
+require("lib/notifications")
+
+require("custom_events/hvh_rejected_chest_pickup_event")
 
 require("item_utils")
 require("hvh_utils")
@@ -132,7 +135,7 @@ function HVHItemSpawnController:_OnItemPickedUp(keys)
 	elseif self:_CanGrantBadGuyItem(itemName, hero) then
 		self:_GrantItem(self._badGuyChestDataModel:GetRandomItemName(), hero, pickedUpItem)
 	elseif self:_IsChestItem(itemName) then
-		self:_RejectPickup(hero:GetAbsOrigin(), itemName, pickedUpItem)
+		self:_RejectPickup(hero, itemName, pickedUpItem)
 	end
 end
 
@@ -188,12 +191,18 @@ function HVHItemSpawnController:_CleanupWorldChestForContainedItem(containedItem
 end
 
 -- Prevents expending the chest by replacing it with another.
-function HVHItemSpawnController:_RejectPickup(location, chestType, itemInChest)
+function HVHItemSpawnController:_RejectPickup(hero, chestType, itemInChest)
 	self:_CleanupWorldChestForContainedItem(itemInChest)
-	local nearestSpawnLocation = self:_FindNearestSpawnLocation(location)
+	local nearestSpawnLocation = self:_FindNearestSpawnLocation(hero:GetAbsOrigin())
 	local replacedChest = HVHWorldChest()
 	replacedChest:Spawn(nearestSpawnLocation, chestType)
 	self:_AddSpawnedItem(replacedChest)
+	self:_SendRejectedPickupEvent(PlayerResource:GetPlayer(hero:GetPlayerID()))
+end
+
+function HVHItemSpawnController:_SendRejectedPickupEvent(player)
+	local event = HVHRejectedChestPickupEvent()
+	Notifications:Top(player, event:ConvertToPayload())
 end
 
 -- Forces items from a hero's stash to be dropped at the hero's location.
