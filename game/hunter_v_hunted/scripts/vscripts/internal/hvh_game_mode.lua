@@ -233,7 +233,8 @@ function HVHGameMode:SetupHero(hero)
   -- also move to random respawn point and lock camera for 3 seconds
   if PREGAME_SLEEP and GameRules:GetDOTATime(false,false) == 0 then
     local playerID = hero:GetPlayerID()
-    hero:SetOrigin(HVHGameMode:ChooseFarSpawn(heroTeam))
+    --hero:SetOrigin(HVHGameMode:ChooseFarSpawn(heroTeam))
+    FindClearSpaceForUnit(hero, HVHGameMode:ChooseFarSpawn(heroTeam), true)
     hero:AddNewModifier(hero, nil, "modifier_tutorial_sleep", {})
     PlayerResource:SetCameraTarget(playerID, hero)
     Timers:CreateTimer(3, function()
