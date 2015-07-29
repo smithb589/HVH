@@ -355,17 +355,49 @@
 	    	"03"
 	    	{
 	    		"var_type"							"FIELD_FLOAT"
-	    		"invis_delay"						"3.0"
+	    		"invis_delay"						"2.0"
 	    	}
 	    	"04"
 	    	{
 	    		"var_type"							"FIELD_FLOAT"
 	    		"invis_regen_pct_per_sec"			"0.75 1.00 1.25"
 	    	}
+	    	"05"
+	    	{
+	    		"var_type"							"FIELD_INTEGER"
+	    		"night_vision_radius"				"2400"
+	    	}
+	    	"06"
+	    	{
+	     		"var_type"							"FIELD_FLOAT"
+	    		"night_vision_pulse_frequency"		"3.0"
+	    	}
+	    	"07"
+	    	{
+	     		"var_type"							"FIELD_FLOAT"
+	    		"night_vision_pulse_duration"		"0.75"
+	    	}
 	    }
 
 	    "Modifiers"
 	    {
+	    	"modifier_dread_hunter_vision_applicator"
+	    	{
+	    		"Passive" 			"1"
+	    		"IsHidden"			"1"
+
+	    		"ThinkInterval"  "0.10"
+	    		"OnIntervalThink"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"		"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"			"VisionThinker"
+	    				"vision_dummy_str"	"npc_dummy_night_vision"
+	    			}
+	    		}
+	    	}
+
 	    	"modifier_dread_hunter_invis_applicator"
 	    	{
 	    		"Passive" 			"1"
@@ -444,7 +476,6 @@
 						"Target"		"CASTER"
 					}
 				}
-
 	    	}
 
 	    	"modifier_dread_hunter_regen"
@@ -473,7 +504,6 @@
 	    				"mod_speed"			"modifier_dread_hunter_speed"
 	    			}
 	    		}
-
 	    	}
 
 	    	"modifier_dread_hunter_speed"
@@ -672,7 +702,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"scream_damage"				"100 175 250"
+				"scream_damage"				"115 200 285"
 			}
 			"06"
 			{
@@ -798,9 +828,7 @@
 				"IsFixedDistance"	"0"
 				"ShouldStun"        "1"	
 			}
-
 		}
-	
 	}
 
 	"general_ability_invulnerable"
@@ -1095,6 +1123,33 @@
 	                "MODIFIER_STATE_UNSELECTABLE"       "MODIFIER_STATE_VALUE_ENABLED"
 	                "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED" 
 					"MODIFIER_STATE_INVISIBLE"			"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+	"dummy_night_vision"
+	{
+		"BaseClass" 		"ability_datadriven"
+		"AbilityBehavior" 	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"modifier_dummy_night_vision"
+			{
+				"Passive"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NO_TEAM_MOVE_TO"    "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NO_TEAM_SELECT"     "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_COMMAND_RESTRICTED" "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_ATTACK_IMMUNE"      "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_MAGIC_IMMUNE"       "MODIFIER_STATE_VALUE_ENABLED"            
+	                "MODIFIER_STATE_UNSELECTABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED" 
+					"MODIFIER_STATE_INVISIBLE"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_OUT_OF_GAME"		"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 		}

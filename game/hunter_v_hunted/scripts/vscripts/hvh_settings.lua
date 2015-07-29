@@ -16,8 +16,8 @@ MIN_RESPAWN_TIME = 15
 MAX_RESPAWN_TIME = 25
 
 -- HVH Respawn
-BADGUY_LIVES  = 5
-GOODGUY_LIVES = 20
+BADGUY_LIVES  = 6
+GOODGUY_LIVES = 18
 MINIMUM_RESPAWN_RANGE = 1750			-- if it's too high then no valid respawn points might be found
 PREGAME_SLEEP = true
 

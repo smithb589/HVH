@@ -18,6 +18,24 @@
 		"MinimapIconSize"           "350"
 	}
 
+	"npc_dummy_night_vision"
+	{
+		"BaseClass" "npc_dota_creature"
+		"Model" "models/development/invisiblebox.vmdl"
+
+		"AttackCapabilities"   "DOTA_UNIT_CAP_NO_ATTACK"
+		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		"MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_FLY"
+
+		"Ability1"             "dummy_night_vision"
+
+		"MovementSpeed"				"9999"
+		"MovementTurnRate"			"1.0"
+
+		"VisionDaytimeRange"	"1"
+		"VisionNighttimeRange"	"1"
+	}
+
 	// Made by BMD
 	"npc_dummy_blank"
 	{
@@ -126,10 +144,10 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"50"			// Damage range min.
-		"AttackDamageMax"			"75"		// Damage range max.
+		"AttackDamageMin"			"40"			// Damage range min.
+		"AttackDamageMax"			"60"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"1"		// Speed of attack.
+		"AttackRate"				"1.2"		// Speed of attack.
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"1"		// Range within a target can be acquired.
 		"AttackRange"				"100"		// Range within a target can be attacked.
@@ -155,8 +173,8 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"1200"		// Base health.
-		"StatusHealthRegen"			"10"		// Health regeneration rate.
+		"StatusHealth"				"900"		// Base health.
+		"StatusHealthRegen"			"8.0"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
 	

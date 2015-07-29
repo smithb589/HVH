@@ -8,7 +8,7 @@
 
 	"meepo_earthbind"
 	{
-		"AbilityCooldown"				"21	18 15 12"
+		"AbilityCooldown"				"24	21 18 15"
 		"AbilityManaCost"				"0"
 
 		"AbilitySpecial"

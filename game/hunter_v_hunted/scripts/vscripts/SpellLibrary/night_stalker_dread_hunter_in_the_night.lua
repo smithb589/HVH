@@ -1,3 +1,57 @@
+---------------------------------- creates auto-following vision dummy
+function VisionThinker(keys)
+	local caster = keys.caster
+	local pos = caster:GetAbsOrigin()
+
+	if not GameRules:IsDaytime() then
+		local dummy = nil
+		if caster.VisionDummyEntIndex == nil then
+			dummy = CreateVisionDummy(keys)
+		else
+			dummy = EntIndexToHScript(caster.VisionDummyEntIndex)
+		end
+
+		dummy:SetOrigin(pos)
+	end
+end
+
+function CreateVisionDummy(keys)
+	local caster  = keys.caster
+	local ability = keys.ability
+	local pos  = caster:GetAbsOrigin()
+	local team = caster:GetTeam()
+	local vision_dummy_str = keys.vision_dummy_str
+	local nv_radius     = ability:GetSpecialValueFor("night_vision_radius")
+	local nv_pulse_freq = ability:GetSpecialValueFor("night_vision_pulse_frequency")
+	local nv_pulse_dur  = ability:GetSpecialValueFor("night_vision_pulse_duration")
+
+	local dummy = CreateUnitByName(vision_dummy_str, pos, false, nil, nil, team)
+	dummy:SetNightTimeVisionRange(nv_radius)
+	caster.VisionDummyEntIndex = dummy:entindex()
+
+	-- pulse throbber
+	Timers:CreateTimer(nv_pulse_freq, function()
+		VisionPulse(caster, dummy, nv_pulse_dur, nv_radius)
+		return nv_pulse_freq
+	end)
+
+	return dummy
+end
+
+function VisionPulse(caster, dummy, duration, radius)
+	if caster:IsAlive() then
+		dummy:SetNightTimeVisionRange(radius)
+		Timers:CreateTimer(duration, function()
+			dummy:SetNightTimeVisionRange(0)
+			return nil
+		end)
+	else
+		dummy:SetNightTimeVisionRange(0)
+	end
+end
+
+-- vision pulsing
+
 ---------------------------------- applies speed
 function SpeedThinker(keys)
 	local caster = keys.caster

@@ -226,7 +226,7 @@ function HVHGameMode:SetupHero(hero)
     hero:AddItemByName("item_boots")
   else
     hero:AddItemByName("item_phase_boots")
-    hero:AddItemByName("item_ultimate_scepter")
+    --hero:AddItemByName("item_ultimate_scepter")
   end
 
   -- force the hero to sleep until the horn blows
