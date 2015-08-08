@@ -1,12 +1,20 @@
--- Sample adventure script
 
 require('game_mode')
 require('precache')
 require('convars')
 
+require("time_utils")
+require("item_utils")
+require("item_spawn_controller")
+
+require("hvh_settings")
+require("hvh_utils")
+require("hvh_constants")
+
 require('lib/util')
 require('lib/timers')
 require('lib/physics')
+require('lib/notifications')
 
 -- If something was being created via script such as a new npc, it would need to be precached here
 function Precache( context )

@@ -1,5 +1,3 @@
-require("hvh_settings")
-
 function HVHGameMode:_InitGameMode()
   GameRules:SetHeroRespawnEnabled( ENABLE_HERO_RESPAWN )
   GameRules:SetUseUniversalShopMode( UNIVERSAL_SHOP_MODE )
@@ -328,13 +326,18 @@ end
 
 function HVHGameMode:DetermineRespawn(unit)
   local team = unit:GetTeam()
-  local respawnTime = HVHTimeUtils:GetRespawnTime(team)
+  local respawnTime = self:GetRespawnTime()
   unit:SetTimeUntilRespawn(respawnTime)
 
   Timers:CreateTimer(respawnTime - 1, function() 
     local pos = HVHGameMode:ChooseFarSpawn(team)
     unit:SetRespawnPosition(pos)
   end)
+end
+
+-- random time between MIN and MAX
+function HVHGameMode:GetRespawnTime()
+  return RandomInt(MIN_RESPAWN_TIME, MAX_RESPAWN_TIME)
 end
 
 function HVHGameMode:WakeUpHeroes()

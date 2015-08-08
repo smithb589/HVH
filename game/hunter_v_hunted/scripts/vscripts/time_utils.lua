@@ -50,8 +50,3 @@ function HVHTimeUtils:GetRespawnTime_DEPRECATED(team)
     return next_time
   end
 end
-
--- random time between MIN and MAX
-function HVHTimeUtils:GetRespawnTime(team)
-  return RandomInt(MIN_RESPAWN_TIME, MAX_RESPAWN_TIME)
-end

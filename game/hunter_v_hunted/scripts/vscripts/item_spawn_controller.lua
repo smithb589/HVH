@@ -1,17 +1,8 @@
-
 require("internal/hvh_chest_model")
 require("internal/hvh_location_collection")
 require("internal/hvh_world_chest")
 
-require("lib/timers")
-require("lib/util")
-require("lib/notifications")
-
 require("custom_events/hvh_rejected_chest_pickup_event")
-
-require("item_utils")
-require("hvh_utils")
-require("hvh_constants")
 
 if HVHItemSpawnController == nil then
   HVHItemSpawnController = class({})

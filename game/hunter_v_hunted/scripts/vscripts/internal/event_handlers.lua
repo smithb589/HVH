@@ -14,6 +14,7 @@ function HVHGameMode:OnGameRulesStateChange()
     self:WakeUpHeroes()
     self:SpawnDog(false)
     HVHItemSpawnController:Setup()
+    HVHPowerStages:Setup()
   end
 end
 
@@ -68,32 +69,6 @@ end
 
 function HVHGameMode:OnEntityKilled(killedArgs)
  	local unit = EntIndexToHScript(killedArgs.entindex_killed)
-
-  -- scoreboard
-  if unit and unit:IsRealHero() then
-    local team = unit:GetTeam()
-    local mode = GameRules:GetGameModeEntity()
-
-    -- decrement remaining lives and set respawn timers
-    if team == DOTA_TEAM_GOODGUYS then
-      mode.GoodGuyLives = mode.GoodGuyLives - 1
-      mode:SetTopBarTeamValue(DOTA_TEAM_GOODGUYS, mode.GoodGuyLives)
-      HVHGameMode:DetermineRespawn(unit)
-    elseif team == DOTA_TEAM_BADGUYS then
-      mode.BadGuyLives = mode.BadGuyLives - 1
-      mode:SetTopBarTeamValue(DOTA_TEAM_BADGUYS, mode.BadGuyLives)
-      HVHGameMode:DetermineRespawn(unit)
-    end
-
-    -- declare winners
-    if mode.GoodGuyLives <= 0 then
-      GameRules:SetSafeToLeave( true )
-      GameRules:SetGameWinner( DOTA_TEAM_BADGUYS )
-    elseif mode.BadGuyLives <= 0 then
-      GameRules:SetSafeToLeave( true )
-      GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
-    end
-  end
 
   -- dog dead for a minimum of 1 cycle + randomness, then check every second
   -- to respawn when it's daytime

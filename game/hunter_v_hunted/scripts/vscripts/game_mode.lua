@@ -5,9 +5,7 @@ end
 
 require("internal/hvh_game_mode")
 require("internal/event_handlers")
-
-require("item_utils")
-require("item_spawn_controller")
+require("internal/power_stages")
 
 -- Begins processing script for the custom game mode.  This "template_example" contains a main OnThink function.
 function HVHGameMode:InitGameMode()

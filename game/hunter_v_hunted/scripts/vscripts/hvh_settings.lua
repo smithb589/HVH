@@ -7,7 +7,7 @@ XP_MULTIPLIER_FOR_SNIPER_KILLS = 4
 XP_PER_KILL 		= 2	-- NS gets this XP. Snipers get this times XP_MULTIPLIER_FOR_SNIPER_KILLS
 XP_PER_TICK      	= 1	-- every XP_TICK_INTERVAL seconds, living heroes get XP_PER_TICK
 XP_TICK_INTERVAL 	= 30
-MAX_OUT_ABILITIES = true 	-- max out starting abilities or leave them unleveled?
+MAX_OUT_ABILITIES = false 	-- max out starting abilities or leave them unleveled?
 
 -- HVH Time
 DAY_NIGHT_CYCLE_MULTIPLIER = 3			-- ex. 4 means each day/night will last 1 min each (4x faster)
@@ -20,6 +20,21 @@ BADGUY_LIVES  = 6
 GOODGUY_LIVES = 18
 MINIMUM_RESPAWN_RANGE = 1750			-- if it's too high then no valid respawn points might be found
 PREGAME_SLEEP = true
+
+-- HVH Power Stages for reinforcements / evolutions
+USE_POWER_STAGES = true
+GG_POWER_STAGE_THRESHOLDS = {}
+GG_POWER_STAGE_THRESHOLDS[0] = GOODGUY_LIVES
+GG_POWER_STAGE_THRESHOLDS[1] = 15
+GG_POWER_STAGE_THRESHOLDS[2] = 12
+GG_POWER_STAGE_THRESHOLDS[3] = 8
+GG_POWER_STAGE_THRESHOLDS[4] = 0
+BG_POWER_STAGE_THRESHOLDS = {}
+BG_POWER_STAGE_THRESHOLDS[0] = BADGUY_LIVES
+BG_POWER_STAGE_THRESHOLDS[1] = 5
+BG_POWER_STAGE_THRESHOLDS[2] = 4
+BG_POWER_STAGE_THRESHOLDS[3] = 2
+BG_POWER_STAGE_THRESHOLDS[4] = 0
 
 -- HVH Other
 GOLD_PER_KILL = 0
