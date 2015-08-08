@@ -7,13 +7,13 @@ XP_MULTIPLIER_FOR_SNIPER_KILLS = 4
 XP_PER_KILL 		= 2	-- NS gets this XP. Snipers get this times XP_MULTIPLIER_FOR_SNIPER_KILLS
 XP_PER_TICK      	= 1	-- every XP_TICK_INTERVAL seconds, living heroes get XP_PER_TICK
 XP_TICK_INTERVAL 	= 30
-MAX_OUT_ABILITIES = false 	-- max out starting abilities or leave them unleveled?
+MAX_OUT_ABILITIES = false 	-- max out ALL abilities or only starting abilities?
 
 -- HVH Time
 DAY_NIGHT_CYCLE_MULTIPLIER = 3			-- ex. 4 means each day/night will last 1 min each (4x faster)
 RANDOM_EXTRA_SECONDS 	   = 15.0 		-- randomly increase/decrease each cycle by -(Value) to Value seconds
-MIN_RESPAWN_TIME = 15
-MAX_RESPAWN_TIME = 25
+MIN_RESPAWN_TIME = 18
+MAX_RESPAWN_TIME = 23
 
 -- HVH Respawn
 BADGUY_LIVES  = 6
@@ -22,7 +22,6 @@ MINIMUM_RESPAWN_RANGE = 1750			-- if it's too high then no valid respawn points 
 PREGAME_SLEEP = true
 
 -- HVH Power Stages for reinforcements / evolutions
-USE_POWER_STAGES = true
 GG_POWER_STAGE_THRESHOLDS = {}
 GG_POWER_STAGE_THRESHOLDS[0] = GOODGUY_LIVES
 GG_POWER_STAGE_THRESHOLDS[1] = 15
@@ -44,7 +43,7 @@ UNIVERSAL_SHOP_MODE = false             -- Should the main shop contain Secret S
 ALLOW_SAME_HERO_SELECTION = true        -- Should we let people select the same hero as each other
 
 HERO_SELECTION_TIME = 20.0              -- How long should we let people select their hero?
-PRE_GAME_TIME = 20.0                    -- How long after people select their heroes should the horn blow and the game start?
+PRE_GAME_TIME = 30.0                    -- How long after people select their heroes should the horn blow and the game start?
 POST_GAME_TIME = 60.0                   -- How long should we let people look at the scoreboard before closing the server automatically?
 TREE_REGROW_TIME = 40.0                 -- How long should it take individual trees to respawn after being cut down/destroyed?
 

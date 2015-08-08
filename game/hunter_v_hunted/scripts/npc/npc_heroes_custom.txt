@@ -8,25 +8,24 @@
 		"override_hero" 	"npc_dota_hero_sniper"
 		"Ability1"			"sniper_shrapnel_hvh"
 		"Ability2"			"meepo_earthbind"
-		//"Ability3"			"sniper_headshot"
 		"Ability3"			"sniper_feed_dog"
 		"Ability4"			"shredder_timber_chain"
 		"AbilityLayout"		"4"
-		"Ability10"         "attribute_bonus"
+		"Ability5"         "attribute_bonus"
 	}
 
 	"npc_dota_hero_night_stalker_hvh"
 	{
 		"override_hero"		"npc_dota_hero_night_stalker"
 		"Ability1"			"night_stalker_void"
-		//"Ability2"			"night_stalker_crippling_fear"
 		"Ability2"			"night_stalker_crippling_fear_hvh"
 		"Ability3"			"mirana_leap"
+		//"Ability4"		"night_stalker_shadowstalker_hvh"
 		"Ability4"			"night_stalker_hunter_in_the_night_hvh"
 		"Ability5"			"night_stalker_echolocation_hvh"
 		"AbilityLayout"		"5"
-		"Ability9"			"night_stalker_hunter_in_the_night" // hidden, for anim purposes
-		"Ability10"         "attribute_bonus"
+		"Ability6"			"night_stalker_hunter_in_the_night" // hidden, for anim purposes
+		"Ability7"          "attribute_bonus"
 
 		"ModelScale" "1.1"
 	}

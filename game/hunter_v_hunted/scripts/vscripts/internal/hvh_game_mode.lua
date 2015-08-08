@@ -187,6 +187,15 @@ function HVHGameMode:_SetupPassiveXP()
   end)
 end
 
+function HVHGameMode:MaxAbility(hero, ability_name)
+  if hero:HasAbility(ability_name) then
+    local ability = hero:FindAbilityByName(ability_name)
+    for level=1, ability:GetMaxLevel() do
+      ability:UpgradeAbility(false) -- SetLevel() ignores OnUpgrade events
+    end
+  end
+end
+
 function HVHGameMode:SetupHero(hero)
   -- axe, stop nosing around in here
   if hero:GetClassname() == "npc_dota_hero_axe" then
@@ -204,7 +213,7 @@ function HVHGameMode:SetupHero(hero)
   hero:AddExperience(startingLevelsToAdd * XP_FACTOR,
     DOTA_ModifyXP_Unspecified, false, true)
 
-  -- max out abilities
+  -- max out all abilities
   if MAX_OUT_ABILITIES then 
     local ability = nil
     for i=0,hero:GetAbilityCount()-1 do
@@ -215,8 +224,17 @@ function HVHGameMode:SetupHero(hero)
         end
       end
     end
-    hero:SetAbilityPoints(0)
+  -- max out specific abilities
+  else
+    self:MaxAbility(hero, "sniper_shrapnel_hvh")
+    self:MaxAbility(hero, "sniper_feed_dog")
+    self:MaxAbility(hero, "night_stalker_void")
+    self:MaxAbility(hero, "night_stalker_crippling_fear_hvh")
+    self:MaxAbility(hero, "night_stalker_hunter_in_the_night")
+    self:MaxAbility(hero, "night_stalker_hunter_in_the_night_hvh")
   end
+
+  hero:SetAbilityPoints(0)
 
   -- starting gear
   local heroTeam = hero:GetTeamNumber()

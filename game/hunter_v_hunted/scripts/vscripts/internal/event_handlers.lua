@@ -55,7 +55,7 @@ function HVHGameMode:OnNPCSpawned(spawnArgs)
   Timers:CreateTimer(SINGLE_FRAME_TIME, function() 
 
   	local unit = EntIndexToHScript(spawnArgs.entindex)
-  	if unit and unit:IsHero() then
+  	if unit and unit:IsRealHero() then
        if unit.SuccessfulSetup ~= true then
      
           local playerID = unit:GetPlayerOwnerID()

@@ -5,11 +5,13 @@ end
 SNIPERS_COLOR = "#FCAF3D"
 NS_COLOR 	  = "#99CCFF"
 STR_SNIPERS_UPGRADE = "Reinforcements have arrived!"
+STR_SNIPERS_EARTHBIND   = "MEEPO'S NETS"
 STR_SNIPERS_TIMBERCHAIN = "TIMBER CHAINS"
-STR_SNIPERS_BONUSHOUNDS = "BONUS HOUNDS"
+STR_SNIPERS_BONUSHOUNDS = "THE PACK GROWS"
 STR_NS_UPGRADE 		 = "The Night Stalker has evolved!"
+STR_NS_LEAP          = "DREAD LEAP"
 STR_NS_ECHOLOCATION  = "ECHOLOCATION"
-STR_NS_SHADOWSTALKER = "SHADOWSTALKER"
+STR_NS_CRIPPLE_AOE   = "PARALYZING FEAR"
 
 function HVHPowerStages:Setup()
 	ListenToGameEvent("entity_killed", Dynamic_Wrap(self, "OnEntityKilled"), self)
@@ -61,7 +63,7 @@ function HVHPowerStages:CheckPowerStages(team)
 	local currentStage = keys["currentStage"]
 	local currentLives = keys["currentLives"]
 
-	--print(string.format("Team %s -- Stage %s, Lives Remaining: %s", team, currentStage, currentLives))
+	print(string.format("Team %s -- Stage %s, Lives Remaining: %s", team, currentStage, currentLives))
 
 	if currentLives == thresholds[currentStage+1] then
 		self:UpgradePowerStage(team)
@@ -74,15 +76,15 @@ function HVHPowerStages:UpgradePowerStage(team)
 	-- delay the notification by a few seconds
 	Timers:CreateTimer(HVHGameMode:GetRespawnTime(), function()
 		if team == DOTA_TEAM_GOODGUYS then
-			if     newPowerStage == 1 then self:GrantSniperTimberchain()
-			elseif newPowerStage == 2 then self:GrantSniperBonusHounds()
-			elseif newPowerStage == 3 then --print("sniper stage 3")
+			if     newPowerStage == 1 then self:GrantSniperEarthbind()
+			elseif newPowerStage == 2 then self:GrantSniperTimberchain()
+			elseif newPowerStage == 3 then self:GrantSniperBonusHounds()
 			else --print("sniper unknown stage")
 			end
 		else
-			if     newPowerStage == 1 then self:GrantNSEcholocation()
-			elseif newPowerStage == 2 then self:GrantNSShadowstalker()
-			elseif newPowerStage == 3 then --print("NS stage 3")
+			if     newPowerStage == 1 then self:GrantNSLeap()
+			elseif newPowerStage == 2 then self:GrantNSEcholocation()
+			elseif newPowerStage == 3 then self:GrantNSCripplingFearAOE()
 			else --print("NS unknown stage")
 			end
 		end
@@ -90,18 +92,31 @@ function HVHPowerStages:UpgradePowerStage(team)
     end)
 end
 
-function HVHPowerStages:MaxOutAbility(hero_name, ability_name)
+-- improves an ability to max level
+-- removes old version of ability if replaced_ability_name is used
+function HVHPowerStages:MaxOutAbility(hero_name, ability_name, replaced_ability_name)
     local heroList = HeroList:GetAllHeroes()
     for _,hero in pairs(heroList) do
     	if hero:GetClassname() == hero_name then
+    		
+    		if replaced_ability_name ~= nil then
+    			hero:RemoveAbility(replaced_ability_name)
+	        	hero:AddAbility(ability_name)
+	        end
+
 	        local ability = hero:FindAbilityByName(ability_name)
 	        ability:SetLevel(ability:GetMaxLevel())
     	end
     end
 end
 
+function HVHPowerStages:GrantSniperEarthbind()
+	self:MaxOutAbility("npc_dota_hero_sniper", "meepo_earthbind", nil)
+	self:Notify(STR_SNIPERS_UPGRADE, STR_SNIPERS_EARTHBIND, SNIPERS_COLOR)
+end
+
 function HVHPowerStages:GrantSniperTimberchain()
-	self:MaxOutAbility("npc_dota_hero_sniper", "shredder_timber_chain")
+	self:MaxOutAbility("npc_dota_hero_sniper", "shredder_timber_chain", nil)
 	self:Notify(STR_SNIPERS_UPGRADE, STR_SNIPERS_TIMBERCHAIN, SNIPERS_COLOR)
 end
 
@@ -111,14 +126,19 @@ function HVHPowerStages:GrantSniperBonusHounds()
 	self:Notify(STR_SNIPERS_UPGRADE, STR_SNIPERS_BONUSHOUNDS, SNIPERS_COLOR)
 end
 
+function HVHPowerStages:GrantNSLeap()
+	self:MaxOutAbility("npc_dota_hero_night_stalker", "mirana_leap", nil)
+	self:Notify(STR_NS_UPGRADE, STR_NS_LEAP, NS_COLOR)
+end
+
 function HVHPowerStages:GrantNSEcholocation()
-	self:MaxOutAbility("npc_dota_hero_night_stalker", "night_stalker_echolocation_hvh")
+	self:MaxOutAbility("npc_dota_hero_night_stalker", "night_stalker_echolocation_hvh", nil)
 	self:Notify(STR_NS_UPGRADE, STR_NS_ECHOLOCATION, NS_COLOR)
 end
 
-function HVHPowerStages:GrantNSShadowstalker()
-	--self:MaxOutAbility("npc_dota_hero_night_stalker", "night_stalker_shadowstalker_hvh")
-	self:Notify(STR_NS_UPGRADE, STR_NS_SHADOWSTALKER, NS_COLOR)
+function HVHPowerStages:GrantNSCripplingFearAOE()
+	self:MaxOutAbility("npc_dota_hero_night_stalker", "night_stalker_crippling_fear_aoe_hvh", "night_stalker_crippling_fear_hvh")
+	self:Notify(STR_NS_UPGRADE, STR_NS_CRIPPLE_AOE, NS_COLOR)
 end
 
 function HVHPowerStages:Notify(heading, subtext, teamcolor)

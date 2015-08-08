@@ -526,9 +526,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"					"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"night_stalker_crippling_fear"
-		"MaxLevel"               "3"
+		"MaxLevel"               		"3"
 		
 		// Unit Targeting
 		//-------------------------------------------------------------------------------------------------------------
@@ -591,6 +590,7 @@
 				"Function"		"CripplingFear"
 				"modifier_day"		"modifier_crippling_fear_day_datadriven"
 				"modifier_night"	"modifier_crippling_fear_night_datadriven"
+				"modifier_dog"		"modifier_crippling_fear_dog_datadriven"
 			}
 		}
 	
@@ -637,6 +637,167 @@
 					"MODIFIER_STATE_BLIND"		"MODIFIER_STATE_VALUE_ENABLED" // hvh experimental
 				}
 			}
+
+			"modifier_crippling_fear_dog_datadriven"
+			{
+				"Duration"	"%duration_night"
+				"IsDebuff"	"1"
+	
+				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
+				"EffectAttachType"	"follow_overhead"
+	
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED" // hvh
+					"MODIFIER_STATE_BLIND"		"MODIFIER_STATE_VALUE_ENABLED" // hvh experimental
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}			
+		}
+	}
+
+	"night_stalker_crippling_fear_aoe_hvh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"		"night_stalker_crippling_fear"
+		"MaxLevel"              	"3"
+		
+		// Unit Targeting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AOERadius"						"%radius"
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.3 0.3 0.3"
+		"AbilityCooldown"				"12 12 12"
+		"AbilityManaCost"				"0" //"90 90 90 90"
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts"
+			"particle"			"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
+		}
+			
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration_day"			"3.0 3.0 3.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration_night"		"6.0 7.0 8.0"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"miss_rate_day"				"10 10 10 10"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"miss_rate_night"			"50"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"250"
+			}
+		}
+	
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Nightstalker.Trickling_Fear"
+				"Target"		"CASTER"
+			}
+	
+			"RunScript"
+			{
+				"ScriptFile"	"SpellLibrary/night_stalker_crippling_fear.lua"
+				"Function"		"CripplingFearAOE"
+				"modifier_day"		"modifier_crippling_fear_day_aoe_datadriven"
+				"modifier_night"	"modifier_crippling_fear_night_aoe_datadriven"
+				"modifier_dog"		"modifier_crippling_fear_dog_aoe_datadriven"
+				"Target"			"POINT"
+			}
+		}
+	
+		"Modifiers"
+		{
+			"modifier_crippling_fear_day_aoe_datadriven"
+			{
+				"Duration"	"%duration_day"
+				"IsDebuff"	"1"
+	
+				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
+				"EffectAttachType"	"follow_overhead"
+	
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MISS_PERCENTAGE"		"%miss_rate_day"
+				}
+	
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED" // hvh
+					"MODIFIER_STATE_BLIND"		"MODIFIER_STATE_VALUE_ENABLED" // hvh experimental
+				}
+			}
+	
+			"modifier_crippling_fear_night_aoe_datadriven"
+			{
+				"Duration"	"%duration_night"
+				"IsDebuff"	"1"
+	
+				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
+				"EffectAttachType"	"follow_overhead"
+	
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MISS_PERCENTAGE"		"%miss_rate_night"
+				}
+	
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED" // hvh
+					"MODIFIER_STATE_BLIND"		"MODIFIER_STATE_VALUE_ENABLED" // hvh experimental
+				}
+			}
+
+			"modifier_crippling_fear_dog_aoe_datadriven"
+			{
+				"Duration"	"%duration_night"
+				"IsDebuff"	"1"
+	
+				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
+				"EffectAttachType"	"follow_overhead"
+	
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED" // hvh
+					"MODIFIER_STATE_BLIND"		"MODIFIER_STATE_VALUE_ENABLED" // hvh experimental
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}			
 		}
 	}
 
@@ -827,6 +988,79 @@
 				"Height"	        "%scream_knockback_height"
 				"IsFixedDistance"	"0"
 				"ShouldStun"        "1"	
+			}
+		}
+	}
+
+	// does not work well
+	"night_stalker_shadowstalker_hvh"
+	{
+		"BaseClass"				"ability_datadriven"
+	    "AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName"	"terrorblade_conjure_image_alt1"
+
+		"AbilityCastRange"		"700"
+		"AbilityCooldown"		"16.0"
+		"AbilityManaCost"		"0"
+
+	    "MaxLevel"              "1"
+		//"RequiredLevel"         "0"
+		//"LevelsBetweenUpgrades" "3"
+
+	    "AbilityCastPoint"       "0.0"
+	    "AbilityCastAnimation"   "ACT_DOTA_ATTACK"
+	    "AnimationPlaybackRate"  "1"
+	    "AnimationIgnoresModelScale" "1"
+
+	    "AbilityDuration"         "0.0 0.0 0.0 "
+
+	   	"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
+		}
+
+	    "AbilitySpecial"
+	    {
+			"01"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"illusion_duration"					"32.0"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"illusion_outgoing_damage"			"-70.0 -60.0 -50.0 -40.0"		
+			}
+			"03"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"illusion_outgoing_tooltip"			"30.0 40.0 50.0 60.0"
+			}
+			"04"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"illusion_incoming_damage"			"325.0"
+			}
+			"05"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"illusion_incoming_damage_total_tooltip"			"425.0"
+			}	
+	    }
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"		"Hero_Terrorblade.ConjureImage"
+				"Target"			"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"SpellLibrary/night_stalker_shadowstalker.lua"
+				"Function"			"ConjureImage"
+				"Target"			"POINT"
 			}
 		}
 	}
