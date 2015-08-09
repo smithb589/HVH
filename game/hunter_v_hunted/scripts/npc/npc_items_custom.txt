@@ -223,6 +223,11 @@
 		{
 			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
 			"particle"		"particles/units/heroes/hero_juggernaut/juggernaut_healing_ward.vpcf"
+			"particle"		"particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_eruption.vpcf"
+			"particle"		"particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_variation01.vpcf"
+			"particle"		"particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_variation02.vpcf"
+			"particle"		"particles/units/heroes/hero_juggernaut/portrait_healingward_flame.vpcf"
+			"particle"		"particles/units/heroes/hero_juggernaut/juggernaut_ward_heal.vpcf"
 			"model"			"models/heroes/juggernaut/jugg_healing_ward.vmdl"
 		}
 		"OnSpellStart"
