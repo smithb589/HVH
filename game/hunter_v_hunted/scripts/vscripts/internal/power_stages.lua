@@ -63,7 +63,7 @@ function HVHPowerStages:CheckPowerStages(team)
 	local currentStage = keys["currentStage"]
 	local currentLives = keys["currentLives"]
 
-	print(string.format("Team %s -- Stage %s, Lives Remaining: %s", team, currentStage, currentLives))
+	--print(string.format("Team %s -- Stage %s, Lives Remaining: %s", team, currentStage, currentLives))
 
 	if currentLives == thresholds[currentStage+1] then
 		self:UpgradePowerStage(team)
