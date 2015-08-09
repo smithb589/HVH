@@ -42,6 +42,7 @@
 				<Label id="PlayingNSText02" class="PlayingNSText" html="true" text="#game_info_playingNS_description02" />
 				<Label id="PlayingNSText03" class="PlayingNSText" html="true" text="#game_info_playingNS_description03" />
 				<Label id="PlayingNSText04" class="PlayingNSText" html="true" text="#game_info_playingNS_description04" />
+				<Label id="PlayingNSText05" class="PlayingNSText" html="true" text="#game_info_playingNS_description05" />
 			</Panel>
 		</Panel>
 
