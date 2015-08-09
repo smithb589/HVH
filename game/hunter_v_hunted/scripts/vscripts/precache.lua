@@ -89,7 +89,13 @@ PRECACHE_ITEMS = {
 
 -- TODO: optimize these by finding the correct particles
 PRECACHE_UNITS = {
-	--[["npc_dota_hero_juggernaut",
+	--[[
+	"npc_dota_hero_sniper",
+	"npc_dota_hero_night_stalker",
+	"npc_dota_hero_shredder",
+	"npc_dota_hero_disruptor",
+	"npc_dota_hero_centaur",
+	"npc_dota_hero_juggernaut",
 	"npc_dota_hero_winter_wyvern",
 	"npc_dota_hero_shadow_demon",
 	"npc_dota_hero_disruptor",
@@ -112,11 +118,7 @@ PRECACHE_UNITS = {
 	"npc_dota_hero_disruptor",
 	"npc_dota_hero_tidehunter",]]
 	"npc_dota_good_guy_dog"
-	--"npc_dota_hero_sniper",
-	--"npc_dota_hero_night_stalker",
-	--"npc_dota_hero_shredder",
-	--"npc_dota_hero_disruptor",
-	--"npc_dota_hero_centaur"
+
 }
 
 PRECACHE_MODELS = { 
@@ -152,20 +154,20 @@ PRECACHE_PARTICLE_FOLDERS = {
 }
 
 PRECACHE_PARTICLES = {
+	--"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion_flash_b.vpcf",
+	--"particles/units/heroes/hero_slardar/slardar_sprint.vpcf"
 	"particles/units/heroes/hero_shredder/shredder_timberchain.vpcf",
 	"particles/units/heroes/hero_shredder/shredder_timber_chain_trail.vpcf",
 	"particles/units/heroes/hero_shredder/shredder_timber_chain_tree.vpcf",
 	"particles/units/heroes/hero_meepo/meepo_earthbind_projectile_fx.vpcf",
 	"particles/units/heroes/hero_meepo/meepo_earthbind.vpcf",
 	"particles/newplayer_fx/npx_sleeping.vpcf",
-	"particles/good_guy_dog_treat.vpcf",
-	"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion_flash_b.vpcf",
-	"particles/units/heroes/hero_slardar/slardar_sprint.vpcf"
+	"particles/good_guy_dog_treat.vpcf"
 }
 
 PRECACHE_SOUNDFILES = {
+	--"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts",
+	--"soundevents/game_sounds_heroes/game_sounds_pudge.vsndevts",
 	"soundevents/game_sounds_heroes/game_sounds_shredder.vsndevts",
 	"soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts"
-	--"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts",
-	--"soundevents/game_sounds_heroes/game_sounds_pudge.vsndevts"
 }
