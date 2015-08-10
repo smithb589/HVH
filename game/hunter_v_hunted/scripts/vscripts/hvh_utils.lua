@@ -45,6 +45,14 @@ function HVHShuffle(array)
   return array
 end
 
+function EntIndexToHScriptNillable(entIndex)
+  local hScript = nil
+  if entIndex then
+    hScript = EntIndexToHScript(entIndex)
+  end
+  return hScript
+end
+
 function HVHAssert(value, message)
   if not value then
     print(message)

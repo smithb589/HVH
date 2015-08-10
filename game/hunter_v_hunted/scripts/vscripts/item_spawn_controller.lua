@@ -114,32 +114,42 @@ function HVHItemSpawnController:_UpdateDayNightState()
   self._wasDayTimeLastThink = GameRules:IsDaytime()
 end
 
--- Handles a hero picking up a chest and either granting an item or rejecting the pickup
+-- Handles a unit picking up a chest and either granting an item or rejecting the pickup
 function HVHItemSpawnController:_OnItemPickedUp(keys)
   local itemName = keys.itemname
   -- Note that for a chest this is the chest item that is INSIDE the world chest entity
   local pickedUpItem = EntIndexToHScript(keys.ItemEntityIndex)
-  local hero = EntIndexToHScript(keys.HeroEntityIndex)
+  local unit = EntIndexToHScriptNillable(keys.HeroEntityIndex)
 
-  if self:_CanGrantGoodGuyItem(itemName, hero) then
-    self:_GrantItem(self._goodGuyChestDataModel:GetRandomItemName(), hero, pickedUpItem)
-  elseif self:_CanGrantBadGuyItem(itemName, hero) then
-    self:_GrantItem(self._badGuyChestDataModel:GetRandomItemName(), hero, pickedUpItem)
-  elseif self:_IsChestItem(itemName) then
-    self:_RejectPickup(hero, itemName, pickedUpItem)
-  end
+  if unit then
+	  if self:_CanGrantGoodGuyItem(itemName, unit) then
+	    self:_GrantItem(self._goodGuyChestDataModel:GetRandomItemName(), unit, pickedUpItem)
+	  elseif self:_CanGrantBadGuyItem(itemName, unit) then
+	    self:_GrantItem(self._badGuyChestDataModel:GetRandomItemName(), unit, pickedUpItem)
+	  elseif self:_IsChestItem(itemName) then
+	    self:_RejectPickup(unit, itemName, pickedUpItem)
+	  end
+	else
+		self:_RejectPickup(pickedUpItem:GetAbsOrigin(), itemName, pickedUpItem)
+	end
 end
 
 function HVHItemSpawnController:_IsChestItem(itemName)
   return self._goodGuyChestDataModel:IsChestItemName(itemName) or self._badGuyChestDataModel:IsChestItemName(itemName)
 end
 
-function HVHItemSpawnController:_CanGrantGoodGuyItem(itemName, hero)
-  return self._goodGuyChestDataModel:IsChestItemName(itemName) and (hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS)
+function HVHItemSpawnController:_CanGrantGoodGuyItem(itemName, unit)
+	local isGoodGuyChest = self._goodGuyChestDataModel:IsChestItemName(itemName)
+	local isOnGoodGuyTeam = unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS
+	local hasInventory = unit:HasInventory()
+  return hasInventory and isGoodGuyChest and isOnGoodGuyTeam
 end
 
-function HVHItemSpawnController:_CanGrantBadGuyItem(itemName, hero)
-  return self._badGuyChestDataModel:IsChestItemName(itemName) and (hero:GetTeamNumber() == DOTA_TEAM_BADGUYS)
+function HVHItemSpawnController:_CanGrantBadGuyItem(itemName, unit)
+	local isBadGuyChest = self._badGuyChestDataModel:IsChestItemName(itemName)
+	local isOnBadGuyTeam = unit:GetTeamNumber() == DOTA_TEAM_BADGUYS
+	local hasInventory = unit:HasInventory()
+  return hasInventory and isBadGuyChest and isOnBadGuyTeam
 end
 
 -- Looks up a world chest from the spawned chests using the entity index
@@ -157,14 +167,14 @@ function HVHItemSpawnController:_GetWorldChest(containedItem)
 end
 
 -- Grants an item from the available items to the hero.
-function HVHItemSpawnController:_GrantItem(itemName, hero, chestItem)
-  if itemName and hero then
-    hero:AddItemByName(itemName)
+function HVHItemSpawnController:_GrantItem(itemName, unit, chestItem)
+  if itemName and unit then
+    unit:AddItemByName(itemName)
     Timers:CreateTimer(SINGLE_FRAME_TIME, function()
-      self:_DropStashItems(hero)
+      self:_DropStashItems(unit)
     end)
   else
-    HVHDebugPrint(string.format("Could not grant item %s to hero %d.", itemName, hero:GetEntityIndex()))
+    HVHDebugPrint(string.format("Could not grant item %s to unit %d.", itemName, unit:GetEntityIndex()))
   end
 
   -- Note that the world chest here is likely not the same entity index that we have stored.
@@ -182,37 +192,44 @@ function HVHItemSpawnController:_CleanupWorldChestForContainedItem(containedItem
 end
 
 -- Prevents expending the chest by replacing it with another.
-function HVHItemSpawnController:_RejectPickup(hero, chestType, itemInChest)
+function HVHItemSpawnController:_RejectPickup(unitOrOriginalLocation, chestType, itemInChest)
   self:_CleanupWorldChestForContainedItem(itemInChest)
-  local nearestSpawnLocation = self:_FindNearestSpawnLocation(hero:GetAbsOrigin())
+  local nearestSpawnLocation = unitOrOriginalLocation
+  if unitOrOriginalLocation.GetAbsOrigin then
+		nearestSpawnLocation = self:_FindNearestSpawnLocation(unitOrOriginalLocation:GetAbsOrigin())
+	else
+		nearestSpawnLocation = self:_FindNearestSpawnLocation(unitOrOriginalLocation)
+	end
   local replacedChest = HVHWorldChest()
   replacedChest:Spawn(nearestSpawnLocation, chestType)
   self:_AddSpawnedItem(replacedChest)
-  self:_SendRejectedPickupEvent(PlayerResource:GetPlayer(hero:GetPlayerID()))
+  if unitOrOriginalLocation.GetPlayerID then
+  	self:_SendRejectedPickupEvent(PlayerResource:GetPlayer(unitOrOriginalLocation:GetPlayerID()))
+  end
 end
 
 function HVHItemSpawnController:_SendRejectedPickupEvent(player)
-  local event = HVHRejectedChestPickupEvent()
+  local event = HVHRejectedChestPickupEvent(HVHRejectedChestPickupEvent.RejectReason_WrongTeam)
   Notifications:Top(player, event:ConvertToPayload())
 end
 
--- Forces items from a hero's stash to be dropped at the hero's location.
-function HVHItemSpawnController:_DropStashItems(hero)
-  local hasItemsInStash = hero:GetNumItemsInStash() > 0
+-- Forces items from a unit's stash to be dropped at the unit's location.
+function HVHItemSpawnController:_DropStashItems(unit)
+  local hasItemsInStash = unit:GetNumItemsInStash() > 0
   if hasItemsInStash then
     for stashSlot=DOTA_STASH_SLOT_1,DOTA_STASH_SLOT_6 do
-      local stashItem = hero:GetItemInSlot(stashSlot)
-      self:_DropItemFromStash(stashItem, hero)
+      local stashItem = unit:GetItemInSlot(stashSlot)
+      self:_DropItemFromStash(stashItem, unit)
     end
   end
 end
 
--- Drops an item from a hero's stash at the hero's current location.
-function HVHItemSpawnController:_DropItemFromStash(stashItem, hero)
-  if stashItem and hero then
+-- Drops an item from a unit's stash at the unit's current location.
+function HVHItemSpawnController:_DropItemFromStash(stashItem, unit)
+  if stashItem and unit then
     local itemName = stashItem:GetName()
-    hero:RemoveItem(stashItem)
-    HVHItemUtils:SpawnItem(itemName, hero:GetAbsOrigin())
+    unit:RemoveItem(stashItem)
+    HVHItemUtils:SpawnItem(itemName, unit:GetAbsOrigin())
   end
 end
 
