@@ -663,7 +663,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"					"ability_datadriven"
 		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"		"night_stalker_crippling_fear"
+		"AbilityTextureName"		"hvh_hysteria"
 		"MaxLevel"              	"3"
 		
 		// Unit Targeting
@@ -686,6 +686,7 @@
 		{
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts"
 			"particle"			"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
+			"particle"			"particles/units/heroes/hero_night_stalker/nightstalker_ulti_smoke.vpcf"
 		}
 			
 		// Special
@@ -721,10 +722,17 @@
 	
 		"OnSpellStart"
 		{
-			"FireSound"
+			"CreateThinker"
 			{
-				"EffectName"	"Hero_Nightstalker.Trickling_Fear"
-				"Target"		"CASTER"
+				"ModifierName"	"modifier_crippling_fear_thinker"
+				"Target" 		"POINT"
+			}
+
+			"FireEffect"
+			{
+				"EffectName"        "particles/units/heroes/hero_night_stalker/nightstalker_ulti_smoke.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"TargetPoint"       "POINT"
 			}
 	
 			"RunScript"
@@ -740,6 +748,32 @@
 	
 		"Modifiers"
 		{
+			"modifier_crippling_fear_thinker"
+			{
+				"IsHidden"			"1"
+				"Duration"			"1"
+
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_Nightstalker.Trickling_Fear"
+						"Target"		"TARGET"
+					}
+
+					"FireEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"        "particles/units/heroes/hero_night_stalker/nightstalker_ulti_smoke.vpcf"
+						"EffectAttachType"  "follow_origin"
+						//"ControlPoints"
+						//{
+						//	"01"				"%radius %delay %radius"
+						//}
+					}	
+				}			
+			}
+
 			"modifier_crippling_fear_day_aoe_datadriven"
 			{
 				"Duration"	"%duration_day"
@@ -820,7 +854,7 @@
 		{
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts"
 			"particle"			"particles/echolocation.vpcf"
-			//"particle"		"particles/units/heroes/hero_centaur/centaur_warstomp_shockwave.vpcf"
+			"particle"			"particles/echolocation_pushback.vpcf"
 		}
 		
 		// Casting
@@ -911,8 +945,6 @@
 				"Target"		"CASTER"
 			}
 	
-			// TODO: attach an effect to the pushback radius
-
 			// minor knockback to surrounding targets (after short delay)
 			// yo dawg: knockback can't knock back someone already being knocked back
 			// knockback also seems to destroy trees the unit encounters!
@@ -921,6 +953,14 @@
 				"Delay"		"0.15" // if delay is too short, then targets are knocked back before scream hits
 				"Action"
 				{
+					"FireEffect"
+					{
+						"EffectName"        "particles/echolocation_pushback.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"EffectRadius"		"%pushback_radius"
+						"Target"            "CASTER"
+					}
+					
 					"ActOnTargets"
 					{
 						"Target"

@@ -119,10 +119,11 @@
 
 	"mirana_leap"
 	{
-		"AbilityCooldown"				"12.0 10.0 8.0"
-		"AbilityDuration"				"0.0"
-		"AbilityManaCost"				"0"
-		"MaxLevel"						"3"
+		"AbilityTextureName"	"hvh_leap"	
+		"AbilityCooldown"		"12.0 10.0 8.0"
+		"AbilityDuration"		"0.0"
+		"AbilityManaCost"		"0"
+		"MaxLevel"				"3"
 		"AbilitySpecial"
 		{
 			"01"
