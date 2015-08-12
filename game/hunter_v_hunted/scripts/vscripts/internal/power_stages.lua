@@ -2,8 +2,14 @@ if HVHPowerStages == nil then
 	HVHPowerStages = class({})
 end
 
-SNIPERS_COLOR = "#FCAF3D"
-NS_COLOR 	  = "#99CCFF"
+SNIPERS_COLOR_HEX = "#FCAF3D"
+SNIPERS_LANDSCAPE_PATH = "file://{images}/custom_game/notifications/snipers_landscape.psd"
+
+NS_COLOR_HEX 	  = "#99CCFF"
+NS_LANDSCAPE_PATH = "file://{images}/custom_game/notifications/nightstalker_landscape.psd"
+
+
+
 STR_SNIPERS_UPGRADE = "Reinforcements have arrived!"
 STR_SNIPERS_EARTHBIND   = "MEEPO'S NETS"
 STR_SNIPERS_TIMBERCHAIN = "TIMBER CHAINS"
@@ -11,7 +17,7 @@ STR_SNIPERS_BONUSHOUNDS = "THE PACK GROWS"
 STR_NS_UPGRADE 		 = "The Night Stalker has evolved!"
 STR_NS_LEAP          = "DREAD LEAP"
 STR_NS_ECHOLOCATION  = "ECHOLOCATION"
-STR_NS_CRIPPLE_AOE   = "PARALYZING FEAR"
+STR_NS_CRIPPLE_AOE   = "CRIPPLING HYSTERIA (AOE)"
 
 function HVHPowerStages:Setup()
 	ListenToGameEvent("entity_killed", Dynamic_Wrap(self, "OnEntityKilled"), self)
@@ -94,7 +100,7 @@ end
 
 -- improves an ability to max level
 -- removes old version of ability if replaced_ability_name is used
-function HVHPowerStages:MaxOutAbility(hero_name, ability_name, replaced_ability_name)
+function HVHPowerStages:MaxOutAbilityForAll(hero_name, ability_name, replaced_ability_name)
     local heroList = HeroList:GetAllHeroes()
     for _,hero in pairs(heroList) do
     	if hero:GetClassname() == hero_name then
@@ -111,39 +117,63 @@ function HVHPowerStages:MaxOutAbility(hero_name, ability_name, replaced_ability_
 end
 
 function HVHPowerStages:GrantSniperEarthbind()
-	self:MaxOutAbility("npc_dota_hero_sniper", "meepo_earthbind", nil)
-	self:Notify(STR_SNIPERS_UPGRADE, STR_SNIPERS_EARTHBIND, SNIPERS_COLOR)
+	self:MaxOutAbilityForAll("npc_dota_hero_sniper", "meepo_earthbind", nil)
+	self:Notify(STR_SNIPERS_UPGRADE, STR_SNIPERS_EARTHBIND, "meepo_earthbind", DOTA_TEAM_GOODGUYS)
 end
 
 function HVHPowerStages:GrantSniperTimberchain()
-	self:MaxOutAbility("npc_dota_hero_sniper", "shredder_timber_chain", nil)
-	self:Notify(STR_SNIPERS_UPGRADE, STR_SNIPERS_TIMBERCHAIN, SNIPERS_COLOR)
+	self:MaxOutAbilityForAll("npc_dota_hero_sniper", "shredder_timber_chain", nil)
+	self:Notify(STR_SNIPERS_UPGRADE, STR_SNIPERS_TIMBERCHAIN, "shredder_timber_chain", DOTA_TEAM_GOODGUYS)
 end
 
 function HVHPowerStages:GrantSniperBonusHounds()
 	HVHGameMode:SpawnDog(true)
 	HVHGameMode:SpawnDog(true)
-	self:Notify(STR_SNIPERS_UPGRADE, STR_SNIPERS_BONUSHOUNDS, SNIPERS_COLOR)
+	self:Notify(STR_SNIPERS_UPGRADE, STR_SNIPERS_BONUSHOUNDS, "lycan_summon_wolves", DOTA_TEAM_GOODGUYS)
 end
 
 function HVHPowerStages:GrantNSLeap()
-	self:MaxOutAbility("npc_dota_hero_night_stalker", "mirana_leap", nil)
-	self:Notify(STR_NS_UPGRADE, STR_NS_LEAP, NS_COLOR)
+	self:MaxOutAbilityForAll("npc_dota_hero_night_stalker", "mirana_leap", nil)
+	self:Notify(STR_NS_UPGRADE, STR_NS_LEAP, "mirana_leap", DOTA_TEAM_BADGUYS)
 end
 
 function HVHPowerStages:GrantNSEcholocation()
-	self:MaxOutAbility("npc_dota_hero_night_stalker", "night_stalker_echolocation_hvh", nil)
-	self:Notify(STR_NS_UPGRADE, STR_NS_ECHOLOCATION, NS_COLOR)
+	self:MaxOutAbilityForAll("npc_dota_hero_night_stalker", "night_stalker_echolocation_hvh", nil)
+	self:Notify(STR_NS_UPGRADE, STR_NS_ECHOLOCATION, "night_stalker_echolocation_hvh", DOTA_TEAM_BADGUYS)
 end
 
 function HVHPowerStages:GrantNSCripplingFearAOE()
-	self:MaxOutAbility("npc_dota_hero_night_stalker", "night_stalker_crippling_fear_aoe_hvh", "night_stalker_crippling_fear_hvh")
-	self:Notify(STR_NS_UPGRADE, STR_NS_CRIPPLE_AOE, NS_COLOR)
+	self:MaxOutAbilityForAll("npc_dota_hero_night_stalker", "night_stalker_crippling_fear_aoe_hvh", "night_stalker_crippling_fear_hvh")
+	self:Notify(STR_NS_UPGRADE, STR_NS_CRIPPLE_AOE, "night_stalker_crippling_fear_aoe_hvh", DOTA_TEAM_BADGUYS)
 end
 
-function HVHPowerStages:Notify(heading, subtext, teamcolor)
-	Notifications:BottomToAll({text=heading, duration=5.0, style={["font-size"]="36px"}})
-	Notifications:BottomToAll({text=subtext, duration=5.0, style={color=teamcolor, ["font-size"]="60px"}})
+function HVHPowerStages:Notify(heading, subtext, ability_name, team)
+	local teamColor = nil
+	local imagePath = nil
+	if team == DOTA_TEAM_GOODGUYS then
+		teamColor = SNIPERS_COLOR_HEX
+		imagePath = SNIPERS_LANDSCAPE_PATH
+	else
+		teamColor = NS_COLOR_HEX
+		imagePath = NS_LANDSCAPE_PATH
+	end
+
+	local dur = 6.5
+	Notifications:TopToAll({text=heading, duration=dur, style={color=teamColor, ["font-size"]="28px"}})
+	Notifications:TopToAll({text=subtext, duration=dur, style={color=teamColor, ["font-size"]="48px"}})
+	Notifications:BottomToAll({image=imagePath, duration=dur})
+	Notifications:BottomToAll({text="&nbsp;&nbsp;&nbsp;gained&nbsp;&nbsp;&nbsp;", continue=true, style={color=teamColor, ["font-size"]="48px"}})
+
+	-- notifications.lua doesn't seem to like custom ability images and won't compile images into vtex_c
+	-- search "PrecacheHacks" under the ../content/dota_addons/hunter_v_hunted/panorama/ folder to add more 
+	if ability_name == "night_stalker_echolocation_hvh" or
+	   ability_name == "night_stalker_crippling_fear_aoe_hvh" or
+	   ability_name == "mirana_leap" then
+		local abilityImagePath = "file://{images}/custom_game/notifications/" .. ability_name .. ".png"
+		Notifications:BottomToAll({image=abilityImagePath, continue=true})
+	else
+		Notifications:BottomToAll({ability=ability_name, continue=true})
+	end
 end
 
 function HVHPowerStages:IncrementPowerStageNumber(team)
