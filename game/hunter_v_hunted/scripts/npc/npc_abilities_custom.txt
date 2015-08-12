@@ -519,7 +519,7 @@
 	    }
 	}
 
-	// Rewrite of the Nightstalker Crippling Fear ability // Author: Pizzalol // Date: 11.01.2015.
+	// Crippling Horror (as Crippling Fear +Mute, +Blindness)
 	"night_stalker_crippling_fear_hvh"
 	{
 		// General
@@ -566,13 +566,18 @@
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"miss_rate_day"				"10 10 10 10"
+				"var_type"				"FIELD_INTEGER"
+				"miss_rate_day"			"10 10 10 10"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"miss_rate_night"			"50"
+				"var_type"				"FIELD_INTEGER"
+				"miss_rate_night"		"50"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration_dog"			"3.0 4.0 5.0"
 			}
 		}
 	
@@ -640,7 +645,7 @@
 
 			"modifier_crippling_fear_dog_datadriven"
 			{
-				"Duration"	"%duration_night"
+				"Duration"	"%duration_dog"
 				"IsDebuff"	"1"
 	
 				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
@@ -648,15 +653,13 @@
 	
 				"States"
 				{
-					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED" // hvh
-					"MODIFIER_STATE_BLIND"		"MODIFIER_STATE_VALUE_ENABLED" // hvh experimental
 					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}			
 		}
 	}
 
+	// Crippling Hysteria (+AOE)
 	"night_stalker_crippling_fear_aoe_hvh"
 	{
 		// General
@@ -705,15 +708,20 @@
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"miss_rate_day"				"10 10 10 10"
+				"var_type"				"FIELD_INTEGER"
+				"miss_rate_day"			"10 10 10 10"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"miss_rate_night"			"50"
+				"var_type"				"FIELD_INTEGER"
+				"miss_rate_night"		"50"
 			}
 			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration_dog"			"3.0 4.0 5.0"
+			}
+			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"250"
@@ -818,7 +826,7 @@
 
 			"modifier_crippling_fear_dog_aoe_datadriven"
 			{
-				"Duration"	"%duration_night"
+				"Duration"	"%duration_dog"
 				"IsDebuff"	"1"
 	
 				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
@@ -826,16 +834,12 @@
 	
 				"States"
 				{
-					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED" // hvh
-					"MODIFIER_STATE_BLIND"		"MODIFIER_STATE_VALUE_ENABLED" // hvh experimental
 					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}			
 		}
 	}
 
-	// Rewrite of the Queen of Pain Sonic Wave ability // Author: Pizzalol // Date: 19.12.2014.
 	"night_stalker_echolocation_hvh"
 	{
 		// General
