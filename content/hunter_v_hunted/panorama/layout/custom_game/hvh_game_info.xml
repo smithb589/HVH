@@ -57,6 +57,14 @@
 			<Label id="TipText07" class="TipText" html="true" text="#game_info_tips_tip07" />
 			<Label id="TipText08" class="TipText" html="true" text="#game_info_tips_tip08" />
 		</Panel>
+
+		<Panel id="PrecacheHacksRow" class="InfoRow">
+			<Image class="PrecacheHacks" src="file://{images}/custom_game/notifications/nightstalker_landscape.psd" />
+			<Image class="PrecacheHacks" src="file://{images}/custom_game/notifications/snipers_landscape.psd" />
+			<Image class="PrecacheHacks" src="file://{images}/custom_game/notifications/night_stalker_echolocation_hvh.png" />
+			<Image class="PrecacheHacks" src="file://{images}/custom_game/notifications/night_stalker_crippling_fear_aoe_hvh.png" />
+			<Image class="PrecacheHacks" src="file://{images}/custom_game/notifications/mirana_leap.png" />
+		</Panel>
 	</Panel>
 </root>
 
