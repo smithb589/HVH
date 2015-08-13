@@ -268,7 +268,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"900"
 		"AbilityCastPoint"				"0.3"
-		"AbilityCooldown"				"60 50 40 30"
+		"AbilityCooldown"				"90 75 60 45"
 		"AbilityManaCost"				"0"
 
 		"Precache"
