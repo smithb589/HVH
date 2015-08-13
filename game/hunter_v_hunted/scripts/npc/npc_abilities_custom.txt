@@ -274,6 +274,8 @@
 		"Precache"
 		{
 			"particle"			"particles/good_guy_dog_treat.vpcf"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_chaos_knight.vsndevts"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts"
 		}
 
 		// Special
@@ -295,6 +297,11 @@
 				"var_type"			"FIELD_INTEGER"
 				"feed_duration"		"8"
 			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"heal_amount"		"150"
+			}	
 		}
 
 		"OnSpellStart"
@@ -306,6 +313,12 @@
 			    "MoveSpeed"   	"%treat_fly_speed"
 			    "StartPosition" "attach_origin"
 			}
+
+			"FireSound"
+			{
+				"EffectName"	"Hero_ChaosKnight.idle_throw"
+				"Target" 		"CASTER"
+			}
 		}
 
 		"OnProjectileHitUnit"
@@ -316,6 +329,18 @@
 				"ScriptFile"	"scripts/vscripts/SpellLibrary/sniper_feed_dog.lua"
 				"Function"		"Feed"
 				"feedDuration"	"%feed_duration"
+			}
+
+			"Heal"
+			{
+				"Target"	"TARGET"
+				"HealAmount" "%heal_amount"
+			}
+
+			"FireSound"
+			{
+				"EffectName"	"Lycan_Wolf.Attack"
+				"Target" 		"TARGET"
 			}
 		}
 	}
@@ -774,10 +799,6 @@
 						"Target"			"TARGET"
 						"EffectName"        "particles/units/heroes/hero_night_stalker/nightstalker_ulti_smoke.vpcf"
 						"EffectAttachType"  "follow_origin"
-						//"ControlPoints"
-						//{
-						//	"01"				"%radius %delay %radius"
-						//}
 					}	
 				}			
 			}
