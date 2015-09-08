@@ -1,6 +1,6 @@
 "AddonInfo"
 {
-	maps			"hunter_v_hunted hunter_v_hunted2"
+	maps			"hunter_v_hunted"
 	"IsTemplate"	"0"
 	"IsPlayable"	"1"
 }
