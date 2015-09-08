@@ -1,0 +1,15 @@
+1.0.1
+Shrapnel 3 max charges to 1 max charge per reinforcement level, up to 3 max
+Shrapnel slow 30% to 25%
+Crippling fear day miss rate 10% to 25%
+Crippling fear hound duration 5 to 8 sec
+Echolocation pure to magical dmg
+Echolocation dmg 285 to 380 (same after magic resist)
+Other ability max levels reduced to 1 (no gameplay effect)
+Tutorial text during first 30 secs
+Tooltip tweaks
+File reorganization (slimmer download)
+
+1.0.0
+New release
+Lobby hosting fixes
