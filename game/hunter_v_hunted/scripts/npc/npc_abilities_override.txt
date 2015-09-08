@@ -8,8 +8,9 @@
 
 	"meepo_earthbind"
 	{
-		"AbilityCooldown"				"24	21 18 15"
+		"AbilityCooldown"				"15" // "24	21 18 15"
 		"AbilityManaCost"				"0"
+	    "MaxLevel"              		"1"
 
 		"AbilitySpecial"
 		{
@@ -31,7 +32,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"tooltip_range"			"500 750 1000 1250"
+				"tooltip_range"			"1250" // "500 750 1000 1250"
 			}
 		}
 	}
@@ -40,11 +41,11 @@
 
 	"shredder_timber_chain"
 	{
-		"MaxLevel"		"3" // 4
+		"MaxLevel"		"1" // 4
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCastPoint"				"0.3 0.3 0.3"
-		"AbilityCastRange"				"1000 1200 1400"
-		"AbilityCooldown"				"24.0 20.0 16.0" // 4.0
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"1400" //"1000 1200 1400"
+		"AbilityCooldown"				"16.0" // 4.0
 		"AbilityManaCost"				"0"
 
 		"AbilitySpecial"
@@ -52,22 +53,22 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"chain_radius"		"90 90 90"
+				"chain_radius"		"90"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"range"				"1050 1250 1450"
+				"range"				"1450" //"1050 1250 1450"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_radius"		"225 225 225"
+				"damage_radius"		"225"
 			}
 			"04"
 			{	
 				"var_type"			"FIELD_INTEGER"
-				"speed"				"2000 2400 2800"
+				"speed"				"2800" //"2000 2400 2800"
 			}
 			"05"
 			{	
@@ -81,30 +82,30 @@
 	"night_stalker_void"
 	{
 		"AbilityManaCost"				"0"
-		"AbilityDamage"					"160 255 335" 
-		"MaxLevel"						"3"
+		"AbilityDamage"					"335" // "160 255 335" 
+		"MaxLevel"						"1"
 	}
 
 	"night_stalker_crippling_fear"
 	{
 		"AbilityManaCost"				"0"
-		"MaxLevel"						"3"
+		"MaxLevel"						"1"
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration_day"			"3.0 3.0 3.0"
+				"duration_day"			"3.0"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration_night"		"6.0 7.0 8.0"
+				"duration_night"		"8.0" //"6.0 7.0 8.0"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"miss_rate_day"				"10 10 10"
+				"miss_rate_day"				"10"
 			}
 			"04"
 			{
@@ -120,16 +121,16 @@
 	"mirana_leap"
 	{
 		"AbilityTextureName"	"hvh_leap"	
-		"AbilityCooldown"		"12.0 10.0 8.0"
+		"AbilityCooldown"		"8.0" //"12.0 10.0 8.0"
 		"AbilityDuration"		"0.0"
 		"AbilityManaCost"		"0"
-		"MaxLevel"				"3"
+		"MaxLevel"				"1"
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"leap_distance"			"700 800 900"
+				"leap_distance"			"900" //"700 800 900"
 			}
 			"02"
 			{

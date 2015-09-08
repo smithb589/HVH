@@ -14,11 +14,14 @@
 		"AbilityTextureName"			"sniper_shrapnel"
 		"AOERadius"						"%radius"
 		"AbilityProcsMagicStick" "1"	
-		
+	    "MaxLevel"               "3"
+	    "RequiredLevel"          "1"
+	    "LevelsBetweenUpgrades"  "0"
+
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1800"
-		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		"AbilityCastPoint"				"0.3"
 	
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
@@ -36,7 +39,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow_movement_speed"	"-15 -20 -25 -30" // "-20 -30 -35 -40"
+				"slow_movement_speed"	"-25" // "-20 -30 -35 -40"
 			}
 			"02"
 			{
@@ -72,7 +75,7 @@
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"maximum_charges"		"3"
+				"maximum_charges"		"1 2 3"
 			}
 			"09"
 			{
@@ -96,7 +99,7 @@
 			"RunScript"
 			{
 				"ScriptFile"			"SpellLibrary/sniper_shrapnel.lua"
-				"Function"				"shrapnel_start_charge"
+				"Function"				"shrapnel_on_upgrade"
 			}
 		}
 		
@@ -263,12 +266,13 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC"
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"			"hvh_feed_dog"
+	    "MaxLevel"               "1"
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"900"
 		"AbilityCastPoint"				"0.3"
-		"AbilityCooldown"				"90 75 60 45"
+		"AbilityCooldown"				"45" //"90 75 60 45"
 		"AbilityManaCost"				"0"
 
 		"Precache"
@@ -354,9 +358,7 @@
 	    "AbilityTextureName"     "night_stalker_hunter_in_the_night"
 
 	    //"AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "3"
-	    "RequiredLevel"          "1"
-	    "LevelsBetweenUpgrades"  "0"
+	    "MaxLevel"               "1"
 
 		"precache"
 		{
@@ -370,12 +372,12 @@
 	    	"01"
 	    	{
 	    		"var_type"							"FIELD_INTEGER"
-	    		"move_speed_bonus_percentage"		"25 30 35"
+	    		"move_speed_bonus_percentage"		"35" //"25 30 35"
 	    	}
 	    	"02"
 	    	{
 	    		"var_type"							"FIELD_INTEGER"
-	    		"attack_speed_bonus"				"60 75 90"
+	    		"attack_speed_bonus"				"90" //"60 75 90"
 	    	}
 	    	"03"
 	    	{
@@ -385,7 +387,7 @@
 	    	"04"
 	    	{
 	    		"var_type"							"FIELD_FLOAT"
-	    		"invis_regen_pct_per_sec"			"0.75 1.00 1.25"
+	    		"invis_regen_pct_per_sec"			"1.25" //"0.75 1.00 1.25"
 	    	}
 	    	"05"
 	    	{
@@ -563,8 +565,8 @@
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"500"
-		"AbilityCastPoint"				"0.3 0.3 0.3"
-		"AbilityCooldown"				"12 12 12"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"12"
 		"AbilityManaCost"				"0" //"90 90 90 90"
 	
 		// Precache
@@ -582,27 +584,27 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration_day"			"3.0 3.0 3.0"
+				"duration_day"			"3.0"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration_night"		"6.0 7.0 8.0"
+				"duration_night"		"8.0" //"6.0 7.0 8.0"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"miss_rate_day"			"10 10 10 10"
+				"miss_rate_day"			"25"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"miss_rate_night"		"50"
+				"miss_rate_night"		"80"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration_dog"			"3.0 4.0 5.0"
+				"duration_dog"			"8.0" //"3.0 4.0 5.0"
 			}
 		}
 	
@@ -701,8 +703,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AOERadius"						"%radius"
 		"AbilityCastRange"				"500"
-		"AbilityCastPoint"				"0.3 0.3 0.3"
-		"AbilityCooldown"				"12 12 12"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"12"
 		"AbilityManaCost"				"0" //"90 90 90 90"
 	
 		// Precache
@@ -721,27 +723,27 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration_day"			"3.0 3.0 3.0"
+				"duration_day"			"3.0"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration_night"		"6.0 7.0 8.0"
+				"duration_night"		"8.0" //"6.0 7.0 8.0"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"miss_rate_day"			"10 10 10 10"
+				"miss_rate_day"			"25"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"miss_rate_night"		"50"
+				"miss_rate_night"		"80"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration_dog"			"3.0 4.0 5.0"
+				"duration_dog"			"8.0" //"3.0 4.0 5.0"
 			}
 			"06"
 			{
@@ -863,10 +865,11 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT"		   
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"hvh_echolocation"
-	
+	    "MaxLevel"               "1"
+
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -879,7 +882,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"700"
-		"AbilityCastPoint"				"0.452 0.452 0.452"
+		"AbilityCastPoint"				"0.452"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -916,7 +919,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"scream_damage"				"115 200 285"
+				"scream_damage"				"380" // "285" //"115 200 285"
 			}
 			"06"
 			{
@@ -1204,7 +1207,6 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityTextureName"			"hvh_mans_best_friend" // TODO
-		
 		"MaxLevel"               "1"
 
 		// Special

@@ -3,15 +3,28 @@
 	09.01.2015 - Remove ReleaseParticleIndex( .. )
 ]]
 
+
+function shrapnel_on_upgrade( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local modifierName = "modifier_shrapnel_stack_counter_datadriven"
+
+	-- Only start charging at level 1
+	if ability:GetLevel() == 1 then
+		shrapnel_start_charge(keys)
+	else
+		caster.shrapnel_charges = caster.shrapnel_charges + 1
+		caster:SetModifierStackCount( modifierName, caster, caster.shrapnel_charges)
+		caster.maximum_charges = ability:GetLevelSpecialValueFor( "maximum_charges", ( ability:GetLevel() - 1 ) )
+	end
+end
+
 --[[
 	Author: kritth
 	Date: 7.1.2015.
 	Init: Create a timer to start charging charges
 ]]
 function shrapnel_start_charge( keys )
-	-- Only start charging at level 1
-	if keys.ability:GetLevel() ~= 1 then return end
-
 	-- Variables
 	local caster = keys.caster
 	local ability = keys.ability
@@ -22,20 +35,21 @@ function shrapnel_start_charge( keys )
 	-- Initialize stack
 	caster:SetModifierStackCount( modifierName, caster, 0 )
 	caster.shrapnel_charges = maximum_charges
+	caster.maximum_charges = maximum_charges
 	caster.start_charge = false
 	caster.shrapnel_cooldown = 0.0
 	
 	ability:ApplyDataDrivenModifier( caster, caster, modifierName, {} )
-	caster:SetModifierStackCount( modifierName, caster, maximum_charges )
+	caster:SetModifierStackCount( modifierName, caster, caster.maximum_charges )
 	
 	-- create timer to restore stack
 	Timers:CreateTimer( function()
 			-- Restore charge
-			if caster.start_charge and caster.shrapnel_charges < maximum_charges then
+			if caster.start_charge and caster.shrapnel_charges < caster.maximum_charges then
 				-- Calculate stacks
 				local next_charge = caster.shrapnel_charges + 1
 				caster:RemoveModifierByName( modifierName )
-				if next_charge ~= 3 then
+				if next_charge ~= caster.maximum_charges then
 					ability:ApplyDataDrivenModifier( caster, caster, modifierName, { Duration = charge_replenish_time } )
 					shrapnel_start_cooldown( caster, charge_replenish_time )
 				else
@@ -49,7 +63,7 @@ function shrapnel_start_charge( keys )
 			end
 			
 			-- Check if max is reached then check every 0.5 seconds if the charge is used
-			if caster.shrapnel_charges ~= maximum_charges then
+			if caster.shrapnel_charges ~= caster.maximum_charges then
 				caster.start_charge = true
 				return charge_replenish_time
 			else

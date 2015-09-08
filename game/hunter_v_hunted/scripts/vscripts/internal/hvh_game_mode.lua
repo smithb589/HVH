@@ -187,11 +187,16 @@ function HVHGameMode:_SetupPassiveXP()
   end)
 end
 
-function HVHGameMode:MaxAbility(hero, ability_name)
+function HVHGameMode:LevelupAbility(hero, ability_name, maxout)
   if hero:HasAbility(ability_name) then
     local ability = hero:FindAbilityByName(ability_name)
-    for level=1, ability:GetMaxLevel() do
-      ability:UpgradeAbility(false) -- SetLevel() ignores OnUpgrade events
+    
+    if maxout then
+    	for level=1, ability:GetMaxLevel() do
+      		ability:UpgradeAbility(false) -- SetLevel() ignores OnUpgrade events
+    	end
+    else
+    	ability:UpgradeAbility(false)
     end
   end
 end
@@ -226,12 +231,12 @@ function HVHGameMode:SetupHero(hero)
     end
   -- max out specific abilities
   else
-    self:MaxAbility(hero, "sniper_shrapnel_hvh")
-    self:MaxAbility(hero, "sniper_feed_dog")
-    self:MaxAbility(hero, "night_stalker_void")
-    self:MaxAbility(hero, "night_stalker_crippling_fear_hvh")
-    self:MaxAbility(hero, "night_stalker_hunter_in_the_night")
-    self:MaxAbility(hero, "night_stalker_hunter_in_the_night_hvh")
+  	self:LevelupAbility(hero, "sniper_shrapnel_hvh", false)
+    self:LevelupAbility(hero, "sniper_feed_dog", true)
+    self:LevelupAbility(hero, "night_stalker_void", true)
+    self:LevelupAbility(hero, "night_stalker_crippling_fear_hvh", false)
+    self:LevelupAbility(hero, "night_stalker_hunter_in_the_night", true)
+    self:LevelupAbility(hero, "night_stalker_hunter_in_the_night_hvh", true)
   end
 
   hero:SetAbilityPoints(0)
@@ -256,6 +261,7 @@ function HVHGameMode:SetupHero(hero)
     Timers:CreateTimer(3, function()
       PlayerResource:SetCameraTarget(playerID, nil)
     end)
+    HVHTutorial:Start(playerID)
   end
 
   --print("Succesful setup of new hero")

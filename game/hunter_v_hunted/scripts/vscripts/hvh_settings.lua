@@ -37,6 +37,8 @@ BG_POWER_STAGE_THRESHOLDS[4] = 0
 
 -- HVH Other
 GOLD_PER_KILL = 0
+SNIPERS_COLOR_HEX = "#FCAF3D" -- day
+NS_COLOR_HEX 	  = "#99CCFF" -- night
 
 ENABLE_HERO_RESPAWN = true              -- Should the heroes automatically respawn on a timer or stay dead until manually respawned
 UNIVERSAL_SHOP_MODE = false             -- Should the main shop contain Secret Shop items as well as regular items
