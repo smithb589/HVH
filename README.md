@@ -1,6 +1,6 @@
 # HVH
 
-Hunter v. Hunted custom game for DOTA 2.
+Hunter v. Hunted custom game for DOTA 2. See http://steamcommunity.com/sharedfiles/filedetails/?id=514589800
 
 ## Setup
 The easiest way to run the game from development files is to link the directories to the necessary locations.
