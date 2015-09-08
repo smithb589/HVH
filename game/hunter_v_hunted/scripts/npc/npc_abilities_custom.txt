@@ -675,11 +675,8 @@
 	
 				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
 				"EffectAttachType"	"follow_overhead"
-	
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
+
+				// engages in ai_dog.lua behavior when affected by this modifier
 			}			
 		}
 	}
@@ -853,10 +850,7 @@
 				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
 				"EffectAttachType"	"follow_overhead"
 	
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
+				// engages in ai_dog.lua behavior when affected by this modifier
 			}			
 		}
 	}

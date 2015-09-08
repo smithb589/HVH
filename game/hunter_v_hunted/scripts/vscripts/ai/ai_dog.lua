@@ -4,6 +4,11 @@ require("hvh_utils")
 
 behaviorSystem = {}
 
+DESIRE_NONE   = 0
+DESIRE_LOW    = 5
+DESIRE_MEDIUM = 10
+DESIRE_HIGH   = 15
+
 function Spawn( entityKeyValues )
 
 	thisEntity.Feed = function(self, feedDuration)
@@ -89,19 +94,24 @@ BehaviorWander =
 }
 
 function BehaviorWander:Evaluate()
-	local wanderDesire = 1
-
+	local wanderDesire = DESIRE_NONE + 1 -- takes priority over other DESIRE_NONEs
 	local nearestTarget = FindNearestTarget(thisEntity)
-	if IsInvisibleTargetInWanderRange(nearestTarget) then
+
+	-- affected by crippling fear
+	if thisEntity:HasModifier("modifier_crippling_fear_dog_datadriven") or
+	   thisEntity:HasModifier("modifier_crippling_fear_dog_aoe_datadriven") then
+	   wanderDesire = DESIRE_HIGH
+	
+	-- invis-wandering
+	elseif IsInvisibleTargetInWanderRange(nearestTarget) then
 		HVHDebugPrint("The hound found Night Stalker, but cannot target him.")
-		wanderDesire = 10
+		wanderDesire = DESIRE_MEDIUM
 	end
 
 	return wanderDesire
 end
 
 function BehaviorWander:Initialize()
-
 end
 
 function BehaviorWander:Begin()
@@ -166,9 +176,9 @@ BehaviorWarn =
 
 function BehaviorWarn:Evaluate()
 	local target = FindNearestTarget(thisEntity)
-	local warnDesire = 0
+	local warnDesire = DESIRE_NONE
 	if IsInvisibleTargetInWanderRange(target) and self:_CanWarn() then
-		warnDesire = 13
+		warnDesire = DESIRE_MEDIUM + 1 -- takes priority over invis-wandering and sprinting
 	end
 
 	return warnDesire
@@ -179,7 +189,6 @@ function BehaviorWarn:Begin()
 
 	self.endTime = GameRules:GetGameTime() + self.warnDuration
 end
-
 
 function BehaviorWarn:Continue()
 	self:_DoWarn()
@@ -219,12 +228,12 @@ BehaviorPursue =
 
 function BehaviorPursue:Evaluate()
 	local target = FindNearestTarget(thisEntity)
-	local pursueOrder = 0
+	local pursueDesire = DESIRE_NONE
 	if GameRules:IsDaytime() and IsTargetValid(target) then
-		pursueOrder = 5
+		pursueDesire = DESIRE_LOW
 	end
 
-	return pursueOrder
+	return pursueDesire
 end
 
 function BehaviorPursue:Initialize()
@@ -253,12 +262,14 @@ function BehaviorPursue:Continue()
 		self.order.Position = pursuitTarget:GetAbsOrigin()
 
 		-- mostly fixes error 27 (Invalid order: Target is invisible and is not on the unit's team.)
-		if pursuitTarget:HasModifier("modifier_invisible") then
+		if not thisEntity:CanEntityBeSeenByMyTeam(pursuitTarget) then
 			self.order.OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION		
 		else
 			self.order.OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET
 		end
 	end
+
+
 
 	self.endTime = GameRules:GetGameTime() + 0.1
 
@@ -374,10 +385,10 @@ BehaviorSprint =
 function BehaviorSprint:Evaluate()
 	self.sprintAbility = thisEntity:FindAbilityByName("dog_sprint")
 	self.order.AbilityIndex = self.sprintAbility:entindex()
-	local sprintDesire = 0
+	local sprintDesire = DESIRE_NONE
 
 	if self:CanSprint() then
-		sprintDesire = 10
+		sprintDesire = DESIRE_MEDIUM
 	end
 
 	return sprintDesire
@@ -439,9 +450,9 @@ BehaviorSleep =
 }
 
 function BehaviorSleep:Evaluate()
-	local sleepPriority = 1
+	local sleepPriority = DESIRE_NONE + 1 -- takes priority over other DESIRE_NONEs
 	if not GameRules:IsDaytime() then
-		sleepPriority = 15
+		sleepPriority = DESIRE_HIGH
 	end
 	return sleepPriority
 end
