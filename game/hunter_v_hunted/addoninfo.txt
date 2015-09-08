@@ -1,6 +1,11 @@
 "AddonInfo"
 {
-	maps			"hunter_v_hunted"
+	"maps"			"hunter_v_hunted"
 	"IsTemplate"	"0"
 	"IsPlayable"	"1"
+	"TeamCount"		"10"
+	"hunter_v_hunted"
+	{
+		"MaxPlayers"	"5"
+	}	
 }
