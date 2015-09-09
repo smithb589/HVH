@@ -74,29 +74,45 @@ function OnAttackLanded(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local mod_invis = keys.mod_invis
+	local delay = keys.delay
 
-	ResetInvisDelay(caster, ability, mod_invis)
+	ResetInvisDelay(caster, ability, mod_invis, delay)
 end
 
 function OnAbilityExecuted(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local mod_invis = keys.mod_invis
+	local delay = keys.delay
 
-	ResetInvisDelay(caster, ability, mod_invis)
+	ResetInvisDelay(caster, ability, mod_invis, delay)
 end
 
 function OnUnitMoved(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local mod_invis = keys.mod_invis
+	local delay = keys.delay
 
 	if GameRules:IsDaytime() then
-		ResetInvisDelay(caster, ability, mod_invis)
+		ResetInvisDelay(caster, ability, mod_invis, delay)
 	end
 end
 
-function ResetInvisDelay(caster, ability, mod_invis)
+function OnTakeDamage(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	local mod_invis = keys.mod_invis
+	local delay = keys.delay
+	local attack_damage = keys.attack_damage
+	local minimum_dmg_to_break_invis = keys.minimum_dmg_to_break_invis
+
+	if attack_damage >= minimum_dmg_to_break_invis then
+		ResetInvisDelay(caster, ability, mod_invis, delay)
+	end
+end
+
+function ResetInvisDelay(caster, ability, mod_invis, delay)
 	if caster:HasModifier(mod_invis) then
 		caster:RemoveModifierByName(mod_invis)
 	end
@@ -105,7 +121,7 @@ function ResetInvisDelay(caster, ability, mod_invis)
 	Timers:RemoveTimer(timerName)
     Timers:CreateTimer(timerName, {
       useGameTime = true,
-      endTime = ability:GetSpecialValueFor("invis_delay"),
+      endTime = delay,
       callback = function()
       	ability:ApplyDataDrivenModifier(caster, caster, mod_invis, {})
 	  end

@@ -24,7 +24,7 @@ function Spawn( entityKeyValues )
 	-- This stores the location we started wandering from so the dog
 	-- can't just run across the entire map.
 	thisEntity._WanderingOrigin = Vector(0, 0)
-	thisEntity._MaxWanderingDistance = 150.0
+	thisEntity._MaxWanderingDistance = 500.0 --150.0
 
 	thisEntity._FeedDuration = 0
 	-- Arbitrarily age this so the dog doesn't start fed.
@@ -171,7 +171,8 @@ BehaviorWarn =
 		OrderType = DOTA_UNIT_ORDER_NONE
 	},
 
-	warnDuration = 1
+	warnDuration = 1.0,
+	delayBetweenWarns = 4.0 --2.0
 }
 
 function BehaviorWarn:Evaluate()
@@ -208,8 +209,8 @@ function BehaviorWarn:_DoWarn()
 end
 
 function BehaviorWarn:_CanWarn()
-	-- Only try to warn every 2 seconds.
-	return thisEntity._LastWarnTime < (GameRules:GetGameTime() - 2)
+	-- Only try to warn every few seconds.
+	return thisEntity._LastWarnTime < (GameRules:GetGameTime() - self.delayBetweenWarns)
 end
 
 --------------------------------------------------------------------------------------------------------
