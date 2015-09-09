@@ -1194,7 +1194,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1036"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_hvh_cold_snap" // filename: hvh_meat_hook	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING" // DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
