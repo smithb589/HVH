@@ -6,9 +6,12 @@ Version 1.0.1
 Each team has limited lives. Kill the other team before they kill you!
 
 [b]HOW TO PLAY:[/b]
-While playing or waiting for loaders, click the GameInfo tab on the left to read about game mechanics, abilities, and tips!
+While playing, click the GameInfo tab on the left to read about game mechanics, abilities, and tips!
 
 [b]AUTHORS:[/b]
 Snicker-snag, veggiesama
 
-[b]We are always looking for feedback, suggestions, and bug reports. Please like, subscribe, and comment![/b]
+[b]We are always looking for feedback, suggestions, bug reports, screenshots, replay videos, and unsolicited religious literature. Please like, subscribe, and comment![/b]
+
+[url=https://github.com/smithb589/HVH/issues]Report bugs here[/url] or post to the comments
+[url=https://github.com/smithb589/HVH]Homepage[/url]
