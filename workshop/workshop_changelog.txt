@@ -1,3 +1,18 @@
+1.0.2
+Cold snap item charges 2 to 1
+Team spawn points for the start of the match, always opposite sides of map
+Hound wander radius 150 to 500
+Hound delay between warning growls 2 to 4 secs
+Nightstalker fade delay split into 3 categories with different durations:
+-- Fade delay after attacking/casting: 4.0 (previously 2.0)
+-- Fade delay after taking damage: 2.0 (previously none)
+-- Fade delay after moving (day only): 0.5 (previously 2.0)
+-- Minimum of 25 dmg to break invisibility
+
+These changes make it easier for NS to hide during the day, especially
+after pressing the STOP or HALT commands. Takes longer for his
+invisibility to fade during the night, though.
+
 1.0.1
 Shrapnel 3 max charges to 1 max charge per reinforcement level, up to 3 max
 Shrapnel slow 30% to 25%
