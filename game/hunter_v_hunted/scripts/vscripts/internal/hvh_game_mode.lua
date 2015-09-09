@@ -81,7 +81,8 @@ function HVHGameMode:_SetupGameMode()
     mode:SetTopBarTeamValue(DOTA_TEAM_BADGUYS, BADGUY_LIVES)
     mode.GoodGuyLives = GOODGUY_LIVES
     mode.BadGuyLives  = BADGUY_LIVES
-
+    mode.GoodGuyTeamSpawn = nil
+    mode.BadGuyTeamSpawn = nil
   end 
 end
 
@@ -97,6 +98,35 @@ function HVHGameMode:_PostLoadPrecache()
       PrecacheUnitByNameAsync("npc_dota_hero_night_stalker", function(...) end, playerID)
     end
   end
+end
+
+-- at the beginning of the game, set random team spawn points
+-- each info_courier_spawn_radiant entity has an attribute value "id"
+-- each info_courier_spawn_dire has a matching "id" value, and it's positioned on the opposite side of map
+function HVHGameMode:SetupInitialTeamSpawns()
+  local ggSpawns = Entities:FindAllByClassname("info_courier_spawn_radiant")
+  local bgSpawns = Entities:FindAllByClassname("info_courier_spawn_dire")
+
+  -- choose a random spawn point for team good guys
+  local r = RandomInt(1, #ggSpawns)
+  local ggSpawn = ggSpawns[r]
+  local ggSpawnID = ggSpawn:Attribute_GetIntValue("id", 0)
+  local ggSpawnPoint = ggSpawn:GetAbsOrigin()
+
+  -- find the spawn point's matching bad guy brother
+  -- save both spawn points to be accessed by SetupHero() and dog spawning
+  local bgSpawnID = nil
+  for _,spawn in pairs(bgSpawns) do
+    bgSpawnID = spawn:Attribute_GetIntValue("id", 0)
+    if bgSpawnID == ggSpawnID then
+      local bgSpawnPoint = spawn:GetAbsOrigin()
+      local mode = GameRules:GetGameModeEntity()
+      mode.GoodGuyTeamSpawn = ggSpawnPoint
+      mode.BadGuyTeamSpawn = bgSpawnPoint
+      break
+    end
+  end
+
 end
 
 -- BUG: this does not VISUALLY work yet but perhaps one day...
@@ -214,7 +244,7 @@ function HVHGameMode:SetupHero(hero)
   end
 
   -- starting xp for that level
-  --startingXP = sum_table_through_row(XP_PER_LEVEL_TABLE, 15)
+  -- startingXP = sum_table_through_row(XP_PER_LEVEL_TABLE, 15)
   hero:AddExperience(startingLevelsToAdd * XP_FACTOR,
     DOTA_ModifyXP_Unspecified, false, true)
 
@@ -229,7 +259,7 @@ function HVHGameMode:SetupHero(hero)
         end
       end
     end
-  -- max out specific abilities
+  -- level up specific abilities
   else
   	self:LevelupAbility(hero, "sniper_shrapnel_hvh", false)
     self:LevelupAbility(hero, "sniper_feed_dog", true)
@@ -251,16 +281,31 @@ function HVHGameMode:SetupHero(hero)
   end
 
   -- force the hero to sleep until the horn blows
-  -- also move to random respawn point and lock camera for 3 seconds
+  -- also move hero to the pregenerated random team spawn and lock camera for 3 seconds
   if PREGAME_SLEEP and GameRules:GetDOTATime(false,false) == 0 then
     local playerID = hero:GetPlayerID()
-    --hero:SetOrigin(HVHGameMode:ChooseFarSpawn(heroTeam))
-    FindClearSpaceForUnit(hero, HVHGameMode:ChooseFarSpawn(heroTeam), true)
-    hero:AddNewModifier(hero, nil, "modifier_tutorial_sleep", {})
+    local mode = GameRules:GetGameModeEntity()
+
+    local spawnPos = nil
+    if heroTeam == DOTA_TEAM_GOODGUYS then
+      spawnPos = mode.GoodGuyTeamSpawn
+      enemySpawnPos = mode.BadGuyTeamSpawn
+    else
+      spawnPos = mode.BadGuyTeamSpawn
+      enemySpawnPos = mode.GoodGuyTeamSpawn
+    end
+
+    FindClearSpaceForUnit(hero, spawnPos, true)
+    local direction = (enemySpawnPos - spawnPos):Normalized()
+    hero:SetForwardVector(direction) -- face the enemy spawn
+
+    hero:AddNewModifier(hero, nil, "modifier_tutorial_sleep", {}) -- disables commands
     PlayerResource:SetCameraTarget(playerID, hero)
     Timers:CreateTimer(3, function()
       PlayerResource:SetCameraTarget(playerID, nil)
     end)
+
+    -- play tutorial text to the player
     HVHTutorial:Start(playerID)
   end
 
@@ -288,8 +333,8 @@ function HVHGameMode:SpawnDog(random_spawn)
   if random_spawn then
     position = HVHGameMode:ChooseFarSpawn(DOTA_TEAM_GOODGUYS)
   else
-    local spawner = Entities:FindByClassname(nil, "info_courier_spawn_radiant")
-    position = spawner:GetAbsOrigin()
+    local mode = GameRules:GetGameModeEntity()
+    position = mode.GoodGuyTeamSpawn
   end
  
   CreateUnitByName("npc_dota_good_guy_dog", position, true, nil, nil, DOTA_TEAM_GOODGUYS)

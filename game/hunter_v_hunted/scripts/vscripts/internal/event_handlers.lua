@@ -8,6 +8,7 @@ function HVHGameMode:OnGameRulesStateChange()
   state = GameRules:State_Get()
   if state == DOTA_GAMERULES_STATE_HERO_SELECTION then
     self:_PostLoadPrecache()
+    self:SetupInitialTeamSpawns()
   elseif state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
     self:_SetupFastTime(TIME_NEXT_EVENING, RANDOM_EXTRA_SECONDS)
     self:_SetupPassiveXP()
@@ -106,7 +107,7 @@ function HVHGameMode:OnAbilityUsed(keys)
       return
   end
 
-  -- Won't this always use the first item in the inventory rather than the one that was actually cast?
+  -- BUG: Won't this always use the first item in the inventory rather than the one that was actually cast?
   -- Check all 6 item slots for items with charges that match abilityName, then expend the charge
   for i=DOTA_ITEM_SLOT_1, DOTA_ITEM_SLOT_6 do
     local item = hero:GetItemInSlot(i)
