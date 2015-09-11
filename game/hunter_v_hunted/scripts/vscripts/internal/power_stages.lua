@@ -7,13 +7,14 @@ NS_LANDSCAPE_PATH = "file://{images}/custom_game/notifications/nightstalker_land
 
 NOTIFICATION_DURATION = 6.5
 
-STR_SNIPERS_UPGRADE = "Reinforcements have arrived!"
-STR_SNIPERS_EARTHBIND   = "MEEPO'S NETS"
-STR_SNIPERS_TIMBERCHAIN = "TIMBER CHAINS"
-STR_SNIPERS_BONUSHOUNDS = "THE PACK GROWS"
-STR_NS_UPGRADE 		 = "The Night Stalker has evolved!"
-STR_NS_LEAP          = "DREAD LEAP"
-STR_NS_ECHOLOCATION  = "ECHOLOCATION"
+STR_SNIPERS_UPGRADE = "Reinforcements have arrived: "
+STR_SNIPERS_EARTHBIND   = "MEEPO'S NETS!"
+STR_SNIPERS_TIMBERCHAIN = "TIMBER CHAINS!"
+STR_SNIPERS_BONUSHOUNDS = "THE PACK GROWS!"
+STR_SNIPERS_SHRAPNEL	= "+1 MAX SHRAPNEL CHARGE" 
+STR_NS_UPGRADE 		 = "The Night Stalker has evolved: "
+STR_NS_LEAP          = "DREAD LEAP!"
+STR_NS_ECHOLOCATION  = "ECHOLOCATION!"
 STR_NS_CRIPPLE_AOE   = "CRIPPLING HYSTERIA (AOE)"
 
 function HVHPowerStages:Setup()
@@ -80,11 +81,11 @@ function HVHPowerStages:UpgradePowerStage(team)
 	Timers:CreateTimer(HVHGameMode:GetRespawnTime(), function()
 		if team == DOTA_TEAM_GOODGUYS then
 			if     newPowerStage == 1 then
-				self:GrantSniperEarthbind()
 				self:GrantSniperShrapnelCharge()
+				self:GrantSniperEarthbind()
 			elseif newPowerStage == 2 then
-				self:GrantSniperTimberchain()
 				self:GrantSniperShrapnelCharge()	
+				self:GrantSniperTimberchain()
 			elseif newPowerStage == 3 then self:GrantSniperBonusHounds()
 			else --print("sniper unknown stage")
 			end
@@ -117,9 +118,12 @@ function HVHPowerStages:LevelupAbilityForAll(hero_name, ability_name, replaced_a
 end
 
 function HVHPowerStages:GrantSniperShrapnelCharge()
-	self:LevelupAbilityForAll("npc_dota_hero_sniper", "sniper_shrapnel_hvh", nil, false)
-	Notifications:BottomToAll({text="(ALSO +1 MAX SHRAPNEL CHARGES)", duration=NOTIFICATION_DURATION,
-		continue=false, style={color=SNIPERS_COLOR_HEX, ["font-size"]="28px"}})
+	-- short delay before posting
+	Timers:CreateTimer(NOTIFICATION_DURATION, function()
+		self:LevelupAbilityForAll("npc_dota_hero_sniper", "sniper_shrapnel_hvh", nil, false)
+		self:Notify(STR_SNIPERS_UPGRADE, STR_SNIPERS_SHRAPNEL, "", DOTA_TEAM_GOODGUYS)
+		return nil
+	end)
 end
 
 function HVHPowerStages:GrantSniperEarthbind()
@@ -164,20 +168,35 @@ function HVHPowerStages:Notify(heading, subtext, ability_name, team)
 		imagePath = NS_LANDSCAPE_PATH
 	end
 
-	Notifications:TopToAll({text=heading, duration=NOTIFICATION_DURATION, style={color=teamColor, ["font-size"]="28px"}})
-	Notifications:TopToAll({text=subtext, duration=NOTIFICATION_DURATION, style={color=teamColor, ["font-size"]="48px"}})
-	Notifications:BottomToAll({image=imagePath, duration=NOTIFICATION_DURATION})
-	Notifications:BottomToAll({text="&nbsp;&nbsp;&nbsp;gained&nbsp;&nbsp;&nbsp;", continue=true, style={color=teamColor, ["font-size"]="48px"}})
+	local cssStyleHeading = {
+		["color"] = teamColor,
+		["font-size"] = "28px",
+		["background-color"] = "#000000", -- black
+		["padding"] ="5px 20px 5px 20px"
+	}
 
-	-- notifications.lua doesn't seem to like custom ability images and won't compile images into vtex_c
-	-- search "PrecacheHacks" under the ../content/dota_addons/hunter_v_hunted/panorama/ folder to add more 
-	if ability_name == "night_stalker_echolocation_hvh" or
-	   ability_name == "night_stalker_crippling_fear_aoe_hvh" or
-	   ability_name == "mirana_leap" then
-		local abilityImagePath = "file://{images}/custom_game/notifications/" .. ability_name .. ".png"
-		Notifications:BottomToAll({image=abilityImagePath, continue=true})
-	else
-		Notifications:BottomToAll({ability=ability_name, continue=true})
+	local cssStyleGained = {
+		["color"] = teamColor,
+		["font-size"] ="48px"
+	}
+
+	Notifications:TopToAll({text=heading..subtext, duration=NOTIFICATION_DURATION, style=cssStyleHeading})
+
+	if ability_name ~= "" then
+		Notifications:TopToAll({image=imagePath, duration=NOTIFICATION_DURATION})
+		Notifications:TopToAll({text="&nbsp;&nbsp;&nbsp;gained&nbsp;&nbsp;&nbsp;", style=cssStyleGained, continue=true})
+
+		-- notifications.lua doesn't seem to like custom ability images and won't compile images into vtex_c
+		-- search "PrecacheHacks" under the ../content/dota_addons/hunter_v_hunted/panorama/ folder to add more 
+		if ability_name == "night_stalker_echolocation_hvh" or
+		   ability_name == "night_stalker_crippling_fear_aoe_hvh" or
+		   ability_name == "mirana_leap" then
+			local abilityImagePath = "file://{images}/custom_game/notifications/" .. ability_name .. ".png"
+			Notifications:TopToAll({image=abilityImagePath, continue=true})
+		else
+			Notifications:TopToAll({ability=ability_name, continue=true})
+		end
+
 	end
 end
 
