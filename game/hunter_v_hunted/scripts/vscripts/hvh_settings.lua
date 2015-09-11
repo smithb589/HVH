@@ -135,8 +135,8 @@ USE_CUSTOM_TEAM_COLORS = true          -- Should we use custom team colors?
 USE_CUSTOM_TEAM_COLORS_FOR_PLAYERS = true          -- Should we use custom team colors to color the players/minimap?
 
 TEAM_COLORS = {}                        -- If USE_CUSTOM_TEAM_COLORS is set, use these colors.
-TEAM_COLORS[DOTA_TEAM_GOODGUYS] = { 61, 210, 150 }  --    Teal
-TEAM_COLORS[DOTA_TEAM_BADGUYS]  = { 243, 201, 9 }   --    Yellow
+TEAM_COLORS[DOTA_TEAM_GOODGUYS] = { 252, 175, 61 } -- HVH day
+TEAM_COLORS[DOTA_TEAM_BADGUYS]  = { 153, 204, 255 } -- HVH night
 
 USE_AUTOMATIC_PLAYERS_PER_TEAM = false   -- Should we set the number of players to 10 / MAX_NUMBER_OF_TEAMS?
 
