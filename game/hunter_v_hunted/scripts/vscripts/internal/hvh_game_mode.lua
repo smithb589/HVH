@@ -363,31 +363,54 @@ function HVHGameMode:ChooseFarSpawn(team)
   end
 
   local validSpawners = {}
-  for _,spawner in pairs(possibleSpawners) do
+  local leastWorstSpawner = nil
+  local leastWorstSpawnerDistance = 0
+  for n,spawner in pairs(possibleSpawners) do
+
+    -- find enemy heroes in radius around the spawner
+    local position = spawner:GetAbsOrigin()
     local units = FindUnitsInRadius(oppositeTeam,
-                  spawner:GetAbsOrigin(),
+                  position,
                   nil,
                   MINIMUM_RESPAWN_RANGE,
-                  team,
-                  DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO,
-                  DOTA_UNIT_TARGET_FLAG_NONE,
-                  FIND_ANY_ORDER,
+                  DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+                  DOTA_UNIT_TARGET_HERO,
+                  DOTA_UNIT_TARGET_FLAG_INVULNERABLE, -- doesn't seem to work
+                  FIND_CLOSEST,
                   false)
+
+    -- TODO: if we're NS, also find dogs around the spawner and add them to previous units table
+    -- table must then be sorted by closeness
+
+    -- if no units found in radius, the spawner is Valid
     if units[1] == nil then
       table.insert(validSpawners, spawner)
-      --print("No units found in radius.")
+      --print(n .. ": No units found in radius.")
+
+    -- otherwise, check if this spawner is the least worst one we've come across
     else
-      --print("Units found in radius: " .. #units)
+      closestUnitDistance = (units[1]:GetAbsOrigin() - position):Length2D()
+      if closestUnitDistance > leastWorstSpawnerDistance then
+        leastWorstSpawnerDistance = closestUnitDistance
+        leastWorstSpawner = spawner
+      end
+      --[[
+      local nameList = ""
+      for _,unit in pairs(units) do
+        nameList = unit:GetName() .. ", " .. nameList
+      end
+      print("Spawner #" .. n .. ": " .. #units .. " units found in radius: " .. nameList)
+      --]]
     end
   end
 
+  --print("# of Valid/Possible Spawners: " .. #validSpawners .. " / " .. #possibleSpawners)
   local spawnPoint = nil
-  if validSpawners ~= nil then
+  if validSpawners[1] ~= nil then
     local r = RandomInt(1, #validSpawners)
     spawnPoint = validSpawners[r]:GetAbsOrigin()
   else -- fallback
-    local r = RandomInt(1, #possibleSpawners)
-    spawnPoint = possibleSpawners[r]:GetAbsOrigin()
+    spawnPoint = leastWorstSpawner:GetAbsOrigin()
   end
 
   return spawnPoint
