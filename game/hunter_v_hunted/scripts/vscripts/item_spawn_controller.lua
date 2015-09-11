@@ -210,6 +210,7 @@ end
 
 function HVHItemSpawnController:_SendRejectedPickupEvent(player)
   local event = HVHRejectedChestPickupEvent(HVHRejectedChestPickupEvent.RejectReason_WrongTeam)
+  Notifications:ClearTop(player)
   Notifications:Top(player, event:ConvertToPayload())
 end
 
