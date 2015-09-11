@@ -6,12 +6,12 @@
 		"Model" "models/development/invisiblebox.vmdl"
 		"AttackCapabilities"   "DOTA_UNIT_CAP_NO_ATTACK"
 		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
-		"MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_FLY"
 
 		"Ability1"				"dummy_chest_vision"
 
-		"VisionDaytimeRange" "100"
-		"VisionNighttimeRange" "100"
+		"VisionDaytimeRange" "5"
+		"VisionNighttimeRange" "5"
 
 		"MinimapIcon"               "minimap_tower90"
 		"MinimapIconSize"           "350"
