@@ -35,6 +35,18 @@ BG_POWER_STAGE_THRESHOLDS[2] = 4
 BG_POWER_STAGE_THRESHOLDS[3] = 2
 BG_POWER_STAGE_THRESHOLDS[4] = 0
 
+-- HVH Hound Models
+HOUND_MODEL_PATHS = {
+	"models/heroes/lycan/summon_wolves.vmdl",
+	"models/heroes/lycan/summon_wolves.vmdl",
+	"models/heroes/lycan/summon_wolves.vmdl",
+	"models/heroes/lycan/summon_wolves.vmdl",
+	"models/items/lycan/wolves/alpha_summon_01/alpha_summon_01.vmdl",
+	"models/items/lycan/wolves/ambry_summon/ambry_summon.vmdl",
+	"models/items/lycan/wolves/hunter_kings_wolves/hunter_kings_wolves.vmdl",
+	"models/items/lycan/wolves/icewrack_pack/icewrack_pack.vmdl"
+}
+
 -- HVH Other
 GOLD_PER_KILL = 0
 SNIPERS_COLOR_HEX = "#FCAF3D" -- day

@@ -337,7 +337,12 @@ function HVHGameMode:SpawnDog(random_spawn)
     position = mode.GoodGuyTeamSpawn
   end
  
-  CreateUnitByName("npc_dota_good_guy_dog", position, true, nil, nil, DOTA_TEAM_GOODGUYS)
+  -- create the dog with a random dog model
+  local dog = CreateUnitByName("npc_dota_good_guy_dog", position, true, nil, nil, DOTA_TEAM_GOODGUYS)
+  Timers:CreateTimer(0.06, function() 
+    local r = RandomInt(1, #HOUND_MODEL_PATHS)
+    dog:SetOriginalModel(HOUND_MODEL_PATHS[r])
+  end)
 end
 
 function HVHGameMode:ChooseRandomSpawn_DEPRECATED(classname)

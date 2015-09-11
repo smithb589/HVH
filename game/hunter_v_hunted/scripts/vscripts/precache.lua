@@ -123,6 +123,11 @@ PRECACHE_UNITS = {
 
 PRECACHE_MODELS = { 
   --"models/heroes/nightstalker/nightstalker_night.vmdl",
+  "models/heroes/lycan/summon_wolves.vmdl",
+  "models/items/lycan/wolves/alpha_summon_01/alpha_summon_01.vmdl",
+  "models/items/lycan/wolves/ambry_summon/ambry_summon.vmdl",
+  "models/items/lycan/wolves/hunter_kings_wolves/hunter_kings_wolves.vmdl",
+  "models/items/lycan/wolves/icewrack_pack/icewrack_pack.vmdl",
   "models/props_gameplay/treasure_chest001.vmdl",
   "models/props_debris/merchant_debris_chest001.vmdl",
   "models/development/invisiblebox.vmdl"
