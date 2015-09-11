@@ -275,8 +275,10 @@ function HVHGameMode:SetupHero(hero)
   local heroTeam = hero:GetTeamNumber()
   if heroTeam == DOTA_TEAM_GOODGUYS then
     hero:AddItemByName("item_boots")
+    hero:AddItemByName("item_tango_single")
   else
     hero:AddItemByName("item_phase_boots")
+    hero:AddItemByName("item_magic_stick")
     --hero:AddItemByName("item_ultimate_scepter")
   end
 
