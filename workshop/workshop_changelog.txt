@@ -1,4 +1,23 @@
+1.0.3
+---
+Hound now has a random model on spawn
+Starting items for each team:
+-- Snipers get 1x single use tango each
+-- NS gets a one-use magic stick
+Toss bone 45 to 60 sec
+Toss bone feed duration 8 to 2 sec (sprint still 8 sec)
+Timberchain 16 to 20 sec
+Nether swap item charges 2 to 1
+Suicide item reduced from L4 to L2 dmg values
+NS invis delay after moving 0.5 to 0.75
+NS regen 1.25% to 1.50%
+Reduced chest vision
+Respawn system fixed
+More respawn points
+Cleaner reinforcement/evolution CSS
+
 1.0.2
+---
 Cold snap item charges 2 to 1
 Team spawn points for the start of the match, always opposite sides of map
 Hound wander radius 150 to 500
@@ -14,6 +33,7 @@ after pressing the STOP or HALT commands. Takes longer for his
 invisibility to fade during the night, though.
 
 1.0.1
+---
 Shrapnel 3 max charges to 1 max charge per reinforcement level, up to 3 max
 Shrapnel slow 30% to 25%
 Crippling fear day miss rate 10% to 25%
@@ -25,6 +45,7 @@ Tutorial text during first 30 secs
 Tooltip tweaks
 File reorganization (slimmer download)
 
-1.0.0
+1.0
+---
 New release
 Lobby hosting fixes
