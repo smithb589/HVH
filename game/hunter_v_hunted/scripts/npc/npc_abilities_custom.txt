@@ -299,7 +299,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"feed_duration"		"3"
+				"feed_duration"		"2"
 			}
 			"04"
 			{
