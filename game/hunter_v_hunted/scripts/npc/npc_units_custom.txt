@@ -4,12 +4,11 @@
 	{
 		"BaseClass" "npc_dota_creature"
 		"Model" "models/development/invisiblebox.vmdl"
-
 		"AttackCapabilities"   "DOTA_UNIT_CAP_NO_ATTACK"
 		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
 		"MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE"
 
-		"Ability1"             "chest_vision_dummy_hider"
+		"Ability1"				"dummy_chest_vision"
 
 		"VisionDaytimeRange" "100"
 		"VisionNighttimeRange" "100"
@@ -22,15 +21,11 @@
 	{
 		"BaseClass" "npc_dota_creature"
 		"Model" "models/development/invisiblebox.vmdl"
-
 		"AttackCapabilities"   "DOTA_UNIT_CAP_NO_ATTACK"
 		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
 		"MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_FLY"
 
-		"Ability1"             "dummy_night_vision"
-
-		"MovementSpeed"				"9999"
-		"MovementTurnRate"			"1.0"
+		"Ability1"				"dummy_night_vision"
 
 		"VisionDaytimeRange"	"1"
 		"VisionNighttimeRange"	"1"

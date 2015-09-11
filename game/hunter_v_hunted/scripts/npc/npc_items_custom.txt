@@ -96,7 +96,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1063"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_hvh_nether_swap" // filename: hvh_meat_hook	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"

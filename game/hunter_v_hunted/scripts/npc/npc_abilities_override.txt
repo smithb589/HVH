@@ -45,7 +45,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastRange"				"1400" //"1000 1200 1400"
-		"AbilityCooldown"				"16.0" // 4.0
+		"AbilityCooldown"				"20" // "16.0" // 4.0
 		"AbilityManaCost"				"0"
 
 		"AbilitySpecial"

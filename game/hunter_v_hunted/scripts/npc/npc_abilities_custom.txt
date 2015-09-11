@@ -272,7 +272,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"900"
 		"AbilityCastPoint"				"0.3"
-		"AbilityCooldown"				"45" //"90 75 60 45"
+		"AbilityCooldown"				"60" // "45" //"90 75 60 45"
 		"AbilityManaCost"				"0"
 
 		"Precache"
@@ -299,7 +299,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"feed_duration"		"8"
+				"feed_duration"		"3"
 			}
 			"04"
 			{
@@ -407,7 +407,7 @@
 	    	"08"
 	    	{
 	    		"var_type"							"FIELD_FLOAT"
-	    		"invis_delay_after_moving"			"0.5"
+	    		"invis_delay_after_moving"			"0.75"
 	    	}
 	    	"09"
 	    	{
@@ -417,7 +417,7 @@
 	    	"10"
 	    	{
 	    		"var_type"							"FIELD_FLOAT"
-	    		"invis_regen_pct_per_sec"			"1.25" //"0.75 1.00 1.25"
+	    		"invis_regen_pct_per_sec"			"1.5" // "1.25" //"0.75 1.00 1.25"
 	    	}  
 	    }
 
@@ -1164,20 +1164,14 @@
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			""
 
-		"Modifiers"
+		"OnOwnerSpawned"
 		{
-			"modifier_invulnerability"
+			"ApplyModifier"
 			{
-				"Passive"			"1"
-				"IsHidden"			"0"
-				"IsDebuff"			"0"
-
-				"States"
-				{
-					"MODIFIER_STATE_INVULNERABLE" "MODIFIER_STATE_VALUE_ENABLED"
-				}
+				"ModifierName"	"modifier_invulnerable"
+				"Target" 		"CASTER"
 			}
-		}		
+		}
 	}
 
 	"dog_sleep"
@@ -1428,16 +1422,23 @@
 	    }
 	}
 
-	"chest_vision_dummy_hider"
+	//-------------------
+	// Dummy stuff
+	//-------------------
+
+	"dummy_chest_vision"
 	{
 		"BaseClass"       "ability_datadriven"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"	"rubick_empty1"
+		"MaxLevel"				"1"
 		
 		"Modifiers"
 		{
 			"hide_dummy_modifier"
 			{
-				"Passive" "1"
+				"Passive"	"1"
+				"IsHidden"	"1"
 				"States"
 				{
 					"MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
@@ -1447,8 +1448,11 @@
 	                "MODIFIER_STATE_ATTACK_IMMUNE"      "MODIFIER_STATE_VALUE_ENABLED"
 	                "MODIFIER_STATE_MAGIC_IMMUNE"       "MODIFIER_STATE_VALUE_ENABLED"            
 	                "MODIFIER_STATE_UNSELECTABLE"       "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED" 
+	                "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_INVISIBLE"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_TRUESIGHT_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES"		"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 		}
@@ -1458,11 +1462,15 @@
 	{
 		"BaseClass" 		"ability_datadriven"
 		"AbilityBehavior" 	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"	"rubick_empty1"
+		"MaxLevel"				"1"
+
 		"Modifiers"
 		{
 			"modifier_dummy_night_vision"
 			{
 				"Passive"	"1"
+				"IsHidden"	"1"
 				"States"
 				{
 					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
@@ -1473,8 +1481,11 @@
 	                "MODIFIER_STATE_MAGIC_IMMUNE"       "MODIFIER_STATE_VALUE_ENABLED"            
 	                "MODIFIER_STATE_UNSELECTABLE"       "MODIFIER_STATE_VALUE_ENABLED"
 	                "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED" 
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_INVISIBLE"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_TRUESIGHT_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES"		"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_OUT_OF_GAME"		"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
