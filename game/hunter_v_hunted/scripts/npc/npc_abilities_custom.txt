@@ -1140,7 +1140,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"leap_height"			"450"
+				"leap_height"			"300"
 			}
 		}
 

@@ -13,13 +13,13 @@ function Leap( keys )
 	caster:Stop()
 
 	-- Physics
-	local speed = leap_speed * 1.4
+	local casterPosition = caster:GetAbsOrigin()
 	local end_time = leap_distance / leap_speed
-	local time_elapsed = 0
-	local half_time = end_time/2
-	local veritcal_velocity_initial = (leap_height) / half_time
-	local gravity = veritcal_velocity_initial / half_time	
-	local velocityVector = (caster:GetForwardVector() * speed) + Vector(0, 0, veritcal_velocity_initial)
+	local ground_speed = leap_speed * 1.4
+	local half_time = end_time/2	
+	local veritcal_velocity_initial = CalculateInitialVerticalVelocity(casterPosition.z, casterPosition.z + leap_height, half_time)
+	local gravity = CalculateVerticalAcceleration(veritcal_velocity_initial, half_time)
+	local velocityVector = (caster:GetForwardVector() * ground_speed) + Vector(0, 0, veritcal_velocity_initial)
 
 	Physics:Unit(caster)
 
@@ -36,27 +36,33 @@ function Leap( keys )
 	ability:ApplyDataDrivenModifier(caster, caster, modifier_leap_immunity, {})
 
 	-- Move the unit
-	Timers:CreateTimer(0, function()
+	Timers:CreateTimer(end_time, function()
 		local ground_position = GetGroundPosition(caster:GetAbsOrigin() , caster)
-		time_elapsed = time_elapsed + 0.03
 
-		if (time_elapsed >= end_time) then
-			caster:SetPhysicsAcceleration(Vector(0,0,0))
-			caster:SetPhysicsVelocity(Vector(0,0,0))
-			caster:OnPhysicsFrame(nil)
-			caster:PreventDI(false)
-			caster:SetNavCollisionType(PHYSICS_NAV_SLIDE)
-			caster:SetAutoUnstuck(true)
-			caster:FollowNavMesh(true)
-			caster:SetPhysicsFriction(.05)
-			
-			-- HVH prevents getting stuck, removes immunity
-			FindClearSpaceForUnit(caster, caster:GetAbsOrigin(), true)
-			caster:RemoveModifierByName(modifier_leap_immunity)
+		caster:SetPhysicsAcceleration(Vector(0,0,0))
+		caster:SetPhysicsVelocity(Vector(0,0,0))
+		caster:OnPhysicsFrame(nil)
+		caster:PreventDI(false)
+		caster:SetNavCollisionType(PHYSICS_NAV_SLIDE)
+		caster:SetAutoUnstuck(true)
+		caster:FollowNavMesh(true)
+		caster:SetPhysicsFriction(.05)
+		
+		-- HVH prevents getting stuck, removes immunity
+		FindClearSpaceForUnit(caster, caster:GetAbsOrigin(), false)
+		caster:RemoveModifierByName(modifier_leap_immunity)
 
-			return nil
-		end
-
-		return 0.03
+		return nil	
 	end)
+end
+
+function CalculateInitialVerticalVelocity(initialHeight, finalHeight, halfTime)
+	local initialVerticalVelocity = (2 * (finalHeight - initialHeight)) / halfTime
+	--print(string.format("initialVerticalVelocity: %f", initialVerticalVelocity))
+	return initialVerticalVelocity
+end
+
+function CalculateVerticalAcceleration(initialVerticalSpeed, halfTime)
+	local verticalAcceleration = initialVerticalSpeed / halfTime
+	return verticalAcceleration
 end
