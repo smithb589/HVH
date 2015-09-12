@@ -1066,9 +1066,6 @@
 		}
 	}
 
-	// Rewrite of the Mirana Leap ability
-	// Author: Pizzalol
-	// Date: 05.01.2015.
 	"night_stalker_leap_hvh"
 	{
 		// General
@@ -1118,6 +1115,11 @@
 				"var_type"				"FIELD_INTEGER"
 				"leap_vertical_speed"	"1500"
 			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_reduction"		"-100"
+			}
 		}
 
 		"OnSpellStart"
@@ -1130,7 +1132,7 @@
 			
 			"RunScript"
 			{
-				"ScriptFile"	"SpellLibrary/leap.lua"
+				"ScriptFile"	"SpellLibrary/night_stalker_leap.lua"
 				"Function"		"Leap"
 				"modifier_leap_immunity"	"modifier_leap_immunity"
 			}
@@ -1141,11 +1143,11 @@
 			"modifier_leap_immunity"
 			{
 				"Passive" 			"1"
-	    		"IsHidden"			"0"
+	    		"IsHidden"			"1"
 	
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"-100"
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%damage_reduction"
 				}
 			}			
 		}

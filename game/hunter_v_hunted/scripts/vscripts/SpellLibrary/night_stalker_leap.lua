@@ -32,9 +32,9 @@ function Leap( keys )
 	caster:SetPhysicsFriction(0.0)
 
 	-- HVH: plays flight animation, disjoints projectiles, and applies immunity
-	--StartAnimation(caster, {duration=end_time, activity=ACT_DOTA_RUN, rate=1.0, translate="haste"})
+	StartAnimation(caster, {duration=leap_duration, activity=ACT_DOTA_RUN, rate=1.0, translate="haste"})
 	ProjectileManager:ProjectileDodge(caster)
-	ability:ApplyDataDrivenModifier(caster, caster, modifier_leap_immunity, {})
+	ability:ApplyDataDrivenModifier(caster, caster, modifier_leap_immunity, {duration=leap_duration})
 
 	-- Do the landing
 	-- Adding a single frame to this because we want to disable the physics
@@ -51,7 +51,6 @@ function Leap( keys )
 		
 		-- HVH prevents getting stuck, removes immunity
 		FindClearSpaceForUnit(caster, caster:GetAbsOrigin(), false)
-		caster:RemoveModifierByName(modifier_leap_immunity)
 
 		return nil	
 	end)
@@ -72,6 +71,6 @@ function CalculateFinalPosition(caster, leapDistance)
 	local finalPosition = GetGroundPosition(Vector(casterPosition.x + xOffset, casterPosition.y + yOffset, casterPosition.z), caster)
 	HVHDebugPrintVector("casterPosition", casterPosition)
 	HVHDebugPrintVector("finalPosition", finalPosition)
-	DebugDrawLine(casterPosition, finalPosition, 255, 0, 0, true, 3)
+	--DebugDrawLine(casterPosition, finalPosition, 255, 0, 0, true, 3)
 	return finalPosition
 end
