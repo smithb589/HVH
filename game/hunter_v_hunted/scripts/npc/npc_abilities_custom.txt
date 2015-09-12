@@ -48,36 +48,31 @@
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"building_damage"		"0" // 6.83
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"10.0"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"10.0"
+				"delay"					"1.4" //"0.6" //"1.4" // 6.84
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_delay"			"0.3" //"0.6" //"1.4" // 6.84
+				"slow_duration"			"0.5" // 2.0
 			}
+			// Extra variables
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"slow_duration"			"3.0" // 2.0
+				"tick_interval"			"0.25"
 			}
-			// Extra variables
 			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"tick_interval"			"1.0"
-			}
-			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"maximum_charges"		"1 2 3"
 			}
-			"09"
+			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"charge_replenish_time"	"30.0" // "45.0"
@@ -89,9 +84,10 @@
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
-			"particle"					"particles/units/heroes/hero_sniper/sniper_shrapnel.vpcf"
+			"particle"					"particles/sniper_shrapnel_hvh.vpcf"
+			"particle"					"particles/sniper_shrapnel_trail_hvh.vpcf"
 			"particle"					"particles/units/heroes/hero_sniper/sniper_shrapnel_launch.vpcf"
-			"particle"					"particles/econ/items/sniper/sniper_charlie/sniper_shrapnel_charlie.vpcf"
+			//"particle"				"particles/econ/items/sniper/sniper_charlie/sniper_shrapnel_charlie.vpcf"
 		}
 		
 		"OnUpgrade"
@@ -111,7 +107,6 @@
 				"Function"				"shrapnel_fire"
 				"Target"				"POINT"
 			}
-
 		}
 		
 		"Modifiers"
@@ -128,28 +123,14 @@
 			{
 				"OnCreated"
 				{
-					"FireSound"
+					"AttachEffect"
 					{
 						"Target"				"TARGET"
-						"EffectName"			"Hero_Sniper.ShrapnelShatter"
+						"EffectName"			"particles/sniper_shrapnel_hvh.vpcf"
+						"EffectAttachType"		"follow_origin"
+						"EffectRadius"			"%radius"
 					}
 				
-					"AttachEffect"
-					{
-						"Target"				"TARGET"
-						"EffectName"			"particles/units/heroes/hero_sniper/sniper_shrapnel.vpcf"
-						"EffectAttachType"		"follow_origin"
-						"EffectRadius"			"%radius"
-					}
-					
-					"AttachEffect"
-					{
-						"Target"				"TARGET"
-						"EffectName"			"particles/econ/items/sniper/sniper_charlie/sniper_shrapnel_charlie.vpcf"
-						"EffectAttachType"		"follow_origin"
-						"EffectRadius"			"%radius"
-					}
-					
 					// HVH shrapnel destroys trees
 					"DestroyTrees"
 					{
@@ -170,13 +151,6 @@
 						
 						"Action"
 						{
-							"Damage"
-							{
-								"Target"		"TARGET"
-								"Damage"		"%AbilityDamage"
-								"Type"			"DAMAGE_TYPE_MAGICAL"
-							}
-							
 							"ApplyModifier"
 							{
 								"Target"		"TARGET"
@@ -202,13 +176,6 @@
 						
 						"Action"
 						{
-							"Damage"
-							{
-								"Target"		"TARGET"
-								"Damage"		"%AbilityDamage"
-								"Type"			"DAMAGE_TYPE_MAGICAL"
-							}
-							
 							"ApplyModifier"
 							{
 								"Target"		"TARGET"
@@ -241,15 +208,29 @@
 				"IsPurgable"			"0"
 				"IsDebuff"				"1"
 				"Duration"				"%slow_duration"
-				
-				// http://dev.dota2.com/showthread.php?t=172622
-				"Priority"				"MODIFIER_PRIORITY_ULTRA"
+				"Priority"				"MODIFIER_PRIORITY_ULTRA" // http://dev.dota2.com/showthread.php?t=172622
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/sniper_shrapnel_trail_hvh.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
+
+						"ControlPointEntities"
+						{
+							"TARGET"	"attach_origin"
+							"TARGET"	"attach_hitloc"
+						}
+					}
+				}
 
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%slow_movement_speed"
 				}
-				// HVH shrapnel reveals invisibility
+				// HVH shrapnel disables invisibility
 				"States"
 				{
 					"MODIFIER_STATE_INVISIBLE"		"MODIFIER_STATE_VALUE_DISABLED"
