@@ -16,5 +16,8 @@
         <Label id="AddonTitle" text="#addon_game_name" style="" />
       </Panel>
     </Panel>
+    <Panel id="WarningPanel">
+      <Label id="WarningLabel" text="#loading_screen_warning" style="" />
+    </Panel>
   </Panel>
 </root>

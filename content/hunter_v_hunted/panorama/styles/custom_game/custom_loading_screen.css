@@ -10,6 +10,26 @@
 	overflow: clip;
 }
 
+#WarningPanel
+{
+	width:40%;
+	horizontal-align: left;
+	vertical-align: top;
+	margin-top: 725px;
+	margin-left: 860px;
+	flow-children: right;
+}
+
+#WarningLabel
+{
+	vertical-align: middle;
+	horizontal-align: middle;
+	
+	font-size: 28px;
+	color: #FFFFFF;
+	text-shadow: 2px 2px 2px #000000;
+}
+
 #TitlePanel
 {
 	horizontal-align: left;

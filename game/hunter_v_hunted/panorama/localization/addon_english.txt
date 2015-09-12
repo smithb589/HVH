@@ -8,14 +8,6 @@
 
 	"DOTA_GoodGuys"   								"Snipers"
 	"DOTA_BadGuys"    								"Night Stalker"
-	"DOTA_Custom1"    								"Pink Dragon"
-	"DOTA_Custom2"    								"Orange Dog"
-	"DOTA_Custom3"    								"Blue Rooster"
-	"DOTA_Custom4"    								"Green Ram"
-	"DOTA_Custom5"    								"Brown Rat"
-	"DOTA_Custom6"    								"Cyan Boar"
-	"DOTA_Custom7"    								"Olive Snake"
-	"DOTA_Custom8"    								"Purple Horse"
 	
 	"OverthrowHeroPickup"							"{s:hero_id}"
 	"OverthrowTextPickup"							"HAS PICKED UP"
@@ -52,4 +44,6 @@
 	"game_info_tips_tip06"		"You can't pick up items designated for the other team, but you can guard them!"
 	"game_info_tips_tip07"		"The exact length of each day and night is unpredictable."
 	"game_info_tips_tip08"		"Crippling Horror is extremely effective against the Hound."
+
+	"loading_screen_warning"	"WARNING: Night Stalker not intended for first-time players."
 }
