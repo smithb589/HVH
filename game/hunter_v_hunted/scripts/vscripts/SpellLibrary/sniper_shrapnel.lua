@@ -111,10 +111,11 @@ function shrapnel_fire( keys )
 		local maximum_charges = ability:GetLevelSpecialValueFor( "maximum_charges", ( ability:GetLevel() - 1 ) )
 		local charge_replenish_time = ability:GetLevelSpecialValueFor( "charge_replenish_time", ( ability:GetLevel() - 1 ) )
 		local dummy_duration = ability:GetLevelSpecialValueFor( "duration", ( ability:GetLevel() - 1 ) ) + 0.1
-		local damage_delay = ability:GetLevelSpecialValueFor( "damage_delay", ( ability:GetLevel() - 1 ) ) + 0.1
+		local delay = ability:GetLevelSpecialValueFor( "delay", ( ability:GetLevel() - 1 ) ) + 0.1
 		local launch_particle_name = "particles/units/heroes/hero_sniper/sniper_shrapnel_launch.vpcf"
 		local launch_sound_name = "Hero_Sniper.ShrapnelShoot"
-		
+		local shatter_sound_name = "Hero_Sniper.ShrapnelShatter"
+	
 		-- Deplete charge
 		local next_charge = caster.shrapnel_charges - 1
 		if caster.shrapnel_charges == maximum_charges then
@@ -138,9 +139,10 @@ function shrapnel_fire( keys )
 		ParticleManager:SetParticleControl( fxLaunchIndex, 0, casterLoc )
 		ParticleManager:SetParticleControl( fxLaunchIndex, 1, Vector( casterLoc.x, casterLoc.y, 800 ) )
 		StartSoundEvent( launch_sound_name, caster )
-		
-		-- Deal damage
-		shrapnel_damage( caster, ability, target, damage_delay, dummyModifierName, dummy_duration )
+		StartSoundEventFromPosition( shatter_sound_name, target )
+
+		-- Apply debuff
+		shrapnel_debuff( caster, ability, target, delay, dummyModifierName, dummy_duration )
 	else
 		keys.ability:RefundManaCost()
 	end
@@ -149,11 +151,11 @@ end
 --[[
 	Author: kritth
 	Date: 6.1.2015.
-	Main: Create dummy to apply damage
+	Main: Create dummy to apply debuff
 ]]
-function shrapnel_damage( caster, ability, target, damage_delay, dummyModifierName, dummy_duration )
-	Timers:CreateTimer( damage_delay, function()
-			-- create dummy to do damage and apply debuff modifier
+function shrapnel_debuff( caster, ability, target, delay, dummyModifierName, dummy_duration )
+	Timers:CreateTimer( delay, function()
+			-- create dummy to apply debuff modifier
 			local dummy = CreateUnitByName( "npc_dummy_blank", target, false, caster, caster, caster:GetTeamNumber() )
 			ability:ApplyDataDrivenModifier( caster, dummy, dummyModifierName, {} )
 			Timers:CreateTimer( dummy_duration, function()
