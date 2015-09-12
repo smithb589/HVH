@@ -1130,17 +1130,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"leap_speed"			"1600.0"
+				"leap_duration"			".7"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"leap_acceleration"		"7000.0"
-			}
-			"04"
-			{
 				"var_type"				"FIELD_INTEGER"
-				"leap_height"			"300"
+				"leap_vertical_speed"	"1500"
 			}
 		}
 

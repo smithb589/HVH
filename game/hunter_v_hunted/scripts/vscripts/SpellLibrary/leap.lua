@@ -1,3 +1,5 @@
+require("hvh_utils")
+
 --[[Author: Pizzalol
 	Date: 05.01.2015.
 	Leaps the target forward]]
@@ -5,8 +7,8 @@ function Leap( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local leap_distance = ability:GetLevelSpecialValueFor("leap_distance", (ability:GetLevel() - 1))
-	local leap_speed = ability:GetLevelSpecialValueFor("leap_speed", (ability:GetLevel() - 1))
-	local leap_height = ability:GetLevelSpecialValueFor("leap_height", (ability:GetLevel() - 1))
+	local leap_duration = ability:GetLevelSpecialValueFor("leap_duration", (ability:GetLevel() - 1))
+	local leap_vertical_speed = ability:GetLevelSpecialValueFor("leap_vertical_speed", (ability:GetLevel() - 1))
 	local modifier_leap_immunity = keys.modifier_leap_immunity
 
 	-- Clears any current command
@@ -14,12 +16,10 @@ function Leap( keys )
 
 	-- Physics
 	local casterPosition = caster:GetAbsOrigin()
-	local end_time = leap_distance / leap_speed
-	local ground_speed = leap_speed * 1.4
-	local half_time = end_time/2	
-	local veritcal_velocity_initial = CalculateInitialVerticalVelocity(casterPosition.z, casterPosition.z + leap_height, half_time)
-	local gravity = CalculateVerticalAcceleration(veritcal_velocity_initial, half_time)
-	local velocityVector = (caster:GetForwardVector() * ground_speed) + Vector(0, 0, veritcal_velocity_initial)
+	local finalPosition = CalculateFinalPosition(caster, leap_distance)
+	local leapHorizontalSpeed = leap_distance / leap_duration
+	local gravity = CalculateVerticalAcceleration(casterPosition.z, finalPosition.z, leap_vertical_speed, leap_duration)
+	local velocityVector = (caster:GetForwardVector() * leapHorizontalSpeed) + Vector(0, 0, leap_vertical_speed)
 
 	Physics:Unit(caster)
 
@@ -28,17 +28,18 @@ function Leap( keys )
 	caster:SetNavCollisionType(PHYSICS_NAV_NOTHING)
 	caster:FollowNavMesh(false)	
 	caster:SetPhysicsVelocity(velocityVector)
-	caster:SetPhysicsAcceleration(Vector(0, 0, -gravity))
+	caster:SetPhysicsAcceleration(Vector(0, 0, gravity))
+	caster:SetPhysicsFriction(0.0)
 
 	-- HVH: plays flight animation, disjoints projectiles, and applies immunity
 	--StartAnimation(caster, {duration=end_time, activity=ACT_DOTA_RUN, rate=1.0, translate="haste"})
 	ProjectileManager:ProjectileDodge(caster)
 	ability:ApplyDataDrivenModifier(caster, caster, modifier_leap_immunity, {})
 
-	-- Move the unit
-	Timers:CreateTimer(end_time, function()
-		local ground_position = GetGroundPosition(caster:GetAbsOrigin() , caster)
-
+	-- Do the landing
+	-- Adding a single frame to this because we want to disable the physics
+	-- right after he's touched the ground which is 1 frame after the leap duration.
+	Timers:CreateTimer(leap_duration + .03, function()
 		caster:SetPhysicsAcceleration(Vector(0,0,0))
 		caster:SetPhysicsVelocity(Vector(0,0,0))
 		caster:OnPhysicsFrame(nil)
@@ -56,13 +57,21 @@ function Leap( keys )
 	end)
 end
 
-function CalculateInitialVerticalVelocity(initialHeight, finalHeight, halfTime)
-	local initialVerticalVelocity = (2 * (finalHeight - initialHeight)) / halfTime
-	--print(string.format("initialVerticalVelocity: %f", initialVerticalVelocity))
-	return initialVerticalVelocity
+function CalculateVerticalAcceleration(initialHeight, finalHeight, initialVerticalSpeed, endTime)
+	local finalVerticalSpeed = ((2 * (finalHeight - initialHeight)) - (initialVerticalSpeed * endTime)) / endTime
+	local verticalAcceleration = (finalVerticalSpeed - initialVerticalSpeed) / endTime
+	return verticalAcceleration
 end
 
-function CalculateVerticalAcceleration(initialVerticalSpeed, halfTime)
-	local verticalAcceleration = initialVerticalSpeed / halfTime
-	return verticalAcceleration
+function CalculateFinalPosition(caster, leapDistance)
+	local casterPosition = caster:GetAbsOrigin()
+	local forward = caster:GetForwardVector()
+	local theta = math.atan2(forward.y, forward.x)
+	local xOffset = leapDistance * math.cos(theta)
+	local yOffset = leapDistance * math.sin(theta)
+	local finalPosition = GetGroundPosition(Vector(casterPosition.x + xOffset, casterPosition.y + yOffset, casterPosition.z), caster)
+	HVHDebugPrintVector("casterPosition", casterPosition)
+	HVHDebugPrintVector("finalPosition", finalPosition)
+	DebugDrawLine(casterPosition, finalPosition, 255, 0, 0, true, 3)
+	return finalPosition
 end
