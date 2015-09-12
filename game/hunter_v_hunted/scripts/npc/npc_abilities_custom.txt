@@ -1137,6 +1137,11 @@
 				"var_type"				"FIELD_FLOAT"
 				"leap_acceleration"		"7000.0"
 			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"leap_height"			"450"
+			}
 		}
 
 		"OnSpellStart"
