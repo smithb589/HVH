@@ -3,7 +3,7 @@ function VisionThinker(keys)
 	local caster = keys.caster
 	local pos = caster:GetAbsOrigin()
 
-	if not GameRules:IsDaytime() then
+	if not GameRules:IsDaytime() and caster:IsRealHero() then
 		local dummy = nil
 		if caster.VisionDummyEntIndex == nil then
 			dummy = CreateVisionDummy(keys)
@@ -126,5 +126,4 @@ function ResetInvisDelay(caster, ability, mod_invis, delay)
       	ability:ApplyDataDrivenModifier(caster, caster, mod_invis, {})
 	  end
 	})
-	
 end

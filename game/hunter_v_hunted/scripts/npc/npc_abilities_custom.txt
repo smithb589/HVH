@@ -475,7 +475,7 @@
 
 	    	"modifier_dread_hunter_invis"
 	    	{
-	    		"Passive"			"1"
+	    		"Passive"			"0"
 	    		"IsHidden"			"1" // hide this but allow modifier_invisible to do the lifting
 
 	    		"OnCreated"
@@ -519,7 +519,7 @@
 
 	    	"modifier_dread_hunter_regen"
 	    	{
-	    		"Passive"			"1"
+	    		"Passive"			"0"
 	    		"IsHidden"			"0"
 
 	    		"Properties"
