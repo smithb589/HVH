@@ -10,6 +10,35 @@
 	overflow: clip;
 }
 
+#BelowTeamPanel
+{
+	font-family: "Radiance";
+	height:345px;
+	padding:15px 15px 15px 15px;
+	margin-top: 725px;
+	margin-left: 1000px;
+	margin-right: 400px;
+	flow-children: down;
+}
+
+#WarningLabel
+{
+	vertical-align: top;
+	horizontal-align: middle;
+	
+	font-size: 28px;
+	color: #FFFFFF;
+}
+
+#TipLabel
+{
+	vertical-align: bottom;
+	horizontal-align: middle;
+
+	font-size: 28px;
+	color: #FFFFFF;
+}
+
 #TitlePanel
 {
 	horizontal-align: left;

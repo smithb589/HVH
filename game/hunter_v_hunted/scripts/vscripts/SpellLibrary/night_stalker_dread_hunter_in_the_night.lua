@@ -120,5 +120,4 @@ function ResetInvisDelay(caster, ability, mod_invis, delay)
       	ability:ApplyDataDrivenModifier(caster, caster, mod_invis, {})
 	  end
 	})
-	
 end
