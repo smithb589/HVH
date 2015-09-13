@@ -31,8 +31,9 @@
 		"VisionDaytimeRange"	"0"
 		"VisionNighttimeRange"	"0"
 
-		"MinimapIcon"               "minimap_enemyicon"
+		"MinimapIcon"               "minimap_blood_drop"
 		"MinimapIconSize"           "600"
+		"MinimapDisableTint"		"1"
 	}
 
 	// Made by BMD
