@@ -1,56 +1,50 @@
 ---------------------------------- creates auto-following vision dummy
 function VisionThinker(keys)
 	local caster = keys.caster
-	local pos = caster:GetAbsOrigin()
-
+	local trailModifierName = keys.trail_mod_name
+	local pulseFrequency = keys.pulse_frequency
+	local pulseDuration = keys.pulse_duration
 	if not GameRules:IsDaytime() then
-		local dummy = nil
-		if caster.VisionDummyEntIndex == nil then
-			dummy = CreateVisionDummy(keys)
-		else
-			dummy = EntIndexToHScript(caster.VisionDummyEntIndex)
+		local pos = caster:GetAbsOrigin()
+		local targets = GetVisionTargets(pos)
+
+		for targetIndex = 1, #targets do
+			local target = targets[targetIndex]
+			target:MakeVisibleToTeam(caster:GetTeam(), pulseDuration)
+			AddTrailModifier(caster, target, keys.ability, trailModifierName)
 		end
-
-		dummy:SetOrigin(pos)
 	end
 end
 
-function CreateVisionDummy(keys)
-	local caster  = keys.caster
-	local ability = keys.ability
-	local pos  = caster:GetAbsOrigin()
-	local team = caster:GetTeam()
-	local vision_dummy_str = keys.vision_dummy_str
-	local nv_radius     = ability:GetSpecialValueFor("night_vision_radius")
-	local nv_pulse_freq = ability:GetSpecialValueFor("night_vision_pulse_frequency")
-	local nv_pulse_dur  = ability:GetSpecialValueFor("night_vision_pulse_duration")
+function ShouldPulseVision(caster, pulseFrequency)
+	local shouldPulseVision = caster.lastVisionPulseTime == nil
 
-	local dummy = CreateUnitByName(vision_dummy_str, pos, false, nil, nil, team)
-	dummy:SetNightTimeVisionRange(nv_radius)
-	caster.VisionDummyEntIndex = dummy:entindex()
-
-	-- pulse throbber
-	Timers:CreateTimer(nv_pulse_freq, function()
-		VisionPulse(caster, dummy, nv_pulse_dur, nv_radius)
-		return nv_pulse_freq
-	end)
-
-	return dummy
+	if not shouldPulseVision then
+		local currentGameTime = GameRules:GetGameTime()
+		shouldPulseVision = currentGameTime >= (caster.lastVisionPulseTime + pulseFrequency)
+		caster.lastVisionPulseTime = currentGameTime
+	end
+	return shouldPulseVision
 end
 
-function VisionPulse(caster, dummy, duration, radius)
-	if caster:IsAlive() then
-		dummy:SetNightTimeVisionRange(radius)
-		Timers:CreateTimer(duration, function()
-			dummy:SetNightTimeVisionRange(0)
-			return nil
-		end)
-	else
-		dummy:SetNightTimeVisionRange(0)
+function AddTrailModifier(caster, target, ability, trailModifierName)
+	if not caster:HasModifier(trailModifierName) then
+		ability:ApplyDataDrivenModifier(caster, target, trailModifierName, nil)
 	end
 end
 
--- vision pulsing
+function GetVisionTargets(position)
+	local targets = FindUnitsInRadius(DOTA_TEAM_GOODGUYS,
+																		position,
+																		nil,
+																		2400,
+																		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+																		DOTA_UNIT_TARGET_HERO,
+																		DOTA_UNIT_TARGET_FLAG_NONE,
+																		FIND_UNITS_EVERYWHERE,
+																		false)
+	return targets
+end
 
 ---------------------------------- applies speed
 function SpeedThinker(keys)
