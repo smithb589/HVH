@@ -1,0 +1,14 @@
+""
+{
+    "TextureData"
+    {
+        "minimap_blood_drop"
+        {
+            "file"      "materials/vgui/hud/minimap_blood_drop.vmat"
+            "x"         "0"
+            "y"         "0"
+            "width"     "64"
+            "height"    "64"
+        }
+    }
+}
