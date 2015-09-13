@@ -13,8 +13,9 @@
 		"VisionDaytimeRange" "5"
 		"VisionNighttimeRange" "5"
 
-		"MinimapIcon"               "minimap_tower90"
-		"MinimapIconSize"           "350"
+		"MinimapDisableTint"		"1"
+		"MinimapIcon"               "minimap_chest_snipers"
+		"MinimapIconSize"           "600"
 	}
 
 	"npc_dummy_reveal_unit"
