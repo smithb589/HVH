@@ -1,6 +1,6 @@
 <root>
 	<styles>
-		<include src="file://{resources}/styles/dotastyles.css" />
+	    <include src="s2r://panorama/styles/dotastyles.vcss_c" />
 		<include src="file://{resources}/styles/custom_game/hvh_game_info.css" />
 	</styles>
 	<Panel class="HVHGameInfo">
@@ -44,18 +44,6 @@
 				<Label id="PlayingNSText04" class="PlayingNSText" html="true" text="#game_info_playingNS_description04" />
 				<Label id="PlayingNSText05" class="PlayingNSText" html="true" text="#game_info_playingNS_description05" />
 			</Panel>
-		</Panel>
-
-		<Label id="TipsHeader" class="Header" html="true" text="#game_info_tips_header" />
-		<Panel id="TipsRow" class="InfoRow">
-			<Label id="TipText01" class="TipText" html="true" text="#game_info_tips_01" />
-			<Label id="TipText02" class="TipText" html="true" text="#game_info_tips_02" />
-			<Label id="TipText03" class="TipText" html="true" text="#game_info_tips_03" />
-			<Label id="TipText04" class="TipText" html="true" text="#game_info_tips_04" />
-			<Label id="TipText05" class="TipText" html="true" text="#game_info_tips_05" />
-			<Label id="TipText06" class="TipText" html="true" text="#game_info_tips_06" />
-			<Label id="TipText07" class="TipText" html="true" text="#game_info_tips_07" />
-			<Label id="TipText08" class="TipText" html="true" text="#game_info_tips_08" />
 		</Panel>
 
 		<Panel id="PrecacheHacksRow" class="InfoRow">
