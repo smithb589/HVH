@@ -1,4 +1,4 @@
-Version 1.1.0
+Version 1.1.1
 
 [b]HUNTER v HUNTED[/b] is a fast-paced 4v1 PVP mode that pits teamwork against terror. The balance of power is constantly shifting, requiring players to play offensively one minute and defensively the next. On one team, the four Snipers must watch each other's backs and follow the nose of their trusty Hound. On the other team, the solo Night Stalker must learn to divide and conquer by staging ambushes and cleverly evading capture. This game mode includes a tailored map, custom abilities, AI companions, items that grant Dota 2 abilities, and more. It is designed to be fun with groups of varying skill levels.
 
