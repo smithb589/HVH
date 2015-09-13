@@ -11,7 +11,7 @@
 			"height"	"64"
 		}
 		
-		"minimap_chest_snipers"
+		"minimap_snipers"
 		{
 			"file"		"materials/vgui/hud/minimap_snipers.vmat"
 			"x"			"0"
