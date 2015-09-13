@@ -67,6 +67,10 @@ function HVHDebugPrint(...)
   end
 end
 
+function HVHDebugPrintVector(vectorName, vector)
+  HVHDebugPrint(string.format("%s: <%f, %f, %f>", vectorName, vector.x, vector.y, vector.z))
+end
+
 function HVHDebugPrintTable(...)
   local doPrint = Convars:GetInt('hvh_debug_output') or 0
 

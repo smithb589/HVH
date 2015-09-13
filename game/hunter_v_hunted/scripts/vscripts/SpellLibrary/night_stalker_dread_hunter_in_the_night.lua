@@ -1,56 +1,71 @@
----------------------------------- creates auto-following vision dummy
+-- TODO: definite issues if multiple Night Stalkers are running around
+
+---------------------------------- applies vision
 function VisionThinker(keys)
-	local caster = keys.caster
-	local pos = caster:GetAbsOrigin()
-
-	if not GameRules:IsDaytime() then
-		local dummy = nil
-		if caster.VisionDummyEntIndex == nil then
-			dummy = CreateVisionDummy(keys)
-		else
-			dummy = EntIndexToHScript(caster.VisionDummyEntIndex)
-		end
-
-		dummy:SetOrigin(pos)
-	end
-end
-
-function CreateVisionDummy(keys)
 	local caster  = keys.caster
-	local ability = keys.ability
-	local pos  = caster:GetAbsOrigin()
-	local team = caster:GetTeam()
-	local vision_dummy_str = keys.vision_dummy_str
-	local nv_radius     = ability:GetSpecialValueFor("night_vision_radius")
-	local nv_pulse_freq = ability:GetSpecialValueFor("night_vision_pulse_frequency")
-	local nv_pulse_dur  = ability:GetSpecialValueFor("night_vision_pulse_duration")
+	if not caster:IsRealHero() then return end -- illusions don't get this
 
-	local dummy = CreateUnitByName(vision_dummy_str, pos, false, nil, nil, team)
-	dummy:SetNightTimeVisionRange(nv_radius)
-	caster.VisionDummyEntIndex = dummy:entindex()
+	local ability   = keys.ability
+	local dummy_str = keys.dummy_str
+	local team      = caster:GetTeam()
+	local nv_radius = ability:GetSpecialValueFor("night_vision_radius")
 
-	-- pulse throbber
-	Timers:CreateTimer(nv_pulse_freq, function()
-		VisionPulse(caster, dummy, nv_pulse_dur, nv_radius)
-		return nv_pulse_freq
-	end)
+    local heroList = HeroList:GetAllHeroes()
+    for _,target in pairs(heroList) do
+    	-- target.vis_dummy_index references the associated vision dummy unit
+        if not GameRules:IsDaytime() and IsValidVisionTarget(caster, target, nv_radius) then
+        	if target.vis_dummy_index == nil then
+        		CreateVisionDummy(target, dummy_str, team)
+	        else
+	        	MoveVisionDummy(target)
+	        end
 
-	return dummy
+	    -- it's day, or target is not in range, or no longer in range
+	    elseif target.vis_dummy_index ~= nil then
+	    	KillVisionDummy(target)
+	    end
+    end
 end
 
-function VisionPulse(caster, dummy, duration, radius)
-	if caster:IsAlive() then
-		dummy:SetNightTimeVisionRange(radius)
-		Timers:CreateTimer(duration, function()
-			dummy:SetNightTimeVisionRange(0)
-			return nil
-		end)
-	else
-		dummy:SetNightTimeVisionRange(0)
+-- a valid target is not the caster, is alive, is in range, and cannot be seen by caster's team
+function IsValidVisionTarget(caster, target, nv_radius)
+    if  caster ~= target and
+    	target:IsAlive() and
+    	caster:GetRangeToUnit(target) < nv_radius and
+    	not caster:CanEntityBeSeenByMyTeam(target) then
+    		return true
+    else
+      		return false
 	end
 end
 
--- vision pulsing
+function CreateVisionDummy(target, dummy_str, caster_team)
+	local target_pos = target:GetAbsOrigin()
+	local vis_dummy = CreateUnitByName(dummy_str, target_pos, false, nil, nil, caster_team)
+	target.vis_dummy_index = vis_dummy:entindex()
+end
+
+-- vision dummy follows the target
+function MoveVisionDummy(target)
+	local target_pos = target:GetAbsOrigin()
+	local vis_dummy = EntIndexToHScript(target.vis_dummy_index)
+	vis_dummy:SetOrigin(target_pos)
+end
+
+function KillVisionDummy(target)
+	local vis_dummy = EntIndexToHScript(target.vis_dummy_index)
+	vis_dummy:ForceKill(true)
+	target.vis_dummy_index = nil
+end	    	
+
+function OnDeath_KillAllVisionDummies(keys)
+    local heroList = HeroList:GetAllHeroes()
+    for _,target in pairs(heroList) do
+    	if target.vis_dummy_index ~= nil then
+    		KillVisionDummy(target)
+    	end
+    end
+end
 
 ---------------------------------- applies speed
 function SpeedThinker(keys)
@@ -126,5 +141,4 @@ function ResetInvisDelay(caster, ability, mod_invis, delay)
       	ability:ApplyDataDrivenModifier(caster, caster, mod_invis, {})
 	  end
 	})
-	
 end

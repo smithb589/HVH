@@ -367,39 +367,29 @@
 	    	}
 	    	"04"
 	    	{
-	     		"var_type"							"FIELD_FLOAT"
-	    		"night_vision_pulse_frequency"		"3.0"
-	    	}
-	    	"05"
-	    	{
-	     		"var_type"							"FIELD_FLOAT"
-	    		"night_vision_pulse_duration"		"0.75"
-	    	}
-	    	"06"
-	    	{
 	    		"var_type"							"FIELD_FLOAT"
 	    		"invis_delay"						"4.0"
 	    	}
-	    	"07"
+	    	"05"
 	    	{
 	    		"var_type"							"FIELD_FLOAT"
 	    		"invis_delay_after_damage"			"2.0"
 	    	}
-	    	"08"
+	    	"06"
 	    	{
 	    		"var_type"							"FIELD_FLOAT"
 	    		"invis_delay_after_moving"			"0.75"
 	    	}
-	    	"09"
+	    	"07"
 	    	{
 	    		"var_type"							"FIELD_INTEGER"
 	    		"minimum_dmg_to_break_invis"		"25" // above hound dmg, below sniper dmg
 	    	}
-	    	"10"
+	    	"08"
 	    	{
 	    		"var_type"							"FIELD_FLOAT"
 	    		"invis_regen_pct_per_sec"			"1.5" // "1.25" //"0.75 1.00 1.25"
-	    	}  
+	    	}
 	    }
 
 	    "Modifiers"
@@ -409,14 +399,23 @@
 	    		"Passive" 			"1"
 	    		"IsHidden"			"1"
 
-	    		"ThinkInterval"  "0.10"
+	    		"ThinkInterval"  "0.1"
 	    		"OnIntervalThink"
 	    		{
 	    			"RunScript"
 	    			{
 	    				"ScriptFile"		"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
 	    				"Function"			"VisionThinker"
-	    				"vision_dummy_str"	"npc_dummy_night_vision"
+	    				"dummy_str"			"npc_dummy_reveal_unit"
+	    			}
+	    		}
+
+	    		"OnDeath"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"		"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"			"OnDeath_KillAllVisionDummies"
 	    			}
 	    		}
 	    	}
@@ -475,7 +474,7 @@
 
 	    	"modifier_dread_hunter_invis"
 	    	{
-	    		"Passive"			"1"
+	    		"Passive"			"0"
 	    		"IsHidden"			"1" // hide this but allow modifier_invisible to do the lifting
 
 	    		"OnCreated"
@@ -519,7 +518,7 @@
 
 	    	"modifier_dread_hunter_regen"
 	    	{
-	    		"Passive"			"1"
+	    		"Passive"			"0"
 	    		"IsHidden"			"0"
 
 	    		"Properties"
@@ -1066,9 +1065,6 @@
 		}
 	}
 
-	// Rewrite of the Mirana Leap ability
-	// Author: Pizzalol
-	// Date: 05.01.2015.
 	"night_stalker_leap_hvh"
 	{
 		// General
@@ -1111,12 +1107,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"leap_speed"			"1600.0"
+				"leap_duration"			".7"
 			}
 			"03"
 			{
+				"var_type"				"FIELD_INTEGER"
+				"leap_vertical_speed"	"1500"
+			}
+			"04"
+			{
 				"var_type"				"FIELD_FLOAT"
-				"leap_acceleration"		"7000.0"
+				"damage_reduction"		"-100"
 			}
 		}
 
@@ -1130,7 +1131,7 @@
 			
 			"RunScript"
 			{
-				"ScriptFile"	"SpellLibrary/leap.lua"
+				"ScriptFile"	"SpellLibrary/night_stalker_leap.lua"
 				"Function"		"Leap"
 				"modifier_leap_immunity"	"modifier_leap_immunity"
 			}
@@ -1141,11 +1142,11 @@
 			"modifier_leap_immunity"
 			{
 				"Passive" 			"1"
-	    		"IsHidden"			"0"
+	    		"IsHidden"			"1"
 	
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"-100"
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%damage_reduction"
 				}
 			}			
 		}
@@ -1524,7 +1525,7 @@
 		}
 	}
 
-	"dummy_night_vision"
+	"dummy_reveal_unit_vision"
 	{
 		"BaseClass" 		"ability_datadriven"
 		"AbilityBehavior" 	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -1533,7 +1534,7 @@
 
 		"Modifiers"
 		{
-			"modifier_dummy_night_vision"
+			"modifier_reveal_unit_vision"
 			{
 				"Passive"	"1"
 				"IsHidden"	"1"
@@ -1550,7 +1551,7 @@
 					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_INVISIBLE"			"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_TRUESIGHT_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES"		"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_OUT_OF_GAME"		"MODIFIER_STATE_VALUE_ENABLED"
 				}

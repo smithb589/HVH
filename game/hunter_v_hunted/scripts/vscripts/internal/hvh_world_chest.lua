@@ -17,7 +17,9 @@ function HVHWorldChest.new()
 
 	self._spawnedChest = nil
 	self._visionEntities = {}
-	self._visionUnit = "npc_chest_vision_dummy"
+	-- NS chests during day, sniper chests at night
+	self._visionUnitDay   = "npc_chest_vision_dummy_ns"
+	self._visionUnitNight = "npc_chest_vision_dummy_snipers"
 	self._visionRange = 200
 
 	return self
@@ -80,10 +82,18 @@ function HVHWorldChest:_RemoveVisionEntities()
 end
 
 function HVHWorldChest:_CreateVisionEntity(location, team)
-	local visionEntity = CreateUnitByName(self._visionUnit, location, false, nil, nil, team)
+	local visionUnit = self:_SelectVisionUnitForThisCycle()
+	local visionEntity = CreateUnitByName(visionUnit, location, false, nil, nil, team)
 	visionEntity:SetAbsOrigin(location)
 	visionEntity.visionrange = self._visionRange
 
 	table.insert(self._visionEntities, visionEntity)
 end
 
+function HVHWorldChest:_SelectVisionUnitForThisCycle()
+	if GameRules:IsDaytime() then
+		return self._visionUnitDay
+	else
+		return self._visionUnitNight
+	end
+end
