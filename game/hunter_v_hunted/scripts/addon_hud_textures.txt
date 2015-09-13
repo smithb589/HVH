@@ -2,31 +2,51 @@
 {
 	"TextureData"
 	{
-		"minimap_chest_ns"
+		// sniper's face
+        "minimap_hvh_sniper"
+        {
+				"file"		"vgui/hud/minimap_hero_sheet"
+				"x"			"0"
+				"y"			"96"
+				"width"		"32"
+				"height"	"32"
+        }        
+
+        // dire courier
+        "minimap_hvh_hound"
+        {
+				"file"		"vgui/hud/minimap_sheet"
+				"x"			"288"
+				"y"			"32"
+				"width"		"32" 
+				"height"	"32"
+        }
+
+        "minimap_hvh_blood_drop"
+        {
+            "file"      "materials/vgui/hud/minimap_hvh_blood_drop.vmat"
+            "x"         "0"
+            "y"         "0"
+            "width"     "64"
+            "height"    "64"
+        }
+
+		"minimap_hvh_chest_ns"
 		{
-			"file"		"materials/vgui/hud/minimap_chest_ns.vmat"
+			"file"		"materials/vgui/hud/minimap_hvh_chest_ns.vmat"
 			"x"			"0"
 			"y"			"0"
 			"width"		"64"
 			"height"	"64"
 		}
 		
-		"minimap_snipers"
+		"minimap_hvh_chest_snipers"
 		{
-			"file"		"materials/vgui/hud/minimap_snipers.vmat"
+			"file"		"materials/vgui/hud/minimap_hvh_chest_snipers.vmat"
 			"x"			"0"
 			"y"			"0"
 			"width"		"64"
 			"height"	"64"
 		}
-
-        "minimap_blood_drop"
-        {
-            "file"      "materials/vgui/hud/minimap_blood_drop.vmat"
-            "x"         "0"
-            "y"         "0"
-            "width"     "64"
-            "height"    "64"
-        }
     }
 }

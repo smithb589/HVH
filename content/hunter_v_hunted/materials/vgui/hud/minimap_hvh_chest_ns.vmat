@@ -4,6 +4,8 @@ Layer0
 {
 	shader "ui.vfx"
 
+	F_STENCIL_MASKING 1
+
 	//---- Color ----
-	Texture "materials/vgui/hud/minimap_snipers.psd"
+	Texture "materials/vgui/hud/minimap_hvh_chest_ns.psd"
 }
