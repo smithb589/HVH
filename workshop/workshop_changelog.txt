@@ -1,3 +1,16 @@
+1.1.0
+---
+Rewrote NS's leap ability (flying animation!):
+-- Leap physics reworked but should feel similar
+-- Leap now provides 100% damage reduction for 0.7 sec
+NS night vision reworked:
+-- Removed flying vision pulses
+-- Can now see nearby enemy heroes on minimap only
+Shrapnel VFX updated, SFX fixed
+Shrapnel slow duration 3.0 to 0.5 sec
+Shrapnel delay after cast from 0.3 to 1.4 sec (default Dota)
+Random tips on loading screen
+
 1.0.3
 ---
 Hound now has a random model on spawn
