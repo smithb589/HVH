@@ -51,7 +51,7 @@
 			<Image class="PrecacheHacks" src="file://{images}/custom_game/notifications/snipers_landscape.psd" />
 			<Image class="PrecacheHacks" src="file://{images}/custom_game/notifications/night_stalker_echolocation_hvh.png" />
 			<Image class="PrecacheHacks" src="file://{images}/custom_game/notifications/night_stalker_crippling_fear_aoe_hvh.png" />
-			<Image class="PrecacheHacks" src="file://{images}/custom_game/notifications/mirana_leap.png" />
+			<Image class="PrecacheHacks" src="file://{images}/custom_game/notifications/night_stalker_leap_hvh.png" />
 		</Panel>
 	</Panel>
 </root>

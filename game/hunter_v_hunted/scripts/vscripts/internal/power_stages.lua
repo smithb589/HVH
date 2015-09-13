@@ -143,8 +143,8 @@ function HVHPowerStages:GrantSniperBonusHounds()
 end
 
 function HVHPowerStages:GrantNSLeap()
-	self:LevelupAbilityForAll("npc_dota_hero_night_stalker", "mirana_leap", nil, true)
-	self:Notify(STR_NS_UPGRADE, STR_NS_LEAP, "mirana_leap", DOTA_TEAM_BADGUYS)
+	self:LevelupAbilityForAll("npc_dota_hero_night_stalker", "night_stalker_leap_hvh", nil, true)
+	self:Notify(STR_NS_UPGRADE, STR_NS_LEAP, "night_stalker_leap_hvh", DOTA_TEAM_BADGUYS)
 end
 
 function HVHPowerStages:GrantNSEcholocation()
@@ -190,7 +190,7 @@ function HVHPowerStages:Notify(heading, subtext, ability_name, team)
 		-- search "PrecacheHacks" under the ../content/dota_addons/hunter_v_hunted/panorama/ folder to add more 
 		if ability_name == "night_stalker_echolocation_hvh" or
 		   ability_name == "night_stalker_crippling_fear_aoe_hvh" or
-		   ability_name == "mirana_leap" then
+		   ability_name == "night_stalker_leap_hvh" then
 			local abilityImagePath = "file://{images}/custom_game/notifications/" .. ability_name .. ".png"
 			Notifications:TopToAll({image=abilityImagePath, continue=true})
 		else
