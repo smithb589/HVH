@@ -373,7 +373,7 @@
 	    	"05"
 	    	{
 	     		"var_type"							"FIELD_FLOAT"
-	    		"night_vision_pulse_duration"		"0.75"
+	    		"night_vision_pulse_duration"		".75"
 	    	}
 	    	"06"
 	    	{
@@ -399,7 +399,7 @@
 	    	{
 	    		"var_type"							"FIELD_FLOAT"
 	    		"invis_regen_pct_per_sec"			"1.5" // "1.25" //"0.75 1.00 1.25"
-	    	}  
+	    	}
 	    }
 
 	    "Modifiers"
@@ -416,9 +416,21 @@
 	    			{
 	    				"ScriptFile"		"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
 	    				"Function"			"VisionThinker"
-	    				"vision_dummy_str"	"npc_dummy_night_vision"
+	    				"think_interval"	"0.1"
+	    				"trail_mod_name"	"modifier_dread_hunter_vision_trail"
+	    				"pulse_frequency"	"%night_vision_pulse_frequency"
+	    				"pulse_duration"	"%night_vision_pulse_duration"
 	    			}
 	    		}
+	    	}
+
+	    	"modifier_dread_hunter_vision_trail"
+	    	{
+	    		"IsHidden"			"1"
+	    		"Duration"			"%night_vision_pulse_frequency"
+
+	    		"EffectName"		"particles/units/heroes/hero_bloodseeker/bloodseeker_rupture_trail.vpcf"
+	    		"EffectAttachType"	"follow_origin"
 	    	}
 
 	    	"modifier_dread_hunter_invis_applicator"
@@ -1527,6 +1539,40 @@
 	}
 
 	"dummy_night_vision"
+	{
+		"BaseClass" 		"ability_datadriven"
+		"AbilityBehavior" 	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"	"rubick_empty1"
+		"MaxLevel"				"1"
+
+		"Modifiers"
+		{
+			"modifier_dummy_night_vision"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NO_TEAM_MOVE_TO"    "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NO_TEAM_SELECT"     "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_COMMAND_RESTRICTED" "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_ATTACK_IMMUNE"      "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_MAGIC_IMMUNE"       "MODIFIER_STATE_VALUE_ENABLED"            
+	                "MODIFIER_STATE_UNSELECTABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED" 
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVISIBLE"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_TRUESIGHT_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_OUT_OF_GAME"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+	"dummy_reveal_unit_vision"
 	{
 		"BaseClass" 		"ability_datadriven"
 		"AbilityBehavior" 	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
