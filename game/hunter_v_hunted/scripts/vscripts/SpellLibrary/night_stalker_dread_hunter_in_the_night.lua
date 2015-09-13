@@ -1,49 +1,70 @@
----------------------------------- creates auto-following vision dummy
+-- TODO: definite issues if multiple Night Stalkers are running around
+
+---------------------------------- applies vision
 function VisionThinker(keys)
-	local caster = keys.caster
-	local trailModifierName = keys.trail_mod_name
-	local pulseFrequency = keys.pulse_frequency
-	local pulseDuration = keys.pulse_duration
-	if not GameRules:IsDaytime() then
-		local pos = caster:GetAbsOrigin()
-		local targets = GetVisionTargets(pos)
+	local caster  = keys.caster
+	if not caster:IsRealHero() then return end -- illusions don't get this
 
-		for targetIndex = 1, #targets do
-			local target = targets[targetIndex]
-			target:MakeVisibleToTeam(caster:GetTeam(), pulseDuration)
-			AddTrailModifier(caster, target, keys.ability, trailModifierName)
-		end
+	local ability   = keys.ability
+	local dummy_str = keys.dummy_str
+	local team      = caster:GetTeam()
+	local nv_radius = ability:GetSpecialValueFor("night_vision_radius")
+
+    local heroList = HeroList:GetAllHeroes()
+    for _,target in pairs(heroList) do
+    	-- target.vis_dummy_index references the associated vision dummy unit
+        if not GameRules:IsDaytime() and IsValidVisionTarget(caster, target, nv_radius) then
+        	if target.vis_dummy_index == nil then
+        		CreateVisionDummy(target, dummy_str, team)
+	        else
+	        	MoveVisionDummy(target)
+	        end
+
+	    -- it's day, or target is not in range, or no longer in range
+	    elseif target.vis_dummy_index ~= nil then
+	    	KillVisionDummy(target)
+	    end
+    end
+end
+
+-- a valid target is not the caster, is alive, is in range, and cannot be seen by caster's team
+function IsValidVisionTarget(caster, target, nv_radius)
+    if  caster ~= target and
+    	target:IsAlive() and
+    	caster:GetRangeToUnit(target) < nv_radius and
+    	not caster:CanEntityBeSeenByMyTeam(target) then
+    		return true
+    else
+      		return false
 	end
 end
 
-function ShouldPulseVision(caster, pulseFrequency)
-	local shouldPulseVision = caster.lastVisionPulseTime == nil
-
-	if not shouldPulseVision then
-		local currentGameTime = GameRules:GetGameTime()
-		shouldPulseVision = currentGameTime >= (caster.lastVisionPulseTime + pulseFrequency)
-		caster.lastVisionPulseTime = currentGameTime
-	end
-	return shouldPulseVision
+function CreateVisionDummy(target, dummy_str, caster_team)
+	local target_pos = target:GetAbsOrigin()
+	local vis_dummy = CreateUnitByName(dummy_str, target_pos, false, nil, nil, caster_team)
+	target.vis_dummy_index = vis_dummy:entindex()
 end
 
-function AddTrailModifier(caster, target, ability, trailModifierName)
-	if not caster:HasModifier(trailModifierName) then
-		ability:ApplyDataDrivenModifier(caster, target, trailModifierName, nil)
-	end
+-- vision dummy follows the target
+function MoveVisionDummy(target)
+	local target_pos = target:GetAbsOrigin()
+	local vis_dummy = EntIndexToHScript(target.vis_dummy_index)
+	vis_dummy:SetOrigin(target_pos)
 end
 
-function GetVisionTargets(position)
-	local targets = FindUnitsInRadius(DOTA_TEAM_GOODGUYS,
-																		position,
-																		nil,
-																		2400,
-																		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-																		DOTA_UNIT_TARGET_HERO,
-																		DOTA_UNIT_TARGET_FLAG_NONE,
-																		FIND_UNITS_EVERYWHERE,
-																		false)
-	return targets
+function KillVisionDummy(target)
+	local vis_dummy = EntIndexToHScript(target.vis_dummy_index)
+	vis_dummy:ForceKill(true)
+	target.vis_dummy_index = nil
+end	    	
+
+function OnDeath_KillAllVisionDummies(keys)
+    local heroList = HeroList:GetAllHeroes()
+    for _,target in pairs(heroList) do
+    	if target.vis_dummy_index ~= nil then
+    		KillVisionDummy(target)
+    	end
+    end
 end
 
 ---------------------------------- applies speed

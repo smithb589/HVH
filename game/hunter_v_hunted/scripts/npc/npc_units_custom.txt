@@ -17,7 +17,7 @@
 		"MinimapIconSize"           "350"
 	}
 
-	"npc_dummy_night_vision"
+	"npc_dummy_reveal_unit"
 	{
 		"BaseClass" "npc_dota_creature"
 		"Model" "models/development/invisiblebox.vmdl"
@@ -25,26 +25,13 @@
 		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
 		"MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_FLY"
 
-		"Ability1"				"dummy_night_vision"
-
-		"VisionDaytimeRange"	"1"
-		"VisionNighttimeRange"	"1"
-	}
-
-	"npc_dummy_reveal_unit"
-	{
-		"BaseClass" "npc_dota_creature"
-		"Model" "models/development/invisiblebox.vmdl"
-		"AttackCapabilities"   "DOTA_UNIT_CAP_NO_ATTACK"
-		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
-		"MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-
 		"Ability1"				"dummy_reveal_unit_vision"
 
 		"VisionDaytimeRange"	"0"
-		"VisionNighttimeRange"	"10"
+		"VisionNighttimeRange"	"0"
 
-		"vscripts"				"ai/ai_reveal_unit_dummy.lua"
+		"MinimapIcon"               "minimap_enemyicon"
+		"MinimapIconSize"           "600"
 	}
 
 	// Made by BMD
