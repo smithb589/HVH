@@ -14,7 +14,7 @@
 		"VisionNighttimeRange" "5"
 
 		"MinimapDisableTint"		"1"
-		"MinimapIcon"               "minimap_chest_snipers"
+		"MinimapIcon"               "minimap_snipers"
 		"MinimapIconSize"           "600"
 	}
 

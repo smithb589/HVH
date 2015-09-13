@@ -13,7 +13,7 @@
 		
 		"minimap_chest_snipers"
 		{
-			"file"		"materials/vgui/hud/minimap_chest_snipers.vmat"
+			"file"		"materials/vgui/hud/minimap_snipers.vmat"
 			"x"			"0"
 			"y"			"0"
 			"width"		"64"
