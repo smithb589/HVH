@@ -1,3 +1,8 @@
+1.1.2
+---
+Fixed NS retaining leap immunity on spawn (Thanks Lieutenant Germz and Mr.Tutlek!)
+New screenshots on the workshop page
+
 1.1.1
 ---
 Fixed NS not learning Dread Leap
