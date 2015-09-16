@@ -36,10 +36,12 @@ function HVHPowerStages:HandlePlayerDeath(unit)
 	if team == DOTA_TEAM_GOODGUYS then
 		mode.GoodGuyLives = mode.GoodGuyLives - 1
 		mode:SetTopBarTeamValue(DOTA_TEAM_GOODGUYS, mode.GoodGuyLives)
-		HVHGameMode:DetermineRespawn(unit)
+    	HVHGameMode:PushScoreToCustomNetTable()
+    	HVHGameMode:DetermineRespawn(unit)
 	elseif team == DOTA_TEAM_BADGUYS then
 		mode.BadGuyLives = mode.BadGuyLives - 1
 		mode:SetTopBarTeamValue(DOTA_TEAM_BADGUYS, mode.BadGuyLives)
+		HVHGameMode:PushScoreToCustomNetTable()
 		HVHGameMode:DetermineRespawn(unit)
 	end
 end

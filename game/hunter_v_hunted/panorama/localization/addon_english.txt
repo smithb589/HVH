@@ -59,4 +59,6 @@
 	"game_info_tips_20"		"The Night Stalker may seem impossible, but the Snipers possess the power of friendship."
 	
 	"loading_screen_warning"	"WARNING: Night Stalker not intended for first-time players."
+
+	"custom_end_screen_legend_team_score" "LIVES"
 }

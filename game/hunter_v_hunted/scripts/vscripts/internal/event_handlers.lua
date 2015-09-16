@@ -9,6 +9,7 @@ function HVHGameMode:OnGameRulesStateChange()
   if state == DOTA_GAMERULES_STATE_HERO_SELECTION then
     self:_PostLoadPrecache()
     self:SetupInitialTeamSpawns()
+    self:PushScoreToCustomNetTable()
   elseif state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
     self:_SetupFastTime(TIME_NEXT_EVENING, RANDOM_EXTRA_SECONDS)
     self:_SetupPassiveXP()
