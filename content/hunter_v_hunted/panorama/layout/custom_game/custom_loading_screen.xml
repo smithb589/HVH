@@ -2,9 +2,6 @@
   <styles>
     <include src="file://{resources}/styles/custom_game/custom_loading_screen.css" />
   </styles>
-  <scripts>
-    <include src="file://{resources}/scripts/custom_game/custom_loading_screen.js" /> 
-  </scripts>
   <Panel class="AddonLoadingRoot">
     <Panel id="CustomBg" >
       <Image id="nightstalkerWings" class="SeqImg" src="file://{images}/custom_game/loading_screen/ns_wings.psd" /> 
@@ -17,10 +14,6 @@
       <Panel id="TitlePanel">
         <Label id="AddonTitle" text="#addon_game_name" style="" />
       </Panel>
-    <Panel id="BelowTeamPanel">
-      <Label id="WarningLabel" text="#loading_screen_warning" style="" />
-      <Label id="TipLabel" text="TIP_GOES_HERE" style="" />
-    </Panel>
     </Panel>
   </Panel>
 </root>
