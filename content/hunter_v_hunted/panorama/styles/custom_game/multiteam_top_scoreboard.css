@@ -2,6 +2,26 @@
 @define EXTRA_PADDING: 50px;
 @define M_EXTRA_PADDING: -50px;
 
+.Logo_Day
+{
+	color: #FCAF3D;
+}
+
+.Logo_Night
+{
+	color: #99CCFF;
+}
+
+#HVH_Logo_Label
+{
+	margin-right: 460px;
+    horizontal-align: right;
+	vertical-align: top;
+	font-size: 32px;
+	font-family: "Goudy Trajan Medium";
+	text-shadow: 4px 4px 4px #212C38;
+}
+
 .CustomHudRoot
 {
 	width: 100%;

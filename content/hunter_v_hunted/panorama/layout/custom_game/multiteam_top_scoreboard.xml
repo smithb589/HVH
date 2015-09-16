@@ -17,7 +17,8 @@
 			<Panel hittest="false" id="MultiteamScoreboard" />
 			<Panel hittest="false" id="RightInjectXMLFile" />
 		</Panel>
-	  </Panel>
+	</Panel>
+	<Label id="HVH_Logo_Label" html="true" text="HUNTER V HUNTED" />
   </Panel>
 </root>
 
