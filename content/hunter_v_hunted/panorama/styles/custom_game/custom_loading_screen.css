@@ -13,10 +13,11 @@
 #BelowTeamPanel
 {
 	font-family: "Radiance";
+	width:400px;
 	height:345px;
 	padding:15px 15px 15px 15px;
-	margin-top: 725px;
-	margin-left: 1000px;
+	margin-top: 715px;
+	margin-left: 930px;
 	margin-right: 400px;
 	flow-children: down;
 }

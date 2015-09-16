@@ -2,28 +2,28 @@
 function Choose_Hint(){
 	var count = Count_Localized_Strings();
 	var r = Math.floor(Math.random() * count);
-	var strR = ("0"+r).slice(-2);
+	var r_str = ("0"+r).slice(-2); // 00, 05, 13, etc.
 
-	// accepted random localized string
-	var strLocalized = $.Localize("game_info_tips_" + strR);
-	
-	var tipLabel = Root.FindChildTraverse("BelowTeamPanel").FindChildTraverse("TipLabel");
-	tipLabel.text = "Hint #" + strR +  ": "+ strLocalized;
+	var tipHeader = $.Localize("game_info_tips_header");
+	var tipText	  = $.Localize("game_info_tips_" + r_str);
+	var tip = Root.FindChildTraverse("BelowTeamPanel").FindChildTraverse("TipLabel");
+	tip.text = tipHeader + " #" + r_str +  ": "+ tipText;
+	// (example output) Tip #14: Always bring a towel.
 }
 
 // an infinite loop that stops once an unlocalised string is found
-// function assume that atleast a hint game_info_tips__00 EXISTS
+// function assumes that game_info_tips_00 EXISTS
 function Count_Localized_Strings(){
 	var strBase = "game_info_tips_"
 	for(i=0; i == i; i++){
 		var num = i + 1;
-		var strNum = ("0" + num).slice(-2);
+		var num_str = ("0" + num).slice(-2);
 
-		// store localized string based on i Index
-		var strLocalized = $.Localize("game_info_tips_"+(strNum));
+		var textLocalized = $.Localize("game_info_tips_"+(num_str));
 		
-		// check if the localized string is identical to the localize value, if true that means there's no localisation for this, we assume at least.
-		if(strLocalized == "game_info_tips_"+(strNum)){
+		// if the localized string is identical to the localized value,
+		// then the end of the tips has been reached, so break the loop
+		if(textLocalized == "game_info_tips_"+(num_str)){
 			//$.Msg("BREAKING OUT OF COUNT, COUNT="+i)
 			return i;
 			break;
