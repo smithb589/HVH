@@ -203,8 +203,13 @@ end
 
 function BehaviorWarn:_DoWarn()
 	thisEntity:Stop()
-	thisEntity:StartGesture(ACT_DOTA_ATTACK)
-	thisEntity:EmitSound("Lycan_Wolf.PreAttack")
+	--thisEntity:StartGesture(ACT_DOTA_ATTACK)
+	
+	Timers:CreateTimer(SINGLE_FRAME_TIME, function()
+		StartAnimation(thisEntity, {duration=self.warnDuration, activity=ACT_DOTA_OVERRIDE_ABILITY_1, rate=1.0})
+		thisEntity:EmitSound("Lycan_Wolf.PreAttack")
+	end)
+	
 	thisEntity._LastWarnTime = GameRules:GetGameTime()
 end
 
