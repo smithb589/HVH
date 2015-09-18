@@ -18,7 +18,8 @@
 			<Panel hittest="false" id="RightInjectXMLFile" />
 		</Panel>
 	</Panel>
-	<Label id="HVH_Logo_Label" html="true" text="HUNTER V HUNTED" />
+	<Image hittest="false" id="HVH_Logo_Day" class="HVH_Logo" src="file://{images}/custom_game/topbar/logo_day.png" />
+	<Image hittest="false" id="HVH_Logo_Night" class="HVH_Logo" src="file://{images}/custom_game/topbar/logo_night.png" />
   </Panel>
 </root>
 

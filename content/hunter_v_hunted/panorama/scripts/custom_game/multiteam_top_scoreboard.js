@@ -5,19 +5,20 @@ var g_ScoreboardHandle = null;
 /* HVH */
 function UpdateLogo()
 { 
-	var logoLabel = $.GetContextPanel().FindChild("HVH_Logo_Label");
+	var logoDay = $.GetContextPanel().FindChild("HVH_Logo_Day");
+	var logoNight = $.GetContextPanel().FindChild("HVH_Logo_Night");
+	var isDaytime = CustomNetTables.GetTableValue("cycle", "IsDaytime")["value"]
 
-	// TODO: day/night listener, possible using another custom net table to listen to Lua events
-	var day = true;
-	if (day)
+	if (isDaytime)
 	{
-		logoLabel.SetHasClass( "Logo_Day", true );
-		logoLabel.SetHasClass( "Logo_Night", false );
+		logoDay.style.visibility 	= "visible"
+		logoNight.style.visibility	= "collapse"
 	}
 	else
 	{
-		logoLabel.SetHasClass( "Logo_Day", false );
-		logoLabel.SetHasClass( "Logo_Night", true );
+		logoNight.style.visibility	= "visible"
+		logoDay.style.visibility 	= "collapse"
+
 	}
 }
 
