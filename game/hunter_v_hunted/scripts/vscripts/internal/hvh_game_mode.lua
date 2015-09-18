@@ -86,6 +86,23 @@ function HVHGameMode:_SetupGameMode()
   end 
 end
 
+-- accessible by panorama
+function HVHGameMode:SetupCycleTimer()
+  local t = 1.0
+  Timers:CreateTimer(t, function()
+    CustomNetTables:SetTableValue("cycle", "IsDaytime", { value = GameRules:IsDaytime() })
+    return t
+  end)
+end
+
+
+-- accessible by panorama
+function HVHGameMode:PushScoreToCustomNetTable()
+  local mode = GameRules:GetGameModeEntity()
+  CustomNetTables:SetTableValue("scores", "GoodGuyLives", { value = mode.GoodGuyLives })
+  CustomNetTables:SetTableValue("scores", "BadGuyLives", { value = mode.BadGuyLives })
+end
+
 -- Custom Games: PrecacheUnitByNameSync and PrecacheUnitByNameAsync can optionally take a PlayerID as the last
 -- argument and it will use the cosmetic items from that player when precaching. The player must be connected to the
 -- game otherwise it will fall back to the default cosmetic items.

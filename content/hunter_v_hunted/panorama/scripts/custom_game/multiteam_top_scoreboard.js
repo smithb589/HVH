@@ -1,0 +1,67 @@
+"use strict";
+
+var g_ScoreboardHandle = null;
+
+/* HVH */
+function UpdateLogo()
+{ 
+	var logoDay = $.GetContextPanel().FindChild("HVH_Logo_Day");
+	var logoNight = $.GetContextPanel().FindChild("HVH_Logo_Night");
+	var isDaytime = CustomNetTables.GetTableValue("cycle", "IsDaytime")["value"]
+
+	if (isDaytime)
+	{
+		logoDay.style.visibility 	= "visible"
+		logoNight.style.visibility	= "collapse"
+	}
+	else
+	{
+		logoNight.style.visibility	= "visible"
+		logoDay.style.visibility 	= "collapse"
+
+	}
+}
+
+function UpdateScoreboard()
+{
+	ScoreboardUpdater_SetScoreboardActive( g_ScoreboardHandle, true );
+	UpdateLogo() /* HVH */
+
+	$.Schedule( 0.2, UpdateScoreboard );
+}
+
+(function()
+{
+	var shouldSort = true;
+
+	if ( GameUI.CustomUIConfig().multiteam_top_scoreboard )
+	{
+		var cfg = GameUI.CustomUIConfig().multiteam_top_scoreboard;
+		if ( cfg.LeftInjectXMLFile )
+		{
+			$( "#LeftInjectXMLFile" ).BLoadLayout( cfg.LeftInjectXMLFile, false, false );
+		}
+		if ( cfg.RightInjectXMLFile )
+		{
+			$( "#RightInjectXMLFile" ).BLoadLayout( cfg.RightInjectXMLFile, false, false );
+		}
+
+		if ( typeof(cfg.shouldSort) !== 'undefined')
+		{
+			shouldSort = cfg.shouldSort;
+		}
+	}
+	
+	if ( ScoreboardUpdater_InitializeScoreboard === null ) { $.Msg( "WARNING: This file requires shared_scoreboard_updater.js to be included." ); }
+
+	var scoreboardConfig =
+	{
+		"teamXmlName" : "file://{resources}/layout/custom_game/multiteam_top_scoreboard_team.xml",
+		"playerXmlName" : "file://{resources}/layout/custom_game/multiteam_top_scoreboard_player.xml",
+		"shouldSort" : shouldSort
+	};
+	g_ScoreboardHandle = ScoreboardUpdater_InitializeScoreboard( scoreboardConfig, $( "#MultiteamScoreboard" ) );
+
+	UpdateScoreboard();
+})();
+
