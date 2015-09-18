@@ -394,6 +394,21 @@
 
 	    "Modifiers"
 	    {
+	    	"modifier_dread_hunter_kill_effect"
+	    	{
+	    		"Passive" 			"1"
+	    		"IsHidden"			"1"
+
+	    		"OnCreated"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"		"RegisterKillEffect"
+	    			}
+	    		}
+	    	}
+
 	    	"modifier_dread_hunter_vision_applicator"
 	    	{
 	    		"Passive" 			"1"
@@ -646,7 +661,7 @@
 	
 				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
 				"EffectAttachType"	"follow_overhead"
-	
+
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MISS_PERCENTAGE"		"%miss_rate_day"
