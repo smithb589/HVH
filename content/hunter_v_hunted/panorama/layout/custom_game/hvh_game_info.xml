@@ -52,6 +52,66 @@
 			<Image class="PrecacheHacks" src="file://{images}/custom_game/notifications/night_stalker_echolocation_hvh.png" />
 			<Image class="PrecacheHacks" src="file://{images}/custom_game/notifications/night_stalker_crippling_fear_aoe_hvh.png" />
 			<Image class="PrecacheHacks" src="file://{images}/custom_game/notifications/night_stalker_leap_hvh.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/amplify_damage.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/aphotic_shield.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/assassinate.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/avalanche.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/battle_trance.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/black_hole.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/blinding_light.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/blood_bath.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/brain_sap.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/carrion_swarm.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/chaos_meteor.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/chilling_touch.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/cold_snap.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/conjure_image.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/culling_blade.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/deafening_blast.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/death_coil.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/decay.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/disruption.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/dream_coil.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/ensnare.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/eye_of_the_storm.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/fatal_bonds.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/firefly.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/fissure.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/frost_armor.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/frozen_sigil.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/glimpse.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/hand_of_god.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/healing_ward.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/homing_missile.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/ice_wall.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/kinetic_field.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/land_mines.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/mango_scepter.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/meat_hook.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/mirana_arrow.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/mirror_image.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/nether_swap.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/nightmare.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/paralyzing_cask.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/plasma_field.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/pounce.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/purification.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/ravage.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/shackleshot.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/stampede.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/starfall.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/suicide.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/summon_wolves.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/sun_strike.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/sunder.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/surge.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/teleportation.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/tether.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/thundergods_wrath.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/tornado.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/walrus_kick.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/walrus_punch.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/windrun.png" />
 		</Panel>
 	</Panel>
 </root>

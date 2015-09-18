@@ -83,7 +83,6 @@ PRECACHE_ITEMS = {
 	"item_ravage",
 	"item_stampede",
 	"item_kinetic_field",
-	"item_meat_hook_new",
 	"item_meat_hook"
 }
 

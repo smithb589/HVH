@@ -17,7 +17,7 @@
 		// Modify these
 		"ID"	"1065"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_glimpse" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_glimpse" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
@@ -60,7 +60,7 @@
 		// Modify these
 		"ID"	"1064"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_thundergods_wrath" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_thundergods_wrath" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastPoint"		"0.4"
 		"AbilityCooldown"		"20"
@@ -97,7 +97,7 @@
 		// Modify these
 		"ID"	"1063"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_nether_swap" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_nether_swap" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
@@ -138,7 +138,7 @@
 		// Modify these
 		"ID"	"1062"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_mirror_image" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_mirror_image" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastPoint"		"0.65"
 		"AbilityCooldown"		"40"
@@ -175,7 +175,7 @@
 		// Modify these
 		"ID"	"1061"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_starfall" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_starfall" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityCastPoint"		"0.5"
 		"AbilityCooldown"		"20"
@@ -213,7 +213,7 @@
 		// Modify these
 		"ID"	"1060"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_healing_ward" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_healing_ward" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AoERadius"			"500"
 		"AbilityCastPoint"		"0.3"
@@ -258,7 +258,7 @@
 		// Modify these
 		"ID"	"1059"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_sun_strike" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_sun_strike" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING" // DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE |
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
@@ -301,7 +301,7 @@
 		// Modify these
 		"ID"	"1058"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_teleportation" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_teleportation" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityCastPoint"		"3"
 		"AbilityCastRange"		"0"	// global?
@@ -343,7 +343,7 @@
 		// Modify these
 		"ID"	"1057"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_chronosphere" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_chronosphere" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AOERadius"			"425"
 		"AbilityCastPoint"		"0.35"
@@ -383,7 +383,7 @@
 		// Modify these
 		"ID"	"1056"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_nightmare" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_nightmare" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
@@ -424,7 +424,7 @@
 		// Modify these
 		"ID"	"1055"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_sunder" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_sunder" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
@@ -465,7 +465,7 @@
 		// Modify these
 		"ID"	"1054"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_plasma_field" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_plasma_field" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityCastPoint"		"0.0"
 		"AbilityCooldown"		"20"
@@ -502,7 +502,7 @@
 		// Modify these
 		"ID"	"1053"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_paralyzing_cask" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_paralyzing_cask" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -543,7 +543,7 @@
 		// Modify these
 		"ID"	"1052"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_ice_wall" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_ice_wall" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET" // | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityCastPoint"		"0.0"
 		"AbilityCooldown"		"20"
@@ -582,7 +582,7 @@
 		// Modify these
 		"ID"	"1051"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_tornado" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_tornado" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT" //| DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityCastPoint"		"0"
 		"AbilityCastRange"		"2000"		
@@ -621,7 +621,7 @@
 		// Modify these
 		"ID"	"1050"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_frozen_sigil" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_frozen_sigil" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastPoint"		"0.1"
 		"AbilityCooldown"		"40"
@@ -660,7 +660,7 @@
 		// Modify these
 		"ID"	"1049"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_fissure" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_fissure" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -701,7 +701,7 @@
 		// Modify these
 		"ID"	"1048"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_fatal_bonds" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_fatal_bonds" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -743,7 +743,7 @@
 		// Modify these
 		"ID"	"1047"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_decay" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_decay" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"	
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
@@ -787,7 +787,7 @@
 		// Modify these
 		"ID"	"1046"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_carrion_swarm" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_carrion_swarm" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -828,7 +828,7 @@
 		// Modify these
 		"ID"	"1045"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_conjure_image" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_conjure_image" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastPoint"		"0.5"
 		"AbilityCooldown"		"16"
@@ -865,7 +865,7 @@
 		// Modify these
 		"ID"	"1044"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_blood_bath" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_blood_bath" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AoERadius"				"600"
 		"AbilityCastPoint"		"0.4"
@@ -910,7 +910,7 @@
 		// Modify these
 		"ID"	"1043"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_brain_sap" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_brain_sap" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -950,7 +950,7 @@
 		// Modify these
 		"ID"	"1042"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_avalanche" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_avalanche" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AoERadius"			"275"
 		"AbilityCastPoint"		"0.0"
@@ -990,7 +990,7 @@
 		// Modify these
 		"ID"	"1041"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_walrus_kick" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_walrus_kick" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET" // DOTA_ABILITY_BEHAVIOR_HIDDEN
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
@@ -1034,7 +1034,7 @@
 		// Modify these
 		"ID"	"1040"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_surge" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_surge" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"  
@@ -1074,7 +1074,7 @@
 		// Modify these
 		"ID"	"1039"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_suicide" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_suicide" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
@@ -1114,7 +1114,7 @@
 		// Modify these
 		"ID"	"1038"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_death_coil" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_death_coil" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
@@ -1154,7 +1154,7 @@
 		// Modify these
 		"ID"	"1037"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_disruption" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_disruption" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
@@ -1195,7 +1195,7 @@
 		// Modify these
 		"ID"	"1036"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_cold_snap" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_cold_snap" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING" // DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -1237,7 +1237,7 @@
 		// Modify these
 		"ID"	"1035"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_cold_embrace" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_cold_embrace" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
@@ -1278,7 +1278,7 @@
 		// Modify these
 		"ID"	"1034"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_chilling_touch" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_chilling_touch" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AoERadius"				"525"
 		"AbilityCastPoint"		"0.01"
@@ -1318,7 +1318,7 @@
 		// Modify these
 		"ID"	"1033"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_battle_trance" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_battle_trance" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"		"AbilityCastPoint"		"0.0"
 		"AbilityCooldown"		"20"
 		"precache"
@@ -1340,7 +1340,7 @@
 
 // This is a template for a custom run object. It worked in testing. All it really
 // needs is the information filled in and maybe the rune model/effect overridden.
-//	"item_hvh_rune"
+//	"item_rune"
 //	{
 //		"BaseClass"		"item_datadriven"
 //		"ItemKillable"		"1"
@@ -1392,7 +1392,7 @@
 		// Modify these
 		"ID"	"1031"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_amplify_damage" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_amplify_damage" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
@@ -1433,7 +1433,7 @@
 		// Modify these
 		"ID"	"1030"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_aphotic_shield" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_aphotic_shield" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
@@ -1476,7 +1476,7 @@
 		// Modify these
 		"ID"	"1029"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_assassinate" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_assassinate" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET" // DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -1519,7 +1519,7 @@
 		// Modify these
 		"ID"	"1028"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_black_hole" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_black_hole" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityCastPoint"		"0.3"
 		"AbilityCastRange"		"275"
@@ -1554,7 +1554,7 @@
 		// Modify these
 		"ID"	"1027"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_ensnare" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_ensnare" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -1596,7 +1596,7 @@
 		// Modify these
 		"ID"	"1026"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_hand_of_god" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_hand_of_god" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastPoint"		"0.3"
 		"AbilityCooldown"		"20"
@@ -1633,7 +1633,7 @@
 		// Modify these
 		"ID"	"1025"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_homing_missile" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_homing_missile" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -1679,7 +1679,7 @@
 		// Modify these
 		"ID"	"1024"
 		"ItemInitialCharges"  "3"
-		"AbilityTextureName"	"item_hvh_frost_armor" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_frost_armor" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET" // DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_BUILDING"
@@ -1721,7 +1721,7 @@
 		// Modify these
 		"ID"	"1023"
 		"ItemInitialCharges"  "4"
-		"AbilityTextureName"	"item_hvh_land_mines" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_land_mines" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityCastPoint"		"0.0"
 		"AbilityCastRange"		"100"		
@@ -1762,7 +1762,7 @@
 		// Modify these
 		"ID"	"1022"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_purification" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_purification" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
@@ -1805,7 +1805,7 @@
 		// Modify these
 		"ID"	"1021"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_tether" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_tether" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
@@ -1847,7 +1847,7 @@
 		// Modify these
 		"ID"	"1020"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_walrus_punch" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_walrus_punch" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ATTACK | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
@@ -1893,7 +1893,7 @@
 		// Modify these
 		"ID"	"1019"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_pounce" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_pounce" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastPoint"		"0"
 		"AbilityCooldown"		"20"
@@ -1933,7 +1933,7 @@
 		// Modify these
 		"ID"	"1018"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_eye_of_the_storm" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_eye_of_the_storm" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastPoint"		"0.3"
 		"AbilityCooldown"		"30"
@@ -1971,7 +1971,7 @@
 		// Modify these
 		"ID"	"1017"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_dream_coil" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_dream_coil" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityCastPoint"		"0.1"
 		"AbilityCastRange"		"750"		
@@ -2012,7 +2012,7 @@
 		// Modify these
 		"ID"	"1016"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_deafening_blast" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_deafening_blast" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING" // DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE
 		"AbilityCastPoint"		"0"
 		"AbilityCastRange"		"1000"		
@@ -2053,7 +2053,7 @@
 		// Modify these
 		"ID"	"1015"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_culling_blade" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_culling_blade" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -2097,7 +2097,7 @@
 		// Modify these
 		"ID"	"1014"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_chaos_meteor" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_chaos_meteor" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING" // DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE
 		"AbilityCastPoint"		"0"
 		"AbilityCastRange"		"700"
@@ -2137,7 +2137,7 @@
 		// Modify these
 		"ID"	"1013"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_firefly" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_firefly" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityCooldown"		"20"
 		"AbilityCastPoint"		"0.0"		
@@ -2176,7 +2176,7 @@
 		// Modify these
 		"ID"	"1012"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_summon_wolves" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_summon_wolves" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCooldown"		"60"
 		"AbilityCastPoint"		"0.3"		
@@ -2213,7 +2213,7 @@
 		// Modify these
 		"ID"	"1011"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_blinding_light" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_blinding_light" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT " // DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE
 		"AoERadius" "675"
 		"AbilityCooldown"	"20"
@@ -2253,7 +2253,7 @@
 		// Modify these
 		"ID"	"1010"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_windrun" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_windrun" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityCooldown"		"20"
 		"AbilityCastPoint"		"0.3"		
@@ -2290,7 +2290,7 @@
 		// Modify these
 		"ID"	"1009"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_mirana_arrow" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_mirana_arrow" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityCooldown"		"20"
 		"AbilityCastRange"		"3000"
@@ -2331,7 +2331,7 @@
 		// Modify these
 		"ID"	"1008"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_shackleshot" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_shackleshot" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"		
@@ -2375,7 +2375,7 @@
 		// Modify these
 		"ID"	"1007"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_ravage" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_ravage" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCooldown"		"20"
 		"AbilityCastPoint"		"0.3"
@@ -2413,7 +2413,7 @@
 		// Modify these
 		"ID"	"1006"
 		"ItemInitialCharges"  "1"
-		"AbilityTextureName"	"item_hvh_stampede" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_stampede" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityCooldown"				"20"
 		"precache"
@@ -2450,7 +2450,7 @@
 		// Modify these
 		"ID"	"1005"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_kinetic_field" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_kinetic_field" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AoERadius" "325"
 		"AbilityCastRange"				"900"
@@ -2475,7 +2475,7 @@
 		}
 	}
 
-	"item_meat_hook_new"
+	"item_meat_hook"
 	{
 		"BaseClass"		"item_datadriven"
 		"ItemKillable"		"1" 
@@ -2491,7 +2491,7 @@
 		// Modify these
 		"ID"	"1004"
 		"ItemInitialCharges"  "2"
-		"AbilityTextureName"	"item_hvh_meat_hook" // filename: hvh_meat_hook	
+		"AbilityTextureName"	"item_meat_hook" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityCastRange"		"1300"
 		"AbilityCastPoint"		"0.3"
@@ -2510,240 +2510,6 @@
 				"Function"				"ForceCast"
 				"abilityName"			"pudge_meat_hook"
 				"maxDuration"			"6.0"
-			}
-		}
-	}
-
-	"item_meat_hook"
-	{
-		"ID"	"1003"
-		"BaseClass"             		"item_datadriven"
-		
-		"ItemCost" "1"
-		"ItemKillable" "1" 
-		"ItemSellable" "0"
-		"ItemPurchasable" "0"
-		"ItemDroppable" "1"
-
-		"ItemStockMax" "0" 
-		"ItemStockInitial" "0"
-
-		"ItemShareability" "ITEM_FULLY_SHAREABLE_STACKING"
-
-		"ItemInitialCharges" "2"
-		"ItemDisplayCharges" "1"
-		"ItemRequiresCharges" "0"
-
-		"ItemStackable" "0"
-		"ItemPermanent" "0"
-
-		"ItemCastOnPickup" "0"
-
-		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
-
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"item_hvh_meat_hook" // filename: hvh_meat_hook
-
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_pudge.vsndevts"
-			"particle"			"particles/units/heroes/hero_pudge/pudge_meathook_chain.vpcf"
-			"particle"			"particles/units/heroes/hero_pudge/pudge_meathook_impact.vpcf"
-		}
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1300"
-		"AbilityCastPoint"				"0.3"
-
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"360"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"hook_speed"			"1600.0"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"hook_width"		"100"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"hook_distance"		"1300"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"vision_radius"		"500"
-			}
-			"05"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"vision_duration"	"4.0"
-			}
-			"06"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"caster_duration"	"0.53"
-			}
-		}
-
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"EffectName"	"Hero_Pudge.AttackHookExtend"
-				"Target"		"CASTER"
-			}
-
-			"LinearProjectile"
-			{
-				"Target"      	"POINT"
-			    "EffectName"  	""
-			    "MoveSpeed"   	"%hook_speed"
-			    "StartRadius"   "%hook_width"
-			    "StartPosition" "attach_origin"
-			    "EndRadius"     "%hook_width"
-			    "FixedDistance" "%hook_distance"
-			    "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-			    "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-			    "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
-			    "HasFrontalCone"    "0"
-			    "ProvidesVision" "0"
-			}
-
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_meat_hook_caster_datadriven"
-				"Target"		"CASTER"
-			}
-
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_meat_hook_phased_datadriven"
-				"Target"		"CASTER"
-			}
-
-			"RunScript"
-			{
-				"ScriptFile"			"scripts/vscripts/SpellLibrary/item_meat_hook.lua"
-				"Function"				"LaunchMeatHook"
-				"Target"				"POINT"
-				"sound_extend"			"Hero_Pudge.AttackHookExtend"
-				"hook_particle"			"particles/units/heroes/hero_pudge/pudge_meathook_chain.vpcf"
-				"dummy_modifier"		"modifier_meat_hook_dummy_datadriven"
-			}
-		}
-
-		"OnProjectileFinish"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/SpellLibrary/item_meat_hook.lua"
-				"Function"		"ProjectileFinished"
-			}
-		}
-
-		"OnProjectileHitUnit"
-		{	
-			"DeleteOnHit"	"1"
-
-			"FireEffect"
-			{
-				"EffectName"	"particles/units/heroes/hero_pudge/pudge_meathook_impact.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"Target"		"TARGET"
-			}
-
-			"FireSound"
-			{
-				"EffectName"	"Hero_Pudge.AttackHookImpact"
-				"Target"		"TARGET"
-			}
-
-			"FireSound"
-			{
-				"EffectName"	"Hero_Pudge.AttackHookRetract"
-				"Target"		"CASTER"
-			}
-			
-			"RunScript"
-			{
-				"ScriptFile"			"scripts/vscripts/SpellLibrary/item_meat_hook.lua"
-				"Function"				"RetractMeatHook"
-				"meat_hook_modifier"	"modifier_meat_hook_target_datadriven"
-				"sound_extend"			"Hero_Pudge.AttackHookExtend"
-				"sound_retract"			"Hero_Pudge.AttackHookRetract"
-				"sound_retract_stop"	"Hero_Pudge.AttackHookRetractStop"
-			}
-
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_meat_hook_target_datadriven"
-				"Target"		"TARGET"
-			}
-		}
-
-		"Modifiers"
-		{
-			"modifier_meat_hook_phased_datadriven"
-			{
-				"IsHidden"	"1"	
-				"Duration"	"0.1"
-				"States"
-				{
-					"MODIFIER_STATE_OUT_OF_GAME"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-
-			"modifier_meat_hook_caster_datadriven"
-			{
-				"IsHidden"	"1"
-				"Duration"	"%caster_duration"
-
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-
-			"modifier_meat_hook_target_datadriven"
-			{
-				"IsDebuff"				"1"
-				"OverrideAnimation"		"ACT_DOTA_FLAIL"
-
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-
-			"modifier_meat_hook_dummy_datadriven"
-			{
-				"States"
-				{
-					"MODIFIER_STATE_INVULNERABLE" 	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_HEALTH_BAR" 	"MODIFIER_STATE_VALUE_ENABLED"				
-					"MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_UNSELECTABLE" 	"MODIFIER_STATE_VALUE_ENABLED"
-				}
 			}
 		}
 	}
