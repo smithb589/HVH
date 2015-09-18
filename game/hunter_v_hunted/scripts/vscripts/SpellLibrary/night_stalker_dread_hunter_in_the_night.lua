@@ -1,5 +1,7 @@
 -- TODO: definite issues if multiple Night Stalkers are running around
 
+require("lib/timers")
+
 ---------------------------------- applies vision
 function VisionThinker(keys)
 	local caster  = keys.caster
@@ -141,4 +143,47 @@ function ResetInvisDelay(caster, ability, mod_invis, delay)
       	ability:ApplyDataDrivenModifier(caster, caster, mod_invis, {})
 	  end
 	})
+end
+
+if HVHDreadHunterKillEffect == nil then
+  HVHDreadHunterKillEffect = class({})
+end
+
+function RegisterKillEffect()
+  ListenToGameEvent('entity_killed', Dynamic_Wrap(HVHDreadHunterKillEffect, "KillEffect"), HVHDreadHunterKillEffect)
+  print("Registered handler")
+end
+
+function HVHDreadHunterKillEffect:KillEffect(keys)
+  print("kill effect triggered")
+  if not GameRules:IsDaytime() then
+    local attacker = EntIndexToHScript(keys.entindex_attacker)
+    print(string.format("attacker name: %s", attacker:GetUnitName()))
+    if attacker:GetUnitName() == "npc_dota_hero_night_stalker" then
+      local target = EntIndexToHScript(keys.entindex_killed)
+      if target:IsRealHero() then
+        self:AttachKillExplosionParticle(target)
+        self:AttachKillVacuumParticle(attacker, target)
+      end
+    end
+  end
+end
+
+function HVHDreadHunterKillEffect:AttachKillVacuumParticle(caster, target)
+  print("attaching vacuum")
+  local vacuumParticle = ParticleManager:CreateParticle("particles/night_stalker_blood_rush_vacuum_hvh.vpcf", PATTACH_ROOTBONE_FOLLOW, caster)
+  ParticleManager:SetParticleControl(vacuumParticle, 1, target:GetAbsOrigin())
+
+  Timers:CreateTimer(2, function()
+    ParticleManager:DestroyParticle(vacuumParticle, true)
+  end)
+end
+
+function HVHDreadHunterKillEffect:AttachKillExplosionParticle(target)
+  print("attaching explosion")
+  local explosionParticle = ParticleManager:CreateParticle("particles/night_stalker_blood_rush_hvh.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+
+  Timers:CreateTimer(1.5, function()
+    ParticleManager:DestroyParticle(explosionParticle, true)
+  end)
 end
