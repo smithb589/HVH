@@ -390,6 +390,16 @@
 	    		"var_type"							"FIELD_FLOAT"
 	    		"invis_regen_pct_per_sec"			"1.5" // "1.25" //"0.75 1.00 1.25"
 	    	}
+	    	"09"
+	    	{
+	    		"var_type"							"FIELD_FLOAT"
+	    		"kill_regen_duration"				"12.0"
+	    	}
+	    	"10"
+	    	{
+	    		"var_type"							"FIELD_FLOAT"
+	    		"kill_regen_pct_per_sec"			".5"
+	    	}
 	    }
 
 	    "Modifiers"
@@ -406,6 +416,19 @@
 	    				"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
 	    				"Function"		"RegisterKillEffect"
 	    			}
+	    		}
+	    	}
+
+	    	"modifier_dread_hunter_kill_regen"
+	    	{
+	    		"Passive"			"0"
+	    		"IsHidden"			"0"
+	    		"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+	    		"Duration"			"%kill_regen_duration"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%kill_regen_pct_per_sec"
 	    		}
 	    	}
 

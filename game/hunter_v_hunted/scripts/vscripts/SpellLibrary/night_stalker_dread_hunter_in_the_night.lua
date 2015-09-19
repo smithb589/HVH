@@ -154,23 +154,32 @@ function RegisterKillEffect()
   print("Registered handler")
 end
 
+--[[
+function DoKillEffect(keys)
+  local keys = {
+    entindex_attacker = keys.target:GetEntityIndex(),
+    entindex_killed = keys.caster:GetEntityIndex()
+  }
+
+  HVHDreadHunterKillEffect:KillEffect(keys)
+end
+]]
+
 function HVHDreadHunterKillEffect:KillEffect(keys)
-  print("kill effect triggered")
   if not GameRules:IsDaytime() then
     local attacker = EntIndexToHScript(keys.entindex_attacker)
-    print(string.format("attacker name: %s", attacker:GetUnitName()))
     if attacker:GetUnitName() == "npc_dota_hero_night_stalker" then
       local target = EntIndexToHScript(keys.entindex_killed)
       if target:IsRealHero() then
         self:AttachKillExplosionParticle(target)
         self:AttachKillVacuumParticle(attacker, target)
+        self:ApplyRegenMod(attacker, attacker:GetAbilityByIndex(3))
       end
     end
   end
 end
 
 function HVHDreadHunterKillEffect:AttachKillVacuumParticle(caster, target)
-  print("attaching vacuum")
   local vacuumParticle = ParticleManager:CreateParticle("particles/night_stalker_blood_rush_vacuum_hvh.vpcf", PATTACH_ROOTBONE_FOLLOW, caster)
   ParticleManager:SetParticleControl(vacuumParticle, 1, target:GetAbsOrigin())
 
@@ -180,10 +189,13 @@ function HVHDreadHunterKillEffect:AttachKillVacuumParticle(caster, target)
 end
 
 function HVHDreadHunterKillEffect:AttachKillExplosionParticle(target)
-  print("attaching explosion")
   local explosionParticle = ParticleManager:CreateParticle("particles/night_stalker_blood_rush_hvh.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 
   Timers:CreateTimer(1.5, function()
     ParticleManager:DestroyParticle(explosionParticle, true)
   end)
+end
+
+function HVHDreadHunterKillEffect:ApplyRegenMod(caster, ability)
+  ability:ApplyDataDrivenModifier(caster, caster, "modifier_dread_hunter_kill_regen", nil)
 end
