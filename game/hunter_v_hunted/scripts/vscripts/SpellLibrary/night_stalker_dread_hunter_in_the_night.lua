@@ -154,17 +154,6 @@ function RegisterKillEffect()
   print("Registered handler")
 end
 
---[[
-function DoKillEffect(keys)
-  local keys = {
-    entindex_attacker = keys.target:GetEntityIndex(),
-    entindex_killed = keys.caster:GetEntityIndex()
-  }
-
-  HVHDreadHunterKillEffect:KillEffect(keys)
-end
-]]
-
 function HVHDreadHunterKillEffect:KillEffect(keys)
   if not GameRules:IsDaytime() then
     local attacker = EntIndexToHScript(keys.entindex_attacker)
