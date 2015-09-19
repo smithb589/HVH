@@ -27,10 +27,12 @@ function HVHConvars:RegisterCommands()
 
   	-- this is already built into the engine
   	--Convars:RegisterCommand( "set_time_of_day", Dynamic_Wrap(self, 'ConvarSetTimeOfDay'), "Sets the time of day to the indicated value.", FCVAR_CHEAT )
+    Convars:RegisterCommand("hvh_spawn_all_items", Dynamic_Wrap(self, 'SpawnAllItems'), "Spawn all custom items near the hero's feet", FCVAR_CHEAT )
     Convars:RegisterCommand("hvh_spawn_dog", Dynamic_Wrap(self, 'SpawnDog'), "Spawn a new Hound at a random spawn point", FCVAR_CHEAT )
     Convars:RegisterCommand("hvh_fake_heroes", Dynamic_Wrap(self, 'FakeHeroes'), "Spawn heroes to fill in missing players.", FCVAR_CHEAT )
     Convars:RegisterCommand("hvh_chest_probabilties", Dynamic_Wrap(self, 'DisplayChestProbabilties'), "Outputs item drop probabilities.", FCVAR_CHEAT )
     Convars:RegisterCommand("hvh_test_item_cycle", Dynamic_Wrap(self, "DisplayTestItemSpawnCycle"), "Runs a test cycle displaying items.", FCVAR_CHEAT)
+
 end
 
 function HVHConvars:SpawnDog()
@@ -66,6 +68,35 @@ function HVHConvars:FakeHeroes()
     empty_bg = empty_bg - 1
   end
 
+end
+
+function HVHConvars:SpawnAllItems()
+  local itemsKV = LoadKeyValues("scripts/npc/npc_items_custom.txt")
+  local humanPlayer = Convars:GetCommandClient()
+  local hero = humanPlayer:GetAssignedHero()
+  local pos = hero:GetAbsOrigin()
+
+  -- alphabetical sort
+  local sortedItems = {}
+  for item in pairs(itemsKV) do
+    table.insert(sortedItems, item)
+  end
+  table.sort(sortedItems)
+
+  local MAX_X = 600
+  local INC_X = 50
+  local INC_Y = -50
+  local original_x = pos.x
+
+  for _,item in pairs(sortedItems) do
+    HVHItemUtils:SpawnItem(item, pos)
+    if (pos.x - original_x > MAX_X) then
+      pos.x = original_x
+      pos.y = pos.y + INC_Y
+    else
+      pos.x = pos.x + INC_X
+    end
+  end
 end
 
 function HVHConvars:DisplayChestProbabilties()
