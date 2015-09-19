@@ -161,12 +161,20 @@ function HVHDreadHunterKillEffect:KillEffect(keys)
     if attacker:GetUnitName() == "npc_dota_hero_night_stalker" then
       local target = EntIndexToHScript(keys.entindex_killed)
       if target:IsRealHero() then
-        self:AttachKillExplosionParticle(target)
-        self:AttachKillVacuumParticle(attacker, target)
+        self:AttachBloodRushParticle(attacker, target)
         self:ApplyRegenMod(attacker, attacker:GetAbilityByIndex(3))
       end
     end
   end
+end
+
+function HVHDreadHunterKillEffect:AttachBloodRushParticle(caster, target)
+  local bloodRushParticle = ParticleManager:CreateParticle("particles/night_stalker_blood_rush_hvh.vpcf", PATTACH_ROOTBONE_FOLLOW, caster)
+  ParticleManager:SetParticleControl(bloodRushParticle, 1, target:GetAbsOrigin())
+
+  Timers:CreateTimer(5, function()
+    ParticleManager:DestroyParticle(bloodRushParticle, true)
+  end)
 end
 
 function HVHDreadHunterKillEffect:AttachKillVacuumParticle(caster, target)
