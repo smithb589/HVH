@@ -441,6 +441,7 @@
 	    				"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
 	    				"Function"		"IncrementKillEffectCounter"
 	    				"counterModifier" "modifier_dread_hunter_kill_effect_counter"
+	    				"duration"		"%kill_regen_duration"
 	    			}
 	    		}
 
@@ -451,6 +452,7 @@
 	    				"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
 	    				"Function"		"DecrementKillEffectCounter"
 	    				"counterModifier" "modifier_dread_hunter_kill_effect_counter"
+	    				"duration"		"%kill_regen_duration"
 	    			}
 	    		}
 

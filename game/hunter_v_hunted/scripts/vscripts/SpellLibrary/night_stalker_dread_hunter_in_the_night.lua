@@ -1,6 +1,8 @@
 -- TODO: definite issues if multiple Night Stalkers are running around
 
 require("lib/timers")
+require("circular_queue")
+require("hvh_utils")
 
 ---------------------------------- applies vision
 function VisionThinker(keys)
@@ -171,10 +173,6 @@ end
 function HVHDreadHunterKillEffect:AttachBloodRushParticle(caster, target)
   local bloodRushParticle = ParticleManager:CreateParticle("particles/night_stalker_blood_rush_hvh.vpcf", PATTACH_ROOTBONE_FOLLOW, caster)
   ParticleManager:SetParticleControl(bloodRushParticle, 1, target:GetAbsOrigin())
-
-  Timers:CreateTimer(5, function()
-    ParticleManager:DestroyParticle(bloodRushParticle, true)
-  end)
 end
 
 function HVHDreadHunterKillEffect:AttachKillVacuumParticle(caster, target)
@@ -202,6 +200,7 @@ end
 
 if HVHDreadHunterKillEffectRegenCounter == nil then
   HVHDreadHunterKillEffectRegenCounter = class({})
+  HVHDreadHunterKillEffectRegenCounter._buffApplicationTimeQueue = HVHCircularQueue(10)
 end
 
 function IncrementKillEffectCounter(keys)
@@ -215,32 +214,65 @@ end
 function HVHDreadHunterKillEffectRegenCounter:IncrementCounter(keys)
   local caster = keys.caster
   local stackModName = keys.counterModifier
-  local currentCount = self:GetModifierStackCount(caster, stackModName)
+  local currentStackCount = HVHDreadHunterKillEffectRegenCounter:_GetModifierStackCount(caster, stackModName)
   local ability = keys.ability
-  self:AddModifierIfNeeded(caster, stackModName, ability)
-  caster:SetModifierStackCount(stackModName, caster, currentCount + 1)
+  local maxDuration = keys.duration
+
+  local newStackCount = currentStackCount + 1
+  HVHDreadHunterKillEffectRegenCounter._buffApplicationTimeQueue:Store(GameRules:GetGameTime())
+  local buffDurationToDisplay = HVHDreadHunterKillEffectRegenCounter:_GetCurrentBuffTimeToDisplay(maxDuration)
+  if buffDurationToDisplay <= 0 then
+    buffDurationToDisplay = maxDuration
+  end
+  HVHDreadHunterKillEffectRegenCounter:_SetupTimedModifier(caster, ability, stackModName, buffDurationToDisplay, newStackCount)
 end
 
 function HVHDreadHunterKillEffectRegenCounter:DecrementCounter(keys)
   local caster = keys.caster
   local stackModName = keys.counterModifier
-  local currentCount = self:GetModifierStackCount(caster, stackModName)
+  local ability = keys.ability
+  local currentStackCount = HVHDreadHunterKillEffectRegenCounter:_GetModifierStackCount(caster, stackModName)
+  local maxDuration = keys.duration
 
-  if caster:HasModifier(stackModName) and currentCount > 1 then
-    caster:SetModifierStackCount(stackModName, caster, currentCount - 1)
+  HVHDebugPrint("Decrementing night stalker blood rush counter.")
+
+  local newStackCount = currentStackCount - 1
+  HVHDreadHunterKillEffectRegenCounter._buffApplicationTimeQueue:Pop()
+
+  if newStackCount > 0 then
+    local buffDurationToDisplay = HVHDreadHunterKillEffectRegenCounter:_GetCurrentBuffTimeToDisplay(maxDuration)
+    HVHDreadHunterKillEffectRegenCounter:_SetupTimedModifier(caster, ability, stackModName, buffDurationToDisplay, newStackCount)
   else
     caster:RemoveModifierByName(stackModName)
   end
 end
 
-function HVHDreadHunterKillEffectRegenCounter:GetModifierStackCount(caster, modifierName)
-  local modifierCount = caster:GetModifierStackCount(modifierName, caster)
+function HVHDreadHunterKillEffectRegenCounter:_GetCurrentBuffTimeToDisplay(maxDuration)
+  local timeToDisplay = 0
+  if not HVHDreadHunterKillEffectRegenCounter._buffApplicationTimeQueue:IsEmpty() then
+    local oldestBuffTime = HVHDreadHunterKillEffectRegenCounter._buffApplicationTimeQueue:Peek()
+    local currentTime = GameRules:GetGameTime()
+    local elapsedTime = currentTime - oldestBuffTime
+    timeToDisplay = maxDuration - elapsedTime
+  else
+    HVHDebugPrint("Tried to get a night stalker buff time to display when the buff time queue is empty.")
+  end
+
+  return timeToDisplay
+end
+
+function HVHDreadHunterKillEffectRegenCounter:_GetModifierStackCount(caster, modifierName)
+  local modifierCount = self._buffApplicationTimeQueue:GetCount()
   return modifierCount
 end
 
-function HVHDreadHunterKillEffectRegenCounter:AddModifierIfNeeded(caster, modifierName, ability)
-  if not caster:HasModifier(modifierName) then
-    ability:ApplyDataDrivenModifier(caster, caster, modifierName, nil)
-    caster:SetModifierStackCount(modifierName, caster, 0)
-  end
+function HVHDreadHunterKillEffectRegenCounter:_RemoveModifier(caster, modifierName)
+  caster:RemoveModifierByName(modifierName)
+end
+
+function HVHDreadHunterKillEffectRegenCounter:_SetupTimedModifier(caster, ability, modifierName, duration, currentStacks)
+  HVHDreadHunterKillEffectRegenCounter:_RemoveModifier(caster, modifierName)
+  ability:ApplyDataDrivenModifier(caster, caster, modifierName, {Duration = duration })
+  HVHDebugPrint(string.format("Applying blood rush modifier to night stalker for %s seconds with stack count: %s", duration, currentStacks))
+  caster:SetModifierStackCount(modifierName, caster, currentStacks)
 end
