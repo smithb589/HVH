@@ -180,7 +180,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1092"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_chain_frost" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -262,7 +262,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1090"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_doom" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -348,7 +348,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1088"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_exorcism" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
@@ -432,7 +432,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1086"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_finger_of_death" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET" // DOTA_ABILITY_BEHAVIOR_AOE
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -472,7 +472,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1085"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_laguna_blade" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -595,7 +595,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1082"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_reverse_polarity" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastPoint"		"0.3"
@@ -606,6 +606,7 @@
 			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
 			"particle"		"particles/units/heroes/hero_magnataur/magnataur_reverse_polarity.vpcf"
 			"particle"		"particles/units/heroes/hero_magnataur/magnataur_reverse_polarity_pull.vpcf"
+			"particle"		"particles/units/heroes/hero_magnataur/magnus_loadout.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -753,7 +754,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1078"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_wall_of_replica" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityCastPoint"		"0.4"
@@ -791,7 +792,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1077"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "3"
 		"AbilityTextureName"	"item_wild_axes" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -835,7 +836,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1076"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_winters_curse" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -885,7 +886,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1075"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_death_ward" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
@@ -931,7 +932,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1074"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_false_promise" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -979,7 +980,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1073"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_focusfire" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1019,7 +1020,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1072"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_guardian_angel" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastPoint"		"0.5"
@@ -1187,7 +1188,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1068"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_mass_serpent_ward" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityCastPoint"		"0.3"
@@ -1272,7 +1273,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"1066"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "3"
 		"AbilityTextureName"	"item_recall" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK" // | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -1316,7 +1317,7 @@
 		"ItemPermanent" 	"0"
 		// Modify these
 		"ID"	"10"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "3"
 		"AbilityTextureName"	"item_sprout" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"

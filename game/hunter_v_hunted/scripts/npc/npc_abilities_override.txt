@@ -2476,7 +2476,7 @@
 		}
 	}
 
-	// nerfed to L1 ult values
+	// nerfed to L1 laguna blade ult values
 	"lion_finger_of_death"
 	{
 		"AbilitySpecial"
@@ -2484,7 +2484,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"600" //"600 725 850"
+				"damage"					"450" //"600 725 850"
 			}
 		}
 	}
@@ -2502,5 +2502,17 @@
 		}
 	}
 
+	// nerfed to L2 values
+	"juggernaut_healing_ward"
+	{
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"healing_ward_heal_amount"	"3" // "2 3 4 5"
+			}
+		}
+	}
 
 }
