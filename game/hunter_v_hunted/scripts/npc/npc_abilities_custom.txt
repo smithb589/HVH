@@ -419,12 +419,40 @@
 	    		}
 	    	}
 
+	    	"modifier_dread_hunter_kill_effect_counter"
+	    	{
+	    		"Passive"				"0"
+				"IsHidden"				"0"
+				"IsPurgable"			"0"
+				"IsDebuff"				"0"
+	    	}
+
 	    	"modifier_dread_hunter_kill_regen"
 	    	{
 	    		"Passive"			"0"
-	    		"IsHidden"			"0"
+	    		"IsHidden"			"1"
 	    		"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
 	    		"Duration"			"%kill_regen_duration"
+
+	    		"OnCreated"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"		"IncrementKillEffectCounter"
+	    				"counterModifier" "modifier_dread_hunter_kill_effect_counter"
+	    			}
+	    		}
+
+	    		"OnDestroy"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"		"DecrementKillEffectCounter"
+	    				"counterModifier" "modifier_dread_hunter_kill_effect_counter"
+	    			}
+	    		}
 
 	    		"Properties"
 	    		{

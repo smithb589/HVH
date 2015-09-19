@@ -145,13 +145,14 @@ function ResetInvisDelay(caster, ability, mod_invis, delay)
 	})
 end
 
+--------------------------------- applies killing spree effects
+
 if HVHDreadHunterKillEffect == nil then
   HVHDreadHunterKillEffect = class({})
 end
 
 function RegisterKillEffect()
   ListenToGameEvent('entity_killed', Dynamic_Wrap(HVHDreadHunterKillEffect, "KillEffect"), HVHDreadHunterKillEffect)
-  print("Registered handler")
 end
 
 function HVHDreadHunterKillEffect:KillEffect(keys)
@@ -187,4 +188,51 @@ end
 
 function HVHDreadHunterKillEffect:ApplyRegenMod(caster, ability)
   ability:ApplyDataDrivenModifier(caster, caster, "modifier_dread_hunter_kill_regen", nil)
+end
+
+--------------------------------- changes the killing spree counter
+
+if HVHDreadHunterKillEffectRegenCounter == nil then
+  HVHDreadHunterKillEffectRegenCounter = class({})
+end
+
+function IncrementKillEffectCounter(keys)
+  HVHDreadHunterKillEffectRegenCounter:IncrementCounter(keys)
+end
+
+function DecrementKillEffectCounter(keys)
+  HVHDreadHunterKillEffectRegenCounter:DecrementCounter(keys)
+end
+
+function HVHDreadHunterKillEffectRegenCounter:IncrementCounter(keys)
+  local caster = keys.caster
+  local stackModName = keys.counterModifier
+  local currentCount = self:GetModifierStackCount(caster, stackModName)
+  local ability = keys.ability
+  self:AddModifierIfNeeded(caster, stackModName, ability)
+  caster:SetModifierStackCount(stackModName, caster, currentCount + 1)
+end
+
+function HVHDreadHunterKillEffectRegenCounter:DecrementCounter(keys)
+  local caster = keys.caster
+  local stackModName = keys.counterModifier
+  local currentCount = self:GetModifierStackCount(caster, stackModName)
+
+  if caster:HasModifier(stackModName) and currentCount > 1 then
+    caster:SetModifierStackCount(stackModName, caster, currentCount - 1)
+  else
+    caster:RemoveModifierByName(stackModName)
+  end
+end
+
+function HVHDreadHunterKillEffectRegenCounter:GetModifierStackCount(caster, modifierName)
+  local modifierCount = caster:GetModifierStackCount(modifierName, caster)
+  return modifierCount
+end
+
+function HVHDreadHunterKillEffectRegenCounter:AddModifierIfNeeded(caster, modifierName, ability)
+  if not caster:HasModifier(modifierName) then
+    ability:ApplyDataDrivenModifier(caster, caster, modifierName, nil)
+    caster:SetModifierStackCount(modifierName, caster, 0)
+  end
 end
