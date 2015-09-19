@@ -1,5 +1,1411 @@
 "DOTAAbilities"
 {
+	"item_anchor_smash"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1096"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_anchor_smash" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastPoint"		"0.5"
+		"AbilityCastRange"		"400"
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
+			"particle"		"particles/units/heroes/hero_tidehunter/tidehunter_anchor.vpcf"
+			"particle"		"particles/units/heroes/hero_tidehunter/tidehunter_anchor_fish.vpcf"
+			"particle"		"particles/units/heroes/hero_tidehunter/tidehunter_anchor_hero_swipe_blur.vpcf"
+			"particle"		"particles/units/heroes/hero_tidehunter/tidehunter_anchor_waveaoe.vpcf"
+			"particle"		"particles/units/heroes/hero_tidehunter/tide_loadout.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"tidehunter_anchor_smash"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	// target custom?
+	"item_blink_strike"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1095"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_blink_strike" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityCastPoint"		"0.4"
+		"AbilityCastRange"		"800"		
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_riki.vsndevts"
+			"particle"		"particles/units/heroes/hero_riki/riki_blink_strike.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"riki_blink_strike"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	"item_breathe_fire"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1094"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_breathe_fire" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"				   
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityCastPoint"		"0.0"
+		"AbilityCastRange"		"500"		
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+			"particle"		"particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"dragon_knight_breathe_fire"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	"item_burrowstrike"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1093"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_burrowstrike" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityCastPoint"		"0.0"
+		"AbilityCastRange"		"650"		
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts"
+			"particle"		"particles/units/heroes/hero_sandking/sandking_burrowstrike.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"sandking_burrowstrike"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	"item_chain_frost"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1092"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_chain_frost" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityCastPoint"		"0.4"
+		"AbilityCastRange"		"750"		
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_lich/lich_chain_frost.vpcf"
+			"particle"	"particles/units/heroes/hero_lich/lich_slowed_cold.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"lich_chain_frost"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	"item_crystal_nova"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1091"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_crystal_nova" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AoERadius"				"400"
+		"AbilityCastPoint"		"0.3"
+		"AbilityCastRange"		"700"		
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"particle"				"particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"
+			"particle"				"particles/generic_gameplay/generic_slowed_cold.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"crystal_maiden_crystal_nova"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	"item_doom"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1090"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_doom" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+		"AbilityCastPoint"		"0.5"
+		"AbilityCastRange"		"550"
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts"
+			"particle"			"particles/units/heroes/hero_doom_bringer/doom_bringer_doom.vpcf"
+			"particle"			"particles/units/heroes/hero_doom_bringer/doom_bringer_doom_sigil.vpcf"
+			"particle"			"particles/status_fx/status_effect_doom.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"doom_bringer_doom"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	"item_drunken_haze"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1089"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_drunken_haze" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AoERadius"				"200"
+		"AbilityCastPoint"		"0.4"
+		"AbilityCastRange"		"850"		
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_drunken_haze_debuff.vpcf"
+			"particle" 	"particles/status_fx/status_effect_brewmaster_drunken_haze.vpcf"
+			"particle"	"particles/units/heroes/hero_brewmaster/brewmaster_drunken_haze.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"brewmaster_drunken_haze"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	"item_exorcism"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1088"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_exorcism" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityCastPoint"		"0.5"
+		"AbilityCooldown"		"40"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_death_prophet/death_prophet_spirit_model.vpcf"
+			"particle"  "particles/units/heroes/hero_death_prophet/death_prophet_exorcism_attack.vpcf"
+			"particle"  "particles/units/heroes/hero_death_prophet/death_prophet_exorcism_attack_building.vpcf"
+			"particle"  "particles/units/heroes/hero_death_prophet/death_prophet_spirit_glow.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"death_prophet_exorcism"
+				"maxDuration"			"40.0"
+			}
+		}
+	}
+
+	// works on spell immune?
+	"item_fade_bolt"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1087"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_fade_bolt" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityCastPoint"		"0.1"
+		"AbilityCastRange"		"800"		
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
+			"particle"		"particles/units/heroes/hero_rubick/rubick_fade_bolt.vpcf"
+			"particle"		"particles/units/heroes/hero_rubick/rubick_fade_bolt_debuff.vpcf"
+			"particle"		"particles/units/heroes/hero_rubick/rubick_fade_bolt_head.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"rubick_fade_bolt"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	"item_finger_of_death"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1086"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_finger_of_death" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET" // DOTA_ABILITY_BEHAVIOR_AOE
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityCastPoint"		"0.3"
+		"AbilityCastRange"		"900"		
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
+			"particle"			"particles/units/heroes/hero_lion/lion_spell_finger_of_death.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"lion_finger_of_death"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	"item_laguna_blade"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1085"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_laguna_blade" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityCastPoint"		"0.6"
+		"AbilityCastRange"		"600"		
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+			"particle"			"particles/units/heroes/hero_lina/lina_spell_laguna_blade.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"lina_laguna_blade"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+
+	// custom targeting
+	"item_phantom_strike"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1084"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_phantom_strike" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY | DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityCastPoint"		"0.3"
+		"AbilityCastRange"		"1000"		
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+			"particle"			"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_end.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"phantom_assassin_phantom_strike"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	"item_power_cogs"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1083"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_power_cogs" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastPoint"		"0.3"
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_rattletrap.vsndevts"
+			"model"			"models/heroes/rattletrap/rattletrap_cog.vmdl"
+			"particle"		"particles/units/heroes/hero_rattletrap/rattletrap_cog_ambient.vpcf"
+			"particle"		"particles/units/heroes/hero_rattletrap/rattletrap_cog_ambient_blur.vpcf"
+			"particle"		"particles/units/heroes/hero_rattletrap/rattletrap_cog_attack.vpcf"
+			"particle"		"particles/units/heroes/hero_rattletrap/rattletrap_cog_deploy.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"rattletrap_power_cogs"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	"item_reverse_polarity"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1082"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_reverse_polarity" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastPoint"		"0.3"
+		"AbilityCastRange"		"410"
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
+			"particle"		"particles/units/heroes/hero_magnataur/magnataur_reverse_polarity.vpcf"
+			"particle"		"particles/units/heroes/hero_magnataur/magnataur_reverse_polarity_pull.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"magnataur_reverse_polarity"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	"item_rocket_barrage"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1081"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_rocket_barrage" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastPoint"		"0.3"
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_rocket_barrage.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"gyrocopter_rocket_barrage"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	// check AOE
+	"item_scream_of_pain"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1080"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_scream_of_pain" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AoERadius"				"475"
+		"AbilityCastPoint"		"0.0"
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_queenofpain.vsndevts"
+			"particle"			"particles/units/heroes/hero_queenofpain/queen_scream_of_pain.vpcf"
+			"particle"			"particles/units/heroes/hero_queenofpain/queen_scream_of_pain_owner.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"queenofpain_scream_of_pain"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	// custom targeting
+	"item_toss"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1079"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_toss" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_RUNE_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AoERadius"				"275"
+		"AbilityCastPoint"		"0.0"
+		"AbilityCastRange"		"1300"		
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts"
+			"particle"		"particles/units/heroes/hero_tiny/tiny_toss_blur.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"tiny_toss"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	"item_wall_of_replica"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1078"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_wall_of_replica" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityCastPoint"		"0.4"
+		"AbilityCastRange"		"1300"		
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
+			"particle"			"particles/units/heroes/hero_dark_seer/dark_seer_wall_of_replica.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"dark_seer_wall_of_replica"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	"item_wild_axes"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1077"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_wild_axes" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+		"AbilityCastPoint"		"0.5"
+		"AbilityCastRange"		"1300"		
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
+			"particle"		"particles/units/heroes/hero_beastmaster/beastmaster_wildaxe.vpcf"
+			"particle"		"particles/units/heroes/hero_beastmaster/beastmaster_wildaxe_trail.vpcf"
+			"particle"		"particles/units/heroes/hero_beastmaster/beastmaster_wildaxe_trail_b.vpcf"
+			"particle"		"particles/units/heroes/hero_beastmaster/beastmaster_wildaxe_trail_distort.vpcf"
+			"particle"		"particles/units/heroes/hero_beastmaster/beastmaster_wildaxes_hit.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"beastmaster_wild_axes"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	"item_winters_curse"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1076"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_winters_curse" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AoERadius"				"400"
+		"AbilityCastPoint"		"0.3"
+		"AbilityCastRange"		"800"		
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_winter_wyvern.vsndevts"
+			"particle"		"particles/units/heroes/hero_winter_wyvern/wyvern_winters_curse.vpcf"
+			"particle"		"particles/units/heroes/hero_winter_wyvern/wyvern_winters_curse_beams.vpcf"
+			"particle"		"particles/units/heroes/hero_winter_wyvern/wyvern_winters_curse_buff.vpcf"
+			"particle"		"particles/units/heroes/hero_winter_wyvern/wyvern_winters_curse_buff_eyes.vpcf"
+			"particle"		"particles/units/heroes/hero_winter_wyvern/wyvern_winters_curse_ground.vpcf"
+			"particle"		"particles/units/heroes/hero_winter_wyvern/wyvern_winters_curse_overhead.vpcf"
+			"particle"		"particles/units/heroes/hero_winter_wyvern/wyvern_winters_curse_ring_rope.vpcf"
+			"particle"		"particles/units/heroes/hero_winter_wyvern/wyvern_winters_curse_start.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"winter_wyvern_winters_curse"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	// channeled
+	"item_death_ward"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1075"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_death_ward" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AoERadius"				"500"
+		"AbilityCastPoint"		"0.35"
+		"AbilityCastRange"		"600"
+		"AbilityCooldown"		"20"
+		"AbilityChannelTime"	"8.0"		
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_witchdoctor.vsndevts"
+			"model"			"models/heroes/witchdoctor/witchdoctor_ward.vmdl"
+			"model"			"models/items/wards/witchdoctor_ward/witchdoctor_ward.vmdl"
+			"particle"		"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_attack.vpcf"
+			"particle"		"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_cast_staff_fire.vpcf"
+			"particle"		"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_skull.vpcf"
+
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"witch_doctor_death_ward"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	"item_false_promise"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1074"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_false_promise" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityCastPoint"		"0.3"
+		"AbilityCastRange"		"1000"		
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_oracle.vsndevts"
+			"particle"		"particles/units/heroes/hero_oracle/oracle_false_promise.vpcf"
+			"particle"		"particles/units/heroes/hero_oracle/oracle_false_promise_attacked.vpcf"
+			"particle"		"particles/units/heroes/hero_oracle/oracle_false_promise_cast.vpcf"
+			"particle"		"particles/units/heroes/hero_oracle/oracle_false_promise_cast_enemy.vpcf"
+			"particle"		"particles/units/heroes/hero_oracle/oracle_false_promise_center.vpcf"
+			"particle"		"particles/units/heroes/hero_oracle/oracle_false_promise_dmg.vpcf"
+			"particle"		"particles/units/heroes/hero_oracle/oracle_false_promise_heal.vpcf"
+			"particle"		"particles/units/heroes/hero_oracle/oracle_false_promise_hit.vpcf"
+			"particle"		"particles/units/heroes/hero_oracle/oracle_false_promise_indicator.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"oracle_false_promise"
+				"maxDuration"			"15.0"
+			}
+		}
+	}
+
+	"item_focusfire"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1073"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_focusfire" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityCastPoint"		"0.0"
+		"AbilityCastRange"		"600"		
+		"AbilityCooldown"		"40"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"windrunner_focusfire"
+				"maxDuration"			"25.0"
+			}
+		}
+	}
+
+	"item_guardian_angel"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1072"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_guardian_angel" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastPoint"		"0.5"
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+			"particle"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_halo_buff.vpcf"
+			"particle"  "particles/status_fx/status_effect_guardian_angel.vpcf"
+			"particle"  "particles/units/heroes/hero_omniknight/omniknight_guardian_angel_ally.vpcf"
+			"particle"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf"
+			"particle"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_wings_buff.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"omniknight_guardian_angel"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	"item_laser"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1071"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_laser" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityCastPoint"		"0.53"
+		"AbilityCastRange"		"550"		
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
+			"particle"					"particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"tinker_laser"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	"item_leech_seed"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1070"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_leech_seed" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityCastPoint"		"0.5"
+		"AbilityCastRange"		"350"		
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
+			"particle"		"particles/units/heroes/hero_treant/treant_leech_seed.vpcf"
+			"particle"		"particles/units/heroes/hero_treant/treant_leech_seed_damage_pulse.vpcf"
+			"particle"		"particles/units/heroes/hero_treant/treant_leech_seed_projectile.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"treant_leech_seed"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	// global?
+	"item_living_armor"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1069"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_living_armor" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING | DOTA_UNIT_TARGET_MECHANICAL"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"AoERadius"				"500"
+		"AbilityCastPoint"		"0.5"
+		"AbilityCastRange"		"0"
+		"AbilityCooldown"		"30"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_shadow_shaman.vsndevts"
+			"particle"		"particles/units/heroes/hero_treant/treant_livingarmor.vpcf"
+			"particle"		"particles/units/heroes/hero_treant/treant_livingarmor_day.vpcf"
+			"particle"		"particles/units/heroes/hero_treant/treant_livingarmor_night_wisps.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"treant_living_armor"
+				"maxDuration"			"20.0"
+			}
+		}
+	}
+
+	"item_mass_serpent_ward"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1068"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_mass_serpent_ward" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityCastPoint"		"0.3"
+		"AbilityCastRange"		"550"		
+		"AbilityCooldown"		"60"
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_shadowshaman/shadow_shaman_ward_base_attack.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_shadowshaman.vsndevts"
+			"model"	"models/heroes/shadowshaman/shadowshaman_totem.vmdl"
+			"particle"	"particles/units/heroes/hero_shadowshaman/shadowshaman_ward_ambient.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"shadow_shaman_mass_serpent_ward"
+				"maxDuration"			"60.0"
+			}
+		}
+	}
+
+	"item_press_the_attack"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1067"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_press_the_attack" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"AbilityCastPoint"		"0.3"
+		"AbilityCastRange"		"800"		
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+			"particle"		"particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf"
+			"particle"		"particles/units/heroes/hero_legion_commander/legion_commander_press_hero.vpcf"
+			"particle"		"particles/units/heroes/hero_legion_commander/legion_commander_press_overhead_core.vpcf"
+
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"legion_commander_press_the_attack"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	// global?
+	"item_recall"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"1066"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_recall" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK" // | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+		"AbilityCastPoint"		"0.3"
+		"AbilityCastRange"		"0"		
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
+			"particle"			"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_recall_cast.vpcf"
+			"particle"			"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_recall.vpcf"
+			"particle"			"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_recall_failure.vpcf"
+			"particle"			"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_recall_poof.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"keeper_of_the_light_recall"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	"item_sprout"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"10"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_sprout" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+		"AbilityCastPoint"		"0.5"
+		"AbilityCastRange"		"600"
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
+			"particle"		"particles/units/heroes/hero_furion/furion_sprout.vpcf"
+			"particle"		"particles/units/heroes/hero_furion/furion_sprout_e.vpcf"
+			"particle"		"particles/units/heroes/hero_furion/furion_sprout_f.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"furion_sprout"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+	"item_warcry"
+	{
+		"BaseClass"		"item_datadriven"
+		"ItemKillable"		"1" 
+		"ItemSellable"		"0"
+		"ItemPurchasable"	"0"
+		"ItemDroppable" 	"1"
+		"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDisplayCharges"  "1"
+		"ItemRequiresCharges" "0"
+		"ItemStackable" 	"0"
+		"ItemPermanent" 	"0"
+		// Modify these
+		"ID"	"10"
+		"ItemInitialCharges"  "2"
+		"AbilityTextureName"	"item_warcry" // KV: item_example, filename: /items/example.png	
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCastPoint"		"0.0"
+		"AbilityCooldown"		"20"
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+			"particle"			"particles/units/heroes/hero_sven/sven_spell_warcry.vpcf"
+			"particle"			"particles/units/heroes/hero_sven/sven_warcry_buff.vpcf"
+			"particle"			"particles/units/heroes/hero_sven/sven_warcry_buff_sven.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"Function"				"ForceCast"
+				"abilityName"			"sven_warcry"
+				"maxDuration"			"10.0"
+			}
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	"item_glimpse"
 	{
@@ -1001,10 +2407,19 @@
 		"precache"
 		{
 			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
-			"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_tgt_status.vpcf"
 			"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_tgt.vpcf"
+			"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_tgt_status.vpcf"
 			"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_txt_ult.vpcf"
+			"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_tgt_body.vpcf"
+			"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_tgt_glow.vpcf"
+			"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_tgt_glow_trail.vpcf"
 			"particle"		"particles/generic_gameplay/generic_stunned.vpcf"
+			"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_hand.vpcf"
+			"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_start.vpcf"
+			"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_status.vpcf"
+			"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_tgt.vpcf"
+			"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_txt.vpcf"
+			"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_txt_ult.vpcf"
 		}
 		"OnSpellStart"
 		{
