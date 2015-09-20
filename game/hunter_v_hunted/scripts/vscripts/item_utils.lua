@@ -46,23 +46,15 @@ end
 -- could not find LUA for this simple function
 function HVHItemUtils:ExpendCharge(item)
 
-	-- hack fix for magic stick not deleting on use
-    local remove = 0
-    if item:GetName() == "item_magic_stick" then
-    	remove = 1
-    end
-
     local hero = item:GetOwner()
     local newCharges = item:GetCurrentCharges() - 1
     item:SetCurrentCharges(newCharges)
-    if newCharges <= 0 or remove == 1 then
-		Timers:CreateTimer(0.25, function() -- SINGLE_FRAME_TIME too short for item_manta
-			if item:GetCurrentCharges() == newCharges then -- recheck in case the charge was refunded
-		    	hero:RemoveItem(item)
-		    end
+
+	Timers:CreateTimer(0.25, function() -- SINGLE_FRAME_TIME too short for item_manta
+		if item:GetCurrentCharges() <= 0 then -- recheck in case the charge was refunded
+	    	hero:RemoveItem(item)
 	    end
-	  	)
-    end
+    end)
     
 end
 
