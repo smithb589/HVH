@@ -345,6 +345,7 @@
 		{
 			"particle"		"particles/night_stalker_blood_rush_hvh.vpcf"
 			"particle"		"particles/night_stalker_blood_rush_vacuum_hvh.vpcf"
+			"particle"		"particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf"
 			//"particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
 			//"particle"	"particles/units/heroes/hero_night_stalker/nightstalker_night_buff.vpcf"
 			//"particle"	"particles/units/heroes/hero_night_stalker/nightstalker_change.vpcf"			
@@ -390,7 +391,7 @@
 	    	"08"
 	    	{
 	    		"var_type"							"FIELD_FLOAT"
-	    		"invis_regen_pct_per_sec"			"1.5" // "1.25" //"0.75 1.00 1.25"
+	    		"invis_regen_pct_per_sec"			"1.0" // "1.25" //"0.75 1.00 1.25"
 	    	}
 	    	"09"
 	    	{
@@ -400,7 +401,7 @@
 	    	"10"
 	    	{
 	    		"var_type"							"FIELD_FLOAT"
-	    		"kill_regen_pct_per_sec"			".5"
+	    		"kill_regen_pct_per_sec"			"1.0"
 	    	}
 	    }
 
@@ -410,7 +411,7 @@
 	    	{
 	    		"Passive" 			"1"
 	    		"IsHidden"			"1"
-
+   		
 	    		"OnCreated"
 	    		{
 	    			"RunScript"
@@ -436,6 +437,9 @@
 				"IsHidden"				"0"
 				"IsPurgable"			"0"
 				"IsDebuff"				"0"
+
+	    		"EffectName"	"particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf"
+				"EffectAttachType"		"follow_origin"				
 	    	}
 
 	    	"modifier_dread_hunter_kill_regen"
