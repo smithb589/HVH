@@ -199,8 +199,7 @@ PRECACHE_PARTICLES = {
 	"particles/units/heroes/hero_meepo/meepo_earthbind_projectile_fx.vpcf",
 	"particles/units/heroes/hero_meepo/meepo_earthbind.vpcf",
 	"particles/newplayer_fx/npx_sleeping.vpcf",
-	"particles/good_guy_dog_treat.vpcf",
-	"particles/units/heroes/hero_bloodseeker/bloodseeker_rupture_trail.vpcf"
+	"particles/good_guy_dog_treat.vpcf"
 }
 
 PRECACHE_SOUNDFILES = {

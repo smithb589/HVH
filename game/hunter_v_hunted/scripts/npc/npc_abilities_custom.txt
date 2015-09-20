@@ -343,6 +343,8 @@
 
 		"precache"
 		{
+			"particle"		"particles/night_stalker_blood_rush_hvh.vpcf"
+			"particle"		"particles/night_stalker_blood_rush_vacuum_hvh.vpcf"
 			//"particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
 			//"particle"	"particles/units/heroes/hero_night_stalker/nightstalker_night_buff.vpcf"
 			//"particle"	"particles/units/heroes/hero_night_stalker/nightstalker_change.vpcf"			
