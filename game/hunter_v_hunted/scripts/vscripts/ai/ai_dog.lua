@@ -104,7 +104,6 @@ function BehaviorWander:Evaluate()
 	
 	-- invis-wandering
 	elseif IsInvisibleTargetInWanderRange(nearestTarget) then
-		HVHDebugPrint("The hound found Night Stalker, but cannot target him.")
 		wanderDesire = DESIRE_MEDIUM
 	end
 

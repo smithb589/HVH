@@ -390,10 +390,87 @@
 	    		"var_type"							"FIELD_FLOAT"
 	    		"invis_regen_pct_per_sec"			"1.5" // "1.25" //"0.75 1.00 1.25"
 	    	}
+	    	"09"
+	    	{
+	    		"var_type"							"FIELD_FLOAT"
+	    		"kill_regen_duration"				"12.0"
+	    	}
+	    	"10"
+	    	{
+	    		"var_type"							"FIELD_FLOAT"
+	    		"kill_regen_pct_per_sec"			".5"
+	    	}
 	    }
 
 	    "Modifiers"
 	    {
+	    	"modifier_dread_hunter_kill_effect"
+	    	{
+	    		"Passive" 			"1"
+	    		"IsHidden"			"1"
+
+	    		"OnCreated"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"		"RegisterKillEffect"
+	    			}
+	    		}
+
+	    		"OnDestroy"
+	    		{
+	    			"RunScript"
+	    			{
+		    			"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+		    			"Function"		"UnregisterKillEffect"
+	    			}
+	    		}
+	    	}
+
+	    	"modifier_dread_hunter_kill_effect_counter"
+	    	{
+	    		"Passive"				"0"
+				"IsHidden"				"0"
+				"IsPurgable"			"0"
+				"IsDebuff"				"0"
+	    	}
+
+	    	"modifier_dread_hunter_kill_regen"
+	    	{
+	    		"Passive"			"0"
+	    		"IsHidden"			"1"
+	    		"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+	    		"Duration"			"%kill_regen_duration"
+
+	    		"OnCreated"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"		"IncrementKillEffectCounter"
+	    				"counterModifier" "modifier_dread_hunter_kill_effect_counter"
+	    				"duration"		"%kill_regen_duration"
+	    			}
+	    		}
+
+	    		"OnDestroy"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"		"DecrementKillEffectCounter"
+	    				"counterModifier" "modifier_dread_hunter_kill_effect_counter"
+	    				"duration"		"%kill_regen_duration"
+	    			}
+	    		}
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%kill_regen_pct_per_sec"
+	    		}
+	    	}
+
 	    	"modifier_dread_hunter_vision_applicator"
 	    	{
 	    		"Passive" 			"1"
@@ -646,7 +723,7 @@
 	
 				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
 				"EffectAttachType"	"follow_overhead"
-	
+
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MISS_PERCENTAGE"		"%miss_rate_day"
