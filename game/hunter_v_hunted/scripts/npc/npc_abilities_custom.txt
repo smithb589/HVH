@@ -417,6 +417,15 @@
 	    				"Function"		"RegisterKillEffect"
 	    			}
 	    		}
+
+	    		"OnDestroy"
+	    		{
+	    			"RunScript"
+	    			{
+		    			"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+		    			"Function"		"UnregisterKillEffect"
+	    			}
+	    		}
 	    	}
 
 	    	"modifier_dread_hunter_kill_effect_counter"
