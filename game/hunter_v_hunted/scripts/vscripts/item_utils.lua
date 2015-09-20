@@ -57,9 +57,26 @@ function HVHItemUtils:ExpendCharge(item)
     item:SetCurrentCharges(newCharges)
     if newCharges <= 0 or remove == 1 then
 		Timers:CreateTimer(0.25, function() -- SINGLE_FRAME_TIME too short for item_manta
-	    	hero:RemoveItem(item)
+			if item:GetCurrentCharges() == newCharges then -- recheck in case the charge was refunded
+		    	hero:RemoveItem(item)
+		    end
 	    end
 	  	)
     end
     
+end
+
+function HVHItemUtils:RefundCharge(hero, item_name)
+	local item = self:GetItemByName(hero, item_name)
+    local newCharges = item:GetCurrentCharges() + 1
+    item:SetCurrentCharges(newCharges)
+end
+
+function HVHItemUtils:GetItemByName(caster, item_name)
+  for i=DOTA_ITEM_SLOT_1, DOTA_ITEM_SLOT_6 do
+    local item = caster:GetItemInSlot(i)
+    if item and item:GetAbilityName() == item_name then
+      return item
+    end
+  end
 end
