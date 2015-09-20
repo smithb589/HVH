@@ -64,6 +64,7 @@
 			<Image class="PrecacheHacks" src="file://{images}/items/carrion_swarm.png" />
 			<Image class="PrecacheHacks" src="file://{images}/items/chaos_meteor.png" />
 			<Image class="PrecacheHacks" src="file://{images}/items/chilling_touch.png" />
+			<Image class="PrecacheHacks" src="file://{images}/items/cold_embrace.png" />
 			<Image class="PrecacheHacks" src="file://{images}/items/cold_snap.png" />
 			<Image class="PrecacheHacks" src="file://{images}/items/conjure_image.png" />
 			<Image class="PrecacheHacks" src="file://{images}/items/culling_blade.png" />

@@ -47,7 +47,7 @@
 
 	"npc_dummy"
 	{
-		"BaseClass" "npc_dota_building" // minimap icon at bottom of z-order
+		"BaseClass" "npc_dota_creature"
 		"Model"     "models/development/invisiblebox.vmdl"
 		"AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
 		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"

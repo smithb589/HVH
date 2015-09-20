@@ -1,14 +1,15 @@
 1.2.0
 ---
-Almost 30 new items added!
-New effect when NS kills Snipers at night
--- Small regen buff added after kills
-Healing ward item reduced from L4 to L2 values
-Eye of the storm item reduced from L3 to L1 values
+Over 30 new items added!
+New effect: BLOOD RUSH when NS kills at night
+-- Each kill, gains +1% HP stacking regen buff for 12 sec
+-- NS passive regen reduced from 1.5% to 1%/sec.
 Multiteam-hud (from Overthrow) added
 -- Improved flyout scoreboard
 -- Improved top scoreboard
 -- Improved end screen
+Healing ward item reduced from L4 to L2 values
+Eye of the storm item reduced from L3 to L1 values
 Hound plays proper animations for warning
 Hound becomes invisible at night
 Loading screen tips handled better; more tips
