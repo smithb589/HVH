@@ -1,5 +1,16 @@
-1.1.3
+1.2.0
 ---
+Almost 30 new items added!
+New effect when NS kills Snipers at night
+-- Small regen buff added after kills
+Healing ward item reduced from L4 to L2 values
+Eye of the storm item reduced from L3 to L1 values
+Multiteam-hud (from Overthrow) added
+-- Improved flyout scoreboard
+-- Improved top scoreboard
+-- Improved end screen
+Hound plays proper animations for warning
+Hound becomes invisible at night
 Loading screen tips handled better; more tips
 
 1.1.2
