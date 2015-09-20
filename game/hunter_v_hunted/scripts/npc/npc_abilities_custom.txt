@@ -1371,14 +1371,18 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"aura_armor"		"10"
+				"aura_magic_resist"		"15"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
+				"aura_armor"		"10"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
 				"radius"			"1800"
 			}
-
 		}
 		
 		"Modifiers"
@@ -1416,6 +1420,7 @@
 				{
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"%aura_health_regen_pct"
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%aura_armor"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%aura_magic_resist"
 				}
 			}
 		}
@@ -1454,25 +1459,25 @@
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_speed"				"65" // percentage (brings 325 movespeed up to ~522)
-			}
-			"03"
-			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"8.0"
 			}
 			// dog will only speed up when the target is far away
-			"04"	// accessed by ai_dog.lua pursuit routine
+			"03"	// accessed by ai_dog.lua pursuit routine
 			{
 				"var_type"			"FIELD_INTEGER"
 				"min_range"			"0"
 			}
-			"05"
+			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
 				"ally_radius"		"1800"
 			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_speed"				"65" // percentage (brings 325 movespeed up to ~522)
+			}			
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
