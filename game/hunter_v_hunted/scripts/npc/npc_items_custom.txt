@@ -1384,30 +1384,6 @@
 		}
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	"item_glimpse"
 	{
 		"BaseClass"		"item_datadriven"
@@ -1430,7 +1406,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
 		"AbilityCastPoint"		"0.05"
-		"AbilityCastRange"		"1800"		
+		"AbilityCastRange"		"1000" //"1800"		
 		"AbilityCooldown"		"20"
 		"precache"
 		{

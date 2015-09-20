@@ -2515,4 +2515,18 @@
 		}
 	}
 
+	// nerfed to L2 values
+	"disruptor_glimpse"
+	{
+		"AbilitySpecial"
+		{
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cast_range"				"1000" //"600 1000 1400 1800"
+			}
+		}
+	}
+
+
 }

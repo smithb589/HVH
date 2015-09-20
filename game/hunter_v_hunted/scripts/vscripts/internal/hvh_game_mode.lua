@@ -86,6 +86,22 @@ function HVHGameMode:_SetupGameMode()
   end 
 end
 
+-- item_glimpse does not work on the first cast,
+-- so this forces glimpse to be dummy-cast at the start of the game
+function HVHGameMode:GlimpseFix()
+    local dummy = CreateUnitByName("npc_dummy", Vector(0,0,0), true, nil, nil, DOTA_TEAM_GOODGUYS)
+    local dummy2 = CreateUnitByName("npc_dummy", Vector(0,0,0), true, nil, nil, DOTA_TEAM_BADGUYS)
+    dummy:AddAbility("disruptor_glimpse")
+    local glimpse = dummy:FindAbilityByName("disruptor_glimpse")
+    Timers:CreateTimer(3.0, function()
+      dummy:CastAbilityOnTarget(dummy2, glimpse, 0)
+      Timers:CreateTimer(3.0, function()
+        dummy:ForceKill(false)
+        dummy2:ForceKill(false)
+      end)
+    end)
+end
+
 -- accessible by panorama
 function HVHGameMode:SetupCycleTimer()
   local t = 1.0
@@ -94,7 +110,6 @@ function HVHGameMode:SetupCycleTimer()
     return t
   end)
 end
-
 
 -- accessible by panorama
 function HVHGameMode:PushScoreToCustomNetTable()
