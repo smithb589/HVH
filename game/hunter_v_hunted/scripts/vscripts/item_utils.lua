@@ -51,12 +51,13 @@ function HVHItemUtils:ExpendCharge(item)
     item:SetCurrentCharges(newCharges)
 
 	Timers:CreateTimer(0.25, function() -- SINGLE_FRAME_TIME too short for item_manta
-		if item:GetCurrentCharges() <= 0 then -- recheck in case the charge was refunded
+		if newCharges <= 0 or item:GetCurrentCharges() <= 0 then -- recheck in case the charge was refunded
 	    	hero:RemoveItem(item)
 	    end
     end)
     
 end
+
 
 function HVHItemUtils:RefundCharge(hero, item_name)
 	local item = self:GetItemByName(hero, item_name)
