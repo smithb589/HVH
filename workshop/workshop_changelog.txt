@@ -10,6 +10,7 @@ Multiteam-hud (from Overthrow) added
 -- Improved end screen
 Healing ward item reduced from L4 to L2 values
 Eye of the storm item reduced from L3 to L1 values
+Man's best friend aura +15% magic resist
 Hound plays proper animations for warning
 Hound becomes invisible at night
 Loading screen tips handled better; more tips
