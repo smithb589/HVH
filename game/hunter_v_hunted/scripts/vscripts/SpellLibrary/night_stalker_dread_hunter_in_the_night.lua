@@ -153,14 +153,20 @@ if HVHDreadHunterKillEffect == nil then
   HVHDreadHunterKillEffect = class({})
 end
 
-function RegisterKillEffect()
-  local listenerID = ListenToGameEvent('entity_killed', Dynamic_Wrap(HVHDreadHunterKillEffect, "KillEffect"), HVHDreadHunterKillEffect)
-  HVHDreadHunterKillEffect:SetKilledEventListenerID(listenerID)
+function RegisterKillEffect(keys)
+  local target = keys.caster
+  if target:IsRealHero() then
+    local listenerID = ListenToGameEvent('entity_killed', Dynamic_Wrap(HVHDreadHunterKillEffect, "KillEffect"), HVHDreadHunterKillEffect)
+    HVHDreadHunterKillEffect:SetKilledEventListenerID(listenerID)
+  end
 end
 
-function UnregisterKillEffect()
-  local listenerID = HVHDreadHunterKillEffect:GetKilledEventListenerID()
-  StopListeningToGameEvent(listenerID)
+function UnregisterKillEffect(keys)
+  local target = keys.caster
+  if target:IsRealHero() then
+    local listenerID = HVHDreadHunterKillEffect:GetKilledEventListenerID()
+    StopListeningToGameEvent(listenerID)
+  end
 end
 
 function HVHDreadHunterKillEffect:SetKilledEventListenerID(id)
