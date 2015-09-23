@@ -52,7 +52,7 @@ function HVHRandomizer:DisplayProbabilties()
 	if self._weightedValues then
 		for _,weightValuePair in pairs(self._weightedValues) do
 			local probabilityPercent = (self:_GetWeight(weightValuePair) / self._totalProbability) * 100.0
-			print(string.format("(value=%s, probability=%f%%)", weightValuePair.value, probabilityPercent))
+			print(string.format("  %.2f%% = %s", probabilityPercent, weightValuePair.value))
 			totalProbabilityPercent = totalProbabilityPercent + probabilityPercent
 		end
 	end
