@@ -1,3 +1,23 @@
+1.2.2
+---
+Item changes
+-- Many chest drop probabilities tweaked
+-- Colored item names depending on item's role
+-- Doom, Laguna Blade, Finger of Death damage increased
+-- Thundergod's Wrath and Ravage damage decreased
+-- Laser duration increased to L4 values (dmg L2)
+Ability changes
+-- NS Crippling Horror/Hysteria Hound duration reduced from 8 to 4 sec
+-- NS Crippling Horror/Hysteria day duration increased from 3 to 4 sec
+-- NS invis delay after moving increased from 0.75 to 1.0 sec
+-- NS invis regen increased from 1% to 1.5%/sec
+-- NS blood rush reduced from 1% to 0.5%/sec
+-- NS blood rush duration increased from 12 to 20 sec
+-- Shrapnel slow duration 0.5 to 1.0 sec
+-- Toss Bone feed duration 2 to 4 sec
+-- Toss Bone cooldown 60 to 45 sec
+-- Hound Sprint duration 8 to 6 sec
+
 1.2.1
 ---
 Fixed illusion interaction with Blood Rush stacks

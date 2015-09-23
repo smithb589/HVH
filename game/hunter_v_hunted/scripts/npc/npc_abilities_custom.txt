@@ -59,7 +59,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"slow_duration"			"0.5" // 2.0
+				"slow_duration"			"1.0" //"0.5" // 2.0
 			}
 			// Extra variables
 			"06"
@@ -253,7 +253,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"900"
 		"AbilityCastPoint"				"0.3"
-		"AbilityCooldown"				"60" // "45" //"90 75 60 45"
+		"AbilityCooldown"				"45" //"60" // "45" //"90 75 60 45"
 		"AbilityManaCost"				"0"
 
 		"Precache"
@@ -280,7 +280,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"feed_duration"		"2"
+				"feed_duration"		"4"
 			}
 			"04"
 			{
@@ -381,7 +381,7 @@
 	    	"06"
 	    	{
 	    		"var_type"							"FIELD_FLOAT"
-	    		"invis_delay_after_moving"			"0.75"
+	    		"invis_delay_after_moving"			"1.0"
 	    	}
 	    	"07"
 	    	{
@@ -391,17 +391,17 @@
 	    	"08"
 	    	{
 	    		"var_type"							"FIELD_FLOAT"
-	    		"invis_regen_pct_per_sec"			"1.0" // "1.25" //"0.75 1.00 1.25"
+	    		"invis_regen_pct_per_sec"			"1.5" // "1.25" //"0.75 1.00 1.25"
 	    	}
 	    	"09"
 	    	{
 	    		"var_type"							"FIELD_FLOAT"
-	    		"kill_regen_duration"				"12.0"
+	    		"kill_regen_duration"				"20.0"
 	    	}
 	    	"10"
 	    	{
 	    		"var_type"							"FIELD_FLOAT"
-	    		"kill_regen_pct_per_sec"			"1.0"
+	    		"kill_regen_pct_per_sec"			"0.5"
 	    	}
 	    }
 
@@ -678,7 +678,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration_day"			"3.0"
+				"duration_day"			"4.0" //"3.0"
 			}
 			"02"
 			{
@@ -698,7 +698,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration_dog"			"8.0" //"3.0 4.0 5.0"
+				"duration_dog"			"4.0" // "8.0" //"3.0 4.0 5.0"
 			}
 		}
 	
@@ -817,7 +817,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration_day"			"3.0"
+				"duration_day"			"4.0" // "3.0"
 			}
 			"02"
 			{
@@ -837,7 +837,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration_dog"			"8.0" //"3.0 4.0 5.0"
+				"duration_dog"			"4.0" // "8.0" //"3.0 4.0 5.0"
 			}
 			"06"
 			{
@@ -1543,7 +1543,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"8.0"
+				"duration"					"6.0"
 			}
 			// dog will only speed up when the target is far away
 			"03"	// accessed by ai_dog.lua pursuit routine

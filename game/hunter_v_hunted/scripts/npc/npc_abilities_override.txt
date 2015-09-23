@@ -182,6 +182,7 @@
 	// ------------------- STARTING ITEMS --------------------------
 	"item_boots"
 	{	
+		"ItemQuality"	""	
 		"ItemSellable" "0"
 		"ItemDroppable" "0"
 
@@ -197,6 +198,7 @@
 
 	"item_phase_boots"
 	{	
+		"ItemQuality"	""	
 		"ItemSellable" "0"
 		"ItemDroppable" "0"
 		"AbilitySpecial"
@@ -227,6 +229,7 @@
 	"item_ultimate_scepter"
 	{
 		"AbilityTextureName"	"item_hvh_mango_scepter" // filename: hvh_meat_hook			
+		"ItemQuality"	""	
 		"ItemSellable" "0"
 		"ItemDroppable" "0"
 		"AbilitySpecial"
@@ -252,18 +255,21 @@
 	// -------------------------- ITEMS WITH VALVE CHARGES --------------------------
 	"item_ward_observer"
 	{
+		"ItemQuality"	"artifact"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"	"2"
 	}
 
 	"item_ward_sentry"
 	{
+		"ItemQuality"	"rare"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"	"2"
 	}
 
 	"item_tango"
 	{
+		"ItemQuality"	"common"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "4"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
@@ -280,6 +286,7 @@
 
 	"item_flask"
 	{
+		"ItemQuality"	"common"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
@@ -301,6 +308,7 @@
 
 	"item_tango_single" // not added to loot table
 	{
+		"ItemQuality"	"common"	
 		"ItemSellable" "0"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 
@@ -316,6 +324,7 @@
 
 	"item_smoke_of_deceit"
 	{
+		"ItemQuality"	"common"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
@@ -323,6 +332,7 @@
 
 	"item_dust"
 	{
+		"ItemQuality"	"artifact"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
@@ -351,6 +361,7 @@
 	"item_magic_stick"
 	{
 		"ItemInitialCharges"	"10"
+		"ItemQuality"	"common"	
 		"ItemSellable" "0"
 		"ItemPermanent" "0"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
@@ -377,6 +388,7 @@
 
 	"item_diffusal_blade" // TODO: should it murder dog?
 	{
+		"ItemQuality"	"epic"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2" // It's also in AbilitySpecial
 		"ItemPermanent" "0"
@@ -444,6 +456,7 @@
 
 	"item_urn_of_shadows" // doesn't collect souls
 	{
+		"ItemQuality"	"common"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2" // It's also in AbilitySpecial
 		"ItemPermanent"	"0"
@@ -512,6 +525,7 @@
 	// -------------------------- CHEST ITEMS --------------------------
 	"item_blink"
 	{
+		"ItemQuality"	"common"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
@@ -523,6 +537,7 @@
 
 	"item_sphere" // BUG: remove on spellblock proc
 	{
+		//"ItemQuality"	""	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
@@ -562,6 +577,7 @@
 
 	"item_lotus_orb"
 	{
+		//"ItemQuality"	""	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "4"
 		"ItemDisplayCharges"  "1"
@@ -607,6 +623,7 @@
 
 	"item_black_king_bar"
 	{
+		"ItemQuality"	"rare"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
@@ -646,6 +663,7 @@
 
 	"item_force_staff"
 	{
+		"ItemQuality"	"epic"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
@@ -676,6 +694,7 @@
 
 	"item_sheepstick"
 	{
+		"ItemQuality"	"epic"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
@@ -721,6 +740,7 @@
 
 	"item_quelling_blade" // TODO: super quelling blade
 	{
+		//"ItemQuality"	""	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "6"
 		"ItemDisplayCharges"  "1"
@@ -746,6 +766,7 @@
 
 	"item_invis_sword"
 	{
+		"ItemQuality"	"common"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
@@ -791,6 +812,7 @@
 
 	"item_ghost"
 	{
+		"ItemQuality"	"rare"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
@@ -821,6 +843,7 @@
 
 	"item_mekansm"
 	{
+		"ItemQuality"	"common"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
@@ -876,6 +899,7 @@
 
 	"item_veil_of_discord"
 	{
+		"ItemQuality"	"rare"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
@@ -926,6 +950,7 @@
 
 	"item_dagon"
 	{
+		"ItemQuality"	"artifact"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
@@ -969,49 +994,9 @@
 		}
 	}
 
-	"item_medallion_of_courage" // BUG: not properly adding armor
-	{
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"ItemSellable" "0"
-		"ItemInitialCharges"  "4"
-		"ItemDisplayCharges"  "1"
-		"ItemRequiresCharges" "1"
-		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
-		"ItemStackable" "0" // TODO: think about this
-		"AbilityManaCost" "0"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen_pct"	"0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-7"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"7"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"valor_cast_range_tooltip"				"1000"
-			}
-		}
-	}
-
 	"item_abyssal_blade" // BUG: have I disabled all procs on attack?
 	{
+		"ItemQuality"	"epic"
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
@@ -1067,6 +1052,7 @@
 
 	"item_blade_mail"
 	{
+		"ItemQuality"	"rare"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
@@ -1102,6 +1088,7 @@
 
 	"item_manta"
 	{
+		"ItemQuality"	"rare"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
@@ -1212,6 +1199,7 @@
 
 	"item_satanic"
 	{
+		//"ItemQuality"	""	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
@@ -1261,6 +1249,7 @@
 
 	"item_mask_of_madness"
 	{
+		"ItemQuality"	"common"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
@@ -1301,6 +1290,7 @@
 
 	"item_mjollnir"
 	{
+		"ItemQuality"	"rare"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
@@ -1391,6 +1381,7 @@
 
 	"item_buckler"
 	{
+		"ItemQuality"	"rare"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "4"
 		"ItemDisplayCharges"  "1"
@@ -1436,6 +1427,7 @@
 
 	"item_pipe"
 	{
+		"ItemQuality"	"common"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
@@ -1509,73 +1501,9 @@
 		}		
 	}
 
-	"item_solar_crest" // friendly only BUG: not working
-	{
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"ItemSellable" "0"
-		"ItemInitialCharges"  "3"
-		"ItemDisplayCharges"  "1"
-		"ItemRequiresCharges" "1"
-		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
-		"ItemStackable" "0" // TODO: think about this
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen_pct"	"0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_evasion"			"0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"allied_armor"			"10"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"allied_evasion"		"30"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-10"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"enemy_armor_reduction_tooltip"		"0"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"miss_chance"			"30"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"7"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"valor_cast_range_tooltip"				"1000"
-			}			
-		}		
-	}
-
 	"item_crimson_guard"
 	{
+		"ItemQuality"	"common"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
@@ -1656,6 +1584,7 @@
 	"item_cyclone"
 	{
 		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY" // TODO: think about this
+		"ItemQuality"	"rare"	
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
@@ -1870,6 +1799,7 @@
 	"item_recipe_tranquil_boots"			"REMOVE"
 	"item_tranquil_boots"			"REMOVE"
 	"item_shadow_amulet"			"REMOVE"
+	"item_medallion_of_courage"	"REMOVE"
 	//6.84 items
 	"item_enchanted_mango"			"REMOVE"
 	"item_moon_shard"			"REMOVE"
@@ -1877,6 +1807,7 @@
 	"item_octarine_core"			"REMOVE"
 	"item_glimmer_cape"			"REMOVE"
 	"item_silver_edge"			"REMOVE"
+	"item_solar_crest"			"REMOVE"
 
 	// ---- manual tweaks and balance considerations
 
@@ -2170,56 +2101,29 @@
 		}
 	}
 
-	// make it behave like you don't have a scepter
+	// nerfed to L2 ult values
+	"tidehunter_ravage"
+	{
+		"AbilityDamage"					"290" //"200 290 380"
+		"AbilitySpecial"
+		{
+			"03"
+			{	
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"2.32" //"2.02 2.32 2.77"
+			}
+		}
+	}
+
+	// nerfed to L2 ult values
 	"zuus_thundergods_wrath"
 	{
 		"AbilitySpecial"
 		{
-			"07"
+			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_scepter"		"225 350 475"
-			}
-		}
-	}
-
-	// make it behave like you don't have a scepter
-	"faceless_void_chronosphere"
-	{
-		"AbilitySpecial"
-		{
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration_scepter"		"4.0 4.5 5.0" //"4.0 5.0 6.0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown_scepter"		"130.0 115.0 100.0"
-			}
-		}
-	}
-
-	// make it behave like you don't have a scepter
-	"axe_culling_blade"
-	{
-		"AbilitySpecial"
-		{
-			"07"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"cooldown_scepter"			"75.0 65.0 55.0" //"6.0 6.0 6.0"
-			}
-			"08"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"kill_threshold_scepter"	"250 325 400" //"300 425 550"
-			}
-			"09"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"speed_duration_scepter"	"6" //"10"
+				"damage"				"350" //"225 350 475"
 			}
 		}
 	}
@@ -2238,29 +2142,6 @@
 			{
 				"var_type"			"FIELD_INTEGER"
 				"damage"			"37" //"37 50 63"		
-			}
-		}
-	}
-
-	// make it behave like you don't have a scepter
-	"puck_dream_coil"
-	{
-		"AbilitySpecial"
-		{
-			"08"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"coil_duration_scepter"		"6.0" //"8"
-			}
-			"09"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"coil_break_damage_scepter"	"100 150 200" //"200 250 300"
-			}
-			"10"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"coil_stun_duration_scepter"	"1.5 2.25 3.0" //"1.5 3 4.5"
 			}
 		}
 	}
@@ -2380,7 +2261,7 @@
 		}
 	}
 
-	// nerfed to L2 values
+	// nerfed to L2 dmg, while retaining L4 duration
 	"tinker_laser"
 	{
 		"AbilityDamage"					"160" //"80 160 240 320"
@@ -2389,7 +2270,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration_hero"			"3.5" //"3 3.5 4 4.5"
+				"duration_hero"			"4.5" //"3 3.5 4 4.5"
 			}
 		}
 	}
@@ -2450,7 +2331,7 @@
 		}
 	}
 
-	// nerfed to L1 ult values
+	// nerfed to L2 ult values
 	"doom_bringer_doom"
 	{
 		"AbilitySpecial"
@@ -2458,7 +2339,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"20" //"20 35 50"
+				"damage"				"35" //"20 35 50"
 			}
 		}
 	}
@@ -2476,7 +2357,7 @@
 		}
 	}
 
-	// nerfed to L1 laguna blade ult values
+	// nerfed to L1 values
 	"lion_finger_of_death"
 	{
 		"AbilitySpecial"
@@ -2484,12 +2365,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"450" //"600 725 850"
+				"damage"					"600" //"600 725 850"
 			}
 		}
 	}
 
-	// nerfed to L1 ult values
+	// nerfed to L2 ult values
 	"lina_laguna_blade"
 	{
 		"AbilitySpecial"
@@ -2497,7 +2378,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"450" //"450 675 950"
+				"damage"					"675" //"450 675 950"
 			}
 		}
 	}

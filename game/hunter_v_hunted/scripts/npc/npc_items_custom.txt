@@ -14,6 +14,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"common"
 		"ID"	"1096"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_anchor_smash" // KV: item_example, filename: /items/example.png	
@@ -57,6 +58,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		//"ItemQuality"	""
 		"ID"	"1095"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_blink_strike" // KV: item_example, filename: /items/example.png	
@@ -98,6 +100,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1094"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_breathe_fire" // KV: item_example, filename: /items/example.png	
@@ -139,6 +142,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1093"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_burrowstrike" // KV: item_example, filename: /items/example.png	
@@ -179,6 +183,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1092"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_chain_frost" // KV: item_example, filename: /items/example.png	
@@ -221,6 +226,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1091"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_crystal_nova" // KV: item_example, filename: /items/example.png	
@@ -261,6 +267,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1090"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_doom" // KV: item_example, filename: /items/example.png	
@@ -304,6 +311,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"rare"
 		"ID"	"1089"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_drunken_haze" // KV: item_example, filename: /items/example.png	
@@ -347,6 +355,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"rare"
 		"ID"	"1088"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_exorcism" // KV: item_example, filename: /items/example.png	
@@ -389,6 +398,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1087"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_fade_bolt" // KV: item_example, filename: /items/example.png	
@@ -431,6 +441,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1086"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_finger_of_death" // KV: item_example, filename: /items/example.png	
@@ -471,6 +482,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1085"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_laguna_blade" // KV: item_example, filename: /items/example.png	
@@ -513,6 +525,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1084"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_phantom_strike" // KV: item_example, filename: /items/example.png	
@@ -553,6 +566,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"common"
 		"ID"	"1083"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_power_cogs" // KV: item_example, filename: /items/example.png	
@@ -594,6 +608,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		//"ItemQuality"	""
 		"ID"	"1082"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_reverse_polarity" // KV: item_example, filename: /items/example.png	
@@ -634,6 +649,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1081"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_rocket_barrage" // KV: item_example, filename: /items/example.png	
@@ -657,7 +673,6 @@
 		}
 	}
 
-	// check AOE
 	"item_scream_of_pain"
 	{
 		"BaseClass"		"item_datadriven"
@@ -672,11 +687,11 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1080"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_scream_of_pain" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AoERadius"				"475"
 		"AbilityCastPoint"		"0.0"
 		"AbilityCooldown"		"20"
 		"precache"
@@ -712,6 +727,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		//"ItemQuality"	""
 		"ID"	"1079"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_toss" // KV: item_example, filename: /items/example.png	
@@ -753,6 +769,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		//"ItemQuality"	""
 		"ID"	"1078"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_wall_of_replica" // KV: item_example, filename: /items/example.png	
@@ -791,6 +808,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1077"
 		"ItemInitialCharges"  "3"
 		"AbilityTextureName"	"item_wild_axes" // KV: item_example, filename: /items/example.png	
@@ -835,6 +853,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1076"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_winters_curse" // KV: item_example, filename: /items/example.png	
@@ -885,6 +904,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		//"ItemQuality"	""
 		"ID"	"1075"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_death_ward" // KV: item_example, filename: /items/example.png	
@@ -931,6 +951,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"common"
 		"ID"	"1074"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_false_promise" // KV: item_example, filename: /items/example.png	
@@ -979,6 +1000,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1073"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_focusfire" // KV: item_example, filename: /items/example.png	
@@ -1019,6 +1041,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"rare"
 		"ID"	"1072"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_guardian_angel" // KV: item_example, filename: /items/example.png	
@@ -1060,6 +1083,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"rare"
 		"ID"	"1071"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_laser" // KV: item_example, filename: /items/example.png	
@@ -1100,6 +1124,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1070"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_leech_seed" // KV: item_example, filename: /items/example.png	
@@ -1143,6 +1168,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"common"
 		"ID"	"1069"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_living_armor" // KV: item_example, filename: /items/example.png	
@@ -1187,6 +1213,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"rare"
 		"ID"	"1068"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_mass_serpent_ward" // KV: item_example, filename: /items/example.png	
@@ -1227,6 +1254,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"common"
 		"ID"	"1067"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_press_the_attack" // KV: item_example, filename: /items/example.png	
@@ -1272,6 +1300,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1066"
 		"ItemInitialCharges"  "3"
 		"AbilityTextureName"	"item_recall" // KV: item_example, filename: /items/example.png	
@@ -1316,6 +1345,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"10"
 		"ItemInitialCharges"  "3"
 		"AbilityTextureName"	"item_sprout" // KV: item_example, filename: /items/example.png	
@@ -1359,6 +1389,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"10"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_warcry" // KV: item_example, filename: /items/example.png	
@@ -1398,6 +1429,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1065"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_glimpse" // KV: item_example, filename: /items/example.png	
@@ -1441,6 +1473,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1064"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_thundergods_wrath" // KV: item_example, filename: /items/example.png	
@@ -1478,6 +1511,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1063"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_nether_swap" // KV: item_example, filename: /items/example.png	
@@ -1519,6 +1553,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"common"
 		"ID"	"1062"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_mirror_image" // KV: item_example, filename: /items/example.png	
@@ -1556,6 +1591,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1061"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_starfall" // KV: item_example, filename: /items/example.png	
@@ -1594,6 +1630,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"common"
 		"ID"	"1060"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_healing_ward" // KV: item_example, filename: /items/example.png	
@@ -1639,6 +1676,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1059"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_sun_strike" // KV: item_example, filename: /items/example.png	
@@ -1682,6 +1720,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1058"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_teleportation" // KV: item_example, filename: /items/example.png	
@@ -1724,6 +1763,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1057"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_chronosphere" // KV: item_example, filename: /items/example.png	
@@ -1764,6 +1804,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1056"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_nightmare" // KV: item_example, filename: /items/example.png	
@@ -1805,6 +1846,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"common"
 		"ID"	"1055"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_sunder" // KV: item_example, filename: /items/example.png	
@@ -1846,6 +1888,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1054"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_plasma_field" // KV: item_example, filename: /items/example.png	
@@ -1883,6 +1926,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1053"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_paralyzing_cask" // KV: item_example, filename: /items/example.png	
@@ -1924,6 +1968,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"rare"
 		"ID"	"1052"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_ice_wall" // KV: item_example, filename: /items/example.png	
@@ -1963,6 +2008,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1051"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_tornado" // KV: item_example, filename: /items/example.png	
@@ -2002,6 +2048,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"rare"
 		"ID"	"1050"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_frozen_sigil" // KV: item_example, filename: /items/example.png	
@@ -2041,6 +2088,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"rare"
 		"ID"	"1049"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_fissure" // KV: item_example, filename: /items/example.png	
@@ -2082,6 +2130,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"rare"
 		"ID"	"1048"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_fatal_bonds" // KV: item_example, filename: /items/example.png	
@@ -2124,6 +2173,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1047"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_decay" // KV: item_example, filename: /items/example.png	
@@ -2168,6 +2218,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1046"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_carrion_swarm" // KV: item_example, filename: /items/example.png	
@@ -2209,6 +2260,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"common"
 		"ID"	"1045"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_conjure_image" // KV: item_example, filename: /items/example.png	
@@ -2246,6 +2298,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"rare"
 		"ID"	"1044"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_blood_bath" // KV: item_example, filename: /items/example.png	
@@ -2291,6 +2344,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"common"
 		"ID"	"1043"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_brain_sap" // KV: item_example, filename: /items/example.png	
@@ -2331,6 +2385,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1042"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_avalanche" // KV: item_example, filename: /items/example.png	
@@ -2371,6 +2426,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"rare"
 		"ID"	"1041"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_walrus_kick" // KV: item_example, filename: /items/example.png	
@@ -2391,12 +2447,6 @@
 			"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_tgt_glow.vpcf"
 			"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_tgt_glow_trail.vpcf"
 			"particle"		"particles/generic_gameplay/generic_stunned.vpcf"
-			"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_hand.vpcf"
-			"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_start.vpcf"
-			"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_status.vpcf"
-			"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_tgt.vpcf"
-			"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_txt.vpcf"
-			"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_txt_ult.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -2424,6 +2474,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1040"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_surge" // KV: item_example, filename: /items/example.png	
@@ -2464,6 +2515,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1039"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_suicide" // KV: item_example, filename: /items/example.png	
@@ -2504,6 +2556,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1038"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_death_coil" // KV: item_example, filename: /items/example.png	
@@ -2544,6 +2597,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"rare"
 		"ID"	"1037"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_disruption" // KV: item_example, filename: /items/example.png	
@@ -2585,6 +2639,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1036"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_cold_snap" // KV: item_example, filename: /items/example.png	
@@ -2627,6 +2682,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"common"
 		"ID"	"1035"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_cold_embrace" // KV: item_example, filename: /items/example.png	
@@ -2668,6 +2724,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1034"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_chilling_touch" // KV: item_example, filename: /items/example.png	
@@ -2708,6 +2765,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1033"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_battle_trance" // KV: item_example, filename: /items/example.png	
@@ -2763,6 +2821,7 @@
 //				"maxDuration"			""
 //			}
 //		}
+//		"ItemQuality"	""
 //		"ID"	"1032"
 //		"Model" 	"models/props_gameplay/rune_doubledamage01.vmdl"
 //		"Effect" 	"particles/generic_gameplay/rune_doubledamage.vpcf"
@@ -2782,6 +2841,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1031"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_amplify_damage" // KV: item_example, filename: /items/example.png	
@@ -2823,6 +2883,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"common"
 		"ID"	"1030"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_aphotic_shield" // KV: item_example, filename: /items/example.png	
@@ -2866,6 +2927,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1029"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_assassinate" // KV: item_example, filename: /items/example.png	
@@ -2909,6 +2971,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		//"ItemQuality"	""
 		"ID"	"1028"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_black_hole" // KV: item_example, filename: /items/example.png	
@@ -2944,6 +3007,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1027"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_ensnare" // KV: item_example, filename: /items/example.png	
@@ -2986,6 +3050,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"common"
 		"ID"	"1026"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_hand_of_god" // KV: item_example, filename: /items/example.png	
@@ -3023,6 +3088,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1025"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_homing_missile" // KV: item_example, filename: /items/example.png	
@@ -3069,6 +3135,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"rare"
 		"ID"	"1024"
 		"ItemInitialCharges"  "3"
 		"AbilityTextureName"	"item_frost_armor" // KV: item_example, filename: /items/example.png	
@@ -3111,6 +3178,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		//"ItemQuality"	""
 		"ID"	"1023"
 		"ItemInitialCharges"  "4"
 		"AbilityTextureName"	"item_land_mines" // KV: item_example, filename: /items/example.png	
@@ -3152,6 +3220,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"common"
 		"ID"	"1022"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_purification" // KV: item_example, filename: /items/example.png	
@@ -3195,6 +3264,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1021"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_tether" // KV: item_example, filename: /items/example.png	
@@ -3237,6 +3307,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		//"ItemQuality"	""
 		"ID"	"1020"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_walrus_punch" // KV: item_example, filename: /items/example.png	
@@ -3283,6 +3354,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1019"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_pounce" // KV: item_example, filename: /items/example.png	
@@ -3323,6 +3395,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1018"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_eye_of_the_storm" // KV: item_example, filename: /items/example.png	
@@ -3361,6 +3434,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1017"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_dream_coil" // KV: item_example, filename: /items/example.png	
@@ -3402,6 +3476,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"rare"
 		"ID"	"1016"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_deafening_blast" // KV: item_example, filename: /items/example.png	
@@ -3443,6 +3518,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1015"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_culling_blade" // KV: item_example, filename: /items/example.png	
@@ -3487,6 +3563,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"rare"
 		"ID"	"1014"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_chaos_meteor" // KV: item_example, filename: /items/example.png	
@@ -3527,6 +3604,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1013"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_firefly" // KV: item_example, filename: /items/example.png	
@@ -3566,6 +3644,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1012"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_summon_wolves" // KV: item_example, filename: /items/example.png	
@@ -3603,6 +3682,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"rare"
 		"ID"	"1011"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_blinding_light" // KV: item_example, filename: /items/example.png	
@@ -3643,6 +3723,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"rare"
 		"ID"	"1010"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_windrun" // KV: item_example, filename: /items/example.png	
@@ -3680,6 +3761,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1009"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_mirana_arrow" // KV: item_example, filename: /items/example.png	
@@ -3721,6 +3803,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1008"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_shackleshot" // KV: item_example, filename: /items/example.png	
@@ -3765,6 +3848,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1007"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_ravage" // KV: item_example, filename: /items/example.png	
@@ -3803,6 +3887,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1006"
 		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_stampede" // KV: item_example, filename: /items/example.png	
@@ -3840,6 +3925,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"artifact"
 		"ID"	"1005"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_kinetic_field" // KV: item_example, filename: /items/example.png	
@@ -3881,6 +3967,7 @@
 		"ItemStackable" 	"0"
 		"ItemPermanent" 	"0"
 		// Modify these
+		"ItemQuality"	"epic"
 		"ID"	"1004"
 		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_meat_hook" // KV: item_example, filename: /items/example.png	
@@ -3976,6 +4063,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"item_datadriven"
+		"ItemQuality"					"rare"
 		"ID"							"2187"  //Valve's version of this item uses the ID "187".
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
@@ -4109,6 +4197,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"item_datadriven"
+		"ItemQuality"					"artifact"
 		"ID"							"2187"  //Valve's version of this item uses the ID "187".
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
