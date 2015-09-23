@@ -180,14 +180,26 @@ end
 function HVHDreadHunterKillEffect:KillEffect(keys)
   if not GameRules:IsDaytime() then
     local attacker = EntIndexToHScript(keys.entindex_attacker)
-    if attacker:GetUnitName() == "npc_dota_hero_night_stalker" then
-      local target = EntIndexToHScript(keys.entindex_killed)
-      if target:IsRealHero() then
-        self:AttachBloodRushParticle(attacker, target)
-        self:ApplyRegenMod(attacker, attacker:GetAbilityByIndex(3))
+    local target = EntIndexToHScript(keys.entindex_killed)
+
+    local isAttackerNightStalker = IsEntityNightStalker(attacker)
+    local isTargetSniper = IsEntitySniper(target)
+
+    if isAttackerNightStalker and isTargetSniper then
+      self:AttachEffectsForTargets(attacker, target, attacker)
+    elseif IsEntityNightStalkerIllusion(attacker) and isTargetSniper then
+      local owningHero = GetOwningHeroForIllusion(attacker)
+      if IsEntityNightStalker(owningHero) then
+        self:AttachEffectsForTargets(attacker, target, owningHero)
       end
     end
   end
+end
+
+function HVHDreadHunterKillEffect:AttachEffectsForTargets(attacker, victim, regenTarget)
+  self:AttachBloodRushParticle(attacker, victim)
+  local ability = attacker:FindAbilityByName("night_stalker_hunter_in_the_night_hvh")
+  self:ApplyRegenMod(regenTarget, ability)
 end
 
 function HVHDreadHunterKillEffect:AttachBloodRushParticle(caster, target)

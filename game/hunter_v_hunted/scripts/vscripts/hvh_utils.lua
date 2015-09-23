@@ -1,3 +1,6 @@
+
+require("hvh_constants")
+
 function DeepCopy(orig)
     local orig_type = type(orig)
     local copy
@@ -11,6 +14,41 @@ function DeepCopy(orig)
         copy = orig
     end
     return copy
+end
+
+function GetOwningHeroForIllusion(illusion)
+  local player = illusion:GetPlayerOwner()
+  return player:GetAssignedHero()
+end
+
+function IsEntityNightStalker(entity)
+  local isNightStalker = false
+
+  if entity ~= nil and entity:GetUnitName() == NIGHT_STALKER_UNIT_NAME and entity:IsRealHero() then
+    isNightStalker = true
+  end
+
+  return isNightStalker
+end
+
+function IsEntityNightStalkerIllusion(entity)
+  local isNightStalkerIllusion = false
+
+  if entity ~= nil and entity:GetUnitName() == NIGHT_STALKER_UNIT_NAME and entity:IsIllusion() then
+    isNightStalkerIllusion = true
+  end  
+
+  return isNightStalkerIllusion
+end
+
+function IsEntitySniper(entity)
+  local isSniper = false
+
+  if entity ~= nil and entity:GetUnitName() == SNIPER_UNIT_NAME and entity:IsRealHero() then
+    isSniper = true
+  end  
+
+  return isSniper
 end
 
 function CompareFloats(float1, float2, tolerance)
