@@ -1,3 +1,7 @@
+1.2.1
+---
+Fixed illusion interaction with Blood Rush stacks
+
 1.2.0
 ---
 Over 30 new items added!
