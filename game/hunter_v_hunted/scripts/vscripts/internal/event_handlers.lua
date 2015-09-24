@@ -75,25 +75,10 @@ end
 function HVHGameMode:OnEntityKilled(killedArgs)
  	local unit = EntIndexToHScript(killedArgs.entindex_killed)
 
-  -- dog dead for a minimum of 1 cycle + randomness, then check every second
-  -- to respawn when it's daytime
   if unit and unit:GetUnitName() == "npc_dota_good_guy_dog" then
-    local standardLengthOfOneCycle = (SECS_PER_CYCLE / 2) / DAY_NIGHT_CYCLE_MULTIPLIER
-    local maxLengthOfCycle = standardLengthOfOneCycle + RANDOM_EXTRA_SECONDS
-    Timers:CreateTimer(maxLengthOfCycle, function()
-      if GameRules:IsDaytime() then
-        HVHGameMode:SpawnDog(true)
-      else
-        return 1.0
-      end
+    Timers:CreateTimer(HVHGameMode:GetRespawnTime(), function()
+      HVHGameMode:SpawnDog(true)
     end)
-    --[[-- dog respawning every morning exactly
-    Timers:CreateTimer({
-      endTime = HVHTimeUtils:GetSecondsUntil(TIME_NEXT_DAWN),
-      callback = function()
-        HVHGameMode:SpawnDog(true)
-    end})
-    ]]
   end
 
 end
