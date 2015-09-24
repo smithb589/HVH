@@ -1,5 +1,9 @@
 1.2.2
 ---
+New Hound behaviors!
+-- Feed your Hound to make him Loyal to you. The Hound always becomes Loyal to the last person who fed him.
+-- While Loyal, the Hound will follow you and defend your team at night, instead of sleeping.
+-- Loyalty has no effect during the day, because the Hound already pursues the Night Stalker.
 Item changes
 -- Many chest drop probabilities tweaked
 -- Colored item names depending on item's role
@@ -17,6 +21,7 @@ Ability changes
 -- Toss Bone feed duration 2 to 4 sec
 -- Toss Bone cooldown 60 to 45 sec
 -- Hound Sprint duration 8 to 6 sec
+-- Hound respawn rate now identical to normal hero respawn rate (18-23 sec).
 
 1.2.1
 ---

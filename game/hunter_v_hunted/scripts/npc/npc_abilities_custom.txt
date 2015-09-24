@@ -8,7 +8,6 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"sniper_shrapnel"
@@ -253,11 +252,13 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"900"
 		"AbilityCastPoint"				"0.3"
-		"AbilityCooldown"				"45" //"60" // "45" //"90 75 60 45"
+		"AbilityCooldown"				"45" // duplicate of loyalty_duration
 		"AbilityManaCost"				"0"
 
 		"Precache"
 		{
+			//"particle"			"particles/units/heroes/hero_warlock/warlock_shadow_word_buff.vpcf"
+			"particle"			"particles/sniper_feed_dog_buff.vpcf"
 			"particle"			"particles/good_guy_dog_treat.vpcf"
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_chaos_knight.vsndevts"
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts"
@@ -286,7 +287,12 @@
 			{
 				"var_type"			"FIELD_INTEGER"
 				"heal_amount"		"150"
-			}	
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"loyalty_duration"	"45" //"60" // "45" //"90 75 60 45"
+			}
 		}
 
 		"OnSpellStart"
@@ -314,6 +320,7 @@
 				"ScriptFile"	"scripts/vscripts/SpellLibrary/sniper_feed_dog.lua"
 				"Function"		"Feed"
 				"feedDuration"	"%feed_duration"
+				"loyaltyDuration" "%loyalty_duration"
 			}
 
 			"Heal"
@@ -326,6 +333,18 @@
 			{
 				"EffectName"	"Lycan_Wolf.Attack"
 				"Target" 		"TARGET"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_feed_dog_loyalty"
+			{
+				"Passive"				"0"
+				"IsHidden"				"0"
+
+				"EffectName"	"particles/sniper_feed_dog_buff.vpcf"
+				"EffectAttachType"		"follow_origin"
 			}
 		}
 	}
@@ -1336,36 +1355,22 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"health_regen_pct"	"10"
+				"health_regen_pct"	"4.0"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"fade_delay"		"2.0"
 			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"night_vision"		"-600"
+			}
 		}
 
 		"Modifiers"
 		{
-			"modifier_sleep_applicator"
-			{
-				"Passive" 			"1"
-	    		"IsHidden"			"1"
-
-	    		"ThinkInterval"  "1.0"
-	    		"OnIntervalThink"
-	    		{
-	    			"RunScript"
-	    			{
-	    				"ScriptFile"	"SpellLibrary/good_guy_dog_sleep.lua"
-	    				"Function"		"GoToSleep"
-	    				"mod_fade"		"modifier_sleep_fade"
-	    				"mod_sleep"		"modifier_sleep"
-	    				"delay"	"%fade_delay"
-	    			}
-	    		}
-			}
-
 			"modifier_sleep_fade"
 			{
 				"IsHidden"			"1"
@@ -1427,6 +1432,7 @@
 				"Properties"
 	    		{
 	    			"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%health_regen_pct"
+	    			"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"		"%night_vision"
 	    		}
 			}
 		}

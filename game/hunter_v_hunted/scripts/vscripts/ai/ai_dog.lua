@@ -8,12 +8,24 @@ DESIRE_NONE   = 0
 DESIRE_LOW    = 5
 DESIRE_MEDIUM = 10
 DESIRE_HIGH   = 15
+DESIRE_MAX	  = 20
 
 function Spawn( entityKeyValues )
 
-	thisEntity.Feed = function(self, feedDuration)
-		self._FeedTime = GameRules:GetGameTime()
+	thisEntity.FedBy = function(self, lastFeeder, feedDuration, loyaltyDuration)
+		if self._LastFeeder then
+			RemoveLoyaltyBuff(self._LastFeeder)
+		end
+
+		self._LastFeeder = lastFeeder
 		self._FeedDuration = feedDuration
+		self._LoyaltyDuration = loyaltyDuration
+
+		self._FeedTime = GameRules:GetGameTime()
+		self._LoyaltyEndsAt = self._FeedTime + self._LoyaltyDuration
+
+		ApplyLoyaltyBuff(lastFeeder)
+		--print("LOYALTY ENDS AT: " .. self._LoyaltyEndsAt)
 	end
 
 	thisEntity.IsFed = function(self)
@@ -25,10 +37,14 @@ function Spawn( entityKeyValues )
 	-- can't just run across the entire map.
 	thisEntity._WanderingOrigin = Vector(0, 0)
 	thisEntity._MaxWanderingDistance = 500.0 --150.0
+	thisEntity._MaxDefendRange = thisEntity:GetNightTimeVisionRange()
 
+	thisEntity._LastFeeder = nil
+	thisEntity._LoyaltyDuration = 0
 	thisEntity._FeedDuration = 0
 	-- Arbitrarily age this so the dog doesn't start fed.
 	thisEntity._FeedTime = GameRules:GetGameTime() - 60
+	thisEntity._LoyaltyEndsAt = 0
 
 	thisEntity._LastWarnTime = 0.0
 
@@ -38,7 +54,9 @@ function Spawn( entityKeyValues )
 		BehaviorWarn,
 		BehaviorPursue,
 		BehaviorSprint,
-		BehaviorSleep
+		BehaviorSleep,
+		BehaviorFollow,
+		BehaviorDefend
 	})
 	behaviorSystem.thinkDuration = 0.1
 	HVHDebugPrint(string.format("Starting AI for %s. Entity Index: %s", thisEntity:GetUnitName(), thisEntity:GetEntityIndex()))
@@ -51,14 +69,21 @@ function ThinkDog()
 	return behaviorSystem:Think()
 end
 
-function FindNearestTarget(entity)
+function FindNearestTarget(entity, fow_visible)
+	local fow_visible = fow_visible or false -- overloaded
+
+	local flags = DOTA_UNIT_TARGET_FLAG_NONE
+	if fow_visible then
+		flags = DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE
+	end
+
 	local units = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
 								 	entity:GetAbsOrigin(),
 									nil,
 									FIND_UNITS_EVERYWHERE,
 									DOTA_UNIT_TARGET_TEAM_FRIENDLY,
 									DOTA_UNIT_TARGET_HERO,
-									DOTA_UNIT_TARGET_FLAG_NONE,
+									flags,
 									FIND_CLOSEST,
 									false)
 	return units[1]
@@ -80,6 +105,17 @@ function IsInvisibleTargetInWanderRange(target)
 	return targetValid and targetInWanderRange and target:IsInvisible()
 end
 
+function ApplyLoyaltyBuff(target)
+	local ability = target:FindAbilityByName("sniper_feed_dog")
+	local buff = "modifier_feed_dog_loyalty"
+	local dur = thisEntity._LoyaltyDuration
+	ability:ApplyDataDrivenModifier(thisEntity, target, buff, { duration = dur })
+end
+
+function RemoveLoyaltyBuff(target)
+	target:RemoveModifierByName("modifier_feed_dog_loyalty")
+end
+
 --------------------------------------------------------------------------------------------------------
 -- Wander behavior
 
@@ -93,6 +129,7 @@ BehaviorWander =
 	}
 }
 
+-- Nothing better to do, afraid, or Warn on cooldown? Might as well wander.
 function BehaviorWander:Evaluate()
 	local wanderDesire = DESIRE_NONE + 1 -- takes priority over other DESIRE_NONEs
 	local nearestTarget = FindNearestTarget(thisEntity)
@@ -100,7 +137,7 @@ function BehaviorWander:Evaluate()
 	-- affected by crippling fear
 	if thisEntity:HasModifier("modifier_crippling_fear_dog_datadriven") or
 	   thisEntity:HasModifier("modifier_crippling_fear_dog_aoe_datadriven") then
-	   wanderDesire = DESIRE_HIGH
+	   wanderDesire = DESIRE_MAX
 	
 	-- invis-wandering
 	elseif IsInvisibleTargetInWanderRange(nearestTarget) then
@@ -110,18 +147,12 @@ function BehaviorWander:Evaluate()
 	return wanderDesire
 end
 
-function BehaviorWander:Initialize()
-end
-
 function BehaviorWander:Begin()
 	self:_DetermineWanderOrigin()
-
 	self.order.Position = self:GetWanderDestination()
 
 	-- Indicate how long the wander behavior should last
 	self.endTime = GameRules:GetGameTime() + self:GetWanderDuration()
-
-	--thisEntity:AddSpeechBubble(SPEECH_ID, SPEECH_WANDER_BEGIN, SPEECH_DUR, SP_X, SP_Y)
 end
 
 function BehaviorWander:Continue()
@@ -174,11 +205,12 @@ BehaviorWarn =
 	delayBetweenWarns = 4.0 --2.0
 }
 
+-- (Day/night) Howl if invisible target is near and you haven't howled recently
 function BehaviorWarn:Evaluate()
 	local target = FindNearestTarget(thisEntity)
 	local warnDesire = DESIRE_NONE
 	if IsInvisibleTargetInWanderRange(target) and self:_CanWarn() then
-		warnDesire = DESIRE_MEDIUM + 1 -- takes priority over invis-wandering and sprinting
+		warnDesire = DESIRE_HIGH
 	end
 
 	return warnDesire
@@ -197,7 +229,6 @@ function BehaviorWarn:Continue()
 end
 
 function BehaviorWarn:End()
-
 end
 
 function BehaviorWarn:_DoWarn()
@@ -231,6 +262,7 @@ BehaviorPursue =
 	}
 }
 
+-- During the day, pursue the nearest valid enemy target
 function BehaviorPursue:Evaluate()
 	local target = FindNearestTarget(thisEntity)
 	local pursueDesire = DESIRE_NONE
@@ -239,10 +271,6 @@ function BehaviorPursue:Evaluate()
 	end
 
 	return pursueDesire
-end
-
-function BehaviorPursue:Initialize()
-
 end
 
 function BehaviorPursue:Begin()
@@ -254,8 +282,6 @@ function BehaviorPursue:Begin()
 	end
 
 	self.endTime = GameRules:GetGameTime() + 0.1
-
-	--thisEntity:AddSpeechBubble(SPEECH_ID, SPEECH_PURSUE_BEGIN, SPEECH_DUR, SP_X, SP_Y)
 end
 
 function BehaviorPursue:Continue()
@@ -268,19 +294,13 @@ function BehaviorPursue:Continue()
 
 		-- mostly fixes error 27 (Invalid order: Target is invisible and is not on the unit's team.)
 		if not thisEntity:CanEntityBeSeenByMyTeam(pursuitTarget) then
-			self.order.OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION		
+			self.order.OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION
 		else
 			self.order.OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET
 		end
 	end
 
-
-
 	self.endTime = GameRules:GetGameTime() + 0.1
-
-	--local distance = math.ceil(thisEntity:GetRangeToUnit(pursuitTarget) - 0.5) -- round to nearest int
-	--local speech = string.format(SPEECH_PURSUE_CONTINUE, distance)
-	--thisEntity:AddSpeechBubble(SPEECH_ID, speech, SPEECH_DUR_PURSUE, SP_X, SP_Y)
 end
 
 function BehaviorPursue:End()
@@ -296,85 +316,6 @@ function BehaviorPursue:Think(dt)
 end
 
 --------------------------------------------------------------------------------------------------------
--- Attack behavior
-
---[[
-BehaviorAttack = 
-{
-	order =
-	{
-		UnitIndex = thisEntity:entindex(),
-		OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-		TargetIndex = nil
-	}
-}
-
-function BehaviorAttack:Evaluate()
-	local target = FindNearestTarget(thisEntity)
-	local attackDesire = 0
-	if GameRules:IsDaytime() and IsTargetValid(target) not not target:IsInvisible() then
-		attackDesire = 5
-	end
-
-	return attackDesire
-end
-
-function BehaviorAttack:Initialize()
-
-end
-
-function BehaviorAttack:Begin()
-	local target = FindNearestTarget(thisEntity)
-
-	if IsTargetValid(target) then
-		self.order.TargetIndex = target:GetEntityIndex()
-		self.order.Position = target:GetAbsOrigin()
-	end
-
-	self.endTime = GameRules:GetGameTime() + 0.1
-
-	--thisEntity:AddSpeechBubble(SPEECH_ID, SPEECH_PURSUE_BEGIN, SPEECH_DUR, SP_X, SP_Y)
-end
-
-function BehaviorAttack:Continue()
-	-- important to constantly re-evaluate the closest target (illusions, etc.)
-	local target = FindNearestTarget(thisEntity)
-
-	if IsTargetValid(target) then
-		self.order.TargetIndex = target:GetEntityIndex()
-		self.order.Position = target:GetAbsOrigin()
-
-		-- mostly fixes error 27 (Invalid order: Target is invisible and is not on the unit's team.)
-		if target:HasModifier("modifier_invisible") then
-			self.order.OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION		
-		else
-			self.order.OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET
-		end
-	end
-
-	self.endTime = GameRules:GetGameTime() + 0.1
-
-	--local distance = math.ceil(thisEntity:GetRangeToUnit(target) - 0.5) -- round to nearest int
-	--local speech = string.format(SPEECH_PURSUE_CONTINUE, distance)
-	--thisEntity:AddSpeechBubble(SPEECH_ID, speech, SPEECH_DUR_PURSUE, SP_X, SP_Y)
-end
-
-function BehaviorAttack:End()
-	self.order.TargetIndex = nil
-end
-
-function BehaviorAttack:Think(dt)
-	-- No longer a valid target, so end this behavior.
-	local target = EntIndexToHScript(self.order.TargetIndex)
-	if not IsTargetValid(target) or target:IsInvisible() then
-		self.endTime = GameRules:GetGameTime()
-	else
-		self.endTime = GameRules:GetGameTime() + 0.5
-	end
-end
-]]
-
---------------------------------------------------------------------------------------------------------
 -- Sprint behavior
 
 BehaviorSprint = 
@@ -387,27 +328,21 @@ BehaviorSprint =
 	}
 }
 
+-- If isDaytime/isFed/isOutsideMinRange(unused)/canCastSprint, then use Sprint ability
 function BehaviorSprint:Evaluate()
 	self.sprintAbility = thisEntity:FindAbilityByName("dog_sprint")
 	self.order.AbilityIndex = self.sprintAbility:entindex()
 	local sprintDesire = DESIRE_NONE
 
 	if self:CanSprint() then
-		sprintDesire = DESIRE_MEDIUM
+		sprintDesire = DESIRE_MAX
 	end
 
 	return sprintDesire
 end
 
-function BehaviorSprint:Initialize()
-
-end
-
 function BehaviorSprint:Begin()
-	--thisEntity:CastAbilityNoTarget(self.sprintAbility, -1)
-	-- Indicate how long the wander behavior should last
 	self.endTime = GameRules:GetGameTime()
-	--thisEntity:AddSpeechBubble(SPEECH_ID, SPEECH_SPRINT_BEGIN, SPEECH_DUR, SP_X, SP_Y)
 end
 
 -- Continuing this behavior is the same as just beginning it
@@ -450,38 +385,175 @@ BehaviorSleep =
 	order = 
 	{
 		UnitIndex = thisEntity:entindex(),
-		OrderType = DOTA_UNIT_ORDER_HOLD_POSITION
+		OrderType = DOTA_UNIT_ORDER_HOLD_POSITION,
+		AbilityIndex = nil
 	}
 }
 
+-- Stop moving at night if there's nothing better to do
 function BehaviorSleep:Evaluate()
-	local sleepPriority = DESIRE_NONE + 1 -- takes priority over other DESIRE_NONEs
+	local sleepPriority = DESIRE_NONE
 	if not GameRules:IsDaytime() then
-		sleepPriority = DESIRE_HIGH
+		sleepPriority = DESIRE_LOW
 	end
 	return sleepPriority
 end
 
-function BehaviorSleep:Initialize()
-
-end
-
 function BehaviorSleep:Begin()
+	--print("Begin sleep")
+	local sleepAbility = thisEntity:FindAbilityByName("dog_sleep")
+	local fade_delay = sleepAbility:GetSpecialValueFor("fade_delay")
+	self.order.AbilityIndex = sleepAbility:entindex()
 	self.order.OrderType = DOTA_UNIT_ORDER_HOLD_POSITION
-	self.endTime = GameRules:GetGameTime() + 1
-	--thisEntity:AddSpeechBubble(SPEECH_ID, SPEECH_SLEEP_BEGIN, SPEECH_DUR, SP_X, SP_Y)
+
+	StartAnimation(thisEntity, {duration=fade_delay, activity=ACT_DOTA_IDLE_RARE, rate=1.0})
+	sleepAbility:ApplyDataDrivenModifier(thisEntity, thisEntity, "modifier_sleep_fade", {})
+
+	self.endTime = GameRules:GetGameTime() + fade_delay
 end
 
 function BehaviorSleep:Continue()
 	-- Without this, the animation will keep restarting similar to 
 	-- spamming hold position on a hero.
+	--print("Continue sleep")
 	self.order.OrderType = DOTA_UNIT_ORDER_NONE
 	self.endTime = GameRules:GetGameTime() + 1
 end
 
 function BehaviorSleep:End()
+	--print("Remove sleep")
 	self.order.OrderType = DOTA_UNIT_ORDER_HOLD_POSITION
+	
+	if thisEntity:HasModifier("modifier_sleep") then
+		thisEntity:RemoveModifierByName("modifier_sleep")
+	end
 end
 
 function BehaviorSleep:Think(dt)
+end
+
+--------------------------------------------------------------------------------------------------------
+-- Follow behavior
+
+BehaviorFollow = 
+{
+	order =
+	{
+		UnitIndex = thisEntity:entindex(),
+		OrderType = DOTA_UNIT_ORDER_MOVE_TO_TARGET,
+		TargetIndex = nil
+	}
+}
+
+-- If it's night and someone fed the dog recently, then follow that man
+-- (The "last feeder" is the Sniper who most recently fed the dog)
+function BehaviorFollow:Evaluate()
+	local followDesire = DESIRE_NONE
+	local lastFeeder = thisEntity._LastFeeder
+
+	if not GameRules:IsDaytime() and IsTargetValid(lastFeeder) and self:IsStillLoyalTo(lastFeeder) then
+		followDesire = DESIRE_MEDIUM + 1 -- takes priority over invis-wandering
+	end
+
+	return followDesire
+end
+
+function BehaviorFollow:Begin()
+	--print("Begin follow")
+	local lastFeeder = thisEntity._LastFeeder
+	self.order.TargetIndex = lastFeeder:GetEntityIndex()
+
+	self.endTime = GameRules:GetGameTime() + 0.1
+end
+
+function BehaviorFollow:Continue()
+	--print("Continue follow @" .. GameRules:GetGameTime())
+	local lastFeeder = thisEntity._LastFeeder
+	local lastFeederIndex = lastFeeder:GetEntityIndex()
+
+	-- if the last feeder is no longer our move-to target, then switch feeder
+	if lastFeederIndex ~= self.order.TargetIndex then
+		self:SwitchFeeder(lastFeederIndex)
+	end
+
+	self.endTime = GameRules:GetGameTime() + 0.1
+end
+
+function BehaviorFollow:End()
+	self.order.TargetIndex = nil
+end
+
+function BehaviorFollow:Think(dt)
+end
+
+-- update target of move-to command and reset loyalty timer
+function BehaviorFollow:SwitchFeeder(newTargetIndex)
+	--print("SWITCH FEEDER")
+	self.order.TargetIndex = newTargetIndex
+	--thisEntity._LoyaltyEndsAt = GameRules:GetGameTime() + thisEntity._LoyaltyDuration
+end
+
+function BehaviorFollow:IsStillLoyalTo(target)
+	return GameRules:GetGameTime() <= thisEntity._LoyaltyEndsAt
+end
+
+--------------------------------------------------------------------------------------------------------
+-- Defend behavior
+
+BehaviorDefend = 
+{
+	order =
+	{
+		UnitIndex = thisEntity:entindex(),
+		OrderType = DOTA_UNIT_ORDER_NONE,
+		TargetIndex = nil
+	}
+}
+
+-- During the night, attack nearest visible enemy
+function BehaviorDefend:Evaluate()
+	local defendDesire = DESIRE_NONE
+	local target = FindNearestTarget(thisEntity, true)
+
+	if not GameRules:IsDaytime() and self:CanDefendAgainst(target) then
+		defendDesire = DESIRE_HIGH
+	end
+
+	return defendDesire
+end
+
+function BehaviorDefend:Begin()
+	--print("Begin/continue defend")
+	local target = FindNearestTarget(thisEntity, true)
+
+	if self:CanDefendAgainst(target) then
+		self.order.OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET
+		self.order.TargetIndex = target:GetEntityIndex()
+	end
+
+	self.endTime = GameRules:GetGameTime() + 0.1
+end
+
+-- Continuing this behavior is the same as just beginning it
+BehaviorDefend.Continue = BehaviorDefend.Begin
+
+function BehaviorDefend:End()
+	--print("End defend")
+	self.order.OrderType = DOTA_UNIT_ORDER_NONE
+	self.order.TargetIndex = nil
+end
+
+function BehaviorDefend:Think(dt)
+end
+
+function BehaviorDefend:IsTargetInDefendRange(target)
+	return thisEntity:GetRangeToUnit(target) <= thisEntity._MaxDefendRange
+end
+
+function BehaviorDefend:CanSeeTarget(target)
+	return thisEntity:CanEntityBeSeenByMyTeam(target)
+end
+
+function BehaviorDefend:CanDefendAgainst(target)
+	return IsTargetValid(target) and self:CanSeeTarget(target) and self:IsTargetInDefendRange(target)
 end

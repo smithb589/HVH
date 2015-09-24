@@ -151,7 +151,6 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"Ability1"					"dog_sprint"
-		//"Ability2"					"general_ability_invulnerable"
 		"Ability2"					"dog_mans_best_friend"
 		"Ability3"					"slardar_bash"
 		"Ability4"					"dog_sleep"
@@ -185,7 +184,8 @@
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"325"//"300"// Speed
 		"MovementTurnRate"			"0.5"		// Turning rate.
-		
+		"FollowRange"               "250"
+
 		// Bounty
 		//----------------------------------------------------------------
 		"BountyXP"					"0"		// Experience earn.
@@ -209,7 +209,7 @@
 		// Vision
 		//----------------------------------------------------------------
 		"VisionDaytimeRange"		"1200"		// Range of vision during day light.
-		"VisionNighttimeRange"		"200"		// Range of vision at night time.
+		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		//Inventory
 		"HasInventory"				"0"
