@@ -12,14 +12,14 @@ MAX_OUT_ABILITIES = false 	-- max out ALL abilities or only starting abilities?
 -- HVH Time
 DAY_NIGHT_CYCLE_MULTIPLIER = 3			-- ex. 4 means each day/night will last 1 min each (4x faster)
 RANDOM_EXTRA_SECONDS 	   = 15.0 		-- randomly increase/decrease each cycle by -(Value) to Value seconds
-PRE_GAME_TIME = 30.0                    -- How long after people select their heroes should the horn blow and the game start?
-PREGAME_SLEEP = true
+PRE_GAME_TIME = 3.0                    -- How long after people select their heroes should the horn blow and the game start?
+PREGAME_SLEEP = false
 
 -- HVH Respawn
 BADGUY_LIVES  = 6
 GOODGUY_LIVES = 18
-MIN_RESPAWN_TIME = 18
-MAX_RESPAWN_TIME = 23
+MIN_RESPAWN_TIME = 1
+MAX_RESPAWN_TIME = 3
 MINIMUM_RESPAWN_RANGE = 2500			-- if no respawn points are found outside this range, the least worst will be used
 
 -- HVH Power Stages for reinforcements / evolutions

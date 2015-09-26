@@ -182,7 +182,7 @@
 	// ------------------- STARTING ITEMS --------------------------
 	"item_boots"
 	{	
-		"ItemQuality"	""	
+		"ItemQuality"	"common"	
 		"ItemSellable" "0"
 		"ItemDroppable" "0"
 
@@ -198,7 +198,7 @@
 
 	"item_phase_boots"
 	{	
-		"ItemQuality"	""	
+		"ItemQuality"	"common"	
 		"ItemSellable" "0"
 		"ItemDroppable" "0"
 		"AbilitySpecial"
@@ -206,22 +206,32 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_movement_speed"	"50" // 50
+				"bonus_movement_speed"	"50"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"0"
+				"bonus_damage"			"0" // "24" HVH
 			}			
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"phase_movement_speed"  "16"
-			}
+				"bonus_attack_speed"	"0"
+			}			
 			"04"
 			{
+				"var_type"				"FIELD_INTEGER"
+				"phase_movement_speed"  "24"
+			}		
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"phase_movement_speed_range"  "20"
+			}
+			"06"
+			{
 				"var_type"				"FIELD_FLOAT"
-				"phase_duration"		"3.6"
+				"phase_duration"		"2.5"
 			}
 		}
 	}
@@ -229,7 +239,7 @@
 	"item_ultimate_scepter"
 	{
 		"AbilityTextureName"	"item_hvh_mango_scepter" // filename: hvh_meat_hook			
-		"ItemQuality"	""	
+		"ItemQuality"	"common"	
 		"ItemSellable" "0"
 		"ItemDroppable" "0"
 		"AbilitySpecial"
@@ -2352,7 +2362,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spirits"				"6" //"6 13 21"
+				"spirits"				"8" // 6.85 6 to 8 //"6 13 21"
 			}
 		}
 	}
@@ -2378,7 +2388,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"675" //"450 675 950"
+				"damage"					"650" // 6.85 675 to 650 //"450 675 950"
 			}
 		}
 	}

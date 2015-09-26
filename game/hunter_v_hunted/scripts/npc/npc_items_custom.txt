@@ -4068,7 +4068,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		//"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"Model"							"models/props_gameplay/red_box.vmdl" 
 		"Effect"						"particles/generic_gameplay/dropped_item.vpcf"
 		"AbilityTextureName"			"item_solar_crest"
@@ -4099,7 +4099,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"evasion"				"30"
+				"evasion"				"25" //"30" -- 6.85 changes
 			}
 			"03"
 			{
@@ -4109,7 +4109,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"miss_chance"			"30"
+				"miss_chance"			"25" // "30"
 			}
 			"05"
 			{
@@ -4202,7 +4202,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		//"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"Model"							"models/props_gameplay/red_box.vmdl" 
 		"Effect"						"particles/generic_gameplay/dropped_item.vpcf"
 		"AbilityTextureName"			"item_medallion_of_courage"
