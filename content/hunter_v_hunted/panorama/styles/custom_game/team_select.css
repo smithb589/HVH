@@ -11,17 +11,18 @@
     vertical-align: top;
     horizontal-align: middle;
     
-    font-size: 28px;
+    margin-bottom: 24px;
+    font-size: 24px;
     color: #99CCFF;
 }
 
-#HVH_TipLabel
+.HVH_TipLabel
 {
     vertical-align: bottom;
     horizontal-align: middle;
 
-    margin-top: 100px;
-    font-size: 24px;
+    margin-bottom: 24px;
+    font-size: 22px;
     font-style: italic;
     color: #666666;
 }

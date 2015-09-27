@@ -27,7 +27,9 @@
 					<Panel id="HVH_BelowTeamPanel">
 				      <Label id="HVH_WarningLabel" text="#loading_screen_warning" />
 				      <Label id="HVH_BlankLine" text="" />
-				      <Label id="HVH_TipLabel" text="TIP_GOES_HERE" />
+				      <Label id="HVH_TipLabel_1" class="HVH_TipLabel" text="TIP_GOES_HERE" />
+   				      <Label id="HVH_TipLabel_2" class="HVH_TipLabel" text="TIP_GOES_HERE" />
+   				      <Label id="HVH_TipLabel_3" class="HVH_TipLabel" text="TIP_GOES_HERE" />
 				    </Panel>
 				</Panel>
 			</Panel>

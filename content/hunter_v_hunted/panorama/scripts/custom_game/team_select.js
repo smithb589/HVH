@@ -293,17 +293,42 @@ function UpdateTimer()
 
 /* HVH-Specific */
 
-// choose random hint
-function Choose_Hint(){
-	var count = Count_Localized_Strings();
-	var r = Math.floor(Math.random() * count);
-	var r_str = ("0"+r).slice(-2); // 00, 05, 13, etc.
+function Choose_Unique_Random_Hints(){
+	var argTotal = arguments.length;
+	var hintCount = Count_Localized_Strings();
 
-	var tipHeader = $.Localize("game_info_tips_header");
-	var tipText	  = $.Localize("game_info_tips_" + r_str);
-	var tip = $.GetContextPanel().FindChildTraverse("TeamSelectContainer").FindChildTraverse("TeamsList").FindChildTraverse("TeamsListGroup").FindChildTraverse("HVH_BelowTeamPanel").FindChildTraverse("HVH_TipLabel");
-	tip.text = tipHeader + " #" + r_str +  ": "+ tipText;
-	// (example output) Tip #14: Always bring a towel.
+	// pick the hints
+	var uniqueNumbersArray = [];
+	while (uniqueNumbersArray.length < argTotal){
+		var r = Math.floor(Math.random() * hintCount);
+		var found = false;
+
+		// check if that number's been picked before
+		for (var i=0; i<uniqueNumbersArray.length; i++){
+			if(uniqueNumbersArray[i] == r){
+				found=true;
+				break;
+			}
+		}
+		
+		// if not, add it to the end of the array
+		if (!found){
+			uniqueNumbersArray[uniqueNumbersArray.length] = r;
+		}
+	}
+
+	// set the hint labels
+	for (var i in uniqueNumbersArray){
+		var r = uniqueNumbersArray[i];
+		var r_str = ("0"+r).slice(-2); // 00, 05, 13, etc.
+
+		var tipHeader = $.Localize("game_info_tips_header");
+		var tipText	  = $.Localize("game_info_tips_" + r_str);
+		var teamPanel = $.GetContextPanel().FindChildTraverse("TeamSelectContainer").FindChildTraverse("TeamsList").FindChildTraverse("TeamsListGroup").FindChildTraverse("HVH_BelowTeamPanel");
+		var tip = teamPanel.FindChildTraverse(arguments[i]);
+		tip.text = tipHeader + " #" + r_str +  ": " + tipText;
+		// (example output) Tip #14: Always bring a towel.
+	}
 }
 
 // an infinite loop that stops once an unlocalised string is found
@@ -326,26 +351,12 @@ function Count_Localized_Strings(){
 	}
 }
 
-function Check_Loading(){
-	var GameState = Game.GetState();
-	var BelowTeamPanel = $.GetContextPanel().FindChildTraverse("TeamSelectContainer").FindChildTraverse("TeamsList").FindChildTraverse("TeamsListGroup").FindChildTraverse("HVH_BelowTeamPanel");
-
-	if(GameState == DOTA_GameState.DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP){
-		BelowTeamPanel.visible = true;
-	}	
-	else{
-		BelowTeamPanel.visible = false;
-		$.Schedule(0.1, Check_Loading);
-	}
-}
-
 //--------------------------------------------------------------------------------------------------
 // Entry point called when the team select panel is created
 //--------------------------------------------------------------------------------------------------
 (function()
 {
-	Choose_Hint(); 	/* HVH-Specific */
-	Check_Loading(); 	/* HVH-Specific */
+	Choose_Unique_Random_Hints("HVH_TipLabel_1", "HVH_TipLabel_2", "HVH_TipLabel_3"); /* HVH-Specific */
 
 	var bShowSpectatorTeam = false;
 	var bAutoAssignTeams = true;
