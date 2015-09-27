@@ -36,7 +36,7 @@
 	"game_info_playingSnipers_description04"	"<span class='ability'>Rizzrack's Timber Chain</span> can be used for escaping and chasing."
 
 	"game_info_tips_header"		"Tip"
-	"game_info_tips_00"		"As a Sniper, follow the Hound to gain bonus armor, health regeneration, magic resistance."
+	"game_info_tips_00"		"As a Sniper, follow the Hound to gain bonus armor, health regeneration, and magic resistance."
 	"game_info_tips_01"		"Shrapnel Tracers also destroy trees and can be used to make shortcuts through the map."
 	"game_info_tips_02"		"Remember, Snipers--clumping up can be dangerous after Night Stalker gains Echolocation!"
 	"game_info_tips_03"		"The Hound can be fooled by illusions. Clear them quick to resume the chase!"
@@ -49,7 +49,7 @@
 	"game_info_tips_10"		"It is easy to kill the Hound, but Snipers can heal him by using Toss Bone."
 	"game_info_tips_11"		"When the Hound sprints, nearby Snipers gain a movement buff to help keep up!"
 	"game_info_tips_12"		"Save Dread Leap, Echolocation, and special items to use for an emergency escape."
-	"game_info_tips_13"		"Juking can confuse the Night Stalker and give your allies a few seconds more seconds to escape or save you."
+	"game_info_tips_13"		"Juking can confuse the Night Stalker and give your allies a few more seconds to escape or save you."
 	"game_info_tips_14"		"Stuck on a ledge? Better have a Force Staff handy, or you're food for the Night Stalker."
 	"game_info_tips_15"		"Use your knowledge of chest locations on the minimap to your team's advantage."
 	"game_info_tips_16"		"Should you protect your allies or scatter for safety? The choice is yours, Sniper."
