@@ -2443,9 +2443,7 @@
 			"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_tgt.vpcf"
 			"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_tgt_status.vpcf"
 			"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_txt_ult.vpcf"
-			"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_tgt_body.vpcf"
-			"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_tgt_glow.vpcf"
-			"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_tgt_glow_trail.vpcf"
+			"particle"		"particles/units/heroes/hero_tusk/tusk_loadout.vpcf"
 			"particle"		"particles/generic_gameplay/generic_stunned.vpcf"
 		}
 		"OnSpellStart"

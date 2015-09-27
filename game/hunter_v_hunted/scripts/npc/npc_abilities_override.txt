@@ -182,7 +182,6 @@
 	// ------------------- STARTING ITEMS --------------------------
 	"item_boots"
 	{	
-		"ItemQuality"	"common"	
 		"ItemSellable" "0"
 		"ItemDroppable" "0"
 
@@ -198,7 +197,6 @@
 
 	"item_phase_boots"
 	{	
-		"ItemQuality"	"common"	
 		"ItemSellable" "0"
 		"ItemDroppable" "0"
 		"AbilitySpecial"
@@ -239,7 +237,6 @@
 	"item_ultimate_scepter"
 	{
 		"AbilityTextureName"	"item_hvh_mango_scepter" // filename: hvh_meat_hook			
-		"ItemQuality"	"common"	
 		"ItemSellable" "0"
 		"ItemDroppable" "0"
 		"AbilitySpecial"
