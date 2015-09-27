@@ -745,6 +745,7 @@
 			{
 				"Duration"	"%duration_day"
 				"IsDebuff"	"1"
+				"IsPurgable"	"1"				
 	
 				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
 				"EffectAttachType"	"follow_overhead"
@@ -766,6 +767,7 @@
 			{
 				"Duration"	"%duration_night"
 				"IsDebuff"	"1"
+				"IsPurgable"	"1"				
 	
 				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
 				"EffectAttachType"	"follow_overhead"
@@ -787,6 +789,7 @@
 			{
 				"Duration"	"%duration_dog"
 				"IsDebuff"	"1"
+				"IsPurgable"	"1"				
 	
 				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
 				"EffectAttachType"	"follow_overhead"
@@ -918,8 +921,9 @@
 			"modifier_crippling_fear_day_aoe_datadriven"
 			{
 				"Duration"	"%duration_day"
-				"IsDebuff"	"1"
-	
+				"IsDebuff"		"1"
+				"IsPurgable"	"1"
+					
 				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
 				"EffectAttachType"	"follow_overhead"
 	
@@ -939,7 +943,8 @@
 			"modifier_crippling_fear_night_aoe_datadriven"
 			{
 				"Duration"	"%duration_night"
-				"IsDebuff"	"1"
+				"IsDebuff"		"1"
+				"IsPurgable"	"1"
 	
 				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
 				"EffectAttachType"	"follow_overhead"
@@ -960,7 +965,8 @@
 			"modifier_crippling_fear_dog_aoe_datadriven"
 			{
 				"Duration"	"%duration_dog"
-				"IsDebuff"	"1"
+				"IsDebuff"		"1"
+				"IsPurgable"	"1"
 	
 				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
 				"EffectAttachType"	"follow_overhead"
