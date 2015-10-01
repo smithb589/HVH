@@ -55,7 +55,7 @@
 	"game_info_tips_16"		"Should you protect your allies or scatter for safety? The choice is yours, Sniper."
 	"game_info_tips_17"		"Conserve your resources, Snipers! How can you beat the Night Stalker without shrapnel, nets, or items?"
 	"game_info_tips_18"		"Even at night, the Night Stalker may be outclassed by superior teamwork and firepower."
-	"game_info_tips_19"		"Is the day/night cycle about to end? Might be a good time to retreat and prepare for the next cycle."
+	"game_info_tips_19"		"Do you feel the end of the current cycle approaching? Might be a good time to retreat and prepare for the next cycle."
 	"game_info_tips_20"		"The Night Stalker may seem impossible, but the Snipers possess the power of friendship."
 	"game_info_tips_21"		"Poor use of Dread Leap can get you surrounded and killed. Snipers thrive on enemy mistakes."
 	"game_info_tips_22"		"Keep the Hound well fed and focused to keep the speed boosts coming."
@@ -72,6 +72,11 @@
 	"game_info_tips_33"		"Survival items (GREEN) give the Night Stalker ways to recover health, move quickly, and create distractions."
 	"game_info_tips_34"		"The Snipers can collect Defense items (BLUE), Heal/Resist items (GREEN), Offense items (GOLD), and Speed items (PURPLE)."
 	"game_info_tips_35"		"The Night Stalker can collect Crowd Control items (BLUE), Lockdown items (PURPLE), Nuke items (GOLD), and Survival items (GREEN)."
+	"game_info_tips_36"		"The move speed buff from Phase Boots is cancelled after using any other item or ability."
+	"game_info_tips_37"		"If you approach a chest, the enemy team can see your movements."
+	"game_info_tips_38"		"Greedy Snipers taste the best. Half a dozen items can't help you if you're silenced and muted."
+	"game_info_tips_39"		"Unexpected invisibility can throw off an inexperienced Sniper team, but the Hound always howls when the Night Stalker is near."
+	"game_info_tips_40"		"A well-timed Dread Leap can disjoint even the most dangerous spells, like Assassinate."
 
 	"loading_screen_warning"	"WARNING: Night Stalker not intended for first-time players."
 

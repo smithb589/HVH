@@ -1005,7 +1005,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"40" // "30"
+		"AbilityCooldown"				"50" //"40" // "30"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -1186,7 +1186,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
 		{
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+			//"soundfile"			"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_spectre.vsndevts"
 		}
 		
 		// Casting
@@ -1196,7 +1197,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8.0"
+		"AbilityCooldown"				"9.0" //"8.0"
 		"AbilityDuration"				"0.0"
 
 		// Cost
@@ -1215,12 +1216,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"leap_duration"			".7"
+				"leap_duration"			"1.1" // 0.7
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"leap_vertical_speed"	"1500"
+				"leap_vertical_speed"	"900" // "1500"
 			}
 			"04"
 			{
@@ -1233,7 +1234,7 @@
 		{
 			"FireSound"
 			{
-				"EffectName"	"Ability.Leap"
+				"EffectName"	"Hero_Spectre.HauntCast" //"Ability.Leap"
 				"Target"		"CASTER"
 			}
 			

@@ -136,15 +136,30 @@ function ResetInvisDelay(caster, ability, mod_invis, delay)
 		caster:RemoveModifierByName(mod_invis)
 	end
 
-	local timerName = "NSInvisDelay" .. caster:entindex()
-	Timers:RemoveTimer(timerName)
+  local gameTime = GameRules:GetGameTime()
+  local timerName = "NSInvisDelay" .. caster:entindex()
+
+  -- debug function
+  --if caster.InvisDelayEndTime == nil then
+  --  Timers:CreateTimer(0.1, function()
+  --    print(caster.InvisDelayEndTime - GameRules:GetGameTime())
+  --    return 0.1
+  --  end)
+  --end
+
+  -- if uninitialized or delay exceeds previous delay, then reset current countdown
+  if caster.InvisDelayEndTime == nil or (gameTime+delay) >= caster.InvisDelayEndTime then
+    ability:StartCooldown(delay)
+    caster.InvisDelayEndTime = gameTime + delay
+    Timers:RemoveTimer(timerName)
     Timers:CreateTimer(timerName, {
       useGameTime = true,
       endTime = delay,
       callback = function()
-      	ability:ApplyDataDrivenModifier(caster, caster, mod_invis, {})
-	  end
-	})
+     	  ability:ApplyDataDrivenModifier(caster, caster, mod_invis, {})
+        return nil
+  	end})
+  end
 end
 
 --------------------------------- applies killing spree effects
