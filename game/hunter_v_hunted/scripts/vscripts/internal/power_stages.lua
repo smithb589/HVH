@@ -38,11 +38,13 @@ function HVHPowerStages:HandlePlayerDeath(unit)
 		mode:SetTopBarTeamValue(DOTA_TEAM_GOODGUYS, mode.GoodGuyLives)
     	HVHGameMode:PushScoreToCustomNetTable()
     	HVHGameMode:DetermineRespawn(unit)
+    	self:NotifyLivesRemaining(DOTA_TEAM_GOODGUYS)
 	elseif team == DOTA_TEAM_BADGUYS then
 		mode.BadGuyLives = mode.BadGuyLives - 1
 		mode:SetTopBarTeamValue(DOTA_TEAM_BADGUYS, mode.BadGuyLives)
 		HVHGameMode:PushScoreToCustomNetTable()
 		HVHGameMode:DetermineRespawn(unit)
+    	self:NotifyLivesRemaining(DOTA_TEAM_BADGUYS)
 	end
 end
 
@@ -75,11 +77,12 @@ end
 function HVHPowerStages:UpgradePowerStage(team)
 	local newPowerStage = self:IncrementPowerStageNumber(team)
 
-	-- delay the notification by a few seconds
-	Timers:CreateTimer(HVHGameMode:GetRespawnTime(), function()
+	-- delay the notification by a few arbitrary seconds
+	local delay = HVHGameMode:GetRespawnTime() * 0.4
+	Timers:CreateTimer(delay, function()
 		if team == DOTA_TEAM_GOODGUYS then
-			if     newPowerStage == 1 then self:GrantSniperEarthbind()
-			elseif newPowerStage == 2 then self:GrantSniperShrapnelCharge()
+			if     newPowerStage == 1 then self:GrantSniperShrapnelCharge()
+			elseif newPowerStage == 2 then self:GrantSniperEarthbind()
 			elseif newPowerStage == 3 then self:GrantSniperTimberchain()
 			elseif newPowerStage == 4 then self:GrantSniperShrapnelCharge()	
 			elseif newPowerStage == 5 then self:GrantSniperBonusHounds()
@@ -116,28 +119,24 @@ end
 
 --------------------------------------------------------- GRANT ABILITIES AND PRINT NOTIFICATIONS
 function HVHPowerStages:GrantSniperShrapnelCharge()
-	-- short delay before posting
-	Timers:CreateTimer(NOTIFICATION_DURATION, function()
-		self:LevelupAbilityForAll("npc_dota_hero_sniper", "sniper_shrapnel_hvh", nil, false)
-		self:Notify(self.localization["Snipers_Upgrade"], self.localization["Snipers_Shrapnel"], "", DOTA_TEAM_GOODGUYS)
-		return nil
-	end)
+	self:LevelupAbilityForAll("npc_dota_hero_sniper", "sniper_shrapnel_hvh", nil, false)
+	self:Notify(self.localization["Snipers_Upgrade_Supplies"], self.localization["Snipers_Shrapnel"], "", DOTA_TEAM_GOODGUYS)
 end
 
 function HVHPowerStages:GrantSniperEarthbind()
 	self:LevelupAbilityForAll("npc_dota_hero_sniper", "meepo_earthbind", nil, true)
-	self:Notify(self.localization["Snipers_Upgrade"], self.localization["Snipers_Earthbind"], "meepo_earthbind", DOTA_TEAM_GOODGUYS)
+	self:Notify(self.localization["Snipers_Upgrade_Supplies"], self.localization["Snipers_Earthbind"], "meepo_earthbind", DOTA_TEAM_GOODGUYS)
 end
 
 function HVHPowerStages:GrantSniperTimberchain()
 	self:LevelupAbilityForAll("npc_dota_hero_sniper", "shredder_timber_chain", nil, true)
-	self:Notify(self.localization["Snipers_Upgrade"], self.localization["Snipers_Timberchain"], "shredder_timber_chain", DOTA_TEAM_GOODGUYS)
+	self:Notify(self.localization["Snipers_Upgrade_Supplies"], self.localization["Snipers_Timberchain"], "shredder_timber_chain", DOTA_TEAM_GOODGUYS)
 end
 
 function HVHPowerStages:GrantSniperBonusHounds()
 	HVHGameMode:SpawnDog(true)
 	HVHGameMode:SpawnDog(true)
-	self:Notify(self.localization["Snipers_Upgrade"], self.localization["Snipers_BonusHounds"], "lycan_summon_wolves", DOTA_TEAM_GOODGUYS)
+	self:Notify(self.localization["Snipers_Upgrade_Reinforcements"], self.localization["Snipers_BonusHounds"], "lycan_summon_wolves", DOTA_TEAM_GOODGUYS)
 end
 
 function HVHPowerStages:GrantNSLeap()
@@ -183,6 +182,20 @@ function HVHPowerStages:Notify(heading, subtext, ability_name, team)
 	end
 end
 
+function HVHPowerStages:NotifyLivesRemaining(team)
+	local keys = self:GetTeamVariables(team)
+	local thresholds   = keys["thresholds"]
+	local currentLives = keys["currentLives"]
+	local teamName = keys["teamName"]
+	local output = string.format("Lives remaining for %s: %i", teamName, currentLives)
+
+	local teamColor = self:GetTeamColor(team)
+	local cssTable = self:GetCSS(teamColor)
+	local cssStyle = cssTable["livesRemaining"]
+
+	Notifications:BottomToAll({text=output, duration=NOTIFICATION_DURATION, style=cssStyle})
+end
+
 ----------------------------------------------------------- MISC. FUNCTIONS
 function HVHPowerStages:IncrementPowerStageNumber(team)
 	local newStage = nil
@@ -203,10 +216,12 @@ function HVHPowerStages:GetTeamVariables(team)
 	local mode = GameRules:GetGameModeEntity()
 
 	if team == DOTA_TEAM_GOODGUYS then
+		keys["teamName"]	 = self.localization["Team_Snipers"]
 		keys["thresholds"]	 = GG_POWER_STAGE_THRESHOLDS
 		keys["currentStage"] = self.gg_stage
 		keys["currentLives"] = mode.GoodGuyLives
 	else
+		keys["teamName"]	 = self.localization["Team_NS"]
 		keys["thresholds"]	 = BG_POWER_STAGE_THRESHOLDS
 		keys["currentStage"] = self.bg_stage
 		keys["currentLives"] = mode.BadGuyLives
@@ -236,17 +251,26 @@ function HVHPowerStages:GetCSS(teamColor)
 		["color"] = teamColor,
 		["font-size"] = "28px",
 		["background-color"] = "#000000", -- black
-		["padding"] ="5px 20px 5px 20px"
+		["padding"] ="5px 20px 5px 20px",
+		["border-radius"] = "10px"
 	}
 
 	local cssStyleGained = {
 		["color"] = teamColor,
-		["font-size"] ="48px"
+		["font-size"] ="48px",
+		["text-shadow"] = "8px 8px 16px 6.0 black"
+	}
+
+	local cssStyleLivesRemaining = {
+		["color"] = teamColor,
+		["font-size"] = "24px",
+		["text-shadow"] = "4px 4px 8px 6.0 black"
 	}
 
 	local cssTable = {}
 	cssTable["heading"] = cssStyleHeading
 	cssTable["gained"] = cssStyleGained
+	cssTable["livesRemaining"] = cssStyleLivesRemaining
 	return cssTable
 end
 
