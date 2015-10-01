@@ -162,6 +162,7 @@ PRECACHE_MODELS = {
   "models/items/lycan/wolves/icewrack_pack/icewrack_pack.vmdl",
   "models/props_gameplay/treasure_chest001.vmdl",
   "models/props_debris/merchant_debris_chest001.vmdl",
+  "models/props_gameplay/dota_ar_frame/dota_ar_frame.vmdl",
   "models/development/invisiblebox.vmdl"
 }
 

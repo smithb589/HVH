@@ -1182,7 +1182,7 @@
 		"AbilityCooldown"		"30"
 		"precache"
 		{
-			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_shadow_shaman.vsndevts"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
 			"particle"		"particles/units/heroes/hero_treant/treant_livingarmor.vpcf"
 			"particle"		"particles/units/heroes/hero_treant/treant_livingarmor_day.vpcf"
 			"particle"		"particles/units/heroes/hero_treant/treant_livingarmor_night_wisps.vpcf"
@@ -1223,10 +1223,10 @@
 		"AbilityCooldown"		"60"
 		"precache"
 		{
-			"particle"  "particles/units/heroes/hero_shadowshaman/shadow_shaman_ward_base_attack.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_shadowshaman.vsndevts"
 			"model"	"models/heroes/shadowshaman/shadowshaman_totem.vmdl"
 			"particle"	"particles/units/heroes/hero_shadowshaman/shadowshaman_ward_ambient.vpcf"
+			"particle"  "particles/units/heroes/hero_shadowshaman/shadow_shaman_ward_base_attack.vpcf"
 		}
 		"OnSpellStart"
 		{
