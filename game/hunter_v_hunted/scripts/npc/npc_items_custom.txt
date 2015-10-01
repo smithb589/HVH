@@ -1085,7 +1085,7 @@
 		// Modify these
 		"ItemQuality"	"rare"
 		"ID"	"1071"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_laser" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1126,7 +1126,7 @@
 		// Modify these
 		"ItemQuality"	"artifact"
 		"ID"	"1070"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_leech_seed" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1170,7 +1170,7 @@
 		// Modify these
 		"ItemQuality"	"common"
 		"ID"	"1069"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_living_armor" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -1256,7 +1256,7 @@
 		// Modify these
 		"ItemQuality"	"common"
 		"ID"	"1067"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_press_the_attack" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -1302,7 +1302,7 @@
 		// Modify these
 		"ItemQuality"	"epic"
 		"ID"	"1066"
-		"ItemInitialCharges"  "3"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_recall" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK" // | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -1347,7 +1347,7 @@
 		// Modify these
 		"ItemQuality"	"artifact"
 		"ID"	"10"
-		"ItemInitialCharges"  "3"
+		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_sprout" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
@@ -1391,7 +1391,7 @@
 		// Modify these
 		"ItemQuality"	"epic"
 		"ID"	"10"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_warcry" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityCastPoint"		"0.0"
@@ -1632,7 +1632,7 @@
 		// Modify these
 		"ItemQuality"	"common"
 		"ID"	"1060"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_healing_ward" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AoERadius"			"500"
@@ -2428,7 +2428,7 @@
 		// Modify these
 		"ItemQuality"	"rare"
 		"ID"	"1041"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_walrus_kick" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET" // DOTA_ABILITY_BEHAVIOR_HIDDEN
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -2474,7 +2474,7 @@
 		// Modify these
 		"ItemQuality"	"epic"
 		"ID"	"1040"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_surge" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -2556,7 +2556,7 @@
 		// Modify these
 		"ItemQuality"	"artifact"
 		"ID"	"1038"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_death_coil" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
@@ -2597,7 +2597,7 @@
 		// Modify these
 		"ItemQuality"	"rare"
 		"ID"	"1037"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_disruption" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -2682,7 +2682,7 @@
 		// Modify these
 		"ItemQuality"	"common"
 		"ID"	"1035"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_cold_embrace" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -2883,7 +2883,7 @@
 		// Modify these
 		"ItemQuality"	"common"
 		"ID"	"1030"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_aphotic_shield" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -3135,7 +3135,7 @@
 		// Modify these
 		"ItemQuality"	"rare"
 		"ID"	"1024"
-		"ItemInitialCharges"  "3"
+		"ItemInitialCharges"  "2"
 		"AbilityTextureName"	"item_frost_armor" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET" // DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -3220,7 +3220,7 @@
 		// Modify these
 		"ItemQuality"	"common"
 		"ID"	"1022"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_purification" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -3264,7 +3264,7 @@
 		// Modify these
 		"ItemQuality"	"epic"
 		"ID"	"1021"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_tether" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -3604,7 +3604,7 @@
 		// Modify these
 		"ItemQuality"	"epic"
 		"ID"	"1013"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_firefly" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityCooldown"		"20"
@@ -3644,7 +3644,7 @@
 		// Modify these
 		"ItemQuality"	"artifact"
 		"ID"	"1012"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_summon_wolves" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCooldown"		"60"
@@ -3682,7 +3682,7 @@
 		// Modify these
 		"ItemQuality"	"rare"
 		"ID"	"1011"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_blinding_light" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT " // DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE
 		"AoERadius" "675"
@@ -3723,7 +3723,7 @@
 		// Modify these
 		"ItemQuality"	"rare"
 		"ID"	"1010"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_windrun" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityCooldown"		"20"
@@ -3925,7 +3925,7 @@
 		// Modify these
 		"ItemQuality"	"artifact"
 		"ID"	"1005"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_kinetic_field" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AoERadius" "325"
@@ -4072,7 +4072,7 @@
 		"AbilityTextureName"			"item_solar_crest"
 
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"ItemDisplayCharges"  "1"
 		"ItemRequiresCharges" "1"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
@@ -4206,7 +4206,7 @@
 		"AbilityTextureName"			"item_medallion_of_courage"
 
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "3"
+		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
 		"ItemRequiresCharges" "1"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"

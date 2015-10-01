@@ -295,7 +295,7 @@
 	{
 		"ItemQuality"	"common"	
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 
 		"AbilitySpecial"
@@ -465,7 +465,7 @@
 	{
 		"ItemQuality"	"common"	
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "2" // It's also in AbilitySpecial
+		"ItemInitialCharges"  "1" // It's also in AbilitySpecial
 		"ItemPermanent"	"0"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 
@@ -586,7 +586,7 @@
 	{
 		//"ItemQuality"	""	
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "4"
+		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
 		"ItemRequiresCharges" "1"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
@@ -632,7 +632,7 @@
 	{
 		"ItemQuality"	"rare"	
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"ItemDisplayCharges"  "1"
 		"ItemRequiresCharges" "1"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
@@ -821,7 +821,7 @@
 	{
 		"ItemQuality"	"rare"	
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"ItemDisplayCharges"  "1"
 		"ItemRequiresCharges" "1"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
@@ -852,7 +852,7 @@
 	{
 		"ItemQuality"	"common"	
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"ItemDisplayCharges"  "1"
 		"ItemRequiresCharges" "1"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
@@ -1390,7 +1390,7 @@
 	{
 		"ItemQuality"	"rare"	
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "4"
+		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
 		"ItemRequiresCharges" "1"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
@@ -1436,7 +1436,7 @@
 	{
 		"ItemQuality"	"common"	
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"ItemDisplayCharges"  "1"
 		"ItemRequiresCharges" "1"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
@@ -1512,7 +1512,7 @@
 	{
 		"ItemQuality"	"common"	
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"ItemDisplayCharges"  "1"
 		"ItemRequiresCharges" "1"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
