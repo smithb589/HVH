@@ -43,7 +43,7 @@ end
 function HVHRandomizer:GetRandomValue()
 	local randomFloat = RandomFloat(0.0, self._totalProbability)
 	local randomValue = self:_GetValueForRandomProbability(randomFloat)
-	HVHDebugPrint(string.format("Got value "..randomValue.." for float %f.", randomFloat))
+	HVHDebugPrint(string.format(randomValue.." [%f]", randomFloat))
 	return randomValue
 end
 

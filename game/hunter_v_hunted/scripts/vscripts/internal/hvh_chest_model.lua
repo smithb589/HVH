@@ -101,7 +101,7 @@ function HVHChestModel:_LoadItemGroups(itemData, itemGroups)
 end
 
 function HVHChestModel:_DisplayRandomItem(groupName, itemName)
-	HVHDebugPrint(string.format("Got item %s for group %s.", itemName, groupName))
+	HVHDebugPrint(string.format("%s [%s]", itemName, groupName))
 end
 
 function HVHChestModel:_GetShuffledGroupsWithItemsRemainingThisCycle()
