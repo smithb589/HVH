@@ -1555,7 +1555,7 @@
 		// Modify these
 		"ItemQuality"	"common"
 		"ID"	"1062"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "1"
 		"AbilityTextureName"	"item_mirror_image" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastPoint"		"0.65"
@@ -2262,7 +2262,7 @@
 		// Modify these
 		"ItemQuality"	"common"
 		"ID"	"1045"
-		"ItemInitialCharges"  "2"
+		"ItemInitialCharges"  "3"
 		"AbilityTextureName"	"item_conjure_image" // KV: item_example, filename: /items/example.png	
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastPoint"		"0.5"
