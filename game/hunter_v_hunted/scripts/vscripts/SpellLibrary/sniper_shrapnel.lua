@@ -16,6 +16,7 @@ function shrapnel_on_upgrade( keys )
 		caster.shrapnel_charges = caster.shrapnel_charges + 1
 		caster:SetModifierStackCount( modifierName, caster, caster.shrapnel_charges)
 		caster.maximum_charges = ability:GetLevelSpecialValueFor( "maximum_charges", ( ability:GetLevel() - 1 ) )
+		ability:EndCooldown()
 	end
 end
 
