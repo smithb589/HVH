@@ -1,4 +1,12 @@
-Version 1.3.0
+Version 1.3.1
+
+[b]WHAT'S NEW?[/b]
+More Sniper items at night, but fewer charges per item. This should decrease the "waiting around" that sometimes happens once all the items have been collected, and it gives Night Stalker more opportunities to murder stragglers.
+
+[b]Are you interested in building a map to be included with HVH? Contact me!
+Can you translate HVH into a different language? Contact me![/b]
+
+---
 
 [b]HUNTER v HUNTED[/b] is a fast-paced 4v1 PVP mode that pits teamwork against terror. The balance of power is constantly shifting, requiring players to play offensively one minute and defensively the next. On one team, the four Snipers must watch each other's backs and follow the nose of their trusty Hound. On the other team, the solo Night Stalker must learn to divide and conquer by staging ambushes and cleverly evading capture. This game mode includes a tailored map, custom abilities, AI companions, items that grant Dota 2 abilities, and more. It is designed to be fun with groups of varying skill levels.
 
@@ -6,13 +14,13 @@ Version 1.3.0
 Each team has limited lives. Kill the other team before they kill you!
 
 [b]HOW TO PLAY:[/b]
-While playing, click the GameInfo tab on the left to read about game mechanics, abilities, and tips!
+While playing, click the GameInfo tab on the left to read about game mechanics and abilities! Each loading screen also has an assortment of random tips, so keep playing to learn more.
 
 [b]AUTHORS:[/b]
 Snicker-snag, veggiesama
 
 [b]SPECIAL THANKS:[/b]
-[url=http://store.valvesoftware.com/product.php?i=S0205]Valve[/url], Pizzalol ([url=https://github.com/Pizzalol/SpellLibrary]SpellLibrary[/url]), kritth (Shrapnel Lua/KV), BMD ([url=https://github.com/bmddota/barebones]Barebones modkit[/url]), Noya (code tutorials/reference at the [url=https://moddota.com/forums/]ModDota[/url] forums), Dotabuff ([url=https://github.com/dotabuff/d2vpk]d2vpk[/url] reference), [url=https://www.reddit.com/r/dota2modding]/r/dota2modding/[/url], Cabela's Big Game Hunter 2002 (for the [url=https://youtu.be/2r1D9g3sx5E?t=1m11s]Gameboy Advance[/url]), the various playtesters (such as Sinistar, perhaps), and anyone else I forgot.
+[url=http://store.valvesoftware.com/product.php?i=S0205]Valve[/url], Pizzalol ([url=https://github.com/Pizzalol/SpellLibrary]SpellLibrary[/url]), kritth (Shrapnel Lua/KV), BMD ([url=https://github.com/bmddota/barebones]Barebones modkit[/url]), Noya (code tutorials/reference at the [url=https://moddota.com/forums/]ModDota[/url] forums), Dotabuff ([url=https://github.com/dotabuff/d2vpk]d2vpk[/url] reference), [url=https://www.reddit.com/r/dota2modding]/r/dota2modding/[/url], Cabela's Big Game Hunter 2002 (for the [url=https://youtu.be/2r1D9g3sx5E?t=1m11s]Gameboy Advance[/url]), the various playtesters (that's you, Sinistar), and anyone else I forgot.
 
 [b]We are always looking for feedback, suggestions, bug reports, screenshots, replay videos, and unsolicited religious literature. Please like, subscribe, and comment![/b]
 

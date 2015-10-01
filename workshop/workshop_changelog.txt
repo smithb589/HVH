@@ -1,3 +1,14 @@
+1.3.1
+---
+Snipers now receive 12 chests per night (up from 6)
+Sniper items with 2 charges reduced to 1 charge
+Sniper items with 1 charge have a reduced chance of spawning
+Snipers receive +1 Shrapnel at 16 lives and 10 lives (previously 15 and 12)
+When Shrapnel is upgraded, cooldown is immediately refreshed
+New notification for remaining lives
+Toned down Blood Rush and Loyalty buff VFX slightly
+Miscellaneous item fixes
+
 1.3.0
 ---
 NEW HOUND BEHAVIORS
