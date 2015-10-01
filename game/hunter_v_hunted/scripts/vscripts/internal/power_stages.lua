@@ -78,13 +78,11 @@ function HVHPowerStages:UpgradePowerStage(team)
 	-- delay the notification by a few seconds
 	Timers:CreateTimer(HVHGameMode:GetRespawnTime(), function()
 		if team == DOTA_TEAM_GOODGUYS then
-			if     newPowerStage == 1 then
-				self:GrantSniperShrapnelCharge()
-				self:GrantSniperEarthbind()
-			elseif newPowerStage == 2 then
-				self:GrantSniperShrapnelCharge()	
-				self:GrantSniperTimberchain()
-			elseif newPowerStage == 3 then self:GrantSniperBonusHounds()
+			if     newPowerStage == 1 then self:GrantSniperEarthbind()
+			elseif newPowerStage == 2 then self:GrantSniperShrapnelCharge()
+			elseif newPowerStage == 3 then self:GrantSniperTimberchain()
+			elseif newPowerStage == 4 then self:GrantSniperShrapnelCharge()	
+			elseif newPowerStage == 5 then self:GrantSniperBonusHounds()
 			else --print("sniper unknown stage")
 			end
 		else
