@@ -32,7 +32,25 @@ function HVHConvars:RegisterCommands()
     Convars:RegisterCommand("hvh_fake_heroes", Dynamic_Wrap(self, 'FakeHeroes'), "Spawn heroes to fill in missing players.", FCVAR_CHEAT )
     Convars:RegisterCommand("hvh_chest_probabilties", Dynamic_Wrap(self, 'DisplayChestProbabilties'), "Outputs item drop probabilities.", FCVAR_CHEAT )
     Convars:RegisterCommand("hvh_test_item_cycle", Dynamic_Wrap(self, "DisplayTestItemSpawnCycle"), "Runs a test cycle displaying items.", FCVAR_CHEAT)
+    Convars:RegisterCommand("hvh_spawn_creeps", Dynamic_Wrap(self, "SpawnCreeps"), "Spawns creeps.", FCVAR_CHEAT)
+    Convars:RegisterCommand("hvh_spawn_wards", Dynamic_Wrap(self, "SpawnWards"), "Spawns wards.", FCVAR_CHEAT)
+end
 
+function HVHConvars:SpawnWards()
+  local humanPlayer = Convars:GetCommandClient()
+  local humanPlayerID = humanPlayer:GetPlayerID()
+  local team = PlayerResource:GetTeam(humanPlayerID)
+
+  local masterList = AICore:GetAllPointsOfInterest()
+
+  for _,entity in pairs(masterList) do
+    local pos = entity:GetAbsOrigin()
+    CreateUnitByName("npc_dota_observer_wards", pos, true, nil, nil, team)
+  end
+end
+
+function HVHConvars:SpawnCreeps()
+  HVHNeutralCreeps:Setup()
 end
 
 function HVHConvars:SpawnDog()

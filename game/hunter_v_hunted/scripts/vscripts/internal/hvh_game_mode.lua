@@ -363,6 +363,8 @@ end
 
 -- spawn the dog at the radiant courier spawn (game start) or a random good guy spawner
 function HVHGameMode:SpawnDog(random_spawn)
+  if DISABLE_DOGS then return end
+
   local position = nil
   if random_spawn then
     position = HVHGameMode:ChooseFarSpawn(DOTA_TEAM_GOODGUYS)

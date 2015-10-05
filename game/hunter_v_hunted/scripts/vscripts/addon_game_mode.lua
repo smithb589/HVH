@@ -17,6 +17,8 @@ require('lib/physics')
 require('lib/notifications')
 require('lib/animations')
 
+require('ai/ai_core')
+
 -- If something was being created via script such as a new npc, it would need to be precached here
 function Precache( context )
 

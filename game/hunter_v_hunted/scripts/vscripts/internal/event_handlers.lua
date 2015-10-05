@@ -60,11 +60,11 @@ function HVHGameMode:OnNPCSpawned(spawnArgs)
   Timers:CreateTimer(SINGLE_FRAME_TIME, function() 
 
   	local unit = EntIndexToHScript(spawnArgs.entindex)
+    local team = unit:GetTeamNumber()
   	if unit and unit:IsRealHero() then
-       if unit.SuccessfulSetup ~= true then
-     
-          local playerID = unit:GetPlayerOwnerID()
-          self:SetupHero(unit)
+      if unit.SuccessfulSetup ~= true then
+        local playerID = unit:GetPlayerOwnerID()
+        self:SetupHero(unit)
       end
     --self:SetHeroDeathBounty(unit)          
     end

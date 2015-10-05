@@ -1,14 +1,3 @@
-require("ai/ai_dog_speech")
-require("ai/ai_core")
-require("hvh_utils")
-
-behaviorSystem = {}
-
-DESIRE_NONE   = 0
-DESIRE_LOW    = 5
-DESIRE_MEDIUM = 10
-DESIRE_HIGH   = 15
-DESIRE_MAX	  = 20
 
 function Spawn( entityKeyValues )
 
@@ -48,8 +37,8 @@ function Spawn( entityKeyValues )
 
 	thisEntity._LastWarnTime = 0.0
 
-	thisEntity:SetContextThink("ThinkDog", ThinkDog, 0.1)
-	behaviorSystem = AICore:CreateBehaviorSystem({
+	thisEntity:SetContextThink("Think", Think, 0.1)
+	thisEntity.behaviorSystem = AICore:CreateBehaviorSystem({
 		BehaviorWander,
 		BehaviorWarn,
 		BehaviorPursue,
@@ -58,15 +47,15 @@ function Spawn( entityKeyValues )
 		BehaviorFollow,
 		BehaviorDefend
 	})
-	behaviorSystem.thinkDuration = 0.1
+	thisEntity.behaviorSystem.thinkDuration = 0.1
 	HVHDebugPrint(string.format("Starting AI for %s. Entity Index: %s", thisEntity:GetUnitName(), thisEntity:GetEntityIndex()))
 end
 
-function ThinkDog()
+function Think()
 	if thisEntity:IsNull() or not thisEntity:IsAlive() then
 		return nil -- deactivate this think function
 	end
-	return behaviorSystem:Think()
+	return thisEntity.behaviorSystem:Think()
 end
 
 function FindNearestTarget(entity, fow_visible)

@@ -1,6 +1,14 @@
 
 require("hvh_constants")
 
+function JoinTables(t1, t2)
+  for k,v in ipairs(t2) do
+    table.insert(t1, v)
+  end
+
+  return t1
+end
+
 function DeepCopy(orig)
     local orig_type = type(orig)
     local copy

@@ -149,6 +149,7 @@ PRECACHE_UNITS = {
 	"npc_dota_hero_windrunner", -- only missing tree shackle
 	"npc_dota_hero_disruptor",
 	"npc_dota_hero_tidehunter",]]
+	"npc_hvh_tiny",
 	"npc_dota_good_guy_dog"
 
 }
@@ -194,6 +195,7 @@ PRECACHE_PARTICLE_FOLDERS = {
 PRECACHE_PARTICLES = {
 	--"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion_flash_b.vpcf",
 	--"particles/units/heroes/hero_slardar/slardar_sprint.vpcf"
+	--"particles/generic_hero_status/status_invisibility_start.vpcf",
 	"particles/units/heroes/hero_shredder/shredder_timberchain.vpcf",
 	"particles/units/heroes/hero_shredder/shredder_timber_chain_trail.vpcf",
 	"particles/units/heroes/hero_shredder/shredder_timber_chain_tree.vpcf",

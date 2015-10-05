@@ -36,6 +36,74 @@ require("hvh_utils")
 
 AICore = {}
 
+DESIRE_NONE   = 0
+DESIRE_LOW    = 5
+DESIRE_MEDIUM = 10
+DESIRE_HIGH   = 15
+DESIRE_MAX	  = 20
+
+function AICore:AreEnemiesInRange(unit, radius, number)
+	local units = FindUnitsInRadius(unit:GetTeamNumber(),
+								 	unit:GetAbsOrigin(),
+									nil,
+									radius,
+									DOTA_UNIT_TARGET_TEAM_ENEMY,
+									DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+									DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
+									FIND_CLOSEST,
+									false)
+	if units[number] then return true end
+end
+
+
+function AICore:GetAllPointsOfInterest()
+	-- the POIs are derived from spawn points, courier spawns, and chest spawns
+	local groupList = {
+		"info_courier_spawn_radiant",
+		"info_courier_spawn_dire",
+		"info_player_start_goodguys",
+		"info_player_start_badguys",
+		"dota_item_spawner"
+	}
+
+	-- link the entity lists together into a master list
+	local masterList = {}
+	for _,group in pairs(groupList) do
+		local groupList = Entities:FindAllByClassname(group)
+		masterList = JoinTables(masterList, groupList)
+	end
+
+	return masterList
+end
+
+-- Choose a random point of interest, optionally a minimum distance away from another point
+function AICore:ChooseRandomPointOfInterest( vector, minDistanceFrom )
+	entity = entity or nil
+	minDistanceFrom = minDistanceFrom or nil
+
+	local masterList = self:GetAllPointsOfInterest()
+
+	-- choose a random point from the master list and check that it's valid
+	local loc = nil
+	local validPOI = false
+	while not validPOI do
+		local r = RandomInt(1, #masterList)
+		local poi = masterList[r]
+		loc = poi:GetAbsOrigin()
+		
+		if vector and minDistanceFrom and Length2DBetweenVectors(vector, loc) <= minDistanceFrom then
+			--print(r .. " too close. Repicking.")
+			validPOI = false
+		else
+			--print(r .. " chosen.")
+			validPOI = true
+		end
+	end
+
+	return loc
+end
+
+
 function AICore:RandomEnemyHeroInRange( entity, range )
 	local enemies = FindUnitsInRadius( DOTA_TEAM_BADGUYS, entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
 	if #enemies > 0 then
@@ -121,14 +189,13 @@ function AICore:CreateBehaviorSystem( behaviors )
 			end
 		end
 
-		--HVHDebugPrint(string.format("Choosing behavior with score %d", bestDesire))
-		--HVHDebugPrintTable(result)
+		HVHDebugPrint(string.format("Choosing behavior with score %d", bestDesire))
+		HVHDebugPrintTable(result)
 
 		return result
 	end
 
 	function BehaviorSystem:Deactivate()
-		print("End")
 		if self.currentBehavior.End then self.currentBehavior:End() end
 	end
 
