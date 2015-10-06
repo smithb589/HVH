@@ -8,7 +8,7 @@ XP_PER_KILL 		= 2	-- NS gets this XP. Snipers get this times XP_MULTIPLIER_FOR_S
 XP_PER_TICK      	= 1	-- every XP_TICK_INTERVAL seconds, living heroes get XP_PER_TICK
 XP_TICK_INTERVAL 	= 30
 MAX_OUT_ABILITIES = false 	-- max out ALL abilities or only starting abilities?
-DISABLE_DOGS = true 		-- disables hound spawning
+DISABLE_DOGS = false 		-- disables hound spawning
 
 -- HVH Time
 DAY_NIGHT_CYCLE_MULTIPLIER = 3			-- ex. 4 means each day/night will last 1 min each (4x faster)
