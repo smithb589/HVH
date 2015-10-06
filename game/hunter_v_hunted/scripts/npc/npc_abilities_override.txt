@@ -2426,7 +2426,7 @@
 	// doing 0 dmg for unknown reasons, probably related to tiny_toss hard-coding
 	"tiny_toss"
 	{
-		"AbilityCooldown"				"0.25"
+		"AbilityCooldown"				"2.0"
 		"AbilityManaCost"				"0"
 	}
 

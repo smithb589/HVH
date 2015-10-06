@@ -33,14 +33,23 @@ DOTA_UNIT_ORDER_CAST_RUNE
 ]]
 
 require("hvh_utils")
+require("ai/class_utils")
+require("ai/constants")
+require("ai/behavior")
+require("ai/behavior_despawn")
+require("ai/behavior_travel")
+require("ai/behavior_toss")
+require("ai/behavior_slam")
+require("ai/dog_behaviors/behavior_defend")
+require("ai/dog_behaviors/behavior_follow")
+require("ai/dog_behaviors/behavior_pursue")
+require("ai/dog_behaviors/behavior_sleep")
+require("ai/dog_behaviors/behavior_sprint")
+require("ai/dog_behaviors/behavior_wander")
+require("ai/dog_behaviors/behavior_warn")
+require("ai/dog_behaviors/dog_utils")
 
 AICore = {}
-
-DESIRE_NONE   = 0
-DESIRE_LOW    = 5
-DESIRE_MEDIUM = 10
-DESIRE_HIGH   = 15
-DESIRE_MAX	  = 20
 
 function AICore:AreEnemiesInRange(unit, radius, number)
 	local units = FindUnitsInRadius(unit:GetTeamNumber(),
@@ -134,6 +143,8 @@ end
 
 function AICore:CreateBehaviorSystem( behaviors )
 	local BehaviorSystem = {}
+
+	--PrintTable(behaviors)
 
 	BehaviorSystem.possibleBehaviors = behaviors
 	BehaviorSystem.thinkDuration = 1.0
