@@ -149,6 +149,7 @@ PRECACHE_UNITS = {
 	"npc_dota_hero_windrunner", -- only missing tree shackle
 	"npc_dota_hero_disruptor",
 	"npc_dota_hero_tidehunter",]]
+	"npc_hvh_enigma",
 	"npc_hvh_tiny",
 	"npc_dota_good_guy_dog"
 
@@ -208,6 +209,7 @@ PRECACHE_PARTICLES = {
 PRECACHE_SOUNDFILES = {
 	--"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts",
 	--"soundevents/game_sounds_heroes/game_sounds_pudge.vsndevts",
+	"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts",
 	"soundevents/game_sounds_heroes/game_sounds_shredder.vsndevts",
 	"soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts"
 }

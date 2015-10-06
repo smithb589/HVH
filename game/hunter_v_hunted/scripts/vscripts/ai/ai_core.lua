@@ -36,6 +36,7 @@ require("hvh_utils")
 require("ai/class_utils")
 require("ai/constants")
 require("ai/behavior")
+require("ai/behavior_blackhole")
 require("ai/behavior_despawn")
 require("ai/behavior_travel")
 require("ai/behavior_toss")
@@ -51,9 +52,11 @@ require("ai/dog_behaviors/dog_utils")
 
 AICore = {}
 
-function AICore:AreEnemiesInRange(unit, radius, number)
+
+function AICore:GetEnemiesInRange(unit, radius, position)
+	position = position or unit:GetAbsOrigin() -- optional 3rd argument
 	local units = FindUnitsInRadius(unit:GetTeamNumber(),
-								 	unit:GetAbsOrigin(),
+								 	position,
 									nil,
 									radius,
 									DOTA_UNIT_TARGET_TEAM_ENEMY,
@@ -61,9 +64,13 @@ function AICore:AreEnemiesInRange(unit, radius, number)
 									DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
 									FIND_CLOSEST,
 									false)
-	if units[number] then return true end
+	return units
 end
 
+function AICore:AreEnemiesInRange(unit, radius, number)
+	local units = self:GetEnemiesInRange(unit, radius)
+	if units[number] then return true end
+end
 
 function AICore:GetAllPointsOfInterest()
 	-- the POIs are derived from spawn points, courier spawns, and chest spawns

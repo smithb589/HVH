@@ -40,13 +40,13 @@ function Spawn( entityKeyValues )
 
 	thisEntity:SetContextThink("Think", Think, 0.1)
 	thisEntity.behaviorSystem = AICore:CreateBehaviorSystem({
-		BehaviorWander(thisEntity),
-		BehaviorWarn(thisEntity),
-		BehaviorPursue(thisEntity),
-		BehaviorSprint(thisEntity),
-		BehaviorSleep(thisEntity),
-		BehaviorFollow(thisEntity),
-		BehaviorDefend(thisEntity)
+		BehaviorWander(thisEntity, DESIRE_MAX, DESIRE_MEDIUM), -- either
+		BehaviorSprint(thisEntity, DESIRE_MAX),      -- day
+		BehaviorDefend(thisEntity, DESIRE_HIGH+1),   -- night
+		BehaviorWarn  (thisEntity, DESIRE_HIGH),     -- either
+		BehaviorFollow(thisEntity, DESIRE_MEDIUM+1), -- night
+		BehaviorPursue(thisEntity, DESIRE_LOW),      -- day
+		BehaviorSleep (thisEntity, DESIRE_LOW)       -- night
 	})
 	thisEntity.behaviorSystem.thinkDuration = 0.1
 	HVHDebugPrint(string.format("Starting AI for %s. Entity Index: %s", thisEntity:GetUnitName(), thisEntity:GetEntityIndex()))
