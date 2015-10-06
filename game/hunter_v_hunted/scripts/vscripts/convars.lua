@@ -34,6 +34,16 @@ function HVHConvars:RegisterCommands()
     Convars:RegisterCommand("hvh_test_item_cycle", Dynamic_Wrap(self, "DisplayTestItemSpawnCycle"), "Runs a test cycle displaying items.", FCVAR_CHEAT)
     Convars:RegisterCommand("hvh_spawn_creeps", Dynamic_Wrap(self, "SpawnCreeps"), "Spawns creeps.", FCVAR_CHEAT)
     Convars:RegisterCommand("hvh_spawn_wards", Dynamic_Wrap(self, "SpawnWards"), "Spawns wards.", FCVAR_CHEAT)
+    Convars:RegisterCommand("hvh_test_anim", Dynamic_Wrap(self, "TestAnimation"), "Tests animation.", FCVAR_CHEAT)
+end
+
+function HVHConvars:TestAnimation()
+  local humanPlayer = Convars:GetCommandClient()
+  local hero = humanPlayer:GetAssignedHero()
+
+  print("Test anim!!")
+  StartAnimation(hero, {duration=1.0, activity=ACT_DOTA_ATTACK, rate=1.0})
+  hero:EmitSound("Lycan_Wolf.PreAttack")
 end
 
 function HVHConvars:SpawnWards()
