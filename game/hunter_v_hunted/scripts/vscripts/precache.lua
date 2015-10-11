@@ -149,6 +149,10 @@ PRECACHE_UNITS = {
 	"npc_dota_hero_windrunner", -- only missing tree shackle
 	"npc_dota_hero_disruptor",
 	"npc_dota_hero_tidehunter",]]
+	"npc_hvh_tower",
+	"npc_hvh_megacreep_ranged",
+	"npc_hvh_megacreep_siege",
+	"npc_hvh_eidolon",
 	"npc_hvh_enigma",
 	"npc_hvh_tiny",
 	"npc_dota_good_guy_dog"
@@ -191,6 +195,7 @@ PRECACHE_PARTICLE_FOLDERS = {
 	--"particles/units/heroes/hero_meepo/",
 	--"particles/units/heroes/hero_pudge/",
 	--"particles/units/heroes/hero_lycan/"
+	"particles/units/heroes/hero_enigma/"
 }
 
 PRECACHE_PARTICLES = {

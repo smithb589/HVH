@@ -1,15 +1,18 @@
 --------------------------------------------------------------------------------------------------------
--- Enigma AI
+-- Eidolon AI
 --------------------------------------------------------------------------------------------------------
 function Spawn( entityKeyValues )
+	-- force the ambient eidolon effects
+	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_enigma/enigma_eidolon_ambient.vpcf", PATTACH_ABSORIGIN_FOLLOW, thisEntity)
+	ParticleManager:SetParticleControl(particle, 0, thisEntity:GetAbsOrigin())
+
 	thisEntity:SetContextThink("Think", Think, 1.0)
 	thisEntity.behaviorSystem = AICore:CreateBehaviorSystem({
 		BehaviorTravel(thisEntity, DESIRE_MEDIUM),
 		BehaviorDespawn(thisEntity, DESIRE_LOW),
-		BehaviorBlackhole(thisEntity, DESIRE_HIGH),
-		BehaviorBlackholeChannel(thisEntity, DESIRE_MAX)
+		BehaviorAttackBlackholeTargets(thisEntity, DESIRE_MAX)
 	})
-	thisEntity.behaviorSystem.thinkDuration = 0.25 -- faster reactions so Black Hole works better
+	thisEntity.behaviorSystem.thinkDuration = 0.5 -- faster reactions
 end
 
 function Think()

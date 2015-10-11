@@ -4,7 +4,7 @@
 if BehaviorBlackhole == nil then
 	BehaviorBlackhole = DeclareClass(Behavior, function(self, entity, desire)
 		self.unit = entity
-		self.desire = desire or DESIRE_MAX
+		self.desire = desire or DESIRE_HIGH
 		Behavior.init(self)
 	end)
 end
@@ -12,7 +12,7 @@ end
 function BehaviorBlackhole:Setup()
 	self.blackholeAbility = self.unit:FindAbilityByName("enigma_black_hole")
 	self.order.AbilityIndex  = self.blackholeAbility:entindex()
-	self.order.OrderType = DOTA_UNIT_ORDER_CAST_POSITION
+	self.order.OrderType = DOTA_UNIT_ORDER_NONE -- changed later
 	self.order.Position = nil -- calculated later
 
 	-- small delay needed after unit spawn or radius = 0
@@ -26,8 +26,9 @@ end
 
 function BehaviorBlackhole:Evaluate()
 	local desire = DESIRE_NONE
+	--print("Blackhole Evaluate")
 
-	if AICore:AreEnemiesInRange(self.unit, self.maxRange, 2) and self.blackholeAbility:IsFullyCastable() then
+	if AICore:AreEnemiesInRange(self.unit, self.maxRange, 2) and self.blackholeAbility:IsFullyCastable() and not self.unit:IsChanneling() then
 		--print("1. At least two enemies in range and spell fully castable.")
 		local targets = AICore:GetEnemiesInRange(self.unit, self.maxRange)
 		local t1 = targets[1]
@@ -55,14 +56,20 @@ end
 
 function BehaviorBlackhole:Begin()
 	--print("Blackhole BEGIN")
-	self.endTime = GameRules:GetGameTime() + self.channelTime + 1.0 -- extra leeway for turn time
+	self.order.OrderType = DOTA_UNIT_ORDER_CAST_POSITION
+	self.endTime = GameRules:GetGameTime() + 1.0
 end
 
 function BehaviorBlackhole:Continue()
+	--print("Blackhole CONTINUE")
+	--self.order.OrderType = DOTA_UNIT_ORDER_NONE -- channeling
+	--self.endTime = GameRules:GetGameTime() + self.channelTime + 1.0 -- extra leeway for turn time
 end
 
 function BehaviorBlackhole:End()
-	-- nothing to do
+	--print("Blackhole END")
+	--self.order.OrderType = DOTA_UNIT_ORDER_NONE -- changed later
+	--self.order.Position = nil -- calculated later
 end
 
 function BehaviorBlackhole:Think(dt)

@@ -5,7 +5,7 @@ end
 -- Retrieve enemies to (unit) within (radius) at either the unit's position or (position)
 function AICore:GetEnemiesInRange(unit, radius, position)
 	position = position or unit:GetAbsOrigin() -- optional 3rd argument
-	radius = radius or 0 -- fixes error while game is paused and creeps spawned
+	radius   = radius or 0 -- fixes error while game is paused and creeps spawned
 	local units = FindUnitsInRadius(unit:GetTeamNumber(),
 								 	position,
 									nil,

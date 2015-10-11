@@ -1,0 +1,92 @@
+// If I want him bigger:
+// https://github.com/MNoya/DotaCraft/blob/ac986836f1089f1346c729c0088b7ab04384b190/game/dota_addons/dotacraft/scripts/vscripts/units/nightelf/mountain_giant.lua
+//=================================================================================
+// Neutral: Tiny
+//=================================================================================
+"npc_hvh_tiny"
+{
+	// HVH
+	"BaseClass"					"npc_dota_creature"
+	"vscripts"                  "ai/ai_tiny.lua"
+	"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+	"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
+	"IsNeutralUnitType"			"1"
+	"Level"						"16"
+
+	// General
+	//-------------------------------------------------------------------------------------------------------------	
+	"Model"					"models/heroes/tiny_01/tiny_01.mdl"				// Model.
+	"SoundSet"				"Hero_Tiny"							// Name of sound set.
+	"ModelScale"				".93"
+
+	// Abilities
+	//-------------------------------------------------------------------------------------------------------------
+	"Ability1"				""					// Ability 1
+	"Ability2"				"tiny_toss"			// Ability 2
+	"Ability3"				""					// Ability 3
+	"Ability4"				""					// Ability 4
+
+	// Armor
+	//----------------------------------------------------------------
+	"ArmorPhysical"				"4"			// Physical protection.
+
+	// Attack
+	//----------------------------------------------------------------
+	"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+	"AttackDamageMin"			"37"		// Damage range min.
+	"AttackDamageMax"			"43"		// Damage range max.	
+	"AttackRate"				"1.7"		// Speed of attack.
+	"AttackAnimationPoint"		"0.49"		// Normalized time in animation cycle to attack.
+	"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
+	"AttackRange"				"128"		// Range within a target can be attacked.   
+
+	// Bounds
+	//-------------------------------------------------------------------------------------------------------------
+	"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+	"HealthBarOffset"			"165"
+
+	// Movement
+	//-------------------------------------------------------------------------------------------------------------
+	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+	"MovementSpeed"				"150"									// Speed.
+	"MovementTurnRate"			"0.5"									// Turning rate.
+
+	// Status
+	//----------------------------------------------------------------
+	"StatusHealth"				"1000"		// Base health.
+	"StatusHealthRegen"			"1"			// Health regeneration rate.
+	"StatusMana"				"300"		// Base mana.
+	"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
+	
+	// Vision
+	//----------------------------------------------------------------
+	"VisionDaytimeRange"		"800"		// Range of vision during day light.
+	"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+	// Team
+	//----------------------------------------------------------------
+	"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
+	"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+	"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+	// Precache
+	//-------------------------------------------------------------------------------------------------------------
+	"precache"
+	{
+		"model"		"models/heroes/tiny_01/tiny_01.mdl"
+		"model"		"models/heroes/tiny_02/tiny_02.mdl"
+		"model"		"models/heroes/tiny_03/tiny_03.mdl"
+		"model"		"models/heroes/tiny_04/tiny_04.mdl"
+	}
+
+	"Creature"
+	{
+		"AttachWearables"
+		{
+			"Wearable1"	{ "ItemDef" "493" } //Head
+			"Wearable2"	{ "ItemDef"	"494" } //Body
+			"Wearable3" { "ItemDef"	"495" } //Left Arm
+			"Wearable4" { "ItemDef"	"496" } //Right Arm
+		}
+	}
+}
