@@ -32,7 +32,13 @@ DOTA_UNIT_ORDER_EJECT_ITEM_FROM_STASH
 DOTA_UNIT_ORDER_CAST_RUNE
 ]]
 
-require("hvh_utils")
+if AICore == nil then
+  AICore = class({})
+end
+
+require("utils/ai_utils")
+require("utils/hvh_utils")
+
 require("ai/class_utils")
 require("ai/constants")
 require("ai/behavior")
@@ -49,104 +55,6 @@ require("ai/dog_behaviors/behavior_sprint")
 require("ai/dog_behaviors/behavior_wander")
 require("ai/dog_behaviors/behavior_warn")
 require("ai/dog_behaviors/dog_utils")
-
-AICore = {}
-
-
-function AICore:GetEnemiesInRange(unit, radius, position)
-	position = position or unit:GetAbsOrigin() -- optional 3rd argument
-	local units = FindUnitsInRadius(unit:GetTeamNumber(),
-								 	position,
-									nil,
-									radius,
-									DOTA_UNIT_TARGET_TEAM_ENEMY,
-									DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-									DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
-									FIND_CLOSEST,
-									false)
-	return units
-end
-
-function AICore:AreEnemiesInRange(unit, radius, number)
-	local units = self:GetEnemiesInRange(unit, radius)
-	if units[number] then return true end
-end
-
-function AICore:GetAllPointsOfInterest()
-	-- the POIs are derived from spawn points, courier spawns, and chest spawns
-	local groupList = {
-		"info_courier_spawn_radiant",
-		"info_courier_spawn_dire",
-		"info_player_start_goodguys",
-		"info_player_start_badguys",
-		"dota_item_spawner"
-	}
-
-	-- link the entity lists together into a master list
-	local masterList = {}
-	for _,group in pairs(groupList) do
-		local groupList = Entities:FindAllByClassname(group)
-		masterList = JoinTables(masterList, groupList)
-	end
-
-	return masterList
-end
-
--- Choose a random point of interest, optionally a minimum distance away from another point
-function AICore:ChooseRandomPointOfInterest( vector, minDistanceFrom )
-	entity = entity or nil
-	minDistanceFrom = minDistanceFrom or nil
-
-	local masterList = self:GetAllPointsOfInterest()
-
-	-- choose a random point from the master list and check that it's valid
-	local loc = nil
-	local validPOI = false
-	while not validPOI do
-		local r = RandomInt(1, #masterList)
-		local poi = masterList[r]
-		loc = poi:GetAbsOrigin()
-		
-		if vector and minDistanceFrom and Length2DBetweenVectors(vector, loc) <= minDistanceFrom then
-			--print(r .. " too close. Repicking.")
-			validPOI = false
-		else
-			--print(r .. " chosen.")
-			validPOI = true
-		end
-	end
-
-	return loc
-end
-
-
-function AICore:RandomEnemyHeroInRange( entity, range )
-	local enemies = FindUnitsInRadius( DOTA_TEAM_BADGUYS, entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
-	if #enemies > 0 then
-		local index = RandomInt( 1, #enemies )
-		return enemies[index]
-	else
-		return nil
-	end
-end
-
-function AICore:WeakestEnemyHeroInRange( entity, range )
-	local enemies = FindUnitsInRadius( DOTA_TEAM_BADGUYS, entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
-
-	local minHP = nil
-	local target = nil
-
-	for _,enemy in pairs(enemies) do
-		local distanceToEnemy = (entity:GetOrigin() - enemy:GetOrigin()):Length()
-		local HP = enemy:GetHealth()
-		if enemy:IsAlive() and (minHP == nil or HP < minHP) and distanceToEnemy < range then
-			minHP = HP
-			target = enemy
-		end
-	end
-
-	return target
-end
 
 function AICore:CreateBehaviorSystem( behaviors )
 	local BehaviorSystem = {}

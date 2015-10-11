@@ -2,9 +2,9 @@ if HVHConvars == nil then
   HVHConvars = class({})
 end
 
+require("hvh_constants")
 require("internal/convars")
-require("../hvh_constants")
-require("item_spawn_controller")
+require("item_spawn/item_spawn_controller")
 
 function HVHConvars:Setup()
 	self:RegisterConvars()

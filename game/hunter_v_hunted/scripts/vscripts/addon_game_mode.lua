@@ -3,12 +3,12 @@ require('game_mode')
 require('precache')
 require('convars')
 
-require("time_utils")
-require("item_utils")
-require("item_spawn_controller")
+require("utils/time_utils")
+require("utils/item_utils")
+require("utils/hvh_utils")
+require("item_spawn/item_spawn_controller")
 
 require("hvh_settings")
-require("hvh_utils")
 require("hvh_constants")
 
 require('lib/util')
@@ -16,6 +16,10 @@ require('lib/timers')
 require('lib/physics')
 require('lib/notifications')
 require('lib/animations')
+
+require("internal/power_stages")
+require("internal/tutorial")
+require("internal/neutral_creeps")
 
 require('ai/ai_core')
 

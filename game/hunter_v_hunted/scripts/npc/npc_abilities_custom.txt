@@ -93,7 +93,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/sniper_shrapnel.lua"
+				"ScriptFile"			"spells/sniper_shrapnel.lua"
 				"Function"				"shrapnel_on_upgrade"
 			}
 		}
@@ -102,7 +102,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/sniper_shrapnel.lua"
+				"ScriptFile"			"spells/sniper_shrapnel.lua"
 				"Function"				"shrapnel_fire"
 				"Target"				"POINT"
 			}
@@ -317,7 +317,7 @@
 			"RunScript"
 			{
 				"Target"		"TARGET"
-				"ScriptFile"	"scripts/vscripts/SpellLibrary/sniper_feed_dog.lua"
+				"ScriptFile"	"scripts/vscripts/spells/sniper_feed_dog.lua"
 				"Function"		"Feed"
 				"feedDuration"	"%feed_duration"
 				"loyaltyDuration" "%loyalty_duration"
@@ -435,7 +435,7 @@
 	    		{
 	    			"RunScript"
 	    			{
-	    				"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
 	    				"Function"		"RegisterKillEffect"
 	    			}
 	    		}
@@ -444,7 +444,7 @@
 	    		{
 	    			"RunScript"
 	    			{
-		    			"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+		    			"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
 		    			"Function"		"UnregisterKillEffect"
 	    			}
 	    		}
@@ -472,7 +472,7 @@
 	    		{
 	    			"RunScript"
 	    			{
-	    				"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
 	    				"Function"		"IncrementKillEffectCounter"
 	    				"counterModifier" "modifier_dread_hunter_kill_effect_counter"
 	    				"duration"		"%kill_regen_duration"
@@ -483,7 +483,7 @@
 	    		{
 	    			"RunScript"
 	    			{
-	    				"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
 	    				"Function"		"DecrementKillEffectCounter"
 	    				"counterModifier" "modifier_dread_hunter_kill_effect_counter"
 	    				"duration"		"%kill_regen_duration"
@@ -506,7 +506,7 @@
 	    		{
 	    			"RunScript"
 	    			{
-	    				"ScriptFile"		"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"ScriptFile"		"spells/night_stalker_dread_hunter_in_the_night.lua"
 	    				"Function"			"VisionThinker"
 	    				"dummy_str"			"npc_dummy_reveal_unit"
 	    			}
@@ -516,7 +516,7 @@
 	    		{
 	    			"RunScript"
 	    			{
-	    				"ScriptFile"		"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"ScriptFile"		"spells/night_stalker_dread_hunter_in_the_night.lua"
 	    				"Function"			"OnDeath_KillAllVisionDummies"
 	    			}
 	    		}
@@ -531,7 +531,7 @@
 	    		{
 	    			"RunScript"
 	    			{
-	    				"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
 	    				"Function"		"OnAttackLanded"
 	    			  	"mod_invis"		"modifier_dread_hunter_invis"
 	    			  	"delay"			"%invis_delay"
@@ -542,7 +542,7 @@
 	    		{
 	    			"RunScript"
 	    			{
-	    				"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
 	    				"Function"		"OnAbilityExecuted"
 	    			  	"mod_invis"		"modifier_dread_hunter_invis"
 	    			  	"delay"			"%invis_delay"
@@ -553,7 +553,7 @@
 	    		{
 	    			"RunScript"
 	    			{
-	    				"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
 	    				"Function"		"OnTakeDamage"
 	    			  	"mod_invis"		"modifier_dread_hunter_invis"
 	    			  	"delay"			"%invis_delay_after_damage"
@@ -566,7 +566,7 @@
 	    		{
 	    			"RunScript"
 	    			{
-	    				"ScriptFile"	"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
 	    				"Function"		"OnUnitMoved"
 	    			  	"mod_invis"		"modifier_dread_hunter_invis"
 	    			  	"delay"			"%invis_delay_after_moving"
@@ -639,7 +639,7 @@
 	    		{
 	    			"RunScript"
 	    			{
-	    				"ScriptFile"		"SpellLibrary/night_stalker_dread_hunter_in_the_night.lua"
+	    				"ScriptFile"		"spells/night_stalker_dread_hunter_in_the_night.lua"
 	    				"Function"			"SpeedThinker"
 	    				"mod_speed"			"modifier_dread_hunter_speed"
 	    			}
@@ -731,7 +731,7 @@
 	
 			"RunScript"
 			{
-				"ScriptFile"	"SpellLibrary/night_stalker_crippling_fear.lua"
+				"ScriptFile"	"spells/night_stalker_crippling_fear.lua"
 				"Function"		"CripplingFear"
 				"modifier_day"		"modifier_crippling_fear_day_datadriven"
 				"modifier_night"	"modifier_crippling_fear_night_datadriven"
@@ -885,7 +885,7 @@
 	
 			"RunScript"
 			{
-				"ScriptFile"	"SpellLibrary/night_stalker_crippling_fear.lua"
+				"ScriptFile"	"spells/night_stalker_crippling_fear.lua"
 				"Function"		"CripplingFearAOE"
 				"modifier_day"		"modifier_crippling_fear_day_aoe_datadriven"
 				"modifier_night"	"modifier_crippling_fear_night_aoe_datadriven"
@@ -1240,7 +1240,7 @@
 			
 			"RunScript"
 			{
-				"ScriptFile"	"SpellLibrary/night_stalker_leap.lua"
+				"ScriptFile"	"spells/night_stalker_leap.lua"
 				"Function"		"Leap"
 				"modifier_leap_immunity"	"modifier_leap_immunity"
 			}
@@ -1328,7 +1328,7 @@
 			}
 			"RunScript"
 			{
-				"ScriptFile"		"SpellLibrary/night_stalker_shadowstalker.lua"
+				"ScriptFile"		"spells/night_stalker_shadowstalker.lua"
 				"Function"			"ConjureImage"
 				"Target"			"POINT"
 			}
@@ -1493,7 +1493,7 @@
 	    		{
 	    			"RunScript"
 	    			{
-						"ScriptFile"	"SpellLibrary/good_guy_dog_mans_best_friend.lua"
+						"ScriptFile"	"spells/good_guy_dog_mans_best_friend.lua"
 						"Function"		"ManageAura"
 						"modifier"		"modifier_mans_best_friend_aura_caster"
 	    			}

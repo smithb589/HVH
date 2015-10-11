@@ -6,9 +6,9 @@ function HVHNeutralCreeps:Setup()
 	local vec_start = AICore:ChooseRandomPointOfInterest()
 	local vec_end = AICore:ChooseRandomPointOfInterest(vec_start, 2600.0)
 
-	--self:SpawnNeutrals("npc_hvh_megacreep_melee", vec_start, vec_end, 4)
-	--self:SpawnNeutrals("npc_hvh_hellbear", vec_start, vec_end, 2)
-	--self:SpawnNeutrals("npc_hvh_tiny", vec_start, vec_end, 1)
+	self:SpawnNeutrals("npc_hvh_megacreep_melee", vec_start, vec_end, 4)
+    self:SpawnNeutrals("npc_hvh_hellbear", vec_start, vec_end, 2)
+	self:SpawnNeutrals("npc_hvh_tiny", vec_start, vec_end, 1)
 	self:SpawnNeutrals("npc_hvh_enigma", vec_start, vec_end, 1)
 end
 

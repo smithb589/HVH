@@ -35,7 +35,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"tidehunter_anchor_smash"
 				"maxDuration"			"10.0"
@@ -78,7 +78,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"riki_blink_strike"
 				"maxDuration"			"10.0"
@@ -120,7 +120,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"dragon_knight_breathe_fire"
 				"maxDuration"			"10.0"
@@ -161,7 +161,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"sandking_burrowstrike"
 				"maxDuration"			"10.0"
@@ -204,7 +204,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"lich_chain_frost"
 				"maxDuration"			"10.0"
@@ -245,7 +245,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"crystal_maiden_crystal_nova"
 				"maxDuration"			"10.0"
@@ -289,7 +289,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"doom_bringer_doom"
 				"maxDuration"			"10.0"
@@ -333,7 +333,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"brewmaster_drunken_haze"
 				"maxDuration"			"10.0"
@@ -375,7 +375,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"death_prophet_exorcism"
 				"maxDuration"			"40.0"
@@ -419,7 +419,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"rubick_fade_bolt"
 				"maxDuration"			"10.0"
@@ -460,7 +460,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"lion_finger_of_death"
 				"maxDuration"			"10.0"
@@ -501,7 +501,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"lina_laguna_blade"
 				"maxDuration"			"10.0"
@@ -544,7 +544,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"phantom_assassin_phantom_strike"
 				"maxDuration"			"10.0"
@@ -586,7 +586,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"rattletrap_power_cogs"
 				"maxDuration"			"10.0"
@@ -627,7 +627,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"magnataur_reverse_polarity"
 				"maxDuration"			"10.0"
@@ -665,7 +665,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"gyrocopter_rocket_barrage"
 				"maxDuration"			"10.0"
@@ -704,7 +704,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"queenofpain_scream_of_pain"
 				"maxDuration"			"10.0"
@@ -747,7 +747,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"tiny_toss"
 				"maxDuration"			"10.0"
@@ -786,7 +786,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"dark_seer_wall_of_replica"
 				"maxDuration"			"10.0"
@@ -831,7 +831,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"beastmaster_wild_axes"
 				"maxDuration"			"10.0"
@@ -881,7 +881,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"winter_wyvern_winters_curse"
 				"maxDuration"			"10.0"
@@ -929,7 +929,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"witch_doctor_death_ward"
 				"maxDuration"			"10.0"
@@ -978,7 +978,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"oracle_false_promise"
 				"maxDuration"			"15.0"
@@ -1019,7 +1019,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"windrunner_focusfire"
 				"maxDuration"			"25.0"
@@ -1061,7 +1061,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"omniknight_guardian_angel"
 				"maxDuration"			"10.0"
@@ -1102,7 +1102,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"tinker_laser"
 				"maxDuration"			"10.0"
@@ -1145,7 +1145,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"treant_leech_seed"
 				"maxDuration"			"10.0"
@@ -1191,7 +1191,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"treant_living_armor"
 				"maxDuration"			"20.0"
@@ -1232,7 +1232,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"shadow_shaman_mass_serpent_ward"
 				"maxDuration"			"60.0"
@@ -1277,7 +1277,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"legion_commander_press_the_attack"
 				"maxDuration"			"10.0"
@@ -1323,7 +1323,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"keeper_of_the_light_recall"
 				"maxDuration"			"10.0"
@@ -1367,7 +1367,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"furion_sprout"
 				"maxDuration"			"10.0"
@@ -1407,7 +1407,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"sven_warcry"
 				"maxDuration"			"10.0"
@@ -1451,7 +1451,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"disruptor_glimpse"
 				"maxDuration"			"10.0"
@@ -1489,7 +1489,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"zuus_thundergods_wrath"
 				"maxDuration"			"6.0"
@@ -1531,7 +1531,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"vengefulspirit_nether_swap"
 				"maxDuration"			"6.0"
@@ -1569,7 +1569,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"naga_siren_mirror_image"
 				"maxDuration"			"40.0"
@@ -1608,7 +1608,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"mirana_starfall"
 				"maxDuration"			"6.0"
@@ -1654,7 +1654,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"juggernaut_healing_ward"
 				"maxDuration"			"30.0"
@@ -1698,7 +1698,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"invoker_sun_strike"
 				"maxDuration"			"6.0"
@@ -1741,7 +1741,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"furion_teleportation"
 				"maxDuration"			"6.0"
@@ -1782,7 +1782,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"faceless_void_chronosphere"
 				"maxDuration"			"10.0"
@@ -1824,7 +1824,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"bane_nightmare"
 				"maxDuration"			"30.0"
@@ -1866,7 +1866,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"terrorblade_sunder"
 				"maxDuration"			"6.0"
@@ -1904,7 +1904,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"razor_plasma_field"
 				"maxDuration"			"6.0"
@@ -1946,7 +1946,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"witch_doctor_paralyzing_cask"
 				"maxDuration"			"12.0"
@@ -1986,7 +1986,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"invoker_ice_wall"
 				"maxDuration"			"20.0"
@@ -2026,7 +2026,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"invoker_tornado"
 				"maxDuration"			"8.0"
@@ -2066,7 +2066,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"tusk_frozen_sigil"
 				"maxDuration"			"40.0"
@@ -2108,7 +2108,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"earthshaker_fissure"
 				"maxDuration"			"10.0"
@@ -2151,7 +2151,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"warlock_fatal_bonds"
 				"maxDuration"			"30.0"
@@ -2196,7 +2196,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"undying_decay"
 				"maxDuration"			"10.0"
@@ -2238,7 +2238,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"death_prophet_carrion_swarm"
 				"maxDuration"			"6.0"
@@ -2276,7 +2276,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"terrorblade_conjure_image"
 				"maxDuration"			"16.0"
@@ -2322,7 +2322,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"bloodseeker_blood_bath"
 				"maxDuration"			"12.0"
@@ -2363,7 +2363,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"bane_brain_sap"
 				"maxDuration"			"6.0"
@@ -2404,7 +2404,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"tiny_avalanche"
 				"maxDuration"			"8.0"
@@ -2450,7 +2450,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"tusk_walrus_kick"
 				"maxDuration"			"6.0"
@@ -2491,7 +2491,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"dark_seer_surge"
 				"maxDuration"			"10.0"
@@ -2532,7 +2532,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"techies_suicide"
 				"maxDuration"			"6.0"
@@ -2573,7 +2573,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"abaddon_death_coil"
 				"maxDuration"			"6.0"
@@ -2615,7 +2615,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"shadow_demon_disruption"
 				"maxDuration"			"10.0"
@@ -2658,7 +2658,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"invoker_cold_snap"
 				"maxDuration"			"8.0"
@@ -2700,7 +2700,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"winter_wyvern_cold_embrace"
 				"maxDuration"			"6.0"
@@ -2741,7 +2741,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"ancient_apparition_chilling_touch"
 				"maxDuration"			"30.0"
@@ -2778,7 +2778,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"troll_warlord_battle_trance"
 				"maxDuration"			"6.0"
@@ -2811,7 +2811,7 @@
 //		{
 //			"RunScript"
 //			{
-//				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+//				"ScriptFile"			"spells/item_forcecast.lua"
 //				"Function"				"ForceCast"
 //				
 //				// Modify these
@@ -2859,7 +2859,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"slardar_amplify_damage"
 				"maxDuration"			"25.0"
@@ -2903,7 +2903,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"abaddon_aphotic_shield"
 				"maxDuration"			"15.0"
@@ -2947,7 +2947,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"sniper_assassinate"
 				"maxDuration"			"6.0"
@@ -2983,7 +2983,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"enigma_black_hole"
 				"maxDuration"			"10.0"
@@ -3026,7 +3026,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"naga_siren_ensnare"
 				"maxDuration"			"6.0"
@@ -3064,7 +3064,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"chen_hand_of_god"
 				"maxDuration"			"6.0"
@@ -3111,7 +3111,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"gyrocopter_homing_missile"
 				"maxDuration"			"60.0" // TODO
@@ -3154,7 +3154,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"lich_frost_armor"
 				"maxDuration"			"40.0"
@@ -3196,7 +3196,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"techies_land_mines"
 				"maxDuration"			"6.0" // TODO
@@ -3240,7 +3240,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"omniknight_purification"
 				"maxDuration"			"6.0"
@@ -3283,7 +3283,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"wisp_tether"
 				"maxDuration"			"20.0"
@@ -3330,7 +3330,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"tusk_walrus_punch"
 				"maxDuration"			"6.0"
@@ -3371,7 +3371,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"slark_pounce"
 				"maxDuration"			"10.0"
@@ -3410,7 +3410,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"razor_eye_of_the_storm"
 				"maxDuration"			"30.0"
@@ -3452,7 +3452,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"puck_dream_coil"
 				"maxDuration"			"10.0"
@@ -3494,7 +3494,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"invoker_deafening_blast"
 				"maxDuration"			"10.0"
@@ -3539,7 +3539,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"axe_culling_blade"
 				"maxDuration"			"10.0"
@@ -3580,7 +3580,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"invoker_chaos_meteor"
 				"maxDuration"			"6.0"
@@ -3620,7 +3620,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"batrider_firefly"
 				"maxDuration"			"20.0"
@@ -3658,7 +3658,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"lycan_summon_wolves"
 				"maxDuration"			"60.0"
@@ -3699,7 +3699,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"keeper_of_the_light_blinding_light"
 				"maxDuration"			"10.0"
@@ -3737,7 +3737,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"windrunner_windrun"
 				"maxDuration"			"10.0"
@@ -3779,7 +3779,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"mirana_arrow"
 				"maxDuration"			"12.0"
@@ -3824,7 +3824,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"windrunner_shackleshot"
 				"maxDuration"			"10.0"
@@ -3863,7 +3863,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"tidehunter_ravage"
 				"maxDuration"			"6.0"
@@ -3901,7 +3901,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"centaur_stampede"
 				"maxDuration"			"6.0"
@@ -3943,7 +3943,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"disruptor_kinetic_field"
 				"maxDuration"			"10.0"
@@ -3983,7 +3983,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"SpellLibrary/item_forcecast.lua"
+				"ScriptFile"			"spells/item_forcecast.lua"
 				"Function"				"ForceCast"
 				"abilityName"			"pudge_meat_hook"
 				"maxDuration"			"6.0"
@@ -4125,7 +4125,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"		"SpellLibrary/item_solar_crest_hvh.lua"
+				"ScriptFile"		"spells/item_solar_crest_hvh.lua"
 				"Function"			"item_solar_crest_hvh_on_spell_start"
 			}
 		}
@@ -4249,7 +4249,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"		"SpellLibrary/item_medallion_of_courage_hvh.lua"
+				"ScriptFile"		"spells/item_medallion_of_courage_hvh.lua"
 				"Function"			"item_medallion_of_courage_hvh_on_spell_start"
 			}
 		}

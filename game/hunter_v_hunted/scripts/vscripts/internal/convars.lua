@@ -10,4 +10,4 @@ function HVHConvars:ConvarSetTimeOfDay(time)
 end
 ]]--
 
-require("item_utils")
+require("utils/item_utils")
