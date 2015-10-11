@@ -33,16 +33,14 @@ function BehaviorBlackhole:Evaluate()
 		local t1 = targets[1]
 		local t2 = targets[2]
 		local distanceBetweenClosestTargets = t1:GetRangeToUnit(t2)
-		if distanceBetweenClosestTargets <= self.radius then
-			--print("2. Closest 2 targets can fit in black hole.")
+		if distanceBetweenClosestTargets <= self.radius * 2 then
+			--print("2. Closest 2 targets can fit in diameter of black hole.")
 			local midpoint_loc = self:FindMidPoint(t1, t2)
 			local enigma_loc = self.unit:GetAbsOrigin()
-			print(midpoint_loc)
-			print(enigma_loc)
 			local distanceToMidpoint = Length2DBetweenVectors(enigma_loc, midpoint_loc) 
 			if distanceToMidpoint <= self.range then
 				--print("3. Midpoint close enough to target.")
-				self.order.Position = self:FindMidPoint(t1, t2)
+				self.order.Position = midpoint_loc
 				desire = self.desire --DESIRE_MAX
 			else
 				--print("FAILED: Enigma is too lazy to move into attack range")
