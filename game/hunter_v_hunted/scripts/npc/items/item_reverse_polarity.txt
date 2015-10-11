@@ -1,0 +1,40 @@
+"item_reverse_polarity"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	//"ItemQuality"	""
+	"ID"	"1082"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_reverse_polarity" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityCastPoint"		"0.3"
+	"AbilityCastRange"		"410"
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"soundfile"		"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
+		"particle"		"particles/units/heroes/hero_magnataur/magnataur_reverse_polarity.vpcf"
+		"particle"		"particles/units/heroes/hero_magnataur/magnataur_reverse_polarity_pull.vpcf"
+		"particle"		"particles/units/heroes/hero_magnataur/magnus_loadout.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"magnataur_reverse_polarity"
+			"maxDuration"			"10.0"
+		}
+	}
+}

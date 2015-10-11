@@ -1,0 +1,41 @@
+"item_dream_coil"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"epic"
+	"ID"	"1017"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_dream_coil" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+	"AbilityCastPoint"		"0.1"
+	"AbilityCastRange"		"750"		
+	"AoERadius" 			"375"
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"soundfile"					"soundevents/game_sounds_heroes/game_sounds_puck.vsndevts"
+		"particle"					"particles/units/heroes/hero_puck/puck_dreamcoil.vpcf"
+		"particle"					"particles/units/heroes/hero_puck/puck_dreamcoil_emit.vpcf"
+		"particle"					"particles/units/heroes/hero_puck/puck_dreamcoil_tether.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"puck_dream_coil"
+			"maxDuration"			"10.0"
+		}
+	}
+}

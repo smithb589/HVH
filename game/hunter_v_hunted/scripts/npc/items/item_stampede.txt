@@ -1,0 +1,37 @@
+"item_stampede"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"epic"
+	"ID"	"1006"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_stampede" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"AbilityCooldown"				"20"
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts"
+		"particle"	"particles/units/heroes/hero_centaur/centaur_stampede_overhead.vpcf"
+		"particle"	"particles/units/heroes/hero_centaur/centaur_stampede.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"centaur_stampede"
+			"maxDuration"			"6.0"
+		}
+	}
+}

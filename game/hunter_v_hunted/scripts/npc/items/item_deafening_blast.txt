@@ -1,0 +1,41 @@
+"item_deafening_blast"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"rare"
+	"ID"	"1016"
+	"ItemInitialCharges"  "2"
+	"AbilityTextureName"	"item_deafening_blast" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING" // DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE
+	"AbilityCastPoint"		"0"
+	"AbilityCastRange"		"1000"		
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"soundfile"		"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+		"particle"		"particles/units/heroes/hero_invoker/invoker_deafening_blast.vpcf"
+		"particle"		"particles/units/heroes/hero_invoker/invoker_deafening_blast_knockback_debuff.vpcf"
+		"particle"		"particles/units/heroes/hero_invoker/invoker_deafening_blast_disarm_debuff.vpcf"
+		"particle"		"particles/status_fx/status_effect_frost.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"invoker_deafening_blast"
+			"maxDuration"			"10.0"
+		}
+	}
+}

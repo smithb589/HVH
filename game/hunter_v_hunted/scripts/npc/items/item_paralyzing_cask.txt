@@ -1,0 +1,41 @@
+"item_paralyzing_cask"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"epic"
+	"ID"	"1053"
+	"ItemInitialCharges"  "2"
+	"AbilityTextureName"	"item_paralyzing_cask" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityCastPoint"		"0.35"
+	"AbilityCastRange"		"700"		
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_witchdoctor.vsndevts"
+		"particle"			"particles/units/heroes/hero_witchdoctor/witchdoctor_cask.vpcf"
+		"particle"			"particles/units/heroes/hero_witchdoctor/witchdoctor_paralyzing_cask.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"witch_doctor_paralyzing_cask"
+			"maxDuration"			"12.0"
+		}
+	}
+}

@@ -1,0 +1,41 @@
+"item_kinetic_field"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"artifact"
+	"ID"	"1005"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_kinetic_field" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	"AoERadius" "325"
+	"AbilityCastRange"				"900"
+	"AbilityCastPoint"				"0.05"
+	"AbilityCooldown"				"20"
+	"precache"
+	{
+		"soundfile"		"soundevents/game_sounds_heroes/game_sounds_disruptor.vsndevts"
+		"particle"		"particles/units/heroes/hero_disruptor/disruptor_kineticfield.vpcf"
+		"particle"		"particles/units/heroes/hero_disruptor/disruptor_kineticfield_formation.vpcf"
+		"particle"		"particles/units/heroes/hero_disruptor/disruptor_kineticfield_formation_markers.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"disruptor_kinetic_field"
+			"maxDuration"			"10.0"
+		}
+	}
+}

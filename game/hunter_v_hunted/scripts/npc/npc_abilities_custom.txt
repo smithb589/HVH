@@ -1,664 +1,625 @@
 "DOTAAbilities"
 {
-	"Version"		"1"
-
-	"sniper_shrapnel_hvh"
+	"dog_mans_best_friend"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"sniper_shrapnel"
-		"AOERadius"						"%radius"
-		"AbilityProcsMagicStick" "1"	
-	    "MaxLevel"               "3"
-	    "RequiredLevel"          "1"
-	    "LevelsBetweenUpgrades"  "0"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1800"
-		"AbilityCastPoint"				"0.3"
-	
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"0" // "12 24 36 48"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"
-		"AbilityCooldown"				"30.0" //"20.0"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow_movement_speed"	"-25" // "-20 -30 -35 -40"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"450"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10.0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"1.2" //6.85 1.4 to 1.2 //"1.4" //"0.6" //"1.4" // 6.84
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"slow_duration"			"1.0" //"0.5" // 2.0
-			}
-			// Extra variables
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"tick_interval"			"0.25"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"maximum_charges"		"1 2 3"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"charge_replenish_time"	"30.0" // "45.0"
-			}
-		}
-		
-		// Data driven
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
-			"particle"					"particles/sniper_shrapnel_hvh.vpcf"
-			"particle"					"particles/sniper_shrapnel_trail_hvh.vpcf"
-			"particle"					"particles/units/heroes/hero_sniper/sniper_shrapnel_launch.vpcf"
-			//"particle"				"particles/econ/items/sniper/sniper_charlie/sniper_shrapnel_charlie.vpcf"
-		}
-		
-		"OnUpgrade"
-		{
-			"RunScript"
-			{
-				"ScriptFile"			"spells/sniper_shrapnel.lua"
-				"Function"				"shrapnel_on_upgrade"
-			}
-		}
-		
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"			"spells/sniper_shrapnel.lua"
-				"Function"				"shrapnel_fire"
-				"Target"				"POINT"
-			}
-		}
-		
-		"Modifiers"
-		{
-			"modifier_shrapnel_stack_counter_datadriven"
-			{
-				"Passive"				"1"
-				"IsHidden"				"0"
-				"IsPurgable"			"0"
-				"IsDebuff"				"0"
-			}
-			
-			"modifier_shrapnel_dummy_datadriven"
-			{
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"Target"				"TARGET"
-						"EffectName"			"particles/sniper_shrapnel_hvh.vpcf"
-						"EffectAttachType"		"follow_origin"
-						"EffectRadius"			"%radius"
-					}
-				
-					// HVH shrapnel destroys trees
-					"DestroyTrees"
-					{
-						"Target" 		"TARGET"
-						"Radius"		"%radius"
-					}
-
-					"ActOnTargets"
-					{
-						"Target"
-						{
-							"Center"	"TARGET"
-							"Radius"	"%radius"
-							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
-							"Flags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-						}
-						
-						"Action"
-						{
-							"ApplyModifier"
-							{
-								"Target"		"TARGET"
-								"ModifierName"	"modifier_shrapnel_slow_datadriven"
-							}
-						}
-					}
-				}
-				
-				"ThinkInterval"			"%tick_interval"
-				"OnIntervalThink"
-				{
-					"ActOnTargets"
-					{
-						"Target"
-						{
-							"Center"	"TARGET"
-							"Radius"	"%radius"
-							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
-							"Flags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-						}
-						
-						"Action"
-						{
-							"ApplyModifier"
-							{
-								"Target"		"TARGET"
-								"ModifierName"	"modifier_shrapnel_slow_datadriven"
-							}
-						}
-					}
-				}
-				
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BONUS_DAY_VISION"			"%radius"
-					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"			"%radius"
-				}
-				
-				"States"
-				{
-					"MODIFIER_STATE_INVULNERABLE"					"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_HEALTH_BAR"					"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_UNIT_COLLISION"				"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NOT_ON_MINIMAP"					"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_UNSELECTABLE"					"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_FLYING"							"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		
-			"modifier_shrapnel_slow_datadriven"
-			{
-				"IsHidden"				"0"
-				"IsPurgable"			"0"
-				"IsDebuff"				"1"
-				"Duration"				"%slow_duration"
-				"Priority"				"MODIFIER_PRIORITY_ULTRA" // http://dev.dota2.com/showthread.php?t=172622
-
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"        "particles/sniper_shrapnel_trail_hvh.vpcf"
-						"EffectAttachType"  "follow_origin"
-						"Target"            "TARGET"
-
-						"ControlPointEntities"
-						{
-							"TARGET"	"attach_origin"
-							"TARGET"	"attach_hitloc"
-						}
-					}
-				}
-
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%slow_movement_speed"
-				}
-				// HVH shrapnel disables invisibility
-				"States"
-				{
-					"MODIFIER_STATE_INVISIBLE"		"MODIFIER_STATE_VALUE_DISABLED"
-				}
-			}
-		}
-	}
-
-	"sniper_feed_dog"
-	{
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC"
-		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"			"hvh_feed_dog"
-	    "MaxLevel"               "1"
-		
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"900"
-		"AbilityCastPoint"				"0.3"
-		"AbilityCooldown"				"45" // duplicate of loyalty_duration
-		"AbilityManaCost"				"0"
-
-		"Precache"
-		{
-			//"particle"			"particles/units/heroes/hero_warlock/warlock_shadow_word_buff.vpcf"
-			"particle"			"particles/sniper_feed_dog_buff.vpcf"
-			"particle"			"particles/good_guy_dog_treat.vpcf"
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_chaos_knight.vsndevts"
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts"
-		}
-
+		"AbilityTextureName"			"hvh_mans_best_friend" // TODO
+		"MaxLevel"               "1"
+	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"treat_fly_speed"	"750"
+				"var_type"				"FIELD_FLOAT"
+				"aura_health_regen_pct"	"1.5"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"treat_width"		"50"
+				"aura_magic_resist"		"15"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"feed_duration"		"4"
+				"aura_armor"		"10"
 			}
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"heal_amount"		"150"
-			}
-			"05"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"loyalty_duration"	"45" //"60" // "45" //"90 75 60 45"
+				"radius"			"1800"
 			}
 		}
-
-		"OnSpellStart"
-		{
-			"TrackingProjectile"
-			{
-				"Target" 		"TARGET"
-			    "EffectName"  	"particles/good_guy_dog_treat.vpcf"
-			    "MoveSpeed"   	"%treat_fly_speed"
-			    "StartPosition" "attach_origin"
-			}
-
-			"FireSound"
-			{
-				"EffectName"	"Hero_ChaosKnight.idle_throw"
-				"Target" 		"CASTER"
-			}
-		}
-
-		"OnProjectileHitUnit"
-		{
-			"RunScript"
-			{
-				"Target"		"TARGET"
-				"ScriptFile"	"scripts/vscripts/spells/sniper_feed_dog.lua"
-				"Function"		"Feed"
-				"feedDuration"	"%feed_duration"
-				"loyaltyDuration" "%loyalty_duration"
-			}
-
-			"Heal"
-			{
-				"Target"	"TARGET"
-				"HealAmount" "%heal_amount"
-			}
-
-			"FireSound"
-			{
-				"EffectName"	"Lycan_Wolf.Attack"
-				"Target" 		"TARGET"
-			}
-		}
-
+		
 		"Modifiers"
 		{
-			"modifier_feed_dog_loyalty"
+			"modifier_mans_best_friend_applicator"
 			{
-				"Passive"				"0"
-				"IsHidden"				"0"
-
-				"EffectName"	"particles/sniper_feed_dog_buff.vpcf"
-				"EffectAttachType"		"follow_origin"
-			}
-		}
-	}
-
-	"night_stalker_hunter_in_the_night_hvh"
-	{
-		// General  
-	    // ----------------------------------------------------------------------------------------
-	    "BaseClass"              "ability_datadriven"
-	    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "AbilityTextureName"     "night_stalker_hunter_in_the_night"
-
-	    //"AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
-	    "MaxLevel"               "1"
-
-		"precache"
-		{
-			"particle"		"particles/night_stalker_blood_rush_hvh.vpcf"
-			"particle"		"particles/night_stalker_blood_rush_vacuum_hvh.vpcf"
-			"particle"		"particles/night_stalker_blood_rush_buff_hvh.vpcf"
-			//"particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
-			//"particle"	"particles/units/heroes/hero_night_stalker/nightstalker_night_buff.vpcf"
-			//"particle"	"particles/units/heroes/hero_night_stalker/nightstalker_change.vpcf"			
- 		}
-
-	    "AbilitySpecial"
-	    {
-	    	"01"
-	    	{
-	    		"var_type"							"FIELD_INTEGER"
-	    		"move_speed_bonus_percentage"		"35" //"25 30 35"
-	    	}
-	    	"02"
-	    	{
-	    		"var_type"							"FIELD_INTEGER"
-	    		"attack_speed_bonus"				"90" //"60 75 90"
-	    	}
-	    	"03"
-	    	{
-	    		"var_type"							"FIELD_INTEGER"
-	    		"night_vision_radius"				"2400"
-	    	}
-	    	"04"
-	    	{
-	    		"var_type"							"FIELD_FLOAT"
-	    		"invis_delay"						"4.0"
-	    	}
-	    	"05"
-	    	{
-	    		"var_type"							"FIELD_FLOAT"
-	    		"invis_delay_after_damage"			"2.0"
-	    	}
-	    	"06"
-	    	{
-	    		"var_type"							"FIELD_FLOAT"
-	    		"invis_delay_after_moving"			"1.0"
-	    	}
-	    	"07"
-	    	{
-	    		"var_type"							"FIELD_INTEGER"
-	    		"minimum_dmg_to_break_invis"		"25" // above hound dmg, below sniper dmg
-	    	}
-	    	"08"
-	    	{
-	    		"var_type"							"FIELD_FLOAT"
-	    		"invis_regen_pct_per_sec"			"1.5" // "1.25" //"0.75 1.00 1.25"
-	    	}
-	    	"09"
-	    	{
-	    		"var_type"							"FIELD_FLOAT"
-	    		"kill_regen_duration"				"20.0"
-	    	}
-	    	"10"
-	    	{
-	    		"var_type"							"FIELD_FLOAT"
-	    		"kill_regen_pct_per_sec"			"0.5"
-	    	}
-	    }
-
-	    "Modifiers"
-	    {
-	    	"modifier_dread_hunter_kill_effect"
-	    	{
-	    		"Passive" 			"1"
+				"Passive" 			"1"
 	    		"IsHidden"			"1"
-   		
-	    		"OnCreated"
-	    		{
-	    			"RunScript"
-	    			{
-	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
-	    				"Function"		"RegisterKillEffect"
-	    			}
-	    		}
-
-	    		"OnDestroy"
-	    		{
-	    			"RunScript"
-	    			{
-		    			"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
-		    			"Function"		"UnregisterKillEffect"
-	    			}
-	    		}
-	    	}
-
-	    	"modifier_dread_hunter_kill_effect_counter"
-	    	{
-	    		"Passive"				"0"
-				"IsHidden"				"0"
-				"IsPurgable"			"0"
-				"IsDebuff"				"0"
-
-	    		"EffectName"	"particles/night_stalker_blood_rush_buff_hvh.vpcf"
-				"EffectAttachType"		"follow_origin"				
-	    	}
-
-	    	"modifier_dread_hunter_kill_regen"
-	    	{
-	    		"Passive"			"0"
-	    		"IsHidden"			"1"
-	    		"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
-	    		"Duration"			"%kill_regen_duration"
-
-	    		"OnCreated"
-	    		{
-	    			"RunScript"
-	    			{
-	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
-	    				"Function"		"IncrementKillEffectCounter"
-	    				"counterModifier" "modifier_dread_hunter_kill_effect_counter"
-	    				"duration"		"%kill_regen_duration"
-	    			}
-	    		}
-
-	    		"OnDestroy"
-	    		{
-	    			"RunScript"
-	    			{
-	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
-	    				"Function"		"DecrementKillEffectCounter"
-	    				"counterModifier" "modifier_dread_hunter_kill_effect_counter"
-	    				"duration"		"%kill_regen_duration"
-	    			}
-	    		}
-
-	    		"Properties"
-	    		{
-	    			"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%kill_regen_pct_per_sec"
-	    		}
-	    	}
-
-	    	"modifier_dread_hunter_vision_applicator"
-	    	{
-	    		"Passive" 			"1"
-	    		"IsHidden"			"1"
-
-	    		"ThinkInterval"  "0.1"
+	
+	    		"ThinkInterval"  "1.0"
 	    		"OnIntervalThink"
 	    		{
 	    			"RunScript"
 	    			{
-	    				"ScriptFile"		"spells/night_stalker_dread_hunter_in_the_night.lua"
-	    				"Function"			"VisionThinker"
-	    				"dummy_str"			"npc_dummy_reveal_unit"
+						"ScriptFile"	"spells/good_guy_dog_mans_best_friend.lua"
+						"Function"		"ManageAura"
+						"modifier"		"modifier_mans_best_friend_aura_caster"
 	    			}
 	    		}
-
-	    		"OnDeath"
-	    		{
-	    			"RunScript"
-	    			{
-	    				"ScriptFile"		"spells/night_stalker_dread_hunter_in_the_night.lua"
-	    				"Function"			"OnDeath_KillAllVisionDummies"
-	    			}
-	    		}
-	    	}
-
-	    	"modifier_dread_hunter_invis_applicator"
-	    	{
-	    		"Passive" 			"1"
-	    		"IsHidden"			"1"
-
-	    		"OnAttackLanded"
-	    		{
-	    			"RunScript"
-	    			{
-	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
-	    				"Function"		"OnAttackLanded"
-	    			  	"mod_invis"		"modifier_dread_hunter_invis"
-	    			  	"delay"			"%invis_delay"
-	    			}
-	    		}
-
-	    		"OnAbilityExecuted"
-	    		{
-	    			"RunScript"
-	    			{
-	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
-	    				"Function"		"OnAbilityExecuted"
-	    			  	"mod_invis"		"modifier_dread_hunter_invis"
-	    			  	"delay"			"%invis_delay"
-	    			}
-	    		}
-
-	    		"OnTakeDamage"
-	    		{
-	    			"RunScript"
-	    			{
-	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
-	    				"Function"		"OnTakeDamage"
-	    			  	"mod_invis"		"modifier_dread_hunter_invis"
-	    			  	"delay"			"%invis_delay_after_damage"
-	    			  	"attack_damage"	"%attack_damage"
-	    			  	"minimum_dmg_to_break_invis"	"%minimum_dmg_to_break_invis"
-	    			}
-	    		}
-
-	    		"OnUnitMoved"
-	    		{
-	    			"RunScript"
-	    			{
-	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
-	    				"Function"		"OnUnitMoved"
-	    			  	"mod_invis"		"modifier_dread_hunter_invis"
-	    			  	"delay"			"%invis_delay_after_moving"
-	    			}
-	    		}
-	    	}
-
-	    	"modifier_dread_hunter_invis"
-	    	{
-	    		"Passive"			"0"
-	    		"IsHidden"			"1" // hide this but allow modifier_invisible to do the lifting
-
+			}
+			"modifier_mans_best_friend_aura_caster"
+			{
+				"Passive"				"0"
+				"IsPurgable"			"0"
+				"IsHidden"				"1"
+				"Aura"					"modifier_mans_best_friend_aura_effect"
+				"Aura_Radius"			"%radius"
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_HERO"
+			}
+			
+			"modifier_mans_best_friend_aura_effect"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"%aura_health_regen_pct"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%aura_armor"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%aura_magic_resist"
+				}
+			}
+		}
+	}
+	"dog_sleep"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"hvh_dog_sleep"
+	
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"health_regen_pct"	"4.0"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"fade_delay"		"2.0"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"night_vision"		"-600"
+			}
+		}
+	
+		"Modifiers"
+		{
+			"modifier_sleep_fade"
+			{
+				"IsHidden"			"1"
+				"EffectName"		"particles/generic_hero_status/status_invisibility_start.vpcf"
+				"EffectAttachType"	"follow_origin"
+	
+				"OnCreated"
+				{
+					"DelayedAction"
+					{
+						"Delay"     "%fade_delay"
+						"Action"    
+						{
+							"RemoveModifier"
+							{
+								"ModifierName"	"modifier_sleep_fade"
+								"Target" 		"CASTER"
+							}
+						}
+					}
+				}
+	
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"		"CASTER"
+						"ModifierName"	"modifier_sleep"
+					}
+				}
+			}
+	
+			"modifier_sleep"
+			{
+				"IsHidden"			"0"
+				
+				"EffectName"        "particles/newplayer_fx/npx_sleeping.vpcf"
+				"EffectAttachType"  "follow_overhead"
+				"Target"            "CASTER"
+	
 	    		"OnCreated"
 	    		{
-    				"ApplyModifier"
+	    				"ApplyModifier"
 					{
 						"ModifierName" 	"modifier_invisible" // hardcoded
 						"Target"		"CASTER"
 					}
-
-					"ApplyModifier"
-					{
-						"ModifierName" 	"modifier_dread_hunter_regen"
-						"Target"		"CASTER"
-					}
 	    		}
-
+	
 				"OnDestroy"
 				{
-					// TODO: find a better effect for going invisible
-					//"AttachEffect"
-					//{
-					//	"EffectName"		"particles/generic_hero_status/status_invisibility_start.vpcf"
-					//	"EffectAttachType"	"follow_origin"
-					//	"Target"            "CASTER"
-					//}
-
 					"RemoveModifier"
 					{
 						"ModifierName"	"modifier_invisible"
 						"Target"		"CASTER"
 					}
-
-					"RemoveModifier"
+				}
+	
+				"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%health_regen_pct"
+	    			"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"		"%night_vision"
+	    		}
+			}
+		}
+	}
+	"dog_sprint"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName" 	"hvh_dog_sprint"
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		 {
+			"soundfile"   "sounds/weapons/hero/lycan/howl.vsnd"
+			"particle"	"particles/generic_gameplay/rune_haste_owner.vpcf"
+		 }
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"%duration" // "28"
+		
+		"AbilitySpecial"	
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"6.0"
+			}
+			// dog will only speed up when the target is far away
+			"03"	// accessed by ai_dog.lua pursuit routine
+			{
+				"var_type"			"FIELD_INTEGER"
+				"min_range"			"0"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"ally_radius"		"1800"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_speed"				"65" // percentage (brings 325 movespeed up to ~522)
+			}			
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"ally_bonus_speed"				"25" // constant
+			}
+	
+		}
+	
+		"OnSpellStart"
+	    {
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Center" "CASTER"
+	                "Radius" "%ally_radius"
+	                "Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY" 
+	                "Types" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				}
+	
+				"Action"
+				{
+					"ApplyModifier"
 					{
-						"ModifierName"	"modifier_dread_hunter_regen"
-						"Target"		"CASTER"
+						"ModifierName"	"modifier_dog_sprint_allies"
+						"Target"		"TARGET"
 					}
 				}
-	    	}
-
-	    	"modifier_dread_hunter_regen"
+			}
+	
+	        "ApplyModifier"
+	        {
+	            "Target" "CASTER"
+	            "ModifierName" "modifier_dog_sprint"
+	        }
+	        "FireSound"
+	        {
+	        	"EffectName" "Hero_Lycan.Howl"
+	        	"Target"	 "CASTER"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	    	"modifier_dog_sprint"
 	    	{
-	    		"Passive"			"0"
-	    		"IsHidden"			"0"
-
+	    		"IsBuff" "1"
+	    		"Duration" "%duration"
+	    		"EffectName"	"particles/generic_gameplay/rune_haste_owner.vpcf"
+		    	"EffectAttachType"	"follow_origin"
+	
 	    		"Properties"
-	    		{
-	    			"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%invis_regen_pct_per_sec"
-	    		}
-		  	}
-
-	    	"modifier_dread_hunter_speed_applicator"
-	    	{
-	    		"Passive" 			"1"
-	    		"IsHidden"			"1"
-
-	    		"ThinkInterval"  "0.25"
-	    		"OnIntervalThink"
-	    		{
-	    			"RunScript"
-	    			{
-	    				"ScriptFile"		"spells/night_stalker_dread_hunter_in_the_night.lua"
-	    				"Function"			"SpeedThinker"
-	    				"mod_speed"			"modifier_dread_hunter_speed"
-	    			}
-	    		}
+		    	{
+		    		"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_speed"
+		    	}
 	    	}
-
-	    	"modifier_dread_hunter_speed"
+	
+	    	"modifier_dog_sprint_allies"
 	    	{
-	    		"IsHidden"			"1"
-
+	    		"ApplyToCaster" "0"
+	    		"IsBuff" "1"
+	    		"Duration" "%duration"
+	    		"EffectName"	"particles/generic_gameplay/rune_haste_owner.vpcf"
+		    	"EffectAttachType"	"follow_origin"
+	
 	    		"Properties"
-	    		{
-	    			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" 	"%attack_speed_bonus"
-	    		    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" 	"%move_speed_bonus_percentage"
-	    		}
+		    	{
+		    		"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%ally_bonus_speed"
+		    	}
 	    	}
+	
 	    }
 	}
-
+	"dummy"
+	{
+		"BaseClass" 		"ability_datadriven"
+		"AbilityBehavior" 	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"	"rubick_empty1"
+		"MaxLevel"				"1"
+	
+		"Modifiers"
+		{
+			"modifier_dummy"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NO_TEAM_MOVE_TO"    "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NO_TEAM_SELECT"     "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_COMMAND_RESTRICTED" "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_ATTACK_IMMUNE"      "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_MAGIC_IMMUNE"       "MODIFIER_STATE_VALUE_ENABLED"            
+	                "MODIFIER_STATE_UNSELECTABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED" 
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVISIBLE"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_TRUESIGHT_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_OUT_OF_GAME"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	//-------------------
+	// Dummy stuff
+	//-------------------
+	
+	"dummy_chest_vision"
+	{
+		"BaseClass"       "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"	"rubick_empty1"
+		"MaxLevel"				"1"
+		
+		"Modifiers"
+		{
+			"hide_dummy_modifier"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NO_TEAM_MOVE_TO"    "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NO_TEAM_SELECT"     "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_COMMAND_RESTRICTED" "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_ATTACK_IMMUNE"      "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_MAGIC_IMMUNE"       "MODIFIER_STATE_VALUE_ENABLED"            
+	                "MODIFIER_STATE_UNSELECTABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVISIBLE"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_TRUESIGHT_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	"dummy_reveal_unit_vision"
+	{
+		"BaseClass" 		"ability_datadriven"
+		"AbilityBehavior" 	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"	"rubick_empty1"
+		"MaxLevel"				"1"
+	
+		"Modifiers"
+		{
+			"modifier_reveal_unit_vision"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NO_TEAM_MOVE_TO"    "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NO_TEAM_SELECT"     "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_COMMAND_RESTRICTED" "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_ATTACK_IMMUNE"      "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_MAGIC_IMMUNE"       "MODIFIER_STATE_VALUE_ENABLED"            
+	                "MODIFIER_STATE_UNSELECTABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED" 
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVISIBLE"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_TRUESIGHT_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_OUT_OF_GAME"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	"dummy_toss"
+	{
+		"BaseClass" 		"ability_datadriven"
+		"AbilityBehavior" 	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"	"rubick_empty1"
+		"MaxLevel"				"1"
+	
+		"Modifiers"
+		{
+			"modifier_dummy"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+	                //"MODIFIER_STATE_NO_TEAM_MOVE_TO"    "MODIFIER_STATE_VALUE_ENABLED"
+	                //"MODIFIER_STATE_NO_TEAM_SELECT"     "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_COMMAND_RESTRICTED" "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_ATTACK_IMMUNE"      "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_MAGIC_IMMUNE"       "MODIFIER_STATE_VALUE_ENABLED"            
+	                //"MODIFIER_STATE_UNSELECTABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED" 
+					//"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVISIBLE"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_TRUESIGHT_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES"		"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_OUT_OF_GAME"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+	"general_ability_invulnerable"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			""
+	
+		"OnOwnerSpawned"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_invulnerable"
+				"Target" 		"CASTER"
+			}
+		}
+	}
+	// Crippling Hysteria (+AOE)
+	"night_stalker_crippling_fear_aoe_hvh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"		"hvh_hysteria"
+		"MaxLevel"              	"3"
+		
+		// Unit Targeting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AOERadius"						"%radius"
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"12"
+		"AbilityManaCost"				"0" //"90 90 90 90"
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts"
+			"particle"			"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
+			"particle"			"particles/units/heroes/hero_night_stalker/nightstalker_ulti_smoke.vpcf"
+		}
+			
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration_day"			"4.0" // "3.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration_night"		"8.0" //"6.0 7.0 8.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"miss_rate_day"			"25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"miss_rate_night"		"80"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration_dog"			"4.0" // "8.0" //"3.0 4.0 5.0"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"250"
+			}
+		}
+	
+		"OnSpellStart"
+		{
+			"CreateThinker"
+			{
+				"ModifierName"	"modifier_crippling_fear_thinker"
+				"Target" 		"POINT"
+			}
+	
+			"FireEffect"
+			{
+				"EffectName"        "particles/units/heroes/hero_night_stalker/nightstalker_ulti_smoke.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"TargetPoint"       "POINT"
+			}
+	
+			"RunScript"
+			{
+				"ScriptFile"	"spells/night_stalker_crippling_fear.lua"
+				"Function"		"CripplingFearAOE"
+				"modifier_day"		"modifier_crippling_fear_day_aoe_datadriven"
+				"modifier_night"	"modifier_crippling_fear_night_aoe_datadriven"
+				"modifier_dog"		"modifier_crippling_fear_dog_aoe_datadriven"
+				"Target"			"POINT"
+			}
+		}
+	
+		"Modifiers"
+		{
+			"modifier_crippling_fear_thinker"
+			{
+				"IsHidden"			"1"
+				"Duration"			"1"
+	
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_Nightstalker.Trickling_Fear"
+						"Target"		"TARGET"
+					}
+	
+					"FireEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"        "particles/units/heroes/hero_night_stalker/nightstalker_ulti_smoke.vpcf"
+						"EffectAttachType"  "follow_origin"
+					}	
+				}			
+			}
+	
+			"modifier_crippling_fear_day_aoe_datadriven"
+			{
+				"Duration"	"%duration_day"
+				"IsDebuff"		"1"
+				"IsPurgable"	"1"
+					
+				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
+				"EffectAttachType"	"follow_overhead"
+	
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MISS_PERCENTAGE"		"%miss_rate_day"
+				}
+	
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED" // hvh
+					"MODIFIER_STATE_BLIND"		"MODIFIER_STATE_VALUE_ENABLED" // hvh experimental
+				}
+			}
+	
+			"modifier_crippling_fear_night_aoe_datadriven"
+			{
+				"Duration"	"%duration_night"
+				"IsDebuff"		"1"
+				"IsPurgable"	"1"
+	
+				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
+				"EffectAttachType"	"follow_overhead"
+	
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MISS_PERCENTAGE"		"%miss_rate_night"
+				}
+	
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED" // hvh
+					"MODIFIER_STATE_BLIND"		"MODIFIER_STATE_VALUE_ENABLED" // hvh experimental
+				}
+			}
+	
+			"modifier_crippling_fear_dog_aoe_datadriven"
+			{
+				"Duration"	"%duration_dog"
+				"IsDebuff"		"1"
+				"IsPurgable"	"1"
+	
+				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
+				"EffectAttachType"	"follow_overhead"
+	
+				// engages in ai_dog.lua behavior when affected by this modifier
+			}			
+		}
+	}
 	// Crippling Horror (as Crippling Fear +Mute, +Blindness)
 	"night_stalker_crippling_fear_hvh"
 	{
@@ -749,7 +710,7 @@
 	
 				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
 				"EffectAttachType"	"follow_overhead"
-
+	
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MISS_PERCENTAGE"		"%miss_rate_day"
@@ -784,7 +745,7 @@
 					"MODIFIER_STATE_BLIND"		"MODIFIER_STATE_VALUE_ENABLED" // hvh experimental
 				}
 			}
-
+	
 			"modifier_crippling_fear_dog_datadriven"
 			{
 				"Duration"	"%duration_dog"
@@ -793,189 +754,11 @@
 	
 				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
 				"EffectAttachType"	"follow_overhead"
-
-				// engages in ai_dog.lua behavior when affected by this modifier
-			}			
-		}
-	}
-
-	// Crippling Hysteria (+AOE)
-	"night_stalker_crippling_fear_aoe_hvh"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"					"ability_datadriven"
-		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"		"hvh_hysteria"
-		"MaxLevel"              	"3"
-		
-		// Unit Targeting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AOERadius"						"%radius"
-		"AbilityCastRange"				"500"
-		"AbilityCastPoint"				"0.3"
-		"AbilityCooldown"				"12"
-		"AbilityManaCost"				"0" //"90 90 90 90"
-	
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts"
-			"particle"			"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
-			"particle"			"particles/units/heroes/hero_night_stalker/nightstalker_ulti_smoke.vpcf"
-		}
-			
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration_day"			"4.0" // "3.0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration_night"		"8.0" //"6.0 7.0 8.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"miss_rate_day"			"25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"miss_rate_night"		"80"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration_dog"			"4.0" // "8.0" //"3.0 4.0 5.0"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"250"
-			}
-		}
-	
-		"OnSpellStart"
-		{
-			"CreateThinker"
-			{
-				"ModifierName"	"modifier_crippling_fear_thinker"
-				"Target" 		"POINT"
-			}
-
-			"FireEffect"
-			{
-				"EffectName"        "particles/units/heroes/hero_night_stalker/nightstalker_ulti_smoke.vpcf"
-				"EffectAttachType"  "follow_origin"
-				"TargetPoint"       "POINT"
-			}
-	
-			"RunScript"
-			{
-				"ScriptFile"	"spells/night_stalker_crippling_fear.lua"
-				"Function"		"CripplingFearAOE"
-				"modifier_day"		"modifier_crippling_fear_day_aoe_datadriven"
-				"modifier_night"	"modifier_crippling_fear_night_aoe_datadriven"
-				"modifier_dog"		"modifier_crippling_fear_dog_aoe_datadriven"
-				"Target"			"POINT"
-			}
-		}
-	
-		"Modifiers"
-		{
-			"modifier_crippling_fear_thinker"
-			{
-				"IsHidden"			"1"
-				"Duration"			"1"
-
-				"OnCreated"
-				{
-					"FireSound"
-					{
-						"EffectName"	"Hero_Nightstalker.Trickling_Fear"
-						"Target"		"TARGET"
-					}
-
-					"FireEffect"
-					{
-						"Target"			"TARGET"
-						"EffectName"        "particles/units/heroes/hero_night_stalker/nightstalker_ulti_smoke.vpcf"
-						"EffectAttachType"  "follow_origin"
-					}	
-				}			
-			}
-
-			"modifier_crippling_fear_day_aoe_datadriven"
-			{
-				"Duration"	"%duration_day"
-				"IsDebuff"		"1"
-				"IsPurgable"	"1"
-					
-				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
-				"EffectAttachType"	"follow_overhead"
-	
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MISS_PERCENTAGE"		"%miss_rate_day"
-				}
-	
-				"States"
-				{
-					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED" // hvh
-					"MODIFIER_STATE_BLIND"		"MODIFIER_STATE_VALUE_ENABLED" // hvh experimental
-				}
-			}
-	
-			"modifier_crippling_fear_night_aoe_datadriven"
-			{
-				"Duration"	"%duration_night"
-				"IsDebuff"		"1"
-				"IsPurgable"	"1"
-	
-				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
-				"EffectAttachType"	"follow_overhead"
-	
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MISS_PERCENTAGE"		"%miss_rate_night"
-				}
-	
-				"States"
-				{
-					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED" // hvh
-					"MODIFIER_STATE_BLIND"		"MODIFIER_STATE_VALUE_ENABLED" // hvh experimental
-				}
-			}
-
-			"modifier_crippling_fear_dog_aoe_datadriven"
-			{
-				"Duration"	"%duration_dog"
-				"IsDebuff"		"1"
-				"IsPurgable"	"1"
-	
-				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
-				"EffectAttachType"	"follow_overhead"
 	
 				// engages in ai_dog.lua behavior when affected by this modifier
 			}			
 		}
 	}
-
 	"night_stalker_echolocation_hvh"
 	{
 		// General
@@ -988,7 +771,7 @@
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"hvh_echolocation"
 	    "MaxLevel"               "1"
-
+	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -1128,7 +911,7 @@
 					}
 				}
 			}
-
+	
 			// scream creates projectiles to make the cone effect
 			"LinearProjectile"
 			{
@@ -1146,7 +929,7 @@
 			    "ProvidesVision" "1" // he can see sound!!
 			    "VisionRadius"	"300"
 			}
-
+	
 		
 		}
 	
@@ -1172,7 +955,315 @@
 			}
 		}
 	}
-
+	"night_stalker_hunter_in_the_night_hvh"
+	{
+		// General  
+	    // ----------------------------------------------------------------------------------------
+	    "BaseClass"              "ability_datadriven"
+	    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"     "night_stalker_hunter_in_the_night"
+	
+	    //"AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
+	    "MaxLevel"               "1"
+	
+		"precache"
+		{
+			"particle"		"particles/night_stalker_blood_rush_hvh.vpcf"
+			"particle"		"particles/night_stalker_blood_rush_vacuum_hvh.vpcf"
+			"particle"		"particles/night_stalker_blood_rush_buff_hvh.vpcf"
+			//"particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
+			//"particle"	"particles/units/heroes/hero_night_stalker/nightstalker_night_buff.vpcf"
+			//"particle"	"particles/units/heroes/hero_night_stalker/nightstalker_change.vpcf"			
+	 		}
+	
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"							"FIELD_INTEGER"
+	    		"move_speed_bonus_percentage"		"35" //"25 30 35"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"							"FIELD_INTEGER"
+	    		"attack_speed_bonus"				"90" //"60 75 90"
+	    	}
+	    	"03"
+	    	{
+	    		"var_type"							"FIELD_INTEGER"
+	    		"night_vision_radius"				"2400"
+	    	}
+	    	"04"
+	    	{
+	    		"var_type"							"FIELD_FLOAT"
+	    		"invis_delay"						"4.0"
+	    	}
+	    	"05"
+	    	{
+	    		"var_type"							"FIELD_FLOAT"
+	    		"invis_delay_after_damage"			"2.0"
+	    	}
+	    	"06"
+	    	{
+	    		"var_type"							"FIELD_FLOAT"
+	    		"invis_delay_after_moving"			"1.0"
+	    	}
+	    	"07"
+	    	{
+	    		"var_type"							"FIELD_INTEGER"
+	    		"minimum_dmg_to_break_invis"		"25" // above hound dmg, below sniper dmg
+	    	}
+	    	"08"
+	    	{
+	    		"var_type"							"FIELD_FLOAT"
+	    		"invis_regen_pct_per_sec"			"1.5" // "1.25" //"0.75 1.00 1.25"
+	    	}
+	    	"09"
+	    	{
+	    		"var_type"							"FIELD_FLOAT"
+	    		"kill_regen_duration"				"20.0"
+	    	}
+	    	"10"
+	    	{
+	    		"var_type"							"FIELD_FLOAT"
+	    		"kill_regen_pct_per_sec"			"0.5"
+	    	}
+	    }
+	
+	    "Modifiers"
+	    {
+	    	"modifier_dread_hunter_kill_effect"
+	    	{
+	    		"Passive" 			"1"
+	    		"IsHidden"			"1"
+	   		
+	    		"OnCreated"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"		"RegisterKillEffect"
+	    			}
+	    		}
+	
+	    		"OnDestroy"
+	    		{
+	    			"RunScript"
+	    			{
+		    			"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
+		    			"Function"		"UnregisterKillEffect"
+	    			}
+	    		}
+	    	}
+	
+	    	"modifier_dread_hunter_kill_effect_counter"
+	    	{
+	    		"Passive"				"0"
+				"IsHidden"				"0"
+				"IsPurgable"			"0"
+				"IsDebuff"				"0"
+	
+	    		"EffectName"	"particles/night_stalker_blood_rush_buff_hvh.vpcf"
+				"EffectAttachType"		"follow_origin"				
+	    	}
+	
+	    	"modifier_dread_hunter_kill_regen"
+	    	{
+	    		"Passive"			"0"
+	    		"IsHidden"			"1"
+	    		"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+	    		"Duration"			"%kill_regen_duration"
+	
+	    		"OnCreated"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"		"IncrementKillEffectCounter"
+	    				"counterModifier" "modifier_dread_hunter_kill_effect_counter"
+	    				"duration"		"%kill_regen_duration"
+	    			}
+	    		}
+	
+	    		"OnDestroy"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"		"DecrementKillEffectCounter"
+	    				"counterModifier" "modifier_dread_hunter_kill_effect_counter"
+	    				"duration"		"%kill_regen_duration"
+	    			}
+	    		}
+	
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%kill_regen_pct_per_sec"
+	    		}
+	    	}
+	
+	    	"modifier_dread_hunter_vision_applicator"
+	    	{
+	    		"Passive" 			"1"
+	    		"IsHidden"			"1"
+	
+	    		"ThinkInterval"  "0.1"
+	    		"OnIntervalThink"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"		"spells/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"			"VisionThinker"
+	    				"dummy_str"			"npc_dummy_reveal_unit"
+	    			}
+	    		}
+	
+	    		"OnDeath"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"		"spells/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"			"OnDeath_KillAllVisionDummies"
+	    			}
+	    		}
+	    	}
+	
+	    	"modifier_dread_hunter_invis_applicator"
+	    	{
+	    		"Passive" 			"1"
+	    		"IsHidden"			"1"
+	
+	    		"OnAttackLanded"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"		"OnAttackLanded"
+	    			  	"mod_invis"		"modifier_dread_hunter_invis"
+	    			  	"delay"			"%invis_delay"
+	    			}
+	    		}
+	
+	    		"OnAbilityExecuted"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"		"OnAbilityExecuted"
+	    			  	"mod_invis"		"modifier_dread_hunter_invis"
+	    			  	"delay"			"%invis_delay"
+	    			}
+	    		}
+	
+	    		"OnTakeDamage"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"		"OnTakeDamage"
+	    			  	"mod_invis"		"modifier_dread_hunter_invis"
+	    			  	"delay"			"%invis_delay_after_damage"
+	    			  	"attack_damage"	"%attack_damage"
+	    			  	"minimum_dmg_to_break_invis"	"%minimum_dmg_to_break_invis"
+	    			}
+	    		}
+	
+	    		"OnUnitMoved"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"		"OnUnitMoved"
+	    			  	"mod_invis"		"modifier_dread_hunter_invis"
+	    			  	"delay"			"%invis_delay_after_moving"
+	    			}
+	    		}
+	    	}
+	
+	    	"modifier_dread_hunter_invis"
+	    	{
+	    		"Passive"			"0"
+	    		"IsHidden"			"1" // hide this but allow modifier_invisible to do the lifting
+	
+	    		"OnCreated"
+	    		{
+	    				"ApplyModifier"
+					{
+						"ModifierName" 	"modifier_invisible" // hardcoded
+						"Target"		"CASTER"
+					}
+	
+					"ApplyModifier"
+					{
+						"ModifierName" 	"modifier_dread_hunter_regen"
+						"Target"		"CASTER"
+					}
+	    		}
+	
+				"OnDestroy"
+				{
+					// TODO: find a better effect for going invisible
+					//"AttachEffect"
+					//{
+					//	"EffectName"		"particles/generic_hero_status/status_invisibility_start.vpcf"
+					//	"EffectAttachType"	"follow_origin"
+					//	"Target"            "CASTER"
+					//}
+	
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_invisible"
+						"Target"		"CASTER"
+					}
+	
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_dread_hunter_regen"
+						"Target"		"CASTER"
+					}
+				}
+	    	}
+	
+	    	"modifier_dread_hunter_regen"
+	    	{
+	    		"Passive"			"0"
+	    		"IsHidden"			"0"
+	
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%invis_regen_pct_per_sec"
+	    		}
+		  	}
+	
+	    	"modifier_dread_hunter_speed_applicator"
+	    	{
+	    		"Passive" 			"1"
+	    		"IsHidden"			"1"
+	
+	    		"ThinkInterval"  "0.25"
+	    		"OnIntervalThink"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile"		"spells/night_stalker_dread_hunter_in_the_night.lua"
+	    				"Function"			"SpeedThinker"
+	    				"mod_speed"			"modifier_dread_hunter_speed"
+	    			}
+	    		}
+	    	}
+	
+	    	"modifier_dread_hunter_speed"
+	    	{
+	    		"IsHidden"			"1"
+	
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" 	"%attack_speed_bonus"
+	    		    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" 	"%move_speed_bonus_percentage"
+	    		}
+	    	}
+	    }
+	}
 	"night_stalker_leap_hvh"
 	{
 		// General
@@ -1181,7 +1272,7 @@
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName"	"hvh_leap"
 		"MaxLevel"				"1"
-
+	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -1194,16 +1285,16 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"0"
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-
+	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"9.0" //"8.0"
 		"AbilityDuration"				"0.0"
-
+	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"0"
-
+	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -1229,7 +1320,7 @@
 				"damage_reduction"		"-100"
 			}
 		}
-
+	
 		"OnSpellStart"
 		{
 			"FireSound"
@@ -1245,7 +1336,7 @@
 				"modifier_leap_immunity"	"modifier_leap_immunity"
 			}
 		}
-
+	
 		"Modifiers"
 		{
 			"modifier_leap_immunity"
@@ -1260,7 +1351,6 @@
 			}			
 		}
 	}
-
 	// does not work well
 	"night_stalker_shadowstalker_hvh"
 	{
@@ -1268,28 +1358,28 @@
 	    "AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName"	"terrorblade_conjure_image_alt1"
-
+	
 		"AbilityCastRange"		"700"
 		"AbilityCooldown"		"16.0"
 		"AbilityManaCost"		"0"
-
+	
 	    "MaxLevel"              "1"
 		//"RequiredLevel"         "0"
 		//"LevelsBetweenUpgrades" "3"
-
+	
 	    "AbilityCastPoint"       "0.0"
 	    "AbilityCastAnimation"   "ACT_DOTA_ATTACK"
 	    "AnimationPlaybackRate"  "1"
 	    "AnimationIgnoresModelScale" "1"
-
+	
 	    "AbilityDuration"         "0.0 0.0 0.0 "
-
+	
 	   	"precache"
 		{
 			"particle"		"particles/generic_hero_status/status_invisibility_start.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
 		}
-
+	
 	    "AbilitySpecial"
 	    {
 			"01"
@@ -1318,7 +1408,7 @@
 				"illusion_incoming_damage_total_tooltip"			"425.0"
 			}	
 	    }
-
+	
 		"OnSpellStart"
 		{
 			"FireSound"
@@ -1334,456 +1424,349 @@
 			}
 		}
 	}
-
-	"general_ability_invulnerable"
+	"sniper_feed_dog"
 	{
-		"BaseClass"             		"ability_datadriven"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			""
-
-		"OnOwnerSpawned"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_invulnerable"
-				"Target" 		"CASTER"
-			}
-		}
-	}
-
-	"dog_sleep"
-	{
-		"BaseClass"             		"ability_datadriven"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"hvh_dog_sleep"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"health_regen_pct"	"4.0"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"fade_delay"		"2.0"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"night_vision"		"-600"
-			}
-		}
-
-		"Modifiers"
-		{
-			"modifier_sleep_fade"
-			{
-				"IsHidden"			"1"
-				"EffectName"		"particles/generic_hero_status/status_invisibility_start.vpcf"
-				"EffectAttachType"	"follow_origin"
-
-				"OnCreated"
-				{
-					"DelayedAction"
-					{
-						"Delay"     "%fade_delay"
-						"Action"    
-						{
-							"RemoveModifier"
-							{
-								"ModifierName"	"modifier_sleep_fade"
-								"Target" 		"CASTER"
-							}
-						}
-					}
-				}
-
-				"OnDestroy"
-				{
-					"ApplyModifier"
-					{
-						"Target"		"CASTER"
-						"ModifierName"	"modifier_sleep"
-					}
-				}
-			}
-
-			"modifier_sleep"
-			{
-				"IsHidden"			"0"
-				
-				"EffectName"        "particles/newplayer_fx/npx_sleeping.vpcf"
-				"EffectAttachType"  "follow_overhead"
-				"Target"            "CASTER"
-
-	    		"OnCreated"
-	    		{
-    				"ApplyModifier"
-					{
-						"ModifierName" 	"modifier_invisible" // hardcoded
-						"Target"		"CASTER"
-					}
-	    		}
-
-				"OnDestroy"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_invisible"
-						"Target"		"CASTER"
-					}
-				}
-
-				"Properties"
-	    		{
-	    			"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%health_regen_pct"
-	    			"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"		"%night_vision"
-	    		}
-			}
-		}
-	}
-
-	"dog_mans_best_friend"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityTextureName"			"hvh_mans_best_friend" // TODO
-		"MaxLevel"               "1"
-
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"			"hvh_feed_dog"
+	    "MaxLevel"               "1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"900"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"45" // duplicate of loyalty_duration
+		"AbilityManaCost"				"0"
+	
+		"Precache"
+		{
+			//"particle"			"particles/units/heroes/hero_warlock/warlock_shadow_word_buff.vpcf"
+			"particle"			"particles/sniper_feed_dog_buff.vpcf"
+			"particle"			"particles/good_guy_dog_treat.vpcf"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_chaos_knight.vsndevts"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts"
+		}
+	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_health_regen_pct"	"1.5"
+				"var_type"			"FIELD_INTEGER"
+				"treat_fly_speed"	"750"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"aura_magic_resist"		"15"
+				"treat_width"		"50"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"aura_armor"		"10"
+				"feed_duration"		"4"
 			}
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"radius"			"1800"
-			}
-		}
-		
-		"Modifiers"
-		{
-			"modifier_mans_best_friend_applicator"
-			{
-				"Passive" 			"1"
-	    		"IsHidden"			"1"
-
-	    		"ThinkInterval"  "1.0"
-	    		"OnIntervalThink"
-	    		{
-	    			"RunScript"
-	    			{
-						"ScriptFile"	"spells/good_guy_dog_mans_best_friend.lua"
-						"Function"		"ManageAura"
-						"modifier"		"modifier_mans_best_friend_aura_caster"
-	    			}
-	    		}
-			}
-			"modifier_mans_best_friend_aura_caster"
-			{
-				"Passive"				"0"
-				"IsPurgable"			"0"
-				"IsHidden"				"1"
-				"Aura"					"modifier_mans_best_friend_aura_effect"
-				"Aura_Radius"			"%radius"
-				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"			"DOTA_UNIT_TARGET_HERO"
-			}
-			
-			"modifier_mans_best_friend_aura_effect"
-			{
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"%aura_health_regen_pct"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%aura_armor"
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%aura_magic_resist"
-				}
-			}
-		}
-	}
-
-	"dog_sprint"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_datadriven"
-		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityTextureName" 	"hvh_dog_sprint"
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		 {
-			"soundfile"   "sounds/weapons/hero/lycan/howl.vsnd"
-			"particle"	"particles/generic_gameplay/rune_haste_owner.vpcf"
-		 }
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"%duration" // "28"
-		
-		"AbilitySpecial"	
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"0"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"6.0"
-			}
-			// dog will only speed up when the target is far away
-			"03"	// accessed by ai_dog.lua pursuit routine
-			{
-				"var_type"			"FIELD_INTEGER"
-				"min_range"			"0"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"ally_radius"		"1800"
+				"heal_amount"		"150"
 			}
 			"05"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_speed"				"65" // percentage (brings 325 movespeed up to ~522)
-			}			
+				"var_type"			"FIELD_INTEGER"
+				"loyalty_duration"	"45" //"60" // "45" //"90 75 60 45"
+			}
+		}
+	
+		"OnSpellStart"
+		{
+			"TrackingProjectile"
+			{
+				"Target" 		"TARGET"
+			    "EffectName"  	"particles/good_guy_dog_treat.vpcf"
+			    "MoveSpeed"   	"%treat_fly_speed"
+			    "StartPosition" "attach_origin"
+			}
+	
+			"FireSound"
+			{
+				"EffectName"	"Hero_ChaosKnight.idle_throw"
+				"Target" 		"CASTER"
+			}
+		}
+	
+		"OnProjectileHitUnit"
+		{
+			"RunScript"
+			{
+				"Target"		"TARGET"
+				"ScriptFile"	"scripts/vscripts/spells/sniper_feed_dog.lua"
+				"Function"		"Feed"
+				"feedDuration"	"%feed_duration"
+				"loyaltyDuration" "%loyalty_duration"
+			}
+	
+			"Heal"
+			{
+				"Target"	"TARGET"
+				"HealAmount" "%heal_amount"
+			}
+	
+			"FireSound"
+			{
+				"EffectName"	"Lycan_Wolf.Attack"
+				"Target" 		"TARGET"
+			}
+		}
+	
+		"Modifiers"
+		{
+			"modifier_feed_dog_loyalty"
+			{
+				"Passive"				"0"
+				"IsHidden"				"0"
+	
+				"EffectName"	"particles/sniper_feed_dog_buff.vpcf"
+				"EffectAttachType"		"follow_origin"
+			}
+		}
+	}
+	"sniper_shrapnel_hvh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"sniper_shrapnel"
+		"AOERadius"						"%radius"
+		"AbilityProcsMagicStick" "1"	
+	    "MaxLevel"               "3"
+	    "RequiredLevel"          "1"
+	    "LevelsBetweenUpgrades"  "0"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1800"
+		"AbilityCastPoint"				"0.3"
+	
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"0" // "12 24 36 48"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		"AbilityCooldown"				"30.0" //"20.0"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_movement_speed"	"-25" // "-20 -30 -35 -40"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"450"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"10.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"1.2" //6.85 1.4 to 1.2 //"1.4" //"0.6" //"1.4" // 6.84
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"slow_duration"			"1.0" //"0.5" // 2.0
+			}
+			// Extra variables
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"ally_bonus_speed"				"25" // constant
+				"var_type"				"FIELD_FLOAT"
+				"tick_interval"			"0.25"
 			}
-
-		}
-
-		"OnSpellStart"
-	    {
-			"ActOnTargets"
+			"07"
 			{
-				"Target"
-				{
-					"Center" "CASTER"
-	                "Radius" "%ally_radius"
-	                "Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY" 
-	                "Types" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-				}
-	
-				"Action"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_dog_sprint_allies"
-						"Target"		"TARGET"
-					}
-				}
+				"var_type"				"FIELD_INTEGER"
+				"maximum_charges"		"1 2 3"
 			}
-
-	        "ApplyModifier"
-	        {
-	            "Target" "CASTER"
-	            "ModifierName" "modifier_dog_sprint"
-	        }
-	        "FireSound"
-	        {
-	        	"EffectName" "Hero_Lycan.Howl"
-	        	"Target"	 "CASTER"
-	        }
-	    }
-
-	    "Modifiers"
-	    {
-	    	"modifier_dog_sprint"
-	    	{
-	    		"IsBuff" "1"
-	    		"Duration" "%duration"
-	    		"EffectName"	"particles/generic_gameplay/rune_haste_owner.vpcf"
-		    	"EffectAttachType"	"follow_origin"
-
-	    		"Properties"
-		    	{
-		    		"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_speed"
-		    	}
-	    	}
-
-	    	"modifier_dog_sprint_allies"
-	    	{
-	    		"ApplyToCaster" "0"
-	    		"IsBuff" "1"
-	    		"Duration" "%duration"
-	    		"EffectName"	"particles/generic_gameplay/rune_haste_owner.vpcf"
-		    	"EffectAttachType"	"follow_origin"
-
-	    		"Properties"
-		    	{
-		    		"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%ally_bonus_speed"
-		    	}
-	    	}
-
-	    }
-	}
-
-	//-------------------
-	// Dummy stuff
-	//-------------------
-
-	"dummy_chest_vision"
-	{
-		"BaseClass"       "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"	"rubick_empty1"
-		"MaxLevel"				"1"
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"charge_replenish_time"	"30.0" // "45.0"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+			"particle"					"particles/sniper_shrapnel_hvh.vpcf"
+			"particle"					"particles/sniper_shrapnel_trail_hvh.vpcf"
+			"particle"					"particles/units/heroes/hero_sniper/sniper_shrapnel_launch.vpcf"
+			//"particle"				"particles/econ/items/sniper/sniper_charlie/sniper_shrapnel_charlie.vpcf"
+		}
+		
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"spells/sniper_shrapnel.lua"
+				"Function"				"shrapnel_on_upgrade"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"spells/sniper_shrapnel.lua"
+				"Function"				"shrapnel_fire"
+				"Target"				"POINT"
+			}
+		}
 		
 		"Modifiers"
 		{
-			"hide_dummy_modifier"
+			"modifier_shrapnel_stack_counter_datadriven"
 			{
-				"Passive"	"1"
-				"IsHidden"	"1"
+				"Passive"				"1"
+				"IsHidden"				"0"
+				"IsPurgable"			"0"
+				"IsDebuff"				"0"
+			}
+			
+			"modifier_shrapnel_dummy_datadriven"
+			{
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"particles/sniper_shrapnel_hvh.vpcf"
+						"EffectAttachType"		"follow_origin"
+						"EffectRadius"			"%radius"
+					}
+				
+					// HVH shrapnel destroys trees
+					"DestroyTrees"
+					{
+						"Target" 		"TARGET"
+						"Radius"		"%radius"
+					}
+	
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"	"TARGET"
+							"Radius"	"%radius"
+							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+							"Flags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+						}
+						
+						"Action"
+						{
+							"ApplyModifier"
+							{
+								"Target"		"TARGET"
+								"ModifierName"	"modifier_shrapnel_slow_datadriven"
+							}
+						}
+					}
+				}
+				
+				"ThinkInterval"			"%tick_interval"
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"	"TARGET"
+							"Radius"	"%radius"
+							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+							"Flags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+						}
+						
+						"Action"
+						{
+							"ApplyModifier"
+							{
+								"Target"		"TARGET"
+								"ModifierName"	"modifier_shrapnel_slow_datadriven"
+							}
+						}
+					}
+				}
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BONUS_DAY_VISION"			"%radius"
+					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"			"%radius"
+				}
+				
 				"States"
 				{
-					"MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_NO_TEAM_MOVE_TO"    "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_NO_TEAM_SELECT"     "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_COMMAND_RESTRICTED" "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_ATTACK_IMMUNE"      "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_MAGIC_IMMUNE"       "MODIFIER_STATE_VALUE_ENABLED"            
-	                "MODIFIER_STATE_UNSELECTABLE"       "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_INVISIBLE"			"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_TRUESIGHT_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"					"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"					"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"					"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"					"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FLYING"							"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		
+			"modifier_shrapnel_slow_datadriven"
+			{
+				"IsHidden"				"0"
+				"IsPurgable"			"0"
+				"IsDebuff"				"1"
+				"Duration"				"%slow_duration"
+				"Priority"				"MODIFIER_PRIORITY_ULTRA" // http://dev.dota2.com/showthread.php?t=172622
+	
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/sniper_shrapnel_trail_hvh.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
+	
+						"ControlPointEntities"
+						{
+							"TARGET"	"attach_origin"
+							"TARGET"	"attach_hitloc"
+						}
+					}
+				}
+	
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%slow_movement_speed"
+				}
+				// HVH shrapnel disables invisibility
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE"		"MODIFIER_STATE_VALUE_DISABLED"
 				}
 			}
 		}
 	}
-
-	"dummy_reveal_unit_vision"
-	{
-		"BaseClass" 		"ability_datadriven"
-		"AbilityBehavior" 	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"	"rubick_empty1"
-		"MaxLevel"				"1"
-
-		"Modifiers"
-		{
-			"modifier_reveal_unit_vision"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"States"
-				{
-					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_NO_TEAM_MOVE_TO"    "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_NO_TEAM_SELECT"     "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_COMMAND_RESTRICTED" "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_ATTACK_IMMUNE"      "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_MAGIC_IMMUNE"       "MODIFIER_STATE_VALUE_ENABLED"            
-	                "MODIFIER_STATE_UNSELECTABLE"       "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED" 
-					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_INVISIBLE"			"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_TRUESIGHT_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-					//"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES"		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_OUT_OF_GAME"		"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
-
-	"dummy"
-	{
-		"BaseClass" 		"ability_datadriven"
-		"AbilityBehavior" 	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"	"rubick_empty1"
-		"MaxLevel"				"1"
-
-		"Modifiers"
-		{
-			"modifier_dummy"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"States"
-				{
-					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_NO_TEAM_MOVE_TO"    "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_NO_TEAM_SELECT"     "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_COMMAND_RESTRICTED" "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_ATTACK_IMMUNE"      "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_MAGIC_IMMUNE"       "MODIFIER_STATE_VALUE_ENABLED"            
-	                "MODIFIER_STATE_UNSELECTABLE"       "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED" 
-					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_INVISIBLE"			"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_TRUESIGHT_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES"		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_OUT_OF_GAME"		"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
-
-	"dummy_toss"
-	{
-		"BaseClass" 		"ability_datadriven"
-		"AbilityBehavior" 	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"	"rubick_empty1"
-		"MaxLevel"				"1"
-
-		"Modifiers"
-		{
-			"modifier_dummy"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"States"
-				{
-					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
-	                //"MODIFIER_STATE_NO_TEAM_MOVE_TO"    "MODIFIER_STATE_VALUE_ENABLED"
-	                //"MODIFIER_STATE_NO_TEAM_SELECT"     "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_COMMAND_RESTRICTED" "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_ATTACK_IMMUNE"      "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_MAGIC_IMMUNE"       "MODIFIER_STATE_VALUE_ENABLED"            
-	                //"MODIFIER_STATE_UNSELECTABLE"       "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED" 
-					//"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_INVISIBLE"			"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_TRUESIGHT_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES"		"MODIFIER_STATE_VALUE_ENABLED"
-					//"MODIFIER_STATE_OUT_OF_GAME"		"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
-
-}	
+}

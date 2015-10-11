@@ -1,0 +1,40 @@
+"item_chilling_touch"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"artifact"
+	"ID"	"1034"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_chilling_touch" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AoERadius"				"525"
+	"AbilityCastPoint"		"0.01"
+	"AbilityCastRange"		"800"
+	"AbilityCooldown"		"40"
+	"precache"
+	{
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_ancient_apparition.vsndevts"
+		"particle"			"particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch.vpcf"
+		"particle"			"particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch_buff.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"ancient_apparition_chilling_touch"
+			"maxDuration"			"30.0"
+		}
+	}
+}

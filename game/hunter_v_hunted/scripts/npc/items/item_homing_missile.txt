@@ -1,0 +1,46 @@
+"item_homing_missile"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"artifact"
+	"ID"	"1025"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_homing_missile" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityCastPoint"		"0.3"
+	"AbilityCastRange"		"1050"		
+	"AbilityCooldown"		"60"
+	"precache"
+	{
+		"soundfile"		"soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
+		"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile.vpcf"
+		"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_death.vpcf"
+		"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+		"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_target.vpcf"
+		"particle"		"particles/units/heroes/hero_gyrocopter/gyro_homing_missile_fuse.vpcf"
+		"model"			"models/heroes/gyro/gyro_missile.vmdl"
+
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"gyrocopter_homing_missile"
+			"maxDuration"			"60.0" // TODO
+		}
+	}
+}

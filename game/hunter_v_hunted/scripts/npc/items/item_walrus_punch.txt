@@ -1,0 +1,46 @@
+"item_walrus_punch"// does not work
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	//"ItemQuality"	""
+	"ID"	"1020"
+	"ItemInitialCharges"  "2"
+	"AbilityTextureName"	"item_walrus_punch" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ATTACK | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+	"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+	"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"AbilityCastPoint"		"0"
+	"AbilityCastRange"		"128"		
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"soundfile"		"soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+		"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_hand.vpcf"
+		"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_start.vpcf"
+		"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_status.vpcf"
+		"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_tgt.vpcf"
+		"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_txt.vpcf"
+		"particle"		"particles/units/heroes/hero_tusk/tusk_walruspunch_txt_ult.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"tusk_walrus_punch"
+			"maxDuration"			"6.0"
+		}
+	}
+}

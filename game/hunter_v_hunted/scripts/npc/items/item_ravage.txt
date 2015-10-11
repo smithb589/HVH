@@ -1,0 +1,38 @@
+"item_ravage"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"epic"
+	"ID"	"1007"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_ravage" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityCooldown"		"20"
+	"AbilityCastPoint"		"0.3"
+	"precache"
+	{
+		"soundfile"		"soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
+		"particle"		"particles/units/heroes/hero_tidehunter/tidehunter_spell_ravage.vpcf"
+		"particle"		"particles/units/heroes/hero_tidehunter/tidehunter_spell_ravage_hit.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"tidehunter_ravage"
+			"maxDuration"			"6.0"
+		}
+	}
+}

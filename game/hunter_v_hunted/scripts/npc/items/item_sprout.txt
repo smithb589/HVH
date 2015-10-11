@@ -1,0 +1,43 @@
+"item_sprout"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"artifact"
+	"ID"	"10"
+	"ItemInitialCharges"  "2"
+	"AbilityTextureName"	"item_sprout" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+	"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+	"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+	"AbilityCastPoint"		"0.5"
+	"AbilityCastRange"		"600"
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"soundfile"		"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
+		"particle"		"particles/units/heroes/hero_furion/furion_sprout.vpcf"
+		"particle"		"particles/units/heroes/hero_furion/furion_sprout_e.vpcf"
+		"particle"		"particles/units/heroes/hero_furion/furion_sprout_f.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"furion_sprout"
+			"maxDuration"			"10.0"
+		}
+	}
+}

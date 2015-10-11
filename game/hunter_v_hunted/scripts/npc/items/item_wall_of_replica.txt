@@ -1,0 +1,38 @@
+"item_wall_of_replica"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	//"ItemQuality"	""
+	"ID"	"1078"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_wall_of_replica" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT"
+	"AbilityCastPoint"		"0.4"
+	"AbilityCastRange"		"1300"		
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
+		"particle"			"particles/units/heroes/hero_dark_seer/dark_seer_wall_of_replica.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"dark_seer_wall_of_replica"
+			"maxDuration"			"10.0"
+		}
+	}
+}

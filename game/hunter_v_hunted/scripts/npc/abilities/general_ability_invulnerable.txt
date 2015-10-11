@@ -1,0 +1,15 @@
+"general_ability_invulnerable"
+{
+	"BaseClass"             		"ability_datadriven"
+	"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilityTextureName"			""
+
+	"OnOwnerSpawned"
+	{
+		"ApplyModifier"
+		{
+			"ModifierName"	"modifier_invulnerable"
+			"Target" 		"CASTER"
+		}
+	}
+}

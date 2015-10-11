@@ -1,0 +1,139 @@
+// Crippling Horror (as Crippling Fear +Mute, +Blindness)
+"night_stalker_crippling_fear_hvh"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"					"ability_datadriven"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityTextureName"			"night_stalker_crippling_fear"
+	"MaxLevel"               		"3"
+	
+	// Unit Targeting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	
+	// Stats
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"500"
+	"AbilityCastPoint"				"0.3"
+	"AbilityCooldown"				"12"
+	"AbilityManaCost"				"0" //"90 90 90 90"
+
+	// Precache
+	//-------------------------------------------------------------------------------------------------------------
+	"precache"
+	{
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts"
+		"particle"			"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
+	}
+		
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"duration_day"			"4.0" //"3.0"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"duration_night"		"8.0" //"6.0 7.0 8.0"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"miss_rate_day"			"25"
+		}
+		"04"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"miss_rate_night"		"80"
+		}
+		"05"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"duration_dog"			"4.0" // "8.0" //"3.0 4.0 5.0"
+		}
+	}
+
+	"OnSpellStart"
+	{
+		"FireSound"
+		{
+			"EffectName"	"Hero_Nightstalker.Trickling_Fear"
+			"Target"		"TARGET"
+		}
+
+		"RunScript"
+		{
+			"ScriptFile"	"spells/night_stalker_crippling_fear.lua"
+			"Function"		"CripplingFear"
+			"modifier_day"		"modifier_crippling_fear_day_datadriven"
+			"modifier_night"	"modifier_crippling_fear_night_datadriven"
+			"modifier_dog"		"modifier_crippling_fear_dog_datadriven"
+		}
+	}
+
+	"Modifiers"
+	{
+		"modifier_crippling_fear_day_datadriven"
+		{
+			"Duration"	"%duration_day"
+			"IsDebuff"	"1"
+			"IsPurgable"	"1"				
+
+			"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
+			"EffectAttachType"	"follow_overhead"
+
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_MISS_PERCENTAGE"		"%miss_rate_day"
+			}
+
+			"States"
+			{
+				"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED" // hvh
+				"MODIFIER_STATE_BLIND"		"MODIFIER_STATE_VALUE_ENABLED" // hvh experimental
+			}
+		}
+
+		"modifier_crippling_fear_night_datadriven"
+		{
+			"Duration"	"%duration_night"
+			"IsDebuff"	"1"
+			"IsPurgable"	"1"				
+
+			"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
+			"EffectAttachType"	"follow_overhead"
+
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_MISS_PERCENTAGE"		"%miss_rate_night"
+			}
+
+			"States"
+			{
+				"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED" // hvh
+				"MODIFIER_STATE_BLIND"		"MODIFIER_STATE_VALUE_ENABLED" // hvh experimental
+			}
+		}
+
+		"modifier_crippling_fear_dog_datadriven"
+		{
+			"Duration"	"%duration_dog"
+			"IsDebuff"	"1"
+			"IsPurgable"	"1"				
+
+			"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
+			"EffectAttachType"	"follow_overhead"
+
+			// engages in ai_dog.lua behavior when affected by this modifier
+		}			
+	}
+}

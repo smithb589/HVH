@@ -1,0 +1,14 @@
+"npc_chest_vision_dummy_ns"
+{
+	"BaseClass" "npc_dota_building" // minimap icon at bottom of z-order
+	"Model"		"models/development/invisiblebox.vmdl"
+	"AttackCapabilities"  	"DOTA_UNIT_CAP_NO_ATTACK"
+	"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+	"MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_FLY"
+	"Ability1"				"dummy_chest_vision"
+	"VisionDaytimeRange" 	"5"
+	"VisionNighttimeRange" 	"5"
+	"MinimapDisableTint" "1"
+	"MinimapIcon"		 "minimap_hvh_chest_ns" // NS minimap
+	"MinimapIconSize"	 "1000"
+}

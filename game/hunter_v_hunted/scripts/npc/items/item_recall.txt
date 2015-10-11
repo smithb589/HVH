@@ -1,0 +1,45 @@
+// global?
+"item_recall"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"epic"
+	"ID"	"1066"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_recall" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK" // | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE
+	"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+	"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+	"AbilityCastPoint"		"0.3"
+	"AbilityCastRange"		"0"		
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
+		"particle"			"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_recall_cast.vpcf"
+		"particle"			"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_recall.vpcf"
+		"particle"			"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_recall_failure.vpcf"
+		"particle"			"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_recall_poof.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"keeper_of_the_light_recall"
+			"maxDuration"			"10.0"
+		}
+	}
+}

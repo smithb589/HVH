@@ -1,0 +1,110 @@
+"sniper_feed_dog"
+{
+	"BaseClass"						"ability_datadriven"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC"
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityTextureName"			"hvh_feed_dog"
+    "MaxLevel"               "1"
+	
+	// Stats
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"900"
+	"AbilityCastPoint"				"0.3"
+	"AbilityCooldown"				"45" // duplicate of loyalty_duration
+	"AbilityManaCost"				"0"
+
+	"Precache"
+	{
+		//"particle"			"particles/units/heroes/hero_warlock/warlock_shadow_word_buff.vpcf"
+		"particle"			"particles/sniper_feed_dog_buff.vpcf"
+		"particle"			"particles/good_guy_dog_treat.vpcf"
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_chaos_knight.vsndevts"
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts"
+	}
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"treat_fly_speed"	"750"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"treat_width"		"50"
+		}
+		"03"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"feed_duration"		"4"
+		}
+		"04"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"heal_amount"		"150"
+		}
+		"05"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"loyalty_duration"	"45" //"60" // "45" //"90 75 60 45"
+		}
+	}
+
+	"OnSpellStart"
+	{
+		"TrackingProjectile"
+		{
+			"Target" 		"TARGET"
+		    "EffectName"  	"particles/good_guy_dog_treat.vpcf"
+		    "MoveSpeed"   	"%treat_fly_speed"
+		    "StartPosition" "attach_origin"
+		}
+
+		"FireSound"
+		{
+			"EffectName"	"Hero_ChaosKnight.idle_throw"
+			"Target" 		"CASTER"
+		}
+	}
+
+	"OnProjectileHitUnit"
+	{
+		"RunScript"
+		{
+			"Target"		"TARGET"
+			"ScriptFile"	"scripts/vscripts/spells/sniper_feed_dog.lua"
+			"Function"		"Feed"
+			"feedDuration"	"%feed_duration"
+			"loyaltyDuration" "%loyalty_duration"
+		}
+
+		"Heal"
+		{
+			"Target"	"TARGET"
+			"HealAmount" "%heal_amount"
+		}
+
+		"FireSound"
+		{
+			"EffectName"	"Lycan_Wolf.Attack"
+			"Target" 		"TARGET"
+		}
+	}
+
+	"Modifiers"
+	{
+		"modifier_feed_dog_loyalty"
+		{
+			"Passive"				"0"
+			"IsHidden"				"0"
+
+			"EffectName"	"particles/sniper_feed_dog_buff.vpcf"
+			"EffectAttachType"		"follow_origin"
+		}
+	}
+}

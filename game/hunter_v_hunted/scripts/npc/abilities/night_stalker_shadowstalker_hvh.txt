@@ -1,0 +1,73 @@
+// does not work well
+"night_stalker_shadowstalker_hvh"
+{
+	"BaseClass"				"ability_datadriven"
+    "AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	"AbilityTextureName"	"terrorblade_conjure_image_alt1"
+
+	"AbilityCastRange"		"700"
+	"AbilityCooldown"		"16.0"
+	"AbilityManaCost"		"0"
+
+    "MaxLevel"              "1"
+	//"RequiredLevel"         "0"
+	//"LevelsBetweenUpgrades" "3"
+
+    "AbilityCastPoint"       "0.0"
+    "AbilityCastAnimation"   "ACT_DOTA_ATTACK"
+    "AnimationPlaybackRate"  "1"
+    "AnimationIgnoresModelScale" "1"
+
+    "AbilityDuration"         "0.0 0.0 0.0 "
+
+   	"precache"
+	{
+		"particle"		"particles/generic_hero_status/status_invisibility_start.vpcf"
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
+	}
+
+    "AbilitySpecial"
+    {
+		"01"
+		{
+			"var_type"							"FIELD_FLOAT"
+			"illusion_duration"					"32.0"
+		}
+		"02"
+		{
+			"var_type"							"FIELD_FLOAT"
+			"illusion_outgoing_damage"			"-70.0 -60.0 -50.0 -40.0"		
+		}
+		"03"
+		{
+			"var_type"							"FIELD_FLOAT"
+			"illusion_outgoing_tooltip"			"30.0 40.0 50.0 60.0"
+		}
+		"04"
+		{
+			"var_type"							"FIELD_FLOAT"
+			"illusion_incoming_damage"			"325.0"
+		}
+		"05"
+		{
+			"var_type"							"FIELD_FLOAT"
+			"illusion_incoming_damage_total_tooltip"			"425.0"
+		}	
+    }
+
+	"OnSpellStart"
+	{
+		"FireSound"
+		{
+			"EffectName"		"Hero_Terrorblade.ConjureImage"
+			"Target"			"CASTER"
+		}
+		"RunScript"
+		{
+			"ScriptFile"		"spells/night_stalker_shadowstalker.lua"
+			"Function"			"ConjureImage"
+			"Target"			"POINT"
+		}
+	}
+}

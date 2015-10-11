@@ -1,0 +1,309 @@
+"night_stalker_hunter_in_the_night_hvh"
+{
+	// General  
+    // ----------------------------------------------------------------------------------------
+    "BaseClass"              "ability_datadriven"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityTextureName"     "night_stalker_hunter_in_the_night"
+
+    //"AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
+    "MaxLevel"               "1"
+
+	"precache"
+	{
+		"particle"		"particles/night_stalker_blood_rush_hvh.vpcf"
+		"particle"		"particles/night_stalker_blood_rush_vacuum_hvh.vpcf"
+		"particle"		"particles/night_stalker_blood_rush_buff_hvh.vpcf"
+		//"particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
+		//"particle"	"particles/units/heroes/hero_night_stalker/nightstalker_night_buff.vpcf"
+		//"particle"	"particles/units/heroes/hero_night_stalker/nightstalker_change.vpcf"			
+ 		}
+
+    "AbilitySpecial"
+    {
+    	"01"
+    	{
+    		"var_type"							"FIELD_INTEGER"
+    		"move_speed_bonus_percentage"		"35" //"25 30 35"
+    	}
+    	"02"
+    	{
+    		"var_type"							"FIELD_INTEGER"
+    		"attack_speed_bonus"				"90" //"60 75 90"
+    	}
+    	"03"
+    	{
+    		"var_type"							"FIELD_INTEGER"
+    		"night_vision_radius"				"2400"
+    	}
+    	"04"
+    	{
+    		"var_type"							"FIELD_FLOAT"
+    		"invis_delay"						"4.0"
+    	}
+    	"05"
+    	{
+    		"var_type"							"FIELD_FLOAT"
+    		"invis_delay_after_damage"			"2.0"
+    	}
+    	"06"
+    	{
+    		"var_type"							"FIELD_FLOAT"
+    		"invis_delay_after_moving"			"1.0"
+    	}
+    	"07"
+    	{
+    		"var_type"							"FIELD_INTEGER"
+    		"minimum_dmg_to_break_invis"		"25" // above hound dmg, below sniper dmg
+    	}
+    	"08"
+    	{
+    		"var_type"							"FIELD_FLOAT"
+    		"invis_regen_pct_per_sec"			"1.5" // "1.25" //"0.75 1.00 1.25"
+    	}
+    	"09"
+    	{
+    		"var_type"							"FIELD_FLOAT"
+    		"kill_regen_duration"				"20.0"
+    	}
+    	"10"
+    	{
+    		"var_type"							"FIELD_FLOAT"
+    		"kill_regen_pct_per_sec"			"0.5"
+    	}
+    }
+
+    "Modifiers"
+    {
+    	"modifier_dread_hunter_kill_effect"
+    	{
+    		"Passive" 			"1"
+    		"IsHidden"			"1"
+   		
+    		"OnCreated"
+    		{
+    			"RunScript"
+    			{
+    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
+    				"Function"		"RegisterKillEffect"
+    			}
+    		}
+
+    		"OnDestroy"
+    		{
+    			"RunScript"
+    			{
+	    			"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
+	    			"Function"		"UnregisterKillEffect"
+    			}
+    		}
+    	}
+
+    	"modifier_dread_hunter_kill_effect_counter"
+    	{
+    		"Passive"				"0"
+			"IsHidden"				"0"
+			"IsPurgable"			"0"
+			"IsDebuff"				"0"
+
+    		"EffectName"	"particles/night_stalker_blood_rush_buff_hvh.vpcf"
+			"EffectAttachType"		"follow_origin"				
+    	}
+
+    	"modifier_dread_hunter_kill_regen"
+    	{
+    		"Passive"			"0"
+    		"IsHidden"			"1"
+    		"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+    		"Duration"			"%kill_regen_duration"
+
+    		"OnCreated"
+    		{
+    			"RunScript"
+    			{
+    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
+    				"Function"		"IncrementKillEffectCounter"
+    				"counterModifier" "modifier_dread_hunter_kill_effect_counter"
+    				"duration"		"%kill_regen_duration"
+    			}
+    		}
+
+    		"OnDestroy"
+    		{
+    			"RunScript"
+    			{
+    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
+    				"Function"		"DecrementKillEffectCounter"
+    				"counterModifier" "modifier_dread_hunter_kill_effect_counter"
+    				"duration"		"%kill_regen_duration"
+    			}
+    		}
+
+    		"Properties"
+    		{
+    			"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%kill_regen_pct_per_sec"
+    		}
+    	}
+
+    	"modifier_dread_hunter_vision_applicator"
+    	{
+    		"Passive" 			"1"
+    		"IsHidden"			"1"
+
+    		"ThinkInterval"  "0.1"
+    		"OnIntervalThink"
+    		{
+    			"RunScript"
+    			{
+    				"ScriptFile"		"spells/night_stalker_dread_hunter_in_the_night.lua"
+    				"Function"			"VisionThinker"
+    				"dummy_str"			"npc_dummy_reveal_unit"
+    			}
+    		}
+
+    		"OnDeath"
+    		{
+    			"RunScript"
+    			{
+    				"ScriptFile"		"spells/night_stalker_dread_hunter_in_the_night.lua"
+    				"Function"			"OnDeath_KillAllVisionDummies"
+    			}
+    		}
+    	}
+
+    	"modifier_dread_hunter_invis_applicator"
+    	{
+    		"Passive" 			"1"
+    		"IsHidden"			"1"
+
+    		"OnAttackLanded"
+    		{
+    			"RunScript"
+    			{
+    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
+    				"Function"		"OnAttackLanded"
+    			  	"mod_invis"		"modifier_dread_hunter_invis"
+    			  	"delay"			"%invis_delay"
+    			}
+    		}
+
+    		"OnAbilityExecuted"
+    		{
+    			"RunScript"
+    			{
+    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
+    				"Function"		"OnAbilityExecuted"
+    			  	"mod_invis"		"modifier_dread_hunter_invis"
+    			  	"delay"			"%invis_delay"
+    			}
+    		}
+
+    		"OnTakeDamage"
+    		{
+    			"RunScript"
+    			{
+    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
+    				"Function"		"OnTakeDamage"
+    			  	"mod_invis"		"modifier_dread_hunter_invis"
+    			  	"delay"			"%invis_delay_after_damage"
+    			  	"attack_damage"	"%attack_damage"
+    			  	"minimum_dmg_to_break_invis"	"%minimum_dmg_to_break_invis"
+    			}
+    		}
+
+    		"OnUnitMoved"
+    		{
+    			"RunScript"
+    			{
+    				"ScriptFile"	"spells/night_stalker_dread_hunter_in_the_night.lua"
+    				"Function"		"OnUnitMoved"
+    			  	"mod_invis"		"modifier_dread_hunter_invis"
+    			  	"delay"			"%invis_delay_after_moving"
+    			}
+    		}
+    	}
+
+    	"modifier_dread_hunter_invis"
+    	{
+    		"Passive"			"0"
+    		"IsHidden"			"1" // hide this but allow modifier_invisible to do the lifting
+
+    		"OnCreated"
+    		{
+    				"ApplyModifier"
+				{
+					"ModifierName" 	"modifier_invisible" // hardcoded
+					"Target"		"CASTER"
+				}
+
+				"ApplyModifier"
+				{
+					"ModifierName" 	"modifier_dread_hunter_regen"
+					"Target"		"CASTER"
+				}
+    		}
+
+			"OnDestroy"
+			{
+				// TODO: find a better effect for going invisible
+				//"AttachEffect"
+				//{
+				//	"EffectName"		"particles/generic_hero_status/status_invisibility_start.vpcf"
+				//	"EffectAttachType"	"follow_origin"
+				//	"Target"            "CASTER"
+				//}
+
+				"RemoveModifier"
+				{
+					"ModifierName"	"modifier_invisible"
+					"Target"		"CASTER"
+				}
+
+				"RemoveModifier"
+				{
+					"ModifierName"	"modifier_dread_hunter_regen"
+					"Target"		"CASTER"
+				}
+			}
+    	}
+
+    	"modifier_dread_hunter_regen"
+    	{
+    		"Passive"			"0"
+    		"IsHidden"			"0"
+
+    		"Properties"
+    		{
+    			"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%invis_regen_pct_per_sec"
+    		}
+	  	}
+
+    	"modifier_dread_hunter_speed_applicator"
+    	{
+    		"Passive" 			"1"
+    		"IsHidden"			"1"
+
+    		"ThinkInterval"  "0.25"
+    		"OnIntervalThink"
+    		{
+    			"RunScript"
+    			{
+    				"ScriptFile"		"spells/night_stalker_dread_hunter_in_the_night.lua"
+    				"Function"			"SpeedThinker"
+    				"mod_speed"			"modifier_dread_hunter_speed"
+    			}
+    		}
+    	}
+
+    	"modifier_dread_hunter_speed"
+    	{
+    		"IsHidden"			"1"
+
+    		"Properties"
+    		{
+    			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" 	"%attack_speed_bonus"
+    		    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" 	"%move_speed_bonus_percentage"
+    		}
+    	}
+    }
+}

@@ -1,0 +1,42 @@
+"item_tether"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"epic"
+	"ID"	"1021"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_tether" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+	"AbilityCastPoint"		"0.001"
+	"AbilityCastRange"		"1800"
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"soundfile"					"soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts"
+		"particle"					"particles/units/heroes/hero_wisp/wisp_tether.vpcf"
+		"particle"					"particles/units/heroes/hero_wisp/wisp_tether_hit.vpcf"
+		"particle"					"particles/units/heroes/hero_wisp/wisp_tether_slow.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"wisp_tether"
+			"maxDuration"			"20.0"
+		}
+	}
+}

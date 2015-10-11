@@ -1,0 +1,42 @@
+"item_teleportation"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"epic"
+	"ID"	"1058"
+	"ItemInitialCharges"  "2"
+	"AbilityTextureName"	"item_teleportation" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+	"AbilityCastPoint"		"3"
+	"AbilityCastRange"		"0"	// global?
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"particle"	"particles/units/heroes/hero_furion/furion_teleport.vpcf"
+		"particle"  "particles/units/heroes/hero_furion/furion_teleport_end.vpcf"
+		"particle"  "particles/units/heroes/hero_furion/furion_teleport_end_team.vpcf"
+		"particle"  "particles/units/heroes/hero_furion/furion_teleport.vpcf"
+		"particle"  "particles/units/heroes/hero_furion/furion_teleport_e.vpcf"	//Endcap if canceled
+		"soundfile" "soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"furion_teleportation"
+			"maxDuration"			"6.0"
+		}
+	}
+}

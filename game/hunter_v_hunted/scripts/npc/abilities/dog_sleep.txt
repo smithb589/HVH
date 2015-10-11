@@ -1,0 +1,93 @@
+"dog_sleep"
+{
+	"BaseClass"             		"ability_datadriven"
+	"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilityTextureName"			"hvh_dog_sleep"
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"health_regen_pct"	"4.0"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"fade_delay"		"2.0"
+		}
+		"03"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"night_vision"		"-600"
+		}
+	}
+
+	"Modifiers"
+	{
+		"modifier_sleep_fade"
+		{
+			"IsHidden"			"1"
+			"EffectName"		"particles/generic_hero_status/status_invisibility_start.vpcf"
+			"EffectAttachType"	"follow_origin"
+
+			"OnCreated"
+			{
+				"DelayedAction"
+				{
+					"Delay"     "%fade_delay"
+					"Action"    
+					{
+						"RemoveModifier"
+						{
+							"ModifierName"	"modifier_sleep_fade"
+							"Target" 		"CASTER"
+						}
+					}
+				}
+			}
+
+			"OnDestroy"
+			{
+				"ApplyModifier"
+				{
+					"Target"		"CASTER"
+					"ModifierName"	"modifier_sleep"
+				}
+			}
+		}
+
+		"modifier_sleep"
+		{
+			"IsHidden"			"0"
+			
+			"EffectName"        "particles/newplayer_fx/npx_sleeping.vpcf"
+			"EffectAttachType"  "follow_overhead"
+			"Target"            "CASTER"
+
+    		"OnCreated"
+    		{
+    				"ApplyModifier"
+				{
+					"ModifierName" 	"modifier_invisible" // hardcoded
+					"Target"		"CASTER"
+				}
+    		}
+
+			"OnDestroy"
+			{
+				"RemoveModifier"
+				{
+					"ModifierName"	"modifier_invisible"
+					"Target"		"CASTER"
+				}
+			}
+
+			"Properties"
+    		{
+    			"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%health_regen_pct"
+    			"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"		"%night_vision"
+    		}
+		}
+	}
+}

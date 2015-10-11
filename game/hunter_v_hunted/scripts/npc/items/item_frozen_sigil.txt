@@ -1,0 +1,39 @@
+"item_frozen_sigil"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"rare"
+	"ID"	"1050"
+	"ItemInitialCharges"  "2"
+	"AbilityTextureName"	"item_frozen_sigil" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityCastPoint"		"0.1"
+	"AbilityCooldown"		"40"
+	"precache"
+	{
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+		"particle"			"particles/units/heroes/hero_tusk/tusk_frozen_sigil_status.vpcf"
+		"particle"			"particles/units/heroes/hero_tusk/tusk_frozen_sigil.vpcf"
+		"model"				"models/heroes/tuskarr/tuskarr_sigil.vmdl"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"tusk_frozen_sigil"
+			"maxDuration"			"40.0"
+		}
+	}
+}

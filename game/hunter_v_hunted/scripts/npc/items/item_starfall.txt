@@ -1,0 +1,38 @@
+"item_starfall"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"artifact"
+	"ID"	"1061"
+	"ItemInitialCharges"  "2"
+	"AbilityTextureName"	"item_starfall" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	"AbilityCastPoint"		"0.5"
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+		"particle"			"particles/units/heroes/hero_mirana/mirana_starfall_attack.vpcf"
+		"particle"			"particles/units/heroes/hero_mirana/mirana_starfall_circle.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"mirana_starfall"
+			"maxDuration"			"6.0"
+		}
+	}
+}

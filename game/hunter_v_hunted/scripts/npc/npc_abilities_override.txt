@@ -3,6 +3,23 @@
 {
 	"Version"		"1"
 
+	"enigma_black_hole"
+	{
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"far_damage"			"0" //"55 110 165"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"near_damage"			"0" //"55 110 165"
+			}
+		}
+	}
+
 	"polar_furbolg_ursa_warrior_thunder_clap"
 	{
 		//"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"

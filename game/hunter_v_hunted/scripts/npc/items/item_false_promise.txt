@@ -1,0 +1,48 @@
+"item_false_promise"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"common"
+	"ID"	"1074"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_false_promise" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+	"AbilityCastPoint"		"0.3"
+	"AbilityCastRange"		"1000"		
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"soundfile"		"soundevents/game_sounds_heroes/game_sounds_oracle.vsndevts"
+		"particle"		"particles/units/heroes/hero_oracle/oracle_false_promise.vpcf"
+		"particle"		"particles/units/heroes/hero_oracle/oracle_false_promise_attacked.vpcf"
+		"particle"		"particles/units/heroes/hero_oracle/oracle_false_promise_cast.vpcf"
+		"particle"		"particles/units/heroes/hero_oracle/oracle_false_promise_cast_enemy.vpcf"
+		"particle"		"particles/units/heroes/hero_oracle/oracle_false_promise_center.vpcf"
+		"particle"		"particles/units/heroes/hero_oracle/oracle_false_promise_dmg.vpcf"
+		"particle"		"particles/units/heroes/hero_oracle/oracle_false_promise_heal.vpcf"
+		"particle"		"particles/units/heroes/hero_oracle/oracle_false_promise_hit.vpcf"
+		"particle"		"particles/units/heroes/hero_oracle/oracle_false_promise_indicator.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"oracle_false_promise"
+			"maxDuration"			"15.0"
+		}
+	}
+}

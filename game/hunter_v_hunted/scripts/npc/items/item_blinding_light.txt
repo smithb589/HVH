@@ -1,0 +1,40 @@
+"item_blinding_light"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"rare"
+	"ID"	"1011"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_blinding_light" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT " // DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE
+	"AoERadius" "675"
+	"AbilityCooldown"	"20"
+	"AbilityCastRange"		"900"
+	"AbilityCastPoint"		"0.3"
+	"precache"
+	{
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
+		"particle"			"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_blinding_light_aoe.vpcf"
+		"particle"			"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_blinding_light_debuff.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"keeper_of_the_light_blinding_light"
+			"maxDuration"			"10.0"
+		}
+	}
+}

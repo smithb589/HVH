@@ -1,0 +1,35 @@
+"item_black_hole" // crashes game often
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	//"ItemQuality"	""
+	"ID"	"1028"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_black_hole" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+	"AbilityCastPoint"		"0.3"
+	"AbilityCastRange"		"275"
+	"AbilityChannelTime"	"4.0"
+	"AoERadius" 			"400"
+	"AbilityCooldown"		"20"
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"enigma_black_hole"
+			"maxDuration"			"10.0"
+		}
+	}
+}

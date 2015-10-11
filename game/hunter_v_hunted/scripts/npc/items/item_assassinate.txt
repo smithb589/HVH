@@ -1,0 +1,43 @@
+"item_assassinate"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"artifact"
+	"ID"	"1029"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_assassinate" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET" // DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN
+	"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+	"AbilityCastPoint"		"2.0"
+	"AbilityCastRange"		"3000"
+	"AbilityCastRangeBuffer" "600"	
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"soundfile"					"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+		"particle"					"particles/units/heroes/hero_sniper/sniper_assassinate.vpcf"
+		"particle"					"particles/units/heroes/hero_sniper/sniper_crosshair.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"sniper_assassinate"
+			"maxDuration"			"6.0"
+		}
+	}
+}

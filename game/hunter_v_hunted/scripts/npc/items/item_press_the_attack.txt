@@ -1,0 +1,44 @@
+"item_press_the_attack"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"common"
+	"ID"	"1067"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_press_the_attack" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+	"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+	"AbilityCastPoint"		"0.3"
+	"AbilityCastRange"		"800"		
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"soundfile"		"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+		"particle"		"particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf"
+		"particle"		"particles/units/heroes/hero_legion_commander/legion_commander_press_hero.vpcf"
+		"particle"		"particles/units/heroes/hero_legion_commander/legion_commander_press_overhead_core.vpcf"
+
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"legion_commander_press_the_attack"
+			"maxDuration"			"10.0"
+		}
+	}
+}

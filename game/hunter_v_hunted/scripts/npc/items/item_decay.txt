@@ -1,0 +1,44 @@
+"item_decay"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"artifact"
+	"ID"	"1047"
+	"ItemInitialCharges"  "2"
+	"AbilityTextureName"	"item_decay" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"	
+	"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+	"AoERadius"			 "325"
+	"AbilityCastPoint"		"0.45"
+	"AbilityCastRange"		"625"		
+	"AbilityCooldown"		"10"
+	"precache"
+	{
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
+		"particle"			"particles/units/heroes/hero_undying/undying_decay.vpcf"
+		"particle"			"particles/units/heroes/hero_undying/undying_decay_strength_buff.vpcf"
+		"particle"			"particles/units/heroes/hero_undying/undying_decay_strength_xfer.vpcf"
+		"particle"			"particles/units/heroes/hero_undying/undying_decay_strength_debuff.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"undying_decay"
+			"maxDuration"			"10.0"
+		}
+	}
+}

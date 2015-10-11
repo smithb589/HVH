@@ -1,0 +1,47 @@
+// channeled
+"item_death_ward"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	//"ItemQuality"	""
+	"ID"	"1075"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_death_ward" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+	"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+	"AoERadius"				"500"
+	"AbilityCastPoint"		"0.35"
+	"AbilityCastRange"		"600"
+	"AbilityCooldown"		"20"
+	"AbilityChannelTime"	"8.0"		
+	"precache"
+	{
+		"soundfile"		"soundevents/game_sounds_heroes/game_sounds_witchdoctor.vsndevts"
+		"model"			"models/heroes/witchdoctor/witchdoctor_ward.vmdl"
+		"model"			"models/items/wards/witchdoctor_ward/witchdoctor_ward.vmdl"
+		"particle"		"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_attack.vpcf"
+		"particle"		"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_cast_staff_fire.vpcf"
+		"particle"		"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_skull.vpcf"
+
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"witch_doctor_death_ward"
+			"maxDuration"			"10.0"
+		}
+	}
+}

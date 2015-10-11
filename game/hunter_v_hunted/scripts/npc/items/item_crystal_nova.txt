@@ -1,0 +1,40 @@
+"item_crystal_nova"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"artifact"
+	"ID"	"1091"
+	"ItemInitialCharges"  "2"
+	"AbilityTextureName"	"item_crystal_nova" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+	"AoERadius"				"400"
+	"AbilityCastPoint"		"0.3"
+	"AbilityCastRange"		"700"		
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"soundfile"				"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+		"particle"				"particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"
+		"particle"				"particles/generic_gameplay/generic_slowed_cold.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"crystal_maiden_crystal_nova"
+			"maxDuration"			"10.0"
+		}
+	}
+}

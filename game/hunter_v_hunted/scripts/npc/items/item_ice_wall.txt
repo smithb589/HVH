@@ -1,0 +1,39 @@
+"item_ice_wall"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"rare"
+	"ID"	"1052"
+	"ItemInitialCharges"  "2"
+	"AbilityTextureName"	"item_ice_wall" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET" // | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	"AbilityCastPoint"		"0.0"
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"particle"			"particles/units/heroes/hero_invoker/invoker_ice_wall.vpcf"
+		"particle"			"particles/units/heroes/hero_invoker/invoker_ice_wall_b.vpcf"
+		"particle"			"particles/units/heroes/hero_invoker/invoker_ice_wall_debuff.vpcf"
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"invoker_ice_wall"
+			"maxDuration"			"20.0"
+		}
+	}
+}

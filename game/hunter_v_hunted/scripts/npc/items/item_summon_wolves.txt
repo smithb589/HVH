@@ -1,0 +1,37 @@
+"item_summon_wolves"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"artifact"
+	"ID"	"1012"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_summon_wolves" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityCooldown"		"60"
+	"AbilityCastPoint"		"0.3"		
+	"precache"
+	{
+		"soundfile"		"soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts"
+		"particle"		"particles/units/heroes/hero_lycan/lycan_summon_wolves_cast.vpcf"			
+	}	
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"lycan_summon_wolves"
+			"maxDuration"			"60.0"
+		}
+	}
+}

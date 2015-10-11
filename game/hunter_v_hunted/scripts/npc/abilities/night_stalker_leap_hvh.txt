@@ -1,0 +1,87 @@
+"night_stalker_leap_hvh"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"				"ability_datadriven"
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	"AbilityTextureName"	"hvh_leap"
+	"MaxLevel"				"1"
+
+	// Precache
+	//-------------------------------------------------------------------------------------------------------------
+	"precache"
+	{
+		//"soundfile"			"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_spectre.vsndevts"
+	}
+	
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"0"
+	"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"9.0" //"8.0"
+	"AbilityDuration"				"0.0"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"0"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"leap_distance"			"900"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"leap_duration"			"1.1" // 0.7
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"leap_vertical_speed"	"900" // "1500"
+		}
+		"04"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"damage_reduction"		"-100"
+		}
+	}
+
+	"OnSpellStart"
+	{
+		"FireSound"
+		{
+			"EffectName"	"Hero_Spectre.HauntCast" //"Ability.Leap"
+			"Target"		"CASTER"
+		}
+		
+		"RunScript"
+		{
+			"ScriptFile"	"spells/night_stalker_leap.lua"
+			"Function"		"Leap"
+			"modifier_leap_immunity"	"modifier_leap_immunity"
+		}
+	}
+
+	"Modifiers"
+	{
+		"modifier_leap_immunity"
+		{
+			"Passive" 			"0"
+    		"IsHidden"			"0"
+
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%damage_reduction"
+			}
+		}			
+	}
+}

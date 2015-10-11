@@ -1,0 +1,42 @@
+"item_chain_frost"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"artifact"
+	"ID"	"1092"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_chain_frost" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"AbilityCastPoint"		"0.4"
+	"AbilityCastRange"		"750"		
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"particle"	"particles/units/heroes/hero_lich/lich_chain_frost.vpcf"
+		"particle"	"particles/units/heroes/hero_lich/lich_slowed_cold.vpcf"
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"lich_chain_frost"
+			"maxDuration"			"10.0"
+		}
+	}
+}

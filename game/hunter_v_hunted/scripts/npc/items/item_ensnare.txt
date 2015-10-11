@@ -1,0 +1,42 @@
+"item_ensnare"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"artifact"
+	"ID"	"1027"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_ensnare" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"AbilityCastPoint"		"0.65"
+	"AbilityCastRange"		"650"		
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"soundfile"					"soundevents/game_sounds_heroes/game_sounds_naga_siren.vsndevts"
+		"particle"					"particles/units/heroes/hero_siren/siren_net.vpcf"
+		"particle"					"particles/units/heroes/hero_siren/siren_net_projectile.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"naga_siren_ensnare"
+			"maxDuration"			"6.0"
+		}
+	}
+}

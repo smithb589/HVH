@@ -1,0 +1,45 @@
+"item_blood_bath"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"rare"
+	"ID"	"1044"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_blood_bath" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+	"AoERadius"				"600"
+	"AbilityCastPoint"		"0.4"
+	"AbilityCastRange"		"1500"		
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"soundfile"		"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
+		"particle"		"particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf"
+		"particle"		"particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath_heal.vpcf"
+		"particle"		"particles/units/heroes/hero_bloodseeker/bloodseeker_spell_bloodbath_bubbles_.vpcf"
+		"particle"		"particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_impact.vpcf"
+		"particle"		"particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_ring_lv.vpcf"
+		"particle"		"particles/units/heroes/hero_bloodseeker/bloodseeker_spell_bloodbath_bubbles.vpcf"
+		"particle"		"particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_ring.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"bloodseeker_blood_bath"
+			"maxDuration"			"12.0"
+		}
+	}
+}

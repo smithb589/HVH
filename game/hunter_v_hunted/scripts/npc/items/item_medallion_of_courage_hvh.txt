@@ -1,0 +1,103 @@
+// removed passive armor/mana gain, given charges
+"item_medallion_of_courage_hvh"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"item_datadriven"
+	"ItemQuality"					"artifact"
+	"ID"							"2187"  //Valve's version of this item uses the ID "187".
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+	//"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"Model"							"models/props_gameplay/red_box.vmdl" 
+	"Effect"						"particles/generic_gameplay/dropped_item.vpcf"
+	"AbilityTextureName"			"item_medallion_of_courage"
+
+	"ItemSellable" "0"
+	"ItemInitialCharges"  "2"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "1"
+	"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+	"ItemStackable" "0" // TODO: think about this
+	"AbilityManaCost" "0"
+	
+	// Stats
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"%range"
+	"AbilityCastPoint"				"0.0"
+	"AbilityCooldown"				"20.0" // "7.0"
+	
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"armor_debuff"			"-7"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"armor_buff"			"7"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"duration"				"7.0"
+		}
+		"04"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"range"					"1000"
+		}	
+	}
+	
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"		"spells/item_medallion_of_courage_hvh.lua"
+			"Function"			"item_medallion_of_courage_hvh_on_spell_start"
+		}
+	}
+	
+	"Modifiers"
+	{
+		"modifier_item_medallion_of_courage_hvh_debuff"  //Placed onto the caster and enemies.
+		{
+			"Duration"			"%duration"
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"IsBuff"			"0"
+			"IsDebuff"			"1"
+			"IsPurgable"		"1"
+			
+			"EffectName"			"particles/items2_fx/medallion_of_courage.vpcf"
+			"EffectAttachType"		"follow_overhead"
+			
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%armor_debuff"
+			}
+		}
+		"modifier_item_medallion_of_courage_hvh_buff"  //Placed onto allies.
+		{
+			"Duration"			"%duration"
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"IsBuff"			"1"
+			"IsDebuff"			"0"
+			"IsPurgable"		"1"
+			
+			"EffectName"			"particles/items2_fx/medallion_of_courage.vpcf"
+			"EffectAttachType"		"follow_overhead"
+			
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%armor_buff"
+			}
+		}
+	}
+}

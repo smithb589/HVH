@@ -1,0 +1,40 @@
+"item_death_coil"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"artifact"
+	"ID"	"1038"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_death_coil" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+	"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
+	"AbilityCastPoint"		".452"
+	"AbilityCastRange"		"800"		
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+		"particle" 	"particles/units/heroes/hero_abaddon/abaddon_death_coil.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"abaddon_death_coil"
+			"maxDuration"			"6.0"
+		}
+	}
+}

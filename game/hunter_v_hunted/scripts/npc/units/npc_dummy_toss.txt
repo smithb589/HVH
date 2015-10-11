@@ -1,0 +1,11 @@
+"npc_dummy_toss"
+{
+	"BaseClass" "npc_dota_creature"
+	"Model"     "models/development/invisiblebox.vmdl"
+	"AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+	"MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE"
+	"Ability1"				"dummy_toss"
+	"VisionDaytimeRange"	"0"
+	"VisionNighttimeRange"	"0"
+}

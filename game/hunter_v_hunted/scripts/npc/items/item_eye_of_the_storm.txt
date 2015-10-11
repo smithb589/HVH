@@ -1,0 +1,38 @@
+"item_eye_of_the_storm"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"artifact"
+	"ID"	"1018"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_eye_of_the_storm" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityCastPoint"		"0.3"
+	"AbilityCooldown"		"30"
+	"precache"
+	{
+		"soundfile"		"soundevents/game_sounds_heroes/game_sounds_razor.vsndevts"
+		"particle"		"particles/units/heroes/hero_razor/razor_loadout.vpcf"
+		"particle"		"particles/units/heroes/hero_razor/razor_rain_storm.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"razor_eye_of_the_storm"
+			"maxDuration"			"30.0"
+		}
+	}
+}

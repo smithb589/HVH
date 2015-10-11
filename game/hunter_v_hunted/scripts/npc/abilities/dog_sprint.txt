@@ -1,0 +1,125 @@
+"dog_sprint"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"				"ability_datadriven"
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+	"AbilityTextureName" 	"hvh_dog_sprint"
+	// Precache
+	//-------------------------------------------------------------------------------------------------------------
+	"precache"
+	 {
+		"soundfile"   "sounds/weapons/hero/lycan/howl.vsnd"
+		"particle"	"particles/generic_gameplay/rune_haste_owner.vpcf"
+	 }
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"0"
+	"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"%duration" // "28"
+	
+	"AbilitySpecial"	
+	{
+		"01"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"bonus_damage"				"0"
+		}
+		"02"
+		{
+			"var_type"					"FIELD_FLOAT"
+			"duration"					"6.0"
+		}
+		// dog will only speed up when the target is far away
+		"03"	// accessed by ai_dog.lua pursuit routine
+		{
+			"var_type"			"FIELD_INTEGER"
+			"min_range"			"0"
+		}
+		"04"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"ally_radius"		"1800"
+		}
+		"05"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"bonus_speed"				"65" // percentage (brings 325 movespeed up to ~522)
+		}			
+		"06"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"ally_bonus_speed"				"25" // constant
+		}
+
+	}
+
+	"OnSpellStart"
+    {
+		"ActOnTargets"
+		{
+			"Target"
+			{
+				"Center" "CASTER"
+                "Radius" "%ally_radius"
+                "Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY" 
+                "Types" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+			}
+
+			"Action"
+			{
+				"ApplyModifier"
+				{
+					"ModifierName"	"modifier_dog_sprint_allies"
+					"Target"		"TARGET"
+				}
+			}
+		}
+
+        "ApplyModifier"
+        {
+            "Target" "CASTER"
+            "ModifierName" "modifier_dog_sprint"
+        }
+        "FireSound"
+        {
+        	"EffectName" "Hero_Lycan.Howl"
+        	"Target"	 "CASTER"
+        }
+    }
+
+    "Modifiers"
+    {
+    	"modifier_dog_sprint"
+    	{
+    		"IsBuff" "1"
+    		"Duration" "%duration"
+    		"EffectName"	"particles/generic_gameplay/rune_haste_owner.vpcf"
+	    	"EffectAttachType"	"follow_origin"
+
+    		"Properties"
+	    	{
+	    		"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_speed"
+	    	}
+    	}
+
+    	"modifier_dog_sprint_allies"
+    	{
+    		"ApplyToCaster" "0"
+    		"IsBuff" "1"
+    		"Duration" "%duration"
+    		"EffectName"	"particles/generic_gameplay/rune_haste_owner.vpcf"
+	    	"EffectAttachType"	"follow_origin"
+
+    		"Properties"
+	    	{
+	    		"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%ally_bonus_speed"
+	    	}
+    	}
+
+    }
+}

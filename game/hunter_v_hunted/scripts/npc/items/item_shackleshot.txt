@@ -1,0 +1,44 @@
+"item_shackleshot"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"epic"
+	"ID"	"1008"
+	"ItemInitialCharges"  "2"
+	"AbilityTextureName"	"item_shackleshot" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"		
+	"AbilityCooldown"		"20"
+	"AbilityCastRange"		"800"
+	"AbilityCastPoint"		"0.15"
+	"precache"
+	{
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
+		"particle"			"particles/units/heroes/hero_windrunner/windrunner_shackleshot.vpcf"
+		"particle"			"particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair.vpcf"
+		"particle"			"particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair_tree.vpcf"
+		"particle"			"particles/units/heroes/hero_windrunner/windrunner_shackleshot_rope.vpcf"
+		"particle"			"particles/units/heroes/hero_windrunner/windrunner_shackleshot_single.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"windrunner_shackleshot"
+			"maxDuration"			"10.0"
+		}
+	}
+}

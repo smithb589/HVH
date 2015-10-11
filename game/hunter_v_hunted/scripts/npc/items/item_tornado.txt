@@ -1,0 +1,39 @@
+"item_tornado"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"epic"
+	"ID"	"1051"
+	"ItemInitialCharges"  "2"
+	"AbilityTextureName"	"item_tornado" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT" //| DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	"AbilityCastPoint"		"0"
+	"AbilityCastRange"		"2000"		
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"particle"			"particles/units/heroes/hero_invoker/invoker_tornado.vpcf"
+		"particle"			"particles/units/heroes/hero_invoker/invoker_tornado_child.vpcf"
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"invoker_tornado"
+			"maxDuration"			"8.0"
+		}
+	}
+}

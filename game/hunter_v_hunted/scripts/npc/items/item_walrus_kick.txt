@@ -1,0 +1,45 @@
+"item_walrus_kick"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"rare"
+	"ID"	"1041"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_walrus_kick" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET" // DOTA_ABILITY_BEHAVIOR_HIDDEN
+	"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+	"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"AbilityCastPoint"		"0.2"
+	"AbilityCastRange"		"128"		
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"soundfile"		"soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+		"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_tgt.vpcf"
+		"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_tgt_status.vpcf"
+		"particle"		"particles/units/heroes/hero_tusk/tusk_walruskick_txt_ult.vpcf"
+		"particle"		"particles/units/heroes/hero_tusk/tusk_loadout.vpcf"
+		"particle"		"particles/generic_gameplay/generic_stunned.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"tusk_walrus_kick"
+			"maxDuration"			"6.0"
+		}
+	}
+}

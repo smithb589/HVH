@@ -1,0 +1,41 @@
+"item_exorcism"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"rare"
+	"ID"	"1088"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_exorcism" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+	"AbilityCastPoint"		"0.5"
+	"AbilityCooldown"		"40"
+	"precache"
+	{
+		"particle"	"particles/units/heroes/hero_death_prophet/death_prophet_spirit_model.vpcf"
+		"particle"  "particles/units/heroes/hero_death_prophet/death_prophet_exorcism_attack.vpcf"
+		"particle"  "particles/units/heroes/hero_death_prophet/death_prophet_exorcism_attack_building.vpcf"
+		"particle"  "particles/units/heroes/hero_death_prophet/death_prophet_spirit_glow.vpcf"
+		"soundfile" "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"death_prophet_exorcism"
+			"maxDuration"			"40.0"
+		}
+	}
+}

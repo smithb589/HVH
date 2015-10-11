@@ -1,0 +1,41 @@
+"item_disruption"
+{
+	"BaseClass"		"item_datadriven"
+	"ItemKillable"		"1" 
+	"ItemSellable"		"0"
+	"ItemPurchasable"	"0"
+	"ItemDroppable" 	"1"
+	"ItemShareability" 	"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDisplayCharges"  "1"
+	"ItemRequiresCharges" "0"
+	"ItemStackable" 	"0"
+	"ItemPermanent" 	"0"
+	// Modify these
+	"ItemQuality"	"rare"
+	"ID"	"1037"
+	"ItemInitialCharges"  "1"
+	"AbilityTextureName"	"item_disruption" // KV: item_example, filename: /items/example.png	
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+	"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+	"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO | DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+	"AbilityCastPoint"		"0.3"
+	"AbilityCastRange"		"600"		
+	"AbilityCooldown"		"20"
+	"precache"
+	{
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_shadow_demon.vsndevts"
+		"particle"			"particles/units/heroes/hero_shadow_demon/shadow_demon_disruption.vpcf"
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_forcecast.lua"
+			"Function"				"ForceCast"
+			"abilityName"			"shadow_demon_disruption"
+			"maxDuration"			"10.0"
+		}
+	}
+}
