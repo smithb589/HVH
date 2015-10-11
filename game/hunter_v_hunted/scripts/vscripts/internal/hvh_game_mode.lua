@@ -86,8 +86,8 @@ function HVHGameMode:_SetupGameMode()
   end 
 end
 
--- item_glimpse does not work on the first cast,
--- so this forces glimpse to be dummy-cast at the start of the game
+-- disruptor_glimpse does not work on the first cast (some kind of hardcoding),
+-- so this forces glimpse to be cast once on dummies at the start of the game
 function HVHGameMode:GlimpseFix()
     local dummy = CreateUnitByName("npc_dummy", Vector(0,0,0), true, nil, nil, DOTA_TEAM_GOODGUYS)
     local dummy2 = CreateUnitByName("npc_dummy", Vector(0,0,0), true, nil, nil, DOTA_TEAM_BADGUYS)
@@ -121,7 +121,7 @@ end
 -- Custom Games: PrecacheUnitByNameSync and PrecacheUnitByNameAsync can optionally take a PlayerID as the last
 -- argument and it will use the cosmetic items from that player when precaching. The player must be connected to the
 -- game otherwise it will fall back to the default cosmetic items.
-function HVHGameMode:_PostLoadPrecache()
+function HVHGameMode:PostLoadPrecache()
   -- precache both heroes and cosmetics from each playerID, just in case we do team-switching logic later
   for playerID = 0, DOTA_MAX_PLAYERS-1 do
     if PlayerResource:IsValidPlayer(playerID) then
@@ -195,7 +195,7 @@ end
 -- Increases the rate of the day/night cycle by a multiplier
 -- OPTIONAL: random seconds to add or subtract to next cycle's timer
 -- BUG?: half a second off every 60 mins (hypothetically)
-function HVHGameMode:_SetupFastTime(next_time_transition, rng_secs)
+function HVHGameMode:SetupFastTime(next_time_transition, rng_secs)
   local standardLengthOfOneCycle = (SECS_PER_CYCLE / 2) / DAY_NIGHT_CYCLE_MULTIPLIER
   if rng_secs == nil then rng_secs = 0 end
   local thisCycleLength = standardLengthOfOneCycle + rng_secs
@@ -211,7 +211,7 @@ function HVHGameMode:_SetupFastTime(next_time_transition, rng_secs)
       next_time_transition = TIME_NEXT_EVENING
     end
     rng_secs = RandomFloat(-1 * RANDOM_EXTRA_SECONDS, RANDOM_EXTRA_SECONDS)
-    self:_SetupFastTime(next_time_transition, rng_secs)
+    self:SetupFastTime(next_time_transition, rng_secs)
   end)
 end
 
@@ -226,28 +226,6 @@ evening 7:03
 dawn  22:11
 evening 67:39
 ]]
-function HVHGameMode:_SetupFastTime_DEPRECATED()
-  Timers:CreateTimer(function()
-    local timeOfDay = GameRules:GetTimeOfDay()
-    print ("Time: " .. Time() .. ", DOTA time: " .. GameRules:GetDOTATime(false,false) .. ", Game time: " .. timeOfDay)
-    GameRules:SetTimeOfDay(timeOfDay + EXTRA_FLOAT_TIME_PER_SECOND)
-    return 1.0
-  end)
-end
-
-function HVHGameMode:_SetupPassiveXP()
-  Timers:CreateTimer(XP_TICK_INTERVAL, function()
-
-    local heroList = HeroList:GetAllHeroes()
-    for _,hero in pairs(heroList) do
-      if hero:IsAlive() then
-        hero:AddExperience(XP_PER_TICK, DOTA_ModifyXP_Unspecified, false, true)
-      end
-    end
-
-    return XP_TICK_INTERVAL
-  end)
-end
 
 function HVHGameMode:LevelupAbility(hero, ability_name, maxout)
   if hero:HasAbility(ability_name) then
@@ -347,20 +325,6 @@ function HVHGameMode:SetupHero(hero)
   hero.SuccessfulSetup = true
 end
 
--- TODO: this shit. this shit right here.
-function HVHGameMode:SetHeroDeathBounty_DEPRECATED(hero)
-  --PrintTable(XP_PER_LEVEL_TABLE)
-  --local heroLevel = hero:GetLevel()
-  --local deathXP = 100
-  --hero:SetDeathXP(deathXP)
-  --hero:SetMaximumGoldBounty(0)
-  --hero:SetMinimumGoldBounty(0)
-  --hero:AddExperience(13600, DOTA_ModifyXP_Unspecified, false, true)
-  --print("Current XP: " .. hero:GetCurrentXP())
-  --print("DeathXP: " .. deathXP)
-  --print("Bounty: " .. hero:GetGoldBounty())
-end
-
 -- spawn the dog at the radiant courier spawn (game start) or a random good guy spawner
 function HVHGameMode:SpawnDog(random_spawn)
   if DISABLE_DOGS then return end
@@ -379,14 +343,6 @@ function HVHGameMode:SpawnDog(random_spawn)
     local r = RandomInt(1, #HOUND_MODEL_PATHS)
     dog:SetOriginalModel(HOUND_MODEL_PATHS[r])
   end)
-end
-
-function HVHGameMode:ChooseRandomSpawn_DEPRECATED(classname)
-  local possibleSpawners = Entities:FindAllByClassname(classname)
-  local r = RandomInt(1, #possibleSpawners)
-  spawner = possibleSpawners[r]
-
-  return spawner
 end
 
 -- return the position of a random valid spawner
@@ -480,4 +436,51 @@ function HVHGameMode:WakeUpHeroes()
       hero:RemoveModifierByName("modifier_tutorial_sleep")
     end
   end
+end
+
+-------------------------------------------------------------------
+-- Deprecated functions that might be useful for reference later on
+-------------------------------------------------------------------
+function HVHGameMode:SetupFastTime_OLD_DEPRECATED()
+  Timers:CreateTimer(function()
+    local timeOfDay = GameRules:GetTimeOfDay()
+    print ("Time: " .. Time() .. ", DOTA time: " .. GameRules:GetDOTATime(false,false) .. ", Game time: " .. timeOfDay)
+    GameRules:SetTimeOfDay(timeOfDay + EXTRA_FLOAT_TIME_PER_SECOND)
+    return 1.0
+  end)
+end
+
+function HVHGameMode:SetupPassiveXP_DEPRECATED()
+  Timers:CreateTimer(XP_TICK_INTERVAL, function()
+
+    local heroList = HeroList:GetAllHeroes()
+    for _,hero in pairs(heroList) do
+      if hero:IsAlive() then
+        hero:AddExperience(XP_PER_TICK, DOTA_ModifyXP_Unspecified, false, true)
+      end
+    end
+
+    return XP_TICK_INTERVAL
+  end)
+end
+
+function HVHGameMode:ChooseRandomSpawn_DEPRECATED(classname)
+  local possibleSpawners = Entities:FindAllByClassname(classname)
+  local r = RandomInt(1, #possibleSpawners)
+  spawner = possibleSpawners[r]
+
+  return spawner
+end
+
+function HVHGameMode:SetHeroDeathBounty_DEPRECATED(hero)
+  --PrintTable(XP_PER_LEVEL_TABLE)
+  --local heroLevel = hero:GetLevel()
+  --local deathXP = 100
+  --hero:SetDeathXP(deathXP)
+  --hero:SetMaximumGoldBounty(0)
+  --hero:SetMinimumGoldBounty(0)
+  --hero:AddExperience(13600, DOTA_ModifyXP_Unspecified, false, true)
+  --print("Current XP: " .. hero:GetCurrentXP())
+  --print("DeathXP: " .. deathXP)
+  --print("Bounty: " .. hero:GetGoldBounty())
 end

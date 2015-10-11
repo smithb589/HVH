@@ -13,8 +13,8 @@ if HVHItemSpawnController == nil then
   HVHItemSpawnController._spawnLocations = nil
   HVHItemSpawnController._spawnedChests = {}
 
-  HVHItemSpawnController._goodGuyChestDataModel = HVHChestModel("scripts/vscripts/kv/good_guy_chests.kv")
-  HVHItemSpawnController._badGuyChestDataModel = HVHChestModel("scripts/vscripts/kv/bad_guy_chests.kv")
+  HVHItemSpawnController._goodGuyChestDataModel = HVHChestModel("scripts/npc/kv/good_guy_chests.kv")
+  HVHItemSpawnController._badGuyChestDataModel = HVHChestModel("scripts/npc/kv/bad_guy_chests.kv")
   HVHItemSpawnController._currentChestDataModel = nil
 end
 
