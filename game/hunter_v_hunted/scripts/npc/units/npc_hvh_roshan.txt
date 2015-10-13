@@ -1,0 +1,78 @@
+//=================================================================================
+// Neutral: Roshan
+//=================================================================================
+"npc_hvh_roshan"
+{
+	// HVH
+	"BaseClass"					"npc_dota_creature"
+	"vscripts"                  "ai/ai_roshan.lua"
+	"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+	"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
+	"IsNeutralUnitType"			"1"
+	"IsAncient"					"1"
+	"Level"						"30"
+
+	// General
+	//-------------------------------------------------------------------------------------------------------------	
+	"Model"					"models/creeps/roshan/roshan.vmdl"				// Model.
+	"SoundSet"				"Roshan"							// Name of sound set.
+	"ModelScale"			"1"
+
+	// Abilities
+	//-------------------------------------------------------------------------------------------------------------
+	"Ability1"					"roshan_spell_block"	// Ability 1.
+	"Ability2"					"roshan_bash"			// Ability 2.
+	"Ability3"					"roshan_slam"			// Ability 3.
+	"Ability4"					"roshan_inherent_buffs"	// Ability 4.
+	"Ability5"					"roshan_devotion"		// Ability 5.
+
+	// Armor
+	//----------------------------------------------------------------
+	"ArmorPhysical"				"4"			// Physical protection.
+	"MagicalResistance"			"75"		// Magical protection (percentage).
+
+	// Attack
+	//----------------------------------------------------------------
+	"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+	"AttackDamageMin"			"65"		// Damage range min.
+	"AttackDamageMax"			"65"		// Damage range max.
+	"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+	"AttackRate"				"1"			// Speed of attack.
+	"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+	"AttackAcquisitionRange"	"150"		// Range within a target can be acquired.
+	"AttackRange"				"128"		// Range within a target can be attacked.
+	//"ProjectileModel"			"particles/base_attacks/ranged_goodguy.vpcf" // Particle system model for projectile.
+	//"ProjectileSpeed"			"1000"		// Speed of projectile.
+
+	// Bounds
+	//-------------------------------------------------------------------------------------------------------------
+	"HealthBarOffset"			"400"
+
+	// Movement
+	//-------------------------------------------------------------------------------------------------------------
+	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+	"MovementSpeed"				"270"									// Speed.
+	"MovementTurnRate"			"1.0"									// Turning rate.
+
+	// Status
+	//----------------------------------------------------------------
+	"StatusHealth"				"7500"		// Base health.
+	"StatusHealthRegen"			"20"		// Health regeneration rate.
+	"StatusMana"				"0"		// Base mana.
+	"StatusManaRegen"			"0"		// Mana regeneration rate.		 
+	
+	// Vision
+	//----------------------------------------------------------------
+	"VisionDaytimeRange"		"1400"		// Range of vision during day light.
+	"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+
+	// Team
+	//----------------------------------------------------------------
+	"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
+	"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+	"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+	// Inventory
+	//----------------------------------------------------------------
+	"HasInventory"				"1"
+}

@@ -73,7 +73,7 @@ function AreVectorsEqualWithinTolerance(vector1, vector2, tolerance)
 end
 
 function Length2DBetweenVectors(vector1, vector2)
-  local difference = vector1 - vector2
+  local difference = GetGroundPosition(vector1,nil) - GetGroundPosition(vector2,nil)
   return difference:Length2D()
 end
 

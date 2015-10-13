@@ -5,6 +5,7 @@
 {
 	// HVH
 	"BaseClass"					"npc_dota_building"
+	"vscripts"                  "ai/ai_tower.lua"
 	"BoundsHullName"			"DOTA_HULL_SIZE_TOWER"			// Hull type used for navigation/locomotion.
 	"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 	"IsNeutralUnitType"			"1"
@@ -30,8 +31,8 @@
 	// Attack
 	//----------------------------------------------------------------
 	"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-	"AttackDamageMin"			"100"		// Damage range min.
-	"AttackDamageMax"			"120"		// Damage range max.
+	"AttackDamageMin"			"75"//"100"		// Damage range min.
+	"AttackDamageMax"			"100"//"120"		// Damage range max.
 	"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 	"AttackRate"				"1"			// Speed of attack.
 	"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.

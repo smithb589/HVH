@@ -20,6 +20,7 @@ function HVHGameMode:OnGameRulesStateChange()
     self:SpawnDog(false)
     HVHItemSpawnController:Setup()
     HVHPowerStages:Setup()
+    HVHNeutralCreeps:Setup()
   end
 end
 

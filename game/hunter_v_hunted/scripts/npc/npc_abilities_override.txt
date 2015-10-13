@@ -3,8 +3,44 @@
 {
 	"Version"		"1"
 
+	"techies_land_mines"
+	{
+		"AbilityManaCost"				"0"
+	}
+
+	"ursa_overpower"
+	{
+		"AbilityManaCost"				"0"
+	}
+
+	"ursa_fury_swipes"
+	{
+		"AbilitySpecial"
+		{
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage_per_stack"				"5"
+			}
+		}
+	}
+
+	"item_vladmir"
+	{
+		"AbilitySpecial"
+		{
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vampiric_aura"			"100"
+			}
+		}
+	}
+
 	"enigma_black_hole"
 	{
+		"AbilityManaCost"				"0"
+
 		"AbilitySpecial"
 		{
 			"01"
@@ -1719,7 +1755,7 @@
 	"item_null_talisman"			"REMOVE"
 	"item_recipe_mekansm"			"REMOVE"
 	"item_recipe_vladmir"			"REMOVE"
-	"item_vladmir"			"REMOVE"
+	//"item_vladmir"			"REMOVE" // given to npc_hvh_ursa
 	"item_flying_courier"			"REMOVE"
 	"item_recipe_buckler"			"REMOVE"
 	"item_recipe_ring_of_basilius"			"REMOVE"

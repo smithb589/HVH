@@ -42,13 +42,20 @@ require("utils/hvh_utils")
 require("ai/class_utils")
 require("ai/constants")
 require("ai/behavior")
+require("ai/behavior_attack_target")
 require("ai/behavior_blackhole")
 require("ai/behavior_blackhole_channel")
+require("ai/behavior_choose_next_destination")
 require("ai/behavior_despawn")
-require("ai/behavior_travel")
-require("ai/behavior_toss")
-require("ai/behavior_slam")
+require("ai/behavior_despawn_forced")
+require("ai/behavior_despawn_when_unseen")
 require("ai/behavior_eidolon_attack")
+require("ai/behavior_overpower")
+require("ai/behavior_place_mine")
+require("ai/behavior_slam")
+require("ai/behavior_toss")
+require("ai/behavior_travel")
+require("ai/behavior_wait")
 
 require("ai/dog_behaviors/behavior_defend")
 require("ai/dog_behaviors/behavior_follow")
@@ -119,7 +126,7 @@ function AICore:CreateBehaviorSystem( behaviors )
 		end
 
 		HVHDebugPrint(string.format("Choosing behavior with score %d", bestDesire))
-		HVHDebugPrintTable(result)
+		--HVHDebugPrintTable(result)
 
 		return result
 	end

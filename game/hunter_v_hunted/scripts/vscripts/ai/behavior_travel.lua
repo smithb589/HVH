@@ -12,21 +12,25 @@ end
 
 function BehaviorTravel:Setup()
 	self.order.OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION
-	self.order.Position  = nil -- This will be filled in later
+	self.order.Position  = nil
 end
 
 function BehaviorTravel:Evaluate()
-	local range = 100.0
+	local range = 400.0
+	local desire = DESIRE_NONE
 
-	if self.order.Position ~= nil and Length2DBetweenVectors(self.unit:GetAbsOrigin(), self.order.Position) < range then
-		return DESIRE_NONE
-	else
-		return self.desire --DESIRE_HIGH
+	if HVHNeutralCreeps:HasDestination(self.unit) and
+ 	  Length2DBetweenVectors(self.unit:GetAbsOrigin(), HVHNeutralCreeps:GetDestination(self.unit)) > range
+ 	  then
+		desire = self.desire --DESIRE_HIGH
 	end
+
+	return desire
 end
 
 function BehaviorTravel:Begin()
-	self.order.Position = self.unit.destinationLoc -- determined in HVHNeutralCreeps
+	print("Travel BEGIN")
+	self.order.Position = HVHNeutralCreeps:GetDestination(self.unit)
 	self.endTime = GameRules:GetGameTime() + 1.0
 end
 

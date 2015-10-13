@@ -7,20 +7,20 @@ XP_MULTIPLIER_FOR_SNIPER_KILLS = 4
 XP_PER_KILL 		= 2	-- NS gets this XP. Snipers get this times XP_MULTIPLIER_FOR_SNIPER_KILLS
 XP_PER_TICK      	= 1	-- every XP_TICK_INTERVAL seconds, living heroes get XP_PER_TICK
 XP_TICK_INTERVAL 	= 30
-MAX_OUT_ABILITIES = false 	-- max out ALL abilities or only starting abilities?
-DISABLE_DOGS = false 		-- disables hound spawning
+MAX_OUT_ABILITIES = true 	-- max out ALL abilities or only starting abilities?
+DISABLE_DOGS = true 		-- disables hound spawning
 
 -- HVH Time
 DAY_NIGHT_CYCLE_MULTIPLIER = 3			-- ex. 4 means each day/night will last 1 min each (4x faster)
 RANDOM_EXTRA_SECONDS 	   = 15.0 		-- randomly increase/decrease each cycle by -(Value) to Value seconds
-PRE_GAME_TIME = 30.0                    -- How long after people select their heroes should the horn blow and the game start?
-PREGAME_SLEEP = true
+PRE_GAME_TIME = 3.0                    -- How long after people select their heroes should the horn blow and the game start?
+PREGAME_SLEEP = false
 
 -- HVH Respawn
 BADGUY_LIVES  = 6
 GOODGUY_LIVES = 18
-MIN_RESPAWN_TIME = 18
-MAX_RESPAWN_TIME = 23
+MIN_RESPAWN_TIME = 1
+MAX_RESPAWN_TIME = 3
 MINIMUM_RESPAWN_RANGE = 2500			-- if no respawn points are found outside this range, the least worst will be used
 
 -- HVH Power Stages for reinforcements / evolutions
@@ -134,7 +134,7 @@ ENABLED_RUNES[DOTA_RUNE_INVISIBILITY] = true
 ENABLED_RUNES[DOTA_RUNE_REGENERATION] = true -- Regen runes are currently not spawning as of the writing of this comment
 ENABLED_RUNES[DOTA_RUNE_BOUNTY] = false
 
-MAX_NUMBER_OF_TEAMS = 2              -- How many potential teams can be in this game mode?
+MAX_NUMBER_OF_TEAMS = 3              -- How many potential teams can be in this game mode?
 USE_CUSTOM_TEAM_COLORS = true          -- Should we use custom team colors?
 USE_CUSTOM_TEAM_COLORS_FOR_PLAYERS = true          -- Should we use custom team colors to color the players/minimap?
 

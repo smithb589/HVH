@@ -139,26 +139,34 @@ function HVHGameMode:SetupInitialTeamSpawns()
   local ggSpawns = Entities:FindAllByClassname("info_courier_spawn_radiant")
   local bgSpawns = Entities:FindAllByClassname("info_courier_spawn_dire")
 
-  -- choose a random spawn point for team good guys
+  local ggSpawn = self:GetRandomTeamSpawn()
+  local bgSpawn = self:GetMatchingTeamSpawn(ggSpawn)
+  
+  -- save both spawn points to be accessed by SetupHero() and dog spawning
+  local mode = GameRules:GetGameModeEntity()
+  mode.GoodGuyTeamSpawn = ggSpawn:GetAbsOrigin()
+  mode.BadGuyTeamSpawn  = bgSpawn:GetAbsOrigin()
+end
+
+-- choose a random spawn point for team good guys
+function HVHGameMode:GetRandomTeamSpawn()
+  local ggSpawns = Entities:FindAllByClassname("info_courier_spawn_radiant")
   local r = RandomInt(1, #ggSpawns)
   local ggSpawn = ggSpawns[r]
-  local ggSpawnID = ggSpawn:Attribute_GetIntValue("id", 0)
-  local ggSpawnPoint = ggSpawn:GetAbsOrigin()
+  return ggSpawn
+end
 
-  -- find the spawn point's matching bad guy brother
-  -- save both spawn points to be accessed by SetupHero() and dog spawning
+-- find the spawn point's matching bad guy brother
+function HVHGameMode:GetMatchingTeamSpawn(ggSpawn)
+  local ggSpawnID = ggSpawn:Attribute_GetIntValue("id", 0)
+  local bgSpawns = Entities:FindAllByClassname("info_courier_spawn_dire")
   local bgSpawnID = nil
-  for _,spawn in pairs(bgSpawns) do
-    bgSpawnID = spawn:Attribute_GetIntValue("id", 0)
+  for _,bgSpawn in pairs(bgSpawns) do
+    bgSpawnID = bgSpawn:Attribute_GetIntValue("id", 0)
     if bgSpawnID == ggSpawnID then
-      local bgSpawnPoint = spawn:GetAbsOrigin()
-      local mode = GameRules:GetGameModeEntity()
-      mode.GoodGuyTeamSpawn = ggSpawnPoint
-      mode.BadGuyTeamSpawn = bgSpawnPoint
-      break
+      return bgSpawn
     end
   end
-
 end
 
 -- BUG: this does not VISUALLY work yet but perhaps one day...

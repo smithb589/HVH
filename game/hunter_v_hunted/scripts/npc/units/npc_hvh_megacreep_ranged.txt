@@ -70,12 +70,12 @@
 	// Movement
 	//----------------------------------------------------------------
 	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
-	"MovementSpeed"				"325"		// Speed
+	"MovementSpeed"				"245" // "325"		// Speed
 	"MovementTurnRate"			"0.5"		// Turning rate.
 
 	// Status
 	//----------------------------------------------------------------
-	"StatusHealth"				"475"		// Base health.
+	"StatusHealth"				"240" //"475"		// Base health.
 	"StatusHealthRegen"			"2"			// Health regeneration rate.
 	"StatusMana"				"500"		// Base mana.
 	"StatusManaRegen"			"0.75"		// Mana regeneration rate.

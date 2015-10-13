@@ -1,15 +1,13 @@
 --------------------------------------------------------------------------------------------------------
--- Megacreep AI
+-- Roshan AI
 --------------------------------------------------------------------------------------------------------
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink("Think", Think, 1.0)
-	thisEntity.behaviorSystem = AICore:CreateBehaviorSystem({
-		BehaviorAttackTarget(thisEntity, DESIRE_MAX),
-		BehaviorDespawnWhenUnseen(thisEntity, DESIRE_HIGH),
-		BehaviorTravel(thisEntity, DESIRE_MEDIUM),
-		BehaviorChooseNextDestination(thisEntity, DESIRE_LOW),
-		BehaviorDespawnForced(thisEntity, DESIRE_NONE+1)
-	})
+	--thisEntity:SetContextThink("Think", Think, 1.0)
+	--thisEntity.behaviorSystem = AICore:CreateBehaviorSystem({
+	--	BehaviorAttackTarget(thisEntity, DESIRE_HIGH),
+		--BehaviorDespawn(thisEntity, DESIRE_MEDIUM)
+	--})
+	--thisEntity.behaviorSystem.thinkDuration = 0.25 -- faster reactions so Toss works better
 end
 
 function Think()

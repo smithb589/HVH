@@ -149,6 +149,10 @@ PRECACHE_UNITS = {
 	"npc_dota_hero_windrunner", -- only missing tree shackle
 	"npc_dota_hero_disruptor",
 	"npc_dota_hero_tidehunter",]]
+	"npc_dota_hero_ursa",
+	"npc_dota_hero_techies",
+	--"npc_hvh_ursa",
+	--"npc_hvh_techies",
 	"npc_hvh_tower",
 	"npc_hvh_megacreep_ranged",
 	"npc_hvh_megacreep_siege",
@@ -156,11 +160,14 @@ PRECACHE_UNITS = {
 	"npc_hvh_enigma",
 	"npc_hvh_tiny",
 	"npc_dota_good_guy_dog"
-
 }
 
 PRECACHE_MODELS = { 
   --"models/heroes/nightstalker/nightstalker_night.vmdl",
+  "models/items/ursa/hat_alpine.vmdl",
+  "models/items/ursa/scarf_alpine.vmdl",
+  "models/items/ursa/pants_alpine.vmdl",
+  "models/items/ursa/gloves_alpine.vmdl",
   "models/heroes/lycan/summon_wolves.vmdl",
   "models/items/lycan/wolves/alpha_summon_01/alpha_summon_01.vmdl",
   "models/items/lycan/wolves/ambry_summon/ambry_summon.vmdl",

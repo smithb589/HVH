@@ -1,16 +1,14 @@
 --------------------------------------------------------------------------------------------------------
--- Tiny AI
+-- Techies AI
 --------------------------------------------------------------------------------------------------------
 function Spawn( entityKeyValues )
 	thisEntity:SetContextThink("Think", Think, 1.0)
 	thisEntity.behaviorSystem = AICore:CreateBehaviorSystem({
-		BehaviorToss(thisEntity, DESIRE_MAX),
-		BehaviorDespawnWhenUnseen(thisEntity, DESIRE_HIGH),
+		BehaviorPlaceMine(thisEntity, DESIRE_MAX),
 		BehaviorTravel(thisEntity, DESIRE_MEDIUM),
-		BehaviorChooseNewDestination(thisEntity, DESIRE_LOW),
-		BehaviorDespawnForced(thisEntity, DESIRE_NONE+1)
+		BehaviorChooseNextDestination(thisEntity, DESIRE_LOW),
+		BehaviorWait(thisEntity, DESIRE_NONE+1)
 	})
-	thisEntity.behaviorSystem.thinkDuration = 0.25 -- faster reactions so Toss works better
 end
 
 function Think()

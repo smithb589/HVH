@@ -8,9 +8,11 @@ function Spawn( entityKeyValues )
 
 	thisEntity:SetContextThink("Think", Think, 1.0)
 	thisEntity.behaviorSystem = AICore:CreateBehaviorSystem({
+		BehaviorAttackBlackholeTargets(thisEntity, DESIRE_MAX),
+		BehaviorDespawnWhenUnseen(thisEntity, DESIRE_HIGH),
 		BehaviorTravel(thisEntity, DESIRE_MEDIUM),
-		BehaviorDespawn(thisEntity, DESIRE_LOW),
-		BehaviorAttackBlackholeTargets(thisEntity, DESIRE_MAX)
+		BehaviorChooseNextDestination(thisEntity, DESIRE_LOW),
+		BehaviorDespawnForced(thisEntity, DESIRE_NONE+1)
 	})
 	thisEntity.behaviorSystem.thinkDuration = 0.5 -- faster reactions
 end

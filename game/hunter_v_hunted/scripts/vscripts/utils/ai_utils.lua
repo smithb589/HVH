@@ -2,6 +2,10 @@ if AICore == nil then
   AICore = class({})
 end
 
+function AICore:IsTargetValid(target)
+	return target and not target:IsNull() and target:IsAlive()
+end
+
 -- Retrieve enemies to (unit) within (radius) at either the unit's position or (position)
 function AICore:GetEnemiesInRange(unit, radius, position)
 	position = position or unit:GetAbsOrigin() -- optional 3rd argument
@@ -46,30 +50,38 @@ function AICore:GetAllPointsOfInterest()
 end
 
 -- Choose a random point of interest, optionally a minimum distance away from another point
-function AICore:ChooseRandomPointOfInterest( vector, minDistanceFrom )
-	entity = entity or nil
+function AICore:ChooseRandomPointOfInterest( center, minDistanceFrom, maxDistanceFrom )
+	center = center or nil
 	minDistanceFrom = minDistanceFrom or nil
+	maxDistanceFrom = maxDistanceFrom or nil
 
 	local masterList = self:GetAllPointsOfInterest()
 
-	-- choose a random point from the master list and check that it's valid
-	local loc = nil
-	local validPOI = false
-	while not validPOI do
-		local r = RandomInt(1, #masterList)
-		local poi = masterList[r]
-		loc = poi:GetAbsOrigin()
-		
-		if vector and minDistanceFrom and Length2DBetweenVectors(vector, loc) <= minDistanceFrom then
-			--print(r .. " too close. Repicking.")
-			validPOI = false
+	-- add every valid point to the 
+	local filteredList = {}
+	for _,poi in pairs(masterList) do
+		local loc = poi:GetAbsOrigin()
+		if center then
+			if (minDistanceFrom and Length2DBetweenVectors(center, loc) <= minDistanceFrom) or
+			   (maxDistanceFrom and Length2DBetweenVectors(center, loc) >= maxDistanceFrom) then
+				--print("Point too close or too far. Not valid.")
+			else
+				--print("Point is within specified parameters. Added.")
+				table.insert(filteredList, poi)
+			end
 		else
-			--print(r .. " chosen.")
-			validPOI = true
+			--print("No center specified, so any point is valid.")
+			table.insert(filteredList, poi)
 		end
 	end
 
-	return loc
+	-- choose a random point from the filtered list
+	local r = RandomInt(1, #filteredList)
+	local chosenPOI = filteredList[r]
+	local chosenPOI_location = chosen
+
+	print(#filteredList .. " possible points of interest. Choosing: " .. r)
+	return chosenPOI:GetAbsOrigin()
 end
 
 ------------------------------------------------------------
