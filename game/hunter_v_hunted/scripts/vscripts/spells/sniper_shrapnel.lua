@@ -160,11 +160,34 @@ function shrapnel_debuff( caster, ability, target, delay, dummyModifierName, dum
 			local dummy = CreateUnitByName( "npc_dummy_blank", target, false, caster, caster, caster:GetTeamNumber() )
 			ability:ApplyDataDrivenModifier( caster, dummy, dummyModifierName, {} )
 			Timers:CreateTimer( dummy_duration, function()
-					dummy:ForceKill( true )
-					return nil
-				end
-			)
+				dummy:ForceKill( true )
+				return nil
+			end)
+
+			disableTechiesMines(ability, target)
+
 			return nil
 		end
 	)
+end
+
+-- Mines within the radius are temporarily disabled and become visible to all
+function disableTechiesMines(ability, location)
+	local radius = ability:GetLevelSpecialValueFor("radius", ability:GetLevel())
+	local duration = ability:GetLevelSpecialValueFor("duration", ability:GetLevel())
+
+	local mines = Entities:FindAllByClassnameWithin("npc_dota_techies_mines", location, radius)
+	for _,mine in pairs(mines) do
+		--print("Disabling a mine.")
+		print("Removing modifier")
+		mine:RemoveModifierByName("modifier_techies_land_mine")
+		local caster = mine:GetOwnerEntity()
+		local ability = caster:FindAbilityByName("techies_land_mines")
+		Timers:CreateTimer(duration, function()
+			if not mine:IsNull() then
+				print("Adding new modifier")
+				mine:AddNewModifier(caster, ability, "modifier_techies_land_mine", {})
+			end
+		end)
+	end
 end
