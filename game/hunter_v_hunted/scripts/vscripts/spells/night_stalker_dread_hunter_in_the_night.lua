@@ -180,6 +180,8 @@ function UnregisterKillEffect(keys)
   local target = keys.caster
   if target:IsRealHero() then
     local listenerID = HVHDreadHunterKillEffect:GetKilledEventListenerID()
+    -- BUG: sometimes crashes here with nil eventListenerID
+    -- related to hvh_fake_heroes? does it ever happen in a real game?
     StopListeningToGameEvent(listenerID)
   end
 end
