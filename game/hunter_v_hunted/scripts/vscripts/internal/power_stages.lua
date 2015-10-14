@@ -20,7 +20,7 @@ end
 function HVHPowerStages:OnEntityKilled(killedArgs)
 	local unit = EntIndexToHScript(killedArgs.entindex_killed)
 
-	if unit and unit:IsRealHero() then
+	if unit and unit:IsRealHero() and not unit:IsReincarnating() then
 		local team = unit:GetTeam()
 		self:HandlePlayerDeath(unit)
 		self:CheckForWinner()
