@@ -3,6 +3,7 @@ require('game_mode')
 require('precache')
 require('convars')
 
+require("utils/css_utils")
 require("utils/time_utils")
 require("utils/item_utils")
 require("utils/hvh_utils")
