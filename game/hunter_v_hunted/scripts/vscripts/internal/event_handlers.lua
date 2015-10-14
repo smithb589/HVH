@@ -75,11 +75,16 @@ end
 
 function HVHGameMode:OnEntityKilled(killedArgs)
  	local unit = EntIndexToHScript(killedArgs.entindex_killed)
+  local killer = EntIndexToHScript(killedArgs.entindex_attacker)
 
   if unit and unit:GetUnitName() == "npc_dota_good_guy_dog" then
     Timers:CreateTimer(HVHGameMode:GetRespawnTime(), function()
       HVHGameMode:SpawnDog(true)
     end)
+  end
+
+  if unit and unit:GetUnitName() == "npc_hvh_techies" then
+    HVHNeutralCreeps:TechiesOnDeath(unit, killer)
   end
 
 end

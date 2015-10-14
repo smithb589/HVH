@@ -29,7 +29,6 @@ function BehaviorTravel:Evaluate()
 end
 
 function BehaviorTravel:Begin()
-	print("Travel BEGIN")
 	self.order.Position = HVHNeutralCreeps:GetDestination(self.unit)
 	self.endTime = GameRules:GetGameTime() + 1.0
 end

@@ -7,19 +7,32 @@ function AICore:IsTargetValid(target)
 end
 
 -- Retrieve enemies to (unit) within (radius) at either the unit's position or (position)
-function AICore:GetEnemiesInRange(unit, radius, position)
-	position = position or unit:GetAbsOrigin() -- optional 3rd argument
-	radius   = radius or 0 -- fixes error while game is paused and creeps spawned
+function AICore:GetEnemiesInRange(unit, radius, fow_visible)
+	--position = position or unit:GetAbsOrigin() -- optional argument (removed)
+	radius = radius or 0 -- fixes error while game is paused and creeps spawned
+	fow_visible = fow_visible or false
+
+	local flags = DOTA_UNIT_TARGET_FLAG_NONE
+	if fow_visible then
+		flags = DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS
+	end
+
 	local units = FindUnitsInRadius(unit:GetTeamNumber(),
-								 	position,
+								 	unit:GetAbsOrigin(),
 									nil,
 									radius,
 									DOTA_UNIT_TARGET_TEAM_ENEMY,
 									DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-									DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
+									flags,
 									FIND_CLOSEST,
 									false)
 	return units
+end
+
+-- Get the closest visible unit near (unit) within (radius)
+function AICore:GetClosestVisibleEnemyInRange(unit, radius)
+	local units = self:GetEnemiesInRange(unit, radius, true)
+	if units[1] then return units[1] else return nil end
 end
 
 -- Are at least (number) units surrounding (unit) within (radius)?
@@ -80,7 +93,7 @@ function AICore:ChooseRandomPointOfInterest( center, minDistanceFrom, maxDistanc
 	local chosenPOI = filteredList[r]
 	local chosenPOI_location = chosen
 
-	print(#filteredList .. " possible points of interest. Choosing: " .. r)
+	--print(#filteredList .. " possible points of interest. Choosing: " .. r)
 	return chosenPOI:GetAbsOrigin()
 end
 

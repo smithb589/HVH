@@ -18,9 +18,8 @@ end
 
 function BehaviorPlaceMine:Evaluate()
 	local desire = DESIRE_NONE
-	local max_mines = 20
 
-	if self.mineAbility:IsFullyCastable() and HVHNeutralCreeps:CountTechiesMines(self.unit) < max_mines then
+	if self.mineAbility:IsFullyCastable() and HVHNeutralCreeps:CountTechiesMines(self.unit) < TECHIES_MAX_MINES then
 		desire = self.desire --DESIRE_MAX
 	end
 
@@ -28,8 +27,7 @@ function BehaviorPlaceMine:Evaluate()
 end
 
 function BehaviorPlaceMine:Begin()
-	PrintTable(HVHNeutralCreeps:GetDestinationList(self.unit))
-	print("Destination: " .. self.unit.currentDestination)
+	--PrintTable(HVHNeutralCreeps:GetDestinationList(self.unit))
 	self.order.Position = HVHNeutralCreeps:GetDestination(self.unit)
 	self.endTime = GameRules:GetGameTime() + 2.0
 end
@@ -39,7 +37,6 @@ function BehaviorPlaceMine:Continue()
 end
 
 function BehaviorPlaceMine:End()
-	print("Place Mine END")
 	self.order.Position = nil
 	HVHNeutralCreeps:AddDestination(self.unit, RANGE_TECHIES_MIN, RANGE_TECHIES_MAX)
 end

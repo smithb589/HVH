@@ -4,7 +4,7 @@ end
 
 -- finds nearest enemy hero, optionally only visible heroes
 function HVHDogUtils:FindNearestTarget(entity, fow_visible)
-	local fow_visible = fow_visible or false -- overloaded
+	fow_visible = fow_visible or false -- overloaded
 
 	local flags = DOTA_UNIT_TARGET_FLAG_NONE
 	if fow_visible then
