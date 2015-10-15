@@ -82,11 +82,6 @@ function HVHGameMode:OnEntityKilled(killedArgs)
       HVHGameMode:SpawnDog(true)
     end)
   end
-
-  if unit and unit:GetUnitName() == "npc_hvh_techies" then
-    HVHNeutralCreeps:TechiesOnDeath(unit, killer)
-  end
-
 end
 
 -- Overridden Valve items will not consume charges or get destroyed, even with ItemPermanent "0". This fixes that problem.

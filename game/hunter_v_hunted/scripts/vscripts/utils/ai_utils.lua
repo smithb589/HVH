@@ -2,8 +2,35 @@ if AICore == nil then
   AICore = class({})
 end
 
+-- DOTA_TEAM_NEUTRAL units seem to have flying vision
+function AICore:CanSeeTarget(unit, target)
+	--print("Can see target: " .. tostring(unit:CanEntityBeSeenByMyTeam(target)))
+	return unit:CanEntityBeSeenByMyTeam(target)
+end
+
 function AICore:IsTargetValid(target)
 	return target and not target:IsNull() and target:IsAlive()
+end
+
+function AICore:_InRange(range, min_range, max_range)
+	min_range = min_range or 0
+	max_range = max_range or 99999
+
+	if (min_range and range >= min_range) and (max_range and range <= max_range) then
+		return true
+	else
+		return false
+	end
+end
+
+function AICore:IsVectorInRange(unit, vector, min_range, max_range)
+	local range = Length2DBetweenVectors(unit:GetAbsOrigin(), vector)
+	return self:_InRange(range, min_range, max_range)
+end
+
+function AICore:IsTargetInRange(unit, target, min_range, max_range)
+	local range = unit:GetRangeToUnit(target)
+	return self:_InRange(range, min_range, max_range)
 end
 
 -- Retrieve enemies to (unit) within (radius) at either the unit's position or (position)
@@ -38,6 +65,7 @@ end
 -- Are at least (number) units surrounding (unit) within (radius)?
 function AICore:AreEnemiesInRange(unit, radius, number)
 	local units = self:GetEnemiesInRange(unit, radius)
+	--print(#units .. " in range.")
 	if units[number] then return true else return false end
 end
 

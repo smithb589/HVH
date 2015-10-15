@@ -6,7 +6,7 @@
 	// HVH
 	"BaseClass"					"npc_dota_creature"
 	"vscripts"                  "ai/ai_roshan.lua"
-	"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+	"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
 	"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 	"IsNeutralUnitType"			"1"
 	"IsAncient"					"1"

@@ -227,6 +227,18 @@
 		"VisionDaytimeRange"	"0"
 		"VisionNighttimeRange"	"0"
 	}
+	"npc_dummy_ward"
+	{
+		"BaseClass" "npc_dota_creature"
+		"Model"     "models/development/invisiblebox.vmdl"
+		"AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		"MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_FLY"
+		"Ability1"				"dummy_ward"
+		"VisionDaytimeRange"	"800"
+		"VisionNighttimeRange"	"800"
+		"MinimapIcon"        ""
+	}
 	//=================================================================================
 	// Neutral: Eidolon
 	//=================================================================================
@@ -764,7 +776,7 @@
 		// HVH
 		"BaseClass"					"npc_dota_creature"
 		"vscripts"                  "ai/ai_roshan.lua"
-		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"IsNeutralUnitType"			"1"
 		"IsAncient"					"1"
@@ -1123,14 +1135,14 @@
 		//-------------------------------------------------------------------------------------------------------------	
 		"Model"					"models/heroes/ursa/ursa.vmdl"				// Model.
 		"SoundSet"				"Hero_Ursa"							// Name of sound set.
-		"ModelScale"			".74"
+		"ModelScale"			".9" //".74"
 	
 		// Abilities
 		//-------------------------------------------------------------------------------------------------------------
-		"Ability1"				""			// Ability 1
-		"Ability2"				"ursa_overpower"					// Ability 2
-		"Ability3"				"ursa_fury_swipes"					// Ability 3
-		"Ability4"				""					// Ability 4
+		"Ability1"				"ursa_earthshock"			// Ability 1
+		"Ability2"				"ursa_overpower"			// Ability 2
+		"Ability3"				"ursa_fury_swipes"			// Ability 3
+		"Ability4"				"ursa_enrage"				// Ability 4
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -1182,7 +1194,13 @@
 		{
 			"EquippedItems"
 			{
-			    "Lifesteal"    {    "Item"    "item_vladmir"    }
+			    "Lifesteal"		{ "Item"	"item_vladmir" }
+			    "Gem"			{ "Item"	"item_gem"}
+			    "BlinkDagger"
+			    {
+			    	"Item"		"item_blink"
+			    	"Charges"	"99"
+			    }
 			}
 	
 			"AttachWearables"

@@ -38,8 +38,7 @@ function BehaviorBlackhole:Evaluate()
 			--print("2. Closest 2 targets can fit in diameter of black hole.")
 			local midpoint_loc = self:FindMidPoint(t1, t2)
 			local enigma_loc = self.unit:GetAbsOrigin()
-			local distanceToMidpoint = Length2DBetweenVectors(enigma_loc, midpoint_loc) 
-			if distanceToMidpoint <= self.range then
+			if AICore:IsVectorInRange(self.unit, midpoint_loc, self.range) then
 				--print("3. Midpoint close enough to target.")
 				self.order.Position = midpoint_loc
 				desire = self.desire --DESIRE_MAX

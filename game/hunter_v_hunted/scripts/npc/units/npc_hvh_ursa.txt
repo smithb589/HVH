@@ -15,14 +15,14 @@
 	//-------------------------------------------------------------------------------------------------------------	
 	"Model"					"models/heroes/ursa/ursa.vmdl"				// Model.
 	"SoundSet"				"Hero_Ursa"							// Name of sound set.
-	"ModelScale"			".74"
+	"ModelScale"			".9" //".74"
 
 	// Abilities
 	//-------------------------------------------------------------------------------------------------------------
-	"Ability1"				""			// Ability 1
-	"Ability2"				"ursa_overpower"					// Ability 2
-	"Ability3"				"ursa_fury_swipes"					// Ability 3
-	"Ability4"				""					// Ability 4
+	"Ability1"				"ursa_earthshock"			// Ability 1
+	"Ability2"				"ursa_overpower"			// Ability 2
+	"Ability3"				"ursa_fury_swipes"			// Ability 3
+	"Ability4"				"ursa_enrage"				// Ability 4
 
 	// Armor
 	//----------------------------------------------------------------
@@ -74,7 +74,13 @@
 	{
 		"EquippedItems"
 		{
-		    "Lifesteal"    {    "Item"    "item_vladmir"    }
+		    "Lifesteal"		{ "Item"	"item_vladmir" }
+		    "Gem"			{ "Item"	"item_gem"}
+		    "BlinkDagger"
+		    {
+		    	"Item"		"item_blink"
+		    	"Charges"	"99"
+		    }
 		}
 
 		"AttachWearables"
