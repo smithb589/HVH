@@ -55,7 +55,10 @@ function HVHConvars:SpawnWards()
 
   for _,entity in pairs(masterList) do
     local pos = entity:GetAbsOrigin()
-    CreateUnitByName("npc_dota_observer_wards", pos, true, nil, nil, team)
+    local dummy = CreateUnitByName("npc_dummy_ward", pos, true, nil, nil, team)
+    --local ward = CreateUnitByName("npc_dota_observer_wards", pos, true, nil, nil, team)
+    --ward:AddNewModifier(ward, nil, "modifier_invisible", {})
+    --ward:AddAbility("dummy_truesight_immune")
   end
 end
 
