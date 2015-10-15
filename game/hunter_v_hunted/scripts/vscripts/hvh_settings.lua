@@ -19,8 +19,8 @@ PREGAME_SLEEP = false
 -- HVH Respawn
 BADGUY_LIVES  = 6
 GOODGUY_LIVES = 18
-MIN_RESPAWN_TIME = 1
-MAX_RESPAWN_TIME = 3
+MIN_RESPAWN_TIME = 25
+MAX_RESPAWN_TIME = 30
 MINIMUM_RESPAWN_RANGE = 2500			-- if no respawn points are found outside this range, the least worst will be used
 
 -- HVH Power Stages for reinforcements / evolutions
@@ -134,7 +134,7 @@ ENABLED_RUNES[DOTA_RUNE_INVISIBILITY] = true
 ENABLED_RUNES[DOTA_RUNE_REGENERATION] = true -- Regen runes are currently not spawning as of the writing of this comment
 ENABLED_RUNES[DOTA_RUNE_BOUNTY] = false
 
-MAX_NUMBER_OF_TEAMS = 3              -- How many potential teams can be in this game mode?
+MAX_NUMBER_OF_TEAMS = 4              -- How many potential teams can be in this game mode?
 USE_CUSTOM_TEAM_COLORS = true          -- Should we use custom team colors?
 USE_CUSTOM_TEAM_COLORS_FOR_PLAYERS = true          -- Should we use custom team colors to color the players/minimap?
 
