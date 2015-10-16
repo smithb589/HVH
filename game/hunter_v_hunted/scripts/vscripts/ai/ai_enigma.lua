@@ -6,7 +6,7 @@ function Spawn( entityKeyValues )
 	thisEntity.behaviorSystem = AICore:CreateBehaviorSystem({
 		BehaviorBlackholeChannel(thisEntity, DESIRE_MAX+1),
 		BehaviorBlackhole(thisEntity, DESIRE_MAX),
-		BehaviorDespawnWhenUnseen(thisEntity, DESIRE_HIGH),
+		--BehaviorDespawnWhenUnseen(thisEntity, DESIRE_HIGH),
 		BehaviorTravel(thisEntity, DESIRE_MEDIUM),
 		BehaviorChooseNextDestination(thisEntity, DESIRE_LOW),
 		BehaviorDespawnForced(thisEntity, DESIRE_NONE+1)
