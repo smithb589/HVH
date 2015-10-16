@@ -3,6 +3,28 @@
 {
 	"Version"		"1"
 
+	//=================================================================================
+	// Neutral Creep overrides
+	//=================================================================================
+	"item_aegis"
+	{
+		"ItemDroppable" 	"1"
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"AbilitySpecial"
+		{
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"disappear_time"		"180.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"disappear_time_minutes_tooltip"		"3"
+			}
+		}
+	}
+
 	"techies_land_mines"
 	{
 		"AbilityManaCost"				"0"
@@ -25,7 +47,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_per_stack"				"5"
+				"damage_per_stack"				"10"
 			}
 		}
 	}
@@ -42,7 +64,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"vampiric_aura"			"100"
+				"vampiric_aura"			"50"
 			}
 		}
 	}
@@ -56,20 +78,20 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"far_damage"			"0" //"55 110 165"
+				"far_damage"			"20" //"55 110 165"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"near_damage"			"0" //"55 110 165"
+				"near_damage"			"20" //"55 110 165"
 			}
 		}
 	}
 
 	"polar_furbolg_ursa_warrior_thunder_clap"
 	{
-		//"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		//"AbilityCastPoint"		"0.0"
+		"AbilityManaCost"				"0"
+		"AbilityCooldown"				"3.0"
 	}
 
 	// -------------------------- Sniper's abilities --------------------------
