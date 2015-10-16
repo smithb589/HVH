@@ -12,9 +12,6 @@ function HVHPowerStages:Setup()
 	ListenToGameEvent("entity_killed", Dynamic_Wrap(self, "OnEntityKilled"), self)
 	self.gg_stage = 0
 	self.bg_stage = 0
-
-	-- English-only right now
-	self.localization = LoadKeyValues("resource/addon_english.txt")["Tokens"]["HVH_PowerStages"]
 end
 
 function HVHPowerStages:OnEntityKilled(killedArgs)
@@ -120,38 +117,38 @@ end
 --------------------------------------------------------- GRANT ABILITIES AND PRINT NOTIFICATIONS
 function HVHPowerStages:GrantSniperShrapnelCharge()
 	self:LevelupAbilityForAll("npc_dota_hero_sniper", "sniper_shrapnel_hvh", nil, false)
-	self:Notify(self.localization["Snipers_Upgrade_Supplies"], self.localization["Snipers_Shrapnel"], "", DOTA_TEAM_GOODGUYS)
+	self:Notify("#PowerStages_Snipers_Upgrade_Supplies", "#PowerStages_Snipers_Shrapnel", "", DOTA_TEAM_GOODGUYS)
 end
 
 function HVHPowerStages:GrantSniperEarthbind()
 	self:LevelupAbilityForAll("npc_dota_hero_sniper", "meepo_earthbind", nil, true)
-	self:Notify(self.localization["Snipers_Upgrade_Supplies"], self.localization["Snipers_Earthbind"], "meepo_earthbind", DOTA_TEAM_GOODGUYS)
+	self:Notify("#PowerStages_Snipers_Upgrade_Supplies", "#PowerStages_Snipers_Earthbind", "meepo_earthbind", DOTA_TEAM_GOODGUYS)
 end
 
 function HVHPowerStages:GrantSniperTimberchain()
 	self:LevelupAbilityForAll("npc_dota_hero_sniper", "shredder_timber_chain", nil, true)
-	self:Notify(self.localization["Snipers_Upgrade_Supplies"], self.localization["Snipers_Timberchain"], "shredder_timber_chain", DOTA_TEAM_GOODGUYS)
+	self:Notify("#PowerStages_Snipers_Upgrade_Supplies", "#PowerStages_Snipers_Timberchain", "shredder_timber_chain", DOTA_TEAM_GOODGUYS)
 end
 
 function HVHPowerStages:GrantSniperBonusHounds()
 	HVHGameMode:SpawnDog(true)
 	HVHGameMode:SpawnDog(true)
-	self:Notify(self.localization["Snipers_Upgrade_Reinforcements"], self.localization["Snipers_BonusHounds"], "lycan_summon_wolves", DOTA_TEAM_GOODGUYS)
+	self:Notify("#PowerStages_Snipers_Upgrade_Reinforcements", "#PowerStages_Snipers_BonusHounds", "lycan_summon_wolves", DOTA_TEAM_GOODGUYS)
 end
 
 function HVHPowerStages:GrantNSLeap()
 	self:LevelupAbilityForAll("npc_dota_hero_night_stalker", "night_stalker_leap_hvh", nil, true)
-	self:Notify(self.localization["NS_Upgrade"], self.localization["NS_Leap"], "night_stalker_leap_hvh", DOTA_TEAM_BADGUYS)
+	self:Notify("#PowerStages_NS_Upgrade", "#PowerStages_NS_Leap", "night_stalker_leap_hvh", DOTA_TEAM_BADGUYS)
 end
 
 function HVHPowerStages:GrantNSEcholocation()
 	self:LevelupAbilityForAll("npc_dota_hero_night_stalker", "night_stalker_echolocation_hvh", nil, true)
-	self:Notify(self.localization["NS_Upgrade"], self.localization["NS_Echolocation"], "night_stalker_echolocation_hvh", DOTA_TEAM_BADGUYS)
+	self:Notify("#PowerStages_NS_Upgrade", "#PowerStages_NS_Echolocation", "night_stalker_echolocation_hvh", DOTA_TEAM_BADGUYS)
 end
 
 function HVHPowerStages:GrantNSCripplingFearAOE()
 	self:LevelupAbilityForAll("npc_dota_hero_night_stalker", "night_stalker_crippling_fear_aoe_hvh", "night_stalker_crippling_fear_hvh", true)
-	self:Notify(self.localization["NS_Upgrade"], self.localization["NS_CripplingHysteria"], "night_stalker_crippling_fear_aoe_hvh", DOTA_TEAM_BADGUYS)
+	self:Notify("#PowerStages_NS_Upgrade", "#PowerStages_NS_CripplingHysteria", "night_stalker_crippling_fear_aoe_hvh", DOTA_TEAM_BADGUYS)
 end
 
 function HVHPowerStages:Notify(heading, subtext, ability_name, team)
@@ -162,11 +159,12 @@ function HVHPowerStages:Notify(heading, subtext, ability_name, team)
 	local cssStyleHeading = cssTable["heading"]
 	local cssStyleGained = cssTable["gained"]
 
-	Notifications:TopToAll({text=heading..subtext, duration=NOTIFICATION_DURATION, style=cssStyleHeading})
+	Notifications:TopToAll({text=heading, duration=NOTIFICATION_DURATION, style=cssStyleHeading})
+	Notifications:TopToAll({text=subtext, duration=NOTIFICATION_DURATION, style=cssStyleHeading, continue=true})
 
 	if ability_name ~= "" then
 		Notifications:TopToAll({image=imagePath, duration=NOTIFICATION_DURATION})
-		Notifications:TopToAll({text="&nbsp;&nbsp;&nbsp;gained&nbsp;&nbsp;&nbsp;", style=cssStyleGained, continue=true})
+		Notifications:TopToAll({text="#PowerStages_Gained", style=cssStyleGained, continue=true})
 
 		-- notifications.lua doesn't seem to like custom ability images and won't compile images into vtex_c
 		-- search "PrecacheHacks" under the ../content/dota_addons/hunter_v_hunted/panorama/ folder to add more 
@@ -186,14 +184,19 @@ function HVHPowerStages:NotifyLivesRemaining(team)
 	local keys = self:GetTeamVariables(team)
 	local thresholds   = keys["thresholds"]
 	local currentLives = keys["currentLives"]
-	local teamName = keys["teamName"]
-	local output = string.format("Lives remaining for %s: %i", teamName, currentLives)
 
 	local teamColor = self:GetTeamColor(team)
 	local cssTable = self:GetCSS(teamColor)
 	local cssStyle = cssTable["livesRemaining"]
 
-	Notifications:BottomToAll({text=output, duration=NOTIFICATION_DURATION, style=cssStyle})
+	if team == DOTA_TEAM_GOODGUYS then
+		teamString = "#PowerStages_Snipers_LivesRemaining"
+	else
+		teamString = "#PowerStages_NS_LivesRemaining"
+	end
+
+	Notifications:BottomToAll({text=teamString, duration=NOTIFICATION_DURATION, style=cssStyle})
+	Notifications:BottomToAll({text=currentLives, duration=NOTIFICATION_DURATION, style=cssStyle, continue=true})
 end
 
 ----------------------------------------------------------- MISC. FUNCTIONS
@@ -216,12 +219,12 @@ function HVHPowerStages:GetTeamVariables(team)
 	local mode = GameRules:GetGameModeEntity()
 
 	if team == DOTA_TEAM_GOODGUYS then
-		keys["teamName"]	 = self.localization["Team_Snipers"]
+		keys["teamName"]	 = "#DOTA_GoodGuys"
 		keys["thresholds"]	 = GG_POWER_STAGE_THRESHOLDS
 		keys["currentStage"] = self.gg_stage
 		keys["currentLives"] = mode.GoodGuyLives
 	else
-		keys["teamName"]	 = self.localization["Team_NS"]
+		keys["teamName"]	 = "#DOTA_BadGuys"
 		keys["thresholds"]	 = BG_POWER_STAGE_THRESHOLDS
 		keys["currentStage"] = self.bg_stage
 		keys["currentLives"] = mode.BadGuyLives

@@ -3,24 +3,25 @@ if HVHTutorial == nil then
 end
 
 TUTORIAL_DELAY = 4.8
+TUTORIAL_MSGS = 6
 
 -- Print messages to the player at the start of the match
 function HVHTutorial:Start(playerID)
-	local tutorialStrings = {}
+	local tutorialString = ""
 	local colorHex = ""
 	if PlayerResource:GetTeam(playerID) == DOTA_TEAM_GOODGUYS then
-		tutorialStrings = LoadKeyValues("resource/addon_english.txt")["Tokens"]["HVH_Tutorial_Snipers"]
+		tutorialString = "#Tutorial_GG_MSG_"
 		colorHex = SNIPERS_COLOR_HEX
 	else
-		tutorialStrings = LoadKeyValues("resource/addon_english.txt")["Tokens"]["HVH_Tutorial_NS"]
+		tutorialString = "#Tutorial_BG_MSG_"
 		colorHex = NS_COLOR_HEX
 	end
 
 	local i = 1 -- Lua arrays start at 1
 	Timers:CreateTimer(TUTORIAL_DELAY, function()
-		Notifications:Top(playerID, {text=tutorialStrings["MSG_"..i], duration=TUTORIAL_DELAY, style={color=colorHex}})
+		Notifications:Top(playerID, {text=tutorialString..i, duration=TUTORIAL_DELAY, style={color=colorHex}})
 		i = i + 1
-		if tutorialStrings["MSG_"..i] ~= nil then
+		if i <= TUTORIAL_MSGS then
 			return TUTORIAL_DELAY
 		else
 			return nil

@@ -13,20 +13,6 @@
 	"OverthrowTextPickup"							"HAS PICKED UP"
 	"OverthrowItemPickup"							"{s:item_id}!"
 
-	// neutral creeps
-	"Techies_MineDiscovery_GG"	"The Snipers have discovered the location of Techies' mines!"
-	"Techies_MineDiscovery_BG"	"The Night Stalker has discovered the location of Techies' mines!"
-	"Techies_NoMines_GG"		"The Snipers brutally murdered an innocent Techies who didn't even have any mines!"
-	"Techies_NoMines_BG"		"The Night Stalker devoured an innocent Techies who didn't even have any mines!"
-	"Roshan_KilledBy_GG"		"The Snipers snatched the Aegis from Roshan!"
-	"Roshan_KilledBy_BG"		"The Night Stalker snatched the Aegis from Roshan!"
-	"Roshan_KilledBy_Ursa"		"Ursa swallows the Aegis whole and goes on a rampage!"
-	"Ursa_Killed"				"Fuzzy Wuzzy was a bear. Fuzzy Wuzzy, served up rare."
-	"Tower_Destroyed_GG"		"The creeps cheer for the Snipers! What marksmanship!"
-	"Tower_Destroyed_BG"		"The creeps cheer for the Night Stalker! What strength!"
-	"BabyRoshan_Killed_GG"		"The Snipers will grow fat from this Roshan hunt. Free items!"
-	"BabyRoshan_Killed_BG"		"The Night Stalker engorges himself on Roshan veal. Free item!"
-
 	"addonname"							"HUNTER v HUNTED"
 	"game_info_objective_header"		"Objective:"
 	"game_info_objective_description"	"Each team has limited lives. Kill the other team before they kill you!"
@@ -95,4 +81,47 @@
 	"loading_screen_warning"	"WARNING: Night Stalker not intended for first-time players."
 
 	"custom_end_screen_legend_team_score" "LIVES"
+
+	// neutral creeps
+	"Techies_MineDiscovery_GG"	"The Snipers have discovered the location of Techies' mines!"
+	"Techies_MineDiscovery_BG"	"The Night Stalker has discovered the location of Techies' mines!"
+	"Techies_NoMines_GG"		"The Snipers brutally murdered an innocent Techies who didn't even have any mines!"
+	"Techies_NoMines_BG"		"The Night Stalker devoured an innocent Techies who didn't even have any mines!"
+	"Roshan_KilledBy_GG"		"The Snipers snatched the Aegis from Roshan!"
+	"Roshan_KilledBy_BG"		"The Night Stalker snatched the Aegis from Roshan!"
+	"Roshan_KilledBy_Ursa"		"Ursa swallows the Aegis whole and goes on a rampage!"
+	"Ursa_Killed"				"Fuzzy Wuzzy was a bear. Fuzzy Wuzzy, served up rare."
+	"Tower_Destroyed_GG"		"The creeps cheer for the Snipers! What marksmanship!"
+	"Tower_Destroyed_BG"		"The creeps cheer for the Night Stalker! What strength!"
+	"BabyRoshan_Killed_GG"		"The Snipers will grow fat from this Roshan hunt. Free items!"
+	"BabyRoshan_Killed_BG"		"The Night Stalker engorges himself on Roshan veal. Free item!"
+
+	"PowerStages_Gained"		"&nbsp;&nbsp;&nbsp;   gained   &nbsp;&nbsp;&nbsp;" // &nbsp; is a space
+	"PowerStages_Snipers_LivesRemaining"			"Lives remaining for Snipers: "
+	"PowerStages_Snipers_Upgrade_Supplies"			"Supplies have been delivered: "
+	"PowerStages_Snipers_Upgrade_Reinforcements"	"Reinforcements have arrived: "
+	"PowerStages_Snipers_Earthbind"		"MEEPO'S NETS!"
+	"PowerStages_Snipers_Timberchain"	"TIMBER CHAINS!"
+	"PowerStages_Snipers_BonusHounds"	"THE PACK GROWS!"
+	"PowerStages_Snipers_Shrapnel"		"+1 MAX SHRAPNEL CHARGE"
+	"PowerStages_NS_LivesRemaining"		"Lives remaining for Night Stalker: "
+	"PowerStages_NS_Upgrade"			"The Night Stalker has evolved "
+	"PowerStages_NS_Leap"				"DREAD LEAP!"
+	"PowerStages_NS_Echolocation"		"ECHOLOCATION!"
+	"PowerStages_NS_CripplingHysteria"	"CRIPPLING HYSTERIA (AOE)"
+
+	"Tutorial_GG_MSG_1" "You are a SNIPER."
+	"Tutorial_GG_MSG_2" "During the day, you must HUNT the Night Stalker."
+	"Tutorial_GG_MSG_3" "During the night, you must RUN from the Night Stalker and collect ITEMS!"
+	"Tutorial_GG_MSG_4" "FOLLOW THE HOUND!"
+	"Tutorial_GG_MSG_5" "The hound's aura will protect and heal you, but only during the day."
+	"Tutorial_GG_MSG_6" "Now... HUNT!"
+
+	"Tutorial_BG_MSG_1" "You are the NIGHT STALKER."
+	"Tutorial_BG_MSG_2" "During the day, you must RUN from the Snipers and collect ITEMS!"
+	"Tutorial_BG_MSG_3" "During the night, you must HUNT the Snipers."
+	"Tutorial_BG_MSG_4" "BEWARE THE HOUND!"
+	"Tutorial_BG_MSG_5" "Becoming invisible will regenerate you, but the Hound can still find you."
+	"Tutorial_BG_MSG_6" "Now... RUN!"
+
 }
