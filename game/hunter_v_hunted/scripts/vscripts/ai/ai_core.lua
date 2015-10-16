@@ -42,6 +42,7 @@ require("utils/hvh_utils")
 require("ai/class_utils")
 require("ai/constants")
 require("ai/behavior")
+require("ai/behavior_add_new_destination")
 require("ai/behavior_attack_target")
 require("ai/behavior_attack_target_aggressive")
 require("ai/behavior_blackhole")
@@ -136,7 +137,7 @@ function AICore:CreateBehaviorSystem( behaviors )
 
 		return result
 	end
-
+	
 	function BehaviorSystem:Deactivate()
 		if self.currentBehavior.End then self.currentBehavior:End() end
 	end
