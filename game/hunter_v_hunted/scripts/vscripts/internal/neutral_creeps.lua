@@ -4,7 +4,7 @@ if HVHNeutralCreeps == nil then
 	RANGE_TYPICAL_MIN = 2600.0
 	RANGE_TECHIES_MAX = 2000.0
 	RANGE_TECHIES_MIN = 0.0
-	TECHIES_MAX_MINES = 12
+	TECHIES_MAX_MINES = 8
 
 	NEUTRALCREEPS_EVENT_TECHIES_DEATH           = 0
 	NEUTRALCREEPS_EVENT_TECHIES_DEATH_NOMINES   = 1
@@ -12,22 +12,132 @@ if HVHNeutralCreeps == nil then
 	NEUTRALCREEPS_EVENT_ROSHAN_KILLED_BY_NS      = 3
 	NEUTRALCREEPS_EVENT_ROSHAN_KILLED_BY_URSA    = 4
 	NEUTRALCREEPS_EVENT_URSA_KILLED			     = 5 -- guilt of the cubs
+	NEUTRALCREEPS_EVENT_TOWER_DESTROYED_BY_SNIPERS = 6
+	NEUTRALCREEPS_EVENT_TOWER_DESTROYED_BY_NS 		= 7
+	NEUTRALCREEPS_EVENT_BABY_ROSHAN_KILLED_BY_SNIPERS = 8
+	NEUTRALCREEPS_EVENT_BABY_ROSHAN_KILLED_BY_NS 	= 9
 end
 
 function HVHNeutralCreeps:Setup()
 	ListenToGameEvent("last_hit", Dynamic_Wrap(self, "OnLastHit"), self)
-	ListenToGameEvent("entity_killed", Dynamic_Wrap(self, "OnEntityKilled"), self)
+	ListenToGameEvent("entity_killed", Dynamic_Wrap(self, "OnEntityKilled"), self) 
+	ListenToGameEvent("npc_spawned", Dynamic_Wrap(self, "OnNPCSpawned"), self) 
+	self.UnitKV = LoadKeyValues("scripts/npc/npc_units_custom.txt")
+	self.ExpectedPoints = NEUTRAL_CREEPS_UNIT_POINTS_MIN
+	self.CurrentPoints = 0
+
+	if not NEUTRAL_CREEPS then return end
+
+	self.Units = {}
+	for unitName,unitBlock in pairs(self.UnitKV) do
+		local points = unitBlock["NeutralCreepPoints"]
+		if points and points ~= 0 then
+			self.Units[unitName] = {}
+			self.Units[unitName]["value"] = unitName
+			self.Units[unitName]["weight"] = 1 / points
+			self.Units[unitName]["points"] = points
+		end
+	end
+
+	self.Randomizer = HVHRandomizer(self.Units)
+	--self.Randomizer:DisplayProbabilties()
+
+	Timers:CreateTimer(NEUTRAL_CREEPS_START_TIME, function()
+		while self.CurrentPoints < self.ExpectedPoints do
+			self:SpawnRandomGroup()
+		end
+
+		return NEUTRAL_CREEPS_REPEAT_TIME
+	end)
 end
 
+function HVHNeutralCreeps:SpawnRandomGroup()
+	local value = self.Randomizer:GetRandomValue()
+	--self.Randomizer:DisplayProbabilties()
+
+	if value == "npc_hvh_megacreep_melee" or
+	   value == "npc_hvh_megacreep_ranged" or
+	   value == "npc_hvh_megacreep_siege" or
+	   value == "npc_hvh_tower" then
+
+		local r = RandomInt(1,100)
+		if r <= 20 then
+			self:SpawnWarParty()
+		else
+			self:SpawnSoloCreep()
+		end
+	elseif (value == "npc_hvh_ursa" or value == "npc_hvh_roshan") and
+		   not self:DoUrsaOrRoshanExist() then
+		self:SpawnUrsaAndRoshan()
+	elseif value == "npc_hvh_enigma" then
+		self:SpawnEnigmaEidolons()
+	elseif value == "npc_hvh_hellbear" then
+		self:SpawnHellbears()
+	elseif value == "npc_hvh_tiny" then
+		self:SpawnTiny()
+	elseif value == "npc_hvh_enigma" then
+		self:SpawnEnigmaEidolons()
+	elseif value == "npc_hvh_techies" then
+		self:SpawnTechies()
+	else
+		--print(value .. " not found on ChooseRandomGroup")
+	end
+end
+
+function HVHNeutralCreeps:SpawnCreepsConvar()
+	self:SpawnWarParty()
+end
+
+-------------------------------------------------------------------
+-- Megacreeps
+-------------------------------------------------------------------
+function HVHNeutralCreeps:MegacreepDomination(player, tower)
+	local team = player:GetTeam()
+	if team == DOTA_TEAM_GOODGUYS then
+		self:Notify(team, NEUTRALCREEPS_EVENT_TOWER_DESTROYED_BY_SNIPERS)	
+	elseif team == DOTA_TEAM_BADGUYS then
+		self:Notify(team, NEUTRALCREEPS_EVENT_TOWER_DESTROYED_BY_NS)
+	end
+
+	-- create a table of nearby megacreeps to control
+	local seekRadius = 1024.0
+	local entList = Entities:FindAllByClassnameWithin("npc_dota_creature", tower:GetAbsOrigin(), seekRadius)
+	local megacreepList = {}
+	for _,creature in pairs(entList) do
+		local name = creature:GetUnitName()
+		if name == "npc_hvh_megacreep_melee" or
+	   	   name == "npc_hvh_megacreep_ranged" or
+	   	   name == "npc_hvh_megacreep_siege" then
+	   			table.insert(megacreepList, creature)
+	   	end
+	end
+
+	-- switch creeps to player's team, destroy AI, and play animation
+	local playerID = player:GetPlayerID()
+	local team = player:GetTeam()
+	for _,creep in pairs(megacreepList) do
+		creep:Stop()
+		StartAnimation(creep, {duration=6.0, activity=ACT_DOTA_VICTORY, rate=1.0})
+		creep:SetControllableByPlayer(playerID, true)
+		creep:SetTeam(team)
+		creep.behaviorSystem = nil
+	end
+end
+
+-------------------------------------------------------------------
+-- Event listeners
+-------------------------------------------------------------------
 function HVHNeutralCreeps:OnLastHit(keys)
 	local entID = keys.EntKilled
 	local playerID = keys.PlayerID
 	local entity = EntIndexToHScript(entID)
 	local player = PlayerResource:GetPlayer(playerID)
+	if not player then return end
 	local hero = player:GetAssignedHero()
 
 	if entity:GetUnitName() == "npc_hvh_tower" then
-		print("PlayerID " .. playerID .. " last-hit a tower!")
+		self:MegacreepDomination(player, entity)
+		--print("PlayerID " .. playerID .. " last-hit a tower!")
 	end
 
 	if entity:GetUnitName() == "npc_hvh_roshan" then
@@ -42,6 +152,8 @@ function HVHNeutralCreeps:OnLastHit(keys)
 end
 
 function HVHNeutralCreeps:OnEntityKilled(keys)
+	HVHNeutralCreeps:CleanDroppedGems()
+
 	local unit = EntIndexToHScript(keys.entindex_killed)
 	local attacker = EntIndexToHScript(keys.entindex_attacker)
 	local attackerTeam = attacker:GetTeam()
@@ -50,12 +162,58 @@ function HVHNeutralCreeps:OnEntityKilled(keys)
 		self:TechiesOnDeath(unit, attacker)
 	elseif unit and unit:GetUnitName() == "npc_hvh_roshan" and attacker:GetUnitName() == "npc_hvh_ursa" then
 		self:RoshanKilledByUrsa(unit, attacker)
-	elseif unit and unit:GetUnitName() == "npc_hvh_ursa" then
+	elseif unit and unit:GetUnitName() == "npc_hvh_ursa" and attacker:GetUnitName() ~= "npc_hvh_ursa" then
 		self:UrsaOnDeath(unit)
+	end
+
+  	self:SubtractPoints(unit)
+end
+
+function HVHNeutralCreeps:OnNPCSpawned(keys)
+  	local unit = EntIndexToHScript(keys.entindex)
+  	self:AddPoints(unit)
+end
+
+-------------------------------------------------------------------
+-- Points
+-------------------------------------------------------------------
+function HVHNeutralCreeps:AddPoints(unit)
+  	local points = self:GetPoints(unit)
+  	if points then 
+	  	self.CurrentPoints = self.CurrentPoints + points
+	end
+	--print("Current points: " .. self.CurrentPoints)
+end
+
+function HVHNeutralCreeps:SubtractPoints(unit)
+  	local points = self:GetPoints(unit)
+  	if points then 
+	  	self.CurrentPoints = self.CurrentPoints - points
+	end
+	--print("Current points: " .. self.CurrentPoints)
+end
+
+function HVHNeutralCreeps:GetPoints(unit)
+	local unitName = unit:GetUnitName()
+	local unitKV = self.UnitKV[unitName]
+	if unitKV then
+		local points = unitKV["NeutralCreepPoints"]
+		if points then
+			--print("Points: " .. points)
+			return points
+		else
+			--print(unitName .. " found, but no Point value assigned.")
+			return nil
+		end
+	else
+		--print(unitName .. " not found in custom unit list.")
+		return nil
 	end
 end
 
-function HVHNeutralCreeps:SpawnCreeps()
+-------------------------------------------------------------------
+-- Spawn creep functions
+-------------------------------------------------------------------
 	--[[
 	local vec_start = AICore:ChooseRandomPointOfInterest()
 	local destinationList =	self:CreateDestinationList(vec_start, 3)
@@ -73,14 +231,138 @@ function HVHNeutralCreeps:SpawnCreeps()
 		self:SetDestinationList(unit, destinationList)
 	end
 	]]
-	--self:SpawnWarParty()
-	self:SpawnUrsaAndRoshan()
-	--self:SpawnTechies()
 
+function HVHNeutralCreeps:SpawnSoloCreep()
+	local vec_start = AICore:ChooseRandomPointOfInterest()
+	local vec_end = AICore:ChooseRandomPointOfInterest(vec_start, RANGE_TYPICAL_MIN)
+	local destinationList =	self:CreateDestinationList(vec_end, 3)
+
+	local creepList = {"npc_hvh_megacreep_melee", "npc_hvh_megacreep_ranged", "npc_hvh_megacreep_siege"}
+	local r = RandomInt(1, #creepList)
+
+	local creep = self:SpawnNeutrals(creepList[r], 1, vec_start, DOTA_TEAM_CUSTOM_1)
+	self:SetDestinationList(creep[1], destinationList)
 end
--------------------------------------------------------------------
+
+function HVHNeutralCreeps:SpawnTiny()
+	local vec_start = AICore:ChooseRandomPointOfInterest()
+	local vec_end = AICore:ChooseRandomPointOfInterest(vec_start, RANGE_TYPICAL_MIN)
+	local destinationList =	self:CreateDestinationList(vec_end, 5)
+
+	local tiny = self:SpawnNeutrals("npc_hvh_tiny", 1, vec_start, DOTA_TEAM_CUSTOM_1)
+	self:SetDestinationList(tiny[1], destinationList)
+end
+
+function HVHNeutralCreeps:SpawnHellbears()
+	local vec_start = AICore:ChooseRandomPointOfInterest()
+	local vec_end = AICore:ChooseRandomPointOfInterest(vec_start, RANGE_TYPICAL_MIN)
+	local destinationList =	self:CreateDestinationList(vec_end, 5)
+
+	local hellbears = self:SpawnNeutrals("npc_hvh_hellbear", 2, vec_start, DOTA_TEAM_CUSTOM_1)
+
+	for _,unit in pairs(hellbears) do
+		self:SetDestinationList(unit, destinationList)
+	end
+end
+
+function HVHNeutralCreeps:SpawnEnigmaEidolons()
+	local vec_start = AICore:ChooseRandomPointOfInterest()
+	local vec_end = AICore:ChooseRandomPointOfInterest(vec_start, RANGE_TYPICAL_MIN)
+	local destinationList =	self:CreateDestinationList(vec_end, 5)
+
+	local enigma = self:SpawnNeutrals("npc_hvh_enigma", 1, vec_start, DOTA_TEAM_CUSTOM_1)
+	local eidolons = self:SpawnNeutrals("npc_hvh_eidolon", 4, vec_start, DOTA_TEAM_CUSTOM_1)
+	local unitsAll = JoinTables(enigma, eidolons)
+
+	for _,unit in pairs(unitsAll) do
+		self:SetDestinationList(unit, destinationList)
+	end
+end
+
+function HVHNeutralCreeps:SpawnTechies()
+	local start = AICore:ChooseRandomPointOfInterest()
+	local destinationList =	self:CreateDestinationList(start, 1, RANGE_TECHIES_MIN, RANGE_TECHIES_MAX)
+
+	local techies = self:SpawnNeutrals("npc_hvh_techies", 1, start, DOTA_TEAM_CUSTOM_1)
+	--local techies = CreateUnitByName("npc_hvh_techies", start, true, nil, nil, DOTA_TEAM_NEUTRALS)
+	self:SetDestinationList(techies[1], destinationList)
+end
+
+function HVHNeutralCreeps:SpawnUrsaAndRoshan()
+	local ursaStartEntity = HVHGameMode:GetRandomTeamSpawn()
+	local ursaStart = ursaStartEntity:GetAbsOrigin()
+	local roshStart = HVHGameMode:GetMatchingTeamSpawn(ursaStartEntity):GetAbsOrigin()
+
+	local rosh = self:SpawnNeutrals("npc_hvh_roshan", 1, roshStart, DOTA_TEAM_CUSTOM_2)
+	local ursa = self:SpawnNeutrals("npc_hvh_ursa"  , 1, ursaStart, DOTA_TEAM_CUSTOM_1)
+	--local rosh = CreateUnitByName("npc_hvh_roshan", roshStart:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS)
+	--local ursa = CreateUnitByName("npc_hvh_ursa", ursaStart:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_CUSTOM_1)
+	local destinationList =	self:CreateDestinationList(roshStart, 3)
+
+	self:SetTarget(ursa[1], rosh[1])
+	self:SetDestinationList(ursa[1], destinationList)
+
+    -- play a random "I'm coming for you, Roshan" line
+	local sounds = { "ursa_ursa_items_07", "ursa_ursa_items_09", "ursa_ursa_items_10", "ursa_ursa_items_11" }
+	local r = RandomInt(1,#sounds)
+	EmitGlobalSound(sounds[r])
+end
+
+function HVHNeutralCreeps:SpawnWarParty()
+	local vec_start = AICore:ChooseRandomPointOfInterest()
+	local vec_end = AICore:ChooseRandomPointOfInterest(vec_start, RANGE_TYPICAL_MIN)
+	local destinationList =	self:CreateDestinationList(vec_end, 3)
+
+	-- spawn the tower on a second neutral team and remove its invulnerability
+	local tower = self:SpawnNeutrals("npc_hvh_tower", 1, vec_end, DOTA_TEAM_CUSTOM_2)
+	tower = tower[1]
+	--local tower = CreateUnitByName("npc_hvh_tower", vec_end, true, nil, nil, DOTA_TEAM_CUSTOM_1)
+	tower:SetOrigin(GetGroundPosition(vec_end, tower))
+	FindClearSpaceForUnit(tower, vec_end, true)
+	tower:RemoveModifierByName("modifier_invulnerable")
+	tower:AddNewModifier(tower, nil, "modifier_tower_truesight_aura", {})
+
+	local unitsMelee  = self:SpawnNeutrals("npc_hvh_megacreep_melee", 4, vec_start, DOTA_TEAM_CUSTOM_1)
+	local unitsRanged = self:SpawnNeutrals("npc_hvh_megacreep_ranged", 1, vec_start, DOTA_TEAM_CUSTOM_1)
+	local unitsSiege  = self:SpawnNeutrals("npc_hvh_megacreep_siege", 1, vec_start, DOTA_TEAM_CUSTOM_1)
+	local unitsAll = JoinTables(JoinTables(unitsMelee,unitsRanged), unitsSiege)
+
+	for _,unit in pairs(unitsAll) do
+		self:SetTarget(unit, tower)
+		self:SetDestinationList(unit, destinationList)
+		--print("Has destination list: " .. tostring(self:HasDestinationList(unit)))
+	end
+end
+
+-- returns a table of creeps
+function HVHNeutralCreeps:SpawnNeutrals(name, groupSize, location, team)
+	team = team or DOTA_TEAM_NEUTRALS
+
+	local unitList = {}
+	for i=1, groupSize do
+		local unit = CreateUnitByName(name, location, true, nil, nil, team)
+		table.insert(unitList, unit)
+	end
+
+	return unitList
+end
+
+------------------------------------------------------------------
 -- Ursa/Roshan
 -------------------------------------------------------------------
+function HVHNeutralCreeps:DoUrsaOrRoshanExist()
+	local creatureList = Entities:FindAllByClassname("npc_dota_creature")
+
+	for _,creature in pairs(creatureList) do
+		if creature:GetUnitName() == "npc_hvh_roshan" or creature:GetUnitName() == "npc_hvh_ursa" then
+			--print("Rosh/Ursa exist, so skip their spawn")
+			return true
+		end
+	end
+
+	return false
+end
+
 function HVHNeutralCreeps:RoshanKilledByUrsa(roshan, ursa)
 	self:GrantUrsaBuff(ursa)
 	self:Notify(nil, NEUTRALCREEPS_EVENT_ROSHAN_KILLED_BY_URSA)
@@ -98,9 +380,11 @@ end
 
 function HVHNeutralCreeps:UrsaOnDeath(ursa)
 	self:Notify(nil, NEUTRALCREEPS_EVENT_URSA_KILLED)
+end
 
-	-- destroy all nearby gems (item_physicals are world entities that contain items)
-	local ents = Entities:FindAllByClassnameWithin("dota_item_drop", ursa:GetAbsOrigin(), 1024.0)
+-- destroy all gems on the ground (item_physicals are world entities that contain items)
+function HVHNeutralCreeps:CleanDroppedGems()
+	local ents = Entities:FindAllByClassname("dota_item_drop")
 	for _,ent in pairs(ents) do
 		local containedItem = ent:GetContainedItem()
 		if containedItem:GetName() == "item_gem" then
@@ -110,87 +394,13 @@ function HVHNeutralCreeps:UrsaOnDeath(ursa)
 end
 
 function HVHNeutralCreeps:GrantUrsaBuff(ursa)
-	print("Granting ursa buff")
 	ursa.killedRoshan = true
-	print("ursa.killedRoshan " .. tostring(ursa.killedRoshan))
 end
 
 function HVHNeutralCreeps:GrantAegis(hero)
 	hero:AddItemByName("item_aegis")
 end
 
--------------------------------------------------------------------
--- Spawn creeps
--------------------------------------------------------------------
-function HVHNeutralCreeps:SpawnTechies(keys)
-	local start = AICore:ChooseRandomPointOfInterest()
-	local destinationList =	self:CreateDestinationList(start, 1, RANGE_TECHIES_MIN, RANGE_TECHIES_MAX)
-
-	local techies = self:SpawnNeutrals("npc_hvh_techies", 1, start, DOTA_TEAM_NEUTRALS)
-	--local techies = CreateUnitByName("npc_hvh_techies", start, true, nil, nil, DOTA_TEAM_NEUTRALS)
-	self:SetDestinationList(techies, destinationList)
-end
-
-function HVHNeutralCreeps:SpawnUrsaAndRoshan()
-	local ursaStartEntity = HVHGameMode:GetRandomTeamSpawn()
-	local ursaStart = ursaStartEntity:GetAbsOrigin()
-	local roshStart = HVHGameMode:GetMatchingTeamSpawn(ursaStartEntity):GetAbsOrigin()
-
-	local rosh = self:SpawnNeutrals("npc_hvh_roshan", 1, roshStart, DOTA_TEAM_CUSTOM_2)
-	local ursa = self:SpawnNeutrals("npc_hvh_ursa"  , 1, ursaStart, DOTA_TEAM_CUSTOM_1)
-	--local rosh = CreateUnitByName("npc_hvh_roshan", roshStart:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS)
-	--local ursa = CreateUnitByName("npc_hvh_ursa", ursaStart:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_CUSTOM_1)
-	local destinationList =	self:CreateDestinationList(roshStart, 3)
-
-	self:SetTarget(ursa, rosh)
-	self:SetDestinationList(ursa, destinationList)
-
-    -- play a random "I'm coming for you, Roshan" line
-	local sounds = { "ursa_ursa_items_07", "ursa_ursa_items_09", "ursa_ursa_items_10", "ursa_ursa_items_11" }
-	local r = RandomInt(1,#sounds)
-	EmitGlobalSound(sounds[r])
-end
-
-function HVHNeutralCreeps:SpawnWarParty()
-	local vec_start = AICore:ChooseRandomPointOfInterest()
-	local vec_end = AICore:ChooseRandomPointOfInterest(vec_start, RANGE_TYPICAL_MIN)
-	local destinationList =	self:CreateDestinationList(vec_end, 3)
-
-	-- spawn the tower on a second neutral team and remove its invulnerability
-	local tower = self:SpawnNeutrals("npc_hvh_tower", 1, vec_end, DOTA_TEAM_CUSTOM_1)
-	--local tower = CreateUnitByName("npc_hvh_tower", vec_end, true, nil, nil, DOTA_TEAM_CUSTOM_1)
-	tower:SetOrigin(GetGroundPosition(vec_end, tower))
-	FindClearSpaceForUnit(tower, vec_end, true)
-	tower:RemoveModifierByName("modifier_invulnerable")
-	tower:AddNewModifier(tower, nil, "modifier_tower_truesight_aura", {})
-
-	local unitsMelee  = self:SpawnNeutrals("npc_hvh_megacreep_melee", 4, vec_start)
-	local unitsRanged = self:SpawnNeutrals("npc_hvh_megacreep_ranged", 1, vec_start)
-	local unitsSiege  = self:SpawnNeutrals("npc_hvh_megacreep_siege", 1, vec_start)
-	local unitsAll = JoinTables(JoinTables(unitsMelee,unitsRanged), unitsSiege)
-
-	for _,unit in pairs(unitsAll) do
-		self:SetTarget(unit, tower)
-		self:SetDestinationList(unit, destinationList)
-	end
-end
-
--- returns a single creep handle or a table of creeps if groupSize > 1
-function HVHNeutralCreeps:SpawnNeutrals(name, groupSize, location, team)
-	team = team or DOTA_TEAM_NEUTRALS
-
-	local unitList = {}
-	for i=1, groupSize do
-		local unit = CreateUnitByName(name, location, true, nil, nil, team)
-		table.insert(unitList, unit)
-	end
-
-	if groupSize == 1 then 
-		return unitList[1]
-	else
-		return unitList
-	end
-end
 -------------------------------------------------------------------
 -- Techies mines
 -------------------------------------------------------------------
@@ -375,6 +585,30 @@ function HVHNeutralCreeps:Notify(team, event, parameters)
 		if     team == DOTA_TEAM_GOODGUYS then eventText = "#Techies_NoMines_GG"
 		elseif team == DOTA_TEAM_BADGUYS  then eventText = "#Techies_NoMines_BG"
 		end
+	elseif event == NEUTRALCREEPS_EVENT_ROSHAN_KILLED_BY_SNIPERS then
+		heroIcon = "npc_dota_hero_sniper"
+		eventText = "#Roshan_KilledBy_GG"
+	elseif event == NEUTRALCREEPS_EVENT_ROSHAN_KILLED_BY_NS then
+		heroIcon = "npc_dota_hero_night_stalker"
+		eventText = "#Roshan_KilledBy_BG"
+	elseif event == NEUTRALCREEPS_EVENT_ROSHAN_KILLED_BY_URSA then
+		heroIcon = "npc_dota_hero_ursa"
+		eventText = "#Roshan_KilledBy_Ursa"
+	elseif event == NEUTRALCREEPS_EVENT_URSA_KILLED then
+		heroIcon = "npc_dota_hero_ursa"
+		eventText = "#Ursa_Killed"
+	elseif event == NEUTRALCREEPS_EVENT_TOWER_DESTROYED_BY_SNIPERS then
+		heroIcon = "npc_dota_hero_sniper"
+		eventText = "#Tower_Destroyed_GG"
+	elseif event == NEUTRALCREEPS_EVENT_TOWER_DESTROYED_BY_NS then
+		heroIcon = "npc_dota_hero_night_stalker"
+		eventText = "#Tower_Destroyed_BG"
+	elseif event == NEUTRALCREEPS_EVENT_BABY_ROSHAN_KILLED_BY_SNIPERS then
+		heroIcon = "npc_dota_hero_sniper"
+		eventText = "#BabyRoshan_Killed_GG"
+	elseif event == NEUTRALCREEPS_EVENT_BABY_ROSHAN_KILLED_BY_NS then
+		heroIcon = "npc_dota_hero_night_stalker"
+		eventText = "#BabyRoshan_Killed_BG"
 	end
 
 	local cssStyle_Text    = self:GetCSS_Text(team)

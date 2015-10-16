@@ -39,6 +39,12 @@ BG_POWER_STAGE_THRESHOLDS[2] = 4 -- echolocation
 BG_POWER_STAGE_THRESHOLDS[3] = 2 -- aoe crippling fear
 BG_POWER_STAGE_THRESHOLDS[4] = 0
 
+-- HVH Neutral Creeps
+NEUTRAL_CREEPS 				   = true
+NEUTRAL_CREEPS_UNIT_POINTS_MIN = 16
+NEUTRAL_CREEPS_START_TIME	   = 5.0
+NEUTRAL_CREEPS_REPEAT_TIME     = 5.0
+
 -- HVH Hound Models
 HOUND_MODEL_PATHS = {
 	"models/heroes/lycan/summon_wolves.vmdl",
