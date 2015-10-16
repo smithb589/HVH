@@ -37,9 +37,9 @@ function HVHRejectedChestPickupEvent:_GetRejectReasonText()
   local rejectReasonText = ""
 
   if self._rejectReason == HVHRejectedChestPickupEvent.RejectReason_WrongTeam then
-    rejectReasonText = "You cannot pick up that type of chest."
+    rejectReasonText = "#ChestReject_WrongTeam"
   elseif self._rejectReason == HVHRejectedChestPickupEvent.RejectReason_NoInventory then
-    rejectReasonText = "Unit does not have an inventory."
+    rejectReasonText = "#ChestReject_NoInventory"
   end
 
   return rejectReasonText
