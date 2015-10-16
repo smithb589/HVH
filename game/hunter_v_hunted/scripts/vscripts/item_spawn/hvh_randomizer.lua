@@ -96,4 +96,3 @@ function HVHRandomizer:_GetValueForRandomProbability(probability)
 
 	return randomValue
 end
-

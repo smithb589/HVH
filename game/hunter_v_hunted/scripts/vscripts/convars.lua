@@ -63,7 +63,7 @@ function HVHConvars:SpawnWards()
 end
 
 function HVHConvars:SpawnCreeps()
-  HVHNeutralCreeps:SpawnCreeps()
+  HVHNeutralCreeps:SpawnCreepsConvar()
 end
 
 function HVHConvars:SpawnDog()

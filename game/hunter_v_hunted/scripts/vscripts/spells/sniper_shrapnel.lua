@@ -179,13 +179,11 @@ function disableTechiesMines(ability, location)
 	local mines = Entities:FindAllByClassnameWithin("npc_dota_techies_mines", location, radius)
 	for _,mine in pairs(mines) do
 		--print("Disabling a mine.")
-		print("Removing modifier")
 		mine:RemoveModifierByName("modifier_techies_land_mine")
 		local caster = mine:GetOwnerEntity()
 		local ability = caster:FindAbilityByName("techies_land_mines")
 		Timers:CreateTimer(duration, function()
 			if not mine:IsNull() then
-				print("Adding new modifier")
 				mine:AddNewModifier(caster, ability, "modifier_techies_land_mine", {})
 			end
 		end)

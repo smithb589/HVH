@@ -35,7 +35,6 @@ function BehaviorTravel:Begin()
 end
 
 function BehaviorTravel:Continue()
-	local list = HVHNeutralCreeps:GetDestinationList(self.unit)
 end
 
 function BehaviorTravel:End()
