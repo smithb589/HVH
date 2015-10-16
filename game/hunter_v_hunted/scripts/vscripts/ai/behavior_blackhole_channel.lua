@@ -25,18 +25,18 @@ function BehaviorBlackholeChannel:Evaluate()
 end
 
 function BehaviorBlackholeChannel:Begin()
-	print("Channel BEGIN")
+	--print("Channel BEGIN")
 	local blackholeAbility = self.unit:FindAbilityByName("enigma_black_hole")
 	local channelTime = blackholeAbility:GetChannelTime()
 	self.endTime = GameRules:GetGameTime() + channelTime + 1.0
 end
 
 function BehaviorBlackholeChannel:Continue()
-	print("Channel CONTINUE")
+	--print("Channel CONTINUE")
 end
 
 function BehaviorBlackholeChannel:End()
-	print("Channel END")
+	--print("Channel END")
 end
 
 function BehaviorBlackholeChannel:Think(dt)

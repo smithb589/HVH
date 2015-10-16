@@ -28,7 +28,7 @@ function BehaviorChooseNextDestination:Evaluate()
 end
 
 function BehaviorChooseNextDestination:Begin()
-	print("Choosing next destination")
+	--print("Choosing next destination")
 	HVHNeutralCreeps:NextDestination(self.unit)
 end
 
