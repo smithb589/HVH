@@ -1,5 +1,5 @@
 //=================================================================================
-// Creeps: Megacreep Siege
+// Neutral: Megacreep Siege
 //=================================================================================
 "npc_hvh_megacreep_siege"
 {
@@ -9,6 +9,7 @@
 	"BoundsHullName"			"DOTA_HULL_SIZE_SIEGE"			// Hull type used for navigation/locomotion.
 	"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 	"IsNeutralUnitType"			"1"
+	"NeutralCreepPoints"		"0.75"
 
 	// General
 	//----------------------------------------------------------------
@@ -19,7 +20,7 @@
 	
 	// Abilities
 	//----------------------------------------------------------------
-	"Ability1"					""			// Ability 1.
+	"Ability1"					"mud_golem_hurl_boulder"		// Ability 1.
 	"Ability2"					""			// Ability 2.
 	"Ability3"					""			// Ability 3.
 	"Ability4"					""			// Ability 4.
@@ -75,7 +76,7 @@
 
 	// Status
 	//----------------------------------------------------------------
-	"StatusHealth"				"225" //"550"		// Base health.
+	"StatusHealth"				"550" //"550"		// Base health.
 	"StatusHealthRegen"			"0"			// Health regeneration rate.
 	"StatusMana"				"0"			// Base mana.
 	"StatusManaRegen"			"0"			// Mana regeneration rate.

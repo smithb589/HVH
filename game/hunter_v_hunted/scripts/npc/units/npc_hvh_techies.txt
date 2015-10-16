@@ -10,6 +10,7 @@
 	"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 	"IsNeutralUnitType"			"1"
 	"Level"						"16"
+	"NeutralCreepPoints"		"4"
 
 	// General
 	//-------------------------------------------------------------------------------------------------------------	
@@ -68,8 +69,17 @@
 	"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
 	"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 
+	// Inventory
+	//----------------------------------------------------------------
+	"HasInventory"				"1"
+
 	"Creature"
 	{
+		"EquippedItems"
+		{
+		    "Gem"			{ "Item"	"item_gem" }
+		}
+
 		"AttachWearables"
 		{
 			"Wearable1"	{ "ItemDef" "394" } // remote mine

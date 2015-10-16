@@ -10,6 +10,7 @@
 	"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 	"IsNeutralUnitType"			"1"
 	"Level"						"1"
+	"NeutralCreepPoints"		"0"
 
 	// General
 	//-------------------------------------------------------------------------------------------------------------	

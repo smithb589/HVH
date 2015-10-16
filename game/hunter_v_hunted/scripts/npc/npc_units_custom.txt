@@ -251,6 +251,7 @@
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"IsNeutralUnitType"			"1"
 		"Level"						"1"
+		"NeutralCreepPoints"		"0"
 	
 		// General
 		//-------------------------------------------------------------------------------------------------------------	
@@ -343,6 +344,7 @@
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"IsNeutralUnitType"			"1"
 		"Level"						"16"
+		"NeutralCreepPoints"		"3"
 	
 		// General
 		//-------------------------------------------------------------------------------------------------------------	
@@ -430,6 +432,7 @@
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"IsNeutralUnitType"			"1"
+		"NeutralCreepPoints"		"2"
 	
 		// General
 		//----------------------------------------------------------------
@@ -490,7 +493,7 @@
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 	}	
 	//=================================================================================
-	// Creeps: Megacreep Melee
+	// Neutral: Megacreep Melee
 	//=================================================================================
 	"npc_hvh_megacreep_melee"
 	{
@@ -500,6 +503,7 @@
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"IsNeutralUnitType"			"1"
+		"NeutralCreepPoints"		"0.75"
 	
 		// General
 		//----------------------------------------------------------------
@@ -550,7 +554,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"350" //"700"		// Base health.
+		"StatusHealth"				"700" //"700"		// Base health.
 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
 		"StatusMana"				"1000"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -567,7 +571,7 @@
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	}
 	//=================================================================================
-	// Creeps: Good Range Mega
+	// Neutral: Good Range Mega
 	//=================================================================================
 	"npc_hvh_megacreep_ranged"
 	{
@@ -577,6 +581,7 @@
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"IsNeutralUnitType"			"1"
+		"NeutralCreepPoints"		"0.75"
 	
 		// General
 		//----------------------------------------------------------------
@@ -643,7 +648,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"240" //"475"		// Base health.
+		"StatusHealth"				"475" //"475"		// Base health.
 		"StatusHealthRegen"			"2"			// Health regeneration rate.
 		"StatusMana"				"500"		// Base mana.
 		"StatusManaRegen"			"0.75"		// Mana regeneration rate.
@@ -668,7 +673,7 @@
 		}
 	}	
 	//=================================================================================
-	// Creeps: Megacreep Siege
+	// Neutral: Megacreep Siege
 	//=================================================================================
 	"npc_hvh_megacreep_siege"
 	{
@@ -678,6 +683,7 @@
 		"BoundsHullName"			"DOTA_HULL_SIZE_SIEGE"			// Hull type used for navigation/locomotion.
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"IsNeutralUnitType"			"1"
+		"NeutralCreepPoints"		"0.75"
 	
 		// General
 		//----------------------------------------------------------------
@@ -688,7 +694,7 @@
 		
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					""			// Ability 1.
+		"Ability1"					"mud_golem_hurl_boulder"		// Ability 1.
 		"Ability2"					""			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
@@ -744,7 +750,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"225" //"550"		// Base health.
+		"StatusHealth"				"550" //"550"		// Base health.
 		"StatusHealthRegen"			"0"			// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -781,6 +787,7 @@
 		"IsNeutralUnitType"			"1"
 		"IsAncient"					"1"
 		"Level"						"30"
+		"NeutralCreepPoints"		"6"
 	
 		// General
 		//-------------------------------------------------------------------------------------------------------------	
@@ -809,7 +816,7 @@
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"1"			// Speed of attack.
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"150"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"600" //"150"		// Range within a target can be acquired.
 		"AttackRange"				"128"		// Range within a target can be attacked.
 		//"ProjectileModel"			"particles/base_attacks/ranged_goodguy.vpcf" // Particle system model for projectile.
 		//"ProjectileSpeed"			"1000"		// Speed of projectile.
@@ -858,6 +865,7 @@
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"IsNeutralUnitType"			"1"
 		"Level"						"16"
+		"NeutralCreepPoints"		"4"
 	
 		// General
 		//-------------------------------------------------------------------------------------------------------------	
@@ -916,8 +924,17 @@
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 	
+		// Inventory
+		//----------------------------------------------------------------
+		"HasInventory"				"1"
+	
 		"Creature"
 		{
+			"EquippedItems"
+			{
+			    "Gem"			{ "Item"	"item_gem" }
+			}
+	
 			"AttachWearables"
 			{
 				"Wearable1"	{ "ItemDef" "394" } // remote mine
@@ -944,6 +961,7 @@
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"IsNeutralUnitType"			"1"
 		"Level"						"16"
+		"NeutralCreepPoints"		"3"
 	
 		// General
 		//-------------------------------------------------------------------------------------------------------------	
@@ -1023,7 +1041,7 @@
 		}
 	}
 	//=================================================================================
-	// NoTeam Tower
+	// Neutral: Tower
 	//=================================================================================
 	"npc_hvh_tower"
 	{
@@ -1034,6 +1052,7 @@
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"IsNeutralUnitType"			"1"
 		"Level"						"1"
+		"NeutralCreepPoints"		"2"
 	
 		// General
 		//----------------------------------------------------------------
@@ -1055,8 +1074,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"75"//"100"		// Damage range min.
-		"AttackDamageMax"			"100"//"120"		// Damage range max.
+		"AttackDamageMin"			"85"//"100"		// Damage range min.
+		"AttackDamageMax"			"105"//"120"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"1"			// Speed of attack.
 		"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
@@ -1095,7 +1114,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"800"		// Base health.
+		"StatusHealth"				"1600"		// Base health.
 		"StatusHealthRegen"			"0"			// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -1130,6 +1149,7 @@
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"IsNeutralUnitType"			"1"
 		"Level"						"16"
+		"NeutralCreepPoints"		"6"
 	
 		// General
 		//-------------------------------------------------------------------------------------------------------------	
@@ -1151,8 +1171,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"27"
-		"AttackDamageMax"			"31"
+		"AttackDamageMin"			"37" //"27"
+		"AttackDamageMax"			"41" //"31"
 		"AttackRate"				"1.7"
 		"AttackAnimationPoint"		"0.3"
 		"AttackAcquisitionRange"	"600"
@@ -1170,10 +1190,10 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"1000"		// Base health.
+		"StatusHealth"				"1200"		// Base health.
 		"StatusHealthRegen"			"1"			// Health regeneration rate.
-		"StatusMana"				"400"		// Base mana.
-		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
+		"StatusMana"				"0"			// Base mana.
+		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
 		
 		// Vision
 		//----------------------------------------------------------------

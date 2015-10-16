@@ -1,5 +1,5 @@
 //=================================================================================
-// Creeps: Good Range Mega
+// Neutral: Good Range Mega
 //=================================================================================
 "npc_hvh_megacreep_ranged"
 {
@@ -9,6 +9,7 @@
 	"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
 	"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 	"IsNeutralUnitType"			"1"
+	"NeutralCreepPoints"		"0.75"
 
 	// General
 	//----------------------------------------------------------------
@@ -75,7 +76,7 @@
 
 	// Status
 	//----------------------------------------------------------------
-	"StatusHealth"				"240" //"475"		// Base health.
+	"StatusHealth"				"475" //"475"		// Base health.
 	"StatusHealthRegen"			"2"			// Health regeneration rate.
 	"StatusMana"				"500"		// Base mana.
 	"StatusManaRegen"			"0.75"		// Mana regeneration rate.

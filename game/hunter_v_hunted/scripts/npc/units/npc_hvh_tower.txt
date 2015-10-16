@@ -1,5 +1,5 @@
 //=================================================================================
-// NoTeam Tower
+// Neutral: Tower
 //=================================================================================
 "npc_hvh_tower"
 {
@@ -10,6 +10,7 @@
 	"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 	"IsNeutralUnitType"			"1"
 	"Level"						"1"
+	"NeutralCreepPoints"		"2"
 
 	// General
 	//----------------------------------------------------------------
@@ -31,8 +32,8 @@
 	// Attack
 	//----------------------------------------------------------------
 	"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-	"AttackDamageMin"			"75"//"100"		// Damage range min.
-	"AttackDamageMax"			"100"//"120"		// Damage range max.
+	"AttackDamageMin"			"85"//"100"		// Damage range min.
+	"AttackDamageMax"			"105"//"120"		// Damage range max.
 	"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 	"AttackRate"				"1"			// Speed of attack.
 	"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
@@ -71,7 +72,7 @@
 
 	// Status
 	//----------------------------------------------------------------
-	"StatusHealth"				"800"		// Base health.
+	"StatusHealth"				"1600"		// Base health.
 	"StatusHealthRegen"			"0"			// Health regeneration rate.
 	"StatusMana"				"0"			// Base mana.
 	"StatusManaRegen"			"0"			// Mana regeneration rate.

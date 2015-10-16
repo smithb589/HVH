@@ -9,6 +9,7 @@
 	"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
 	"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 	"IsNeutralUnitType"			"1"
+	"NeutralCreepPoints"		"2"
 
 	// General
 	//----------------------------------------------------------------
