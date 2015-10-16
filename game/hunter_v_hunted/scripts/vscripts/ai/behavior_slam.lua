@@ -23,7 +23,8 @@ end
 function BehaviorSlam:Evaluate()
 	local slamDesire = DESIRE_NONE
 
-	if AICore:AreEnemiesInRange(self.unit, self.radius, 3) and self.slamAbility:IsFullyCastable() then
+	--if AICore:AreEnemiesInRange(self.unit, self.radius, 3) and self.slamAbility:IsFullyCastable() then
+	if self.slamAbility:IsFullyCastable() then
 		slamDesire = self.desire --DESIRE_MAX
 	end
 

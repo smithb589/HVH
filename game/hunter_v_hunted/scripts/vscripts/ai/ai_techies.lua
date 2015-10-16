@@ -7,7 +7,8 @@ function Spawn( entityKeyValues )
 		BehaviorRetreat(thisEntity, DESIRE_MAX),
 		BehaviorPlaceMine(thisEntity, DESIRE_HIGH),
 		BehaviorTravel(thisEntity, DESIRE_MEDIUM),
-		BehaviorChooseNextDestination(thisEntity, DESIRE_LOW),
+		BehaviorChooseNextDestination(thisEntity, DESIRE_LOW+1),
+		BehaviorAddNewDestination(thisEntity, DESIRE_LOW),
 		BehaviorWait(thisEntity, DESIRE_NONE+1)
 	})
 end

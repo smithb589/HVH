@@ -19,7 +19,9 @@ end
 function BehaviorPlaceMine:Evaluate()
 	local desire = DESIRE_NONE
 
-	if self.mineAbility:IsFullyCastable() and HVHNeutralCreeps:CountTechiesMines(self.unit) < TECHIES_MAX_MINES then
+	if HVHNeutralCreeps:HasDestination(self.unit) and
+	   self.mineAbility:IsFullyCastable() and
+	   HVHNeutralCreeps:CountTechiesMines(self.unit) < TECHIES_MAX_MINES then
 		desire = self.desire --DESIRE_MAX
 	end
 

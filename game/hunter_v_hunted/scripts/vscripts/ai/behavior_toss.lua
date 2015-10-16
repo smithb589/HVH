@@ -67,7 +67,7 @@ end
 function BehaviorToss:CreateDummyTarget(unit)
 	local shrinkMaxRangeBy = 250.0 -- to avoid throwing at a space you're moving away from
 	local pos = unit:GetAbsOrigin() + RandomVector(self.tossAbility:GetCastRange() - shrinkMaxRangeBy)
-    local dummy = CreateUnitByName("npc_dummy_toss", pos, true, nil, nil, DOTA_TEAM_NEUTRALS)
+    local dummy = CreateUnitByName("npc_dummy_toss", pos, true, nil, nil, self.unit:GetTeam())
     --print("Created dummy unit " .. dummy:entindex())
 
     --Timers:CreateTimer(3.0, function()

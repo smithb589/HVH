@@ -19,7 +19,7 @@ function BehaviorRetreat:Evaluate()
 	local visionRadius = self.unit:GetCurrentVisionRange()
 	local enemy = AICore:GetClosestVisibleEnemyInRange(self.unit, visionRadius)
 
-	if enemy and self:CanSeeTarget(enemy) then
+	if enemy and AICore:CanSeeTarget(self.unit, enemy) then
 		desire = self.desire
 	end
 
@@ -27,6 +27,12 @@ function BehaviorRetreat:Evaluate()
 end
 
 function BehaviorRetreat:Begin()
+	-- current destination is invalid, so move to next (may need to AddNewDestination)
+	HVHNeutralCreeps:NextDestination(self.unit)
+	self.endTime = GameRules:GetGameTime()
+end
+
+function BehaviorRetreat:Continue()
 	local visionRadius = self.unit:GetCurrentVisionRange()
 	local enemy = AICore:GetClosestVisibleEnemyInRange(self.unit, visionRadius)
 
@@ -64,8 +70,6 @@ function BehaviorRetreat:Begin()
 	end
 end
 
-BehaviorRetreat.Continue = BehaviorRetreat.Begin
-
 function BehaviorRetreat:End()
 	self.order.Position = nil
 end
@@ -80,8 +84,4 @@ function BehaviorRetreat:DebugDraw(start_vec, end_vec, r, g, b, duration)
 	--local isBlocked = GridNav:IsBlocked(end_vec)
 	--local isTraversable = GridNav:IsTraversable(end_vec)
 	--print(string.format("CanFindPath: %s, IsBlocked: %s, IsTraversable: %s", tostring(canFindPath), tostring(isBlocked), tostring(isTraversable)))
-end
-
-function BehaviorRetreat:CanSeeTarget(target)
-	return self.unit:CanEntityBeSeenByMyTeam(target)
 end
