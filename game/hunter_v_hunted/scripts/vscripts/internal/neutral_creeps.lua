@@ -85,7 +85,7 @@ function HVHNeutralCreeps:SpawnRandomGroup()
 end
 
 function HVHNeutralCreeps:SpawnCreepsConvar()
-	self:SpawnWarParty()
+	self:SpawnEnigmaEidolons()
 end
 
 -------------------------------------------------------------------

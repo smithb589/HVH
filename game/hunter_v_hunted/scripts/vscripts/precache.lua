@@ -202,7 +202,7 @@ PRECACHE_PARTICLE_FOLDERS = {
 	--"particles/units/heroes/hero_meepo/",
 	--"particles/units/heroes/hero_pudge/",
 	--"particles/units/heroes/hero_lycan/"
-	"particles/units/heroes/hero_enigma/"
+	--"particles/units/heroes/hero_enigma/"
 }
 
 PRECACHE_PARTICLES = {
