@@ -23,7 +23,6 @@ function HVHNeutralCreeps:Setup()
 	ListenToGameEvent("entity_killed", Dynamic_Wrap(self, "OnEntityKilled"), self) 
 	ListenToGameEvent("npc_spawned", Dynamic_Wrap(self, "OnNPCSpawned"), self) 
 	self.UnitKV = LoadKeyValues("scripts/npc/npc_units_custom.txt")
-	self.ExpectedPoints = NEUTRAL_CREEPS_UNIT_POINTS_MIN
 	self.CurrentPoints = 0
 
 	if not NEUTRAL_CREEPS then return end
@@ -40,10 +39,10 @@ function HVHNeutralCreeps:Setup()
 	end
 
 	self.Randomizer = HVHRandomizer(self.Units)
-	--self.Randomizer:DisplayProbabilties()
+	self.Randomizer:DisplayProbabilties()
 
 	Timers:CreateTimer(NEUTRAL_CREEPS_START_TIME, function()
-		while self.CurrentPoints < self.ExpectedPoints do
+		if self.CurrentPoints < NEUTRAL_CREEPS_UNIT_POINTS_MIN then
 			self:SpawnRandomGroup()
 		end
 

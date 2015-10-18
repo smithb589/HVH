@@ -15,7 +15,6 @@ function HVHGameMode:OnGameRulesStateChange()
     self:GlimpseFix()
   elseif state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
     self:SetupFastTime(TIME_NEXT_EVENING, RANDOM_EXTRA_SECONDS)
-    --self:SetupPassiveXP()
     self:WakeUpHeroes()
     self:SpawnDog(false)
     HVHItemSpawnController:Setup()
