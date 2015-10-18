@@ -24,52 +24,24 @@ function HVHGameMode:OnGameRulesStateChange()
 end
 
 function HVHGameMode:OnPlayerPickHero(keys)
-  local heroClass = keys.hero
-  if heroClass == "npc_dota_hero_axe" then
-    --print("Hero being replaced " .. heroClass)
-    local heroEntity = EntIndexToHScript(keys.heroindex)
+  local playerIndex = keys.player
+  local player = EntIndexToHScript(playerIndex)
+  local playerID = player:GetPlayerID()
+  local heroUnitName = keys.hero
+  --local heroIndex = keys.heroindex
 
-    local player = EntIndexToHScript(keys.player)
-    local playerID = player:GetPlayerID()
-    local playerTeam = player:GetTeamNumber()
+  local team = player:GetTeam()
+  -- Night Stalker starts as a forced sniper hero, so we need to replace him first
+  if heroUnitName == "npc_dota_hero_sniper" and team == DOTA_TEAM_BADGUYS then
+    PlayerResource:ReplaceHeroWith(playerID, "npc_dota_hero_night_stalker", 0, 0)
 
-    local newHero = nil
-    if playerTeam == DOTA_TEAM_GOODGUYS then
-      newHero = "npc_dota_hero_sniper"
-    else
-      newHero = "npc_dota_hero_night_stalker"
-    end
+  else  -- OnPlayerPickHero() is called twice for NS, and only once for Snipers
+    Timers:CreateTimer(SINGLE_FRAME_TIME, function()
+      local hero = player:GetAssignedHero()
+      self:SetupHero(hero)
+    end)
 
-    --print("Replacing hero for player with ID " .. playerID)
-    heroEntity:SetModel("models/development/invisiblebox.vmdl")
-    local newHeroEntity = PlayerResource:ReplaceHeroWith(playerID, newHero, 0, 0)
-
-    --ReplaceHeroWith doesn't seem to give them the amount of XP indicated...
-    --Timers:CreateTimer(SINGLE_FRAME_TIME,
-    --  function() 
-    --    self:SetupHero(playerID)
-    --end
-    --)
-
-  --print("Replaced hero.")
   end
-end
-
-
-function HVHGameMode:OnNPCSpawned(spawnArgs)
-  Timers:CreateTimer(SINGLE_FRAME_TIME, function() 
-
-  	local unit = EntIndexToHScript(spawnArgs.entindex)
-    local team = unit:GetTeamNumber()
-  	if unit and unit:IsRealHero() then
-      if unit.SuccessfulSetup ~= true then
-        local playerID = unit:GetPlayerOwnerID()
-        self:SetupHero(unit)
-      end
-    --self:SetHeroDeathBounty(unit)          
-    end
-
-  end)
 end
 
 function HVHGameMode:OnEntityKilled(killedArgs)

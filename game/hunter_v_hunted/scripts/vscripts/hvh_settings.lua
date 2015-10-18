@@ -121,7 +121,7 @@ DISABLE_ANNOUNCER = false               -- Should we disable the announcer from 
 
 -- Warning!  This setting currently does not work well with custom teams beyond Radiant and Dire!
 -- VEG: This option seems to be ignored in favor of the hammer dota_custom_game_events entity's option
-FORCE_PICKED_HERO = npc_dota_hero_axe    -- What hero should we force all players to spawn as? (e.g. "npc_dota_hero_axe").  Use nil to allow players to pick their own hero.
+FORCE_PICKED_HERO = "npc_dota_hero_sniper"    -- What hero should we force all players to spawn as? (e.g. "npc_dota_hero_axe").  Use nil to allow players to pick their own hero.
 
 FIXED_RESPAWN_TIME = 3                  -- What time should we use for a fixed respawn timer?  Use -1 to keep the default dota behavior.
 FOUNTAIN_CONSTANT_MANA_REGEN = -1       -- What should we use for the constant fountain mana regen?  Use -1 to keep the default dota behavior.

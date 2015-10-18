@@ -16,7 +16,7 @@ function HVHGameMode:_InitGameMode()
   GameRules:SetRuneMinimapIconScale( MINIMAP_RUNE_ICON_SIZE )
 
   ListenToGameEvent('player_connect_full', Dynamic_Wrap(self, 'OnPlayerConnectFull'), self)
-  ListenToGameEvent('npc_spawned', Dynamic_Wrap(self, 'OnNPCSpawned'), self)
+  --ListenToGameEvent('npc_spawned', Dynamic_Wrap(self, 'OnNPCSpawned'), self)
   ListenToGameEvent('entity_killed', Dynamic_Wrap(self, 'OnEntityKilled'), self)
   ListenToGameEvent('game_rules_state_change', Dynamic_Wrap(self, 'OnGameRulesStateChange'), self)
   ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(self, 'OnAbilityUsed'), self)
@@ -250,11 +250,6 @@ function HVHGameMode:LevelupAbility(hero, ability_name, maxout)
 end
 
 function HVHGameMode:SetupHero(hero)
-  -- axe, stop nosing around in here
-  if hero:GetClassname() == "npc_dota_hero_axe" then
-    return
-  end
-
   -- start at higher level
   local startingLevelsToAdd = STARTING_LEVEL - 1
   for level=1,startingLevelsToAdd do
@@ -301,7 +296,7 @@ function HVHGameMode:SetupHero(hero)
   end
 
   -- force the hero to sleep until the horn blows
-  -- also move hero to the pregenerated random team spawn and lock camera for 3 seconds
+  -- also move hero to the pregenerated random team spawn and lock camera for 1 second
   if PREGAME_SLEEP and GameRules:GetDOTATime(false,false) == 0 then
     local playerID = hero:GetPlayerID()
     local mode = GameRules:GetGameModeEntity()
@@ -318,10 +313,11 @@ function HVHGameMode:SetupHero(hero)
     FindClearSpaceForUnit(hero, spawnPos, true)
     local direction = (enemySpawnPos - spawnPos):Normalized()
     hero:SetForwardVector(direction) -- face the enemy spawn
+    --DebugDrawLine(spawnPos, enemySpawnPos, 0, 255, 0, true, 20.0)
 
     hero:AddNewModifier(hero, nil, "modifier_tutorial_sleep", {}) -- disables commands
     PlayerResource:SetCameraTarget(playerID, hero)
-    Timers:CreateTimer(3, function()
+    Timers:CreateTimer(1.0, function()
       PlayerResource:SetCameraTarget(playerID, nil)
     end)
 
@@ -330,7 +326,7 @@ function HVHGameMode:SetupHero(hero)
   end
 
   --print("Succesful setup of new hero")
-  hero.SuccessfulSetup = true
+  --hero.SuccessfulSetup = true
 end
 
 -- spawn the dog at the radiant courier spawn (game start) or a random good guy spawner

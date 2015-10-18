@@ -39,7 +39,7 @@ function HVHNeutralCreeps:Setup()
 	end
 
 	self.Randomizer = HVHRandomizer(self.Units)
-	self.Randomizer:DisplayProbabilties()
+	--self.Randomizer:DisplayProbabilties()
 
 	Timers:CreateTimer(NEUTRAL_CREEPS_START_TIME, function()
 		if self.CurrentPoints < NEUTRAL_CREEPS_UNIT_POINTS_MIN then
