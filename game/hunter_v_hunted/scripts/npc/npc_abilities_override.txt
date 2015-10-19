@@ -25,6 +25,13 @@
 		}
 	}
 
+	// doing 0 dmg for unknown reasons, probably related to tiny_toss hard-coding
+	"tiny_toss"
+	{
+		"AbilityCooldown"				"3.0"
+		"AbilityManaCost"				"0"
+	}
+
 	"techies_land_mines"
 	{
 		"AbilityManaCost"				"0"
@@ -47,7 +54,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_per_stack"				"10"
+				"damage_per_stack"				"8"
 			}
 		}
 	}
@@ -72,6 +79,7 @@
 	"enigma_black_hole"
 	{
 		"AbilityManaCost"				"0"
+		"AbilityCooldown"				"30.0"
 
 		"AbilitySpecial"
 		{
@@ -2507,12 +2515,4 @@
 			}
 		}
 	}
-
-	// doing 0 dmg for unknown reasons, probably related to tiny_toss hard-coding
-	"tiny_toss"
-	{
-		"AbilityCooldown"				"2.0"
-		"AbilityManaCost"				"0"
-	}
-
 }

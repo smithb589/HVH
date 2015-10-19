@@ -11,7 +11,12 @@
 	"IsNeutralUnitType"			"1"
 	"IsAncient"					"1"
 	"Level"						"30"
-	"NeutralCreepPoints"		"6"
+	"NeutralCreepPoints"		"4"
+	"NeutralCreepWeight"		"0.5"
+
+	"MinimapIcon"        "minimap_hvh_roshan"
+	"MinimapIconSize"    "600"
+	"MinimapDisableTint" "1"
 
 	// General
 	//-------------------------------------------------------------------------------------------------------------	

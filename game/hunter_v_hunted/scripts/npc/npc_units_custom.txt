@@ -202,7 +202,21 @@
 		//----------------------------------------------------------------
 		"AttackDesire" "1.5" // How much bots want to attack them vs other non-hero things
 	}
-	"npc_dummy_reveal_unit"
+	"npc_dummy_reveal_roshan"
+	{
+		"BaseClass" "npc_dota_creature"
+		"Model"		"models/development/invisiblebox.vmdl"
+		"AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		"MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_FLY"
+		"Ability1"				"dummy_reveal_unit_vision"
+		"VisionDaytimeRange"	"0"
+		"VisionNighttimeRange"	"0"
+		"MinimapDisableTint" "1"
+		"MinimapIcon"        "minimap_hvh_roshan" // "minimap_hvh_blood_drop"
+		"MinimapIconSize"    "600"
+	}
+	"npc_dummy_reveal_sniper"
 	{
 		"BaseClass" "npc_dota_creature"
 		"Model"		"models/development/invisiblebox.vmdl"
@@ -214,6 +228,20 @@
 		"VisionNighttimeRange"	"0"
 		"MinimapDisableTint" "1"
 		"MinimapIcon"        "minimap_hvh_sniper" // "minimap_hvh_blood_drop"
+		"MinimapIconSize"    "600"
+	}
+	"npc_dummy_reveal_ursa"
+	{
+		"BaseClass" "npc_dota_creature"
+		"Model"		"models/development/invisiblebox.vmdl"
+		"AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		"MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_FLY"
+		"Ability1"				"dummy_reveal_unit_vision"
+		"VisionDaytimeRange"	"0"
+		"VisionNighttimeRange"	"0"
+		"MinimapDisableTint" "1"
+		"MinimapIcon"        "minimap_hvh_ursa" // "minimap_hvh_blood_drop"
 		"MinimapIconSize"    "600"
 	}
 	"npc_dummy_toss"
@@ -251,7 +279,8 @@
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"IsNeutralUnitType"			"1"
 		"Level"						"1"
-		"NeutralCreepPoints"		"0"
+		"NeutralCreepPoints"		"0.2"
+		"NeutralCreepWeight"		"0.0"
 	
 		// General
 		//-------------------------------------------------------------------------------------------------------------	
@@ -344,7 +373,9 @@
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"IsNeutralUnitType"			"1"
 		"Level"						"16"
-		"NeutralCreepPoints"		"3"
+		"NeutralCreepPoints"		"4"
+		"NeutralCreepWeight"		"1.0"
+	
 	
 		// General
 		//-------------------------------------------------------------------------------------------------------------	
@@ -403,6 +434,10 @@
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 	
+		// Inventory
+		//----------------------------------------------------------------
+		"HasInventory"				"1"
+	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -412,6 +447,11 @@
 	
 		"Creature"
 		{
+			"EquippedItems"
+			{
+			    "Gem"			{ "Item"	"item_gem" }
+			}
+	
 			"AttachWearables"
 			{
 				"Wearable1"	{ "ItemDef" "498" } // ambient effects?
@@ -433,6 +473,7 @@
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"IsNeutralUnitType"			"1"
 		"NeutralCreepPoints"		"2"
+		"NeutralCreepWeight"		"1.0"
 	
 		// General
 		//----------------------------------------------------------------
@@ -503,7 +544,8 @@
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"IsNeutralUnitType"			"1"
-		"NeutralCreepPoints"		"0.75"
+		"NeutralCreepPoints"		"0.5"
+		"NeutralCreepWeight"		"3.0"
 	
 		// General
 		//----------------------------------------------------------------
@@ -581,7 +623,8 @@
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"IsNeutralUnitType"			"1"
-		"NeutralCreepPoints"		"0.75"
+		"NeutralCreepPoints"		"0.5"
+		"NeutralCreepWeight"		"3.0"
 	
 		// General
 		//----------------------------------------------------------------
@@ -683,7 +726,8 @@
 		"BoundsHullName"			"DOTA_HULL_SIZE_SIEGE"			// Hull type used for navigation/locomotion.
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"IsNeutralUnitType"			"1"
-		"NeutralCreepPoints"		"0.75"
+		"NeutralCreepPoints"		"0.5"
+		"NeutralCreepWeight"		"3.0"
 	
 		// General
 		//----------------------------------------------------------------
@@ -787,7 +831,12 @@
 		"IsNeutralUnitType"			"1"
 		"IsAncient"					"1"
 		"Level"						"30"
-		"NeutralCreepPoints"		"6"
+		"NeutralCreepPoints"		"4"
+		"NeutralCreepWeight"		"0.5"
+	
+		"MinimapIcon"        "minimap_hvh_roshan"
+		"MinimapIconSize"    "600"
+		"MinimapDisableTint" "1"
 	
 		// General
 		//-------------------------------------------------------------------------------------------------------------	
@@ -865,7 +914,8 @@
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"IsNeutralUnitType"			"1"
 		"Level"						"16"
-		"NeutralCreepPoints"		"4"
+		"NeutralCreepPoints"		"3"
+		"NeutralCreepWeight"		"1.0"
 	
 		// General
 		//-------------------------------------------------------------------------------------------------------------	
@@ -962,10 +1012,11 @@
 		"IsNeutralUnitType"			"1"
 		"Level"						"16"
 		"NeutralCreepPoints"		"3"
+		"NeutralCreepWeight"		"1.0"
 	
 		// General
 		//-------------------------------------------------------------------------------------------------------------	
-		"Model"					"models/heroes/tiny_01/tiny_01.mdl"				// Model.
+		"Model"					"models/heroes/tiny_04/tiny_04.mdl"				// Model.
 		"SoundSet"				"Hero_Tiny"							// Name of sound set.
 		"ModelScale"				".93"
 	
@@ -973,7 +1024,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"Ability1"				""					// Ability 1
 		"Ability2"				"tiny_toss"			// Ability 2
-		"Ability3"				""					// Ability 3
+		"Ability3"				"tiny_craggy_exterior" // Ability 3
 		"Ability4"				""					// Ability 4
 	
 		// Armor
@@ -1019,6 +1070,10 @@
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 	
+		// Inventory
+		//----------------------------------------------------------------
+		"HasInventory"				"1"
+	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -1031,6 +1086,11 @@
 	
 		"Creature"
 		{
+			"EquippedItems"
+			{
+			    "Gem"			{ "Item"	"item_gem" }
+			}
+	
 			"AttachWearables"
 			{
 				"Wearable1"	{ "ItemDef" "493" } //Head
@@ -1048,16 +1108,17 @@
 		// HVH
 		"BaseClass"					"npc_dota_building"
 		"vscripts"                  "ai/ai_tower.lua"
-		"BoundsHullName"			"DOTA_HULL_SIZE_TOWER"			// Hull type used for navigation/locomotion.
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"IsNeutralUnitType"			"1"
 		"Level"						"1"
 		"NeutralCreepPoints"		"2"
+		"NeutralCreepWeight"		"1.5"
 	
 		// General
 		//----------------------------------------------------------------
 		//"BaseClass"					"npc_dota_tower"	// Class of entity of link to.
-		"Model"						"models/props_structures/tower_good.mdl"// Model.
+		"Model"						"models/props_structures/tower_bad.vmdl"// Model.
 		"SoundSet"					"Tower.Water"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower90"
 		"MinimapIconSize"			"320"
@@ -1132,6 +1193,7 @@
 	
 		"precache"
 		{
+			"model"			"models/props_structures/tower_bad.vmdl"
 			"model"			"models/props_structures/tower_good.mdl"
 			"particle"		"particles/base_attacks/ranged_tower_good.vpcf"
 			"particle"		"particles/base_attacks/ranged_tower_bad.vpcf"
@@ -1149,7 +1211,12 @@
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 		"IsNeutralUnitType"			"1"
 		"Level"						"16"
-		"NeutralCreepPoints"		"6"
+		"NeutralCreepPoints"		"4"
+		"NeutralCreepWeight"		"0.5"
+	
+		"MinimapIcon"        "minimap_hvh_ursa"
+		"MinimapIconSize"    "600"
+		"MinimapDisableTint" "1"
 	
 		// General
 		//-------------------------------------------------------------------------------------------------------------	
@@ -1215,7 +1282,7 @@
 			"EquippedItems"
 			{
 			    "Lifesteal"		{ "Item"	"item_vladmir" }
-			    "Gem"			{ "Item"	"item_gem"}
+			    "Gem"			{ "Item"	"item_gem" }
 			    "BlinkDagger"
 			    {
 			    	"Item"		"item_blink"

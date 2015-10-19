@@ -1,4 +1,14 @@
-Tsar' Kapsky and Arche (Russian)
+1.4.0
+-----
+NEUTRAL CREEPS
+-- Enigma & Eidolons, Hellbears, Megacreeps & Tower, Techies, Tiny, and Ursa & Roshan will randomly wander the map
+-- Score last hits on Roshan, Techies, and the Tower to gain special rewards!
+-- Beware Enigma, Hellbears, Tiny, and especially the aegis-fuelled Ursa!
+LOCALIZATIONS
+-- Simplified Chinese and Russian languages!
+-- Thanks to Arche, Tsar Kapsky, and Rabbitism for their hard work!
+ALSO
+-- Revamped pre-game logic, hopefully reducing crashes
 
 
 1.3.2

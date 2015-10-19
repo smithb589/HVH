@@ -10,7 +10,12 @@
 	"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 	"IsNeutralUnitType"			"1"
 	"Level"						"16"
-	"NeutralCreepPoints"		"6"
+	"NeutralCreepPoints"		"4"
+	"NeutralCreepWeight"		"0.5"
+
+	"MinimapIcon"        "minimap_hvh_ursa"
+	"MinimapIconSize"    "600"
+	"MinimapDisableTint" "1"
 
 	// General
 	//-------------------------------------------------------------------------------------------------------------	
@@ -76,7 +81,7 @@
 		"EquippedItems"
 		{
 		    "Lifesteal"		{ "Item"	"item_vladmir" }
-		    "Gem"			{ "Item"	"item_gem"}
+		    "Gem"			{ "Item"	"item_gem" }
 		    "BlinkDagger"
 		    {
 		    	"Item"		"item_blink"

@@ -1,0 +1,14 @@
+"npc_dummy_reveal_sniper"
+{
+	"BaseClass" "npc_dota_creature"
+	"Model"		"models/development/invisiblebox.vmdl"
+	"AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+	"MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_FLY"
+	"Ability1"				"dummy_reveal_unit_vision"
+	"VisionDaytimeRange"	"0"
+	"VisionNighttimeRange"	"0"
+	"MinimapDisableTint" "1"
+	"MinimapIcon"        "minimap_hvh_sniper" // "minimap_hvh_blood_drop"
+	"MinimapIconSize"    "600"
+}

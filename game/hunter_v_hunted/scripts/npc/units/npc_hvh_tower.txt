@@ -6,16 +6,17 @@
 	// HVH
 	"BaseClass"					"npc_dota_building"
 	"vscripts"                  "ai/ai_tower.lua"
-	"BoundsHullName"			"DOTA_HULL_SIZE_TOWER"			// Hull type used for navigation/locomotion.
+	"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
 	"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
 	"IsNeutralUnitType"			"1"
 	"Level"						"1"
 	"NeutralCreepPoints"		"2"
+	"NeutralCreepWeight"		"1.5"
 
 	// General
 	//----------------------------------------------------------------
 	//"BaseClass"					"npc_dota_tower"	// Class of entity of link to.
-	"Model"						"models/props_structures/tower_good.mdl"// Model.
+	"Model"						"models/props_structures/tower_bad.vmdl"// Model.
 	"SoundSet"					"Tower.Water"					// Name of sound set.
 	"MinimapIcon"				"minimap_tower90"
 	"MinimapIconSize"			"320"
@@ -90,6 +91,7 @@
 
 	"precache"
 	{
+		"model"			"models/props_structures/tower_bad.vmdl"
 		"model"			"models/props_structures/tower_good.mdl"
 		"particle"		"particles/base_attacks/ranged_tower_good.vpcf"
 		"particle"		"particles/base_attacks/ranged_tower_bad.vpcf"

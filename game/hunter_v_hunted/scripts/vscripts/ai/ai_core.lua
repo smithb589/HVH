@@ -39,7 +39,6 @@ end
 require("utils/ai_utils")
 require("utils/hvh_utils")
 
-require("ai/class_utils")
 require("ai/constants")
 require("ai/behavior")
 require("ai/behavior_add_new_destination")

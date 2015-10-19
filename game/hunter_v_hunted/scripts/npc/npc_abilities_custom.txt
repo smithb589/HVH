@@ -1150,7 +1150,7 @@
 	    			{
 	    				"ScriptFile"		"spells/night_stalker_dread_hunter_in_the_night.lua"
 	    				"Function"			"VisionThinker"
-	    				"dummy_str"			"npc_dummy_reveal_unit"
+	    				"dummy_str"			"npc_dummy_reveal_sniper"
 	    			}
 	    		}
 	

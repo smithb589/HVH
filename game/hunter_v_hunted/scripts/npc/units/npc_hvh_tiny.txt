@@ -13,10 +13,11 @@
 	"IsNeutralUnitType"			"1"
 	"Level"						"16"
 	"NeutralCreepPoints"		"3"
+	"NeutralCreepWeight"		"1.0"
 
 	// General
 	//-------------------------------------------------------------------------------------------------------------	
-	"Model"					"models/heroes/tiny_01/tiny_01.mdl"				// Model.
+	"Model"					"models/heroes/tiny_04/tiny_04.mdl"				// Model.
 	"SoundSet"				"Hero_Tiny"							// Name of sound set.
 	"ModelScale"				".93"
 
@@ -24,7 +25,7 @@
 	//-------------------------------------------------------------------------------------------------------------
 	"Ability1"				""					// Ability 1
 	"Ability2"				"tiny_toss"			// Ability 2
-	"Ability3"				""					// Ability 3
+	"Ability3"				"tiny_craggy_exterior" // Ability 3
 	"Ability4"				""					// Ability 4
 
 	// Armor
@@ -70,6 +71,10 @@
 	"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
 	"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 
+	// Inventory
+	//----------------------------------------------------------------
+	"HasInventory"				"1"
+
 	// Precache
 	//-------------------------------------------------------------------------------------------------------------
 	"precache"
@@ -82,6 +87,11 @@
 
 	"Creature"
 	{
+		"EquippedItems"
+		{
+		    "Gem"			{ "Item"	"item_gem" }
+		}
+
 		"AttachWearables"
 		{
 			"Wearable1"	{ "ItemDef" "493" } //Head

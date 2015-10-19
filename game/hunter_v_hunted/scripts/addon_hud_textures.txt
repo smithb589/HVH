@@ -2,6 +2,26 @@
 {
 	"TextureData"
 	{
+		// roshan's head
+        "minimap_hvh_roshan"
+        {
+				"file"		"vgui/hud/minimap_sheet"
+				"x"			"64"
+				"y"			"32"
+				"width"		"32"
+				"height"	"32"
+        } 
+
+		// ursa's face
+        "minimap_hvh_ursa"
+        {
+				"file"		"vgui/hud/minimap_hero_sheet"
+				"x"			"288"
+				"y"			"96"
+				"width"		"32"
+				"height"	"32"
+        } 
+
 		// sniper's face
         "minimap_hvh_sniper"
         {

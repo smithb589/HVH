@@ -18,6 +18,11 @@ if HVHNeutralCreeps == nil then
 	NEUTRALCREEPS_EVENT_BABY_ROSHAN_KILLED_BY_NS 	= 9
 end
 
+-- for testing
+function HVHNeutralCreeps:SpawnCreepsConvar()
+	self:SpawnWarParty()
+end
+
 function HVHNeutralCreeps:Setup()
 	ListenToGameEvent("last_hit", Dynamic_Wrap(self, "OnLastHit"), self)
 	ListenToGameEvent("entity_killed", Dynamic_Wrap(self, "OnEntityKilled"), self) 
@@ -30,16 +35,17 @@ function HVHNeutralCreeps:Setup()
 	self.Units = {}
 	for unitName,unitBlock in pairs(self.UnitKV) do
 		local points = unitBlock["NeutralCreepPoints"]
+		local weight = unitBlock["NeutralCreepWeight"]
 		if points and points ~= 0 then
 			self.Units[unitName] = {}
 			self.Units[unitName]["value"] = unitName
-			self.Units[unitName]["weight"] = 1 / points
+			self.Units[unitName]["weight"] = weight
 			self.Units[unitName]["points"] = points
 		end
 	end
 
 	self.Randomizer = HVHRandomizer(self.Units)
-	--self.Randomizer:DisplayProbabilties()
+	self.Randomizer:DisplayProbabilties()
 
 	Timers:CreateTimer(NEUTRAL_CREEPS_START_TIME, function()
 		if self.CurrentPoints < NEUTRAL_CREEPS_UNIT_POINTS_MIN then
@@ -56,15 +62,10 @@ function HVHNeutralCreeps:SpawnRandomGroup()
 
 	if value == "npc_hvh_megacreep_melee" or
 	   value == "npc_hvh_megacreep_ranged" or
-	   value == "npc_hvh_megacreep_siege" or
-	   value == "npc_hvh_tower" then
-
-		local r = RandomInt(1,100)
-		if r <= 20 then
-			self:SpawnWarParty()
-		else
-			self:SpawnSoloCreep()
-		end
+	   value == "npc_hvh_megacreep_siege" then
+		self:SpawnSoloCreep()
+	elseif value == "npc_hvh_tower" then
+		self:SpawnWarParty()
 	elseif (value == "npc_hvh_ursa" or value == "npc_hvh_roshan") and
 		   not self:DoUrsaOrRoshanExist() then
 		self:SpawnUrsaAndRoshan()
@@ -81,10 +82,6 @@ function HVHNeutralCreeps:SpawnRandomGroup()
 	else
 		--print(value .. " not found on ChooseRandomGroup")
 	end
-end
-
-function HVHNeutralCreeps:SpawnCreepsConvar()
-	self:SpawnEnigmaEidolons()
 end
 
 -------------------------------------------------------------------
@@ -234,7 +231,7 @@ end
 function HVHNeutralCreeps:SpawnSoloCreep()
 	local vec_start = AICore:ChooseRandomPointOfInterest()
 	local vec_end = AICore:ChooseRandomPointOfInterest(vec_start, RANGE_TYPICAL_MIN)
-	local destinationList =	self:CreateDestinationList(vec_end, 3)
+	local destinationList =	self:CreateDestinationList(vec_end, 2)
 
 	local creepList = {"npc_hvh_megacreep_melee", "npc_hvh_megacreep_ranged", "npc_hvh_megacreep_siege"}
 	local r = RandomInt(1, #creepList)
@@ -246,7 +243,7 @@ end
 function HVHNeutralCreeps:SpawnTiny()
 	local vec_start = AICore:ChooseRandomPointOfInterest()
 	local vec_end = AICore:ChooseRandomPointOfInterest(vec_start, RANGE_TYPICAL_MIN)
-	local destinationList =	self:CreateDestinationList(vec_end, 5)
+	local destinationList =	self:CreateDestinationList(vec_end, 4)
 
 	local tiny = self:SpawnNeutrals("npc_hvh_tiny", 1, vec_start, DOTA_TEAM_CUSTOM_1)
 	self:SetDestinationList(tiny[1], destinationList)
@@ -255,7 +252,7 @@ end
 function HVHNeutralCreeps:SpawnHellbears()
 	local vec_start = AICore:ChooseRandomPointOfInterest()
 	local vec_end = AICore:ChooseRandomPointOfInterest(vec_start, RANGE_TYPICAL_MIN)
-	local destinationList =	self:CreateDestinationList(vec_end, 5)
+	local destinationList =	self:CreateDestinationList(vec_end, 4)
 
 	local hellbears = self:SpawnNeutrals("npc_hvh_hellbear", 2, vec_start, DOTA_TEAM_CUSTOM_1)
 
@@ -267,10 +264,10 @@ end
 function HVHNeutralCreeps:SpawnEnigmaEidolons()
 	local vec_start = AICore:ChooseRandomPointOfInterest()
 	local vec_end = AICore:ChooseRandomPointOfInterest(vec_start, RANGE_TYPICAL_MIN)
-	local destinationList =	self:CreateDestinationList(vec_end, 5)
+	local destinationList =	self:CreateDestinationList(vec_end, 4)
 
 	local enigma = self:SpawnNeutrals("npc_hvh_enigma", 1, vec_start, DOTA_TEAM_CUSTOM_1)
-	local eidolons = self:SpawnNeutrals("npc_hvh_eidolon", 4, vec_start, DOTA_TEAM_CUSTOM_1)
+	local eidolons = self:SpawnNeutrals("npc_hvh_eidolon", 5, vec_start, DOTA_TEAM_CUSTOM_1)
 	local unitsAll = JoinTables(enigma, eidolons)
 
 	for _,unit in pairs(unitsAll) do
@@ -294,9 +291,14 @@ function HVHNeutralCreeps:SpawnUrsaAndRoshan()
 
 	local rosh = self:SpawnNeutrals("npc_hvh_roshan", 1, roshStart, DOTA_TEAM_CUSTOM_2)
 	local ursa = self:SpawnNeutrals("npc_hvh_ursa"  , 1, ursaStart, DOTA_TEAM_CUSTOM_1)
+	
+	Timers:CreateTimer(0.1, function()
+		local roshVis = VisionDummy(rosh[1], "npc_dummy_reveal_roshan")
+		local ursaVis = VisionDummy(ursa[1], "npc_dummy_reveal_ursa")
+	end)
 	--local rosh = CreateUnitByName("npc_hvh_roshan", roshStart:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS)
 	--local ursa = CreateUnitByName("npc_hvh_ursa", ursaStart:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_CUSTOM_1)
-	local destinationList =	self:CreateDestinationList(roshStart, 3)
+	local destinationList =	self:CreateDestinationList(roshStart, 2)
 
 	self:SetTarget(ursa[1], rosh[1])
 	self:SetDestinationList(ursa[1], destinationList)
@@ -307,10 +309,34 @@ function HVHNeutralCreeps:SpawnUrsaAndRoshan()
 	EmitGlobalSound(sounds[r])
 end
 
+function HVHNeutralCreeps:RandomMegacreepModel()
+	local r = RandomInt(0,1)
+
+	if r == 0 then
+		local altModelList = {} 
+		altModelList["npc_hvh_megacreep_melee"]  = "models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee_mega.mdl"
+		altModelList["npc_hvh_megacreep_ranged"] = "models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged_mega.mdl"
+		altModelList["npc_hvh_megacreep_siege"]  = "models/creeps/lane_creeps/creep_bad_siege/creep_bad_siege.mdl"
+		altModelList["npc_hvh_tower"]			 = "models/props_structures/tower_good.mdl"
+		return altModelList
+	else
+		return nil
+	end
+
+end
+
+function HVHNeutralCreeps:SetPermanentModel(unit, model_path)
+	unit:SetOriginalModel(model_path)
+	unit:SetModel(model_path)
+end
+
 function HVHNeutralCreeps:SpawnWarParty()
 	local vec_start = AICore:ChooseRandomPointOfInterest()
 	local vec_end = AICore:ChooseRandomPointOfInterest(vec_start, RANGE_TYPICAL_MIN)
-	local destinationList =	self:CreateDestinationList(vec_end, 3)
+	local destinationList =	self:CreateDestinationList(vec_end, 2)
+
+	-- return list of models if we should switch, or nil if we shouldn't
+	local alternateModels = self:RandomMegacreepModel()
 
 	-- spawn the tower on a second neutral team and remove its invulnerability
 	local tower = self:SpawnNeutrals("npc_hvh_tower", 1, vec_end, DOTA_TEAM_CUSTOM_2)
@@ -321,6 +347,11 @@ function HVHNeutralCreeps:SpawnWarParty()
 	tower:RemoveModifierByName("modifier_invulnerable")
 	tower:AddNewModifier(tower, nil, "modifier_tower_truesight_aura", {})
 
+	if alternateModels ~= nil then
+		local name = tower:GetUnitName()
+		self:SetPermanentModel(tower, alternateModels[name])
+	end
+	
 	local unitsMelee  = self:SpawnNeutrals("npc_hvh_megacreep_melee", 4, vec_start, DOTA_TEAM_CUSTOM_1)
 	local unitsRanged = self:SpawnNeutrals("npc_hvh_megacreep_ranged", 1, vec_start, DOTA_TEAM_CUSTOM_1)
 	local unitsSiege  = self:SpawnNeutrals("npc_hvh_megacreep_siege", 1, vec_start, DOTA_TEAM_CUSTOM_1)
@@ -330,6 +361,15 @@ function HVHNeutralCreeps:SpawnWarParty()
 		self:SetTarget(unit, tower)
 		self:SetDestinationList(unit, destinationList)
 		--print("Has destination list: " .. tostring(self:HasDestinationList(unit)))
+
+		if alternateModels ~= nil then
+			local name = unit:GetUnitName()
+			self:SetPermanentModel(unit, alternateModels[name])
+			print("Using alternate models")
+		else
+			print("Not using alts")
+		end
+
 	end
 end
 

@@ -3,6 +3,7 @@ require('game_mode')
 require('precache')
 require('convars')
 
+require("utils/class_utils")
 require("utils/css_utils")
 require("utils/time_utils")
 require("utils/item_utils")
@@ -21,6 +22,7 @@ require('lib/animations')
 require("internal/power_stages")
 require("internal/tutorial")
 require("internal/neutral_creeps")
+require("internal/vision_dummy")
 
 require('ai/ai_core')
 
