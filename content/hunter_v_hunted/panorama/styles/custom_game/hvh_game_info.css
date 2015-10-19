@@ -6,6 +6,7 @@
  
 Label
 {
+    line-height: 21px; /* necessary to prevent "..." in Chinese */
     font-size: 18px;
     color: #999999;
     vertical-align: top;

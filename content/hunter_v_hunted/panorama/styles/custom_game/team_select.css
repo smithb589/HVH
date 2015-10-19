@@ -12,6 +12,7 @@
     horizontal-align: middle;
     
     margin-bottom: 24px;
+    line-height: 27px; /* necessary to prevent "..." in Chinese */
     font-size: 24px;
     color: #99CCFF;
 }
@@ -22,6 +23,7 @@
     horizontal-align: middle;
 
     margin-bottom: 24px;
+    line-height: 25px; /* necessary to prevent "..." in Chinese */
     font-size: 22px;
     font-style: italic;
     color: #666666;

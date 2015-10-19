@@ -13,10 +13,9 @@
 
 #TitlePanel
 {
-	horizontal-align: left;
+	horizontal-align: center;
 	vertical-align: bottom;
 	margin-bottom: 120px;
-	margin-left: 70px;
 	flow-children: right;
 }
 
