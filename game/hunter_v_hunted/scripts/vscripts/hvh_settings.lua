@@ -1,20 +1,16 @@
 -- In this file you can set up all the properties and settings for your game mode.
 
--- HVH Leveling, XP, and Abilities
+-- HVH Leveling and Abilities
 STARTING_LEVEL		= 16
 MAX_LEVEL 			= 16
-XP_MULTIPLIER_FOR_SNIPER_KILLS = 4
-XP_PER_KILL 		= 2	-- NS gets this XP. Snipers get this times XP_MULTIPLIER_FOR_SNIPER_KILLS
-XP_PER_TICK      	= 1	-- every XP_TICK_INTERVAL seconds, living heroes get XP_PER_TICK
-XP_TICK_INTERVAL 	= 30
-MAX_OUT_ABILITIES = false 	-- max out ALL abilities or only starting abilities?
-DISABLE_DOGS = false 		-- disables hound spawning
+MAX_OUT_ABILITIES   = false	-- max out ALL abilities or only starting abilities?
+DISABLE_DOGS 		= false	-- disables hound spawning
 
 -- HVH Time
 DAY_NIGHT_CYCLE_MULTIPLIER = 3			-- ex. 4 means each day/night will last 1 min each (4x faster)
 RANDOM_EXTRA_SECONDS 	   = 15.0 		-- randomly increase/decrease each cycle by -(Value) to Value seconds
 PRE_GAME_TIME = 30.0                    -- How long after people select their heroes should the horn blow and the game start?
-PREGAME_SLEEP = true
+PREGAME_SLEEP = true 					-- play the tutorial and put players to sleep for first ~30 seconds
 
 -- HVH Respawn
 BADGUY_LIVES  = 6
@@ -22,6 +18,12 @@ GOODGUY_LIVES = 18
 MIN_RESPAWN_TIME = 18
 MAX_RESPAWN_TIME = 23
 MINIMUM_RESPAWN_RANGE = 2500			-- if no respawn points are found outside this range, the least worst will be used
+
+-- HVH Neutral Creeps
+NEUTRAL_CREEPS 				   = true
+NEUTRAL_CREEPS_UNIT_POINTS_MIN = 16
+NEUTRAL_CREEPS_START_TIME	   = 10.0
+NEUTRAL_CREEPS_REPEAT_TIME     = 5.0
 
 -- HVH Power Stages for reinforcements / evolutions
 GG_POWER_STAGE_THRESHOLDS = {}
@@ -39,12 +41,6 @@ BG_POWER_STAGE_THRESHOLDS[2] = 4 -- echolocation
 BG_POWER_STAGE_THRESHOLDS[3] = 2 -- aoe crippling fear
 BG_POWER_STAGE_THRESHOLDS[4] = 0
 
--- HVH Neutral Creeps
-NEUTRAL_CREEPS 				   = true
-NEUTRAL_CREEPS_UNIT_POINTS_MIN = 16
-NEUTRAL_CREEPS_START_TIME	   = 10.0
-NEUTRAL_CREEPS_REPEAT_TIME     = 5.0
-
 -- HVH Hound Models
 HOUND_MODEL_PATHS = {
 	"models/heroes/lycan/summon_wolves.vmdl",
@@ -61,6 +57,12 @@ HOUND_MODEL_PATHS = {
 GOLD_PER_KILL = 0
 SNIPERS_COLOR_HEX = "#FCAF3D" -- day
 NS_COLOR_HEX 	  = "#99CCFF" -- night
+
+-- HVH Unused
+XP_MULTIPLIER_FOR_SNIPER_KILLS = 4
+XP_PER_KILL 		= 2	-- NS gets this XP. Snipers get this times XP_MULTIPLIER_FOR_SNIPER_KILLS
+XP_PER_TICK      	= 1	-- every XP_TICK_INTERVAL seconds, living heroes get XP_PER_TICK
+XP_TICK_INTERVAL 	= 30
 
 ENABLE_HERO_RESPAWN = true              -- Should the heroes automatically respawn on a timer or stay dead until manually respawned
 UNIVERSAL_SHOP_MODE = false             -- Should the main shop contain Secret Shop items as well as regular items

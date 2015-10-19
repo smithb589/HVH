@@ -7,7 +7,6 @@ if VisionDummy == nil then
 end
 
 function VisionDummy:initialize()
-	print(self.unit)
 	self.active = true
 	local pos = self.unit:GetAbsOrigin()
 	self.vis_dummy_1 = CreateUnitByName(self.dummy_str, pos, false, nil, nil, DOTA_TEAM_GOODGUYS)

@@ -45,7 +45,7 @@ function HVHNeutralCreeps:Setup()
 	end
 
 	self.Randomizer = HVHRandomizer(self.Units)
-	self.Randomizer:DisplayProbabilties()
+	--self.Randomizer:DisplayProbabilties()
 
 	Timers:CreateTimer(NEUTRAL_CREEPS_START_TIME, function()
 		if self.CurrentPoints < NEUTRAL_CREEPS_UNIT_POINTS_MIN then
@@ -113,11 +113,32 @@ function HVHNeutralCreeps:MegacreepDomination(player, tower)
 	local team = player:GetTeam()
 	for _,creep in pairs(megacreepList) do
 		creep:Stop()
-		StartAnimation(creep, {duration=6.0, activity=ACT_DOTA_VICTORY, rate=1.0})
+		StartAnimation(creep, {duration=6.0, activity=ACT_DOTA_VICTORY, rate=1.0}) -- not working consistently
 		creep:SetControllableByPlayer(playerID, true)
 		creep:SetTeam(team)
 		creep.behaviorSystem = nil
 	end
+end
+
+function HVHNeutralCreeps:RandomMegacreepModel()
+	local r = RandomInt(0,1)
+
+	if r == 0 then
+		local altModelList = {} 
+		altModelList["npc_hvh_megacreep_melee"]  = "models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee_mega.mdl"
+		altModelList["npc_hvh_megacreep_ranged"] = "models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged_mega.mdl"
+		altModelList["npc_hvh_megacreep_siege"]  = "models/creeps/lane_creeps/creep_bad_siege/creep_bad_siege.mdl"
+		altModelList["npc_hvh_tower"]			 = "models/props_structures/tower_good.mdl"
+		return altModelList
+	else
+		return nil
+	end
+
+end
+
+function HVHNeutralCreeps:SetPermanentModel(unit, model_path)
+	unit:SetOriginalModel(model_path)
+	unit:SetModel(model_path)
 end
 
 -------------------------------------------------------------------
@@ -147,6 +168,19 @@ function HVHNeutralCreeps:OnLastHit(keys)
 
 end
 
+-- TODO: hacky and looks shitty
+function HVHNeutralCreeps:TowerOnDeath(tower)
+	local modelName = tower:GetModelName()
+	local destructionName = ""
+	if modelName == "models/props_structures/tower_bad.vmdl" then
+		destructionName = "models/props_structures/bad_tower_destruction_lev3.vmdl"
+	else
+		destructionName = "models/props_structures/tower_good3_dest_lvl3.vmdl"
+	end
+	self:SetPermanentModel(tower, destructionName)
+	--StartAnimation(tower, {duration=6.0, activity=ACT_DOTA_DIE, rate=1.0})
+end
+
 function HVHNeutralCreeps:OnEntityKilled(keys)
 	HVHNeutralCreeps:CleanDroppedGems()
 
@@ -160,6 +194,8 @@ function HVHNeutralCreeps:OnEntityKilled(keys)
 		self:RoshanKilledByUrsa(unit, attacker)
 	elseif unit and unit:GetUnitName() == "npc_hvh_ursa" and attacker:GetUnitName() ~= "npc_hvh_ursa" then
 		self:UrsaOnDeath(unit)
+	elseif unit and unit:GetUnitName() == "npc_hvh_tower" then
+		self:TowerOnDeath(unit)
 	end
 
   	self:SubtractPoints(unit)
@@ -210,24 +246,6 @@ end
 -------------------------------------------------------------------
 -- Spawn creep functions
 -------------------------------------------------------------------
-	--[[
-	local vec_start = AICore:ChooseRandomPointOfInterest()
-	local destinationList =	self:CreateDestinationList(vec_start, 3)
-	local unitsAll = {}
-
-	unitsAll = JoinTables(unitsAll, self:SpawnNeutrals("npc_hvh_megacreep_ranged", 1, vec_start))
-	unitsAll = JoinTables(unitsAll, self:SpawnNeutrals("npc_hvh_megacreep_siege", 1, vec_start))
-	unitsAll = JoinTables(unitsAll, self:SpawnNeutrals("npc_hvh_megacreep_melee", 4, vec_start))
-    unitsAll = JoinTables(unitsAll, self:SpawnNeutrals("npc_hvh_hellbear", 2, vec_start))
-	unitsAll = JoinTables(unitsAll, self:SpawnNeutrals("npc_hvh_tiny", 1, vec_start))
-	unitsAll = JoinTables(unitsAll, self:SpawnNeutrals("npc_hvh_enigma", 1, vec_start))
-	unitsAll = JoinTables(unitsAll, self:SpawnNeutrals("npc_hvh_eidolon", 4, vec_start))
-
-	for _,unit in pairs(unitsAll) do
-		self:SetDestinationList(unit, destinationList)
-	end
-	]]
-
 function HVHNeutralCreeps:SpawnSoloCreep()
 	local vec_start = AICore:ChooseRandomPointOfInterest()
 	local vec_end = AICore:ChooseRandomPointOfInterest(vec_start, RANGE_TYPICAL_MIN)
@@ -238,6 +256,13 @@ function HVHNeutralCreeps:SpawnSoloCreep()
 
 	local creep = self:SpawnNeutrals(creepList[r], 1, vec_start, DOTA_TEAM_CUSTOM_1)
 	self:SetDestinationList(creep[1], destinationList)
+
+	-- return list of models if we should switch, or nil if we shouldn't
+	local alternateModels = self:RandomMegacreepModel()
+	if alternateModels ~= nil then
+		local name = creep[1]:GetUnitName()
+		self:SetPermanentModel(creep[1], alternateModels[name])
+	end
 end
 
 function HVHNeutralCreeps:SpawnTiny()
@@ -309,27 +334,6 @@ function HVHNeutralCreeps:SpawnUrsaAndRoshan()
 	EmitGlobalSound(sounds[r])
 end
 
-function HVHNeutralCreeps:RandomMegacreepModel()
-	local r = RandomInt(0,1)
-
-	if r == 0 then
-		local altModelList = {} 
-		altModelList["npc_hvh_megacreep_melee"]  = "models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee_mega.mdl"
-		altModelList["npc_hvh_megacreep_ranged"] = "models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged_mega.mdl"
-		altModelList["npc_hvh_megacreep_siege"]  = "models/creeps/lane_creeps/creep_bad_siege/creep_bad_siege.mdl"
-		altModelList["npc_hvh_tower"]			 = "models/props_structures/tower_good.mdl"
-		return altModelList
-	else
-		return nil
-	end
-
-end
-
-function HVHNeutralCreeps:SetPermanentModel(unit, model_path)
-	unit:SetOriginalModel(model_path)
-	unit:SetModel(model_path)
-end
-
 function HVHNeutralCreeps:SpawnWarParty()
 	local vec_start = AICore:ChooseRandomPointOfInterest()
 	local vec_end = AICore:ChooseRandomPointOfInterest(vec_start, RANGE_TYPICAL_MIN)
@@ -365,15 +369,15 @@ function HVHNeutralCreeps:SpawnWarParty()
 		if alternateModels ~= nil then
 			local name = unit:GetUnitName()
 			self:SetPermanentModel(unit, alternateModels[name])
-			print("Using alternate models")
+			--print("Using alternate models")
 		else
-			print("Not using alts")
+			--print("Not using alts")
 		end
 
 	end
 end
 
--- returns a table of creeps
+-- returns a table of creeps (even a single creep is in a table)
 function HVHNeutralCreeps:SpawnNeutrals(name, groupSize, location, team)
 	team = team or DOTA_TEAM_NEUTRALS
 
