@@ -303,7 +303,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"2"			// Physical protection.
-		"MagicalResistance"			"50"		// Magical protection.
+		"MagicalResistance"			"75"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -318,12 +318,6 @@
 		"ProjectileModel"			"particles/units/heroes/hero_enigma/enigma_base_attack_eidolon.vpcf" // Particle system model for projectile.
 		"ProjectileSpeed"			"900"		// Speed of projectile.
 	
-		// Bounty
-		//----------------------------------------------------------------
-		"BountyXP"					"0"		// Experience earn.
-		"BountyGoldMin"				"0"		// Gold earned min.
-		"BountyGoldMax"				"0"		// Gold earned max.
-	
 		// Bounds
 		//----------------------------------------------------------------
 		"HealthBarOffset"			"130"
@@ -336,7 +330,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"180"		// Base health.
+		"StatusHealth"				"100"		// Base health.
 		"StatusHealthRegen"			"0.25"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -393,6 +387,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"2"			// Physical protection.
+		"MagicalResistance"			"75"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -418,7 +413,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"1000"		// Base health.
+		"StatusHealth"				"400"		// Base health.
 		"StatusHealthRegen"			"1"			// Health regeneration rate.
 		"StatusMana"				"400"		// Base mana.
 		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
@@ -492,6 +487,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"4"			// Physical protection.
+		"MagicalResistance"			"75"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -517,7 +513,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"950"		// Base health.
+		"StatusHealth"				"350"		// Base health.
 		"StatusHealthRegen"			"1"			// Health regeneration rate.
 		"StatusMana"				"300"		// Base mana.
 		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
@@ -568,7 +564,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"3"			// Physical protection.
-		"MagicalResistance"			"0"			// Magical protection.
+		"MagicalResistance"			"75"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -596,7 +592,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"700" //"700"		// Base health.
+		"StatusHealth"				"250" //"700"		// Base health.
 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
 		"StatusMana"				"1000"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -647,7 +643,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"1"			// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"			"75"			// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -672,12 +668,6 @@
 		"AttributeBaseAgility"		"0"			// Base agility
 		"AttributeAgilityGain"		"0"			// Agility bonus per level.
 	
-		// Bounty
-		//----------------------------------------------------------------
-		"BountyXP"					"25"		// Experience earn.
-		"BountyGoldMin"				"18"		// Gold earned min.
-		"BountyGoldMax"				"26"		// Gold earned max.
-	
 		// Bounds
 		//----------------------------------------------------------------
 		"RingRadius"				"45"
@@ -691,7 +681,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"475" //"475"		// Base health.
+		"StatusHealth"				"175" //"475"		// Base health.
 		"StatusHealthRegen"			"2"			// Health regeneration rate.
 		"StatusMana"				"500"		// Base mana.
 		"StatusManaRegen"			"0.75"		// Mana regeneration rate.
@@ -750,7 +740,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"0"			// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"			"75"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -775,12 +765,6 @@
 		"AttributeBaseAgility"		"0"			// Base agility
 		"AttributeAgilityGain"		"0"			// Agility bonus per level.
 	
-		// Bounty
-		//----------------------------------------------------------------
-		"BountyXP"					"88"		// Experience earn.
-		"BountyGoldMin"				"66"		// Gold earned min.
-		"BountyGoldMax"				"80"		// Gold earned max.
-	
 		// Bounds
 		//----------------------------------------------------------------
 		"RingRadius"				"80"
@@ -794,7 +778,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"550" //"550"		// Base health.
+		"StatusHealth"				"200" //"550"		// Base health.
 		"StatusHealthRegen"			"0"			// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -849,12 +833,12 @@
 		"Ability1"					"roshan_spell_block"	// Ability 1.
 		"Ability2"					"roshan_bash"			// Ability 2.
 		"Ability3"					"roshan_slam"			// Ability 3.
-		"Ability4"					"roshan_inherent_buffs"	// Ability 4.
-		"Ability5"					"roshan_devotion"		// Ability 5.
+		"Ability4"					"" //"roshan_inherent_buffs"	// Ability 4.
+		"Ability5"					"" //"roshan_devotion"		// Ability 5.
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"4"			// Physical protection.
+		"ArmorPhysical"				"0"			// Physical protection.
 		"MagicalResistance"			"75"		// Magical protection (percentage).
 	
 		// Attack
@@ -882,7 +866,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"7500"		// Base health.
+		"StatusHealth"				"2600" // "7500"		// Base health.
 		"StatusHealthRegen"			"20"		// Health regeneration rate.
 		"StatusMana"				"0"		// Base mana.
 		"StatusManaRegen"			"0"		// Mana regeneration rate.		 
@@ -932,7 +916,8 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"5"			// Physical protection.
+		"ArmorPhysical"				"8"		    // Physical protection.
+		"MagicalResistance"			"75"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -958,7 +943,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"1000"		// Base health.
+		"StatusHealth"				"400"		// Base health.
 		"StatusHealthRegen"			"1"			// Health regeneration rate.
 		"StatusMana"				"400"		// Base mana.
 		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
@@ -1029,7 +1014,8 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"4"			// Physical protection.
+		"ArmorPhysical"				"0"			// Physical protection.
+		"MagicalResistance"			"75"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -1054,7 +1040,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"1000"		// Base health.
+		"StatusHealth"				"400"		// Base health.
 		"StatusHealthRegen"			"1"			// Health regeneration rate.
 		"StatusMana"				"300"		// Base mana.
 		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
@@ -1129,7 +1115,7 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"20"		// Physical protection.
+		"ArmorPhysical"				"10"		// Physical protection.
 		"MagicalResistance"			"0"			// Magical protection.
 	
 		// Attack
@@ -1155,12 +1141,6 @@
 		"AttributeBaseAgility"		"0"			// Base agility
 		"AttributeAgilityGain"		"0"			// Agility bonus per level.
 	
-		// Bounty
-		//----------------------------------------------------------------
-		"BountyXP"					"25"		// Experience earn.
-		"BountyGoldMin"				"0"		// Gold earned min.
-		"BountyGoldMax"				"0"		// Gold earned max.
-	
 		// Bounds
 		//----------------------------------------------------------------
 		"ProjectileCollisionSize"	"50"
@@ -1175,7 +1155,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"1600"		// Base health.
+		"StatusHealth"				"600" //"1600"		// Base health.
 		"StatusHealthRegen"			"0"			// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -1233,7 +1213,8 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"3"			// Physical protection.
+		"ArmorPhysical"				"5"			// Physical protection.
+		"MagicalResistance"			"75"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -1257,7 +1238,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"1200"		// Base health.
+		"StatusHealth"				"500"		// Base health.
 		"StatusHealthRegen"			"1"			// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
