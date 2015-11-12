@@ -87,14 +87,18 @@ function HVHGameMode:_SetupGameMode()
 end
 
 -- disruptor_glimpse does not work on the first cast (some kind of hardcoding),
--- so this forces glimpse to be cast once on dummies at the start of the game
+-- so this forces glimpse to be cast once on dummies at the start of the game.
+-- 11/12/2015: Also fixes weaver_time_lapse!
 function HVHGameMode:GlimpseFix()
     local dummy = CreateUnitByName("npc_dummy", Vector(0,0,0), true, nil, nil, DOTA_TEAM_GOODGUYS)
     local dummy2 = CreateUnitByName("npc_dummy", Vector(0,0,0), true, nil, nil, DOTA_TEAM_BADGUYS)
     dummy:AddAbility("disruptor_glimpse")
+    dummy2:AddAbility("weaver_time_lapse")
     local glimpse = dummy:FindAbilityByName("disruptor_glimpse")
+    local timeLapse = dummy2:FindAbilityByName("weaver_time_lapse")
     Timers:CreateTimer(3.0, function()
       dummy:CastAbilityOnTarget(dummy2, glimpse, 0)
+      dummy2:CastAbilityNoTarget(timeLapse, 0)
       Timers:CreateTimer(3.0, function()
         dummy:ForceKill(false)
         dummy2:ForceKill(false)
