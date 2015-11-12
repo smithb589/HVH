@@ -44,12 +44,12 @@ function BehaviorSprint:Think(dt)
 end
 
 function BehaviorSprint:CanSprint()
-	local isDaytime = GameRules:IsDaytime()
+	--local isDaytime = GameRules:IsDaytime()
 	local isFed = self.unit:IsFed()
 	local isOutsideMinRange = self:IsOutsideMinRange()
 	local canCastSprint = self.sprintAbility:IsFullyCastable() and (self.unit:FindModifierByName("modifier_dog_sprint") == nil)
 
-	return isDaytime and isFed and isOutsideMinRange and canCastSprint
+	return isFed and isOutsideMinRange and canCastSprint
 end
 
 function BehaviorSprint:IsOutsideMinRange()
