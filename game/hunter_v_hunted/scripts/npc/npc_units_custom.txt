@@ -103,7 +103,7 @@
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		//Inventory
-		"HasInventory"				"0"
+		"HasInventory"				"1"
 	
 		//Minimap
 		"MinimapDisableTint"		"1"

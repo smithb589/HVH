@@ -122,6 +122,21 @@
 
 	// -------------------------- Sniper's abilities --------------------------
 
+	"pugna_life_drain"
+	{
+		"AbilityChannelTime"			"2.0 3.0 4.0"
+		"AbilityManaCost"				"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"health_drain"				"75" //"150 185 220"
+			}
+		}
+	}
+
 	// "sniper_shrapnel_hvh" is custom
 
 	"meepo_earthbind"
