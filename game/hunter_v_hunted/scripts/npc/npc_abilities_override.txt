@@ -25,6 +25,12 @@
 		}
 	}
 
+	"item_gem"
+	{
+		"UIDropSound" 			"Loot_Drop_Sfx_Common" // null.wav
+		"WorldDropSound"		"Loot_Drop_Sfx_Common" // null.wav
+	}
+
 	// doing 0 dmg for unknown reasons, probably related to tiny_toss hard-coding
 	"tiny_toss"
 	{
