@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------------------------------
--- Slam behavior
+-- Roshan Slam behavior
 --------------------------------------------------------------------------------------------------------
 if BehaviorSlam == nil then
 	BehaviorSlam = DeclareClass(Behavior, function(self, entity, desire)
@@ -10,7 +10,7 @@ if BehaviorSlam == nil then
 end
 
 function BehaviorSlam:Setup()
-	self.slamAbility = self.unit:FindAbilityByName("polar_furbolg_ursa_warrior_thunder_clap")
+	self.slamAbility = self.unit:FindAbilityByName("roshan_slam")
 	self.order.AbilityIndex  = self.slamAbility:entindex()
 	self.order.OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET
 
@@ -23,8 +23,7 @@ end
 function BehaviorSlam:Evaluate()
 	local slamDesire = DESIRE_NONE
 
-	--if AICore:AreEnemiesInRange(self.unit, self.radius, 3) and self.slamAbility:IsFullyCastable() then
-	if self.slamAbility:IsFullyCastable() then
+	if AICore:AreEnemiesInRange(self.unit, self.radius, 3) and self.slamAbility:IsFullyCastable() then
 		slamDesire = self.desire --DESIRE_MAX
 	end
 

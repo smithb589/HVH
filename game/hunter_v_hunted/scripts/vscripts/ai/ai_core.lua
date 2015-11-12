@@ -62,6 +62,7 @@ require("ai/behavior_toss")
 require("ai/behavior_travel")
 require("ai/behavior_travel_aggressive")
 require("ai/behavior_wait")
+require("ai/behavior_clap")
 
 require("ai/dog_behaviors/behavior_defend")
 require("ai/dog_behaviors/behavior_follow")
