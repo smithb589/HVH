@@ -32,6 +32,18 @@
 		"AbilityManaCost"				"0"
 	}
 
+	"tiny_craggy_exterior"
+	{
+		"AbilitySpecial"
+		{
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"600" //"300 300 300 300"
+			}
+		}
+	}	
+
 	"techies_land_mines"
 	{
 		"AbilityManaCost"				"0"
