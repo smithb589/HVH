@@ -1,0 +1,62 @@
+<root>
+	<styles>
+	    <include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/hvh_sniper_select.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/hvh_sniper_select.js" /> 
+	</scripts>
+		
+	<Panel class="HVHSniperSelect">
+		
+		<Panel class="HeaderContainer">
+			<Label class="HeaderText" text="#hvh_sniper_select_header_welcome" />
+			<Label class="HeaderText" id="ReasonText" text="#hvh_sniper_select_header_reason" />
+			<Label class="HeaderText" text="#hvh_sniper_select_header_question" />
+		</Panel>
+
+		<Panel class="AbilityContainer">
+
+			<Panel class="CharacterContainer" id="KardelContainer">
+				<Button class="ChooseButton" id="KardelButton" onactivate="ChooseSniperAbility('Kardel')">
+					<Image class="ButtonImage" src="file://{images}/custom_game/sniper_select/hvh_sniper_sharpshooter.png" />
+				</Button>
+				<Panel class="CharDescriptionContainer">
+					<Label class="CharName" text="#hvh_sniper_select_kardel_name" />
+					<Label class="CharAbility" text="#hvh_sniper_select_kardel_ability" />
+				</Panel>
+			</Panel>
+
+			<Panel class="CharacterContainer" id="RiggsContainer">
+				<Button class="ChooseButton" id="RiggsButton" onactivate="ChooseSniperAbility('Riggs')">
+					<Image class="ButtonImage" src="file://{images}/custom_game/sniper_select/hvh_sniper_flush.png" />
+				</Button>
+				<Panel class="CharDescriptionContainer">
+					<Label class="CharName" text="#hvh_sniper_select_riggs_name" />
+					<Label class="CharAbility" text="#hvh_sniper_select_riggs_ability" />
+				</Panel>
+			</Panel>
+
+			<Panel class="CharacterContainer" id="FloraxContainer">
+				<Button class="ChooseButton" id="FloraxButton" onactivate="ChooseSniperAbility('Florax')">
+					<Image class="ButtonImage" src="file://{images}/custom_game/sniper_select/hvh_sniper_teleportation.png" />
+				</Button>
+				<Panel class="CharDescriptionContainer">
+					<Label class="CharName" text="#hvh_sniper_select_florax_name" />
+					<Label class="CharAbility" text="#hvh_sniper_select_florax_ability" />
+				</Panel>
+			</Panel>
+
+			<Panel class="CharacterContainer" id="JebbyContainer">
+				<Button class="ChooseButton" id="JebbyButton" onactivate="ChooseSniperAbility('Jebby')">
+					<Image class="ButtonImage" src="file://{images}/custom_game/sniper_select/hvh_sniper_concoction.png" />
+				</Button>
+				<Panel class="CharDescriptionContainer">
+					<Label class="CharName" text="#hvh_sniper_select_jebby_name" />
+					<Label class="CharAbility" text="#hvh_sniper_select_jebby_ability" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>
+

@@ -1481,8 +1481,9 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"alchemist_unstable_concoction"
-		
+		"AbilityTextureName"			"hvh_sniper_concoction"
+		"MaxLevel"	"1"
+	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.0"
@@ -1645,7 +1646,8 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"alchemist_unstable_concoction_throw"
-		
+		"MaxLevel"	"1"
+	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"775"
@@ -1800,6 +1802,13 @@
 		}
 	}
 	
+	"sniper_empty"
+	{
+		"BaseClass" 		"ability_datadriven"
+		"AbilityBehavior" 	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"	"rubick_empty1"
+		"MaxLevel"				"0"
+	}
 	"sniper_feed_dog"
 	{
 		"BaseClass"						"ability_datadriven"
@@ -1911,14 +1920,14 @@
 		}
 	}
 	
-	"sniper_flush_hvh"
+	"sniper_flush"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_datadriven"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"	"phantom_assassin_blur"
+		"AbilityTextureName"	"hvh_sniper_flush"
 	
 		"MaxLevel" "1"
 	    "AbilityCastPoint"       "0.3"
@@ -1972,16 +1981,16 @@
 		}
 	}
 	
-	"sniper_sharpshooter_hvh"
+	"sniper_sharpshooter"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_datadriven"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"	"phantom_assassin_blur"
-	
+		"AbilityTextureName"	"hvh_sniper_sharpshooter"
 		"MaxLevel" "1"
+	
 	    "AbilityCastPoint"       "0.3"
 	    "AbilityCastAnimation"   "ACT_DOTA_ATTACK"
 	    "AnimationPlaybackRate"  "1"
@@ -2359,13 +2368,14 @@
 	// Date: April 5, 2015
 	// TODO: Check all sort of cancelling shenanigans
 	// Veggiesama: Had to change ability to a channel, because ministuns were not interrupting it
-	"sniper_teleportation_hvh"
+	"sniper_teleportation"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-		"AbilityTextureName"		"furion_teleportation"
+		"AbilityTextureName"		"hvh_sniper_teleportation"
+		"MaxLevel"	"1"
 	
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------

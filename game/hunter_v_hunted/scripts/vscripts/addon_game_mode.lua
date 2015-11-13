@@ -24,6 +24,7 @@ require("internal/tutorial")
 require("internal/neutral_creeps")
 require("internal/vision_dummy")
 require("internal/force_cast")
+require("internal/sniper_select")
 
 require('ai/ai_core')
 

@@ -19,8 +19,9 @@
 	"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 	"FightRecapLevel"				"1"
-	"AbilityTextureName"			"alchemist_unstable_concoction"
-	
+	"AbilityTextureName"			"hvh_sniper_concoction"
+	"MaxLevel"	"1"
+
 	// Casting
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityCastPoint"				"0.0"

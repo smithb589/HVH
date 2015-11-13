@@ -4,7 +4,7 @@
 	"Ability1"			"sniper_shrapnel_hvh"
 	"Ability2"			"meepo_earthbind"
 	"Ability3"			"sniper_feed_dog"
-	"Ability4"			"sniper_concoction"
+	"Ability4"			"sniper_empty"
 	"Ability5"			"shredder_timber_chain"
 	"AbilityLayout"		"5"
 	"Ability6"          "attribute_bonus"

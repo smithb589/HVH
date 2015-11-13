@@ -1,0 +1,99 @@
+.HVHSniperSelect
+{
+    height:667px;
+    width:590px;
+    margin-left: 50px;
+    margin-top: 75px;
+    flow-children: down;
+    background-color: black;
+    border-radius: 8px;
+    padding: 4px;
+
+    transform: translatex( -700px );
+    transition-property: transform;
+    transition-duration: 0.1s;
+}
+
+.HVHSniperSelect.menu_visible
+{
+    transform: translatey( 0px );
+}
+
+Label
+{
+    line-height: 21px; /* necessary to prevent "..." in Chinese */
+    font-size: 18px;
+    color: #999999;
+    vertical-align: top;
+
+}
+ 
+.HeaderContainer
+{
+    flow-children: down;
+    horizontal-align: center;
+    margin-bottom: 12px;
+}
+
+.AbilityContainer
+{
+    flow-children: down;
+    padding: 5px;
+}
+
+.CharacterContainer
+{
+    flow-children: right;
+}
+
+.CharDescriptionContainer
+{
+    flow-children: down;
+    padding-left: 24px;
+}
+
+.HeaderText
+{
+    color: #cccccc;
+    line-height: 25px; /* necessary to prevent "..." in Chinese */
+    font-size: 22px;
+    horizontal-align: center;    
+}
+
+.CharName
+{
+    color: #cccccc;
+    line-height: 31px; /* necessary to prevent "..." in Chinese */
+    font-size: 28px;
+    text-transform: uppercase;
+}
+
+.CharAbility
+{
+    height: 80px;
+    margin-left: 12px;
+    margin-right: 24px;
+}
+
+.ButtonImage
+{
+    width: 128px;
+    height: 128px;
+    margin-bottom: 10px;
+    margin-left: 4px;
+    border-radius: 12px;
+}
+
+/* increase brightness when hovering over a non-disabled button */
+.ChooseButton:hover:not(:disabled)
+{
+    brightness: 1.75;
+}
+
+/* desaturate disabled buttons */
+.ChooseButton:disabled
+{
+    saturation: 0.0;
+    brightness: 0.03;
+    contrast: 1.01;
+}

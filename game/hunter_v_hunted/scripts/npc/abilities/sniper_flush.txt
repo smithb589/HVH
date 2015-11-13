@@ -1,12 +1,12 @@
 
-"sniper_flush_hvh"
+"sniper_flush"
 {
 	// General
 	//-------------------------------------------------------------------------------------------------------------
 	"BaseClass"				"ability_datadriven"
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-	"AbilityTextureName"	"phantom_assassin_blur"
+	"AbilityTextureName"	"hvh_sniper_flush"
 
 	"MaxLevel" "1"
     "AbilityCastPoint"       "0.3"

@@ -22,7 +22,8 @@
 	"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 	"AbilityTextureName"			"alchemist_unstable_concoction_throw"
-	
+	"MaxLevel"	"1"
+
 	// Casting
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityCastRange"				"775"

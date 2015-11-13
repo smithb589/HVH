@@ -20,6 +20,7 @@ function HVHGameMode:OnGameRulesStateChange()
     HVHItemSpawnController:Setup()
     HVHPowerStages:Setup()
     HVHNeutralCreeps:Setup()
+    HVHSniperSelect:Setup()
   end
 end
 
