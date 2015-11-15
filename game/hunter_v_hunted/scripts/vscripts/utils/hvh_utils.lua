@@ -106,7 +106,7 @@ function HVHAssert(value, message)
 end
 
 function HVHDebugPrint(...)
-  local doPrint = Convars:GetInt("hvh_debug_output") or 0
+  local doPrint = 0 --Convars:GetInt("hvh_debug_output") or 0
 
   if doPrint == 1 then
     print(...)
@@ -118,7 +118,7 @@ function HVHDebugPrintVector(vectorName, vector)
 end
 
 function HVHDebugPrintTable(...)
-  local doPrint = Convars:GetInt('hvh_debug_output') or 0
+  local doPrint = 0 --Convars:GetInt('hvh_debug_output') or 0
 
   if doPrint == 1 then
     PrintTable(...)

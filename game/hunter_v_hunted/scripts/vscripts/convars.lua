@@ -7,7 +7,7 @@ require("internal/convars")
 require("item_spawn/item_spawn_controller")
 
 function HVHConvars:Setup()
-	self:RegisterConvars()
+	--self:RegisterConvars()
 	self:RegisterCommands()
 end
 
@@ -18,7 +18,7 @@ function HVHConvars:RegisterConvars()
   		debugOutput = 1
   	end
 
-  	Convars:RegisterConvar("hvh_debug_output", tostring(debugOutput), "Set to 1 for debug output. Default: 0", FCVAR_CHEAT)
+  	--Convars:RegisterConvar("hvh_debug_output", tostring(debugOutput), "Set to 1 for debug output. Default: 0", FCVAR_CHEAT)
 end
 
 

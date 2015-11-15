@@ -6,12 +6,10 @@ SNIPER_SELECT_REASON_KILLED = 0
 SNIPER_SELECT_REASON_FREEBIE = 1
 
 function HVHSniperSelect:Setup()
-	print("sniper select setup")
 	CustomGameEventManager:RegisterListener("sniper_select_choose_ability", Dynamic_Wrap(HVHSniperSelect, "ChooseAbility"))
 end
 
 function HVHSniperSelect:Check(killer)
-	print("Checking")
 	local team = killer:GetTeam()
 	if team == DOTA_TEAM_GOODGUYS then
 		if self:HasEmptySlot(killer) then
@@ -23,7 +21,6 @@ function HVHSniperSelect:Check(killer)
 end
 
 function HVHSniperSelect:HasEmptySlot(hero)
-	print("HasEmptySlot?")
 	local ability = hero:FindAbilityByName("sniper_empty")
 	
 	if ability then
@@ -34,9 +31,8 @@ function HVHSniperSelect:HasEmptySlot(hero)
 end
 
 function HVHSniperSelect:MakeMenuVisible(hero, sniper_select_reason)
-	print("Making menu visible to player ".. hero:GetPlayerOwnerID())
+	--print("Making menu visible to player ".. hero:GetPlayerOwnerID())
 	CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "sniper_select_make_visible", { reason = sniper_select_reason})
-	--CustomGameEventManager:Send_ServerToPlayer(player, "player_lumber_changed", { lumber = math.floor(player.lumber) })
 end
 
 function HVHSniperSelect:MakeMenuVisibleToRandomEligibleTeammate(hero)
