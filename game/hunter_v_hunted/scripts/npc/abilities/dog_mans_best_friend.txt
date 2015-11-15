@@ -15,17 +15,17 @@
 		"01"
 		{
 			"var_type"				"FIELD_FLOAT"
-			"aura_health_regen_pct"	"1.5"
+			"aura_health_regen_pct"	"1.0" //1.5
 		}
 		"02"
 		{
 			"var_type"			"FIELD_INTEGER"
-			"aura_magic_resist"		"15"
+			"aura_magic_resist"		"20" //15
 		}
 		"03"
 		{
 			"var_type"			"FIELD_INTEGER"
-			"aura_armor"		"10"
+			"aura_armor"		"7" //10
 		}
 		"04"
 		{
