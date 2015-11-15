@@ -39,7 +39,7 @@
     	"04"
     	{
     		"var_type"							"FIELD_FLOAT"
-    		"invis_delay"						"4.0"
+    		"invis_delay"						"3.0" // 4.0
     	}
     	"05"
     	{
