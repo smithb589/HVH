@@ -48,7 +48,7 @@
 		"03"
 		{
 			"var_type"				"FIELD_INTEGER"
-			"miss_rate_day"			"25"
+			"miss_rate_day"			"35" //25
 		}
 		"04"
 		{
@@ -63,7 +63,7 @@
 		"06"
 		{
 			"var_type"				"FIELD_INTEGER"
-			"radius"				"250"
+			"radius"				"300" // 250
 		}
 	}
 
