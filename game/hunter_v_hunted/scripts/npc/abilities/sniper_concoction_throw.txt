@@ -48,7 +48,7 @@
 		"03"
 		{
 			"var_type"					"FIELD_FLOAT"
-			"max_stun"					"1.75 2.5 3.25 4.0"
+			"max_stun"					"4.0"//"1.75 2.5 3.25 4.0"
 		}
 		"04"
 		{
@@ -58,12 +58,12 @@
 		"05"
 		{
 			"var_type"					"FIELD_INTEGER"
-			"max_damage"				"150 220 290 360"
+			"max_damage"				"300"//"150 220 290 360"
 		}
 		"06"
 		{
 			"var_type"					"FIELD_INTEGER"
-			"movement_speed"			"900"
+			"movement_speed"			"1200"//"900"
 		}
 		"07"
 		{
@@ -73,7 +73,7 @@
 		"08"
 		{
 			"var_type"					"FIELD_INTEGER"
-			"midair_explosion_radius"	"175"
+			"midair_explosion_radius"	"300"//"175"
 		}
 		"09"
 		{
