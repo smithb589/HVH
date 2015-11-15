@@ -9,21 +9,19 @@
 	"AbilityTextureName"	"hvh_sniper_sharpshooter"
 	"MaxLevel" "1"
 
-    "AbilityCastPoint"       "0.3"
-    "AbilityCastAnimation"   "ACT_DOTA_ATTACK"
+    "AbilityCastPoint"       "2.5"
+    "AbilityCastAnimation"   "ACT_DOTA_TELEPORT"
     "AnimationPlaybackRate"  "1"
     "AnimationIgnoresModelScale" "1"
 
     // Stats
     //----------------------------------------------------------------------------------------
-    "AbilityCooldown"         "45.0"
-    "AbilityDuration"         "%duration"
+    "AbilityCooldown"         "150.0"
 
 	// Precache
 	//-------------------------------------------------------------------------------------------------------------
 	"precache"
 	{
-		"particle"			"particles/units/heroes/hero_chaos_knight/chaos_knight_weapon_blur_critical.vpcf"
 	}
 
 	// Special
@@ -34,36 +32,6 @@
 		{
 			"var_type"					"FIELD_FLOAT"
 			"bonus_attack_range"		"400.0"
-		}
-		"02"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"active_attack_speed"		"40"
-		}
-		"03"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"active_crit_bonus"			"150"
-		}
-		"04"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"active_crit_chance"		"25"
-		}
-		"05"
-		{
-			"var_type"					"FIELD_FLOAT"
-			"duration"					"6.0"
-		}
-	}
-
-	"OnSpellStart"
-	{
-		"ApplyModifier"
-		{
-			"ModifierName"	"modifier_sharpshooter_active"
-			"Target" 		"CASTER"
-			"Duration"		"%duration"
 		}
 	}
 
@@ -79,70 +47,24 @@
 				"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"%bonus_attack_range"
 			}
 		}
+	}
 
-		"modifier_sharpshooter_active"
+	"OnAbilityPhaseStart"
+	{
+		"FireSound"
 		{
-		    "Passive"   "0"
-		    "IsHidden"  "0"
-
-	        "Properties"
-	        {
-	        	"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" 	"%active_attack_speed"
-	        }
-
-		    "OnAttackStart"
-		    {
-		        "RemoveModifier"
-		        {
-		            "ModifierName" 	"modifier_sharpshooter_crit"
-		            "Target" 		"CASTER"
-		        }
-
-		        "Random"
-		        {
-		            "Chance" 	"%active_crit_chance"
-		            "OnSuccess"
-		            {
-		            	"FireSound"
-				        {
-				        	"EffectName"	"Hero_ChaosKnight.ChaosStrike"
-				        	"Target"		"CASTER"
-				        }
-
-				        "FireEffect"
-				        {
-				       		"EffectName" 		"particles/units/heroes/hero_chaos_knight/chaos_knight_weapon_blur_critical.vpcf"
-				            "EffectAttachType"  "attach_attack1"
-				            "Target"    		"CASTER"
-				        }
-
-		                "ApplyModifier"
-		                {
-		                    "ModifierName" 	"modifier_sharpshooter_crit"
-		                    "Target"    	"CASTER"
-		                }        
-		            }
-		        }
-		    }
-		}
-
-		"modifier_sharpshooter_crit"
-		{
-		    "IsHidden"  "0"
-
-		    "Properties"
-		    {
-		        "MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" "%active_crit_bonus"
-		    }
-
-		    "OnAttackLanded"
-		    {
-		        "RemoveModifier"
-		        {
-		            "ModifierName"  "modifier_sharpshooter_crit"
-		            "Target"   		"CASTER"    
-		        }
-		    }
+			"EffectName"	"sniper_snip_ability_shrapnel_03"
+			"Target" 		"CASTER"
 		}
 	}
+
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"	"spells/sniper_sharpshooter.lua"
+			"Function"		"CreateAssassinateItem"
+		}
+	}
+
 }

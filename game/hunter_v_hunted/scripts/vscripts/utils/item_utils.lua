@@ -73,3 +73,23 @@ function HVHItemUtils:GetItemByName(caster, item_name)
     end
   end
 end
+
+-- Forces items from a unit's stash to be dropped at the unit's location.
+function HVHItemUtils:DropStashItems(unit)
+  local hasItemsInStash = unit:GetNumItemsInStash() > 0
+  if hasItemsInStash then
+    for stashSlot=DOTA_STASH_SLOT_1,DOTA_STASH_SLOT_6 do
+      local stashItem = unit:GetItemInSlot(stashSlot)
+      self:DropItemFromStash(stashItem, unit)
+    end
+  end
+end
+
+-- Drops an item from a unit's stash at the unit's current location.
+function HVHItemUtils:DropItemFromStash(stashItem, unit)
+  if stashItem and unit then
+    local itemName = stashItem:GetName()
+    unit:RemoveItem(stashItem)
+    self:SpawnItem(itemName, unit:GetAbsOrigin())
+  end
+end

@@ -30,6 +30,14 @@
 		"particle"					"particles/units/heroes/hero_sniper/sniper_assassinate.vpcf"
 		"particle"					"particles/units/heroes/hero_sniper/sniper_crosshair.vpcf"
 	}
+	"OnAbilityPhaseStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/item_assassinate.lua"
+			"Function"				"InitializeAssassinate"
+		}
+	}
 	"OnSpellStart"
 	{
 		"RunScript"

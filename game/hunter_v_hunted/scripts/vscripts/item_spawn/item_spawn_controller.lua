@@ -171,7 +171,7 @@ function HVHItemSpawnController:_GrantItem(itemName, unit, chestItem)
   if itemName and unit then
     unit:AddItemByName(itemName)
     Timers:CreateTimer(SINGLE_FRAME_TIME, function()
-      self:_DropStashItems(unit)
+      HVHItemUtils:DropStashItems(unit)
     end)
   else
     HVHDebugPrint(string.format("Could not grant item %s to unit %d.", itemName, unit:GetEntityIndex()))
@@ -212,26 +212,6 @@ function HVHItemSpawnController:_SendRejectedPickupEvent(player)
   local event = HVHRejectedChestPickupEvent(HVHRejectedChestPickupEvent.RejectReason_WrongTeam)
   Notifications:ClearTop(player)
   Notifications:Top(player, event:ConvertToPayload())
-end
-
--- Forces items from a unit's stash to be dropped at the unit's location.
-function HVHItemSpawnController:_DropStashItems(unit)
-  local hasItemsInStash = unit:GetNumItemsInStash() > 0
-  if hasItemsInStash then
-    for stashSlot=DOTA_STASH_SLOT_1,DOTA_STASH_SLOT_6 do
-      local stashItem = unit:GetItemInSlot(stashSlot)
-      self:_DropItemFromStash(stashItem, unit)
-    end
-  end
-end
-
--- Drops an item from a unit's stash at the unit's current location.
-function HVHItemSpawnController:_DropItemFromStash(stashItem, unit)
-  if stashItem and unit then
-    local itemName = stashItem:GetName()
-    unit:RemoveItem(stashItem)
-    HVHItemUtils:SpawnItem(itemName, unit:GetAbsOrigin())
-  end
 end
 
 -- Finds the nearest spawner in a small radius.
