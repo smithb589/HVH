@@ -17,17 +17,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"aura_health_regen_pct"	"1.5"
+				"aura_health_regen_pct"	"1.0" //1.5
 			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"aura_magic_resist"		"15"
+				"aura_magic_resist"		"20" //15
 			}
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"aura_armor"		"10"
+				"aura_armor"		"7" //10
 			}
 			"04"
 			{
@@ -530,7 +530,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"miss_rate_day"			"25"
+				"miss_rate_day"			"35" //25
 			}
 			"04"
 			{
@@ -545,7 +545,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"250"
+				"radius"				"300" // 250
 			}
 		}
 	
@@ -1032,7 +1032,7 @@
 	    	"04"
 	    	{
 	    		"var_type"							"FIELD_FLOAT"
-	    		"invis_delay"						"4.0"
+	    		"invis_delay"						"3.0" // 4.0
 	    	}
 	    	"05"
 	    	{
@@ -1518,7 +1518,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"max_stun"					"1.75 2.5 3.25 4.0"
+				"max_stun"					"4.0"//"1.75 2.5 3.25 4.0"
 			}
 			"05"
 			{
@@ -1528,20 +1528,22 @@
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"max_damage"				"150 220 290 360"
+				"max_damage"				"200"//"150 220 290 360"
 			}
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"175"
+				"radius"					"300"//"175"
 			}
 		}
 	
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts"
 			"particle"	"particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_timer.vpcf"
-	
+			"particle"	"particles/units/heroes/hero_enchantress/enchantress_natures_attendant_heal_magic.vpcf"
+			"particle"	"particles/units/heroes/hero_enchantress/enchantress_natures_attendants_heal.vpcf"
 			// This particle isn't used because it would need a separate rule to attach to the hands or weapons for each hero
 			// CP1 and CP2 are left and right hands respectively
 			"particle"  "particles/units/heroes/hero_alchemist/alchemist_unstableconc_bottles.vpcf" 
@@ -1641,7 +1643,7 @@
 		"BaseClass"				"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
@@ -1672,7 +1674,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"max_stun"					"1.75 2.5 3.25 4.0"
+				"max_stun"					"4.0"//"1.75 2.5 3.25 4.0"
 			}
 			"04"
 			{
@@ -1682,12 +1684,12 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"max_damage"				"150 220 290 360"
+				"max_damage"				"200"//"150 220 290 360"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"movement_speed"			"900"
+				"movement_speed"			"1200"//"900"
 			}
 			"07"
 			{
@@ -1697,7 +1699,7 @@
 			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"midair_explosion_radius"	"175"
+				"midair_explosion_radius"	"300"//"175"
 			}
 			"09"
 			{
@@ -1991,21 +1993,19 @@
 		"AbilityTextureName"	"hvh_sniper_sharpshooter"
 		"MaxLevel" "1"
 	
-	    "AbilityCastPoint"       "0.3"
-	    "AbilityCastAnimation"   "ACT_DOTA_ATTACK"
+	    "AbilityCastPoint"       "2.5"
+	    "AbilityCastAnimation"   "ACT_DOTA_TELEPORT"
 	    "AnimationPlaybackRate"  "1"
 	    "AnimationIgnoresModelScale" "1"
 	
 	    // Stats
 	    //----------------------------------------------------------------------------------------
-	    "AbilityCooldown"         "45.0"
-	    "AbilityDuration"         "%duration"
+	    "AbilityCooldown"         "150.0"
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
 		{
-			"particle"			"particles/units/heroes/hero_chaos_knight/chaos_knight_weapon_blur_critical.vpcf"
 		}
 	
 		// Special
@@ -2016,36 +2016,6 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"bonus_attack_range"		"400.0"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"active_attack_speed"		"40"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"active_crit_bonus"			"150"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"active_crit_chance"		"25"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"6.0"
-			}
-		}
-	
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_sharpshooter_active"
-				"Target" 		"CASTER"
-				"Duration"		"%duration"
 			}
 		}
 	
@@ -2061,72 +2031,26 @@
 					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"%bonus_attack_range"
 				}
 			}
+		}
 	
-			"modifier_sharpshooter_active"
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
 			{
-			    "Passive"   "0"
-			    "IsHidden"  "0"
-	
-		        "Properties"
-		        {
-		        	"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" 	"%active_attack_speed"
-		        }
-	
-			    "OnAttackStart"
-			    {
-			        "RemoveModifier"
-			        {
-			            "ModifierName" 	"modifier_sharpshooter_crit"
-			            "Target" 		"CASTER"
-			        }
-	
-			        "Random"
-			        {
-			            "Chance" 	"%active_crit_chance"
-			            "OnSuccess"
-			            {
-			            	"FireSound"
-					        {
-					        	"EffectName"	"Hero_ChaosKnight.ChaosStrike"
-					        	"Target"		"CASTER"
-					        }
-	
-					        "FireEffect"
-					        {
-					       		"EffectName" 		"particles/units/heroes/hero_chaos_knight/chaos_knight_weapon_blur_critical.vpcf"
-					            "EffectAttachType"  "attach_attack1"
-					            "Target"    		"CASTER"
-					        }
-	
-			                "ApplyModifier"
-			                {
-			                    "ModifierName" 	"modifier_sharpshooter_crit"
-			                    "Target"    	"CASTER"
-			                }        
-			            }
-			        }
-			    }
-			}
-	
-			"modifier_sharpshooter_crit"
-			{
-			    "IsHidden"  "0"
-	
-			    "Properties"
-			    {
-			        "MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" "%active_crit_bonus"
-			    }
-	
-			    "OnAttackLanded"
-			    {
-			        "RemoveModifier"
-			        {
-			            "ModifierName"  "modifier_sharpshooter_crit"
-			            "Target"   		"CASTER"    
-			        }
-			    }
+				"EffectName"	"sniper_snip_ability_shrapnel_03"
+				"Target" 		"CASTER"
 			}
 		}
+	
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"spells/sniper_sharpshooter.lua"
+				"Function"		"CreateAssassinateItem"
+			}
+		}
+	
 	}
 	"sniper_shrapnel_hvh"
 	{

@@ -1283,4 +1283,87 @@
 	
 	
 	
+	//=================================================================================
+	// Creeps: Mini sniper created from sniper_concoction
+	//=================================================================================
+	"npc_mini_sniper"
+	{
+		// General
+		//
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/heroes/sniper/sniper.vmdl"	// Model.
+		"SoundSet"					"Hero_Sniper"					// Name of sound set.
+		"Level"						"5"
+		"ModelScale"				"0.55"
+		"IsSummoned"				"1"
+		"CanBeDominated"			"0"
+		
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					""			// Ability 1.
+		"Ability2"					""			// Ability 2.
+		"Ability3"					""			// Ability 3.
+		"Ability4"					""			// Ability 4.
+		"Ability5"					""			// Ability 5.
+		"Ability6"					""			// Ability 6 - Extra.
+	
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"-1"		// Physical protection.
+		"MagicalResistance"			"75"		// Magical protection.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"25"					// Damage range min.
+		"AttackDamageMax"			"38"					// Damage range max.
+		"AttackRate"				"1.7"					// Speed of attack.
+		"AttackAnimationPoint"		"0.17"					// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"950"					// Range within a target can be acquired.
+		"AttackRange"				"550"					// Range within a target can be attacked.
+		"ProjectileModel"			"sniper_base_attack"	// Particle system model for projectile.
+		"ProjectileSpeed"			"3000"			// Speed of projectile.
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
+		"HealthBarOffset" 			"110"
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+		"MovementSpeed"				"330"		// Speed
+		"MovementTurnRate"			"0.6"		// Turning rate.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"300"		// Base health.
+		"StatusHealthRegen"			"5"			// Health regeneration rate.
+		"StatusMana"				"0"			// Base mana.
+		"StatusManaRegen"			"0"			// Mana regeneration rate.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_GOODGUYS"			// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+	
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"Wearable1"	{ "ItemDef" "8161" } // cape of the shooting star
+				"Wearable2"	{ "ItemDef" "8163" } // goggles
+				"Wearable3"	{ "ItemDef" "8164" } // shoulders
+				"Wearable4"	{ "ItemDef" "8165" } // carbine
+				"Wearable5"	{ "ItemDef" "8197" } // bracer/boots
+			}
+		}
+	}	
 }
