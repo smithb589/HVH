@@ -83,7 +83,12 @@ function HVHSniperSelect:ChooseAbility(args)
 
 	hero:RemoveAbility("sniper_empty")
 	hero:AddAbility(abilityName)
-	HVHGameMode:LevelupAbility(hero, abilityName, true)
 
+	-- add the companion ability
+	if abilityName == "sniper_concoction" then
+		hero:AddAbility("sniper_concoction_throw")
+	end
+
+	HVHGameMode:LevelupAbility(hero, abilityName, true)
 	CustomGameEventManager:Send_ServerToAllClients("sniper_select_disable_choice", { character = character })
 end

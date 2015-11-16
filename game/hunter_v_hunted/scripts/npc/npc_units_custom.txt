@@ -1300,7 +1300,7 @@
 		
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					""			// Ability 1.
+		"Ability1"					"sniper_headshot"			// Ability 1.
 		"Ability2"					""			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
@@ -1309,19 +1309,19 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"-1"		// Physical protection.
+		"ArmorPhysical"				"0"		    // Physical protection.
 		"MagicalResistance"			"75"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"			"25"					// Damage range min.
-		"AttackDamageMax"			"38"					// Damage range max.
+		"AttackDamageMax"			"30"					// Damage range max.
 		"AttackRate"				"1.7"					// Speed of attack.
 		"AttackAnimationPoint"		"0.17"					// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"950"					// Range within a target can be acquired.
 		"AttackRange"				"550"					// Range within a target can be attacked.
-		"ProjectileModel"			"sniper_base_attack"	// Particle system model for projectile.
+		"ProjectileModel"			"particles/items_fx/desolator_projectile.vpcf"	// Particle system model for projectile.
 		"ProjectileSpeed"			"3000"			// Speed of projectile.
 	
 		// Bounds
@@ -1339,8 +1339,8 @@
 		//----------------------------------------------------------------
 		"StatusHealth"				"300"		// Base health.
 		"StatusHealthRegen"			"5"			// Health regeneration rate.
-		"StatusMana"				"0"			// Base mana.
-		"StatusManaRegen"			"0"			// Mana regeneration rate.
+		"StatusMana"				"100"			// Base mana.
+		"StatusManaRegen"			"1"			// Mana regeneration rate.
 	
 		// Team
 		//----------------------------------------------------------------

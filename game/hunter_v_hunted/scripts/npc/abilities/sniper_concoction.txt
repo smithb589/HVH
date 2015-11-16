@@ -109,7 +109,7 @@
 		{
 			"ScriptFile"	"spells/sniper_concoction.lua"
 			"Function"		"LevelUpAbility"
-			"ability_name"	"sniper_concoction"
+			"ability_name"	"sniper_concoction_throw"
 		}
 	}
 

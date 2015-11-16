@@ -209,6 +209,13 @@ PRECACHE_PARTICLES = {
 	--"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion_flash_b.vpcf",
 	--"particles/units/heroes/hero_slardar/slardar_sprint.vpcf"
 	--"particles/generic_hero_status/status_invisibility_start.vpcf",
+	"particles/generic_gameplay/generic_stunned.vpcf",
+	"particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_projectile.vpcf",
+	"particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_explosion.vpcf",
+	"particles/units/heroes/hero_alchemist/alchemist_unstableconc_bottles.vpcf",
+	"particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_timer.vpcf",
+	"particles/units/heroes/hero_enchantress/enchantress_natures_attendant_heal_magic.vpcf",
+	"particles/units/heroes/hero_enchantress/enchantress_natures_attendants_heal.vpcf",
 	"particles/units/heroes/hero_shredder/shredder_timberchain.vpcf",
 	"particles/units/heroes/hero_shredder/shredder_timber_chain_trail.vpcf",
 	"particles/units/heroes/hero_shredder/shredder_timber_chain_tree.vpcf",
@@ -217,10 +224,12 @@ PRECACHE_PARTICLES = {
 	"particles/newplayer_fx/npx_sleeping.vpcf",
 	"particles/good_guy_dog_treat.vpcf"
 }
-
+		
 PRECACHE_SOUNDFILES = {
 	--"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts",
 	--"soundevents/game_sounds_heroes/game_sounds_pudge.vsndevts",
+	"soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts",
+	"soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts",
 	"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts",
 	"soundevents/game_sounds_heroes/game_sounds_shredder.vsndevts",
 	"soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts"

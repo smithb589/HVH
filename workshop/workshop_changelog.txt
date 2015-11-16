@@ -11,8 +11,17 @@ MEET THE SNIPERS
 -- Florax: Global self-teleport.
 -- Jebby: Cast random support effect on ally, unless you blow yourself up.
 BALANCE CHANGES
--- When Sniper uses item_assassinate, a global sound effect plays before the shot.
-
+-- When Sniper uses item_assassinate, a global sound effect plays before the shot, and invisible units are properly revealed.
+-- Neutral creep health significantly reduced, but magic resistance now 75%.
+-- Roshan learned how to slam.
+-- Man's Best Friend aura 1.5% hp/sec to 1.0% hp/sec
+-- Man's Best Friend armor +10 to +7
+-- Man's Best Friend magic resist 15% to 20%
+-- NS Crippling Hysteria (AOE) radius 250 to 300
+-- NS Crippling Horror/Hysteria day miss rate 25% to 35%
+-- NS Invis Delay after attacking/casting 4 to 3 secs
+-- Snipers gain +1 hound earlier instead of +2 near the end
+-- item_dust, item_smoke_of_deceit, and item_tango_single 20 sec CD
 
 1.4.0
 -----

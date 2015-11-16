@@ -704,7 +704,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"miss_rate_day"			"25"
+				"miss_rate_day"			"35"
 			}
 			"04"
 			{
@@ -1571,7 +1571,7 @@
 			{
 				"ScriptFile"	"spells/sniper_concoction.lua"
 				"Function"		"LevelUpAbility"
-				"ability_name"	"sniper_concoction"
+				"ability_name"	"sniper_concoction_throw"
 			}
 		}
 	
@@ -1783,7 +1783,7 @@
 			{
 				"ScriptFile"	"spells/sniper_concoction.lua"
 				"Function"		"LevelUpAbility"
-				"ability_name"	"sniper_concoction_throw"
+				"ability_name"	"sniper_concoction"
 			}
 		}
 	

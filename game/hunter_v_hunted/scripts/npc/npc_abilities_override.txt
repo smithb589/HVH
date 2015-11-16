@@ -152,6 +152,30 @@
 
 	// -------------------------- Sniper's abilities --------------------------
 
+	"sniper_headshot" // mini_sniper ability
+	{
+		"AbilityDamage"					"30"//"15 40 65 90"
+	
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"slow_duration"					"0.5"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"proc_chance"					"10"//"40"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow"			"-100"
+			}
+		}
+	}
+
 	"alchemist_chemical_rage"	// sniper_concoction ability
 	{
 		"AbilitySpecial"
@@ -206,8 +230,6 @@
 			}
 		}
 	}
-
-	//"sniper_headshot" {}
 
 	"shredder_timber_chain"
 	{

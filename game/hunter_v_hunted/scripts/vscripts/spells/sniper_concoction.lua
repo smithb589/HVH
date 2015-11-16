@@ -212,8 +212,13 @@ function LevelUpAbility( event )
 
 	-- The ability to level up
 	local ability_name = event.ability_name
-	local ability_handle = caster:FindAbilityByName(ability_name)	
+	local ability_handle = caster:FindAbilityByName(ability_name)
+	if not ability_handle then
+		print("Could not find " .. ability_name)
+		return
+	end
 	local ability_level = ability_handle:GetLevel()
+	--print(string.format("%s L%s -> %s L%s", this_abilityName, this_abilityLevel, ability_name, ability_level))
 
 	-- Check to not enter a level up loop
 	if ability_level ~= this_abilityLevel then
@@ -260,6 +265,11 @@ function ConcoctionHit( event )
 	else
 		SpawnMiniSnipers(target, level_if_maxlevel_3)
 	end
+
+	--for i=0, 15 do
+	--	local abi = caster:GetAbilityByIndex(i)
+	--	if abi then print(abi:GetAbilityName() .. " L" .. abi:GetLevel()) end
+	--end
 end
 
 function SpawnMiniSnipers(target, level)
@@ -282,7 +292,6 @@ function SpawnMiniSnipers(target, level)
 		--Timers:CreateTimer(0.5, function() unit:SetIdleAcquire(true) end)
 	end
 end
-
 
 function TangoBloom(target, level)
 	for i=1, level do
