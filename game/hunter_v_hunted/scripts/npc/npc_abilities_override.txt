@@ -152,17 +152,24 @@
 
 	// -------------------------- Sniper's abilities --------------------------
 
-	"pugna_life_drain"
+	"alchemist_chemical_rage"	// sniper_concoction ability
 	{
-		"AbilityChannelTime"			"2.0 3.0 4.0"
-		"AbilityManaCost"				"0"
-
 		"AbilitySpecial"
 		{
-			"01"
+			"05"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"health_drain"				"75" //"150 185 220"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"15 30 45"//"50 75 100"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_mana_regen"		"0"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movespeed"		"30 40 60"
 			}
 		}
 	}
@@ -481,6 +488,7 @@
 		"ItemQuality"	"common"	
 		"ItemSellable" "0"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"AbilityCooldown" "20"
 
 		"AbilitySpecial"
 		{
@@ -498,6 +506,7 @@
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"AbilityCooldown" "20"
 	}
 
 	"item_dust"
@@ -507,6 +516,7 @@
 		"ItemInitialCharges"  "2"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 		"AbilityManaCost" "0"
+		"AbilityCooldown" "20"
 
 		"AbilitySpecial"
 		{
