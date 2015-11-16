@@ -1,17 +1,17 @@
 .HVHSniperSelect
 {
-    height:667px;
+    height:688px;
     width:590px;
     margin-left: 50px;
     margin-top: 75px;
     flow-children: down;
-    background-color: black;
     border-radius: 8px;
     padding: 4px;
+    background-color: #000000ff, gradient( radial, 100% -0%, 100px -40px, 320% 270%, from( #333333ff ), color-stop( 0.23, #000000ff ), to( #0d1c22ff ) );
 
     transform: translatex( -700px );
     transition-property: transform;
-    transition-duration: 0.1s;
+    transition-duration: 0.8s;
 }
 
 .HVHSniperSelect.menu_visible
@@ -25,14 +25,19 @@ Label
     font-size: 18px;
     color: #999999;
     vertical-align: top;
-
 }
- 
+
+#WelcomeText
+{
+    text-transform: uppercase;
+    font-family: "Goudy Trajan Medium";
+    font-size:30px;
+}
+
 .HeaderContainer
 {
     flow-children: down;
     horizontal-align: center;
-    margin-bottom: 12px;
 }
 
 .AbilityContainer
@@ -44,6 +49,36 @@ Label
 .CharacterContainer
 {
     flow-children: right;
+    padding: 4px;
+    border: 4px solid #111111FF;
+    border-radius: 12px;
+    box-shadow: #000000b0 0px 0px 16px 0px; // inner
+
+}
+
+.CharacterContainer.character_disabled
+{
+    saturation: 0.0;
+}
+
+#KardelContainer
+{
+    background-color: #800000ff, gradient( radial, 100% -0%, 100px -40px, 320% 270%, from( #800000ff ), color-stop( 0.23, #1a0000ff ), to( #800000ff ) );
+}
+
+#RiggsContainer
+{
+    background-color: #646600, gradient( radial, 100% -0%, 100px -40px, 320% 270%, from( #1a1400ff ), color-stop( 0.23, #1a1400ff ), to( #646600ff ) );
+}
+
+#FloraxContainer
+{
+    background-color: #070f12ff, gradient( radial, 100% -0%, 100px -40px, 320% 270%, from( #2d3539ff ), color-stop( 0.23, #0d1c22ff ), to( #0d1c22ff ) );
+}
+
+#JebbyContainer
+{
+    background-color: #260033ff, gradient( radial, 100% -0%, 100px -40px, 320% 270%, from( #260033ff ), color-stop( 0.23, #260033ff ), to( #ab00e6ff ) );
 }
 
 .CharDescriptionContainer
@@ -79,8 +114,8 @@ Label
 {
     width: 128px;
     height: 128px;
-    margin-bottom: 10px;
-    margin-left: 4px;
+    margin-bottom: 0px;
+    margin-left: 0px;
     border-radius: 12px;
 }
 
@@ -93,7 +128,6 @@ Label
 /* desaturate disabled buttons */
 .ChooseButton:disabled
 {
-    saturation: 0.0;
     brightness: 0.03;
     contrast: 1.01;
 }

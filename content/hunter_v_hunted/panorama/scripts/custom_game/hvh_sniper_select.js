@@ -18,6 +18,7 @@ function MakeButtonEnabled(buttonName) {
 function MakeButtonDisabled(args) {
 	var buttonName = "#"+args.character+"Button";
 	$(buttonName).enabled = false;
+	$(buttonName).GetParent().SetHasClass("character_disabled", true);
 }
 
 function MakeMenuVisible ( args ) {

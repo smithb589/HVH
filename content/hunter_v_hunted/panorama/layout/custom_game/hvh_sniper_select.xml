@@ -10,7 +10,7 @@
 	<Panel class="HVHSniperSelect">
 		
 		<Panel class="HeaderContainer">
-			<Label class="HeaderText" text="#hvh_sniper_select_header_welcome" />
+			<Label class="HeaderText" id="WelcomeText" text="#hvh_sniper_select_header_welcome" />
 			<Label class="HeaderText" id="ReasonText" text="#hvh_sniper_select_header_reason" />
 			<Label class="HeaderText" text="#hvh_sniper_select_header_question" />
 		</Panel>
