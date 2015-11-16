@@ -46,7 +46,7 @@
 		"03"
 		{
 			"var_type"				"FIELD_INTEGER"
-			"miss_rate_day"			"25"
+			"miss_rate_day"			"35"
 		}
 		"04"
 		{

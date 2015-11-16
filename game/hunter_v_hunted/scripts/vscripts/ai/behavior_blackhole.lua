@@ -46,7 +46,7 @@ function BehaviorBlackhole:Evaluate()
 				--print("FAILED: Enigma is too lazy to move into attack range")
 			end
 		else
-			print("FAILED: Closest 2 targets too far apart!!")
+			--print("FAILED: Closest 2 targets too far apart!!")
 		end
 	end
 

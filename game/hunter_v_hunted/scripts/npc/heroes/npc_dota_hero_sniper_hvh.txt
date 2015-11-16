@@ -8,5 +8,10 @@
 	"Ability5"			"shredder_timber_chain"
 	"AbilityLayout"		"5"
 	"Ability6"          "attribute_bonus"
-	"Ability7"			"sniper_concoction_throw"	
+	//"Ability1"			"sniper_sharpshooter"
+	//"Ability2"			"sniper_flush"
+	//"Ability3"			"sniper_teleportation"
+	//"Ability4"			"sniper_concoction"
+	//"Ability7"			"sniper_concoction_throw"
 }
+
