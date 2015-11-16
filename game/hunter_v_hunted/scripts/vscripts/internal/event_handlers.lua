@@ -81,6 +81,4 @@ function HVHGameMode:OnAbilityUsed(keys)
       end
     end
   end
-
 end
-

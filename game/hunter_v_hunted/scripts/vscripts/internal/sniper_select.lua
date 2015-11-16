@@ -9,13 +9,26 @@ function HVHSniperSelect:Setup()
 	CustomGameEventManager:RegisterListener("sniper_select_choose_ability", Dynamic_Wrap(HVHSniperSelect, "ChooseAbility"))
 end
 
-function HVHSniperSelect:Check(killer)
-	local team = killer:GetTeam()
-	if team == DOTA_TEAM_GOODGUYS then
-		if self:HasEmptySlot(killer) then
-			self:MakeMenuVisible(killer, SNIPER_SELECT_REASON_KILLED)
+function HVHSniperSelect:Check(killer, killed)
+	local teamKiller = killer:GetTeam()
+	local teamKilled = killed:GetTeam()
+	--print(killer:GetUnitName() .. " owned by " .. killer:GetPlayerOwnerID())
+
+	-- If Team Sniper kills NightStalker, we have a success. Possibilities:
+	---- 1. Sniper killed NS and has empty ability slot. That player gets the prompt.
+	---- 2. Sniper's minion killed NS. Find owner of minion, and check that player's hero, as above.
+	---- 3. Hound kills NS. Pick random eligible teammate.
+	---- 4. Sniper no longer has an empty ability slot. Pick random eligible teammate.
+	if teamKiller == DOTA_TEAM_GOODGUYS and teamKilled == DOTA_TEAM_BADGUYS then
+		local player = killer:GetPlayerOwner()
+		if player then
+			killer = player:GetAssignedHero()
+		end
+
+		if killer:IsRealHero() and self:HasEmptySlot(killer) then
+			self:MakeMenuVisible(player, SNIPER_SELECT_REASON_KILLED)
 		else
-			self:MakeMenuVisibleToRandomEligibleTeammate(killer)
+			self:MakeMenuVisibleToRandomEligibleTeammate()
 		end
 	end
 end
@@ -30,12 +43,12 @@ function HVHSniperSelect:HasEmptySlot(hero)
 	end
 end
 
-function HVHSniperSelect:MakeMenuVisible(hero, sniper_select_reason)
-	--print("Making menu visible to player ".. hero:GetPlayerOwnerID())
-	CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "sniper_select_make_visible", { reason = sniper_select_reason})
+function HVHSniperSelect:MakeMenuVisible(player, sniper_select_reason)
+	--print("Making menu visible to player ".. player:GetPlayerID())
+	CustomGameEventManager:Send_ServerToPlayer(player, "sniper_select_make_visible", { reason = sniper_select_reason})
 end
 
-function HVHSniperSelect:MakeMenuVisibleToRandomEligibleTeammate(hero)
+function HVHSniperSelect:MakeMenuVisibleToRandomEligibleTeammate()
 	local heroList = HeroList:GetAllHeroes()
 	local validSniperList = {}
 
