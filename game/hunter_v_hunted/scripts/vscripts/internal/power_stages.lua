@@ -23,7 +23,7 @@ function HVHPowerStages:OnEntityKilled(killedArgs)
 		self:HandlePlayerDeath(unit)
 		self:CheckForWinner()
 		self:CheckPowerStages(team)
-		HVHSniperSelect:Check(killer)
+		HVHSniperSelect:Check(killer, unit)
 	end
 end
 
@@ -82,9 +82,10 @@ function HVHPowerStages:UpgradePowerStage(team)
 		if team == DOTA_TEAM_GOODGUYS then
 			if     newPowerStage == 1 then self:GrantSniperShrapnelCharge()
 			elseif newPowerStage == 2 then self:GrantSniperEarthbind()
-			elseif newPowerStage == 3 then self:GrantSniperTimberchain()
-			elseif newPowerStage == 4 then self:GrantSniperShrapnelCharge()	
-			elseif newPowerStage == 5 then self:GrantSniperBonusHounds()
+			elseif newPowerStage == 3 then self:GrantSniperBonusHounds(1)				
+			elseif newPowerStage == 4 then self:GrantSniperTimberchain()
+			elseif newPowerStage == 5 then self:GrantSniperShrapnelCharge()	
+			elseif newPowerStage == 6 then self:GrantSniperBonusHounds(1)
 			else --print("sniper unknown stage")
 			end
 		else
@@ -132,9 +133,11 @@ function HVHPowerStages:GrantSniperTimberchain()
 	self:Notify("#PowerStages_Snipers_Upgrade_Supplies", "#PowerStages_Snipers_Timberchain", "shredder_timber_chain", DOTA_TEAM_GOODGUYS)
 end
 
-function HVHPowerStages:GrantSniperBonusHounds()
-	HVHGameMode:SpawnDog(true)
-	HVHGameMode:SpawnDog(true)
+function HVHPowerStages:GrantSniperBonusHounds(houndCount)
+	for i=1, houndCount do
+		HVHGameMode:SpawnDog(true)
+	end
+
 	self:Notify("#PowerStages_Snipers_Upgrade_Reinforcements", "#PowerStages_Snipers_BonusHounds", "lycan_summon_wolves", DOTA_TEAM_GOODGUYS)
 end
 
