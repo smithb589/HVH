@@ -1,3 +1,19 @@
+1.5.0
+-----
+MAP UPDATES
+-- Day/night color, fog, and shadow changes
+-- Revamped swamp area
+-- Various updates, tweaks, more juke spots
+MEET THE SNIPERS
+-- Snipers given a 5th blank ability (D). If you last-hit the Night Stalker, you can choose 1 of 4 new abilities to fill that slot, each based on the personalities of the Sniper family clan. Once picked, the ability cannot be picked by anyone else. If the same player kills NS twice, a random ally gets to choose a new ability instead. However, if the Night Stalker denies himself, nobody gets it!
+-- Kardel: Bonus attack range passive, and can create item_assassinates on CD.
+-- Riggs: All Hounds immediately sprint, gain flying movement, and become loyal.
+-- Florax: Global self-teleport.
+-- Jebby: Cast random support effect on ally, unless you blow yourself up.
+BALANCE CHANGES
+-- When Sniper uses item_assassinate, a global sound effect plays before the shot.
+
+
 1.4.0
 -----
 NEUTRAL CREEPS
