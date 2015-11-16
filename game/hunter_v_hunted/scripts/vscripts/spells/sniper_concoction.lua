@@ -243,20 +243,55 @@ function ConcoctionHit( event )
 	local level_if_maxlevel_4 = math.max(1, math.floor(4 * charged_percent + 0.5)) -- rounded, at least L1
 	local level_if_maxlevel_3 = math.max(1, math.floor(3 * charged_percent + 0.5)) -- rounded, at least L1
 
-	-- Randomly perform one of the following effects, 20% chance each
+	-- ChemRage 20%, Tangos 10%, Natures 10%, Timewalk 15%, Timelapse 15%, BorrowedTime 15%, Minisnipers 15%
 	local r = RandomInt(1, 100)
 	if r <= 20 then
 		ChemicalRage(target, level_if_maxlevel_3)
+	elseif r <= 30 then
+		TangoBloom(target, level_if_maxlevel_4)
 	elseif r <= 40 then
 		DoForceCast(target, "enchantress_natures_attendants", 12.0, level_if_maxlevel_4)
-	elseif r <= 60 then
+	elseif r <= 55 then
 		TimeWalk(target, level_if_maxlevel_4)
-	elseif r <= 80 then
+	elseif r <= 70 then
 		DoForceCast(target, "weaver_time_lapse", 10.0) -- level doesn't matter
-	else
+	elseif r <= 85 then
 		DoForceCast(target, "abaddon_borrowed_time", 10.0, level_if_maxlevel_3)
+	else
+		SpawnMiniSnipers(target, level_if_maxlevel_3)
 	end
+end
 
+function SpawnMiniSnipers(target, level)
+	local DUR = 25.0
+
+	local player = target:GetPlayerOwner()
+	local playerID = player:GetPlayerID()
+
+	for i=1, level do
+		local pos = target:GetAbsOrigin() + RandomVector(RandomFloat(150,200))
+		local unit = CreateUnitByName("npc_mini_sniper", pos, true, player:GetAssignedHero(), player:GetAssignedHero(), target:GetTeamNumber())
+		unit:SetControllableByPlayer(playerID, true)
+		unit:AddNewModifier(unit, nil, "modifier_kill", {duration = DUR})
+		ParticleManager:CreateParticle("particles/neutral_fx/skeleton_spawn.vpcf", 0, unit)
+		
+		Timers:CreateTimer(0.1, function()
+			FindClearSpaceForUnit(unit, pos, true)
+		end)
+		--unit:SetIdleAcquire(false)
+		--Timers:CreateTimer(0.5, function() unit:SetIdleAcquire(true) end)
+	end
+end
+
+
+function TangoBloom(target, level)
+	for i=1, level do
+	    local pos = target:GetAbsOrigin()
+		local item = CreateItem("item_tango_single", nil, nil)
+		local drop = CreateItemOnPositionForLaunch(pos, item)
+	    local pos_launch = pos + RandomVector(RandomFloat(150,200))
+	    item:LaunchLoot(false, 200, 0.75, pos_launch)
+	end
 end
 
 function TimeWalk(target, level)
