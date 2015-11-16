@@ -2554,7 +2554,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spirits"				"8" // 6.85 6 to 8 //"6 13 21"
+				"spirits"				"5" //"8" // 6.85 6 to 8 //"6 13 21"
 			}
 		}
 	}

@@ -837,27 +837,27 @@
 			"01" // ---------------scream variables
 			{
 				"var_type"			"FIELD_INTEGER"
-				"scream_starting_aoe"		"100"
+				"scream_damage"				"380" // "285" //"115 200 285"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"scream_distance"			"900"
+				"scream_starting_aoe"		"100"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"scream_final_aoe"			"450"
+				"scream_distance"			"900"
 			}
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"scream_speed"				"1100"
+				"scream_final_aoe"			"450"
 			}
 			"05"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"scream_damage"				"380" // "285" //"115 200 285"
+				"scream_speed"				"1100"
 			}
 			"06"
 			{
