@@ -53,6 +53,40 @@
 	"techies_land_mines"
 	{
 		"AbilityManaCost"				"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"200"//"150 190 225 260"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"small_radius"				"300"//"200"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"big_radius"				"1000"//"500"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"activation_time"			"0.5"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"explode_delay"				"0.3"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"fade_time"					"2.0"
+			}			
+		}
 	}
 
 	"ursa_earthshock"
@@ -2554,7 +2588,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spirits"				"5" //"8" // 6.85 6 to 8 //"6 13 21"
+				"spirits"				"4" //"8" // 6.85 6 to 8 //"6 13 21"
 			}
 		}
 	}
