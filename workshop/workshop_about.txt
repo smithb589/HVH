@@ -1,11 +1,11 @@
-Version 1.4.0
+Version 1.5.0
+
+Simplified Chinese (简体中文) and Russian (Русский) translations available!
 
 [b]WHAT'S NEW?[/b]
-There are now neutral creeps that can be discovered during your hunt. Check the update notes for details. I hope that the existence of these creeps adds a new layer of danger and dynamic, unpredictable gameplay. If you have observations or ideas for future mini-encounters, be sure to post!
+A new, customizable ability slot for the Snipers has been added. That means more replayability and wilder games. Whoever kills the Night Stalker first gets first pick on Kardel's sharpshooting, Riggs's hounds, Florax's teleport, or Jebby's secret formula! (See changelog for details) The map has also been overhauled and improved in many places, especially the northeast swamp. Finally, there's been a sweep of balance tweaks to both heroes and neutrals.
 
-Simplified Chinese (简体中文) and partial Russian (Русский) translations! Thanks Arche, Tsar Kapsky, and Rabbitism for your contributions. (NOTE: Full Russian translation coming soon)
-
-In addition, I've fixed a MAJOR crash bug that only affected some people, so if you've had problems in the past, please give HVH another try.
+I really appreciate the support I've received from all these people I've never met before, and it's inspired me to keep working on the mod. Thank you! Unfortunately, the player counts haven't been very high lately, but perhaps I can find some ways to advertise and turn those numbers around. If you know any ways you can help out, take a moment to post or drop me a message! Maybe we can organize some games together.
 
 ---
 

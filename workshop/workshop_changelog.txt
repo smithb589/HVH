@@ -1,25 +1,31 @@
 1.5.0
 -----
 MAP UPDATES
--- Day/night color, fog, and shadow changes
+-- Aesthetic improvements (day/night transition, colors, etc.)
 -- Revamped swamp area
--- Various updates, tweaks, more juke spots
+-- More juke spots
 MEET THE SNIPERS
--- Snipers given a 5th blank ability (D). If you last-hit the Night Stalker, you can choose 1 of 4 new abilities to fill that slot, each based on the personalities of the Sniper family clan. Once picked, the ability cannot be picked by anyone else. If the same player kills NS twice, a random ally gets to choose a new ability instead. However, if the Night Stalker denies himself, nobody gets it!
--- Kardel: Bonus attack range passive; creates item_assassinates on CD.
+-- Snipers are given a 5th blank ability (hot-key D). If you last-hit the Night Stalker, you can choose 1 of 4 new abilities to fill that slot, each based on the personalities of the Sniper family clan. Once picked, the ability cannot be picked by anyone else. If the same player kills NS twice, or if the Hound gets the last hit, a random ally gets to choose a new ability instead. However, if the Night Stalker denies himself or dies to neutral creeps, nobody gets it!
+-- Kardel: Bonus attack range passive; creates item_assassinates on long cooldown.
 -- Riggs: All Hounds immediately sprint, gain flying movement and truesight, and become loyal.
 -- Florax: Global self-teleport.
 -- Jebby: Cast random support effect on ally, unless you blow yourself up.
+NEUTRAL CREEP CHANGES
+-- Neutral creep health significantly reduced, but magic resistance now 75%.
+-- Neutral creep total count reduced, and respawn time increased
+-- Roshan+Ursa, Techies, and Warparties spawn less frequently
+-- Techies mine damage reduced, but explosion radius increased
+-- Roshan has learned how to slam
 BALANCE CHANGES
 -- When Sniper uses item_assassinate, a global sound effect plays before the shot, and invisible units are properly revealed.
--- Neutral creep health significantly reduced, but magic resistance now 75%.
--- Roshan learned how to slam.
+-- Increased passive health regen for both teams
 -- Man's Best Friend aura 1.5% hp/sec to 1.0% hp/sec, armor +10 to +7, and magic resist 15% to 20%
 -- NS Crippling Hysteria (AOE) radius 250 to 300
 -- NS Crippling Horror/Hysteria day miss rate 25% to 35%
 -- NS Invis Delay after attacking/casting 4 to 3 secs
--- Snipers gain +1 hound earlier instead of +2 near the end
+-- Snipers gain +1 Hound earlier and another +1 later, instead of +2 near the end
 -- item_dust, item_smoke_of_deceit, and item_tango_single 20 sec CD
+-- item_exorcism reduced from 8 to 4 spirits
 
 1.4.0
 -----
