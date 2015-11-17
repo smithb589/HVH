@@ -11,7 +11,7 @@
 	"IsNeutralUnitType"			"1"
 	"Level"						"16"
 	"NeutralCreepPoints"		"3"
-	"NeutralCreepWeight"		"1.0"
+	"NeutralCreepWeight"		"0.5"
 
 	// General
 	//-------------------------------------------------------------------------------------------------------------	

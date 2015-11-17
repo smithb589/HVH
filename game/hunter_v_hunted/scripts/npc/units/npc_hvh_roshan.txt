@@ -12,7 +12,7 @@
 	"IsAncient"					"1"
 	"Level"						"30"
 	"NeutralCreepPoints"		"4"
-	"NeutralCreepWeight"		"0.5"
+	"NeutralCreepWeight"		"0.25"
 
 	"MinimapIcon"        "minimap_hvh_roshan"
 	"MinimapIconSize"    "600"

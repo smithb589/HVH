@@ -11,7 +11,7 @@
 	"IsNeutralUnitType"			"1"
 	"Level"						"16"
 	"NeutralCreepPoints"		"4"
-	"NeutralCreepWeight"		"0.5"
+	"NeutralCreepWeight"		"0.25"
 
 	"MinimapIcon"        "minimap_hvh_ursa"
 	"MinimapIconSize"    "600"

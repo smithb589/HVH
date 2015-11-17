@@ -816,7 +816,7 @@
 		"IsAncient"					"1"
 		"Level"						"30"
 		"NeutralCreepPoints"		"4"
-		"NeutralCreepWeight"		"0.5"
+		"NeutralCreepWeight"		"0.25"
 	
 		"MinimapIcon"        "minimap_hvh_roshan"
 		"MinimapIconSize"    "600"
@@ -899,7 +899,7 @@
 		"IsNeutralUnitType"			"1"
 		"Level"						"16"
 		"NeutralCreepPoints"		"3"
-		"NeutralCreepWeight"		"1.0"
+		"NeutralCreepWeight"		"0.5"
 	
 		// General
 		//-------------------------------------------------------------------------------------------------------------	
@@ -1099,7 +1099,7 @@
 		"IsNeutralUnitType"			"1"
 		"Level"						"1"
 		"NeutralCreepPoints"		"2"
-		"NeutralCreepWeight"		"1.5"
+		"NeutralCreepWeight"		"1.25"
 	
 		// General
 		//----------------------------------------------------------------
@@ -1192,7 +1192,7 @@
 		"IsNeutralUnitType"			"1"
 		"Level"						"16"
 		"NeutralCreepPoints"		"4"
-		"NeutralCreepWeight"		"0.5"
+		"NeutralCreepWeight"		"0.25"
 	
 		"MinimapIcon"        "minimap_hvh_ursa"
 		"MinimapIconSize"    "600"
