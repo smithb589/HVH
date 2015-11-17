@@ -21,9 +21,9 @@ MINIMUM_RESPAWN_RANGE = 2500			-- if no respawn points are found outside this ra
 
 -- HVH Neutral Creeps
 NEUTRAL_CREEPS 				   = true
-NEUTRAL_CREEPS_UNIT_POINTS_MIN = 16
+NEUTRAL_CREEPS_UNIT_POINTS_MIN = 12
 NEUTRAL_CREEPS_START_TIME	   = 10.0
-NEUTRAL_CREEPS_REPEAT_TIME     = 5.0
+NEUTRAL_CREEPS_REPEAT_TIME     = 10.0
 
 -- HVH Power Stages for reinforcements / evolutions
 GG_POWER_STAGE_THRESHOLDS = {}
