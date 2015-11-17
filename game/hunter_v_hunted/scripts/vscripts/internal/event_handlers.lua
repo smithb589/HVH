@@ -34,8 +34,9 @@ function HVHGameMode:OnPlayerPickHero(keys)
   local team = player:GetTeam()
   -- Night Stalker starts as a forced sniper hero, so we need to replace him first
   if heroUnitName == "npc_dota_hero_sniper" and team == DOTA_TEAM_BADGUYS then
-    PlayerResource:ReplaceHeroWith(playerID, "npc_dota_hero_night_stalker", 0, 0)
-
+    local oldHero = player:GetAssignedHero()
+    local newHero = PlayerResource:ReplaceHeroWith(playerID, "npc_dota_hero_night_stalker", 0, 0)
+    UTIL_Remove(oldHero)
   else  -- OnPlayerPickHero() is called twice for NS, and only once for Snipers
     Timers:CreateTimer(SINGLE_FRAME_TIME, function()
       local hero = player:GetAssignedHero()
