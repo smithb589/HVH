@@ -13,5 +13,7 @@
 	//"Ability3"			"sniper_teleportation"
 	//"Ability4"			"sniper_concoction"
 	//"Ability7"			"sniper_concoction_throw"
+
+	"StatusHealthRegen"		"2.0"
 }
 
