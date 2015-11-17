@@ -15,6 +15,7 @@
 		"Ability7"          "attribute_bonus"
 	
 		"ModelScale" "1.1"
+		"StatusHealthRegen"		"4.0"
 	}
 	"npc_dota_hero_sniper_hvh"
 	{
@@ -31,6 +32,8 @@
 		//"Ability3"			"sniper_teleportation"
 		//"Ability4"			"sniper_concoction"
 		//"Ability7"			"sniper_concoction_throw"
+	
+		"StatusHealthRegen"		"2.0"
 	}
 	
 }
