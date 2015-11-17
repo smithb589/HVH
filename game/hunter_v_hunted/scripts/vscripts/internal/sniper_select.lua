@@ -45,6 +45,10 @@ end
 
 function HVHSniperSelect:MakeMenuVisible(player, sniper_select_reason)
 	--print("Making menu visible to player ".. player:GetPlayerID())
+	local hero = player:GetAssignedHero()
+	local levelupParticle = ParticleManager:CreateParticleForTeam( "particles/generic_hero_status/hero_levelup.vpcf",
+		PATTACH_ABSORIGIN, hero, hero:GetTeam() )
+	EmitSoundOnClient("General.LevelUp", player)
 	CustomGameEventManager:Send_ServerToPlayer(player, "sniper_select_make_visible", { reason = sniper_select_reason})
 end
 
@@ -59,8 +63,10 @@ function HVHSniperSelect:MakeMenuVisibleToRandomEligibleTeammate()
 	end
 
 	if #validSniperList > 0 then
+		--print(#validSniperList .. " valid snipers available.")
 		local r = RandomInt(1, #validSniperList)
-		self:MakeMenuVisible(validSniperList[r], SNIPER_SELECT_REASON_FREEBIE)
+		local sniper = validSniperList[r]
+		self:MakeMenuVisible(sniper:GetPlayerOwner(), SNIPER_SELECT_REASON_FREEBIE)
 	end
 end
 
