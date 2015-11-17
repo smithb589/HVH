@@ -124,3 +124,10 @@ function HVHDebugPrintTable(...)
     PrintTable(...)
   end
 end
+
+function AddUnitToSelection( unit )
+  --local player = unit:GetPlayerOwner()
+  local player = unit:GetOwner() -- can't seem to set player owner of neutral creeps, but this works too
+  --print(unit:GetUnitName() .. " added to selection for player " .. player:GetPlayerID())
+  CustomGameEventManager:Send_ServerToPlayer(player, "add_to_selection", { ent_index = unit:GetEntityIndex() })
+end

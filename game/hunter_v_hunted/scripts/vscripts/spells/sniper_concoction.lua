@@ -284,7 +284,8 @@ function SpawnMiniSnipers(target, level)
 		unit:SetControllableByPlayer(playerID, true)
 		unit:AddNewModifier(unit, nil, "modifier_kill", {duration = DUR})
 		ParticleManager:CreateParticle("particles/neutral_fx/skeleton_spawn.vpcf", 0, unit)
-		
+		AddUnitToSelection(unit)
+
 		Timers:CreateTimer(0.1, function()
 			FindClearSpaceForUnit(unit, pos, true)
 		end)

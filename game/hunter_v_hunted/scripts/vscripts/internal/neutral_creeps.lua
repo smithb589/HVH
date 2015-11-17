@@ -20,6 +20,7 @@ end
 
 -- for testing
 function HVHNeutralCreeps:SpawnCreepsConvar()
+	self.Randomizer:DisplayProbabilties()
 	self:SpawnWarParty()
 end
 
@@ -114,9 +115,11 @@ function HVHNeutralCreeps:MegacreepDomination(player, tower)
 	for _,creep in pairs(megacreepList) do
 		creep:Stop()
 		StartAnimation(creep, {duration=6.0, activity=ACT_DOTA_VICTORY, rate=1.0}) -- not working consistently
-		creep:SetControllableByPlayer(playerID, true)
 		creep:SetTeam(team)
+		creep:SetOwner(player)
+		creep:SetControllableByPlayer(playerID, true)
 		creep.behaviorSystem = nil
+		AddUnitToSelection(creep)
 	end
 end
 
