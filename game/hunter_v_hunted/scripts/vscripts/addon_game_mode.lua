@@ -26,6 +26,7 @@ require("internal/vision_dummy")
 require("internal/force_cast")
 require("internal/sniper_select")
 
+require("statcollection/init")
 require('ai/ai_core')
 
 -- If something was being created via script such as a new npc, it would need to be precached here

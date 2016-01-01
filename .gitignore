@@ -20,3 +20,5 @@ game/hunter_v_hunted/panorama/scripts/custom_game/barebones_hud_base.vjs_c
 *vxml_c
 *.vjs_c
 *.vcss_c
+game/hunter_v_hunted/scripts/vscripts/statcollection/settings.kv
+workshop/video/*
