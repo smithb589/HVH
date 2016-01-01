@@ -310,6 +310,30 @@
 		"AbilityManaCost"				"0"
 		"AbilityDamage"					"335" // "160 255 335" 
 		"MaxLevel"						"1"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration_day"			"2.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration_night"		"4" //"2.5 3 3.5 4"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"movespeed_slow"		"-50"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attackspeed_slow"		"-50"
+			}
+		}
 	}
 
 	"night_stalker_crippling_fear"
@@ -1149,34 +1173,44 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"0"
+				"bonus_health_regen"	"0" //"6"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"0"
+				"bonus_armor"			"0" // "6"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_stats"		"0"
+				"bonus_agi"		"0" //"6"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"		"0"
+				"bonus_str"		"0" // "6"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"resist_debuff"			"-25"
+				"bonus_damage"	"0" // "6"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"debuff_radius"			"600"
+				"bonus_int"		"0" // "18"
 			}
 			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"resist_debuff"			"-25"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"debuff_radius"			"600"
+			}
+			"09"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"resist_debuff_duration"	"16.0"
@@ -1752,64 +1786,59 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"0"
+				"bonus_health"			"0" //"250"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"0"
+				"bonus_health_regen"	"0" //"6"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_all_stats"		"0"
+				"bonus_all_stats"		"0" //"2"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"0"
+				"bonus_armor"			"0" //"5"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"block_chance"			"0"
+				"block_damage_melee"	"0" //"32"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"block_damage_melee"	"0"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"block_damage_ranged"	"0"
+				"block_damage_ranged"	"0" //"16"
 			}			
-			"08"
+			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_aoe_armor"		"2"
 			}
-			"09"
+			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"duration"				"10"
 			}		
-			"10"
+			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_aoe_radius"		"900"
 			}		
-			"11"
+			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"block_damage_melee_active"	"55"
 			}
-			"12"
+			"11"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"block_damage_ranged_active"	"55"
 			}		
-			"13"
+			"12"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"block_chance_active"			"100"
@@ -1820,7 +1849,7 @@
 	"item_cyclone"
 	{
 		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY" // TODO: think about this
-		"ItemQuality"	"rare"	
+		"ItemQuality"	"rare"
 		"ItemSellable" "0"
 		"ItemInitialCharges"  "2"
 		"ItemDisplayCharges"  "1"
