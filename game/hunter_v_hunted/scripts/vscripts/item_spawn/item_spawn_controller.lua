@@ -16,6 +16,24 @@ if HVHItemSpawnController == nil then
   HVHItemSpawnController._goodGuyChestDataModel = HVHChestModel("scripts/npc/kv/good_guy_chests.kv")
   HVHItemSpawnController._badGuyChestDataModel = HVHChestModel("scripts/npc/kv/bad_guy_chests.kv")
   HVHItemSpawnController._currentChestDataModel = nil
+
+  -- stat collection
+  HVHItemSpawnController._ggUnclaimedItems = 0
+  HVHItemSpawnController._bgUnclaimedItems = 0
+  HVHItemSpawnController._ggClaimedItems = 0
+  HVHItemSpawnController._bgClaimedItems = 0
+end
+
+function HVHItemSpawnController:IncrementUnclaimedItems(team)
+  if team == DOTA_TEAM_GOODGUYS then
+    self._ggUnclaimedItems = self._ggUnclaimedItems + 1
+  elseif team == DOTA_TEAM_BADGUYS then
+    self._bgUnclaimedItems = self._bgUnclaimedItems + 1
+  end
+end
+
+function HVHItemSpawnController:IncrementClaimedItems(hero)
+
 end
 
 -- Needs to be called during game mode initialization.
@@ -103,9 +121,17 @@ end
 function HVHItemSpawnController:_RemoveUnclaimedItems()
   HVHDebugPrint(string.format("Attempting to remove %d items.", table.getn(self._spawnedChests)))
   for _,worldChest in pairs(self._spawnedChests) do
+    -- stat collection
+    if worldChest:DoesSpawnedChestExist() then
+      local chestTeam = self._currentChestDataModel:GetChestTeam()
+      self:IncrementUnclaimedItems(chestTeam)    
+    end
+
     worldChest:Remove()
   end
 
+  --print("GG Unclaimed: " .. HVHItemSpawnController._ggUnclaimedItems)
+  --print("BG Unclaimed: " .. HVHItemSpawnController._bgUnclaimedItems)
   self._spawnedChests = {}
 end
 
@@ -169,6 +195,7 @@ end
 -- Grants an item from the available items to the hero.
 function HVHItemSpawnController:_GrantItem(itemName, unit, chestItem)
   if itemName and unit then
+    unit.ClaimedItems = unit.ClaimedItems + 1 -- stat collection
     unit:AddItemByName(itemName)
     Timers:CreateTimer(SINGLE_FRAME_TIME, function()
       HVHItemUtils:DropStashItems(unit)

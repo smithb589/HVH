@@ -5,7 +5,7 @@ function customSchema:init()
     -- Check the schema_examples folder for different implementations
 
     -- Flag Example
-    -- statCollection:setFlags({version = GetVersion()})
+    statCollection:setFlags({version = HVH_VERSION})
 
     -- Listen for changes in the current state
     ListenToGameEvent('game_rules_state_change', function(keys)
@@ -43,6 +43,16 @@ function BuildGameArray()
     local game = {}
 
     -- Add game values here as game.someValue = GetSomeGameValue()
+    game.gg = GetTeamLivesRemaining(DOTA_TEAM_GOODGUYS)
+    game.bg = GetTeamLivesRemaining(DOTA_TEAM_BADGUYS)
+    game.dt = GetDOTATimeToNearestMinute()
+    game.dh = GameRules:GetGameModeEntity().DeadHounds -- total hounds killed during the course of the game
+
+    -- claimed and unclaimed chests per team
+    game.ggcc = RoundToNearest(10, GetClaimedChestsForTeam(DOTA_TEAM_GOODGUYS))
+    game.gguc = RoundToNearest(10, GetUnclaimedChests(DOTA_TEAM_GOODGUYS))
+    game.bgcc = RoundToNearest(3, GetClaimedChestsForTeam(DOTA_TEAM_BADGUYS))
+    game.bguc = RoundToNearest(3, GetUnclaimedChests(DOTA_TEAM_BADGUYS))
 
     return game
 end
@@ -59,7 +69,11 @@ function BuildPlayersArray()
                 table.insert(players, {
                     -- steamID32 required in here
                     steamID32 = PlayerResource:GetSteamAccountID(playerID),
-
+                    tn = GetEnglishTeamName(hero),
+                    cc = RoundToNearest(3, GetClaimedChests(hero)), -- claimed chests per player
+                    pk = hero:GetKills(), -- Kills
+                    pa = hero:GetAssists(), -- Assists
+                    pd = hero:GetDeaths(), -- Deaths
                     -- Example functions for generic stats are defined in statcollection/lib/utilities.lua
                     -- Add player values here as someValue = GetSomePlayerValue(),
                 })
@@ -116,3 +130,67 @@ function BuildRoundWinnerArray()
 end
 
 -------------------------------------
+-- HVH STAT COLLECTION UTIL FUNCTIONS
+-------------------------------------
+-- Round (number_to_round) to nearest (multiple)
+function RoundToNearest(multiple, number_to_round)
+    -- ex. 11 / 3 = 3.66. Then 3.66 + 0.5 = 4.16. Floored to 4. Finally 4 * 3 = 12.
+    -- 11 rounded to the nearest multiple of 3 rounds to 12.
+    return math.floor((number_to_round / multiple) + 0.5) * multiple    
+end
+
+function GetUnclaimedChests(team)
+    local unclaimedChests = 0
+    if team == DOTA_TEAM_GOODGUYS then
+        unclaimedChests = HVHItemSpawnController._ggUnclaimedItems -- true value
+    elseif team == DOTA_TEAM_BADGUYS then
+        unclaimedChests = HVHItemSpawnController._bgUnclaimedItems -- true value
+    end
+    return unclaimedChests
+end
+
+function GetClaimedChestsForTeam(team)
+    local teamChests = 0
+    local heroList = HeroList:GetAllHeroes()
+    for _,hero in pairs(heroList) do
+        if hero:GetTeam() == team then
+            teamChests = teamChests + GetClaimedChests(hero)
+        end
+    end
+    return teamChests
+end
+
+function GetClaimedChests(hero)
+    return hero.ClaimedItems
+end
+
+function GetEnglishTeamName(hero)
+    local team = hero:GetTeam()
+    local teamName = "N/A"
+    if team == DOTA_TEAM_GOODGUYS then
+        teamName = "Snipers"
+    elseif team == DOTA_TEAM_BADGUYS then
+        teamName = "Night Stalker"
+    end
+
+    return teamName
+end
+
+function GetTeamLivesRemaining(team)
+    local mode = GameRules:GetGameModeEntity()
+    local lives = 0
+
+    if team == DOTA_TEAM_GOODGUYS then
+        lives = mode.GoodGuyLives
+    elseif team == DOTA_TEAM_BADGUYS then
+        lives = mode.BadGuyLives
+    end
+
+    return lives
+end
+
+ -- round to nearest whole minute
+function GetDOTATimeToNearestMinute()
+    local time = math.floor((GameRules:GetDOTATime(false,false) / 60) + 0.5)
+    return time
+end

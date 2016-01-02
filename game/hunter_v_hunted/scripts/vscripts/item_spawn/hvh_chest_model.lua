@@ -35,6 +35,18 @@ function HVHChestModel:GetChestName()
 	return self._chestName
 end
 
+function HVHChestModel:GetChestTeam()
+	local name = self:GetChestName()
+	
+	if name == "item_treasure_chest_good_guys" then
+		return DOTA_TEAM_GOODGUYS
+	elseif name == "item_treasure_chest_bad_guys" then
+		return DOTA_TEAM_BADGUYS
+	end
+
+	return nil
+end
+
 function HVHChestModel:GetRandomItemName()
 	local randomItem = nil
 	local groups = self:_GetShuffledGroupsWithItemsRemainingThisCycle()

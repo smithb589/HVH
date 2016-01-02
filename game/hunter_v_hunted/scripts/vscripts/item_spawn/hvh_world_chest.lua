@@ -57,6 +57,10 @@ function HVHWorldChest:IsContainedItem(item)
 	return isSameChest
 end
 
+function HVHWorldChest:DoesSpawnedChestExist()
+	return (not self._spawnedChest:IsNull())
+end
+
 function HVHWorldChest:_CreateChest(location, chestType)
 	local spawnedChest = HVHItemUtils:SpawnItem(chestType, location)
 	if spawnedChest then

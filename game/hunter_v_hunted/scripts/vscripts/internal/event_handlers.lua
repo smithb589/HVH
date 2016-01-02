@@ -51,6 +51,8 @@ function HVHGameMode:OnEntityKilled(killedArgs)
   local killer = EntIndexToHScript(killedArgs.entindex_attacker)
 
   if unit and unit:GetUnitName() == "npc_dota_good_guy_dog" then
+    local mode = GameRules:GetGameModeEntity()
+    mode.DeadHounds = mode.DeadHounds + 1 -- stat collection
     Timers:CreateTimer(HVHGameMode:GetRespawnTime(), function()
       HVHGameMode:SpawnDog(true)
     end)

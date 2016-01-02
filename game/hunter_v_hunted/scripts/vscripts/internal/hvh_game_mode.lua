@@ -83,6 +83,7 @@ function HVHGameMode:_SetupGameMode()
     mode.BadGuyLives  = BADGUY_LIVES
     mode.GoodGuyTeamSpawn = nil
     mode.BadGuyTeamSpawn = nil
+    mode.DeadHounds = 0
   end 
 end
 
@@ -328,6 +329,9 @@ function HVHGameMode:SetupHero(hero)
     -- play tutorial text to the player
     HVHTutorial:Start(playerID)
   end
+
+  -- stat collection
+  hero.ClaimedItems = 0
 
   --print("Succesful setup of new hero")
   --hero.SuccessfulSetup = true
