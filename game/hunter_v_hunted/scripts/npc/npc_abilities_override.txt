@@ -3,6 +3,34 @@
 {
 	"Version"		"1"
 
+	// revert to 6.85 time walk
+	"faceless_void_time_walk"
+	{
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"3000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"1300" // "625"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"backtrack_duration"	"0.0" //"2.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"300"
+			}
+		}
+	}
+
 	//=================================================================================
 	// Neutral Creep overrides
 	//=================================================================================
