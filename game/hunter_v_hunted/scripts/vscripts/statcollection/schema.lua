@@ -45,14 +45,14 @@ function BuildGameArray()
     -- Add game values here as game.someValue = GetSomeGameValue()
     game.gg = GetTeamLivesRemaining(DOTA_TEAM_GOODGUYS)
     game.bg = GetTeamLivesRemaining(DOTA_TEAM_BADGUYS)
-    game.dt = GetDOTATimeToNearestMinute()
+    --game.dt = GetDOTATimeToNearestMinute()
     game.dh = GameRules:GetGameModeEntity().DeadHounds -- total hounds killed during the course of the game
 
     -- claimed and unclaimed chests per team
-    game.ggcc = RoundToNearest(10, GetClaimedChestsForTeam(DOTA_TEAM_GOODGUYS))
-    game.gguc = RoundToNearest(10, GetUnclaimedChests(DOTA_TEAM_GOODGUYS))
-    game.bgcc = RoundToNearest(3, GetClaimedChestsForTeam(DOTA_TEAM_BADGUYS))
-    game.bguc = RoundToNearest(3, GetUnclaimedChests(DOTA_TEAM_BADGUYS))
+    game.ggcc = GetClaimedChestsForTeam(DOTA_TEAM_GOODGUYS)
+    game.bgcc = GetClaimedChestsForTeam(DOTA_TEAM_BADGUYS)
+    game.gguc = GetUnclaimedChests(DOTA_TEAM_GOODGUYS)
+    game.bguc = GetUnclaimedChests(DOTA_TEAM_BADGUYS)
 
     return game
 end
@@ -70,7 +70,7 @@ function BuildPlayersArray()
                     -- steamID32 required in here
                     steamID32 = PlayerResource:GetSteamAccountID(playerID),
                     tn = GetEnglishTeamName(hero),
-                    cc = RoundToNearest(3, GetClaimedChests(hero)), -- claimed chests per player
+                    cc = GetClaimedChests(hero), -- claimed chests per player
                     pk = hero:GetKills(), -- Kills
                     pa = hero:GetAssists(), -- Assists
                     pd = hero:GetDeaths(), -- Deaths
@@ -132,7 +132,7 @@ end
 -------------------------------------
 -- HVH STAT COLLECTION UTIL FUNCTIONS
 -------------------------------------
--- Round (number_to_round) to nearest (multiple)
+-- Round (number_to_round) to nearest (multiple) (DEPRECATED)
 function RoundToNearest(multiple, number_to_round)
     -- ex. 11 / 3 = 3.66. Then 3.66 + 0.5 = 4.16. Floored to 4. Finally 4 * 3 = 12.
     -- 11 rounded to the nearest multiple of 3 rounds to 12.
