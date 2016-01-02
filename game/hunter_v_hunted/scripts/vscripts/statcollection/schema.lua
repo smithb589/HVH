@@ -142,9 +142,9 @@ end
 function GetUnclaimedChests(team)
     local unclaimedChests = 0
     if team == DOTA_TEAM_GOODGUYS then
-        unclaimedChests = HVHItemSpawnController._ggUnclaimedItems -- true value
+        unclaimedChests = HVHItemSpawnController._ggUnclaimedItems -- integer
     elseif team == DOTA_TEAM_BADGUYS then
-        unclaimedChests = HVHItemSpawnController._bgUnclaimedItems -- true value
+        unclaimedChests = HVHItemSpawnController._bgUnclaimedItems -- integer
     end
     return unclaimedChests
 end
