@@ -1,3 +1,15 @@
+1.5.1
+-----
+STAT COLLECTION
+-- http://getdotastats.com/#s2__mod?id=128
+-- Global: Hounds killed
+-- Per team: Lives remaining, Claimed/Unclaimed Chests
+-- Per player: Team, Chests Claimed, Kills, Assists, Deaths
+6.86 FIXES
+-- Snipers: Jebby Concoction's time walk reverted to 6.85 version (longer range, no backtrack)
+-- Snipers: Crimson Guard and Veil of Discord items fixed
+-- NS: Void duration at night fixed
+
 1.5.0
 -----
 MAP UPDATES

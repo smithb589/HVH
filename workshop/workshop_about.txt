@@ -1,11 +1,11 @@
-Version 1.5.0
+Version 1.5.1
 
 Simplified Chinese (简体中文) and Russian (Русский) translations available!
 
 [b]WHAT'S NEW?[/b]
-A new, customizable ability slot for the Snipers has been added. That means more replayability and wilder games. Whoever kills the Night Stalker first gets first pick on Kardel's sharpshooting, Riggs's hounds, Florax's teleport, or Jebby's secret formula! (See changelog for details) The map has also been overhauled and improved in many places, especially the northeast swamp. Finally, there's been a sweep of balance tweaks to both heroes and neutrals.
+Stat collection has been implemented. (Thanks [url=http://getdotastats.com/]GetDotaStats[/url]!) This will be a valuable tool that can help with the delicate balancing this game requires. You can see game-wide stats and your own personal stats at the following link: [url=http://getdotastats.com/#s2__mod?id=128]http://getdotastats.com/#s2__mod?id=128[/url]
 
-I really appreciate the support I've received from all these people I've never met before, and it's inspired me to keep working on the mod. Thank you! Unfortunately, the player counts haven't been very high lately, but perhaps I can find some ways to advertise and turn those numbers around. If you know any ways you can help out, take a moment to post or drop me a message! Maybe we can organize some games together.
+Also there have been some minor bugfixes related to the 6.86 patch. Have fun!
 
 ---
 
