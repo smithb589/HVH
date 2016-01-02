@@ -1,4 +1,5 @@
 -- In this file you can set up all the properties and settings for your game mode.
+HVH_VERSION 		= "1.5.1"
 
 -- HVH Leveling and Abilities
 STARTING_LEVEL		= 16
