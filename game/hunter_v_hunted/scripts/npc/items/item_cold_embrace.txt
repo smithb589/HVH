@@ -18,7 +18,7 @@
 	"AbilityTextureName"	"item_cold_embrace" // KV: item_example, filename: /items/example.png	
 	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 	"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-	"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
+	"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
 	"AbilityCastPoint"		"0.3"
 	"AbilityCastRange"		"1000"		
 	"AbilityCooldown"		"20"
