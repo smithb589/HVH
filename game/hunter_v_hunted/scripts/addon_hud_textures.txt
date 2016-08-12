@@ -5,42 +5,42 @@
 		// roshan's head
         "minimap_hvh_roshan"
         {
-				"file"		"vgui/hud/minimap_sheet"
-				"x"			"64"
-				"y"			"32"
-				"width"		"32"
-				"height"	"32"
+			"file"		"materials/vgui/hud/minimap_hvh_roshan.vmat"
+			"x"			"0"
+			"y"			"0"
+			"width"		"50"
+			"height"	"50"
         } 
 
 		// ursa's face
         "minimap_hvh_ursa"
         {
-				"file"		"vgui/hud/minimap_hero_sheet"
-				"x"			"288"
-				"y"			"96"
-				"width"		"32"
-				"height"	"32"
+			"file"		"materials/vgui/hud/minimap_hvh_ursa.vmat"
+			"x"			"0"
+			"y"			"0"
+			"width"		"32"
+			"height"	"32"
         } 
 
 		// sniper's face
         "minimap_hvh_sniper"
         {
-				"file"		"vgui/hud/minimap_hero_sheet"
-				"x"			"0"
-				"y"			"96"
-				"width"		"32"
-				"height"	"32"
-        }        
+			"file"		"materials/vgui/hud/minimap_hvh_sniper.vmat"
+			"x"			"0"
+			"y"			"0"
+			"width"		"32"
+			"height"	"32"
+        }      
 
         // dire courier
         "minimap_hvh_hound"
         {
-				"file"		"vgui/hud/minimap_sheet"
-				"x"			"288"
-				"y"			"32"
-				"width"		"32" 
-				"height"	"32"
-        }
+			"file"		"materials/vgui/hud/minimap_hvh_hound.vmat"
+			"x"			"0"
+			"y"			"0"
+			"width"		"36"
+			"height"	"36"
+        }   
 
         "minimap_hvh_blood_drop"
         {
