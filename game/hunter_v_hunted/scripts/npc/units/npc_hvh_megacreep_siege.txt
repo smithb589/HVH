@@ -11,6 +11,7 @@
 	"IsNeutralUnitType"			"1"
 	"NeutralCreepPoints"		"0.5"
 	"NeutralCreepWeight"		"3.0"
+	"DrawParticlesWhileHidden" "1"
 
 	// General
 	//----------------------------------------------------------------
@@ -93,5 +94,7 @@
 	{
 		"particle"		"particles/base_attacks/ranged_siege_good.vpcf"
 		"particle"		"particles/base_attacks/ranged_siege_bad.vpcf"
+		"particle"		"particles/siege_fx/siege_bad_death_01.vpcf"
+		"particle"		"particles/siege_fx/siege_good_death_01.vpcf"
 	}
 }	

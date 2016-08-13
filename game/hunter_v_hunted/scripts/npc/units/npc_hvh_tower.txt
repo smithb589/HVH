@@ -12,6 +12,7 @@
 	"Level"						"1"
 	"NeutralCreepPoints"		"2"
 	"NeutralCreepWeight"		"1.25"
+	"DrawParticlesWhileHidden" "1"
 
 	// General
 	//----------------------------------------------------------------
@@ -89,5 +90,7 @@
 		"model"			"models/props_structures/tower_good.mdl"
 		"particle"		"particles/base_attacks/ranged_tower_good.vpcf"
 		"particle"		"particles/base_attacks/ranged_tower_bad.vpcf"
+		"particle"		"particles/radiant_fx/tower_good3_destroy_lvl3.vpcf"
+		"particle"		"particles/dire_fx/tower_bad_destroy.vpcf"
 	}		
 }	

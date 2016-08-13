@@ -171,17 +171,30 @@ function HVHNeutralCreeps:OnLastHit(keys)
 
 end
 
--- TODO: hacky and looks shitty
-function HVHNeutralCreeps:TowerOnDeath(tower)
-	local modelName = tower:GetModelName()
-	local destructionName = ""
-	if modelName == "models/props_structures/tower_bad.vmdl" then
-		destructionName = "models/props_structures/bad_tower_destruction_lev3.vmdl"
+-- when towers or creeps die, play the corresponding death particle effect
+function HVHNeutralCreeps:MechanicalOnDeath(mech)
+	local modelName = mech:GetModelName()
+	local destructionParticleName = ""
+
+	if modelName == "models/props_structures/tower_good.vmdl" then
+		destructionParticleName = "particles/radiant_fx/tower_good3_destroy_lvl3.vpcf"
+	-- good siege creep
+	elseif modelName == "models/creeps/lane_creeps/creep_good_siege/creep_good_siege.vmdl" then
+		destructionParticleName = "particles/siege_fx/siege_good_death_01.vpcf"
+	-- bad tower
+	elseif modelName == "models/props_structures/tower_bad.vmdl" then
+		destructionParticleName = "particles/dire_fx/tower_bad_destroy.vpcf"
+	-- bad siege creep
+	elseif modelName == "models/creeps/lane_creeps/creep_bad_siege/creep_bad_siege.vmdl" then
+		destructionParticleName = "particles/siege_fx/siege_bad_death_01.vpcf"
+
 	else
-		destructionName = "models/props_structures/tower_good3_dest_lvl3.vmdl"
+		print(modelName .. ": Unknown mechanical unit dead. Don't know which particle effect to use!")
 	end
-	self:SetPermanentModel(tower, destructionName)
-	--StartAnimation(tower, {duration=6.0, activity=ACT_DOTA_DIE, rate=1.0})
+
+	local particle = ParticleManager:CreateParticle( destructionParticleName, PATTACH_ABSORIGIN, mech )
+	ParticleManager:SetParticleControl(particle, 0, mech:GetAbsOrigin())
+	mech:AddNoDraw()
 end
 
 function HVHNeutralCreeps:OnEntityKilled(keys)
@@ -198,7 +211,9 @@ function HVHNeutralCreeps:OnEntityKilled(keys)
 	elseif unit and unit:GetUnitName() == "npc_hvh_ursa" and attacker:GetUnitName() ~= "npc_hvh_ursa" then
 		self:UrsaOnDeath(unit)
 	elseif unit and unit:GetUnitName() == "npc_hvh_tower" then
-		self:TowerOnDeath(unit)
+		self:MechanicalOnDeath(unit)
+	elseif unit and unit:GetUnitName() == "npc_hvh_megacreep_siege" then
+		self:MechanicalOnDeath(unit)
 	end
 
   	self:SubtractPoints(unit)

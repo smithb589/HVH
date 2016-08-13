@@ -718,6 +718,7 @@
 		"IsNeutralUnitType"			"1"
 		"NeutralCreepPoints"		"0.5"
 		"NeutralCreepWeight"		"3.0"
+		"DrawParticlesWhileHidden" "1"
 	
 		// General
 		//----------------------------------------------------------------
@@ -1102,6 +1103,7 @@
 		"Level"						"1"
 		"NeutralCreepPoints"		"2"
 		"NeutralCreepWeight"		"1.25"
+		"DrawParticlesWhileHidden" "1"
 	
 		// General
 		//----------------------------------------------------------------
