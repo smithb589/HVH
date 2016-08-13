@@ -18,22 +18,12 @@ if HVHItemSpawnController == nil then
   HVHItemSpawnController._currentChestDataModel = nil
 
   -- stat collection
+  HVHItemSpawnController._ggTotalItemsSpawned = 0
+  HVHItemSpawnController._bgTotalItemsSpawned = 0
   HVHItemSpawnController._ggUnclaimedItems = 0
   HVHItemSpawnController._bgUnclaimedItems = 0
   HVHItemSpawnController._ggClaimedItems = 0
   HVHItemSpawnController._bgClaimedItems = 0
-end
-
-function HVHItemSpawnController:IncrementUnclaimedItems(team)
-  if team == DOTA_TEAM_GOODGUYS then
-    self._ggUnclaimedItems = self._ggUnclaimedItems + 1
-  elseif team == DOTA_TEAM_BADGUYS then
-    self._bgUnclaimedItems = self._bgUnclaimedItems + 1
-  end
-end
-
-function HVHItemSpawnController:IncrementClaimedItems(hero)
-
 end
 
 -- Needs to be called during game mode initialization.
@@ -65,9 +55,11 @@ end
 -- Spawns all items necessary for the current day/night cycle.
 function HVHItemSpawnController:SpawnChestsForCycle()
   local availableChest = self._currentChestDataModel:GetChestName()
+  local chestTeam = self._currentChestDataModel:GetChestTeam()
   local spawnLocations = self._spawnLocations:GetRandomLocations(self._currentChestDataModel:GetItemsPerCycle())
 
   if spawnLocations then
+    self:IncrementTotalItems(chestTeam, #spawnLocations) -- stat collection
     for _,location in pairs(spawnLocations) do
       local spawnedChest = HVHWorldChest()
       spawnedChest:Spawn(location, availableChest)
@@ -196,6 +188,7 @@ end
 function HVHItemSpawnController:_GrantItem(itemName, unit, chestItem)
   if itemName and unit then
     unit.ClaimedItems = unit.ClaimedItems + 1 -- stat collection
+    --print("Claimed items: " .. unit.ClaimedItems)
     unit:AddItemByName(itemName)
     Timers:CreateTimer(SINGLE_FRAME_TIME, function()
       HVHItemUtils:DropStashItems(unit)
@@ -245,4 +238,25 @@ end
 function HVHItemSpawnController:_FindNearestSpawnLocation(position)
   local nearest = self._spawnLocations:GetNearestLocation(position)
   return nearest
+end
+
+-----------------------------
+-- STAT COLLECTION FUNCTIONS
+-----------------------------
+function HVHItemSpawnController:IncrementTotalItems(team, amount)
+  local amount = amount or 1
+
+  if team == DOTA_TEAM_GOODGUYS then
+    self._ggTotalItemsSpawned = self._ggTotalItemsSpawned + amount
+  elseif team == DOTA_TEAM_BADGUYS then
+    self._bgTotalItemsSpawned = self._bgTotalItemsSpawned + amount
+  end
+end
+
+function HVHItemSpawnController:IncrementUnclaimedItems(team)
+  if team == DOTA_TEAM_GOODGUYS then
+    self._ggUnclaimedItems = self._ggUnclaimedItems + 1
+  elseif team == DOTA_TEAM_BADGUYS then
+    self._bgUnclaimedItems = self._bgUnclaimedItems + 1
+  end
 end
