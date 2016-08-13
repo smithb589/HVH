@@ -32,7 +32,7 @@
 					<Label id="PlayerName" text="AAAAA" />
 					<Label id="HeroNameAndDescription" text="#custom_scoreboard_hero_name_and_desc" />
 				</Panel>
-				<Label id="TeammateGoldAmount" text="999" />
+				<!--<Label id="TeammateGoldAmount" text="999" />-->
 				<Button id="MuteButton" onactivate="ToggleMute();" />
 			</Panel>
 			<Panel id="TeamScoreSpace" class="ScoreCol_TeamScore" />

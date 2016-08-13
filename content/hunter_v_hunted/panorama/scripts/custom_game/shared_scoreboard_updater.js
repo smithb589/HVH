@@ -154,12 +154,11 @@ function _ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContaine
 		}
 	}
 
-	if ( isTeammate )
-	{
-		_ScoreboardUpdater_SetTextSafe( playerPanel, "TeammateGoldAmount", goldValue );
-	}
-
-	_ScoreboardUpdater_SetTextSafe( playerPanel, "PlayerGoldAmount", goldValue );
+	//if ( isTeammate )
+	//{
+	//	_ScoreboardUpdater_SetTextSafe( playerPanel, "TeammateGoldAmount", goldValue );
+	//}
+	//_ScoreboardUpdater_SetTextSafe( playerPanel, "PlayerGoldAmount", goldValue );
 
 	playerPanel.SetHasClass( "player_ultimate_ready", ( ultStateOrTime == PlayerUltimateStateOrTime_t.PLAYER_ULTIMATE_STATE_READY ) );
 	playerPanel.SetHasClass( "player_ultimate_no_mana", ( ultStateOrTime == PlayerUltimateStateOrTime_t.PLAYER_ULTIMATE_STATE_NO_MANA) );
