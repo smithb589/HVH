@@ -35,6 +35,38 @@ function HVHConvars:RegisterCommands()
     Convars:RegisterCommand("hvh_spawn_creeps", Dynamic_Wrap(self, "SpawnCreeps"), "Spawns creeps.", FCVAR_CHEAT)
     Convars:RegisterCommand("hvh_spawn_wards", Dynamic_Wrap(self, "SpawnWards"), "Spawns wards.", FCVAR_CHEAT)
     Convars:RegisterCommand("hvh_test_anim", Dynamic_Wrap(self, "TestAnimation"), "Tests animation.", FCVAR_CHEAT)
+    Convars:RegisterCommand("hvh_team_swap", Dynamic_Wrap(self, "TeamSwap"), "Swaps team.", FCVAR_CHEAT)
+end
+
+-- ability level issues
+-- scoreboard and topboard issues
+function HVHConvars:TeamSwap()
+  local humanPlayer = Convars:GetCommandClient()
+  local hero = humanPlayer:GetAssignedHero()
+  local team = hero:GetTeamNumber()
+  local newTeam = ""
+
+  if hero:GetTeam() == DOTA_TEAM_GOODGUYS then
+    newTeam = DOTA_TEAM_BADGUYS
+  else
+    newTeam = DOTA_TEAM_GOODGUYS
+  end
+
+  print("Swapping team")
+
+  print("Before: GG " .. GameRules:GetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS) ..
+    " and BG " .. GameRules:GetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS) )
+
+  GameRules:SetCustomGameTeamMaxPlayers(newTeam, GameRules:GetCustomGameTeamMaxPlayers(newTeam) + 1)
+  humanPlayer:SetTeam(newTeam)
+  hero:SetOwner(humanPlayer)
+  hero:SetControllableByPlayer(humanPlayer:GetPlayerID(), false)
+  hero:SetTeam(newTeam)
+  hero:ForceKill(false)
+  GameRules:SetCustomGameTeamMaxPlayers(team, GameRules:GetCustomGameTeamMaxPlayers(team) - 1)
+
+  print("After: GG " .. GameRules:GetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS) ..
+    " and BG " .. GameRules:GetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS) )
 end
 
 function HVHConvars:TestAnimation()
