@@ -19,6 +19,7 @@ function HVHSniperSelect:Check(killer, killed)
 	---- 2. Sniper's minion killed NS. Find owner of minion, and check that player's hero, as above.
 	---- 3. Hound kills NS. Pick random eligible teammate.
 	---- 4. Sniper no longer has an empty ability slot. Pick random eligible teammate.
+	---- 5. No eligible teammates exist. Do nothing.
 	if teamKiller == DOTA_TEAM_GOODGUYS and teamKilled == DOTA_TEAM_BADGUYS then
 		local player = killer:GetPlayerOwner()
 		if player then
@@ -78,12 +79,16 @@ function HVHSniperSelect:ChooseAbility(args)
 	local abilityName = ""
 
 	if character == "Kardel" then
+		hero.SniperCharacter = SNIPER_KARDEL 
 		abilityName = "sniper_sharpshooter"
 	elseif character == "Riggs" then
+		hero.SniperCharacter = SNIPER_RIGGS 
 		abilityName = "sniper_flush"
 	elseif character == "Florax" then
+		hero.SniperCharacter = SNIPER_FLORAX 
 		abilityName = "sniper_teleportation"
 	elseif character == "Jebby" then
+		hero.SniperCharacter = SNIPER_JEBBY 
 		abilityName = "sniper_concoction"
 	end
 

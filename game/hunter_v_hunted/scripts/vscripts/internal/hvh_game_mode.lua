@@ -333,6 +333,13 @@ function HVHGameMode:SetupHero(hero)
   -- stat collection
   hero.ClaimedItems = 0
 
+  -- set up sniper unique character
+  if heroTeam == DOTA_TEAM_GOODGUYS then
+    hero.SniperCharacter = SNIPER_NONE
+  else
+    hero.SniperCharacter = SNIPER_INVALID
+  end
+
   --print("Succesful setup of new hero")
   --hero.SuccessfulSetup = true
 end

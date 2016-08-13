@@ -43,16 +43,19 @@ function BuildGameArray()
     local game = {}
 
     -- Add game values here as game.someValue = GetSomeGameValue()
-    game.gg = GetTeamLivesRemaining(DOTA_TEAM_GOODGUYS)
-    game.bg = GetTeamLivesRemaining(DOTA_TEAM_BADGUYS)
+    game.gg = GetTeamLivesRemaining(DOTA_TEAM_GOODGUYS) -- Sniper Lives Remaining
+    game.bg = GetTeamLivesRemaining(DOTA_TEAM_BADGUYS)  -- Nightstalker Lives Remaining
+    game.dh = GameRules:GetGameModeEntity().DeadHounds  -- Hounds Killed
     --game.dt = GetDOTATimeToNearestMinute()
-    game.dh = GameRules:GetGameModeEntity().DeadHounds -- total hounds killed during the course of the game
-
+    
     -- claimed and unclaimed chests per team
-    game.ggcc = GetClaimedChestsForTeam(DOTA_TEAM_GOODGUYS)
-    game.bgcc = GetClaimedChestsForTeam(DOTA_TEAM_BADGUYS)
-    game.gguc = GetUnclaimedChests(DOTA_TEAM_GOODGUYS)
-    game.bguc = GetUnclaimedChests(DOTA_TEAM_BADGUYS)
+    game.ggcc = GetClaimedChestsForTeam(DOTA_TEAM_GOODGUYS)           -- Sniper Chests Claimed
+    game.ggcp = GetClaimedChestsPercentageForTeam(DOTA_TEAM_GOODGUYS) -- Sniper Chests Claimed (% of Total Spawned)
+    game.gguc = GetUnclaimedChests(DOTA_TEAM_GOODGUYS)                -- Sniper Chests Unclaimed
+
+    game.bgcc = GetClaimedChestsForTeam(DOTA_TEAM_BADGUYS)            -- Nightstalker Chests Claimed
+    game.bgcp = GetClaimedChestsPercentageForTeam(DOTA_TEAM_BADGUYS)  -- Nightstalker Chests Claimed (% of Total Spawned)
+    game.bguc = GetUnclaimedChests(DOTA_TEAM_BADGUYS)                 -- Nightstalker Chests Unclaimed
 
     return game
 end
@@ -61,23 +64,27 @@ end
 function BuildPlayersArray()
     local players = {}
     for playerID = 0, DOTA_MAX_PLAYERS do
-        if PlayerResource:IsValidPlayerID(playerID) then
-            if not PlayerResource:IsBroadcaster(playerID) then
-
-                local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+        if PlayerResource:IsValidPlayerID(playerID) and not PlayerResource:IsBroadcaster(playerID) then
+            local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 
                 table.insert(players, {
-                    -- steamID32 required in here
                     steamID32 = PlayerResource:GetSteamAccountID(playerID),
-                    tn = GetEnglishTeamName(hero),
-                    cc = GetClaimedChests(hero), -- claimed chests per player
-                    pk = hero:GetKills(), -- Kills
-                    pa = hero:GetAssists(), -- Assists
-                    pd = hero:GetDeaths(), -- Deaths
-                    -- Example functions for generic stats are defined in statcollection/lib/utilities.lua
-                    -- Add player values here as someValue = GetSomePlayerValue(),
+                    tn = GetEnglishTeamName(hero), -- Team
+                    
+                    -- Sniper data
+                    snk = GetSniperKills(hero),         -- Sniper Kills
+                    sna = GetSniperAssists(hero),       -- Sniper Assists
+                    snd = GetSniperDeaths(hero),        -- Sniper Deaths
+                    snch = GetSniperCharacter(hero),    -- Sniper Character
+                    sncc = GetClaimedChests(hero, DOTA_TEAM_GOODGUYS),                  -- Sniper Chests Claimed
+                    sncp = GetClaimedChestsPercentageForHero(hero, DOTA_TEAM_GOODGUYS), -- Sniper Chests Claimed (% of Team's Claims)
+
+                    -- Nightstalker data
+                    nsk = GetNightStalkerKills(hero),   -- Nightstalker Kills
+                    nsd = GetNightStalkerDeaths(hero),  -- Nightstalker Deaths
+                    nscc = GetClaimedChests(hero, DOTA_TEAM_BADGUYS),            -- Nightstalker Chests Claimed
+                    nscp = GetClaimedChestsPercentageForTeam(DOTA_TEAM_BADGUYS)  -- Nightstalker Chests Claimed (% of Total Spawned)
                 })
-            end
         end
     end
 
@@ -139,12 +146,37 @@ function RoundToNearest(multiple, number_to_round)
     return math.floor((number_to_round / multiple) + 0.5) * multiple    
 end
 
+-- rounds to nearest 0.01
+function GetClaimedChestsPercentageForTeam(team)
+    return RoundToNearest(0.01, GetClaimedChestsForTeam(team) / GetTotalChestsSpawned(team))
+end
+
+-- rounds to nearest 0.01
+function GetClaimedChestsPercentageForHero(hero, team)
+    if hero:GetTeam() == team then
+        return RoundToNearest(0.01, (GetClaimedChests(hero, team) or 0) / GetClaimedChestsForTeam(team))
+    else
+        return nil
+    end
+end
+
+function GetTotalChestsSpawned(team)
+    local totalChests = 0
+    if team == DOTA_TEAM_GOODGUYS then
+        totalChests = HVHItemSpawnController._ggTotalItemsSpawned
+    elseif team == DOTA_TEAM_BADGUYS then
+        totalChests = HVHItemSpawnController._bgTotalItemsSpawned
+    end
+
+    return totalChests
+end
+
 function GetUnclaimedChests(team)
     local unclaimedChests = 0
     if team == DOTA_TEAM_GOODGUYS then
-        unclaimedChests = HVHItemSpawnController._ggUnclaimedItems -- integer
+        unclaimedChests = HVHItemSpawnController._ggUnclaimedItems
     elseif team == DOTA_TEAM_BADGUYS then
-        unclaimedChests = HVHItemSpawnController._bgUnclaimedItems -- integer
+        unclaimedChests = HVHItemSpawnController._bgUnclaimedItems
     end
     return unclaimedChests
 end
@@ -154,14 +186,18 @@ function GetClaimedChestsForTeam(team)
     local heroList = HeroList:GetAllHeroes()
     for _,hero in pairs(heroList) do
         if hero:GetTeam() == team then
-            teamChests = teamChests + GetClaimedChests(hero)
+            teamChests = teamChests + (GetClaimedChests(hero, team) or 0)
         end
     end
     return teamChests
 end
 
-function GetClaimedChests(hero)
-    return hero.ClaimedItems
+function GetClaimedChests(hero, team)
+    if hero:GetTeam() == team then
+        return hero.ClaimedItems
+    else
+        return nil
+    end
 end
 
 function GetEnglishTeamName(hero)
@@ -194,3 +230,87 @@ function GetDOTATimeToNearestMinute()
     local time = math.floor((GameRules:GetDOTATime(false,false) / 60) + 0.5)
     return time
 end
+
+function GetSniperKills(hero)
+    if IsEntitySniper(hero) then
+        return hero:GetKills()
+    else
+        return nil
+    end
+end
+
+function GetSniperAssists(hero)
+    if IsEntitySniper(hero) then
+        return hero:GetAssists()
+    else
+        return nil
+    end
+end
+
+function GetSniperDeaths(hero)
+    if IsEntitySniper(hero) then
+        return hero:GetDeaths()
+    else
+        return nil
+    end
+end
+
+function GetNightStalkerKills(hero)
+    if IsEntityNightStalker(hero) then
+        return hero:GetKills()
+    else
+        return nil
+    end
+end
+
+function GetNightStalkerDeaths(hero)
+    if IsEntityNightStalker(hero) then
+        return hero:GetDeaths()
+    else
+        return nil
+    end
+end
+
+function GetSniperCharacter(hero)
+    local character = nil
+
+    if     hero.SniperCharacter == SNIPER_KARDEL then
+        character = "Kardel"
+    elseif hero.SniperCharacter == SNIPER_RIGGS then
+        character = "Riggs"
+    elseif hero.SniperCharacter == SNIPER_FLORAX then
+        character = "Florax"
+    elseif hero.SniperCharacter == SNIPER_JEBBY then
+        character = "Jebby"
+    elseif hero.SniperCharacter == SNIPER_NONE then
+        character = "Did not pick"
+    else
+        character = nil
+    end
+
+    return character
+end
+
+--[[  -- OLD WAY TO DETERMINE CHARACTER
+function GetSniperCharacter(hero)
+    local ability4 = hero:GetAbilityByIndex(3) -- fourth ability slot determines which character you are
+    local abilityName = ability4:GetAbilityName()
+    local character = nil
+
+    if abilityName == "sniper_sharpshooter" then
+        character = "Kardel"
+    elseif abilityName == "sniper_flush" then
+        character = "Riggs"
+    elseif abilityName == "sniper_teleportation" then
+        character = "Florax"
+    elseif abilityName == "sniper_concoction" then
+        character = "Jebby"
+    elseif abilityName == "sniper_empty" then
+        character = "None"
+    else
+        character = "N/A"
+    end
+
+    return character
+end
+--]]

@@ -8,3 +8,10 @@ HVH_DEBUG_OUTPUT = false
 NIGHT_STALKER_UNIT_NAME = "npc_dota_hero_night_stalker"
 
 SNIPER_UNIT_NAME = "npc_dota_hero_sniper"
+
+SNIPER_INVALID  = -1
+SNIPER_NONE     = 0
+SNIPER_KARDEL   = 1
+SNIPER_RIGGS    = 2
+SNIPER_FLORAX   = 3
+SNIPER_JEBBY    = 4
