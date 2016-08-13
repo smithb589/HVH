@@ -1557,12 +1557,6 @@
 				"Function"				"StartBrewing"
 				"sub_ability_name"		"sniper_concoction_throw"
 			}
-	
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_unstable_concoction_brewing"
-				"Target"		"CASTER"
-			}
 		}
 	
 		"OnUpgrade"

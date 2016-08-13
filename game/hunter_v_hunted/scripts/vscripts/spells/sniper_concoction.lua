@@ -13,6 +13,9 @@ function StartBrewing( event )
 	local sub_ability_name = event.sub_ability_name
 	local main_ability_name = ability:GetAbilityName()
 
+	ability:ApplyDataDrivenModifier(caster, caster, "modifier_unstable_concoction_brewing", {})
+	--print("Applied brewing modifier")
+
 	caster:SwapAbilities(main_ability_name, sub_ability_name, false, true)
 	--print("Swapped "..main_ability_name.." with " ..sub_ability_name)
 
@@ -111,6 +114,8 @@ function CheckSelfStun( event )
 	local caster = event.caster
 	local ability = event.ability
 	local brew_explosion = ability:GetLevelSpecialValueFor( "brew_explosion", ability:GetLevel() - 1 )
+	local heroes_around = event.target_entities
+	table.insert(heroes_around, caster)
 
 	-- Set how much time the spell charged
 	ability.time_charged = GameRules:GetGameTime() - ability.brew_start
@@ -131,17 +136,24 @@ function CheckSelfStun( event )
 		caster:SwapAbilities(sub_ability_name, main_ability_name, false, true)
 		--print("Swapped "..sub_ability_name.." with " ..main_ability_name)
 
-		-- Launch the projectile hit on the caster, which will do the effect on enemies
-		ConcoctionExplodes ( event )
-
 		-- Apply the self stun for max duration and damage
 		local subAbility = caster:FindAbilityByName(sub_ability_name)
 		local max_stun = ability:GetLevelSpecialValueFor( "max_stun", ability:GetLevel() - 1 )
 		local max_damage = ability:GetLevelSpecialValueFor( "max_damage", ability:GetLevel() - 1 )
 		local mainAbilityDamageType = ability:GetAbilityDamageType()
 
-		ability:ApplyDataDrivenModifier(caster, caster, "modifier_unstable_concoction_stun", {duration = max_stun})
-		ApplyDamage({ victim = caster, attacker = caster, damage = max_damage, damage_type = mainAbilityDamageType })
+		-- for each affected hero, apply stun and damage
+		for _,unit in pairs(heroes_around) do
+			if not unit:IsMagicImmune() and not unit:IsOutOfGame() then
+				local stun_duration = max_stun
+				if unit:GetTeam() ~= caster:GetTeam() then
+					-- halve duration of stun against enemies
+					stun_duration = max_stun * 0.5
+				end 
+				ability:ApplyDataDrivenModifier(caster, unit, "modifier_unstable_concoction_stun", {duration = stun_duration})
+				ApplyDamage({ victim = unit, attacker = caster, damage = max_damage, damage_type = mainAbilityDamageType })
+			end
+		end
 
 		-- Fire the explosion effect
 		local particleName = "particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_explosion.vpcf"
@@ -152,52 +164,6 @@ function CheckSelfStun( event )
 	end
 
 end
-
---[[
-	Author: Noya
-	Date: 10.1.2015.
-	When the projectile hits a unit, checks the charged duration stored in the main ability handle
-	Final stun duration and damage are based on the how much the spell was charged, with min and max values
-]]
-function ConcoctionExplodes( event )
-	--print("Projectile Hit Target")
-
-	local caster = event.caster
-	local ability = event.ability
-	local heroes_around = event.target_entities
-	local brew_time = ability:GetLevelSpecialValueFor( "brew_time", ability:GetLevel() - 1 )
-	local mainAbility = caster:FindAbilityByName("sniper_concoction")
-	local mainAbilityDamageType = mainAbility:GetAbilityDamageType()
-	local min_stun = ability:GetLevelSpecialValueFor( "min_stun", ability:GetLevel() - 1 )
-	local max_stun = ability:GetLevelSpecialValueFor( "max_stun", ability:GetLevel() - 1 )
-	local min_damage = ability:GetLevelSpecialValueFor( "min_damage", ability:GetLevel() - 1 )
-	local max_damage = ability:GetLevelSpecialValueFor( "max_damage", ability:GetLevel() - 1 )
-
-	-- Check the time charged to set the duration
-	local charged_duration = mainAbility.time_charged
-	if charged_duration >= brew_time then
-		charged_duration = brew_time
-	end
-
-	-- How much of the possible charge time was charged
-	local charged_percent = charged_duration / brew_time
-
-	-- Set the stun duration and damage
-	local stun_duration = min_stun
-	local damage = min_damage
-	if charged_duration > min_stun then
-		stun_duration = max_stun * charged_percent
-		damage = max_damage * charged_percent
-	end
-
-	-- Apply the AoE stun and damage with the variable duration
-	for _,unit in pairs(heroes_around) do
-		ApplyDamage({ victim = unit, attacker = caster, damage = damage, damage_type = mainAbilityDamageType })
-		ability:ApplyDataDrivenModifier(caster, unit, "modifier_unstable_concoction_stun", { duration = stun_duration})
-	end
-	
-
-end	
 
 --[[
 	Author: Noya
@@ -225,7 +191,6 @@ function LevelUpAbility( event )
 		ability_handle:SetLevel(this_abilityLevel)
 	end
 end
-
 
 function ConcoctionHit( event )
 	local caster = event.caster
