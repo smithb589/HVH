@@ -351,10 +351,10 @@ function HVHGameMode:SpawnDog(random_spawn)
  
   -- create the dog with a random dog model
   local dog = CreateUnitByName("npc_dota_good_guy_dog", position, true, nil, nil, DOTA_TEAM_GOODGUYS)
-  Timers:CreateTimer(0.06, function() 
-    local r = RandomInt(1, #HOUND_MODEL_PATHS)
-    dog:SetOriginalModel(HOUND_MODEL_PATHS[r])
-  end)
+  --Timers:CreateTimer(0.06, function() 
+  local r = RandomInt(1, #HOUND_MODEL_PATHS)
+  dog:SetOriginalModel(HOUND_MODEL_PATHS[r])
+  --end)
 end
 
 -- return the position of a random valid spawner
