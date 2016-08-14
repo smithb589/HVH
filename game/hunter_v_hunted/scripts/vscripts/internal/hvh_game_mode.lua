@@ -344,6 +344,20 @@ function HVHGameMode:SetupHero(hero)
   --hero.SuccessfulSetup = true
 end
 
+function HVHGameMode:SpawnStartingDogs()
+  local missingSnipers = GameRules:GetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS) -
+    PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS)
+  
+  -- add a hound for each missing sniper player
+  while missingSnipers > 0 and not DISABLE_BONUS_DOGS do
+    self:SpawnDog(false)
+    missingSnipers = missingSnipers - 1
+  end
+
+  -- add the main hound
+  self:SpawnDog(false)
+end
+
 -- spawn the dog at the radiant courier spawn (game start) or a random good guy spawner
 function HVHGameMode:SpawnDog(random_spawn)
   if DISABLE_DOGS then return end
