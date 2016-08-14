@@ -149,14 +149,16 @@ end
 -- rounds to nearest 0.01
 function GetClaimedChestsPercentageForTeam(team)
     return RoundToNearest(0.01, GetClaimedChestsForTeam(team) / GetTotalChestsSpawned(team))
+        or 1 -- catch divide by 0 errors
 end
 
 -- rounds to nearest 0.01
 function GetClaimedChestsPercentageForHero(hero, team)
     if hero:GetTeam() == team then
         return RoundToNearest(0.01, (GetClaimedChests(hero, team) or 0) / GetClaimedChestsForTeam(team))
+            or 1 -- catch divide by 0 errors
     else
-        return nil
+        return ""
     end
 end
 
@@ -196,7 +198,7 @@ function GetClaimedChests(hero, team)
     if hero:GetTeam() == team then
         return hero.ClaimedItems
     else
-        return nil
+        return ""
     end
 end
 
@@ -235,7 +237,7 @@ function GetSniperKills(hero)
     if IsEntitySniper(hero) then
         return hero:GetKills()
     else
-        return nil
+        return ""
     end
 end
 
@@ -243,7 +245,7 @@ function GetSniperAssists(hero)
     if IsEntitySniper(hero) then
         return hero:GetAssists()
     else
-        return nil
+        return ""
     end
 end
 
@@ -251,7 +253,7 @@ function GetSniperDeaths(hero)
     if IsEntitySniper(hero) then
         return hero:GetDeaths()
     else
-        return nil
+        return ""
     end
 end
 
@@ -259,7 +261,7 @@ function GetNightStalkerKills(hero)
     if IsEntityNightStalker(hero) then
         return hero:GetKills()
     else
-        return nil
+        return ""
     end
 end
 
@@ -267,12 +269,12 @@ function GetNightStalkerDeaths(hero)
     if IsEntityNightStalker(hero) then
         return hero:GetDeaths()
     else
-        return nil
+        return ""
     end
 end
 
 function GetSniperCharacter(hero)
-    local character = nil
+    local character = ""
 
     if     hero.SniperCharacter == SNIPER_KARDEL then
         character = "Kardel"
@@ -283,9 +285,9 @@ function GetSniperCharacter(hero)
     elseif hero.SniperCharacter == SNIPER_JEBBY then
         character = "Jebby"
     elseif hero.SniperCharacter == SNIPER_NONE then
-        character = "Did not pick"
+        character = "Normal Sniper"
     else
-        character = nil
+        character = ""
     end
 
     return character
