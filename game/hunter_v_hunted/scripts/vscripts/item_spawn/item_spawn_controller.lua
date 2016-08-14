@@ -187,12 +187,28 @@ end
 -- Grants an item from the available items to the hero.
 function HVHItemSpawnController:_GrantItem(itemName, unit, chestItem)
   if itemName and unit then
-    unit.ClaimedItems = unit.ClaimedItems + 1 -- stat collection
     --print("Claimed items: " .. unit.ClaimedItems)
     unit:AddItemByName(itemName)
     Timers:CreateTimer(SINGLE_FRAME_TIME, function()
       HVHItemUtils:DropStashItems(unit)
     end)
+
+    -- stat collection
+    unit.ClaimedItems = unit.ClaimedItems + 1
+
+    -- particle and sound fx
+    local team = unit:GetTeam()
+    local partString, sfxString = "",""
+    if team == DOTA_TEAM_GOODGUYS then
+      partString = "particles/ui/ui_generic_treasure_impact.vpcf"
+      sfxString = "ui.treasure_reveal"
+    else
+      partString = "particles/items_fx/bloodstone_heal.vpcf"
+      sfxString = "n_creep_ForestTrollHighPriest.Heal"
+    end
+    ParticleManager:CreateParticle(partString,  PATTACH_ABSORIGIN_FOLLOW, unit )
+    unit:EmitSound(sfxString) 
+
   else
     HVHDebugPrint(string.format("Could not grant item %s to unit %d.", itemName, unit:GetEntityIndex()))
   end
@@ -232,6 +248,7 @@ function HVHItemSpawnController:_SendRejectedPickupEvent(player)
   local event = HVHRejectedChestPickupEvent(HVHRejectedChestPickupEvent.RejectReason_WrongTeam)
   Notifications:ClearTop(player)
   Notifications:Top(player, event:ConvertToPayload())
+  EmitSoundOnClient("General.InvalidTarget_Shop", player)
 end
 
 -- Finds the nearest spawner in a small radius.
