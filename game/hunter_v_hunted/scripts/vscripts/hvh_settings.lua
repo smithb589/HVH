@@ -1,11 +1,12 @@
 -- In this file you can set up all the properties and settings for your game mode.
-HVH_VERSION 		= "1.5.1"
+HVH_VERSION 		= "1.6.0"
 
 -- HVH Leveling and Abilities
 STARTING_LEVEL		= 16
 MAX_LEVEL 			= 16
 MAX_OUT_ABILITIES   = false	-- max out ALL abilities or only starting abilities?
 DISABLE_DOGS 		= false	-- disables hound spawning
+DISABLE_BONUS_DOGS  = false -- disable extra hounds for missing sniper players
 
 -- HVH Time
 DAY_NIGHT_CYCLE_MULTIPLIER = 3			-- ex. 4 means each day/night will last 1 min each (4x faster)
