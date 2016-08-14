@@ -9,6 +9,7 @@
 	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 	"Model"							"models/props_gameplay/rune_goldxp.vmdl"
+	"Effect"       					"particles/generic_gameplay/dropped_item_rapier.vpcf"
 	"ItemKillable"					"0"
 	
 	// Stats

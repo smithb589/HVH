@@ -3556,6 +3556,53 @@
 			}
 		}
 	}
+	"item_sun_shard_hvh" 
+	{
+	    "ID"           "1097"
+	    "BaseClass"    "item_datadriven"
+	    "AbilityTextureName" "item_radiance" // "item_sun_shard"
+	    "Model"        "models/props_gameplay/rune_goldxp.vmdl" 
+	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
+	    "ItemQuality"  "artifact"
+	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET" //"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	
+		"AbilityCastPoint"		"0.0"
+		"AbilityCastRange"		"800"		
+		"AbilityCooldown"		"1.0"
+	
+	    "ItemKillable" "1" 
+	    "ItemSellable" "0"
+	    "ItemPurchasable" "0"
+	    "ItemDroppable" "1"
+	    "ItemShareability" "ITEM_FULLY_SHAREABLE_STACKING"
+	
+	    "ItemStackable" "1"
+	    "ItemPermanent" "0"
+		"ItemInitialCharges" "1" //How many charges should the item start with - Tango x3 
+		"ItemDisplayCharges" "1" //Hide the charges of the item - Aegis 
+		"ItemRequiresCharges" "0" //The active ability needs charges to be used - Urn
+	
+	   	"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"spells/item_sun_shard_hvh.lua"
+				"Function"			"SunShard_Use"
+			}
+		}
+	
+		"OnOwnerDied"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"spells/item_sun_shard_hvh.lua"
+				"Function"			"SunShard_OnDeath"
+			}
+		}
+	}
 	"item_sun_strike"
 	{
 		"BaseClass"		"item_datadriven"
@@ -3852,7 +3899,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"Model"							"models/props_gameplay/rune_invisibility01.vmdl"
-		"ModelScale"					"4.0"
+		"Effect"       					"particles/generic_gameplay/dropped_dust.vpcf"
 		"ItemKillable"					"0"
 		
 		// Stats
@@ -3884,6 +3931,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"Model"							"models/props_gameplay/rune_goldxp.vmdl"
+		"Effect"       					"particles/generic_gameplay/dropped_item_rapier.vpcf"
 		"ItemKillable"					"0"
 		
 		// Stats

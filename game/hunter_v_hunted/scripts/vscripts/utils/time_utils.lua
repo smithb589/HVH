@@ -1,5 +1,11 @@
 require("hvh_settings")
 
+
+-- entirely deprecated
+
+
+
+
 if HVHTimeUtils == nil then
   HVHTimeUtils = class({})
 end
@@ -8,11 +14,7 @@ MINS_PER_CYCLE         = 8 -- standard minutes in a combined day/night cycle
 SECS_PER_CYCLE         = MINS_PER_CYCLE * 60
 TIME_OF_DAY_PER_SECOND = 1 / SECS_PER_CYCLE
 
-EXTRA_FLOAT_TIME_PER_SECOND = TIME_OF_DAY_PER_SECOND * (DAY_NIGHT_CYCLE_MULTIPLIER - 1) -- add this to SetTimeOfDay
-
--- GetTimeOfDay() is expressed as a float from 0.0 to 1.0, where ~0.25 is sunrise and ~0.75 is sunset
-TIME_NEXT_DAWN    = 0.25
-TIME_NEXT_EVENING = 0.75
+--EXTRA_FLOAT_TIME_PER_SECOND = TIME_OF_DAY_PER_SECOND * (DAY_NIGHT_CYCLE_MULTIPLIER - 1) -- add this to SetTimeOfDay
 
 function HVHTimeUtils:GetSecondsUntil(time_const)
   local floatTimePerSecond = TIME_OF_DAY_PER_SECOND + EXTRA_FLOAT_TIME_PER_SECOND

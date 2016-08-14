@@ -36,7 +36,8 @@ function HVHItemUtils:IsChargedItem(item)
 		(itemName == "item_smoke_of_deceit") or
 		(itemName == "item_dust") or
 		(itemName == "item_diffusal_blade") or
-		(itemName == "item_urn_of_shadows")	then
+		(itemName == "item_urn_of_shadows")	or
+		(itemName == "item_sun_shard_hvh") then
 		return false -- hack fix to ignore these items and let Valve subtract charges normally
 	end
 	

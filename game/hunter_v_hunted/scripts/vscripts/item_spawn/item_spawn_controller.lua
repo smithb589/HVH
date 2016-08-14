@@ -187,28 +187,18 @@ end
 -- Grants an item from the available items to the hero.
 function HVHItemSpawnController:_GrantItem(itemName, unit, chestItem)
   if itemName and unit then
-    --print("Claimed items: " .. unit.ClaimedItems)
     unit:AddItemByName(itemName)
     Timers:CreateTimer(SINGLE_FRAME_TIME, function()
       HVHItemUtils:DropStashItems(unit)
     end)
-
+    -- particle and sound fx, as well as team abilities
+    if unit:GetTeam() == DOTA_TEAM_GOODGUYS then
+      HVHCycles:SunShardPickup(unit)
+    else
+      HVHCycles:MoonRockPickup(unit)
+    end
     -- stat collection
     unit.ClaimedItems = unit.ClaimedItems + 1
-
-    -- particle and sound fx
-    local team = unit:GetTeam()
-    local partString, sfxString = "",""
-    if team == DOTA_TEAM_GOODGUYS then
-      partString = "particles/ui/ui_generic_treasure_impact.vpcf"
-      sfxString = "ui.treasure_reveal"
-    else
-      partString = "particles/items_fx/bloodstone_heal.vpcf"
-      sfxString = "n_creep_ForestTrollHighPriest.Heal"
-    end
-    ParticleManager:CreateParticle(partString,  PATTACH_ABSORIGIN_FOLLOW, unit )
-    unit:EmitSound(sfxString) 
-
   else
     HVHDebugPrint(string.format("Could not grant item %s to unit %d.", itemName, unit:GetEntityIndex()))
   end

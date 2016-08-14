@@ -83,6 +83,7 @@ function HVHGameMode:_SetupGameMode()
     mode.BadGuyLives  = BADGUY_LIVES
     mode.GoodGuyTeamSpawn = nil
     mode.BadGuyTeamSpawn = nil
+    mode.HalfCycleTimeRemaining = 0
     mode.DeadHounds = 0
   end 
 end
@@ -204,41 +205,6 @@ function HVHGameMode:ModifyExperienceFilter(table)
   --Otherwise use normal logic
   return false
 end
-
--- Increases the rate of the day/night cycle by a multiplier
--- OPTIONAL: random seconds to add or subtract to next cycle's timer
--- BUG?: half a second off every 60 mins (hypothetically)
-function HVHGameMode:SetupFastTime(next_time_transition, rng_secs)
-  local standardLengthOfOneCycle = (SECS_PER_CYCLE / 2) / DAY_NIGHT_CYCLE_MULTIPLIER
-  if rng_secs == nil then rng_secs = 0 end
-  local thisCycleLength = standardLengthOfOneCycle + rng_secs
-
-  Timers:CreateTimer(thisCycleLength, function()
-    --print("This day/night has been " .. thisCycleLength .. " seconds long.")
-    GameRules:SetTimeOfDay(next_time_transition)
-
-    -- setup next cycle
-    if next_time_transition == TIME_NEXT_EVENING then
-      next_time_transition = TIME_NEXT_DAWN
-    else
-      next_time_transition = TIME_NEXT_EVENING
-    end
-    rng_secs = RandomFloat(-1 * RANDOM_EXTRA_SECONDS, RANDOM_EXTRA_SECONDS)
-    self:SetupFastTime(next_time_transition, rng_secs)
-  end)
-end
-
--- Increases the rate of the day/night cycle by a multiplier
--- BUG: about half a second off every minute (measured)
---[[
-evening 1:00
-evening 3:01
-dawn  4:02
-dawn  6:03
-evening 7:03
-dawn  22:11
-evening 67:39
-]]
 
 function HVHGameMode:LevelupAbility(hero, ability_name, maxout)
   if hero:HasAbility(ability_name) then
