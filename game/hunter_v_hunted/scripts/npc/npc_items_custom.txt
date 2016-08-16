@@ -3899,7 +3899,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"Model"							"models/props_gameplay/rune_invisibility01.vmdl"
-		"Effect"       					"particles/generic_gameplay/dropped_dust.vpcf"
+		"Effect"       					"particles/dropped_moonrock.vpcf"
 		"ItemKillable"					"0"
 		
 		// Stats
@@ -3931,7 +3931,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"Model"							"models/props_gameplay/rune_goldxp.vmdl"
-		"Effect"       					"particles/generic_gameplay/dropped_item_rapier.vpcf"
+		"Effect"       					"particles/dropped_sunshard.vpcf"
 		"ItemKillable"					"0"
 		
 		// Stats
