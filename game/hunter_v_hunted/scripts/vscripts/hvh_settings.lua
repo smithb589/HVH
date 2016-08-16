@@ -9,23 +9,29 @@ DISABLE_DOGS 		= false	-- disables hound spawning
 DISABLE_BONUS_DOGS  = false -- disable extra hounds for missing sniper players
 
 -- HVH Time
-DAY_NIGHT_CYCLE_MULTIPLIER = 3			-- ex. 4 means each day/night will last 1 min each (4x faster)
-RANDOM_EXTRA_SECONDS 	   = 15.0 		-- randomly increase/decrease each cycle by -(Value) to Value seconds
-PRE_GAME_TIME = 30.0                    -- How long after people select their heroes should the horn blow and the game start?
-PREGAME_SLEEP = true 					-- play the tutorial and put players to sleep for first ~30 seconds
+START_WITH_DAY		= true 			-- true for day, false for night
+DAY_SECONDS         = 60.0  		-- 60.0
+NIGHT_SECONDS       = 90.0			-- 90.0
+DAY_SECONDS_RANDOM_EXTRA   = 0.0	-- randomly increase/decrease each half-cycle by -(Value) to Value seconds
+NIGHT_SECONDS_RANDOM_EXTRA = 0.0	-- randomly increase/decrease each half-cycle by -(Value) to Value seconds
+PRE_GAME_TIME = 30.0                -- How long after people select their heroes should the horn blow and the game start?
+PREGAME_SLEEP = false 				-- play the tutorial and put players to sleep for first ~30 seconds
 
 -- HVH Respawn
 BADGUY_LIVES  = 6
 GOODGUY_LIVES = 18
 MIN_RESPAWN_TIME = 18
 MAX_RESPAWN_TIME = 23
-MINIMUM_RESPAWN_RANGE = 2500			-- if no respawn points are found outside this range, the least worst will be used
+MINIMUM_RESPAWN_RANGE = 2500		-- if no respawn points are found outside this range, the least worst will be used
 
 -- HVH Neutral Creeps
 NEUTRAL_CREEPS 				   = true
 NEUTRAL_CREEPS_UNIT_POINTS_MIN = 12
 NEUTRAL_CREEPS_START_TIME	   = 10.0
 NEUTRAL_CREEPS_REPEAT_TIME     = 10.0
+
+-- HVH Item Spawning
+NS_CHEST_HEAL		= 	0.05		-- percentage of maximum health
 
 -- HVH Power Stages for reinforcements / evolutions
 GG_POWER_STAGE_THRESHOLDS = {}
