@@ -1,15 +1,15 @@
 --------------------------------------------------------------------------------------------------------
--- Techies AI
+-- Phoenix AI
 --------------------------------------------------------------------------------------------------------
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink("Think", Think, 1.0)
+	thisEntity:SetContextThink("Think", Think, 0.25)
 	thisEntity.behaviorSystem = AICore:CreateBehaviorSystem({
-		BehaviorRetreat(thisEntity, DESIRE_MAX),
-		BehaviorPlaceMine(thisEntity, DESIRE_HIGH),
+		BehaviorSupernova(thisEntity, DESIRE_MAX+1),
+		BehaviorSunRayMove(thisEntity, DESIRE_MAX),
+		BehaviorSunRay(thisEntity, DESIRE_HIGH),
 		BehaviorTravel(thisEntity, DESIRE_MEDIUM),
 		BehaviorChooseNextDestination(thisEntity, DESIRE_LOW+1),
-		--BehaviorAddNewDestination(thisEntity, DESIRE_LOW, RANGE_TECHIES_MIN, RANGE_TECHIES_MAX),
-		BehaviorWait(thisEntity, DESIRE_NONE+1)
+		BehaviorAddNewDestination(thisEntity, DESIRE_LOW, RANGE_TYPICAL_MIN),
 	})
 end
 

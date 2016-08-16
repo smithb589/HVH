@@ -149,6 +149,7 @@ PRECACHE_UNITS = {
 	"npc_dota_hero_windrunner", -- only missing tree shackle
 	"npc_dota_hero_disruptor",
 	"npc_dota_hero_tidehunter",]]
+	"npc_dota_hero_phoenix",
 	"npc_dota_hero_ursa",
 	"npc_dota_hero_techies",
 	--"npc_hvh_ursa",
@@ -209,6 +210,8 @@ PRECACHE_PARTICLES = {
 	--"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion_flash_b.vpcf",
 	--"particles/units/heroes/hero_slardar/slardar_sprint.vpcf"
 	--"particles/generic_hero_status/status_invisibility_start.vpcf",
+	"particles/dropped_sunshard.vpcf",
+	"particles/dropped_moonrock.vpcf",
 	"particles/ui/ui_generic_treasure_impact.vpcf",
 	"particles/items_fx/bloodstone_heal.vpcf",
 	"particles/generic_gameplay/generic_stunned.vpcf",

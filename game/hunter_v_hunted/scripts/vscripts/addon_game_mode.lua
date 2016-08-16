@@ -27,6 +27,7 @@ require("internal/vision_dummy")
 require("internal/force_cast")
 require("internal/sniper_select")
 require("internal/cycles")
+require("internal/phoenix")
 
 require("statcollection/init")
 require('ai/ai_core')

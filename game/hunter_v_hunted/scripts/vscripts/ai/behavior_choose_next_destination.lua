@@ -24,6 +24,7 @@ function BehaviorChooseNextDestination:Evaluate()
 		-- ran out of destinations
 	end
 
+	--print(desire .. ": choose next destination")
 	return desire
 end
 

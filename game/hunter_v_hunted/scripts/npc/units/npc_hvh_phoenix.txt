@@ -1,0 +1,108 @@
+//=================================================================================
+// Neutral: Phoenix
+//=================================================================================
+"npc_hvh_phoenix"
+{
+	// HVH
+	"BaseClass"					"npc_dota_creature"
+	"vscripts"                  "ai/ai_phoenix.lua"
+	"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+	"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
+	"IsNeutralUnitType"			"1"
+	"Level"						"25"
+	//"NeutralCreepPoints"		"1"
+	//"NeutralCreepWeight"		"1"
+
+	"MinimapIcon"        "minimap_hvh_phoenix"
+	"MinimapIconSize"    "600"
+	"MinimapDisableTint" "1"
+
+	// General
+	//-------------------------------------------------------------------------------------------------------------	
+	"Model"					"models/heroes/phoenix/phoenix_bird.vmdl"				// Model.
+	"SoundSet"				"Hero_Phoenix"							// Name of sound set.
+	"ModelScale"			"1.2" //".74"
+	//	"IdleSoundLoop"				"Hero_Phoenix.IdleLoop"
+	//	"IdleExpression"				"scenes/phoenix/phoenix/exp_idle_01.vcd"		// custom facial animation idle
+
+	// Abilities
+	//-------------------------------------------------------------------------------------------------------------
+	"Ability1"					"phoenix_sun_ray"
+	"Ability2"					"phoenix_sun_ray_toggle_move_empty"
+	"Ability3"					"phoenix_sun_ray_stop"
+	"Ability4"					"phoenix_sun_ray_toggle_move"
+	"Ability5"					"phoenix_passives"
+	"Ability6"					"phoenix_supernova"
+	"AbilityLayout" "4"
+
+	// Armor
+	//----------------------------------------------------------------
+	"ArmorPhysical"				"-2"			// Physical protection.
+	//"MagicalResistance"			"75"		// Magical protection.
+
+	// Attack
+	//----------------------------------------------------------------
+	"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+	"AttackDamageMin"			"26"									// Damage range min.
+	"AttackDamageMax"			"36"									// Damage range max.
+	"AttackRate"				"1.7"									// Speed of attack.
+	"AttackAnimationPoint"		"0.35"									// Normalized time in animation cycle to attack.
+	"AttackAcquisitionRange"	"800"									// Range within a target can be acquired.
+	"AttackRange"				"500"									// Range within a target can be attacked.
+	"ProjectileModel"			"phoenix_base_attack"						// Particle system model for projectile.
+	"ProjectileSpeed" "1100" // Speed of projectile.
+
+	// Bounds
+	//-------------------------------------------------------------------------------------------------------------
+	"HealthBarOffset"			"240"
+
+	// Movement
+	//-------------------------------------------------------------------------------------------------------------
+	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+	"MovementSpeed"				"285"									// Speed.
+	"MovementTurnRate"			"1.0"									// Turning rate.
+
+	// Status
+	//----------------------------------------------------------------
+	"StatusHealth"				"9999"		// Base health.
+	"StatusHealthRegen"			"1"			// Health regeneration rate.
+	"StatusMana"				"0"			// Base mana.
+	"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+	// Vision
+	//----------------------------------------------------------------
+	"VisionDaytimeRange"		"1800"		// Range of vision during day light.
+	"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+	// Team
+	//----------------------------------------------------------------
+	"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+	"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+	"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+	// Inventory
+	//----------------------------------------------------------------
+	"HasInventory"				"1"
+	"ParticleFile"				"particles/units/heroes/hero_phoenix.pcf"
+	"GameSoundsFile"			"scripts/game_sounds_heroes/game_sounds_phoenix.txt"
+	"VoiceFile"					"scripts/voscripts/game_sounds_vo_phoenix.txt"
+
+	"Creature"
+	{
+		"EquippedItems"
+		{
+
+		}
+
+		"AttachWearables"
+		{
+			//"Wearable1"	{ "ItemDef" "4212" } // alpine hat
+			//"Wearable2"	{ "ItemDef" "4213" } // alpine scarf
+			//"Wearable3"	{ "ItemDef" "4214" } // alpine pants
+			//"Wearable4"	{ "ItemDef" "4215" } // alpine gloves
+		}
+	}
+}
+
+
+

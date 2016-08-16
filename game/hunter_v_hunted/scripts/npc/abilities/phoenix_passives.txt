@@ -1,0 +1,21 @@
+"phoenix_passives"
+{
+	"BaseClass"             		"ability_datadriven"
+	"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilityTextureName"			""
+
+	"Modifiers"
+	{
+		"modifier_phoenix_invuln"
+		{
+			"Passive"				"1"
+			"IsHidden"				"0"
+
+			"States"
+			{
+				"MODIFIER_STATE_INVULNERABLE"						"MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY"	"MODIFIER_STATE_VALUE_ENABLED"
+			}
+		}
+	}	
+}
