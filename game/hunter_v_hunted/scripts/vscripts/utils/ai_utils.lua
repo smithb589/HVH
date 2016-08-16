@@ -2,6 +2,16 @@ if AICore == nil then
   AICore = class({})
 end
 
+function AICore:DebugDraw(start_vec, end_vec, rgb_vec, duration)
+	local r,g,b = rgb_vec.x, rgb_vec.y, rgb_vec.z
+	DebugDrawCircle(end_vec, Vector(r,g,b), 128.0, 128.0, true, duration)
+	DebugDrawLine(start_vec, end_vec, r, g, b, true, duration)
+	--local canFindPath = GridNav:CanFindPath(start_vec, end_vec)
+	--local isBlocked = GridNav:IsBlocked(end_vec)
+	--local isTraversable = GridNav:IsTraversable(end_vec)
+	--print(string.format("CanFindPath: %s, IsBlocked: %s, IsTraversable: %s", tostring(canFindPath), tostring(isBlocked), tostring(isTraversable)))
+end
+
 -- DOTA_TEAM_NEUTRAL units seem to have flying vision
 function AICore:CanSeeTarget(unit, target)
 	--print("Can see target: " .. tostring(unit:CanEntityBeSeenByMyTeam(target)))
