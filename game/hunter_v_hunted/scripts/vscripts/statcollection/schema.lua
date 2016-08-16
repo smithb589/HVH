@@ -139,24 +139,21 @@ end
 -------------------------------------
 -- HVH STAT COLLECTION UTIL FUNCTIONS
 -------------------------------------
--- Round (number_to_round) to nearest (multiple) (DEPRECATED)
-function RoundToNearest(multiple, number_to_round)
-    -- ex. 11 / 3 = 3.66. Then 3.66 + 0.5 = 4.16. Floored to 4. Finally 4 * 3 = 12.
-    -- 11 rounded to the nearest multiple of 3 rounds to 12.
-    return math.floor((number_to_round / multiple) + 0.5) * multiple    
+function DecimalToWhole(decimal)
+    return math.floor(decimal * 100)
 end
 
 -- rounds to nearest 0.01
 function GetClaimedChestsPercentageForTeam(team)
-    return RoundToNearest(0.01, GetClaimedChestsForTeam(team) / GetTotalChestsSpawned(team))
-        or 1 -- catch divide by 0 errors
+    local percent = DecimalToWhole(GetClaimedChestsForTeam(team) / GetTotalChestsSpawned(team))
+    return percent or 0 -- catch divide by 0 errors
 end
 
 -- rounds to nearest 0.01
 function GetClaimedChestsPercentageForHero(hero, team)
     if hero:GetTeam() == team then
-        return RoundToNearest(0.01, (GetClaimedChests(hero, team) or 0) / GetClaimedChestsForTeam(team))
-            or 1 -- catch divide by 0 errors
+        local percent = DecimalToWhole((GetClaimedChests(hero, team) or 0) / GetClaimedChestsForTeam(team))
+        return percent or 0 -- catch divide by 0 errors
     else
         return ""
     end
