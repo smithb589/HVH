@@ -62,7 +62,7 @@ function HVHCycles:SetupFastTime()
   end
 
   Timers:CreateTimer(1.0, function()
-    print("starting clock")
+    --print("starting clock")
     self:StartClockHUD()
   end)
  
@@ -70,7 +70,7 @@ function HVHCycles:SetupFastTime()
   Timers:CreateTimer(t, function()
     mode.HalfCycleTimeRemaining = mode.HalfCycleTimeRemaining - t
     CustomNetTables:SetTableValue("cycle", "TimeRemaining", { value = mode.HalfCycleTimeRemaining })
-    print(mode.HalfCycleTimeRemaining .. " seconds left.")
+    --print(mode.HalfCycleTimeRemaining .. " seconds left.")
     if mode.HalfCycleTimeRemaining <= 0.0 then
       self:TransitionToNextHalfCycle()
       self:StartClockHUD()

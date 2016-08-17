@@ -38,7 +38,7 @@ function UpdateTimer() {
 	if (remaining <= timerWarning && timerWarning != -1) {
 		if (remaining != timerLast && timerSound) {
 			timerLast = remaining;
-			$.Msg('Beep');
+			//$.Msg('Beep');
 			Game.EmitSound("ui.crafting_confirm_socket");
 		}
 		timerTextRemain.style['color'] = COLOUR_WARNING;
