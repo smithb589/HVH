@@ -9,6 +9,47 @@ end
 -- Cycle: Full day + night
 -- Half-cycle: Either day OR night
 
+-- accessible by panorama
+function HVHCycles:SetupCycleTimer()
+  GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(self, "OrderFilter"), self)
+
+  CustomNetTables:SetTableValue("cycle", "TimeRemaining", { value = 60 })
+  CustomNetTables:SetTableValue("cycle", "IsDaytime", { value = false })
+
+  local t = 1.0
+  Timers:CreateTimer(t, function()
+    CustomNetTables:SetTableValue("cycle", "IsDaytime", { value = GameRules:IsDaytime() })
+    return t
+  end)
+end
+
+-- If NS issues a pickup order on a sun shard, change the order to attack/deny target instead
+function HVHCycles:OrderFilter(event)
+  if event.order_type == DOTA_UNIT_ORDER_PICKUP_ITEM then --and event.entindex_target == "item_sun_shard_hvh" then
+
+    -- catch errors
+    if not event.entindex_target or not EntIndexToHScriptNillable(event.entindex_target) then
+      return true
+    end
+    
+    local worldItem = EntIndexToHScriptNillable(event.entindex_target)
+    local itemContained = worldItem:GetContainedItem()
+    local itemName = itemContained:GetName()
+
+    if itemName == "item_sun_shard_hvh" then
+      for _,unitNum in pairs(event.units) do
+        local unit =  EntIndexToHScriptNillable(unitNum)
+        if unit:GetTeam() ~= DOTA_TEAM_GOODGUYS then
+          event.order_type = DOTA_UNIT_ORDER_ATTACK_TARGET
+        end
+      end
+    end
+  end
+
+  --Return true by default to keep all other orders the same
+  return true
+end
+
 -- Allows manual adjustment of day/night durations
 function HVHCycles:SetupFastTime()
   local mode = GameRules:GetGameModeEntity()
@@ -20,16 +61,29 @@ function HVHCycles:SetupFastTime()
   	self:TransitionToNextHalfCycle() -- this will set mode.HalfCycleTimeRemaining (global) for us
   end
 
+  Timers:CreateTimer(1.0, function()
+    print("starting clock")
+    self:StartClockHUD()
+  end)
+ 
   local t = 1.0
   Timers:CreateTimer(t, function()
     mode.HalfCycleTimeRemaining = mode.HalfCycleTimeRemaining - t
-    --print(mode.HalfCycleTimeRemaining .. " seconds left.")
+    CustomNetTables:SetTableValue("cycle", "TimeRemaining", { value = mode.HalfCycleTimeRemaining })
+    print(mode.HalfCycleTimeRemaining .. " seconds left.")
     if mode.HalfCycleTimeRemaining <= 0.0 then
       self:TransitionToNextHalfCycle()
+      self:StartClockHUD()
     end
     return t
   end)
 end
+
+function HVHCycles:StartClockHUD()
+  CustomGameEventManager:Send_ServerToAllClients("display_timer",
+      {msg="Remaining", duration=0, mode=0, endfade=false, position=1, warning=5, paused=false, sound=true} )
+end
+
 
 function HVHCycles:GenerateHalfCycleTime(day)
   local time,rng = 0,0
@@ -78,9 +132,12 @@ end
 
 -- grant an sun shard item, usable on phoenix
 function HVHCycles:SunShardPickup(unit)
-	unit:AddItemByName("item_sun_shard_hvh")
-    local partString = "particles/ui/ui_generic_treasure_impact.vpcf"
-    local sfxString = "ui.treasure_reveal"
-    ParticleManager:CreateParticle(partString,  PATTACH_ABSORIGIN_FOLLOW, unit )
-    unit:EmitSound(sfxString)
+  local r = RandomFloat(0.0, 1.0)
+  if r <= SUN_SHARD_PICKUP_CHANCE then
+  	unit:AddItemByName("item_sun_shard_hvh")
+      local partString = "particles/ui/ui_generic_treasure_impact.vpcf"
+      local sfxString = "ui.treasure_reveal"
+      ParticleManager:CreateParticle(partString,  PATTACH_ABSORIGIN_FOLLOW, unit )
+      unit:EmitSound(sfxString)
+  end
 end

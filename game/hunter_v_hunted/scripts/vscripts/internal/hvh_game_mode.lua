@@ -109,15 +109,6 @@ function HVHGameMode:GlimpseFix()
 end
 
 -- accessible by panorama
-function HVHGameMode:SetupCycleTimer()
-  local t = 1.0
-  Timers:CreateTimer(t, function()
-    CustomNetTables:SetTableValue("cycle", "IsDaytime", { value = GameRules:IsDaytime() })
-    return t
-  end)
-end
-
--- accessible by panorama
 function HVHGameMode:PushScoreToCustomNetTable()
   local mode = GameRules:GetGameModeEntity()
   CustomNetTables:SetTableValue("scores", "GoodGuyLives", { value = mode.GoodGuyLives })

@@ -7,7 +7,7 @@ end
 function HVHGameMode:OnGameRulesStateChange()
   state = GameRules:State_Get()
   if state == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
-    self:SetupCycleTimer()
+    HVHCycles:SetupCycleTimer()
   elseif state == DOTA_GAMERULES_STATE_HERO_SELECTION then
     self:PostLoadPrecache()
     self:SetupInitialTeamSpawns()

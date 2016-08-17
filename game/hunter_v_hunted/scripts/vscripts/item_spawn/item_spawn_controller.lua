@@ -191,7 +191,7 @@ function HVHItemSpawnController:_GrantItem(itemName, unit, chestItem)
     Timers:CreateTimer(SINGLE_FRAME_TIME, function()
       HVHItemUtils:DropStashItems(unit)
     end)
-    -- particle and sound fx, as well as team abilities
+
     if unit:GetTeam() == DOTA_TEAM_GOODGUYS then
       HVHCycles:SunShardPickup(unit)
     else
