@@ -4,9 +4,9 @@ HVH_VERSION 		= "1.6.0"
 -- HVH Leveling and Abilities
 STARTING_LEVEL		= 16
 MAX_LEVEL 			= 16
-MAX_OUT_ABILITIES   = false	-- max out ALL abilities or only starting abilities?
-DISABLE_DOGS 		= false	-- disables hound spawning
-DISABLE_BONUS_DOGS  = false -- disable extra hounds for missing sniper players
+MAX_OUT_ABILITIES   = false -- max out ALL abilities or only starting abilities?
+DISABLE_DOGS 		= true  -- disables hound spawning
+DISABLE_BONUS_DOGS  = true  -- disable extra hounds for missing sniper players
 
 -- HVH Time
 START_WITH_DAY		= true 			-- true for day, false for night
@@ -15,7 +15,7 @@ NIGHT_SECONDS       = 90.0			-- 90.0
 DAY_SECONDS_RANDOM_EXTRA   = 0.0	-- randomly increase/decrease each half-cycle by -(Value) to Value seconds
 NIGHT_SECONDS_RANDOM_EXTRA = 0.0	-- randomly increase/decrease each half-cycle by -(Value) to Value seconds
 PRE_GAME_TIME = 30.0                -- How long after people select their heroes should the horn blow and the game start?
-PREGAME_SLEEP = false 				-- play the tutorial and put players to sleep for first ~30 seconds
+PREGAME_SLEEP = true 				-- play the tutorial and put players to sleep for first ~30 seconds
 
 -- HVH Respawn
 BADGUY_LIVES  = 6
@@ -31,7 +31,9 @@ NEUTRAL_CREEPS_START_TIME	   = 10.0
 NEUTRAL_CREEPS_REPEAT_TIME     = 10.0
 
 -- HVH Item Spawning
-NS_CHEST_HEAL		= 	0.05		-- percentage of maximum health
+NS_CHEST_HEAL			= 	0.05		-- percentage of maximum health per moonrock pickup
+SUN_SHARD_BONUS_TIME	=	3			-- extra seconds per sun shard use
+SUN_SHARD_PICKUP_CHANCE	=	1.0			-- chance of getting a sun shard on pickup: 0.0 = 0%, 1.0 = 100%
 
 -- HVH Power Stages for reinforcements / evolutions
 GG_POWER_STAGE_THRESHOLDS = {}
