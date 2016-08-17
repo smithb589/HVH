@@ -34,7 +34,7 @@ function BehaviorSunRay:Begin()
     -- Gets the vector facing *distance* units away from the origin
 	self.order.Position = origin + fv * distance
 	self.endTime = GameRules:GetGameTime() + 0.1
-	AICore:DebugDraw(origin, self.order.Position, Vector(255,0,0), 10.0)
+	--AICore:DebugDraw(origin, self.order.Position, Vector(255,0,0), 10.0)
 end
 
 function BehaviorSunRay:Continue()

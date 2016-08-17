@@ -32,7 +32,7 @@ end
 
 function BehaviorTravel:Begin()
 	self.order.Position = HVHNeutralCreeps:GetDestination(self.unit)
-	AICore:DebugDraw(self.unit:GetAbsOrigin(), self.order.Position, Vector(0,0,255), 10.0)	
+	--AICore:DebugDraw(self.unit:GetAbsOrigin(), self.order.Position, Vector(0,0,255), 10.0)	
 	--self.endTime = GameRules:GetGameTime() + 1.0
 end
 

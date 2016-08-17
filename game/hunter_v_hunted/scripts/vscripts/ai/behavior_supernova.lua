@@ -25,11 +25,12 @@ function BehaviorSupernova:Evaluate()
 	return desire
 end
 
+-- behavior system will be deactivated after this
 function BehaviorSupernova:Begin()
 	Timers:CreateTimer(0.1, function()
-		HVHPhoenix:MakeEggsImmortal()
+		HVHPhoenix:SetupEgg(self.unit)
 	end)
-	--self.endTime = GameRules:GetGameTime() + 0.1
+	self.endTime = GameRules:GetGameTime() + 5.0
 end
 
 function BehaviorSupernova:Continue()
@@ -37,7 +38,6 @@ function BehaviorSupernova:Continue()
 end
 
 function BehaviorSupernova:End()
-	HVHPhoenix:Rebirth(self.unit)
 end
 
 	--[[

@@ -9,8 +9,8 @@
 		"MaxLevel"				"1"
 		"AbilityCastRange"				"1300"
 		"AbilityCastPoint"				"0.00"
-		"AbilityCooldown"				"60"
-		"AbilityDuration"				"60.0"
+		"AbilityCooldown"				"20"
+		"AbilityDuration"				"20.0"
 		"AbilityManaCost"				"0"
 		"AbilitySpecial"
 		{
@@ -57,7 +57,7 @@
 			"09"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"beam_range"		"1300"
+				"beam_range"		"1600" //"1300"
 			}
 			"10"
 			{
@@ -80,7 +80,7 @@
 	// Phoenix: Sun Ray Toggle Move
 	"phoenix_sun_ray_toggle_move"
 	{
-		"AbilityCooldown"	"60.0"
+		"AbilityCooldown"	"20.0"
 	}
 
 	//=================================================================================================================
@@ -104,7 +104,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_per_sec"	"0" //"60 90 120"
+				"damage_per_sec"	"10" //"60 90 120"
 			}
 			
 			"03"
@@ -115,12 +115,12 @@
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"max_hero_attacks"	"999" //"5 8 11"
+				"max_hero_attacks"	"99999" //"5 8 11"
 			}
 			"05"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"max_hero_attacks_scepter" "999" //	"7 10 13"
+				"max_hero_attacks_scepter" "99999" //	"7 10 13"
 			}
 			"06"
 			{

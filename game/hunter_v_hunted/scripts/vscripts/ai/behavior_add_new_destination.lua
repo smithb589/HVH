@@ -32,7 +32,7 @@ function BehaviorAddNewDestination:Evaluate()
 end
 
 function BehaviorAddNewDestination:Begin()
-	print("Adding new destination")
+	--print("Adding new destination")
 	HVHNeutralCreeps:AddDestination(self.unit, self.min_range, self.max_range)
 end
 

@@ -1,4 +1,4 @@
-"npc_dummy_reveal_roshan"
+"npc_dummy_reveal_phoenix"
 {
 	"BaseClass" "npc_dota_creature"
 	"Model"		"models/development/invisiblebox.vmdl"
@@ -9,6 +9,6 @@
 	"VisionDaytimeRange"	"0"
 	"VisionNighttimeRange"	"0"
 	"MinimapDisableTint" "1"
-	"MinimapIcon"        "minimap_hvh_roshan" // "minimap_hvh_blood_drop"
-	"MinimapIconSize"    "900"
+	"MinimapIcon"        "minimap_hvh_phoenix"
+	"MinimapIconSize"    "600"
 }
