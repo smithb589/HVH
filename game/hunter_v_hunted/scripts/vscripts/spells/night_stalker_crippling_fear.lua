@@ -2,7 +2,17 @@
 	Date: 11.01.2015.
 	It applies a different modifier depending on the time of day]]
 function CripplingFear( keys )
+	local ability = keys.ability
 	local target = keys.target
+
+	target:TriggerSpellReflect(ability)
+
+	-- TODO: reintroduce linken park spheres without passive component
+	--if target:HasModifier("modifier_item_sphere_target") then
+	--	target:TriggerSpellAbsorb(ability)
+	--	return
+	--end
+
 	ApplyAppropriateCripple(keys, target)
 end
 

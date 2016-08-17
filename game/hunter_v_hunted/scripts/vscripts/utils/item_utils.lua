@@ -46,7 +46,6 @@ end
 
 -- could not find LUA for this simple function
 function HVHItemUtils:ExpendCharge(item)
-
     local hero = item:GetOwner()
     local newCharges = item:GetCurrentCharges() - 1
     item:SetCurrentCharges(newCharges)
