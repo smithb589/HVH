@@ -1,15 +1,30 @@
 require("utils/hvh_utils")
 
+
+function Leap_OnUpgrade( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local modifierName = "modifier_leap_stack_counter"
+
+	if not caster.LeapStackManager then
+		caster.LeapStackManager = ModifierStackManager(caster, ability, modifierName)
+	end
+
+	caster.LeapStackManager:OnUpgrade()
+end
+
 --[[Author: Pizzalol
 	Date: 05.01.2015.
 	Leaps the target forward]]
-function Leap( keys )
+function Leap_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local leap_distance = ability:GetLevelSpecialValueFor("leap_distance", (ability:GetLevel() - 1))
 	local leap_duration = ability:GetLevelSpecialValueFor("leap_duration", (ability:GetLevel() - 1))
 	local leap_vertical_speed = ability:GetLevelSpecialValueFor("leap_vertical_speed", (ability:GetLevel() - 1))
 	local modifier_leap_immunity = keys.modifier_leap_immunity
+
+	caster.LeapStackManager:ExpendCharge()
 
 	-- Clears any current command
 	caster:Stop()

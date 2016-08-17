@@ -25,7 +25,7 @@
 	// Cost
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityManaCost"				"0"
-	"AbilityCooldown"				"30.0" //"20.0"
+	"AbilityCooldown"				"0.0" // must be 0; instead use minimum_cooldown
 
 	// Special
 	//-------------------------------------------------------------------------------------------------------------
@@ -70,7 +70,12 @@
 		"08"
 		{
 			"var_type"				"FIELD_FLOAT"
-			"charge_replenish_time"	"30.0" // "45.0"
+			"charge_replenish_time"	"27.0" // "45.0"
+		}
+		"09"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"minimum_cooldown"		"2.0"
 		}
 	}
 	

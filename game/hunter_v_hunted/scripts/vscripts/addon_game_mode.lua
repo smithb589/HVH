@@ -8,6 +8,7 @@ require("utils/css_utils")
 require("utils/time_utils")
 require("utils/item_utils")
 require("utils/hvh_utils")
+require("utils/modifierstackmanager")
 require("item_spawn/item_spawn_controller")
 
 require("hvh_settings")

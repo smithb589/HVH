@@ -1307,7 +1307,7 @@
 		"BaseClass"				"ability_datadriven"
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName"	"hvh_leap"
-		"MaxLevel"				"1"
+		"MaxLevel"				"3"
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -1324,7 +1324,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"9.0" //"8.0"
+		"AbilityCooldown"				"0.0" //"9.0" //"8.0"
 		"AbilityDuration"				"0.0"
 	
 		// Cost
@@ -1355,6 +1355,30 @@
 				"var_type"				"FIELD_FLOAT"
 				"damage_reduction"		"-100"
 			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"maximum_charges"		"1 2 3"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"charge_replenish_time"	"30.0" // "45.0"
+			}	
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"minimum_cooldown"		"3.0"
+			}
+		}
+	
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"spells/night_stalker_leap.lua"
+				"Function"				"Leap_OnUpgrade"
+			}
 		}
 	
 		"OnSpellStart"
@@ -1368,7 +1392,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"spells/night_stalker_leap.lua"
-				"Function"		"Leap"
+				"Function"		"Leap_OnSpellStart"
 				"modifier_leap_immunity"	"modifier_leap_immunity"
 			}
 		}
@@ -1384,7 +1408,15 @@
 				{
 					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%damage_reduction"
 				}
-			}			
+			}
+	
+			"modifier_leap_stack_counter"
+			{
+				"Passive"				"1"
+				"IsHidden"				"0"
+				"IsPurgable"			"0"
+				"IsDebuff"				"0"
+			}
 		}
 	}
 	// does not work well
@@ -2096,7 +2128,7 @@
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"0"
-		"AbilityCooldown"				"30.0" //"20.0"
+		"AbilityCooldown"				"0.0" // must be 0; instead use minimum_cooldown
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -2141,7 +2173,12 @@
 			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"charge_replenish_time"	"30.0" // "45.0"
+				"charge_replenish_time"	"27.0" // "45.0"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"minimum_cooldown"		"2.0"
 			}
 		}
 		
