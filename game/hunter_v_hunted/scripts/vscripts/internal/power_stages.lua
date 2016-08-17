@@ -76,6 +76,8 @@ end
 function HVHPowerStages:UpgradePowerStage(team)
 	local newPowerStage = self:IncrementPowerStageNumber(team)
 
+	if MAX_OUT_ABILITIES then return end -- ignore power stages when cheating
+
 	-- delay the notification by a few arbitrary seconds
 	local delay = HVHGameMode:GetRespawnTime() * 0.4
 	Timers:CreateTimer(delay, function()
