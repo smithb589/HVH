@@ -7,13 +7,14 @@
     "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
     "ItemQuality"  "artifact"
 
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET" //"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
-	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
 	"AbilityCastPoint"		"0.0"
 	"AbilityCastRange"		"800"		
-	"AbilityCooldown"		"1.0"
+	"AbilityCooldown"		"0.25"
 
     "ItemKillable" "1" 
     "ItemSellable" "0"
@@ -32,7 +33,7 @@
 		"RunScript"
 		{
 			"ScriptFile"		"spells/item_sun_shard_hvh.lua"
-			"Function"			"SunShard_Use"
+			"Function"			"SunShard_OnUse"
 		}
 	}
 
