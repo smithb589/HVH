@@ -116,7 +116,8 @@ PRECACHE_ITEMS = {
 	"item_ravage",
 	"item_stampede",
 	"item_kinetic_field",
-	"item_meat_hook"
+	"item_meat_hook",
+	"item_sun_shard_hvh"
 }
 
 -- TODO: optimize these by finding the correct particles
@@ -227,7 +228,8 @@ PRECACHE_PARTICLES = {
 	"particles/units/heroes/hero_meepo/meepo_earthbind_projectile_fx.vpcf",
 	"particles/units/heroes/hero_meepo/meepo_earthbind.vpcf",
 	"particles/newplayer_fx/npx_sleeping.vpcf",
-	"particles/good_guy_dog_treat.vpcf"
+	"particles/good_guy_dog_treat.vpcf",
+	"particles/thrown_sunshard.vpcf",
 }
 		
 PRECACHE_SOUNDFILES = {

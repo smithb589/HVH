@@ -2,6 +2,16 @@
 {
 	"TextureData"
 	{
+		// phoenix's face
+        "minimap_hvh_phoenix"
+        {
+			"file"		"materials/vgui/hud/minimap_hvh_phoenix.vmat"
+			"x"			"0"
+			"y"			"0"
+			"width"		"32"
+			"height"	"32"
+        } 
+
 		// roshan's head
         "minimap_hvh_roshan"
         {
@@ -56,8 +66,8 @@
 			"file"		"materials/vgui/hud/minimap_hvh_chest_ns.vmat"
 			"x"			"0"
 			"y"			"0"
-			"width"		"64"
-			"height"	"64"
+			"width"		"32"
+			"height"	"32"
 		}
 		
 		"minimap_hvh_chest_snipers"
@@ -65,8 +75,8 @@
 			"file"		"materials/vgui/hud/minimap_hvh_chest_snipers.vmat"
 			"x"			"0"
 			"y"			"0"
-			"width"		"64"
-			"height"	"64"
+			"width"		"32"
+			"height"	"32"
 		}
     }
 }
