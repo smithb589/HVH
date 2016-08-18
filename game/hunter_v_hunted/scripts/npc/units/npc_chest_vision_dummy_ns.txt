@@ -9,6 +9,6 @@
 	"VisionDaytimeRange" 	"5"
 	"VisionNighttimeRange" 	"5"
 	"MinimapDisableTint" "1"
-	"MinimapIcon"		 "minimap_hvh_chest_ns" // NS minimap
+	"MinimapIcon"		 "minimap_hvh_moonrock" // NS minimap
 	"MinimapIconSize"	 "1000"
 }

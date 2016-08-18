@@ -11,7 +11,7 @@
 		"VisionDaytimeRange" 	"5"
 		"VisionNighttimeRange" 	"5"
 		"MinimapDisableTint" "1"
-		"MinimapIcon"		 "minimap_hvh_chest_ns" // NS minimap
+		"MinimapIcon"		 "minimap_hvh_moonrock" // NS minimap
 		"MinimapIconSize"	 "1000"
 	}
 	"npc_chest_vision_dummy_snipers"
@@ -25,7 +25,7 @@
 		"VisionDaytimeRange"	"5"
 		"VisionNighttimeRange"	"5"
 		"MinimapDisableTint" "1"
-		"MinimapIcon"        "minimap_hvh_chest_snipers" // Snipers minimap
+		"MinimapIcon"        "minimap_hvh_sunshard" // Snipers minimap
 		"MinimapIconSize"    "1000"
 	}
 	"npc_dota_good_guy_dog"
@@ -1200,7 +1200,7 @@
 			"EquippedItems"
 			{
 			    "Gem"			{ "Item"	"item_gem" }
-			    "Scepter"		{ "Item" 	"item_ultimate_scepter" }
+			    //"Scepter"		{ "Item" 	"item_ultimate_scepter" }
 			}
 	
 			"AttachWearables"

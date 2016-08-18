@@ -9,6 +9,6 @@
 	"VisionDaytimeRange"	"5"
 	"VisionNighttimeRange"	"5"
 	"MinimapDisableTint" "1"
-	"MinimapIcon"        "minimap_hvh_chest_snipers" // Snipers minimap
+	"MinimapIcon"        "minimap_hvh_sunshard" // Snipers minimap
 	"MinimapIconSize"    "1000"
 }

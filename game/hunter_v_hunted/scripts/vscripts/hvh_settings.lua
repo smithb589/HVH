@@ -5,8 +5,8 @@ HVH_VERSION 		= "1.6.0"
 STARTING_LEVEL		= 16
 MAX_LEVEL 			= 16
 MAX_OUT_ABILITIES   = false -- max out ALL abilities or only starting abilities?
-DISABLE_DOGS 		= true  -- disables hound spawning
-DISABLE_BONUS_DOGS  = true  -- disable extra hounds for missing sniper players
+DISABLE_DOGS 		= false  -- disables hound spawning
+DISABLE_BONUS_DOGS  = false  -- disable extra hounds for missing sniper players
 
 -- HVH Time
 START_WITH_DAY		= true 			-- true for day, false for night

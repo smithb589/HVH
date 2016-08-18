@@ -73,7 +73,7 @@ function HVHCycles:SetupFastTime()
     --print(mode.HalfCycleTimeRemaining .. " seconds left.")
     if mode.HalfCycleTimeRemaining <= 0.0 then
       self:TransitionToNextHalfCycle()
-      self:StartClockHUD()
+      --self:StartClockHUD()
     end
     return t
   end)

@@ -28,7 +28,6 @@ end
 
 function ModifierStackManager:_StartCharging()
 	-- create timer to restore stack
-	print("Starting charge timer.")
 	Timers:CreateTimer( function()
 		-- Restore charge
 		if self.isCharging and self.current_charges < self.maximum_charges then

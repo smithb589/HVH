@@ -51,13 +51,16 @@ function UpdateTimer() {
 		else
 			timerTextRemain.text = FormatTime(time);
 	}
+
+	$.Schedule(TIMER_INTERVAL, function(){UpdateTimer();});
+
 	//if (time < timerDuration)
-	if (remaining >= 0) {
-		$.Schedule(TIMER_INTERVAL, function(){UpdateTimer();});
-	}
-	else
-		if (!timerEnd)
-			$.Schedule(1, function(){FadeOut();});
+	//if (remaining >= 0) {
+	//	$.Schedule(TIMER_INTERVAL, function(){UpdateTimer();});
+	//}
+	//else
+	//	if (!timerEnd)
+	//		$.Schedule(1, function(){FadeOut();});
 }
 
 function FadeIn() {

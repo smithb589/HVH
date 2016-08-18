@@ -2,6 +2,26 @@
 {
 	"TextureData"
 	{
+		// sun shard (sniper chest)
+        "minimap_hvh_sunshard"
+        {
+			"file"		"materials/vgui/hud/minimap_hvh_sunshard.vmat"
+			"x"			"0"
+			"y"			"0"
+			"width"		"32"
+			"height"	"32"
+        } 
+
+		// moon rock (NS chest)
+        "minimap_hvh_moonrock"
+        {
+			"file"		"materials/vgui/hud/minimap_hvh_moonrock.vmat"
+			"x"			"0"
+			"y"			"0"
+			"width"		"32"
+			"height"	"32"
+        } 
+
 		// phoenix's face
         "minimap_hvh_phoenix"
         {
@@ -61,22 +81,22 @@
             "height"    "64"
         }
 
-		"minimap_hvh_chest_ns"
+		"minimap_hvh_chest_ns" // OLD
 		{
 			"file"		"materials/vgui/hud/minimap_hvh_chest_ns.vmat"
 			"x"			"0"
 			"y"			"0"
-			"width"		"32"
-			"height"	"32"
+			"width"		"64"
+			"height"	"64"
 		}
 		
-		"minimap_hvh_chest_snipers"
+		"minimap_hvh_chest_snipers" // OLD
 		{
 			"file"		"materials/vgui/hud/minimap_hvh_chest_snipers.vmat"
 			"x"			"0"
 			"y"			"0"
-			"width"		"32"
-			"height"	"32"
+			"width"		"64"
+			"height"	"64"
 		}
     }
 }
