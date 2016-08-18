@@ -26,7 +26,7 @@
 	"Ability1"				""					// Ability 1
 	"Ability2"				"tiny_toss"			// Ability 2
 	"Ability3"				"tiny_craggy_exterior" // Ability 3
-	"Ability4"				""					// Ability 4
+	"Ability4"				"tiny_grow"					// Ability 4
 
 	// Armor
 	//----------------------------------------------------------------
@@ -91,6 +91,7 @@
 		"EquippedItems"
 		{
 		    "Gem"			{ "Item"	"item_gem" }
+		    //"Scepter"		{ "Item" 	"item_ultimate_scepter" }
 		}
 
 		"AttachWearables"
@@ -99,6 +100,7 @@
 			"Wearable2"	{ "ItemDef"	"494" } //Body
 			"Wearable3" { "ItemDef"	"495" } //Left Arm
 			"Wearable4" { "ItemDef"	"496" } //Right Arm
+			"Wearable5" { "ItemDef" "497" } //Tree
 		}
 	}
 }

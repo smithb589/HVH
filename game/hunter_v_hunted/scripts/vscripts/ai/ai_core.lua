@@ -135,7 +135,7 @@ function AICore:CreateBehaviorSystem( behaviors )
 			end
 		end
 
-		HVHDebugPrint(string.format("Choosing behavior with score %d", bestDesire))
+		--print(string.format("Choosing behavior with score %d", bestDesire))
 		--HVHDebugPrintTable(result)
 
 		return result
