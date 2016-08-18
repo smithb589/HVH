@@ -214,7 +214,7 @@ PRECACHE_PARTICLES = {
 	"particles/dropped_sunshard.vpcf",
 	"particles/dropped_moonrock.vpcf",
 	"particles/ui/ui_generic_treasure_impact.vpcf",
-	"particles/items_fx/bloodstone_heal.vpcf",
+	"particles/moonrock_heal.vpcf",
 	"particles/generic_gameplay/generic_stunned.vpcf",
 	"particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_projectile.vpcf",
 	"particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_explosion.vpcf",

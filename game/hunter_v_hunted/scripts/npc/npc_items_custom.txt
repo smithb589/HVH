@@ -3572,7 +3572,7 @@
 	
 		"AbilityCastPoint"		"0.0"
 		"AbilityCastRange"		"800"		
-		"AbilityCooldown"		"0.25"
+		"AbilityCooldown"		"0.1"
 	
 	    "ItemKillable" "1" 
 	    "ItemSellable" "0"
@@ -3592,6 +3592,17 @@
 			{
 				"ScriptFile"		"spells/item_sun_shard_hvh.lua"
 				"Function"			"SunShard_OnUse"
+			}
+		}
+	
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			
+			"RunScript"
+			{
+				"ScriptFile"		"spells/item_sun_shard_hvh.lua"
+				"Function"			"SunShard_OnHit"
 			}
 		}
 	

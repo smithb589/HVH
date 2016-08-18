@@ -110,7 +110,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_duration"		"0" // "1.5 2.0 2.5"
+				"stun_duration"		"1.0" // "1.5 2.0 2.5"
 			}
 			"04"
 			{
@@ -667,7 +667,7 @@
 
 	"item_ultimate_scepter"
 	{
-		"AbilityTextureName"	"item_hvh_mango_scepter" // filename: hvh_meat_hook			
+		"AbilityTextureName"	"mango_scepter" // filename: hvh_meat_hook			
 		"ItemSellable" "0"
 		"ItemDroppable" "0"
 		"AbilitySpecial"

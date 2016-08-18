@@ -123,7 +123,7 @@ function HVHCycles:MoonRockPickup(unit)
     unit:Heal(hp, unit)
     PopupHealing(unit, hp)
 
-    local partString = "particles/items_fx/bloodstone_heal.vpcf"
+    local partString = "particles/moonrock_heal.vpcf"
     local sfxString = "n_creep_ForestTrollHighPriest.Heal"
     ParticleManager:CreateParticle(partString,  PATTACH_ABSORIGIN_FOLLOW, unit )
     unit:EmitSound(sfxString) 
@@ -134,10 +134,11 @@ end
 function HVHCycles:SunShardPickup(unit)
   local r = RandomFloat(0.0, 1.0)
   if r <= SUN_SHARD_PICKUP_CHANCE then
-  	unit:AddItemByName("item_sun_shard_hvh")
-      local partString = "particles/ui/ui_generic_treasure_impact.vpcf"
-      local sfxString = "ui.treasure_reveal"
-      ParticleManager:CreateParticle(partString,  PATTACH_ABSORIGIN_FOLLOW, unit )
-      unit:EmitSound(sfxString)
+    HVHItemUtils:AddItemOrLaunchIt(unit, "item_sun_shard_hvh")
+  	--unit:AddItemByName("item_sun_shard_hvh")
+    local partString = "particles/ui/ui_generic_treasure_impact.vpcf"
+    local sfxString = "ui.treasure_reveal"
+    ParticleManager:CreateParticle(partString,  PATTACH_ABSORIGIN_FOLLOW, unit )
+    unit:EmitSound(sfxString)
   end
 end

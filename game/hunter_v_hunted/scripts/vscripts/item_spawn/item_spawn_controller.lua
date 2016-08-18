@@ -2,8 +2,6 @@ require("item_spawn/hvh_chest_model")
 require("item_spawn/hvh_location_collection")
 require("item_spawn/hvh_world_chest")
 
-require("custom_events/hvh_rejected_chest_pickup_event")
-
 if HVHItemSpawnController == nil then
   HVHItemSpawnController = class({})
 
@@ -187,7 +185,8 @@ end
 -- Grants an item from the available items to the hero.
 function HVHItemSpawnController:_GrantItem(itemName, unit, chestItem)
   if itemName and unit then
-    unit:AddItemByName(itemName)
+    --unit:AddItemByName(itemName)
+    HVHItemUtils:AddItemOrLaunchIt(unit, itemName)
     Timers:CreateTimer(SINGLE_FRAME_TIME, function()
       HVHItemUtils:DropStashItems(unit)
     end)
@@ -235,10 +234,17 @@ function HVHItemSpawnController:_RejectPickup(unitOrOriginalLocation, chestType,
 end
 
 function HVHItemSpawnController:_SendRejectedPickupEvent(player)
+  if PlayerResource:GetTeam(player:GetPlayerID()) == DOTA_TEAM_GOODGUYS then
+    HVHErrorUtils:SendErrorToScreenTop(player, "#ChestReject_NotForSnipers")
+  else
+    HVHErrorUtils:SendErrorToScreenTop(player, "#ChestReject_NotForNS")
+  end
+  --[[
   local event = HVHRejectedChestPickupEvent(HVHRejectedChestPickupEvent.RejectReason_WrongTeam)
   Notifications:ClearTop(player)
   Notifications:Top(player, event:ConvertToPayload())
   EmitSoundOnClient("General.InvalidTarget_Shop", player)
+  --]]
 end
 
 -- Finds the nearest spawner in a small radius.
