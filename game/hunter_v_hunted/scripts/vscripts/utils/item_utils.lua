@@ -1,6 +1,8 @@
 
 if HVHItemUtils == nil then
   HVHItemUtils = class({})
+
+  MAX_INVENTORY_ITEMS = 6
 end
 
 -- Takes the item class name of the item to spawn and the vector position to spawn the item at.
@@ -58,7 +60,6 @@ function HVHItemUtils:ExpendCharge(item)
     
 end
 
-
 function HVHItemUtils:RefundCharge(hero, item_name)
 	local item = self:GetItemByName(hero, item_name)
     local newCharges = item:GetCurrentCharges() + 1
@@ -92,4 +93,24 @@ function HVHItemUtils:DropItemFromStash(stashItem, unit)
     unit:RemoveItem(stashItem)
     self:SpawnItem(itemName, unit:GetAbsOrigin())
   end
+end
+
+-- add item to unit's inventory; if full, launch it
+function HVHItemUtils:AddItemOrLaunchIt(unit, itemName)
+	local totalItems = unit:GetNumItemsInInventory()
+	
+	-- stack matching sun shards, or check if total items < max
+	if (itemName == "item_sun_shard_hvh" and unit:HasItemInInventory("item_sun_shard_hvh")) or
+	  totalItems < MAX_INVENTORY_ITEMS then
+	
+		unit:AddItemByName(itemName)
+	
+	-- otherwise launch it
+	else
+	    local pos = unit:GetAbsOrigin()
+		local item = CreateItem(itemName, nil, nil)
+		local drop = CreateItemOnPositionForLaunch(pos, item)
+	    local pos_launch = pos + RandomVector(RandomFloat(150,200))
+	    item:LaunchLoot(false, 200, 0.75, pos_launch)
+	end
 end
