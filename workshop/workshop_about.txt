@@ -1,11 +1,13 @@
-Version 1.5.1
+Version 1.6.0
 
 Simplified Chinese (简体中文) and Russian (Русский) translations available!
 
 [b]WHAT'S NEW?[/b]
-Stat collection has been implemented. (Thanks [url=http://getdotastats.com/]GetDotaStats[/url]!) This will be a valuable tool that can help with the delicate balancing this game requires. You can see game-wide stats and your own personal stats at the following link: [url=http://getdotastats.com/#s2__mod?id=128]http://getdotastats.com/#s2__mod?id=128[/url]
+Hiya, it's been a while (Like the PHOENIX, I rise again). This update introduces the Phoenix, an immortal unit that will force the Snipers to play more strategically if they want to corner the Night Stalker. While collecting chests (now called Sun Shards), the Snipers will also gain Sun Shard items. These can be "fed" to the Phoenix to either increase the length of day or shorten night. The Night Stalker benefits from a longer night, and he'll do everything he can to make sure the Snipers can't use their shards.
 
-Also there have been some minor bugfixes related to the 6.86 patch. Have fun!
+I'll be keeping a close eye on the numbers, which may need to be revised soon. This patch should see a significant boost to the Night Stalker team. I'm not aiming for a perfect 50/50 win ratio, but I want it to feel more fair.
+
+I've also heard a lot of complaints related to the neutral creeps in general, and I've been thinking about setting up some host options to allow more customization. That might be my next mission, followed by new maps and new game modes. Tell me what you think.
 
 ---
 

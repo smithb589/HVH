@@ -1,3 +1,31 @@
+1.6.0
+-----
+PHOENIX RISING
+-- Phoenix is an immortal creep who wanders the map, raining destruction
+-- Using Sun Shards on Phoenix will lengthen the day or shortern the night
+-- Sun Shards are obtained from former Sniper Chests
+-- Dying makes you drop all Sun Shards, and Night Stalker can deny them
+-- Day now lasts 60 sec; night lasts 90 sec
+VISUALS
+-- Treasure chests transformed into Sunshard and Moonrocks
+-- New item pickups are launched when inventory space is full
+BALANCE CHANGES
+-- Remaining daylight/moonlight duration now tracked by a countdown
+-- Day and night durations are no longer randomized
+-- NS: Using a Moonrock (chest) heals you for 5% of max HP
+-- NS: Dread Leap now has 2 charges (3 sec minimum cooldown)
+-- NS: Dread Leap cooldown increased from 9 to 12 sec
+-- Snipers: Gain +1 hound at start for each player missing from lobby
+-- Snipers: Jebby's Concoction now 1/2 duration to enemies
+BUG FIXES
+-- Missing minimap icons returned
+-- Siege/tower death animations fixed
+-- Jebby's Concoction less buggy
+-- Some 6.87 parity fixes
+-- Removed gold tracking from scoreboard
+-- Crippling Fear + Lotus Orb interaction fixed
+-- Updated stat collection (http://getdotastats.com/#s2__mod?id=128)
+
 1.5.1
 -----
 STAT COLLECTION
