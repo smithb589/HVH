@@ -21,9 +21,9 @@ function UpdateTimer() {
 	var day = CustomNetTables.GetTableValue("cycle", "IsDaytime")["value"];
 	var timerMessage;
 	if (day)
-		timerMessage = "Daylight";
+		timerMessage = $.Localize("#custom_timer_daylight");
 	else
-		timerMessage = "Moonlight";
+		timerMessage = $.Localize("#custom_timer_moonlight");
 	var timerTextMsg = $( "#TimerMsg" );
 	timerTextMsg.text = $.Localize(timerMessage);
 
