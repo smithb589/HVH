@@ -26,7 +26,7 @@ function BehaviorTravel:Evaluate()
 		end
 	end
 
-	--print(desire .. ": travel")
+	--print(self.unit:GetUnitName() .." "..desire .. ": travel")
 	return desire
 end
 
