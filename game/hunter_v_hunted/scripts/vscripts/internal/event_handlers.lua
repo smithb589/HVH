@@ -1,5 +1,3 @@
-require("utils/time_utils")
-
 function HVHGameMode:OnPlayerConnectFull()
 	self:_SetupGameMode()
 end
