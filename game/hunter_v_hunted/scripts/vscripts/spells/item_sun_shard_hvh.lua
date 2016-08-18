@@ -4,27 +4,56 @@ function SunShard_OnUse(keys)
 	local item = keys.ability
 
 	if not HVHPhoenix:IsPhoenix(target) and not HVHPhoenix:IsEgg(target) then
-		print("Invalid target")
+		HVHErrorUtils:SendErrorToScreenTop(caster:GetPlayerOwner(), "#SunShardReject_WrongTarget")
 		return
 	end
 
-	local mode = GameRules:GetGameModeEntity()
+	--Create a tracking projectile from player 1 that follows player 2
+	ProjectileManager:CreateTrackingProjectile(	{
+		Target = target,
+		Source = caster,
+		Ability = item,	
+		EffectName = "particles/thrown_sunshard.vpcf",
+	        iMoveSpeed = 1000,
+		vSourceLoc= caster:GetAbsOrigin(),                -- Optional (HOW)
+		bDrawsOnMinimap = false,                          -- Optional
+	        bDodgeable = false,                                -- Optional
+	        bIsAttack = false,                                -- Optional
+	        bVisibleToEnemies = true,                         -- Optional
+	        --bReplaceExisting = false,                         -- Optional
+	    	flExpireTime = GameRules:GetGameTime() + 10,      -- Optional but recommended
+		bProvidesVision = true,                           -- Optional
+		iVisionRadius = 400,                              -- Optional
+		iVisionTeamNumber = caster:GetTeamNumber()        -- Optional
+	} )
 
+	ParticleManager:CreateParticle("particles/ui/ui_generic_treasure_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)	
+end
+
+function SunShard_OnHit(keys)
+	local target = keys.target
+	local item = keys.ability
+
+	local mode = GameRules:GetGameModeEntity()
+	local color,symbol = nil,nil
 	if GameRules:IsDaytime() then
 		mode.HalfCycleTimeRemaining = mode.HalfCycleTimeRemaining + SUN_SHARD_BONUS_TIME
+		color = Vector(252, 175, 61)
+		symbol = POPUP_SYMBOL_PRE_PLUS
 	else
 		mode.HalfCycleTimeRemaining = mode.HalfCycleTimeRemaining - SUN_SHARD_BONUS_TIME
-	end		
+		color = Vector(150, 225, 255)
+		symbol = POPUP_SYMBOL_PRE_MINUS
+	end	
 
-	--TODO: create tracking particle
+	PopupNumbers(target, "damage", color, 6.0, SUN_SHARD_BONUS_TIME, symbol, POPUP_SYMBOL_POST_POINTZERO)
 
-	ParticleManager:CreateParticle("particles/ui/ui_generic_treasure_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	ParticleManager:CreateParticle("particles/units/heroes/hero_omniknight/omniknight_purification.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	target:EmitSound("Hero_Omniknight.Purification")
-
 	HVHItemUtils:ExpendCharge(item)
-
 end
+
+
 
 function SunShard_OnDeath(keys)
 	local caster = keys.caster
@@ -43,38 +72,3 @@ function SunShard_OnDeath(keys)
 		caster:RemoveItem(item)
 	end)
 end
-
---[[
-   	"OnSpellStart"
-	{
-		"TrackingProjectile"
-		{
-			"Target" 		"TARGET"
-		    "EffectName"  	"particles/thrown_sunshard.vpcf"
-		    "MoveSpeed"   	"750"
-		    "StartPosition" "attach_origin"
-		}
-
-		"FireSound"
-		{
-			"EffectName"	"Hero_ChaosKnight.idle_throw"
-			"Target" 		"CASTER"
-		}
-	}
-
-	"OnProjectileHitUnit"
-	{
-		"RunScript"
-		{
-			"Target"		"TARGET"
-			"ScriptFile"	"spells/item_sun_shard_hvh.lua"
-			"Function"		"SunShard_OnHit"
-		}
-
-		"FireSound"
-		{
-			"EffectName"	"DOTA_Item.MedallionOfCourage.Activate"
-			"Target" 		"TARGET"
-		}
-	}
---]]
