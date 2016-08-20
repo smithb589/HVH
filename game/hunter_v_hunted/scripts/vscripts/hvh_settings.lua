@@ -1,5 +1,5 @@
 -- In this file you can set up all the properties and settings for your game mode.
-HVH_VERSION 		= "1.6.1"
+HVH_VERSION 		= "1.6.2"
 
 -- HVH Leveling and Abilities
 STARTING_LEVEL		= 16
@@ -14,8 +14,8 @@ DAY_SECONDS         = 60.0  		-- 60.0
 NIGHT_SECONDS       = 90.0			-- 90.0
 DAY_SECONDS_RANDOM_EXTRA   = 0.0	-- randomly increase/decrease each half-cycle by -(Value) to Value seconds
 NIGHT_SECONDS_RANDOM_EXTRA = 0.0	-- randomly increase/decrease each half-cycle by -(Value) to Value seconds
-PRE_GAME_TIME = 15.0                -- How long after people select their heroes should the horn blow and the game start?
-PREGAME_SLEEP = false 				-- play the tutorial and put players to sleep for first ~30 seconds
+PRE_GAME_TIME = 30.0                -- How long after people select their heroes should the horn blow and the game start?
+PREGAME_SLEEP = true 				-- play the tutorial and put players to sleep for first ~30 seconds
 
 -- HVH Respawn
 BADGUY_LIVES  = 6
