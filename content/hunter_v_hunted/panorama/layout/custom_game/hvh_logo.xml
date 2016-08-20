@@ -1,0 +1,20 @@
+<root>
+    <styles>
+		<include src="file://{resources}/styles/custom_game/hvh_logo.css" />
+    </styles>
+
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/hvh_logo.js" />
+    </scripts>
+
+  <Panel hittest="false" class="BaseHud">
+  	<Panel hittest="false" id="LogoContainer">
+		<Image hittest="false" id="HVH_Logo_Day" class="HVH_Logo" src="file://{images}/custom_game/topbar/logo_day.png" />
+		<Image hittest="false" id="HVH_Logo_Night" class="HVH_Logo" src="file://{images}/custom_game/topbar/logo_night.png" />
+		<Label hittest="false" id="HVH_BonusTimeSpawner" text="+X sec"/>
+		<Image hittest="true" id="HVH_Hourglass_Day" class="HVH_Hourglass" src="file://{images}/custom_game/topbar/hourglass_day.png" />
+		<Image hittest="true" id="HVH_Hourglass_Night" class="HVH_Hourglass" src="file://{images}/custom_game/topbar/hourglass_night.png" />
+	</Panel>
+  </Panel>
+</root>
+

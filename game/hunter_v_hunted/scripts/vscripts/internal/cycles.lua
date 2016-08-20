@@ -129,8 +129,7 @@ function HVHCycles:MoonRockPickup(unit)
     unit:EmitSound(sfxString) 
 end
 
-
--- grant an sun shard item, usable on phoenix
+-- grant a sun shard item, usable on phoenix
 function HVHCycles:SunShardPickup(unit)
   local r = RandomFloat(0.0, 1.0)
   if r <= SUN_SHARD_PICKUP_CHANCE then

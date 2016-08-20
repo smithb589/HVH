@@ -2,31 +2,9 @@
 
 var g_ScoreboardHandle = null;
 
-/* HVH */
-function UpdateLogo()
-{ 
-	var logoDay = $.GetContextPanel().FindChild("HVH_Logo_Day");
-	var logoNight = $.GetContextPanel().FindChild("HVH_Logo_Night");
-	var isDaytime = CustomNetTables.GetTableValue("cycle", "IsDaytime")["value"]
-
-	if (isDaytime)
-	{
-		logoDay.style.visibility 	= "visible"
-		logoNight.style.visibility	= "collapse"
-	}
-	else
-	{
-		logoNight.style.visibility	= "visible"
-		logoDay.style.visibility 	= "collapse"
-
-	}
-}
-
 function UpdateScoreboard()
 {
 	ScoreboardUpdater_SetScoreboardActive( g_ScoreboardHandle, true );
-	UpdateLogo() /* HVH */
-
 	$.Schedule( 0.2, UpdateScoreboard );
 }
 

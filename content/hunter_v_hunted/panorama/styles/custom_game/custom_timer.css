@@ -11,10 +11,12 @@
     horizontal-align: right;
     width: 300px;
     height: 110px;
+    flow-children: down;
 }
 
 .TimerBox
 {
+
     width: 261px;
     height: 80px;
     background-image: url("file://{resources}/images/custom_game/custom_timer_bg.png");

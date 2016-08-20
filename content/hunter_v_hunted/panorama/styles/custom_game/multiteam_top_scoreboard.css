@@ -8,20 +8,6 @@
 	height: 100%;
 }
 
-.HVH_Logo
-{
-	margin-top: -26px;
-	margin-right: 460px;
-    horizontal-align: right;
-	vertical-align: top;
-}
-
-.AspectRatio4x3 .HVH_Logo,
-.AspectRatio5x4 .HVH_Logo
-{
-	margin-right:340px;
-}
-
 #TopBarScoreboard
 {
 	margin-left: 250px; /*HVH*/

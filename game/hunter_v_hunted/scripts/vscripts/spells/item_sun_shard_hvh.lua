@@ -46,7 +46,8 @@ function SunShard_OnHit(keys)
 		symbol = POPUP_SYMBOL_PRE_MINUS
 	end	
 
-	PopupNumbers(target, "damage", color, 6.0, SUN_SHARD_BONUS_TIME, symbol, POPUP_SYMBOL_POST_POINTZERO)
+	PopupNumbers(target, "damage", color, 1.5, SUN_SHARD_BONUS_TIME, symbol, POPUP_SYMBOL_POST_POINTZERO)
+	CustomGameEventManager:Send_ServerToAllClients("pop_bonus_time", {time = SUN_SHARD_BONUS_TIME})
 
 	ParticleManager:CreateParticle("particles/units/heroes/hero_omniknight/omniknight_purification.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	target:EmitSound("Hero_Omniknight.Purification")
