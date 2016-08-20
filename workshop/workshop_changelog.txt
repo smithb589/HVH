@@ -5,9 +5,10 @@ HOST OPTIONS
 TWEAKS
 -- Sniper: Removed boots item (frees up a slot)
 -- Sniper: +50 move speed (same as before)
--- New hourglass animation
+-- Sniper: Start with 1 Sunshard
 -- Sunshard cooldown reduced to 0.0
--- Dropped Sunshards glow purple instead of gold
+-- Dropped Sunshards glow blue instead of gold
+-- New hourglass animation
 
 1.6.1
 -----
