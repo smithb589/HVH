@@ -258,8 +258,29 @@ function HVHGameMode:SetupHero(hero)
     --hero:AddItemByName("item_ultimate_scepter")
   end
 
-  -- force the hero to sleep until the horn blows
-  -- also move hero to the pregenerated random team spawn and lock camera for 1 second
+  -- move hero to the pregenerated random team spawn and lock camera for 1 second
+  local mode = GameRules:GetGameModeEntity()
+  local spawnPos, enemySpawnPos = nil,nil
+  if heroTeam == DOTA_TEAM_GOODGUYS then
+    spawnPos = mode.GoodGuyTeamSpawn
+    enemySpawnPos = mode.BadGuyTeamSpawn
+  else
+    spawnPos = mode.BadGuyTeamSpawn
+    enemySpawnPos = mode.GoodGuyTeamSpawn
+  end
+
+  FindClearSpaceForUnit(hero, spawnPos, true)
+  local direction = (enemySpawnPos - spawnPos):Normalized()
+  hero:SetForwardVector(direction) -- face the enemy spawn
+  --DebugDrawLine(spawnPos, enemySpawnPos, 0, 255, 0, true, 20.0)
+
+  local playerID = hero:GetPlayerID()
+  PlayerResource:SetCameraTarget(playerID, hero)
+  Timers:CreateTimer(1.0, function()
+    PlayerResource:SetCameraTarget(playerID, nil)
+  end)
+
+  -- (optional) force the hero to sleep and read tutorial text until the horn blows
   local isTutorialEnabled = nil
   if HVHGameMode.HostOptions then
     isTutorialEnabled = HVHGameMode.HostOptions["EnableTutorial"]
@@ -268,31 +289,8 @@ function HVHGameMode:SetupHero(hero)
   end
 
   if isTutorialEnabled and GameRules:GetDOTATime(false,false) == 0 then
-    local playerID = hero:GetPlayerID()
-    local mode = GameRules:GetGameModeEntity()
-
-    local spawnPos = nil
-    if heroTeam == DOTA_TEAM_GOODGUYS then
-      spawnPos = mode.GoodGuyTeamSpawn
-      enemySpawnPos = mode.BadGuyTeamSpawn
-    else
-      spawnPos = mode.BadGuyTeamSpawn
-      enemySpawnPos = mode.GoodGuyTeamSpawn
-    end
-
-    FindClearSpaceForUnit(hero, spawnPos, true)
-    local direction = (enemySpawnPos - spawnPos):Normalized()
-    hero:SetForwardVector(direction) -- face the enemy spawn
-    --DebugDrawLine(spawnPos, enemySpawnPos, 0, 255, 0, true, 20.0)
-
-    hero:AddNewModifier(hero, nil, "modifier_tutorial_sleep", {}) -- disables commands
-    PlayerResource:SetCameraTarget(playerID, hero)
-    Timers:CreateTimer(1.0, function()
-      PlayerResource:SetCameraTarget(playerID, nil)
-    end)
-
-    -- play tutorial text to the player
-    HVHTutorial:Start(playerID)
+      hero:AddNewModifier(hero, nil, "modifier_tutorial_sleep", {}) -- disables commands
+      HVHTutorial:Start(playerID)
   end
 
   -- stat collection

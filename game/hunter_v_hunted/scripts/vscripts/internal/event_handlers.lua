@@ -13,6 +13,7 @@ function HVHGameMode:OnGameRulesStateChange()
     self:PushScoreToCustomNetTable()
     self:GlimpseFix()
   elseif state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+    self:DisplayHostOptions()
     self:WakeUpHeroes()
     self:SpawnStartingDogs()
     HVHCycles:SetupFastTime()
@@ -51,6 +52,33 @@ function HVHGameMode:LoadHostOptions(args)
   if (HVHGameMode.HostOptions and not HVHGameMode.HostOptions["EnableTutorial"]) then
       GameRules:SetPreGameTime( 6.0 )
   end
+end
+
+function HVHGameMode:DisplayHostOptions()
+  local HO = HVHGameMode.HostOptions
+
+  local f1 = "<font color='#99CCFF'>" -- blue
+  local f2 = "<font color='#FCAF3D'>" -- yellow
+  local fX = "</font>"
+
+  local intro = f1.."<u>The host has enabled the following options:</u>"..fX
+  local tut = f2.."Enable tutorial: "    ..fX..tostring(HO["EnableTutorial"])
+  local ext = f2.."Spawn extra hounds: " ..fX..tostring(HO["SpawnExtraHounds"])
+  local pop = f2.."Neutral creep population: "..fX..tostring(HO["NeutralCreeps"])
+  local dis = f2.."Disable creeps: "     ..fX
+
+  for key,value in pairs(HO) do
+    if string.find(key, "Disable") and value then
+      dis = dis .. string.gsub(key, "Disable", "") .. ", "
+    end
+  end
+
+  --PrintTable(HVHGameMode.HostOptions)
+  GameRules:SendCustomMessage(intro, 0, 0)
+  GameRules:SendCustomMessage(tut, 0, 0)
+  GameRules:SendCustomMessage(pop, 0, 0)
+  GameRules:SendCustomMessage(dis, 0, 0)
+  GameRules:SendCustomMessage(ext, 0, 0)
 end
 
 function HVHGameMode:OnPlayerPickHero(keys)
