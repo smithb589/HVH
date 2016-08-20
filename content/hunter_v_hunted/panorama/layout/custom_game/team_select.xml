@@ -3,18 +3,65 @@
 		<include src="file://{resources}/styles/dotastyles.css" />
 		<include src="file://{resources}/styles/play.css" />
 		<include src="file://{resources}/styles/custom_game/team_select.css" />
+		<include src="file://{resources}/styles/custom_game/hvh_tips_and_warnings.css" />
+		<include src="file://{resources}/styles/custom_game/hvh_host_options.css" />
 	</styles>
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/team_select.js" />
+		<include src="file://{resources}/scripts/custom_game/hvh_host_options.js" />
 	</scripts>
 	<Panel hittest="false" class="TeamSelect">
-		<Panel hittest="false" id="TeamSelectContainer" selectionpos="auto">`
+		<Panel hittest="false" id="TeamSelectContainer" selectionpos="auto">
+
 			<!--Empty space to let the loading screen and chat be visible-->
 			<Panel hittest="false" id="TeamsSelectEmptySpace" />
+
+			<!-- HVH Host Options drop-down -->
+			<Panel id="HVHHostOptions">
+				<Panel class="Option" id="EnableTutorial">
+					<Label class="OptionLabel" text="#EnableTutorial" />
+					<RadioButton group="EnableTutorialRadio" id="EnableTutorialRadio_Yes" text="#EnableTutorial_Yes" checked="true" />
+					<RadioButton group="EnableTutorialRadio" id="EnableTutorialRadio_No" text="#EnableTutorial_No" />
+				</Panel>
+
+				<Panel class="Option" id="NeutralCreeps">
+					<Label class="OptionLabel" text="#NeutralCreepPopulation" />
+					<RadioButton group="NeutralCreepsRadio" id="NeutralCreepsRadio_0" text="#NeutralCreepPopulation_None" />
+					<RadioButton group="NeutralCreepsRadio" id="NeutralCreepsRadio_1" text="#NeutralCreepPopulation_Low"/>
+					<RadioButton group="NeutralCreepsRadio" id="NeutralCreepsRadio_2" text="#NeutralCreepPopulation_Medium" checked="checked" />
+					<RadioButton group="NeutralCreepsRadio" id="NeutralCreepsRadio_3" text="#NeutralCreepPopulation_High"/>	
+					<RadioButton group="NeutralCreepsRadio" id="NeutralCreepsRadio_4" text="#NeutralCreepPopulation_Extreme"/>						
+				</Panel>
+
+				<Panel class="Option" id="DisableCreeps">
+					<Label class="OptionLabel" text="#DisableCreeps" />
+					<ToggleButton id="DisableMegacreepsSolo" text="#DisableMegacreepsSolo" />
+					<ToggleButton id="DisableMegacreepsWarparty" text="#DisableMegacreepsWarparty" />
+					<ToggleButton id="DisableUrsaAndRoshan" text="#DisableUrsaAndRoshan" />
+					<ToggleButton id="DisableEnigma" text="#DisableEnigma" />
+					<ToggleButton id="DisableHellbears" text="#DisableHellbears" />						
+					<ToggleButton id="DisableTiny" text="#DisableTiny" />
+					<ToggleButton id="DisableTechies" text="#DisableTechies" />
+				</Panel>
+
+				<Panel class="Option" id="NotEnoughPlayers">
+					<Label class="OptionLabel" text="#NotEnoughPlayers" />
+					<RadioButton group="NotEnoughPlayersRadio" id="NotEnoughPlayersRadio_Hounds" text="#NotEnoughPlayers_Hounds" checked="checked" />
+					<RadioButton group="NotEnoughPlayersRadio" id="NotEnoughPlayersRadio_DoNothing" text="#NotEnoughPlayers_DoNothing"/>
+				</Panel>
+			</Panel>
 
 			<!--Teams List, left hand panel-->
 			<Panel id="TeamsList" >
 				<Panel id="TeamsListGroup" >
+
+					<!-- HVH Host Options toggle button -->
+					<Panel id="OptionsButtonContainer" class="PlayButton">
+						<Button id="OptionsButton" onactivate="ToggleOptionsVisibility()">
+							<Label text="Host Options" />
+						</Button>
+					</Panel>
+
 					<Panel id="TeamListHeader">
 						<Label id="TeamListHeaderLabel" text="#custom_game_team_select" />
 						<Image id="TeamListLockedIcon" src="file://{images}/control_icons/lock_small.png" />

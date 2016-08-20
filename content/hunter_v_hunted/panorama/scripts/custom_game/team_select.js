@@ -292,7 +292,6 @@ function UpdateTimer()
 
 
 /* HVH-Specific */
-
 function Choose_Unique_Random_Hints(){
 	var argTotal = arguments.length;
 	var hintCount = Count_Localized_Strings();

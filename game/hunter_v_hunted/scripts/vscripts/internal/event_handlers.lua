@@ -8,6 +8,7 @@ function HVHGameMode:OnGameRulesStateChange()
     HVHCycles:SetupCycleTimer()
   elseif state == DOTA_GAMERULES_STATE_HERO_SELECTION then
     self:PostLoadPrecache()
+    self:RegisterHostOptions()
     self:SetupInitialTeamSpawns()
     self:PushScoreToCustomNetTable()
     self:GlimpseFix()
@@ -20,6 +21,35 @@ function HVHGameMode:OnGameRulesStateChange()
     HVHNeutralCreeps:Setup()
     HVHSniperSelect:Setup()
     HVHPhoenix:Setup()
+  end
+end
+
+function HVHGameMode:RegisterHostOptions()
+  CustomGameEventManager:RegisterListener("load_host_options", Dynamic_Wrap(self, "LoadHostOptions"))
+  CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(0), "save_host_options",{})
+end
+
+function HVHGameMode:LoadHostOptions(args)
+  -- convert 1s and 0s to trues and falses
+
+  for i,val in pairs(args) do
+    if val == 0 then
+      args[i] = false
+    elseif val == 1 then
+      args[i] = true
+    end
+  end
+
+  HVHGameMode.HostOptions = {}
+  if args["HostOptionsEnabled"] then
+    HVHGameMode.HostOptions = args
+  else
+    HVHGameMode.HostOptions = nil
+  end
+
+  -- if host options are enabled and tutorial disabled, then set pregame time to 6.0
+  if (HVHGameMode.HostOptions and not HVHGameMode.HostOptions["EnableTutorial"]) then
+      GameRules:SetPreGameTime( 6.0 )
   end
 end
 

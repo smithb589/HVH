@@ -3,7 +3,7 @@ function HVHGameMode:_InitGameMode()
   GameRules:SetUseUniversalShopMode( UNIVERSAL_SHOP_MODE )
   GameRules:SetSameHeroSelectionEnabled( ALLOW_SAME_HERO_SELECTION )
   GameRules:SetHeroSelectionTime( HERO_SELECTION_TIME )
-  GameRules:SetPreGameTime( PRE_GAME_TIME)
+  GameRules:SetPreGameTime( PRE_GAME_TIME )
   GameRules:SetPostGameTime( POST_GAME_TIME )
   GameRules:SetTreeRegrowTime( TREE_REGROW_TIME )
   GameRules:SetUseCustomHeroXPValues ( USE_CUSTOM_XP_VALUES )
@@ -259,7 +259,14 @@ function HVHGameMode:SetupHero(hero)
 
   -- force the hero to sleep until the horn blows
   -- also move hero to the pregenerated random team spawn and lock camera for 1 second
-  if PREGAME_SLEEP and GameRules:GetDOTATime(false,false) == 0 then
+  local isTutorialEnabled = nil
+  if HVHGameMode.HostOptions then
+    isTutorialEnabled = HVHGameMode.HostOptions["EnableTutorial"]
+  else
+    isTutorialEnabled = PREGAME_SLEEP
+  end
+
+  if isTutorialEnabled and GameRules:GetDOTATime(false,false) == 0 then
     local playerID = hero:GetPlayerID()
     local mode = GameRules:GetGameModeEntity()
 
@@ -305,13 +312,22 @@ function HVHGameMode:SpawnStartingDogs()
   local missingSnipers = GameRules:GetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS) -
     PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS)
   
-  -- add a hound for each missing sniper player
-  while missingSnipers > 0 and not DISABLE_BONUS_DOGS do
-    self:SpawnDog(false)
-    missingSnipers = missingSnipers - 1
+  -- (optional) add a hound for each missing sniper player
+  local spawnExtraHounds = false
+  if HVHGameMode.HostOptions then
+    spawnExtraHounds = HVHGameMode.HostOptions["SpawnExtraHounds"]
+  else
+    spawnExtraHounds = not DISABLE_BONUS_DOGS
   end
 
-  -- add the main hound
+  if spawnExtraHounds then
+    while missingSnipers > 0 do
+      self:SpawnDog(false)
+      missingSnipers = missingSnipers - 1
+    end
+  end
+
+  -- always add the main hound
   self:SpawnDog(false)
 end
 

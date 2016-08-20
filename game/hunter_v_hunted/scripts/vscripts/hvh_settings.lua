@@ -1,5 +1,5 @@
 -- In this file you can set up all the properties and settings for your game mode.
-HVH_VERSION 		= "1.6.0"
+HVH_VERSION 		= "1.6.1"
 
 -- HVH Leveling and Abilities
 STARTING_LEVEL		= 16
@@ -14,8 +14,8 @@ DAY_SECONDS         = 60.0  		-- 60.0
 NIGHT_SECONDS       = 90.0			-- 90.0
 DAY_SECONDS_RANDOM_EXTRA   = 0.0	-- randomly increase/decrease each half-cycle by -(Value) to Value seconds
 NIGHT_SECONDS_RANDOM_EXTRA = 0.0	-- randomly increase/decrease each half-cycle by -(Value) to Value seconds
-PRE_GAME_TIME = 30.0                -- How long after people select their heroes should the horn blow and the game start?
-PREGAME_SLEEP = true 				-- play the tutorial and put players to sleep for first ~30 seconds
+PRE_GAME_TIME = 15.0                -- How long after people select their heroes should the horn blow and the game start?
+PREGAME_SLEEP = false 				-- play the tutorial and put players to sleep for first ~30 seconds
 
 -- HVH Respawn
 BADGUY_LIVES  = 6
@@ -25,10 +25,14 @@ MAX_RESPAWN_TIME = 23
 MINIMUM_RESPAWN_RANGE = 2500		-- if no respawn points are found outside this range, the least worst will be used
 
 -- HVH Neutral Creeps
-NEUTRAL_CREEPS 				   = true
-NEUTRAL_CREEPS_UNIT_POINTS_MIN = 12
-NEUTRAL_CREEPS_START_TIME	   = 10.0
-NEUTRAL_CREEPS_REPEAT_TIME     = 10.0
+NEUTRAL_CREEPS 				   = true  		-- enable neutral creep spawns?
+NEUTRAL_CREEPS_UNIT_POINTS_NONE		= 0 
+NEUTRAL_CREEPS_UNIT_POINTS_LOW		= 6 
+NEUTRAL_CREEPS_UNIT_POINTS_MEDIUM	= 12 	-- default (when host options are unspecified)
+NEUTRAL_CREEPS_UNIT_POINTS_HIGH		= 18 
+NEUTRAL_CREEPS_UNIT_POINTS_EXTREME	= 24
+NEUTRAL_CREEPS_START_TIME	   = 10.0		-- start spawning at X seconds
+NEUTRAL_CREEPS_REPEAT_TIME     = 10.0		-- respawn every Y seconds after start time
 
 -- HVH Item Spawning
 NS_CHEST_HEAL			= 	0.05		-- percentage of maximum health per moonrock pickup

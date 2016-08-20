@@ -1,0 +1,53 @@
+/* HVH Host Options */
+#HVHHostOptions
+{
+    /*height:688px;
+    width:590px;
+    margin-left: 50px;
+    margin-top: 75px;*/
+    padding: 12px 12px 12px 12px;
+    vertical-align: top;
+    flow-children: down;
+    border-radius: 8px;
+    background-color: gradient( linear, 100% 0%, 100% 100%, from( #111111 ), color-stop( 0.01, #202327 ), color-stop( 0.2, #141619ff ), to( #000000dd ) )
+    visibility: visible;
+    transform: translatey( -600px );
+    transition-property: transform;
+    transition-duration: 0.5s;
+}
+
+#HVHHostOptions.menu_visible
+{
+    transform: translatey( 100px );
+}
+
+#OptionsButtonContainer
+{
+    width: 100%;
+
+    margin-bottom: 16px;
+    margin-right: 0px;
+
+    visibility: collapse;
+}
+
+.player_has_host_privileges #OptionsButtonContainer
+{
+    visibility: visible;
+}
+
+#OptionsButton
+{
+    horizontal-align: center;
+}
+
+.Option
+{
+    flow-children: down;
+}
+
+.OptionLabel
+{
+    font-size: 24px;
+    margin-top: 16px;
+}

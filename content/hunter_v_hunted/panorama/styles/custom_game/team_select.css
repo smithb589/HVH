@@ -1,35 +1,3 @@
-/* HVH Warning and Tips on Loading Screen */
-#HVH_BelowTeamPanel
-{
-    font-family: "Radiance";
-    padding:15px 15px 15px 15px;
-    flow-children: down;
-}
-
-#HVH_WarningLabel
-{
-    vertical-align: top;
-    horizontal-align: middle;
-    
-    margin-bottom: 24px;
-    line-height: 27px; /* necessary to prevent "..." in Chinese */
-    font-size: 24px;
-    color: #99CCFF;
-}
-
-.HVH_TipLabel
-{
-    vertical-align: bottom;
-    horizontal-align: middle;
-
-    margin-bottom: 24px;
-    line-height: 25px; /* necessary to prevent "..." in Chinese */
-    font-size: 22px;
-    font-style: italic;
-    color: #666666;
-}
-
-/* Resume DOTA2 default styles */
 .TeamSelect
 {
     width: 100%;

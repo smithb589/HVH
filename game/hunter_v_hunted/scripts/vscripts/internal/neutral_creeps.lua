@@ -31,25 +31,96 @@ function HVHNeutralCreeps:Setup()
 	self.UnitKV = LoadKeyValues("scripts/npc/npc_units_custom.txt")
 	self.CurrentPoints = 0
 
-	if not NEUTRAL_CREEPS then return end
+	-- determine whether to enable neutral creeps, banned creeps, and starting values
+	local bannedUnits = {}
+	local enableNeutralCreeps, minimumUnitPoints = nil, nil
+	if HVHGameMode.HostOptions then
+		if HVHGameMode.HostOptions["DisableMegacreepsSolo"] then
+			table.insert(bannedUnits, "npc_hvh_megacreep_melee")
+			table.insert(bannedUnits, "npc_hvh_megacreep_ranged")
+			table.insert(bannedUnits, "npc_hvh_megacreep_siege")
+		end
 
+		if HVHGameMode.HostOptions["DisableMegacreepsWarparty"] then
+			table.insert(bannedUnits, "npc_hvh_tower")
+		end
+
+		if HVHGameMode.HostOptions["DisableUrsaAndRoshan"] then
+			table.insert(bannedUnits, "npc_hvh_ursa")
+			table.insert(bannedUnits, "npc_hvh_roshan")
+		end
+
+		if HVHGameMode.HostOptions["DisableEnigma"] then
+			table.insert(bannedUnits, "npc_hvh_enigma")
+			table.insert(bannedUnits, "npc_hvh_eidolon")
+		end
+
+		if HVHGameMode.HostOptions["DisableHellbears"] then
+			table.insert(bannedUnits, "npc_hvh_hellbear")
+		end
+
+		if HVHGameMode.HostOptions["DisableTiny"] then
+			table.insert(bannedUnits, "npc_hvh_tiny")
+		end	
+		
+		if HVHGameMode.HostOptions["DisableTechies"] then
+			table.insert(bannedUnits, "npc_hvh_techies")
+		end
+
+		local population = HVHGameMode.HostOptions["NeutralCreeps"]
+		if population == "none" then
+			enableNeutralCreeps = false
+		else
+			enableNeutralCreeps = true
+			if     population == "low"		then minimumUnitPoints = NEUTRAL_CREEPS_UNIT_POINTS_LOW
+			elseif population == "medium"	then minimumUnitPoints = NEUTRAL_CREEPS_UNIT_POINTS_MEDIUM
+			elseif population == "high"		then minimumUnitPoints = NEUTRAL_CREEPS_UNIT_POINTS_HIGH
+			elseif population == "extreme"	then minimumUnitPoints = NEUTRAL_CREEPS_UNIT_POINTS_EXTREME
+			end
+		end
+	-- no host options, default back to hvh_settings.lua
+	else
+		enableNeutralCreeps = NEUTRAL_CREEPS
+		minimumUnitPoints = NEUTRAL_CREEPS_UNIT_POINTS_MEDIUM
+	end
+
+	-- stop right here if neutrals are disabled
+	if not enableNeutralCreeps then return end
+
+	-- time to build a list of creeps for the randomizer
 	self.Units = {}
 	for unitName,unitBlock in pairs(self.UnitKV) do
 		local points = unitBlock["NeutralCreepPoints"]
 		local weight = unitBlock["NeutralCreepWeight"]
+		
+		-- if the block is worth neutral creep points, and it hasn't been banned, add it to the randomizer
 		if points and points ~= 0 then
-			self.Units[unitName] = {}
-			self.Units[unitName]["value"] = unitName
-			self.Units[unitName]["weight"] = weight
-			self.Units[unitName]["points"] = points
+			local banned = false
+				for _,bannedUnitName in pairs(bannedUnits) do
+				if bannedUnitName == unitName then
+					banned = true
+					break
+				end
+			end
+
+			if not banned then 
+				self.Units[unitName] = {}
+				self.Units[unitName]["value"] = unitName
+				self.Units[unitName]["weight"] = weight
+				self.Units[unitName]["points"] = points
+			end
 		end
 	end
+
+	--PrintTable(self.Units)
+	--print("Creep points: " .. minimumUnitPoints)
 
 	self.Randomizer = HVHRandomizer(self.Units)
 	--self.Randomizer:DisplayProbabilties()
 
+	-- setup the recurring timer to spawn more creeps if we drop below the unit point threshold
 	Timers:CreateTimer(NEUTRAL_CREEPS_START_TIME, function()
-		if self.CurrentPoints < NEUTRAL_CREEPS_UNIT_POINTS_MIN then
+		if self.CurrentPoints < minimumUnitPoints then
 			self:SpawnRandomGroup()
 		end
 
@@ -76,8 +147,6 @@ function HVHNeutralCreeps:SpawnRandomGroup()
 		self:SpawnHellbears()
 	elseif value == "npc_hvh_tiny" then
 		self:SpawnTiny()
-	elseif value == "npc_hvh_enigma" then
-		self:SpawnEnigmaEidolons()
 	elseif value == "npc_hvh_techies" then
 		self:SpawnTechies()
 	else
