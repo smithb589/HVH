@@ -1,3 +1,11 @@
+1.6.2
+-----
+
+
+1.6.1
+-----
+Fixed some broken map pathways (thanks Valve!)
+
 1.6.0
 -----
 PHOENIX RISING
