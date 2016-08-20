@@ -11,9 +11,9 @@
   	<Panel hittest="false" id="LogoContainer">
 		<Image hittest="false" id="HVH_Logo_Day" class="HVH_Logo" src="file://{images}/custom_game/topbar/logo_day.png" />
 		<Image hittest="false" id="HVH_Logo_Night" class="HVH_Logo" src="file://{images}/custom_game/topbar/logo_night.png" />
-		<Label hittest="false" id="HVH_BonusTimeSpawner" text="+X sec"/>
-		<Image hittest="true" id="HVH_Hourglass_Day" class="HVH_Hourglass" src="file://{images}/custom_game/topbar/hourglass_day.png" />
-		<Image hittest="true" id="HVH_Hourglass_Night" class="HVH_Hourglass" src="file://{images}/custom_game/topbar/hourglass_night.png" />
+		<Label hittest="false" id="HVH_BonusTimeSpawner" text=""/>
+		<Image hittest="false" id="HVH_Hourglass_Day" class="HVH_Hourglass" src="file://{images}/custom_game/topbar/hourglass_day.png" />
+		<Image hittest="false" id="HVH_Hourglass_Night" class="HVH_Hourglass" src="file://{images}/custom_game/topbar/hourglass_night.png" />
 	</Panel>
   </Panel>
 </root>

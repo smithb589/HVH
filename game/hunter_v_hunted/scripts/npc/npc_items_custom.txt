@@ -3562,7 +3562,7 @@
 	    "BaseClass"    "item_datadriven"
 	    "AbilityTextureName" "item_radiance" // "item_sun_shard"
 	    "Model"        "models/props_gameplay/rune_goldxp.vmdl" 
-	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
+	    "Effect"       "particles/dropped_moonrock.vpcf"
 	    "ItemQuality"  "artifact"
 	
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
