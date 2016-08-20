@@ -12,6 +12,6 @@
 	"Ability6"			"night_stalker_hunter_in_the_night" // hidden, for anim purposes
 	"Ability7"          "attribute_bonus"
 
-	"ModelScale" "1.1"
+	"ModelScale" 			"1.1"
 	"StatusHealthRegen"		"4.0"
 }

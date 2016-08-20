@@ -14,6 +14,7 @@
 	//"Ability4"			"sniper_concoction"
 	//"Ability7"			"sniper_concoction_throw"
 
+	"MovementSpeed"			"365"
 	"StatusHealthRegen"		"2.0"
 }
 

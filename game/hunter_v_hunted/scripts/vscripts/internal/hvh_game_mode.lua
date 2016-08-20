@@ -249,7 +249,8 @@ function HVHGameMode:SetupHero(hero)
   -- starting gear
   local heroTeam = hero:GetTeamNumber()
   if heroTeam == DOTA_TEAM_GOODGUYS then
-    hero:AddItemByName("item_boots")
+    --hero:AddItemByName("item_boots")
+    hero:AddItemByName("item_sun_shard_hvh")
     hero:AddItemByName("item_tango_single")
   else
     hero:AddItemByName("item_phase_boots")
