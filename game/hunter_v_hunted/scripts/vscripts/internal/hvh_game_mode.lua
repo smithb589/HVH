@@ -1,4 +1,9 @@
-function HVHGameMode:_InitGameMode()
+-- Create the class for the game mode, unused in this example as the functions for the quest are global
+if HVHGameMode == nil then
+  HVHGameMode = class({})
+end
+
+function HVHGameMode:InitGameMode()
   GameRules:SetHeroRespawnEnabled( ENABLE_HERO_RESPAWN )
   GameRules:SetUseUniversalShopMode( UNIVERSAL_SHOP_MODE )
   GameRules:SetSameHeroSelectionEnabled( ALLOW_SAME_HERO_SELECTION )
@@ -30,10 +35,13 @@ function HVHGameMode:_InitGameMode()
       end
       count = count + 1
     end
+
+  ListenToGameEvent('dota_player_pick_hero', Dynamic_Wrap(self, 'OnPlayerPickHero'), self)    
+  print("Hunter v Hunted loaded.")
 end
 
 -- This function is called as the first player loads and sets up the GameMode parameters
-function HVHGameMode:_SetupGameMode()
+function HVHGameMode:SetupGameMode()
   if mode == nil then
     -- Set GameMode parameters
     mode = GameRules:GetGameModeEntity()
@@ -212,6 +220,8 @@ function HVHGameMode:LevelupAbility(hero, ability_name, maxout)
 end
 
 function HVHGameMode:SetupHero(hero)
+  if hero.SuccessfulSetup then return end
+
   -- start at higher level
   local startingLevelsToAdd = STARTING_LEVEL - 1
   for level=1,startingLevelsToAdd do
@@ -303,8 +313,8 @@ function HVHGameMode:SetupHero(hero)
     hero.SniperCharacter = SNIPER_INVALID
   end
 
-  --print("Succesful setup of new hero")
-  --hero.SuccessfulSetup = true
+  print("Succesful setup of new hero")
+  hero.SuccessfulSetup = true
 end
 
 function HVHGameMode:SpawnStartingDogs()

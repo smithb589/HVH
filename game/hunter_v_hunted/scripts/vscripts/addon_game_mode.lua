@@ -1,5 +1,6 @@
+require("hvh_settings")
+require("hvh_constants")
 
-require('game_mode')
 require('precache')
 require('convars')
 
@@ -13,9 +14,6 @@ require("utils/error_utils")
 
 require("item_spawn/item_spawn_controller")
 
-require("hvh_settings")
-require("hvh_constants")
-
 require('lib/util')
 require('lib/timers')
 require('lib/physics')
@@ -23,6 +21,8 @@ require('lib/notifications')
 require('lib/animations')
 require('lib/popups')
 
+require('internal/hvh_game_mode')
+require("internal/event_handlers")
 require("internal/power_stages")
 require("internal/tutorial")
 require("internal/neutral_creeps")
@@ -73,7 +73,4 @@ function Activate()
   HVHConvars:Setup()
 	GameRules.HVHGameMode = HVHGameMode()
 	GameRules.HVHGameMode:InitGameMode()
-
-  --local courier = CreateUnitByName("npc_dota_courier", spawner:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_GOODGUYS)
-  
 end

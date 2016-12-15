@@ -1,5 +1,5 @@
 function HVHGameMode:OnPlayerConnectFull()
-	self:_SetupGameMode()
+	self:SetupGameMode()
 end
 
 function HVHGameMode:OnGameRulesStateChange()
@@ -12,6 +12,10 @@ function HVHGameMode:OnGameRulesStateChange()
     self:SetupInitialTeamSpawns()
     self:PushScoreToCustomNetTable()
     self:GlimpseFix()
+  elseif state == DOTA_GAMERULES_STATE_WAIT_FOR_MAP_TO_LOAD then
+    --
+  elseif state == DOTA_GAMERULES_STATE_PRE_GAME then
+    --
   elseif state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
     self:DisplayHostOptions()
     self:WakeUpHeroes()
@@ -81,25 +85,55 @@ function HVHGameMode:DisplayHostOptions()
   GameRules:SendCustomMessage(ext, 0, 0)
 end
 
+-- triggers after hero is force picked, or fake heroes are made
+-- will keep repeating until successful
 function HVHGameMode:OnPlayerPickHero(keys)
-  local playerIndex = keys.player
-  local player = EntIndexToHScript(playerIndex)
+  local player = EntIndexToHScript(keys.player)
   local playerID = player:GetPlayerID()
-  local heroUnitName = keys.hero
+  --local heroUnitName = keys.hero
   --local heroIndex = keys.heroindex
 
-  local team = player:GetTeam()
-  -- Night Stalker starts as a forced sniper hero, so we need to replace him first
-  if heroUnitName == "npc_dota_hero_sniper" and team == DOTA_TEAM_BADGUYS then
-    local oldHero = player:GetAssignedHero()
-    local newHero = PlayerResource:ReplaceHeroWith(playerID, "npc_dota_hero_night_stalker", 0, 0)
-    UTIL_Remove(oldHero)
-  else  -- OnPlayerPickHero() is called twice for NS, and only once for Snipers
-    Timers:CreateTimer(SINGLE_FRAME_TIME, function()
-      local hero = player:GetAssignedHero()
-      self:SetupHero(hero)
-    end)
+  Timers:CreateTimer(function()
+    local successfulHeroSetup = self:AttemptToReplaceAndSetupHeroForPlayer(player)
+    if successfulHeroSetup then
+      return false -- end loop
+    else
+      return 0.1 -- try again in 0.1 sec
+    end
+  end)
+end
 
+function HVHGameMode:AttemptToReplaceAndSetupHeroForPlayer(player)
+  local team = player:GetTeam()
+  local hero = player:GetAssignedHero()
+
+  -- try again if invalid entity (hasn't loaded yet)
+  if not IsValidEntity(hero) then
+    print("Attempting: invalid entity")
+    return false
+  -- end the loop if hero already setup
+  elseif hero.SuccessfulSetup then
+    return true
+  -- switch night stalker player to correct hero if wrong hero
+  elseif self:IsSniperHeroOnWrongTeam(hero, team) then
+    print("Attempting: replacing sniper with NS")
+    local oldHero = hero
+    hero = PlayerResource:ReplaceHeroWith(player:GetPlayerID(), "npc_dota_hero_night_stalker", 0, 0)
+    UTIL_Remove(oldHero)
+    return false
+  -- setup hero
+  else
+    print("Attempting: setup hero")
+    self:SetupHero(hero)
+    return false
+  end
+end
+
+function HVHGameMode:IsSniperHeroOnWrongTeam(hero, team)
+  if hero:GetUnitName() == "npc_dota_hero_sniper" and team == DOTA_TEAM_BADGUYS then
+    return true
+  else
+    return false
   end
 end
 

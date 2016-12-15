@@ -3,7 +3,6 @@ if HVHConvars == nil then
 end
 
 require("hvh_constants")
-require("internal/convars")
 require("item_spawn/item_spawn_controller")
 
 function HVHConvars:Setup()
@@ -131,6 +130,13 @@ function HVHConvars:FakeHeroes()
     empty_bg = empty_bg - 1
   end
 
+  -- set the new heroes up
+  --Timers:CreateTimer(1.0, function()
+  --  local heroList = HeroList:GetAllHeroes()
+  --  for _,hero in pairs(heroList) do
+  --    HVHGameMode:SetupHero(hero)
+  --  end
+  --end)
 end
 
 function HVHConvars:SpawnAllItems()
