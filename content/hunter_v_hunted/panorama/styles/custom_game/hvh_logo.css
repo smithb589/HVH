@@ -1,6 +1,8 @@
 #LogoContainer
 {
     horizontal-align: center;
+    width:100%;
+    height:200px;
 }
 
 .BaseHud
@@ -13,8 +15,8 @@
 .HVH_Logo
 {
     margin-top: -21px;
-    margin-left: 920px;
-    horizontal-align: right;
+    margin-left: 700px;
+    horizontal-align: center;
     vertical-align: top;
     transition-property: opacity;
     transition-duration: 1.0s;
@@ -25,16 +27,16 @@
 .AspectRatio4x3 .HVH_Logo,
 .AspectRatio5x4 .HVH_Logo
 {
-    margin-left: 820px;
+    margin-left: 600px;
 }
 
 .HVH_Hourglass
 {
     width: 100px;
     height: 100px;
-    horizontal-align: center;
-    margin-top: 2px;
-    margin-left: 460px;
+    horizontal-align: right;
+    margin-top: 60px;
+    margin-right: 6px;
     opacity: 1;
     transform: rotateZ(0deg);
     transition-property: transform, opacity;
