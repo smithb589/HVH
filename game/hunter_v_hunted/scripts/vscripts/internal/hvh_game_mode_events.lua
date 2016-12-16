@@ -15,8 +15,10 @@ function HVHGameMode:OnGameRulesStateChange()
   elseif state == DOTA_GAMERULES_STATE_WAIT_FOR_MAP_TO_LOAD then
     --
   elseif state == DOTA_GAMERULES_STATE_PRE_GAME then
-    --
+    self:DisableMinimapCheck()
   elseif state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+    self:StartTeamAbandonmentListener(DOTA_TEAM_GOODGUYS)
+    self:StartTeamAbandonmentListener(DOTA_TEAM_BADGUYS)
     self:DisplayHostOptions()
     self:SpawnStartingDogs()
     HVHTutorial:WakeUpHeroes()
@@ -27,6 +29,50 @@ function HVHGameMode:OnGameRulesStateChange()
     HVHSniperSelect:Setup()
     HVHPhoenix:Setup()
   end
+end
+
+function HVHGameMode:DeclareWinner(team)
+  GameRules:SetSafeToLeave( true )
+  HVHPowerStages:NotifyVictory( team )
+  GameRules:SetGameWinner( team )
+end
+
+function HVHGameMode:DecrementDisconnectTimeRemaining(seconds, losingTeam)
+  local mode = GameRules:GetGameModeEntity()
+  mode.DisconnectTimeRemaining = mode.DisconnectTimeRemaining - seconds
+  if mode.DisconnectTimeRemaining <= 0.0 then
+    self:DeclareWinner(GetOppositeTeam(losingTeam))
+  else
+    --print(mode.DisconnectTimeRemaining .. " seconds remaining on the DC clock.")
+    local msg = "Enemy team disconnected. Your team will be victorious in " .. mode.DisconnectTimeRemaining .. " seconds."
+    GameRules:SendCustomMessage(msg, 0, 0)
+  end
+end
+
+function HVHGameMode:StartTeamAbandonmentListener(team)
+  local checkEvery = 5.0
+  Timers:CreateTimer(function()
+    local teamTotal = PlayerResource:GetPlayerCountForTeam(team)
+    local teamConnected = 0
+    for i = 1, teamTotal do
+      local playerID = PlayerResource:GetNthPlayerIDOnTeam(team, i)
+      local state = PlayerResource:GetConnectionState(playerID) 
+      if state == CONNECTION_STATE_BOT or state == CONNECTION_STATE_PLAYER then
+        teamConnected = teamConnected + 1
+      end
+      --print("T"..team.." " .. PlayerResource:GetPlayerName(playerID) .. " ID: " .. playerID .. ", ConnState: " .. state)
+    end
+
+    --  (intentional!) 0/0 can happen in single-player so there's no auto-quit
+    if teamTotal ~= 0 and (teamConnected / teamTotal) == 0 then
+      --print("T"..team.." players all DISCONNECTED.")
+      self:DecrementDisconnectTimeRemaining(checkEvery, team)
+    else
+      --print("T"..team.." players connected: "..teamConnected.."/"..teamTotal)
+    end
+
+    return checkEvery
+  end)
 end
 
 -- triggers after hero is force picked, or fake heroes are made

@@ -93,5 +93,6 @@ function HVHGameMode:SetupGameMode()
     mode.BadGuyTeamSpawn = nil
     mode.HalfCycleTimeRemaining = 0
     mode.DeadHounds = 0
+    mode.DisconnectTimeRemaining = DC_TIME_ALLOWANCE
   end 
 end

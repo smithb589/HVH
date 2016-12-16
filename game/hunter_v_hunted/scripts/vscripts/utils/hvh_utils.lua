@@ -131,3 +131,12 @@ function AddUnitToSelection( unit )
   --print(unit:GetUnitName() .. " added to selection for player " .. player:GetPlayerID())
   CustomGameEventManager:Send_ServerToPlayer(player, "add_to_selection", { ent_index = unit:GetEntityIndex() })
 end
+
+function GetOppositeTeam(team)
+  if team == DOTA_TEAM_GOODGUYS then
+    return DOTA_TEAM_BADGUYS
+  elseif team == DOTA_TEAM_BADGUYS then
+    return DOTA_TEAM_GOODGUYS
+  end
+  return -1
+end

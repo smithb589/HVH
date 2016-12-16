@@ -50,13 +50,9 @@ end
 function HVHPowerStages:CheckForWinner()
 	local mode = GameRules:GetGameModeEntity()
 	if mode.GoodGuyLives <= 0 then
-		GameRules:SetSafeToLeave( true )
-		self:NotifyVictory( DOTA_TEAM_BADGUYS )		
-		GameRules:SetGameWinner( DOTA_TEAM_BADGUYS )
+		HVHGameMode:DeclareWinner(DOTA_TEAM_BADGUYS)
 	elseif mode.BadGuyLives <= 0 then
-		GameRules:SetSafeToLeave( true )
-		self:NotifyVictory( DOTA_TEAM_GOODGUYS )
-		GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
+		HVHGameMode:DeclareWinner(DOTA_TEAM_GOODGUYS)
 	end
 end
 

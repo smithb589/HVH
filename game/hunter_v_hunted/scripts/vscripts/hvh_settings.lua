@@ -10,12 +10,13 @@ DISABLE_BONUS_DOGS  = false  -- disable extra hounds for missing sniper players
 
 -- HVH Time
 START_WITH_DAY		= true 			-- true for day, false for night
-DAY_SECONDS         = 5.0  		-- 60.0
-NIGHT_SECONDS       = 5.0			-- 90.0
+DAY_SECONDS         = 60.0  		-- 60.0
+NIGHT_SECONDS       = 90.0			-- 90.0
 DAY_SECONDS_RANDOM_EXTRA   = 0.0	-- randomly increase/decrease each half-cycle by -(Value) to Value seconds
 NIGHT_SECONDS_RANDOM_EXTRA = 0.0	-- randomly increase/decrease each half-cycle by -(Value) to Value seconds
-PRE_GAME_TIME = 6.0                -- How long after people select their heroes should the horn blow and the game start?
+PRE_GAME_TIME = 30.0                -- How long after people select their heroes should the horn blow and the game start?
 PREGAME_SLEEP = true 				-- play the tutorial and put players to sleep for first ~30 seconds
+DC_TIME_ALLOWANCE	= 60.0			-- How much time is given after a whole team DCs before victory is declared
 
 -- HVH Respawn
 BADGUY_LIVES  = 6
@@ -38,6 +39,7 @@ NEUTRAL_CREEPS_REPEAT_TIME     = 10.0		-- respawn every Y seconds after start ti
 NS_CHEST_HEAL			= 	0.05		-- percentage of maximum health per moonrock pickup
 SUN_SHARD_BONUS_TIME	=	3			-- extra seconds per sun shard use
 SUN_SHARD_PICKUP_CHANCE	=	1.0			-- chance of getting a sun shard on pickup: 0.0 = 0%, 1.0 = 100%
+-- TODO: on death destroy half of sunshard inventory, round down
 
 -- HVH Power Stages for reinforcements / evolutions
 GG_POWER_STAGE_THRESHOLDS = {}

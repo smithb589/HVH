@@ -67,6 +67,7 @@ function HVHSniperSelect:MakeMenuVisibleToRandomEligibleTeammate()
 		--print(#validSniperList .. " valid snipers available.")
 		local r = RandomInt(1, #validSniperList)
 		local sniper = validSniperList[r]
+		-- TODO: unable to index "player" when played is DC'd
 		self:MakeMenuVisible(sniper:GetPlayerOwner(), SNIPER_SELECT_REASON_FREEBIE)
 	end
 end
