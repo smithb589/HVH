@@ -2,6 +2,9 @@
 -- Phoenix AI
 --------------------------------------------------------------------------------------------------------
 function Spawn( entityKeyValues )
+	-- preview pane is now spawning creatures in it, as of ~7.00
+	if not IsServer() then return end
+
 	thisEntity:SetContextThink("Think", Think, 0.25)
 	thisEntity.behaviorSystem = AICore:CreateBehaviorSystem({
 		BehaviorSupernova(thisEntity, DESIRE_MAX+1),

@@ -2,6 +2,9 @@
 -- Eidolon AI
 --------------------------------------------------------------------------------------------------------
 function Spawn( entityKeyValues )
+	-- preview pane is now spawning creatures in it, as of ~7.00
+	if not IsServer() then return end
+
 	-- force the ambient eidolon effects
 	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_enigma/enigma_eidolon_ambient.vpcf", PATTACH_ABSORIGIN_FOLLOW, thisEntity)
 	ParticleManager:SetParticleControl(particle, 0, thisEntity:GetAbsOrigin())

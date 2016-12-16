@@ -2,6 +2,9 @@
 -- Enigma AI
 --------------------------------------------------------------------------------------------------------
 function Spawn( entityKeyValues )
+	-- preview pane is now spawning creatures in it, as of ~7.00
+	if not IsServer() then return end
+	
 	thisEntity:SetContextThink("Think", Think, 1.0)
 	thisEntity.behaviorSystem = AICore:CreateBehaviorSystem({
 		BehaviorBlackholeChannel(thisEntity, DESIRE_MAX+1),
