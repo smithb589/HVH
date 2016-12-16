@@ -28,3 +28,12 @@ function HVHTutorial:Start(playerID)
 		end
 	end)
 end
+
+function HVHTutorial:WakeUpHeroes()
+  local heroList = HeroList:GetAllHeroes()
+  for _,hero in pairs(heroList) do
+    if hero:IsAlive() and hero:HasModifier("modifier_tutorial_sleep") then
+      hero:RemoveModifierByName("modifier_tutorial_sleep")
+    end
+  end
+end

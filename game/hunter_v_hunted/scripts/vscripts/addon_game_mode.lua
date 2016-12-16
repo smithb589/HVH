@@ -22,7 +22,12 @@ require('lib/animations')
 require('lib/popups')
 
 require('internal/hvh_game_mode')
-require("internal/event_handlers")
+require('internal/hvh_game_mode_host_options')
+require('internal/hvh_game_mode_spawning')
+require('internal/hvh_game_mode_setup_heroes')
+require('internal/hvh_game_mode_misc')
+require('internal/hvh_game_mode_events')
+
 require("internal/power_stages")
 require("internal/tutorial")
 require("internal/neutral_creeps")
