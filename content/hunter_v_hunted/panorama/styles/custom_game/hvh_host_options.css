@@ -11,7 +11,7 @@
     border-radius: 8px;
     background-color: gradient( linear, 100% 0%, 100% 100%, from( #111111 ), color-stop( 0.01, #202327 ), color-stop( 0.2, #141619ff ), to( #000000dd ) )
     visibility: visible;
-    transform: translatey( -600px );
+    transform: translatey( -800px );
     transition-property: transform;
     transition-duration: 0.5s;
 }

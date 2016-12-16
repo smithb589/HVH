@@ -35,6 +35,7 @@
 
 				<Panel class="Option" id="DisableCreeps">
 					<Label class="OptionLabel" text="#DisableCreeps" />
+					<ToggleButton id="DisablePhoenix" text="#DisablePhoenix" />
 					<ToggleButton id="DisableMegacreepsSolo" text="#DisableMegacreepsSolo" />
 					<ToggleButton id="DisableMegacreepsWarparty" text="#DisableMegacreepsWarparty" />
 					<ToggleButton id="DisableUrsaAndRoshan" text="#DisableUrsaAndRoshan" />
@@ -49,6 +50,20 @@
 					<RadioButton group="NotEnoughPlayersRadio" id="NotEnoughPlayersRadio_Hounds" text="#NotEnoughPlayers_Hounds" checked="checked" />
 					<RadioButton group="NotEnoughPlayersRadio" id="NotEnoughPlayersRadio_DoNothing" text="#NotEnoughPlayers_DoNothing"/>
 				</Panel>
+
+				<Panel class="Option" id="EnableMinimap">
+					<Label class="OptionLabel" text="#EnableMinimap" />
+					<RadioButton group="EnableMinimapRadio" id="EnableMinimapRadio_Yes" text="#EnableMinimap_Yes" checked="checked" />
+					<RadioButton group="EnableMinimapRadio" id="EnableMinimapRadio_No" text="#EnableMinimap_No" />
+				</Panel>
+
+				<Panel class="Option" id="CameraSettings">
+					<Label class="OptionLabel" text="#CameraSettings" />
+					<RadioButton group="CameraSettingsRadio" id="CameraSettingsRadio_Default" text="#CameraSettings_Default" checked="checked" />
+					<RadioButton group="CameraSettingsRadio" id="CameraSettingsRadio_Locked" text="#CameraSettings_Locked"/>
+					<!--<RadioButton group="CameraSettingsRadio" id="CameraSettingsRadio_Showcase" text="#CameraSettings_Showcase"/>-->
+				</Panel>
+
 			</Panel>
 
 			<!--Teams List, left hand panel-->

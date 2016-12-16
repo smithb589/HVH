@@ -74,7 +74,7 @@ function HVHGameMode:SetupHero(hero)
     --hero:AddItemByName("item_ultimate_scepter")
   end
 
-  -- move hero to the pregenerated random team spawn and lock camera for 1 second
+  -- move hero to the pregenerated random team spawn
   local mode = GameRules:GetGameModeEntity()
   local spawnPos, enemySpawnPos = nil,nil
   if heroTeam == DOTA_TEAM_GOODGUYS then
@@ -90,11 +90,15 @@ function HVHGameMode:SetupHero(hero)
   hero:SetForwardVector(direction) -- face the enemy spawn
   --DebugDrawLine(spawnPos, enemySpawnPos, 0, 255, 0, true, 20.0)
 
+  -- lock camera for 1 second then unlock, unless non-default camera settings are enabled
   local playerID = hero:GetPlayerID()
   PlayerResource:SetCameraTarget(playerID, hero)
-  Timers:CreateTimer(1.0, function()
-    PlayerResource:SetCameraTarget(playerID, nil)
-  end)
+
+  if not HVHGameMode.HostOptions or HVHGameMode.HostOptions["CameraSettings"] == "default" then
+    Timers:CreateTimer(1.0, function()
+      PlayerResource:SetCameraTarget(playerID, nil)
+    end)
+  end
 
   -- (optional) force the hero to sleep and read tutorial text until the horn blows
   local isTutorialEnabled = nil

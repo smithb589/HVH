@@ -28,6 +28,7 @@ end
 
 function HVHGameMode:DisplayHostOptions()
   local HO = HVHGameMode.HostOptions
+  if not HO then return end
 
   local f1 = "<font color='#99CCFF'>" -- blue
   local f2 = "<font color='#FCAF3D'>" -- yellow
@@ -38,17 +39,41 @@ function HVHGameMode:DisplayHostOptions()
   local ext = f2.."Spawn extra hounds: " ..fX..tostring(HO["SpawnExtraHounds"])
   local pop = f2.."Neutral creep population: "..fX..tostring(HO["NeutralCreeps"])
   local dis = f2.."Disable creeps: "     ..fX
+  local min = f2.."Enable minimap: "     ..fX..tostring(HO["EnableMinimap"])
+  local cam = f2.."Camera settings: "    ..fX..tostring(HO["CameraSettings"])
 
+  local creepList = ""
   for key,value in pairs(HO) do
     if string.find(key, "Disable") and value then
-      dis = dis .. string.gsub(key, "Disable", "") .. ", "
+      creepList = creepList .. string.gsub(key, "Disable", "") .. ", "
     end
   end
+  dis = dis .. creepList
 
   --PrintTable(HVHGameMode.HostOptions)
   GameRules:SendCustomMessage(intro, 0, 0)
-  GameRules:SendCustomMessage(tut, 0, 0)
-  GameRules:SendCustomMessage(pop, 0, 0)
-  GameRules:SendCustomMessage(dis, 0, 0)
-  GameRules:SendCustomMessage(ext, 0, 0)
+
+  if not HO["EnableTutorial"] then
+    GameRules:SendCustomMessage(tut, 0, 0) end
+  if HO["NeutralCreeps"] ~= "medium" then
+    GameRules:SendCustomMessage(pop, 0, 0) end
+  if creepList ~= "" then
+    GameRules:SendCustomMessage(dis, 0, 0) end
+  if not HO["SpawnExtraHounds"] then
+    GameRules:SendCustomMessage(ext, 0, 0) end
+  if not HO["EnableMinimap"] then 
+    GameRules:SendCustomMessage(min, 0, 0) end
+  if HO["CameraSettings"] ~= "default" then
+    GameRules:SendCustomMessage(cam, 0, 0) end 
+end
+
+-- if host options allow, disable everybody's minimap
+function HVHGameMode:DisableMinimapCheck()
+  if not HVHGameMode.HostOptions["EnableMinimap"] then
+    for playerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+      if PlayerResource:IsValidPlayerID(playerID) then
+        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID), "disable_minimap",{})
+      end
+    end
+  end
 end
