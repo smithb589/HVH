@@ -23,3 +23,4 @@ game/hunter_v_hunted/panorama/scripts/custom_game/barebones_hud_base.vjs_c
 game/hunter_v_hunted/scripts/vscripts/statcollection/settings.kv
 workshop/video/*
 D2Modkit/*
+game/hunter_v_hunted/panorama_debugger.cfg
