@@ -20,7 +20,7 @@
 		</Panel>
 		<Panel id="ItemsRow" class="InfoRow">
 			<Label id="ItemsText" html="true" text="#game_info_howtoplay_description_items" />
-			<Image id="ItemsImage" src="file://{images}/custom_game/game_info/items.psd" />
+			<Image id="ItemsImage" src="file://{images}/custom_game/game_info/items2.psd" />
 		</Panel>
 
 		<Label id="PlayingSnipersHeader" class="Header" html="true" text="#game_info_playingSnipers_header" />
@@ -43,6 +43,23 @@
 				<Label id="PlayingNSText03" class="PlayingNSText" html="true" text="#game_info_playingNS_description03" />
 				<Label id="PlayingNSText04" class="PlayingNSText" html="true" text="#game_info_playingNS_description04" />
 				<Label id="PlayingNSText05" class="PlayingNSText" html="true" text="#game_info_playingNS_description05" />
+			</Panel>
+		</Panel>
+
+		<Image id="PhoenixImage" src="file://{images}/custom_game/game_info/phoenix.psd" />
+
+		<Label id="PhoenixHeader" class="Header" html="true" text="#game_info_phoenix_header" />
+		<Panel id="PhoenixRow" class="InfoRow">
+			<Panel id="PhoenixTextContainer">
+				<Label id="PhoenixText01" class="PhoenixText" html="true" text="#game_info_phoenix_description01" />
+				<Label id="PhoenixText02" class="PhoenixText" html="true" text="#game_info_phoenix_description02" />
+				<Label id="PhoenixText03" class="PhoenixText" html="true" text="#game_info_phoenix_description03" />
+				<Panel id="PhoenixRowInterior" class="InfoRow">
+					<Panel id="PhoenixTextContainerHalf">
+						<Label id="PhoenixText05" class="PhoenixText" html="true" text="#game_info_phoenix_description05" />
+					</Panel>
+					<Image id="PhoenixEggImage" src="file://{images}/custom_game/game_info/phoenix_egg.psd" />
+				</Panel>
 			</Panel>
 		</Panel>
 

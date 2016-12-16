@@ -1,6 +1,6 @@
 .HVHGameInfo
 {
-    width:100%;
+    width:95%;
     flow-children: down;
 }
  
@@ -14,24 +14,15 @@ Label
  
 #Title
 {
-    flow-children: right;
-}
-
-#TitleIcon
-{
-    width: 64px;
-    height: 64px;
-    vertical-align: center;
+    flow-children: left;
+    margin-top:-20px;
+    width:95%;
 }
 
 #TitleName
 {
     color: #cccccc;
-    font-size: 48px;
-    margin-left: 16px;
-    margin-top: -60px;
-    text-transform: uppercase;
-    vertical-align: center;
+    font-size: 44px;
 }
 
 #ObjectiveDescription
@@ -65,6 +56,7 @@ Label
 
 #CyclesRow
 {
+    height:192px;
     margin-top: 24px;
     margin-right: 24px;
     margin-left: 8px;
@@ -72,6 +64,7 @@ Label
 
 #CyclesText
 {
+    height:100%;
     margin-top: 0px;
     margin-right: 12px;
 }
@@ -100,6 +93,7 @@ Label
 
 #HoundText
 {
+    height:100%;    
     margin-top: 0px;
     margin-left: 12px;
 }
@@ -120,6 +114,7 @@ Label
 
 #ItemsText
 {
+    height:100%;    
     margin-top: 0px;
     margin-right: 12px;
 }
@@ -128,7 +123,7 @@ Label
 
 #PlayingSnipersHeader
 {
-    margin-top: 18px;
+
 }
 
 #PlayingSnipersRow
@@ -147,7 +142,7 @@ Label
 
 .PlayingSnipersText
 {
-    margin-top: 16px;
+    margin-top: 18px;
 }
 
 #PlayingSnipersImage
@@ -160,33 +155,81 @@ Label
 
 #PlayingNSHeader
 {
-    margin-top: 18px;
+
 }
 
 #PlayingNSRow
 {
     margin-top: 12px;
-    margin-right: 24px;    
+    margin-right: 0px; 
+    margin-left: -16px;
 }
 
 #PlayingNSTextContainer
 {
     flow-children: down; 
-    width: 60%;
+    width: 55%;
     margin-top: -16px;
-    margin-left: 16px;
 }
 
 .PlayingNSText
 {
-    margin-top: 16px;
+    margin-top: 18px;
 }
 
 #PlayingNSImage
 {
     width: 213px;
     height: 282px;
-    margin-top: 48px;  
+    margin-top: 48px;
+    margin-right: 16px;
+}
+
+
+#PhoenixImage
+{
+    margin-top: 16px;
+    margin-left: -20px;
+}
+
+#PhoenixHeader
+{
+    margin-top: 18px;
+}
+
+#PhoenixRow
+{
+    margin-top: 12px;
+    width: 92%;
+}
+
+#PhoenixTextContainer
+{
+    flow-children: down; 
+    margin-top: -16px;
+}
+
+.PhoenixText
+{
+    margin-top: 18px;
+}
+
+#PhoenixRowInterior
+{
+
+}
+
+#PhoenixTextContainerHalf
+{
+    flow-children: down; 
+    width: 50%;
+    margin-top: -16px;
+    margin-right: 12px;
+}
+
+#PhoenixEggImage
+{
+    margin-top: -6px;
 }
 
 
