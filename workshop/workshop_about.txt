@@ -1,13 +1,9 @@
-Version 1.6.2
+Version 1.6.3 (7.00 compatible!)
 
 Simplified Chinese (简体中文) and Russian (Русский) translations available!
 
 [b]WHAT'S NEW?[/b]
-Hiya, it's been a while (Like the PHOENIX, I rise again). This update introduces the Phoenix, an immortal unit that will force the Snipers to play more strategically if they want to corner the Night Stalker. While collecting chests (now called Sun Shards), the Snipers will also gain Sun Shard items. These can be "fed" to the Phoenix to either increase the length of day or shorten night. The Night Stalker benefits from a longer night, and he'll do everything he can to make sure the Snipers can't use their shards.
-
-I'll be keeping a close eye on the numbers, which may need to be revised soon. This patch should see a significant boost to the Night Stalker team. I'm not aiming for a perfect 50/50 win ratio, but I want it to feel more fair.
-
-I've also heard a lot of complaints related to the neutral creeps in general, and I've been thinking about setting up some host options to allow more customization. That might be my next mission, followed by new maps and new game modes. Tell me what you think.
+Valve broke everything with 7.00, so it will be a while until this mod is where it needs to be. For now, you can play a game and see what it's all about, but the minimap is completely broken so it won't be a full experience.
 
 ---
 

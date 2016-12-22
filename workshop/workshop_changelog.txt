@@ -1,3 +1,13 @@
+1.6.3
+-----
+-- 7.00 compatible (but not ideal yet)
+-- GameInfo (the arrow button on left side of screen) now includes information about The Phoenix
+-- Team Abandonment Listener: If an entire team disconnects, a 60 second timer will start to end the game and give victory to the other team
+-- New Host Options:
+---- Camera Settings: Default/Locked
+---- Enable Minimap: Yes/No
+---- (Disable Phoenix not working yet)
+
 1.6.2
 -----
 HOST OPTIONS

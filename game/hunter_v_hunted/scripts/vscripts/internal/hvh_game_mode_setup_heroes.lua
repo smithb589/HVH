@@ -25,6 +25,9 @@ function HVHGameMode:AttemptToReplaceAndSetupHeroForPlayer(player)
   end
 end
 
+-- TODO: make sure all these changes work on DC/reconnect
+-- TODO: fix the clock disappearing on reconnect
+
 function HVHGameMode:SetupHero(hero)
   if hero.SuccessfulSetup then return end
 
