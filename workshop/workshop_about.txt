@@ -1,8 +1,10 @@
-Version 1.6.3 (7.00 compatible!)
+Version 1.6.4 (7.00 compatible!)
 
 Simplified Chinese (简体中文) and Russian (Русский) translations available!
 
 [b]WHAT'S NEW?[/b]
+As of 1.6.4, the minimap issue has been resolved.
+
 Valve broke everything with 7.00, so it will be a while until this mod is where it needs to be. For now, you can play a game and see what it's all about, but the minimap is completely broken so it won't be a full experience.
 
 ---

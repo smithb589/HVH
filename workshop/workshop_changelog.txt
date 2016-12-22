@@ -1,3 +1,7 @@
+1.6.4
+-----
+-- Fixed minimap issue
+
 1.6.3
 -----
 -- 7.00 compatible (but not ideal yet)
