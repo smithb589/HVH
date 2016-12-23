@@ -39,6 +39,29 @@ function HVHGameMode:PostLoadPrecache()
   end
 end
 
+-- Move backpack items to inventory or toss them, while preserving charges (avoiding dupes)
+function HVHGameMode:BackpackDisabler()
+  local repeatEvery = 0.1
+
+  Timers:CreateTimer(repeatEvery, function()
+    local heroList = HeroList:GetAllHeroes()
+    for _,hero in pairs(heroList) do
+      for i = DOTA_ITEM_SLOT_7, DOTA_ITEM_SLOT_9 do
+        local backpackItem = hero:GetItemInSlot(i)
+        if backpackItem then
+          local itemName = backpackItem:GetName()
+          local itemCharges = backpackItem:GetCurrentCharges()
+          hero:RemoveItem(backpackItem)
+          local newItem = HVHItemUtils:AddItemOrLaunchIt(hero, itemName)
+          newItem:SetCurrentCharges(itemCharges)
+        end
+      end
+    end
+
+    return repeatEvery
+  end)
+end
+
 -------------------------------------------------------------------
 -- Gold/XP filters
 -------------------------------------------------------------------

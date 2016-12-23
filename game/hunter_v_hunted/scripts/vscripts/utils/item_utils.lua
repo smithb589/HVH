@@ -96,6 +96,7 @@ function HVHItemUtils:DropItemFromStash(stashItem, unit)
 end
 
 -- add item to unit's inventory; if full, launch it
+-- returns a handle to the item
 function HVHItemUtils:AddItemOrLaunchIt(unit, itemName)
 	local totalItems = unit:GetNumItemsInInventory()
 	
@@ -103,7 +104,7 @@ function HVHItemUtils:AddItemOrLaunchIt(unit, itemName)
 	if (itemName == "item_sun_shard_hvh" and unit:HasItemInInventory("item_sun_shard_hvh")) or
 	  totalItems < MAX_INVENTORY_ITEMS then
 	
-		unit:AddItemByName(itemName)
+		return unit:AddItemByName(itemName)
 	
 	-- otherwise launch it
 	else
@@ -112,5 +113,7 @@ function HVHItemUtils:AddItemOrLaunchIt(unit, itemName)
 		local drop = CreateItemOnPositionForLaunch(pos, item)
 	    local pos_launch = pos + RandomVector(RandomFloat(150,200))
 	    item:LaunchLoot(false, 200, 0.75, pos_launch)
+
+	    return item
 	end
 end

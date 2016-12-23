@@ -19,6 +19,7 @@ function HVHGameMode:OnGameRulesStateChange()
   elseif state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
     self:StartTeamAbandonmentListener(DOTA_TEAM_GOODGUYS)
     self:StartTeamAbandonmentListener(DOTA_TEAM_BADGUYS)
+    self:BackpackDisabler()
     self:DisplayHostOptions()
     self:SpawnStartingDogs()
     HVHTutorial:WakeUpHeroes()
