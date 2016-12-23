@@ -201,7 +201,7 @@
 		"AbilityManaCost"				"0"
 	}
 
-	// TODO: this no longer affects melee heroes so he needs a different ability
+	// TODO: this no longer affects ranged heroes so he needs a different ability
 	"tiny_craggy_exterior"
 	{
 		"AbilitySpecial"
@@ -229,7 +229,6 @@
 		}
 	}
 
-	// TODO: rebalance
 	"techies_land_mines"
 	{
 		"AbilityManaCost"				"0"

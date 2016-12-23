@@ -19,7 +19,7 @@
 	"ItemDisplayCharges"  "1"
 	"ItemRequiresCharges" "1"
 	"ItemShareability"	"ITEM_FULLY_SHAREABLE"
-	"ItemStackable" "0" // TODO: think about this
+	"ItemStackable" "0"
 	"AbilityManaCost" "0"
 	
 	// Stats

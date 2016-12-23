@@ -38,11 +38,11 @@ end
 function BehaviorPlaceMine:Begin()
 	--PrintTable(HVHNeutralCreeps:GetDestinationList(self.unit))
 	self.order.Position = HVHNeutralCreeps:GetDestination(self.unit)
-	self.endTime = GameRules:GetGameTime() + 2.0
+	self.endTime = GameRules:GetGameTime() + 1.0
 end
 
 function BehaviorPlaceMine:Continue()
-	self.endTime = GameRules:GetGameTime() + 2.0
+	self.endTime = GameRules:GetGameTime() + 1.0
 end
 
 function BehaviorPlaceMine:End()

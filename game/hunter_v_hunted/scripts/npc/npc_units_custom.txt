@@ -908,11 +908,12 @@
 		"GameSoundsFile"			"scripts/game_sounds_heroes/game_sounds_phoenix.txt"
 		"VoiceFile"					"scripts/voscripts/game_sounds_vo_phoenix.txt"
 	
+		// TODO: figure out this ambient particle stuff
 		"RenderablePortrait"
 		{
 			"Particles"
 			{
-				"phoenix_ambient"
+				"particles/units/heroes/hero_phoenix/phoenix_ambient.vpcf"
 				{
 					"0"
 					{

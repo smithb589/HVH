@@ -111,7 +111,7 @@
 			m_ChildRef = resource:"particles/dropped_moonrock_smoke.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/dropped_moonrock_b.vpcf"
+			m_ChildRef = resource:"particles/dropped_moonrock_base_b.vpcf"
 		},
 	]
 }
