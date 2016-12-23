@@ -569,9 +569,15 @@ function HVHNeutralCreeps:DestroyAllTechiesMines(unit)
     return mineLocations
 end
 
+-- Get all techies mines on the map
+function HVHNeutralCreeps:GetAllTechiesMines()
+	return Entities:FindAllByClassname("npc_dota_techies_mines")
+end
+
+
 -- Get all mines owned by a single unit
 function HVHNeutralCreeps:GetTechiesMines(unit)
-	local mines = Entities:FindAllByClassname("npc_dota_techies_mines")
+	local mines = self:GetAllTechiesMines()
 	if mines == nil then return nil end
 
 	local unitMines = {}
@@ -586,10 +592,10 @@ end
 
 -- Returns false if ability destination is within abilityRange of any other mine owned by unit
 function HVHNeutralCreeps:IsValidMinePlacement(unit, abilityRange, destination)
-	local unitMines = self:GetTechiesMines(unit)
-	if unitMines == nil then return true end
+	local allMines = self:GetAllTechiesMines()
+	if allMines == nil then return true end
 
-	for _,mine in pairs(unitMines) do
+	for _,mine in pairs(allMines) do
 		if AICore:IsVectorInRange(mine, destination, 0, abilityRange) then
 			return false
 		end
