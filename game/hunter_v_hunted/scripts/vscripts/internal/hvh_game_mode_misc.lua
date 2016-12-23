@@ -54,6 +54,11 @@ function HVHGameMode:BackpackDisabler()
           hero:RemoveItem(backpackItem)
           local newItem = HVHItemUtils:AddItemOrLaunchIt(hero, itemName)
           newItem:SetCurrentCharges(itemCharges)
+
+          local player = hero:GetPlayerOwner()
+          if player then 
+            HVHErrorUtils:SendErrorToScreenTop(player, "#ItemReject_BackpackDisabled")
+          end
         end
       end
     end

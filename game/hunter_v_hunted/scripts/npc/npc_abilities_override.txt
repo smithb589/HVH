@@ -832,7 +832,7 @@
 		}
 	}
 
-	"item_diffusal_blade" // TODO: should it murder dog?
+	"item_diffusal_blade"
 	{
 		"ItemQuality"	"epic"	
 		"ItemSellable" "0"
@@ -1194,7 +1194,7 @@
 		}
 	}
 
-	"item_quelling_blade" // TODO: super quelling blade
+	"item_quelling_blade"
 	{
 		//"ItemQuality"	""	
 		"ItemSellable" "0"
@@ -1460,7 +1460,7 @@
 		}
 	}
 
-	"item_abyssal_blade" // TODO: have I disabled all procs on attack?
+	"item_abyssal_blade"
 	{
 		"ItemQuality"	"epic"
 		"ItemSellable" "0"

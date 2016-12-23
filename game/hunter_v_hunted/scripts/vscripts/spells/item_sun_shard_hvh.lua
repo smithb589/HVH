@@ -59,8 +59,9 @@ end
 function SunShard_OnDeath(keys)
 	local caster = keys.caster
 	local item = keys.ability	
+	local charges = item:GetCurrentCharges() - math.floor(item:GetCurrentCharges() * SUN_SHARD_DEATH_PENALTY) -- 5 - floor(2.5) = 3
 
-	for i=1, item:GetCurrentCharges() do
+	for i=1, charges do
 		local pos = caster:GetAbsOrigin()
 		local item = CreateItem("item_sun_shard_hvh", nil, nil)
 		local drop = CreateItemOnPositionForLaunch(pos, item)

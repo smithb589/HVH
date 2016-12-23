@@ -5,21 +5,18 @@ function HVHGameMode:AttemptToReplaceAndSetupHeroForPlayer(player)
 
   -- try again if invalid entity (hasn't loaded yet)
   if not IsValidEntity(hero) then
-    print("Attempting: invalid entity")
     return false
   -- end the loop if hero already setup
   elseif hero.SuccessfulSetup then
     return true
   -- switch night stalker player to correct hero if wrong hero
   elseif self:IsSniperHeroOnWrongTeam(hero, team) then
-    print("Attempting: replacing sniper with NS")
     local oldHero = hero
     hero = PlayerResource:ReplaceHeroWith(player:GetPlayerID(), "npc_dota_hero_night_stalker", 0, 0)
     UTIL_Remove(oldHero)
     return false
   -- setup hero
   else
-    print("Attempting: setup hero")
     self:SetupHero(hero)
     return false
   end
@@ -126,7 +123,7 @@ function HVHGameMode:SetupHero(hero)
     hero.SniperCharacter = SNIPER_INVALID
   end
 
-  print("Succesful setup of new hero")
+  --print("Successful setup of new hero")
   hero.SuccessfulSetup = true
 end
 

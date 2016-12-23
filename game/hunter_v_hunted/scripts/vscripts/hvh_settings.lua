@@ -1,5 +1,5 @@
 -- In this file you can set up all the properties and settings for your game mode.
-HVH_VERSION 		= "1.6.4"
+HVH_VERSION 		= "1.6.5"
 
 -- HVH Leveling and Abilities
 STARTING_LEVEL		= 16
@@ -39,6 +39,7 @@ NEUTRAL_CREEPS_REPEAT_TIME     = 10.0		-- respawn every Y seconds after start ti
 NS_CHEST_HEAL			= 	0.05		-- percentage of maximum health per moonrock pickup
 SUN_SHARD_BONUS_TIME	=	3			-- extra seconds per sun shard use
 SUN_SHARD_PICKUP_CHANCE	=	1.0			-- chance of getting a sun shard on pickup: 0.0 = 0%, 1.0 = 100%
+SUN_SHARD_DEATH_PENALTY	=	0.5			-- percentage of sunshards lost on death, round down
 -- TODO: on death destroy half of sunshard inventory, round down
 
 -- HVH Power Stages for reinforcements / evolutions
