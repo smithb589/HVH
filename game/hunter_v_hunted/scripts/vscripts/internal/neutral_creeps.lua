@@ -3,7 +3,7 @@ if HVHNeutralCreeps == nil then
 
 	RANGE_TYPICAL_MIN = 2600.0
 	RANGE_TECHIES_MAX = 2000.0
-	RANGE_TECHIES_MIN = 0.0
+	RANGE_TECHIES_MIN = 400.0
 	TECHIES_MAX_MINES = 8
 
 	NEUTRALCREEPS_EVENT_TECHIES_DEATH           = 0
@@ -20,8 +20,8 @@ end
 
 -- for testing
 function HVHNeutralCreeps:SpawnCreepsConvar()
-	self.Randomizer:DisplayProbabilties()
-	self:SpawnWarParty()
+	--self.Randomizer:DisplayProbabilties()
+	self:SpawnHellbears()
 end
 
 function HVHNeutralCreeps:Setup()
@@ -366,7 +366,7 @@ function HVHNeutralCreeps:SpawnHellbears()
 	local vec_end = AICore:ChooseRandomPointOfInterest(vec_start, RANGE_TYPICAL_MIN)
 	local destinationList =	self:CreateDestinationList(vec_end, 4)
 
-	local hellbears = self:SpawnNeutrals("npc_hvh_hellbear", 2, vec_start, DOTA_TEAM_CUSTOM_1)
+	local hellbears = self:SpawnNeutrals("npc_hvh_hellbear", 1, vec_start, DOTA_TEAM_CUSTOM_1)
 
 	for _,unit in pairs(hellbears) do
 		self:SetDestinationList(unit, destinationList)
@@ -583,6 +583,21 @@ function HVHNeutralCreeps:GetTechiesMines(unit)
 
 	return unitMines
 end
+
+-- Returns false if ability destination is within abilityRange of any other mine owned by unit
+function HVHNeutralCreeps:IsValidMinePlacement(unit, abilityRange, destination)
+	local unitMines = self:GetTechiesMines(unit)
+	if unitMines == nil then return true end
+
+	for _,mine in pairs(unitMines) do
+		if AICore:IsVectorInRange(mine, destination, 0, abilityRange) then
+			return false
+		end
+	end
+
+	return true
+end
+
 
 -- Destroy all mines, save their locations, and remake the mines for the newOwner's team with a dummy
 -- Returns the dummy unit

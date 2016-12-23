@@ -12,6 +12,7 @@ if BehaviorTravelAggressive == nil then
 end
 
 function BehaviorTravelAggressive:Setup()
+	self.name = "TravelAggressive"
 	self.order.OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE
 	self.order.Position  = nil
 end

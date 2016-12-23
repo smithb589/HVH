@@ -11,6 +11,8 @@ if BehaviorRetreat == nil then
 end
 
 function BehaviorRetreat:Setup()
+	self.name = "Retreat"
+	self.afraidOfThisEnemy = nil
 	self.order.OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION
 end
 
@@ -20,6 +22,7 @@ function BehaviorRetreat:Evaluate()
 	local enemy = AICore:GetClosestVisibleEnemyInRange(self.unit, visionRadius)
 
 	if enemy and AICore:CanSeeTarget(self.unit, enemy) then
+		self.afraidOfThisEnemy = enemy
 		desire = self.desire
 	end
 
@@ -34,10 +37,10 @@ end
 
 function BehaviorRetreat:Continue()
 	local visionRadius = self.unit:GetCurrentVisionRange()
-	local enemy = AICore:GetClosestVisibleEnemyInRange(self.unit, visionRadius)
+	--local enemy = AICore:GetClosestVisibleEnemyInRange(self.unit, visionRadius)
 
 	local retreaterOrigin = self.unit:GetAbsOrigin()
-	local closestEnemyOrigin = enemy:GetAbsOrigin()
+	local closestEnemyOrigin = self.afraidOfThisEnemy:GetAbsOrigin()
 	local magnitude = 1200.0
 
 	-- retreat for X seconds before re-evaluating order/pathing
@@ -71,6 +74,7 @@ function BehaviorRetreat:Continue()
 end
 
 function BehaviorRetreat:End()
+	self.afraidOfThisEnemy = nil
 	self.order.Position = nil
 end
 

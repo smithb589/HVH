@@ -10,6 +10,7 @@ if BehaviorBlackhole == nil then
 end
 
 function BehaviorBlackhole:Setup()
+	self.name = "Blackhole"
 	self.blackholeAbility = self.unit:FindAbilityByName("enigma_black_hole")
 	self.order.AbilityIndex  = self.blackholeAbility:entindex()
 	self.order.OrderType = DOTA_UNIT_ORDER_NONE -- changed later

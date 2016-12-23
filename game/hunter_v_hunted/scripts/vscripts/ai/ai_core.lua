@@ -87,6 +87,8 @@ function AICore:CreateBehaviorSystem( behaviors )
 
 	BehaviorSystem.currentBehavior =
 	{
+		name = "No behavior assigned",
+		desire = 0,
 		endTime = 0,
 		order = { OrderType = DOTA_UNIT_ORDER_NONE }
 	}

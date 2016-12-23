@@ -10,6 +10,7 @@ if BehaviorDespawnWhenUnseen == nil then
 end
 
 function BehaviorDespawnWhenUnseen:Setup()
+	self.name = "DespawnWhenUnseen"
 	self.order.OrderType = DOTA_UNIT_ORDER_NONE
 	self.killAfter = 6.0
 	self.killTime = nil -- setup later

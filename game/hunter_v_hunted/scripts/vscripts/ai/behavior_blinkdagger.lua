@@ -11,6 +11,7 @@ if BehaviorBlink == nil then
 end
 
 function BehaviorBlink:Setup()
+	self.name = "Blinkdagger"
 	self.order.OrderType = DOTA_UNIT_ORDER_CAST_POSITION
 	self.order.AbilityIndex = nil
 	self.order.Position  = nil -- set later

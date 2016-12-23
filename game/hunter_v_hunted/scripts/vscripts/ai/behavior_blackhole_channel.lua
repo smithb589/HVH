@@ -10,6 +10,7 @@ if BehaviorBlackholeChannel == nil then
 end
 
 function BehaviorBlackholeChannel:Setup()
+	self.name = "BlackholeChannel"
 	self.order.OrderType = DOTA_UNIT_ORDER_NONE
 end
 

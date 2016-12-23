@@ -10,6 +10,7 @@ if BehaviorOverpower == nil then
 end
 
 function BehaviorOverpower:Setup()
+	self.name = "Overpower"
 	self.overpowerAbility = self.unit:FindAbilityByName("ursa_overpower")
 	self.order.AbilityIndex  = self.overpowerAbility:entindex()
 	self.order.OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET

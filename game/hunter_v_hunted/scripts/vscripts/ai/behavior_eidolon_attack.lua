@@ -10,6 +10,7 @@ if BehaviorAttackBlackholeTargets == nil then
 end
 
 function BehaviorAttackBlackholeTargets:Setup()
+	self.name = "AttackBlackholeTargets"
 	self.order.OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET
 	self.order.TargetIndex = nil
 	self.targetsInBlackhole = {}

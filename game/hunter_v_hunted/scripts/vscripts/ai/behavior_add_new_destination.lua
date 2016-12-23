@@ -13,19 +13,22 @@ if BehaviorAddNewDestination == nil then
 end
 
 function BehaviorAddNewDestination:Setup()
+	self.name = "AddNewDestination"
 	self.order.OrderType = DOTA_UNIT_ORDER_NONE
 end
 
 function BehaviorAddNewDestination:Evaluate()
 	local desire = DESIRE_NONE
 
+	desire = self.desire --DESIRE_LOW
+
 	-- if the current destination is within minimum range, then we are ready for a new one
-	if HVHNeutralCreeps:HasDestination(self.unit) then
-		local destination = HVHNeutralCreeps:GetDestination(self.unit)		
-		if AICore:IsVectorInRange(self.unit, destination, 0, self.min_range) then
-			desire = self.desire --DESIRE_LOW
-		end
-	end
+	--if HVHNeutralCreeps:HasDestination(self.unit) then
+	--	local destination = HVHNeutralCreeps:GetDestination(self.unit)		
+	--	if AICore:IsVectorInRange(self.unit, destination, 0, self.min_range) then
+	--		desire = self.desire --DESIRE_LOW
+	--	end
+	--end
 
 	--print(desire .. ": add new destination")
 	return desire

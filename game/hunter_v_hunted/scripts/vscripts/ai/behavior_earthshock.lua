@@ -10,6 +10,7 @@ if BehaviorEarthshock == nil then
 end
 
 function BehaviorEarthshock:Setup()
+	self.name = "Earthshock"
 	self.earthshockAbility = self.unit:FindAbilityByName("ursa_earthshock")
 	self.order.AbilityIndex  = self.earthshockAbility:entindex()
 	self.order.OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET

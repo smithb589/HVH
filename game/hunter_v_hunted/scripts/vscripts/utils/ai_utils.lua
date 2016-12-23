@@ -69,6 +69,7 @@ end
 -- Get the closest visible unit near (unit) within (radius)
 function AICore:GetClosestVisibleEnemyInRange(unit, radius)
 	local units = self:GetEnemiesInRange(unit, radius, true)
+	--print(#units .. " in range.")
 	if units[1] then return units[1] else return nil end
 end
 

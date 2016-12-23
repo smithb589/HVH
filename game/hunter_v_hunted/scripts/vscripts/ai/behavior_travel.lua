@@ -12,6 +12,7 @@ if BehaviorTravel == nil then
 end
 
 function BehaviorTravel:Setup()
+	self.name = "Travel"
 	self.order.OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION
 	self.order.Position  = nil
 end

@@ -10,6 +10,7 @@ if BehaviorEnrage == nil then
 end
 
 function BehaviorEnrage:Setup()
+	self.name = "Enrage"
 	self.enrageAbility = self.unit:FindAbilityByName("ursa_enrage")
 	self.order.AbilityIndex  = self.enrageAbility:entindex()
 	self.order.OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET

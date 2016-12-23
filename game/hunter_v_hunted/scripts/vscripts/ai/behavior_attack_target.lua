@@ -11,6 +11,7 @@ if BehaviorAttackTarget == nil then
 end
 
 function BehaviorAttackTarget:Setup()
+	self.name = "AttackTarget"
 	self.order.OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET
 	self.order.Position = nil
 	self.order.TargetIndex  = nil -- set later

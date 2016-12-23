@@ -12,6 +12,7 @@ if BehaviorToss == nil then
 end
 
 function BehaviorToss:Setup()
+	self.name = "Toss"
 	self.tossAbility = self.unit:FindAbilityByName("tiny_toss")
 	self.order.AbilityIndex = self.tossAbility:entindex()
 	--BUGGED: self.grab_radius = self.tossAbility:GetSpecialValueFor("grab_radius")

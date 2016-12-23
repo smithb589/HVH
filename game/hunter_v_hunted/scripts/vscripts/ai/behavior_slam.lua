@@ -10,6 +10,7 @@ if BehaviorSlam == nil then
 end
 
 function BehaviorSlam:Setup()
+	self.name = "Slam"
 	self.slamAbility = self.unit:FindAbilityByName("roshan_slam")
 	self.order.AbilityIndex  = self.slamAbility:entindex()
 	self.order.OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET

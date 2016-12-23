@@ -17,7 +17,7 @@
 	"Model"						"models/creeps/neutral_creeps/n_creep_furbolg/n_creep_furbolg_disrupter.mdl"	// Model.
 	"SoundSet"					"n_creep_Melee"
 	"Level"						"5"
-	"ModelScale" 				".95"
+	"ModelScale" 				"1.4"
 
 	// Abilities
 	//----------------------------------------------------------------
@@ -51,7 +51,7 @@
 	// Movement
 	//----------------------------------------------------------------
 	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-	"MovementSpeed"				"320"		// Speed.
+	"MovementSpeed"				"275" //"320"		// Speed.
 
 	// Status
 	//----------------------------------------------------------------

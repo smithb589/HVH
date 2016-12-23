@@ -10,6 +10,7 @@ if BehaviorClap == nil then
 end
 
 function BehaviorClap:Setup()
+	self.name = "Clap"
 	self.clapAbility = self.unit:FindAbilityByName("polar_furbolg_ursa_warrior_thunder_clap")
 	self.order.AbilityIndex  = self.clapAbility:entindex()
 	self.order.OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET
@@ -33,7 +34,7 @@ end
 
 function BehaviorClap:Begin()
 	--print("begin/continue")
-	self.endTime = GameRules:GetGameTime() + 1.0
+	self.endTime = GameRules:GetGameTime() + self.clapAbility:GetCastPoint()
 end
 
 function BehaviorClap:Continue()

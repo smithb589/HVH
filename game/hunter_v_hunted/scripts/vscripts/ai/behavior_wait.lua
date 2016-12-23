@@ -11,6 +11,7 @@ if BehaviorWait == nil then
 end
 
 function BehaviorWait:Setup()
+	self.name = "Wait"
 	self.order.OrderType = DOTA_UNIT_ORDER_NONE
 end
 

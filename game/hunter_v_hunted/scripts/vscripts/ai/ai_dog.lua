@@ -40,7 +40,6 @@ function Spawn( entityKeyValues )
 
 	thisEntity._LastWarnTime = 0.0
 
-	print("dog is setting context think")
 	thisEntity:SetContextThink("Think", Think, 0.1)
 	thisEntity.behaviorSystem = AICore:CreateBehaviorSystem({
 		BehaviorWander(thisEntity, DESIRE_MAX, DESIRE_MEDIUM), -- either
@@ -57,7 +56,6 @@ end
 
 function Think()
 	if thisEntity:IsNull() or not thisEntity:IsAlive() then
-		print ("dog deactivating")
 		return nil -- deactivate this think function
 	end
 	return thisEntity.behaviorSystem:Think()

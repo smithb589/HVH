@@ -239,7 +239,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"				"600" // 400 for 7.00, before: 300 small radius, 1000 big radius
+				"radius"					"400" // 400 for 7.00, before: 300 small radius, 1000 big radius
 			}
 			"02"
 			{
@@ -249,12 +249,12 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"200" //"225 400 575 750"
+				"damage"					"225" //"225 400 575 750"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"burn_duration"				"5"
+				"burn_duration"				"5" // what do???
 			}	
 			"05"
 			{
@@ -264,7 +264,7 @@
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"activation_delay"			"0.5" // "1.75", explode delay 0.3, fade time 2.0
+				"activation_delay"			"1.75" // "1.75", explode delay 0.3, fade time 2.0
 			}
 		}
 	}
@@ -332,7 +332,33 @@
 	"polar_furbolg_ursa_warrior_thunder_clap"
 	{
 		"AbilityManaCost"				"0"
-		"AbilityCooldown"				"3.0"
+		"AbilityCooldown"				"4.0"
+		"AbilityCastPoint"				"0.5" //"0.5"
+		"AbilityDamage"					"250" //"150"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"450"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"movespeed_slow"		"-25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attackspeed_slow"		"-25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3.0"
+			}
+		}
 	}
 
 	// -------------------------- The Hound's abilities --------------------------
@@ -2674,4 +2700,5 @@
 			}
 		}
 	}
+
 }

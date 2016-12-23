@@ -10,6 +10,7 @@ if BehaviorSupernova == nil then
 end
 
 function BehaviorSupernova:Setup()
+	self.name = "Supernova"
 	self.supernovaAbility = self.unit:FindAbilityByName("phoenix_supernova")
 	self.order.AbilityIndex  = self.supernovaAbility:entindex()
 	self.order.OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET

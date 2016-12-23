@@ -10,6 +10,7 @@ if BehaviorDespawn == nil then
 end
 
 function BehaviorDespawn:Setup()
+	self.name = "Despawn"
 	self.order.OrderType = DOTA_UNIT_ORDER_NONE
 	self.killAfter = 1.0
 end

@@ -12,6 +12,7 @@ if BehaviorAttackTargetAggressive == nil then
 end
 
 function BehaviorAttackTargetAggressive:Setup()
+	self.name = "AttackTargetAggressive"
 	self.order.OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE
 	self.order.Position = nil
 	self.order.TargetIndex  = nil -- set later

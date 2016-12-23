@@ -10,10 +10,16 @@ if BehaviorPlaceMine == nil then
 end
 
 function BehaviorPlaceMine:Setup()
+	self.name = "PlaceMine"
 	self.mineAbility = self.unit:FindAbilityByName("techies_land_mines")
 	self.order.AbilityIndex  = self.mineAbility:entindex()
 	self.order.OrderType = DOTA_UNIT_ORDER_CAST_POSITION
 	self.order.Position = nil -- filled in later
+
+	-- small delay needed after unit spawn or radius = 0
+	Timers:CreateTimer(SINGLE_FRAME_TIME, function()
+		self.mineRange = self.mineAbility:GetSpecialValueFor("radius")
+	end)
 end
 
 function BehaviorPlaceMine:Evaluate()
@@ -21,6 +27,7 @@ function BehaviorPlaceMine:Evaluate()
 
 	if HVHNeutralCreeps:HasDestination(self.unit) and
 	   self.mineAbility:IsFullyCastable() and
+	   HVHNeutralCreeps:IsValidMinePlacement(self.unit, self.mineRange, HVHNeutralCreeps:GetDestination(self.unit)) and
 	   HVHNeutralCreeps:CountTechiesMines(self.unit) < TECHIES_MAX_MINES then
 		desire = self.desire --DESIRE_MAX
 	end
@@ -40,7 +47,7 @@ end
 
 function BehaviorPlaceMine:End()
 	self.order.Position = nil
-	HVHNeutralCreeps:AddDestination(self.unit, RANGE_TECHIES_MIN, RANGE_TECHIES_MAX)
+	--HVHNeutralCreeps:AddDestination(self.unit, RANGE_TECHIES_MIN, RANGE_TECHIES_MAX)
 end
 
 function BehaviorPlaceMine:Think(dt)

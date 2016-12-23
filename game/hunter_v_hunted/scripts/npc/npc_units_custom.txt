@@ -489,7 +489,7 @@
 		"Model"						"models/creeps/neutral_creeps/n_creep_furbolg/n_creep_furbolg_disrupter.mdl"	// Model.
 		"SoundSet"					"n_creep_Melee"
 		"Level"						"5"
-		"ModelScale" 				".95"
+		"ModelScale" 				"1.4"
 	
 		// Abilities
 		//----------------------------------------------------------------
@@ -523,7 +523,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"320"		// Speed.
+		"MovementSpeed"				"275" //"320"		// Speed.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -908,19 +908,48 @@
 		"GameSoundsFile"			"scripts/game_sounds_heroes/game_sounds_phoenix.txt"
 		"VoiceFile"					"scripts/voscripts/game_sounds_vo_phoenix.txt"
 	
-		"Creature"
+		"RenderablePortrait"
 		{
-			"EquippedItems"
+			"Particles"
 			{
-	
-			}
-	
-			"AttachWearables"
-			{
-				//"Wearable1"	{ "ItemDef" "4212" } // alpine hat
-				//"Wearable2"	{ "ItemDef" "4213" } // alpine scarf
-				//"Wearable3"	{ "ItemDef" "4214" } // alpine pants
-				//"Wearable4"	{ "ItemDef" "4215" } // alpine gloves
+				"phoenix_ambient"
+				{
+					"0"
+					{
+						"type"		"follow_origin"
+						"location"		"attach_hitloc"
+					}
+					"1"
+					{
+						"type"		"follow_attachment"
+						"location"		"attach_head"
+					}
+					"2"
+					{
+						"type"		"follow_attachment"
+						"location"		"attach_neck"
+					}
+					"3"
+					{
+						"type"		"follow_attachment"
+						"location"		"attach_spine2"
+					}
+					"4"
+					{
+						"type"		"follow_attachment"
+						"location"		"attach_tailbase"
+					}
+					"5"
+					{
+						"type"		"follow_attachment"
+						"location"		"attach_wingtipR"
+					}
+					"6"
+					{
+						"type"		"follow_attachment"
+						"location"		"attach_wingtipL"
+					}
+				}
 			}
 		}
 	}

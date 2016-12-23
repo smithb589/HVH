@@ -11,6 +11,7 @@ if BehaviorChooseNextDestination == nil then
 end
 
 function BehaviorChooseNextDestination:Setup()
+	self.name = "ChooseNextDestination"
 	self.order.OrderType = DOTA_UNIT_ORDER_NONE
 end
 

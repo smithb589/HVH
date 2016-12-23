@@ -8,6 +8,7 @@ if Behavior == nil then
 end
 
 function Behavior:initialize()
+	self.name = "Default Behavior"
 	self.endTime = 0
 	self.order = {}
 	self.order.OrderType 	= DOTA_UNIT_ORDER_NONE

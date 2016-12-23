@@ -10,6 +10,7 @@ if BehaviorSunRayMove == nil then
 end
 
 function BehaviorSunRayMove:Setup()
+	self.name = "SunRayMove"
 	self.moveAbility = self.unit:FindAbilityByName("phoenix_sun_ray_toggle_move")
 	self.order.AbilityIndex  = self.moveAbility:entindex()
 	self.order.OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET
