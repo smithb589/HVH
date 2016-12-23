@@ -87,19 +87,49 @@
 	"GameSoundsFile"			"scripts/game_sounds_heroes/game_sounds_phoenix.txt"
 	"VoiceFile"					"scripts/voscripts/game_sounds_vo_phoenix.txt"
 
-	"Creature"
+	// TODO: figure out this ambient particle stuff
+	"RenderablePortrait"
 	{
-		"EquippedItems"
+		"Particles"
 		{
-
-		}
-
-		"AttachWearables"
-		{
-			//"Wearable1"	{ "ItemDef" "4212" } // alpine hat
-			//"Wearable2"	{ "ItemDef" "4213" } // alpine scarf
-			//"Wearable3"	{ "ItemDef" "4214" } // alpine pants
-			//"Wearable4"	{ "ItemDef" "4215" } // alpine gloves
+			"particles/units/heroes/hero_phoenix/phoenix_ambient.vpcf"
+			{
+				"0"
+				{
+					"type"		"follow_origin"
+					"location"		"attach_hitloc"
+				}
+				"1"
+				{
+					"type"		"follow_attachment"
+					"location"		"attach_head"
+				}
+				"2"
+				{
+					"type"		"follow_attachment"
+					"location"		"attach_neck"
+				}
+				"3"
+				{
+					"type"		"follow_attachment"
+					"location"		"attach_spine2"
+				}
+				"4"
+				{
+					"type"		"follow_attachment"
+					"location"		"attach_tailbase"
+				}
+				"5"
+				{
+					"type"		"follow_attachment"
+					"location"		"attach_wingtipR"
+				}
+				"6"
+				{
+					"type"		"follow_attachment"
+					"location"		"attach_wingtipL"
+				}
+			}
 		}
 	}
 }

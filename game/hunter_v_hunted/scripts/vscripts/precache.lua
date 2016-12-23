@@ -211,6 +211,7 @@ PRECACHE_PARTICLES = {
 	--"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion_flash_b.vpcf",
 	--"particles/units/heroes/hero_slardar/slardar_sprint.vpcf"
 	--"particles/generic_hero_status/status_invisibility_start.vpcf",
+	"particles/units/heroes/hero_phoenix/phoenix_ambient.vpcf",
 	"particles/dropped_sunshard.vpcf",
 	"particles/dropped_moonrock.vpcf",
 	"particles/ui/ui_generic_treasure_impact.vpcf",

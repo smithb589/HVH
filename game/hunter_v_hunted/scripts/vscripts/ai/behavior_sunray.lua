@@ -10,6 +10,7 @@ if BehaviorSunRay == nil then
 end
 
 function BehaviorSunRay:Setup()
+	self.name = "SunRay"
 	self.sunRayAbility = self.unit:FindAbilityByName("phoenix_sun_ray")
 	self.order.AbilityIndex  = self.sunRayAbility:entindex()
 	self.order.OrderType = DOTA_UNIT_ORDER_CAST_POSITION
