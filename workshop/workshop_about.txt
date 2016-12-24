@@ -1,11 +1,11 @@
-Version 1.6.4 (7.00 compatible!)
+Version 1.6.5 (7.01 compatible!)
 
 Simplified Chinese (简体中文) and Russian (Русский) translations available!
 
 [b]WHAT'S NEW?[/b]
-As of 1.6.4, the minimap issue has been resolved.
+We are now fully 7.01 compatible!
 
-Valve broke everything with 7.00, so it will be a while until this mod is where it needs to be. For now, you can play a game and see what it's all about, but the minimap is completely broken so it won't be a full experience.
+Update 1.6.5 brings with it some quality-of-life fixes, balance tweaks, and visual updates. Meepo's Earthbind got a couple huge buffs to make up for the loss of its channel interrupt. I worked on some new graphics for the day/night timer. Some new screenshots will be coming once I have a chance to playtest this game. Maybe I should do another video. Reddit must know about this mod... some day.
 
 ---
 

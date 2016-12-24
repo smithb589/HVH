@@ -1,3 +1,24 @@
+1.6.5
+----
+COMPLETELY 7.01 COMPATIBLE!
+-- Techies AI will avoid overlapping his mines
+-- Backpack slots 7-9 disabled
+-- Suicide item fixed (now Blast Off!)
+-- Many miscellaneous 6.88, 7.00, 7.01 parity fixes
+NEW
+-- New sun/moon timer graphics
+-- Game information panel (arrow on left side of screen) updated with new information
+-- Russian/Chinese translations updated (ty Google Translate; sry players)
+BALANCE
+-- On Sniper death, 1/2 of Sun Shards (round down) will be destroyed. The rest are launched as normal.
+-- Sniper: Earthbind no longer interrupts channeling
+-- Sniper: Earthbind CD 15 to 13 sec
+-- Sniper: Earthbind 1250 to 2000 range
+-- Sniper: Earthbind 220 to 250 radius
+-- NightStalker: Leap disabled on root
+-- Hellbear creep now travels alone, but he ate the other one
+-- Attacking Tiny from range no longer stuns
+
 1.6.4
 -----
 -- Fixed minimap issue
