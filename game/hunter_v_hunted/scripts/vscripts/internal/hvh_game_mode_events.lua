@@ -33,9 +33,11 @@ function HVHGameMode:OnGameRulesStateChange()
 end
 
 function HVHGameMode:DeclareWinner(team)
-  GameRules:SetSafeToLeave( true )
-  HVHPowerStages:NotifyVictory( team )
-  GameRules:SetGameWinner( team )
+  if GameRules:State_Get() ~= DOTA_GAMERULES_STATE_POST_GAME then
+    GameRules:SetSafeToLeave( true )
+    HVHPowerStages:NotifyVictory( team )
+    GameRules:SetGameWinner( team )
+  end
 end
 
 function HVHGameMode:DecrementDisconnectTimeRemaining(seconds, losingTeam)
@@ -139,6 +141,8 @@ function HVHGameMode:OnPlayerReconnected(keys)
   local player = PlayerResource:GetPlayer(keys.PlayerID)
   local playerHero = player:GetAssignedHero()
 
-   CustomGameEventManager:Send_ServerToPlayer(player, "display_timer",
-      {msg="Remaining", duration=0, mode=0, endfade=false, position=1, warning=5, paused=false, sound=true} )
+  Timers:CreateTimer(10.0, function()
+  CustomGameEventManager:Send_ServerToPlayer(player, "display_timer",
+    {msg="Remaining", duration=0, mode=0, endfade=false, position=1, warning=5, paused=false, sound=true} )
+  end)
 end

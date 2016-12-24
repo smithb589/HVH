@@ -94,7 +94,6 @@ var timer = $( "#TimerBox" );
 function UpdateTimer() {
 	// Adjust the message based on time of day
 	var day = CustomNetTables.GetTableValue("cycle", "IsDaytime")["value"];
-
 	var imageSun = $("#HVH_Cycle_Sun");
 	var imageMoon = $("#HVH_Cycle_Moon");
 
@@ -119,12 +118,10 @@ function UpdateTimer() {
 	var timerTextRemain = $( "#TimerRemaining" );
 	var time = Game.GetGameTime() - startTime;
 	var remaining = CustomNetTables.GetTableValue("cycle", "TimeRemaining")["value"];
-	//var remaining = Math.ceil(timerDuration - time);
 	
 	if (remaining <= timerWarning && timerWarning != -1) {
 		if (remaining != timerLast && timerSound) {
 			timerLast = remaining;
-			//$.Msg('Beep');
 			Game.EmitSound("ui.crafting_confirm_socket");
 		}
 		timerTextRemain.style['color'] = COLOUR_WARNING;
@@ -138,15 +135,7 @@ function UpdateTimer() {
 			timerTextRemain.text = FormatTime(time);
 	}
 
-	$.Schedule(TIMER_INTERVAL, function(){UpdateTimer();});
-
-	//if (time < timerDuration)
-	//if (remaining >= 0) {
-	//	$.Schedule(TIMER_INTERVAL, function(){UpdateTimer();});
-	//}
-	//else
-	//	if (!timerEnd)
-	//		$.Schedule(1, function(){FadeOut();});
+	$.Schedule( TIMER_INTERVAL, UpdateTimer );
 }
 
 function DisplayTimer( table ) {
@@ -162,7 +151,6 @@ function DisplayTimer( table ) {
 	var timerTextMsg = $( "#TimerMsg" );
 	timerTextMsg.text = $.Localize(timerMessage);
 	UpdateTimer();
-	//FadeIn();
 }
 
 function PauseTimer( bool ) {
@@ -199,6 +187,6 @@ function FormatTime( seconds ) {
 	GameEvents.Subscribe( "display_timer", DisplayTimer );
 	GameEvents.Subscribe( "pause_timer", PauseTimer );
 
-	GameEvents.Subscribe("pop_bonus_time", PopBonusTime );	
+	GameEvents.Subscribe("pop_bonus_time", PopBonusTime );
 	UpdateLogo();
 })();
