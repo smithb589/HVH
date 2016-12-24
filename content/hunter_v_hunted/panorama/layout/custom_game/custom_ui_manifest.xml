@@ -46,7 +46,6 @@
     <CustomUIElement type="EndScreen"        layoutfile="file://{resources}/layout/custom_game/multiteam_end_screen.xml" />
     <CustomUIElement type="Hud"  layoutfile="file://{resources}/layout/custom_game/hvh_sniper_select.xml" />
     <CustomUIElement type="Hud"  layoutfile="file://{resources}/layout/custom_game/scripts.xml" />
-    <CustomUIElement type="Hud"  layoutfile="file://{resources}/layout/custom_game/custom_timer.xml" />
     <CustomUIElement type="Hud"  layoutfile="file://{resources}/layout/custom_game/hvh_logo.xml" />
   </Panel>
 </root>

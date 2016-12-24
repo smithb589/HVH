@@ -19,11 +19,22 @@ var timer = $( "#TimerBox" );
 function UpdateTimer() {
 	// Adjust the message based on time of day
 	var day = CustomNetTables.GetTableValue("cycle", "IsDaytime")["value"];
+
+	var imageSun = $("#HVH_Cycle_Sun");
+	var imageMoon = $("#HVH_Cycle_Moon");
+
 	var timerMessage;
-	if (day)
+	if (day) {
+		imageSun.AddClass("MakeVisible");
+		imageMoon.RemoveClass("MakeVisible");
 		timerMessage = $.Localize("#custom_timer_daylight");
-	else
+	}
+	else {
+		imageSun.RemoveClass("MakeVisible");
+		imageMoon.AddClass("MakeVisible");
 		timerMessage = $.Localize("#custom_timer_moonlight");
+	}
+	
 	var timerTextMsg = $( "#TimerMsg" );
 	timerTextMsg.text = $.Localize(timerMessage);
 

@@ -1,0 +1,17 @@
+<root>
+  <styles>
+    <include src="s2r://panorama/styles/dotastyles.vcss_c" />
+    <include src="file://{resources}/styles/custom_game/custom_timer.css" />
+  </styles>
+  <scripts>
+    <include src="file://{resources}/scripts/custom_game/custom_timer.js" /> 
+  </scripts>
+  <Panel hittest="false" class="BaseHud">
+    <Panel hittest="false" id="TimerBox" class="TimerBox">
+      <Image hittest="false" id="HVH_Cycle_Sun" class="HVH_CycleImage" src="file://{images}/custom_game/timer/sun.png" />
+      <Image hittest="false" id="HVH_Cycle_Moon" class="HVH_CycleImage" src="file://{images}/custom_game/timer/moon.png" />
+      <Label hittest="false" id="TimerMsg" text="Remaining"/>
+      <Label hittest="false" id="TimerRemaining" text="00:00:00"/>
+    </Panel>
+  </Panel>
+</root>
