@@ -2516,40 +2516,36 @@
 		}
 	}
 
-	// nerfed to sub-L1 values, updated for 7.00
+	// nerfed to L2 values, updated for 7.00
 	"techies_suicide"
 	{
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"500" //"650 850 1150 1550"
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"400"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"small_radius"				"200"
-			}			
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"400" // "300 400 500 600"
+				"LinkedSpecialBonus"	"special_bonus_unique_techies"
+			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"partial_damage"			"250" //"350 400 450 500"
-			}
+				"var_type"				"FIELD_FLOAT"
+				"silence_duration"		"5" //"4 5 6 7"
+			} 
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"big_radius"				"500"
-			}			
+				"var_type"				"FIELD_INTEGER"
+				"hp_cost"				"50"
+			} 
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"respawn_time_percentage"		"0.5"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"respawn_time_percentage_tooltip"		"50"
+				"duration"				"0.75"
 			}
 		}
 	}
