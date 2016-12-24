@@ -20,7 +20,8 @@
 	"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 	"AbilityCastPoint"		"0.0"
-	"AbilityCastRange"		"100"		
+	"AbilityCastRange"		"1000"
+	"AoERadius" 			"400"
 	"AbilityCooldown"		"20"
 	"precache"
 	{

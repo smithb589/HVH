@@ -441,11 +441,13 @@
 
 	// "sniper_shrapnel_hvh" is custom
 
+	// earthbind lost the ability to interrupt channeling :(
 	"meepo_earthbind"
 	{
-		"AbilityCooldown"				"15" // "24	21 18 15"
+		"AbilityCooldown"				"13" // "24	21 18 15"
 		"AbilityManaCost"				"0"
 	    "MaxLevel"              		"1"
+		"AbilityCastRange"				"2000"
 
 		"AbilitySpecial"
 		{
@@ -457,7 +459,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"220"
+				"radius"				"250" //"220"
 			}
 			"03"
 			{
@@ -467,7 +469,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"tooltip_range"			"1250" // "500 750 1000 1250"
+				"tooltip_range"			"2000" //"1250" // "500 750 1000 1250"
 			}
 		}
 	}
@@ -2514,44 +2516,43 @@
 		}
 	}
 
-	// TODO: temporarily removed
-	// nerfed to L2 values
-	//"techies_suicide"
-	//{
-	//	"AbilitySpecial"
-	//	{
-	//		"01"
-	//		{
-	//			"var_type"					"FIELD_INTEGER"
-	//			"small_radius"				"200"
-	//		}
-	//		"02"
-	//		{
-	//			"var_type"					"FIELD_INTEGER"
-	//			"big_radius"				"500"
-	//		}
-	//		"03"
-	//		{
-	//			"var_type"					"FIELD_INTEGER"
-	//			"damage"					"650" //"500 650 850 1150"
-	//		}
-	//		"04"
-	//		{
-	//			"var_type"					"FIELD_INTEGER"
-	//			"partial_damage"			"300" //"260 300 340 380"
-	//		}
-	//		"05"
-	//		{
-	//			"var_type"				"FIELD_FLOAT"
-	//			"respawn_time_percentage"		"0.5"
-	//		}
-	//		"06"
-	//		{
-	//			"var_type"				"FIELD_INTEGER"
-	//			"respawn_time_percentage_tooltip"		"50"
-	//		}
-	//	}
-	//}
+	// nerfed to sub-L1 values, updated for 7.00
+	"techies_suicide"
+	{
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"500" //"650 850 1150 1550"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"small_radius"				"200"
+			}			
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"partial_damage"			"250" //"350 400 450 500"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"big_radius"				"500"
+			}			
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"respawn_time_percentage"		"0.5"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"respawn_time_percentage_tooltip"		"50"
+			}
+		}
+	}
 
 	// nerfed to L1 ult values
 	"windrunner_focusfire"
