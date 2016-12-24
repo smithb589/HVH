@@ -134,3 +134,11 @@ function HVHGameMode:OnAbilityUsed(keys)
     end
   end
 end
+
+function HVHGameMode:OnPlayerReconnected(keys)
+  local player = PlayerResource:GetPlayer(keys.PlayerID)
+  local playerHero = player:GetAssignedHero()
+
+   CustomGameEventManager:Send_ServerToPlayer(player, "display_timer",
+      {msg="Remaining", duration=0, mode=0, endfade=false, position=1, warning=5, paused=false, sound=true} )
+end
