@@ -9,20 +9,20 @@
 
   <Panel hittest="false" class="BaseHud">
     <Panel hittest="false" id="LogoContainer">
-      <Panel hittest="true" id="LeftContainer">
+      <Panel hittest="false" id="LeftContainer">
       </Panel>
-      <Panel hittest="true" id="MiddleContainer">
-        <Image hittest="true" id="HVH_Cycle_Sun" class="HVH_CycleImage" src="file://{images}/custom_game/timer/sun.png" />
-        <Image hittest="true" id="HVH_Cycle_Moon" class="HVH_CycleImage" src="file://{images}/custom_game/timer/moon.png" />
-        <Label hittest="true" id="TimerMsg" class="TimerLabel" text="Daylight"/>
-        <Label hittest="true" id="TimerRemaining" class="TimerLabel" text="0:00"/>
-        <Label hittest="true" id="HVH_BonusTimeSpawner" text=""/>
+      <Panel hittest="false" id="MiddleContainer">
+        <Image hittest="false" id="HVH_Cycle_Sun" class="HVH_CycleImage" src="file://{images}/custom_game/timer/sun.png" />
+        <Image hittest="false" id="HVH_Cycle_Moon" class="HVH_CycleImage" src="file://{images}/custom_game/timer/moon.png" />
+        <Label hittest="false" id="TimerMsg" class="TimerLabel" text="Daylight"/>
+        <Label hittest="false" id="TimerRemaining" class="TimerLabel" text="0:00"/>
+        <Label hittest="false" id="HVH_BonusTimeSpawner" text=""/>
       </Panel>
-      <Panel hittest="true" id="RightContainer">
-        <Image hittest="true" id="HVH_Logo_Day" class="HVH_Logo" src="file://{images}/custom_game/topbar/logo_day.png" />
-        <Image hittest="true" id="HVH_Logo_Night" class="HVH_Logo" src="file://{images}/custom_game/topbar/logo_night.png" />
-        <Image hittest="true" id="HVH_Hourglass_Day" class="HVH_Hourglass" src="file://{images}/custom_game/topbar/hourglass_day.png" />
-        <Image hittest="true" id="HVH_Hourglass_Night" class="HVH_Hourglass" src="file://{images}/custom_game/topbar/hourglass_night.png" />
+      <Panel hittest="false" id="RightContainer">
+        <Image hittest="false" id="HVH_Logo_Day" class="HVH_Logo" src="file://{images}/custom_game/topbar/logo_day.png" />
+        <Image hittest="false" id="HVH_Logo_Night" class="HVH_Logo" src="file://{images}/custom_game/topbar/logo_night.png" />
+        <Image hittest="false" id="HVH_Hourglass_Day" class="HVH_Hourglass" src="file://{images}/custom_game/topbar/hourglass_day.png" />
+        <Image hittest="false" id="HVH_Hourglass_Night" class="HVH_Hourglass" src="file://{images}/custom_game/topbar/hourglass_night.png" />
       </Panel>
     </Panel>
 
