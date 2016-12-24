@@ -58,7 +58,7 @@ function PopBonusTime(args)
 	bonusTime.AddClass("PopBonusTime");
 	bonusTime.style["color"] = color;
 	bonusTime.text = pre + bonus + " sec";
-	$.Schedule(1.5, function(){
+	$.Schedule(1.0, function(){
 	      bonusTime.deleted = true;
 	      bonusTime.DeleteAsync(0);
 	});

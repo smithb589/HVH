@@ -62,15 +62,14 @@
     horizontal-align:center;   
     margin-top: 70px;
     margin-right: 0px;
-/*    margin-right:  125px;*/    
     font-size: 50px;
     font-family: "Radiance";
     text-shadow: 4px 4px 4px #121212;
     opacity: 0;
-    transform: scaleX(0.1) scaleY(0.1) translateY( -100px );
+    transform: scaleX(2.0) scaleY(2.0) translateY( -0px );
     transition-property: transform, opacity;
-    transition-duration: 0.6s;
-    transition-timing-function: linear;
+    transition-duration: 0.9s, 0.1s;
+    transition-timing-function: ease-in, linear;
 }
 
 
@@ -106,7 +105,7 @@
 .HVH_CycleImage
 {
     horizontal-align: center;
-    margin-top:-24px;
+    margin-top:-36px;
     transition-property: opacity;
     transition-duration: 1.0s;
     transition-timing-function: linear;
@@ -118,14 +117,14 @@
 {
     horizontal-align:center;
     margin-left:-53px;
-    margin-top:12px;
+    margin-top:8px;
 }
 
 #TimerRemaining
 {
     horizontal-align:center;
     margin-left:100px;
-    margin-top:6px;
+    margin-top:2px;
     font-size: 32px;
 }
 
@@ -135,7 +134,7 @@
 {
     visibility: visible;
     opacity: 1;
-    transform: scaleX(1) scaleY(1) translateY( 0px );
+    transform: scaleX(0.1) scaleY(0.1) translateY( -100px );
 }
 
 .MakeVisible
