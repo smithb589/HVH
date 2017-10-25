@@ -1,11 +1,9 @@
-Version 1.6.6
+Version 1.6.7
 
 Simplified Chinese (简体中文) and Russian (Русский) translations available!
 
-[b]WHAT'S NEW?[/b]
-We are now fully 7.01 compatible!
-
-Update 1.6.5 brings with it some quality-of-life fixes, balance tweaks, and visual updates. Meepo's Earthbind got a couple huge buffs to make up for the loss of its channel interrupt. I worked on some new graphics for the day/night timer. Some new screenshots will be coming once I have a chance to playtest this game. Maybe I should do another video. Reddit must know about this mod... some day.
+[b]WHAT'S NEW WITH 1.6.7?[/b]
+Units no longer get stuck outside the map, and Phoenix has been restored to working order. Big thanks to Druanach and Internet Explorer (not the real one I think) for bringing this bug to my attention and reporting it in the Comments below. Happy hunting!
 
 ---
 
