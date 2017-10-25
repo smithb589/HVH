@@ -19,11 +19,11 @@ end
 function BehaviorSunRayMove:Evaluate()
 	local desire = DESIRE_NONE
 
-	if self.moveAbility:IsFullyCastable() and not self.moveAbility:IsHidden() then
+	-- 10/24/17 added IsActivated() check, because an unactivated ability is now considered fully castable for some reason
+	if self.moveAbility:IsActivated() and self.moveAbility:IsFullyCastable() and not self.moveAbility:IsHidden() then
 		desire = self.desire --DESIRE_MAX
 	end
 
-	--print(desire .. ": sunray move")
 	return desire
 end
 

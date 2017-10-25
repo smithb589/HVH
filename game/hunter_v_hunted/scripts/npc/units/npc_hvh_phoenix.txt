@@ -83,6 +83,7 @@
 	// Inventory
 	//----------------------------------------------------------------
 	"HasInventory"				"1"
+	"particle_folder"		"particles/units/heroes/hero_phoenix"
 	"ParticleFile"				"particles/units/heroes/hero_phoenix.pcf"
 	"GameSoundsFile"			"scripts/game_sounds_heroes/game_sounds_phoenix.txt"
 	"VoiceFile"					"scripts/voscripts/game_sounds_vo_phoenix.txt"
@@ -96,38 +97,43 @@
 			{
 				"0"
 				{
-					"type"		"follow_origin"
-					"location"		"attach_hitloc"
+					"type"		"absorigin_follow"
+					"location"		""
 				}
 				"1"
 				{
-					"type"		"follow_attachment"
+					"type"		"point_follow"
 					"location"		"attach_head"
 				}
 				"2"
 				{
-					"type"		"follow_attachment"
+					"type"		"point_follow"
 					"location"		"attach_neck"
 				}
 				"3"
 				{
-					"type"		"follow_attachment"
+					"type"		"point_follow"
 					"location"		"attach_spine2"
 				}
 				"4"
 				{
-					"type"		"follow_attachment"
+					"type"		"point_follow"
 					"location"		"attach_tailbase"
 				}
 				"5"
 				{
-					"type"		"follow_attachment"
+					"type"		"point_follow"
 					"location"		"attach_wingtipR"
 				}
 				"6"
 				{
-					"type"		"follow_attachment"
+					"type"		"point_follow"
 					"location"		"attach_wingtipL"
+				}
+				"9"
+				{
+					"type"		"world_origin"
+					"location"		""
 				}
 			}
 		}
