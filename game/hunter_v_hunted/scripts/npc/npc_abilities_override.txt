@@ -919,60 +919,30 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_regen"			"0"
+				"var_type"				"FIELD_FLOAT"
+				"mana_regen"			"0.0" //"1.0"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"0"
+				"bonus_all_stats"		"0" // "2"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"soul_radius"			"1400"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"soul_initial_charge"	"3"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_armor"			"0" // 2"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"soul_additional_charges"	"0"
+				"soul_initial_charge"	"3" // 2
 			}
 			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"soul_heal_interval"	"0.25"
-			}
-			"07"
-			{
 				"var_type"				"FIELD_INTEGER"
-				"soul_heal_amount"		"400" // 400
-			}			
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"soul_damage_amount"	"150" // 150
+				"soul_additional_charges"	"0" // 1
 			}
-			"09"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"soul_heal_duration"	"8.0"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"soul_damage_duration"	"8.0"
-			}
-			"11"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"soul_release_range_tooltip"	"950"
-			}
-		}		
+		}
 	}
 
 	// -------------------------- CHEST ITEMS --------------------------
@@ -1746,37 +1716,23 @@
 		"ItemStackable" "0"
 		"AbilityManaCost" "0"
 
+		// no lifesteal, no permanent bonuses
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"		"0"	//"15"
+				"bonus_damage"			"0" // "20"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"lifesteal_percent"		"0" // "15"
+				"bonus_attack_speed"	"0" // 10"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"berserk_bonus_attack_speed"	"100"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"berserk_bonus_movement_speed"	"17"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"berserk_armor_reduction"	"5"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"berserk_duration"		"8.0"
+				"lifesteal_percent"		"0" // "15"
 			}
 		}		
 	}
@@ -2627,6 +2583,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"35" //"20 35 50"
+				"LinkedSpecialBonus"	"special_bonus_unique_doom_5"	
 			}
 		}
 	}
@@ -2654,6 +2611,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"damage"					"600" //"600 725 850"
+				"LinkedSpecialBonus"			"special_bonus_unique_lion_3"
 			}
 		}
 	}
