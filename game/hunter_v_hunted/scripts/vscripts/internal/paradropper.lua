@@ -26,9 +26,9 @@ end
 
 -- called from outside
 function HVHParadropper:Begin(unit)
-	print("ParadropBegin")	
+	--print("ParadropBegin")	
 	Timers:CreateTimer(0.25, function()
-		print("Trying to drop")
+		--print("Trying to drop")
 		if not unit.Paradropper then
 			unit.Paradropper = HVHParadropper(unit)
 		end
@@ -208,7 +208,7 @@ end
 ------- END / CLEANUP ------------------
 ----------------------------------------
 function HVHParadropper:ParadropEnd()
-	print("ParadropEnd")
+	--print("ParadropEnd")
 	GridNav:DestroyTreesAroundPoint(self.unit:GetAbsOrigin(), 100.0, true)
 	self.paradropDummy:ForceKill(false)
 	self.unit:SetAcquisitionRange(self.defaultAcquisitionRange)
