@@ -17,27 +17,28 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"hp_cost_perc_per_second"		"0"
+				"hp_cost_perc_per_second"		"0" //6
 			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"base_damage"		"25"	//"10 15 20 25"
+				"base_damage"		"32"	//"14 20 26 32"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"hp_perc_damage"	"5.0"	//"1.25 2.5 3.75 5.0"
+				"hp_perc_damage"	"6.75"	//"1.5 3.25 5.0 6.75"
+				"LinkedSpecialBonus"	"special_bonus_unique_phoenix_5"
 			}
 			"04"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"base_heal"			"0"		//"7 10 13 16"
-			}
+				"var_type"			"FIELD_FLOAT"
+				"base_heal"			"0.0" // "7 10 13 16"
+			}	
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"hp_perc_heal"		"0"		//"0.625 1.25 1.875 2.5"
+				"hp_perc_heal"		"0.0" //"0.625 1.25 1.875 2.5"
 			}
 			"06"
 			{
@@ -51,13 +52,13 @@
 			}
 			"08"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"			"FIELD_FLOAT"
 				"forward_move_speed"	"250"
 			}
 			"09"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"beam_range"		"1600" //"1300"
+				"beam_range"		"1600" // 1300
 			}
 			"10"
 			{
@@ -67,7 +68,7 @@
 			"11"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"turn_rate"			"25"
+				"turn_rate"			"25" // 20
 			}
 			"12"
 			{
@@ -199,34 +200,6 @@
 	{
 		"AbilityCooldown"				"3.0"
 		"AbilityManaCost"				"0"
-	}
-
-	// TODO: this no longer affects ranged heroes so he needs a different ability
-	"tiny_craggy_exterior"
-	{
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"stun_chance"				"25"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"0.5 1.0 1.5 2.0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_armor"				"3 4 5 6"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"40 50 60 70"
-			}
-		}
 	}
 
 	"techies_land_mines"
@@ -377,6 +350,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_damage"			"100" //"60 80 100 120"
+				"LinkedSpecialBonus"	"special_bonus_unique_slardar_2"
 			}
 			"03"
 			{
@@ -424,17 +398,18 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"15 30 45"//"50 75 100"
+				"bonus_health_regen"	"15 30 45"//"40 48 56"
+				"LinkedSpecialBonus"		"special_bonus_unique_alchemist_4"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_mana_regen"		"0"
+				"bonus_mana_regen"		"0.0"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_movespeed"		"30 40 60"
+				"bonus_movespeed"		"40 50 60" // "40 50 60"
 			}
 		}
 	}
@@ -494,11 +469,12 @@
 			{
 				"var_type"			"FIELD_INTEGER"
 				"range"				"1450" //"1050 1250 1450"
+				"LinkedSpecialBonus"	"special_bonus_unique_timbersaw_3"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"radius"			"225 225 225 225"
+				"radius"			"225"
 			}
 			"04"
 			{	
@@ -592,6 +568,12 @@
 			{
 				"var_type"							"FIELD_INTEGER"
 				"bonus_attack_speed_night"			"0"
+				"LinkedSpecialBonus"		"special_bonus_unique_night_stalker_2"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"0" // 2
 			}
 		}
 	}
@@ -716,17 +698,8 @@
 	{
 		"ItemQuality"	"common"	
 		"ItemSellable" "0"
-		"ItemInitialCharges"  "4"
+		"ItemInitialCharges"  "5"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"total_heal"			"115" // 115
-			}
-		}	
 	}
 
 	"item_flask"
@@ -746,7 +719,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"total_health"			"400" // 400
+				"health_regen"			"50"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tooltip_range"			"250"
 			}
 		}		
 	}
@@ -757,15 +735,6 @@
 		"ItemSellable" "0"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 		"AbilityCooldown" "20"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"total_heal"			"115" // 115
-			}
-		}
 	}
 
 	"item_smoke_of_deceit"
@@ -847,62 +816,33 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_agility"			"0" //"25 35"
+				"bonus_agility"			"0"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"0" //"10 15"
+				"bonus_intellect"		"0"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"initial_charges"		"2" //"8"
+				"feedback_mana_burn"	"0"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"feedback_mana_burn"	"0" //"40"
+				"feedback_mana_burn_illusion_melee"	"0"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"feedback_mana_burn_illusion_melee"		"0" //"20"
+				"feedback_mana_burn_illusion_ranged"	"0"
 			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"feedback_mana_burn_illusion_ranged"	"0" //"10"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"purge_summoned_damage"	"99999"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"purge_rate"			"5"
-			}
+
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"purge_root_duration"	"3.0"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"purge_slow_duration"	"4.0"
-			}
-			"11"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_per_burn"		"0" //"1.0"
-			}
-			"12"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range_tooltip"		"600"
+				"damage_per_burn"		"0"
 			}
 		}
 	}
@@ -985,16 +925,6 @@
 				"var_type"				"FIELD_INTEGER"
 				"bonus_mana_regen"		"0"
 			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"0"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"block_cooldown"		"16.0"
-			}
 		}
 	}
 
@@ -1014,37 +944,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"0" //"10"
+				"bonus_armor"		"0" // 10
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"0" //"10"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_health_regen"	"0"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"0" // "6"
-			}
+				"var_type"				"FIELD_FLOAT"
+				"bonus_mana_regen"		"0"
+			}			
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"0" //"125"
-			}			
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana"			"0" //"250"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"active_duration"		"6"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cast_range_tooltip"		"900"
+				"bonus_mana"			"0"
 			}
 		}
 	}
@@ -1361,27 +1276,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"	"0" // "6"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
 				"bonus_int"		"0" // "18"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"resist_debuff"			"-25"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"debuff_radius"			"600"
-			}
-			"09"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"resist_debuff_duration"	"16.0"
 			}
 		}
 	}
@@ -1412,22 +1307,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
 				"damage"				"400"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"range_tooltip"			"600"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"damage_delay"				"0"
 			}
 		}
 	}
@@ -1473,43 +1353,25 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"0" //"10"
+				"bonus_strength"		"0"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"0" //"10"
+				"bash_chance_melee"		"0"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bash_chance_melee"		"0" //"25"
+				"bash_chance_ranged"		"0"
 			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bash_chance_ranged"	"0" //"10"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_duration"			"1.4"
-			}
+
 			"11"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_chance_damage"	"0" //"85"
-			}	
-			"12"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_cooldown"			"2.3"
+				"bonus_chance_damage"	"0" // 85
 			}
-			"13"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"				"2"
-			}
+
 		}
 	}
 
@@ -2079,7 +1941,8 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"4.5" // "3.0 3.5 4.0 4.5 5.0 5.5 6.0"
-				"levelkey"				"quaslevel"	
+				"levelkey"				"quaslevel"
+				"LinkedSpecialBonus"	"special_bonus_unique_invoker_7"
 			}
 			"02"
 			{
@@ -2164,7 +2027,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"vision_distance"		"600"
+				"vision_distance"		"1200"
 			}
 			"05"
 			{
@@ -2175,6 +2038,7 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"lift_duration"			"1.7" //"0.8 1.1 1.4 1.7 2.0 2.3 2.5"
+				"LinkedSpecialBonus"	"special_bonus_unique_invoker_8"
 				"levelkey"				"quaslevel"
 			}
 			"07"
@@ -2185,13 +2049,13 @@
 			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"quas_damage"			"0 0 0 0 0 0 0"
+				"quas_damage"			"60" // "15 30 45 60 75 90 105"
 				"levelkey"				"quaslevel"
 			}
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"wex_damage"			"180" //"45 90 135 180 225 270 315"
+				"wex_damage"			"120" //"30 60 90 120 150 180 210"
 				"levelkey"				"wexlevel"
 			}
 		}
@@ -2345,6 +2209,7 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"main_damage"			"110" //"57.5 75 92.5 110 127.5 145 162.5"
+				"LinkedSpecialBonus"		"special_bonus_unique_invoker_6"
 				"levelkey"				"exortlevel"
 			}
 			"09"
@@ -2397,8 +2262,10 @@
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"strike_interval"	"0.7" //"0.7 0.6 0.5"		
+				"strike_interval"	"0.7"		
+				"LinkedSpecialBonus"	"special_bonus_unique_razor_2"
 			}
+
 			"05"
 			{
 				"var_type"			"FIELD_INTEGER"
@@ -2430,11 +2297,6 @@
 	{
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"525"
-			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
@@ -2443,13 +2305,13 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"50" //"50 60 70 80"
+				"bonus_damage"			"30" //"30 45 60 75"
 				"LinkedSpecialBonus"	"special_bonus_unique_ancient_apparition_2"
 			}
-			"04"
+			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"attack_speed_pct"		"-20"
+				"var_type"				"FIELD_INTEGER"
+				"buff_duration"			"20" //"20 24 28 32"
 			}
 		}
 	}
@@ -2546,17 +2408,13 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_tooltip"		"40"
+				"damage_tooltip"			"40"
+				"LinkedSpecialBonus"		"special_bonus_unique_shadow_shaman_4"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"45.0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_range"			"225"
 			}
 		}
 	}

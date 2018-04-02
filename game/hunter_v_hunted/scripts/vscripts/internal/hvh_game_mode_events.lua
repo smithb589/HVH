@@ -29,6 +29,7 @@ function HVHGameMode:OnGameRulesStateChange()
     HVHNeutralCreeps:Setup()
     HVHSniperSelect:Setup()
     HVHPhoenix:Setup()
+    HVHParadropper:Setup()
   end
 end
 

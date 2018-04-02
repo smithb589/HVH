@@ -9,10 +9,10 @@
 		//"Ability3"		"mirana_leap"
 		//"Ability4"		"night_stalker_shadowstalker_hvh"
 		"Ability4"			"night_stalker_hunter_in_the_night_hvh"
-		"Ability5"			"night_stalker_echolocation_hvh"
+		"Ability6"			"night_stalker_echolocation_hvh"
 		"AbilityLayout"		"5"
-		"Ability6"			"night_stalker_hunter_in_the_night" // hidden, for anim purposes
-		"Ability7"          "attribute_bonus"
+		"Ability7"			"night_stalker_hunter_in_the_night" // hidden, for anim purposes
+		//"Ability7"          "attribute_bonus"
 	
 		"ModelScale" 			"1.1"
 		"StatusHealthRegen"		"4.0"
@@ -24,9 +24,9 @@
 		"Ability2"			"meepo_earthbind"
 		"Ability3"			"sniper_feed_dog"
 		"Ability4"			"sniper_empty"
-		"Ability5"			"shredder_timber_chain"
+		"Ability6"			"shredder_timber_chain"
 		"AbilityLayout"		"5"
-		"Ability6"          "attribute_bonus"
+		//"Ability6"          "attribute_bonus"
 		//"Ability1"			"sniper_sharpshooter"
 		//"Ability2"			"sniper_flush"
 		//"Ability3"			"sniper_teleportation"

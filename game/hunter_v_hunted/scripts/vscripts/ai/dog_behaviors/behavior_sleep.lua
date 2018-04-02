@@ -21,6 +21,7 @@ function BehaviorSleep:Evaluate()
 	if not GameRules:IsDaytime() then
 		sleepPriority = self.desire --DESIRE_LOW
 	end
+
 	return sleepPriority
 end
 

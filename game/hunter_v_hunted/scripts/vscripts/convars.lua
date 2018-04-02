@@ -6,8 +6,8 @@ require("hvh_constants")
 require("item_spawn/item_spawn_controller")
 
 function HVHConvars:Setup()
-	--self:RegisterConvars()
-	self:RegisterCommands()
+  --self:RegisterConvars()
+  self:RegisterCommands()
 end
 
 function HVHConvars:RegisterConvars()
@@ -22,19 +22,52 @@ end
 
 
 function HVHConvars:RegisterCommands()
-	-- Register custom console command handlers here.
+-- Register custom console command handlers here.
 
-  	-- this is already built into the engine
-  	--Convars:RegisterCommand( "set_time_of_day", Dynamic_Wrap(self, 'ConvarSetTimeOfDay'), "Sets the time of day to the indicated value.", FCVAR_CHEAT )
-    Convars:RegisterCommand("hvh_spawn_all_items", Dynamic_Wrap(self, 'SpawnAllItems'), "Spawn all custom items near the hero's feet", FCVAR_CHEAT )
-    Convars:RegisterCommand("hvh_spawn_dog", Dynamic_Wrap(self, 'SpawnDog'), "Spawn a new Hound at a random spawn point", FCVAR_CHEAT )
-    Convars:RegisterCommand("hvh_fake_heroes", Dynamic_Wrap(self, 'FakeHeroes'), "Spawn heroes to fill in missing players.", FCVAR_CHEAT )
-    Convars:RegisterCommand("hvh_chest_probabilties", Dynamic_Wrap(self, 'DisplayChestProbabilties'), "Outputs item drop probabilities.", FCVAR_CHEAT )
-    Convars:RegisterCommand("hvh_test_item_cycle", Dynamic_Wrap(self, "DisplayTestItemSpawnCycle"), "Runs a test cycle displaying items.", FCVAR_CHEAT)
-    Convars:RegisterCommand("hvh_spawn_creeps", Dynamic_Wrap(self, "SpawnCreeps"), "Spawns creeps.", FCVAR_CHEAT)
-    Convars:RegisterCommand("hvh_spawn_wards", Dynamic_Wrap(self, "SpawnWards"), "Spawns wards.", FCVAR_CHEAT)
-    Convars:RegisterCommand("hvh_test_anim", Dynamic_Wrap(self, "TestAnimation"), "Tests animation.", FCVAR_CHEAT)
-    Convars:RegisterCommand("hvh_team_swap", Dynamic_Wrap(self, "TeamSwap"), "Swaps team.", FCVAR_CHEAT)
+	-- this is already built into the engine
+	--Convars:RegisterCommand( "set_time_of_day", Dynamic_Wrap(self, 'ConvarSetTimeOfDay'), "Sets the time of day to the indicated value.", FCVAR_CHEAT )
+  Convars:RegisterCommand("hvh_spawn_all_items", Dynamic_Wrap(self, 'SpawnAllItems'), "Spawn all custom items near the hero's feet", FCVAR_CHEAT )
+  Convars:RegisterCommand("hvh_spawn_dog", Dynamic_Wrap(self, 'SpawnDog'), "Spawn a new Hound at a random spawn point", FCVAR_CHEAT )
+  Convars:RegisterCommand("hvh_fake_heroes", Dynamic_Wrap(self, 'FakeHeroes'), "Spawn heroes to fill in missing players.", FCVAR_CHEAT )
+  Convars:RegisterCommand("hvh_chest_probabilties", Dynamic_Wrap(self, 'DisplayChestProbabilties'), "Outputs item drop probabilities.", FCVAR_CHEAT )
+  Convars:RegisterCommand("hvh_test_item_cycle", Dynamic_Wrap(self, "DisplayTestItemSpawnCycle"), "Runs a test cycle displaying items.", FCVAR_CHEAT)
+  Convars:RegisterCommand("hvh_spawn_creeps", Dynamic_Wrap(self, "SpawnCreeps"), "Spawns creeps.", FCVAR_CHEAT)
+  Convars:RegisterCommand("hvh_spawn_wards", Dynamic_Wrap(self, "SpawnWards"), "Spawns wards.", FCVAR_CHEAT)
+  Convars:RegisterCommand("hvh_test_anim", Dynamic_Wrap(self, "TestAnimation"), "Tests animation.", FCVAR_CHEAT)
+  Convars:RegisterCommand("hvh_team_swap", Dynamic_Wrap(self, "TeamSwap"), "Swaps team.", FCVAR_CHEAT)
+  Convars:RegisterCommand("hvh_paradrop", Dynamic_Wrap(self, "Paradrop"), "Paradrops.", FCVAR_CHEAT)
+  Convars:RegisterCommand("hvh_roquelaire", Dynamic_Wrap(self, "Teleport"), "Teleports.", FCVAR_CHEAT)
+end
+
+function HVHConvars:Teleport()
+  local humanPlayer = Convars:GetCommandClient()
+  local humanPlayerID = humanPlayer:GetPlayerID()
+  local hero = humanPlayer:GetAssignedHero()
+
+  local ship = Entities:FindByName(nil, "ShipSpawn")
+
+  print(ship)
+  hero:SetAbsOrigin(ship:GetAbsOrigin())
+  PlayerResource:SetCameraTarget(humanPlayerID, hero)
+end
+
+function HVHConvars:Paradrop()
+  local humanPlayer = Convars:GetCommandClient()
+  local hero = humanPlayer:GetAssignedHero()
+  HVHParadropper:Begin(hero)
+
+  local creatureList = Entities:FindAllByClassname("npc_dota_creature")
+  local houndList = {}
+  for _,creature in pairs(creatureList) do
+    if creature:GetUnitName() == "npc_dota_good_guy_dog" then
+      table.insert(houndList, creature)
+    end
+  end
+
+  -- apply flush modifier and create loyalty to houndmaster
+  for _,hound in pairs(houndList) do
+    HVHParadropper:Begin(hound)
+  end
 end
 
 -- ability level issues

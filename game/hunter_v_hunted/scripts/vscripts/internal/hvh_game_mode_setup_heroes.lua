@@ -63,6 +63,7 @@ function HVHGameMode:SetupHero(hero)
   hero:SetAbilityPoints(0)
 
   -- starting gear
+  hero:RemoveItem(hero:FindItemInInventory("item_tpscroll"))
   local heroTeam = hero:GetTeamNumber()
   if heroTeam == DOTA_TEAM_GOODGUYS then
     --hero:AddItemByName("item_boots")
@@ -89,7 +90,7 @@ function HVHGameMode:SetupHero(hero)
   local direction = (enemySpawnPos - spawnPos):Normalized()
   hero:SetForwardVector(direction) -- face the enemy spawn
   --DebugDrawLine(spawnPos, enemySpawnPos, 0, 255, 0, true, 20.0)
-
+  
   -- lock camera for 1 second then unlock, unless non-default camera settings are enabled
   local playerID = hero:GetPlayerID()
   PlayerResource:SetCameraTarget(playerID, hero)

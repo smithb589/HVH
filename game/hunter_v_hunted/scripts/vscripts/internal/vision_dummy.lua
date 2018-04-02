@@ -37,7 +37,7 @@ function VisionDummy:MoveVisionDummy()
 	self.vis_dummy_2:SetOrigin(pos)
 end
 
-function VisionDummy:KillVisionDummy(target)
+function VisionDummy:KillVisionDummy()
 	self.vis_dummy_1:ForceKill(false)
 	self.vis_dummy_2:ForceKill(false)
 	self.active = false

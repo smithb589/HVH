@@ -202,6 +202,18 @@
 		//----------------------------------------------------------------
 		"AttackDesire" "1.5" // How much bots want to attack them vs other non-hero things
 	}
+	"npc_dummy_paradropper"
+	{
+		"BaseClass" "npc_dota_creature"
+		"Model"     "models/development/invisiblebox.vmdl"
+		"AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		"MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_FLY"
+		"Ability1"				"paradropper"
+		"VisionDaytimeRange"	"1600"
+		"VisionNighttimeRange"	"1200"
+		"MinimapIcon"        ""
+	}
 	"npc_dummy_reveal_phoenix"
 	{
 		"BaseClass" "npc_dota_creature"
@@ -1170,7 +1182,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"Ability1"				""					// Ability 1
 		"Ability2"				"tiny_toss"			// Ability 2
-		"Ability3"				"tiny_craggy_exterior" // Ability 3
+		"Ability3"				"" // Ability 3
 		"Ability4"				"tiny_grow"					// Ability 4
 	
 		// Armor

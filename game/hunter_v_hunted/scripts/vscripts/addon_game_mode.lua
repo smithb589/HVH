@@ -11,6 +11,7 @@ require("utils/item_utils")
 require("utils/hvh_utils")
 require("utils/modifierstackmanager")
 require("utils/error_utils")
+require("utils/vector_utils")
 
 require("item_spawn/item_spawn_controller")
 
@@ -36,6 +37,7 @@ require("internal/force_cast")
 require("internal/sniper_select")
 require("internal/cycles")
 require("internal/phoenix")
+require("internal/paradropper")
 
 require("statcollection/init")
 require('ai/ai_core')
