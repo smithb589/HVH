@@ -108,6 +108,12 @@
 			"Target"		"CASTER"
 		}
 
+		"DestroyTrees"
+		{
+			"Target" 		"POINT"
+			"Radius"		"%scream_final_aoe"
+		}
+
 		// minor knockback to surrounding targets (after short delay)
 		// yo dawg: knockback can't knock back someone already being knocked back
 		// knockback also seems to destroy trees the unit encounters!
@@ -123,7 +129,7 @@
 					"EffectRadius"		"%pushback_radius"
 					"Target"            "CASTER"
 				}
-				
+		
 				"ActOnTargets"
 				{
 					"Target"
