@@ -3,33 +3,27 @@ if HVHPhoenix == nil then
 end
 
 function HVHPhoenix:Setup(vec)
+	if HVHGameMode.HostOptions["DisablePhoenix"] then return end
+
 	local start = vec or AICore:ChooseRandomPointOfInterest()
 	local destinationList =	HVHNeutralCreeps:CreateDestinationList(start, 1, RANGE_TYPICAL_MIN)
-	local phoenix = HVHNeutralCreeps:SpawnNeutrals("npc_hvh_phoenix", 1, start, DOTA_TEAM_CUSTOM_1)
-	HVHNeutralCreeps:SetDestinationList(phoenix[1], destinationList)
-	
-	Timers:CreateTimer(0.1, function()
-		local phoenixVis = VisionDummy(phoenix[1], "npc_dummy_reveal_phoenix")
-	end)
-	-- face that bird
-	--Timers:CreateTimer(0.1, function()
-	--	local direction = (HVHNeutralCreeps:GetDestination(phoenix) - phoenix:GetAbsOrigin()):Normalized()
-	--	phoenix:SetForwardVector(direction)
-	--end)
+	local phoenixList = HVHNeutralCreeps:SpawnNeutrals("npc_hvh_phoenix", 1, start, DOTA_TEAM_CUSTOM_1)
+	local phoenix = phoenixList[1]
+	HVHNeutralCreeps:SetDestinationList(phoenix, destinationList)
 end
 
+function HVHPhoenix:IsPhoenix(ent)
+	local class = ent:GetClassname()
+	return (class == "npc_dota_creature" and ent:GetUnitName() == "npc_hvh_phoenix")
+end
+
+function HVHPhoenix:IsEgg(ent)
+	return ent:HasModifier("modifier_supernova_egg_form_hvh")
+end
+
+--[[
 function HVHPhoenix:SetupEgg(phoenix)
 	self:MakeEggsImmortal()
-	
-	local t = 1.0
-	Timers:CreateTimer(t, function()
-		if GameRules:IsDaytime() then
-			HVHPhoenix:Rebirth(phoenix)
-			return nil
-		else
-			return t
-		end
-	end)
 end
 
 function HVHPhoenix:MakeEggsImmortal()
@@ -59,16 +53,17 @@ function HVHPhoenix:FindEggs()
 	return eggs
 end
 
-function HVHPhoenix:Rebirth(phoenix)
-	local origin = phoenix:GetAbsOrigin()
-	local eggs = self:FindEggs()
+function HVHPhoenix:FindPhoenixes()
+	local phoenixes = {}
+	local ents = Entities:FindAllByClassname("npc_dota_creature")
 
-	for _,egg in pairs(eggs) do
-		egg:RemoveModifierByName("modifier_phoenix_sun") -- removing modifier seems to destroy the sun
-		phoenix:AddNoDraw()
-		phoenix:ForceKill(false)
-		self:Setup(origin) -- spawn a new phoenix. fitting, right?		
+	for _,ent in pairs(ents) do
+		if ent:GetUnitName() == "npc_hvh_phoenix" then
+			table.insert(phoenixes, ent)
+		end
 	end
+
+	return phoenixes
 end
 
 function HVHPhoenix:IsPhoenix(ent)
@@ -88,3 +83,4 @@ function HVHPhoenix:IsEgg(ent)
 		return false
 	end
 end
+]]

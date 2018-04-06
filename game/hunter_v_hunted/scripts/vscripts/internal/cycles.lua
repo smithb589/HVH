@@ -87,14 +87,19 @@ end
 
 function HVHCycles:GenerateHalfCycleTime(day)
   local time,rng = 0,0
-  if day then
+
+  -- if phoenix disabled, always use night duration for both day and night
+  if HVHGameMode.HostOptions["DisablePhoenix"] then
+    rng = RandomFloat(-1 * NIGHT_SECONDS_RANDOM_EXTRA, NIGHT_SECONDS_RANDOM_EXTRA)
+    time = NIGHT_SECONDS + rng
+  elseif day then
     rng = RandomFloat(-1 * DAY_SECONDS_RANDOM_EXTRA, DAY_SECONDS_RANDOM_EXTRA)
     time = DAY_SECONDS + rng
   else
     rng = RandomFloat(-1 * NIGHT_SECONDS_RANDOM_EXTRA, NIGHT_SECONDS_RANDOM_EXTRA)
     time = NIGHT_SECONDS + rng
   end
-  --print(time .. " seconds generated.")
+
   return time
 end
 
@@ -119,18 +124,22 @@ end
 
 -- heal the NS for a small percentage of max hp
 function HVHCycles:MoonRockPickup(unit)
-    local hp = unit:GetMaxHealth() * NS_CHEST_HEAL
-    unit:Heal(hp, unit)
-    PopupHealing(unit, hp)
+  if HVHGameMode.HostOptions["DisablePhoenix"] then return end
 
-    local partString = "particles/moonrock_heal.vpcf"
-    local sfxString = "n_creep_ForestTrollHighPriest.Heal"
-    ParticleManager:CreateParticle(partString,  PATTACH_ABSORIGIN_FOLLOW, unit )
-    unit:EmitSound(sfxString) 
+  local hp = unit:GetMaxHealth() * NS_CHEST_HEAL
+  unit:Heal(hp, unit)
+  PopupHealing(unit, hp)
+
+  local partString = "particles/moonrock_heal.vpcf"
+  local sfxString = "n_creep_ForestTrollHighPriest.Heal"
+  ParticleManager:CreateParticle(partString,  PATTACH_ABSORIGIN_FOLLOW, unit )
+  unit:EmitSound(sfxString) 
 end
 
 -- grant a sun shard item, usable on phoenix
 function HVHCycles:SunShardPickup(unit)
+  if HVHGameMode.HostOptions["DisablePhoenix"] then return end
+
   local r = RandomFloat(0.0, 1.0)
   if r <= SUN_SHARD_PICKUP_CHANCE then
     HVHItemUtils:AddItemOrLaunchIt(unit, "item_sun_shard_hvh")

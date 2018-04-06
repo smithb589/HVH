@@ -32,7 +32,7 @@
 	"Ability3"					"phoenix_sun_ray_stop"
 	"Ability4"					"phoenix_sun_ray_toggle_move"
 	"Ability5"					"phoenix_passives"
-	"Ability6"					"phoenix_supernova"
+	"Ability6"					"phoenix_supernova_hvh"
 	"AbilityLayout" "4"
 
 	// Armor

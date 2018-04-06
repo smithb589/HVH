@@ -223,7 +223,7 @@
 		"MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_FLY"
 		"Ability1"				"dummy_reveal_unit_vision"
 		"VisionDaytimeRange"	"0"
-		"VisionNighttimeRange"	"0"
+		"VisionNighttimeRange"	"5"
 		"MinimapDisableTint" "1"
 		"MinimapIcon"        "minimap_hvh_phoenix"
 		"MinimapIconSize"    "600"
@@ -865,7 +865,7 @@
 		"Ability3"					"phoenix_sun_ray_stop"
 		"Ability4"					"phoenix_sun_ray_toggle_move"
 		"Ability5"					"phoenix_passives"
-		"Ability6"					"phoenix_supernova"
+		"Ability6"					"phoenix_supernova_hvh"
 		"AbilityLayout" "4"
 	
 		// Armor

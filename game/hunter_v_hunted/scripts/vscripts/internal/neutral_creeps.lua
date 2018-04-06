@@ -4,7 +4,7 @@ if HVHNeutralCreeps == nil then
 	RANGE_TYPICAL_MIN = 2600.0
 	RANGE_TECHIES_MAX = 2000.0
 	RANGE_TECHIES_MIN = 400.0
-	TECHIES_MAX_MINES = 8
+	TECHIES_MAX_MINES = 12
 
 	NEUTRALCREEPS_EVENT_TECHIES_DEATH           = 0
 	NEUTRALCREEPS_EVENT_TECHIES_DEATH_NOMINES   = 1
@@ -138,8 +138,7 @@ function HVHNeutralCreeps:SpawnRandomGroup()
 		self:SpawnSoloCreep()
 	elseif value == "npc_hvh_tower" then
 		self:SpawnWarParty()
-	elseif (value == "npc_hvh_ursa" or value == "npc_hvh_roshan") and
-		   not self:DoUrsaOrRoshanExist() then
+	elseif (value == "npc_hvh_ursa" or value == "npc_hvh_roshan") and not self:DoUrsaOrRoshanExist() then
 		self:SpawnUrsaAndRoshan()
 	elseif value == "npc_hvh_enigma" then
 		self:SpawnEnigmaEidolons()
@@ -147,9 +146,10 @@ function HVHNeutralCreeps:SpawnRandomGroup()
 		self:SpawnHellbears()
 	elseif value == "npc_hvh_tiny" then
 		self:SpawnTiny()
-	elseif value == "npc_hvh_techies" then
+	elseif value == "npc_hvh_techies" and not self:DoesTechiesExist() then
 		self:SpawnTechies()
 	else
+		self:SpawnSoloCreep() -- fall back on a solo creep
 		--print(value .. " not found on ChooseRandomGroup")
 	end
 end
@@ -534,6 +534,19 @@ end
 -------------------------------------------------------------------
 -- Techies mines
 -------------------------------------------------------------------
+function HVHNeutralCreeps:DoesTechiesExist()
+	local creatureList = Entities:FindAllByClassname("npc_dota_creature")
+
+	for _,creature in pairs(creatureList) do
+		if creature:GetUnitName() == "npc_hvh_techies" then
+			--print("Rosh/Ursa exist, so skip their spawn")
+			return true
+		end
+	end
+
+	return false
+end
+
 function HVHNeutralCreeps:TechiesOnDeath(unit, killer)
 	local team = killer:GetTeam()
 	if team == DOTA_TEAM_GOODGUYS or team == DOTA_TEAM_BADGUYS then

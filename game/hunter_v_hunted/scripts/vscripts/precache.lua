@@ -241,5 +241,6 @@ PRECACHE_SOUNDFILES = {
 	"soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts",
 	"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts",
 	"soundevents/game_sounds_heroes/game_sounds_shredder.vsndevts",
+	"soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts",
 	"soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts"
 }

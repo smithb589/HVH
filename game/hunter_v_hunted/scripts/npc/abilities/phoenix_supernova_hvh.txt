@@ -1,0 +1,163 @@
+//=================================================================================================================
+// Phoenix: Supernova HVH
+//=================================================================================================================
+"phoenix_supernova_hvh"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"				"ability_datadriven"
+	"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"AbilityTextureName"		"phoenix_supernova"
+	"MaxLevel"	"1"
+
+	"AbilityCastRange"				"500"
+	"AbilityCastPoint"				"0.01"
+	"AbilityCooldown"				"1.0"
+	"AbilityDuration"				"999.0"
+	"AbilityManaCost"				"0"
+
+	"precache"
+	{
+		"soundfile"					"soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts"
+		"particle"					"particles/units/heroes/hero_phoenix/phoenix_supernova_death.vpcf"
+		"particle"					"particles/units/heroes/hero_phoenix/phoenix_supernova_egg.vpcf"
+		"particle"					"particles/units/heroes/hero_phoenix/phoenix_supernova_hit.vpcf"
+		"particle"					"particles/units/heroes/hero_phoenix/phoenix_supernova_radiance.vpcf"
+		"particle"					"particles/units/heroes/hero_phoenix/phoenix_supernova_radiance_creep.vpcf"
+		"particle"					"particles/units/heroes/hero_phoenix/phoenix_supernova_reborn.vpcf"
+		"particle"					"particles/units/heroes/hero_phoenix/phoenix_supernova_start.vpcf"
+	}
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"aura_radius"		"1000"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"damage_per_sec"	"10"
+		}
+		"03"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"stun_duration"		"1.0"
+		}
+	}
+
+	"OnUpgrade"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/phoenix_supernova_hvh.lua"
+			"Function"				"Supernova_OnUpgrade"
+		}
+	}
+
+	"OnToggleOn"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/phoenix_supernova_hvh.lua"
+			"Function"				"Supernova_OnToggleOn"
+		}
+	}
+
+	"OnToggleOff"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"spells/phoenix_supernova_hvh.lua"
+			"Function"				"Supernova_OnToggleOff"
+		}
+	}
+
+	"Modifiers"
+	{
+		"modifier_supernova_egg_form_hvh"
+		{
+			"IsBuff"	"1"
+			"Duration"	"%AbilityDuration"
+			"OverrideAnimation" "ACT_DOTA_LOADOUT"
+
+			"Aura"			"modifier_supernova_burn_hvh"
+			"Aura_Radius"	"%aura_radius"
+			"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+			"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+			"Aura_ApplyToCaster"	"0"
+
+			"States"
+			{
+				//"MODIFIER_STATE_COMMAND_RESTRICTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_STUNNED"				"MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_INVULNERABLE"			"MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
+				//"MODIFIER_STATE_OUT_OF_GAME"			"MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_NO_HEALTH_BAR"			"MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY"	"MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_LOW_ATTACK_PRIORITY"				"MODIFIER_STATE_VALUE_ENABLED"
+			}
+
+			"OnCreated"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"spells/phoenix_supernova_hvh.lua"
+					"Function"		"Supernova_CreateVisionDummy"
+				}
+			}
+		}
+
+		"modifier_supernova_explode_stun_hvh"
+		{
+			"IsDebuff"	"1"
+			"Duration"	"%stun_duration"
+
+			"States"
+			{
+				"MODIFIER_STATE_STUNNED"				"MODIFIER_STATE_VALUE_ENABLED"
+			}
+
+			"OverrideAnimation"	"ACT_DOTA_DISABLED"
+			"EffectName"		"particles/generic_gameplay/generic_stunned.vpcf"
+			"EffectAttachType"	"follow_overhead"
+		}
+
+		"modifier_supernova_burn_hvh"
+		{
+			"IsDebuff"	"1"
+			"ThinkInterval"		"1.0"
+			
+			"OnCreated"
+			{
+				"AttachEffect"
+				{
+					"EffectName"		"particles/units/heroes/hero_phoenix/phoenix_supernova_radiance.vpcf"
+					"EffectAttachType"	"attach_hitloc"
+					"Target"			"TARGET"
+					"ControlPointEntities"
+					{
+						"TARGET"	"attach_hitloc"
+						//"CASTER"	"attach_hitloc" // TODO: Fix the console bug
+					}
+				}
+			}
+
+			"OnIntervalThink"
+			{
+				"Damage"
+				{
+					"Target"	"TARGET"
+					"Type"		"DAMAGE_TYPE_MAGICAL"
+					"Damage"	"%damage_per_sec"
+				}
+			}
+		}
+	}
+}
