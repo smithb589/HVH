@@ -1,3 +1,7 @@
+1.7.0
+----
+Patchnotes coming
+
 1.6.7
 ----
 -- Fixed units getting stuck outside the map
