@@ -66,13 +66,13 @@ function HVHGameMode:SetupHero(hero)
   hero:RemoveItem(hero:FindItemInInventory("item_tpscroll"))
   local heroTeam = hero:GetTeamNumber()
   if heroTeam == DOTA_TEAM_GOODGUYS then
-    --hero:AddItemByName("item_boots")
-    hero:AddItemByName("item_sun_shard_hvh")
     hero:AddItemByName("item_tango_single")
+    if not HVHGameMode.HostOptions["DisablePhoenix"] then
+      hero:AddItemByName("item_sun_shard_hvh")
+    end
   else
     hero:AddItemByName("item_phase_boots")
     hero:AddItemByName("item_magic_stick")
-    --hero:AddItemByName("item_ultimate_scepter")
   end
 
   -- move hero to the pregenerated random team spawn

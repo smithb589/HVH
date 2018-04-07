@@ -1,9 +1,9 @@
-Version 1.6.7
+Version 1.7.0
 
 Simplified Chinese (简体中文) and Russian (Русский) translations available!
 
-[b]WHAT'S NEW WITH 1.6.7?[/b]
-Units no longer get stuck outside the map, and Phoenix has been restored to working order. Big thanks to Druanach and Internet Explorer (not the real one I think) for bringing this bug to my attention and reporting it in the Comments below. Happy hunting!
+[b]WHAT'S NEW WITH 1.7.0?[/b]
+I fixed that bug where Phoenix was creating an endless day, due to a recent DOTA 2 patch. In addition, you can finally disable Phoenix if you'd like to play the game in a more classic way. I'd like to spend some more time on balancing this game so I'll be playing it more in the coming days. Finally, there's a secret new feature that you'll just have to play to discover. Hopefully it will make this mod as popular as That Other Game(tm).
 
 ---
 

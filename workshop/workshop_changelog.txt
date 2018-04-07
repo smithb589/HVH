@@ -1,6 +1,15 @@
 1.7.0
 ----
-Patchnotes coming
+-- Phoenix-related endless day bug fixed
+-- Echolocation (NS ult) now breaks trees
+-- Updated behaviour related to getting stuck outside the map
+-- Techies capped to 1 spawn, increased from 8 to 12 mines total
+-- Disabling Phoenix now works but also changes gameplay in the following ways:
+---- Day/night cycles become equal in length (90 seconds)
+---- Sunshards won't spawn
+---- Moonstones won't heal NS
+-- Fixed other stuff I can't remember
+-- New secret feature that should make this game as popular as that other popular game
 
 1.6.7
 ----
