@@ -19,23 +19,32 @@ function DoForceCast(caster, abilityName, maxDuration, spellLevel, position)
 
 	ability:OnSpellStart()
 
-
 	Timers:CreateTimer(maxDuration, function()
 		if caster:HasAbility(abilityName) then
 			caster:RemoveAbility(abilityName)
 		end
 	end)
+
+	-- exceptions
+	if abilityName == "wisp_tether" then
+		WispTetherBreak(caster, delay)
+	end
+
 end
 
--- unused for now
-function LearnTempAbility ( caster, abilityName, maxDuration )
-	print("learned " .. abilityName)
-	caster:AddAbility(abilityName)
-	local ability = caster:FindAbilityByName(abilityName)
-	ability:SetHidden(true)
-	ability:SetLevel(ability:GetMaxLevel())
-	Timers:CreateTimer(maxDuration+1, function()
-		caster:RemoveAbility(abilityName)
-		print("forgot " .. abilityName)
-	end)
+function WispTetherBreak(caster, delay)
+	Timers:CreateTimer(delay, function()
+		if caster:HasModifier("modifier_wisp_tether") then
+			caster:RemoveModifierByNameAndCaster("modifier_wisp_tether", caster)
+		end
+	end)	
+end
+
+function PrintAbilities(hero)
+	for i=0,hero:GetAbilityCount()-1 do
+		ability = hero:GetAbilityByIndex(i)
+		if ability then
+			print(ability:GetAbilityIndex() .. ": " .. ability:GetName())
+		end
+	end
 end
