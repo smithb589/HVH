@@ -170,6 +170,8 @@ function HVHGameMode:SpawnDog(random_spawn)
   dog:SetOriginalModel(HOUND_MODEL_PATHS[r])
   --end)
 
-  HVHParadropper:Begin(dog)
+  if random_spawn then 
+    HVHParadropper:Begin(dog)
+  end
 end
 
