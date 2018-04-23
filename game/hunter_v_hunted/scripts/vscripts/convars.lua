@@ -37,6 +37,12 @@ function HVHConvars:RegisterCommands()
   Convars:RegisterCommand("hvh_team_swap", Dynamic_Wrap(self, "TeamSwap"), "Swaps team.", FCVAR_CHEAT)
   Convars:RegisterCommand("hvh_paradrop", Dynamic_Wrap(self, "Paradrop"), "Paradrops.", FCVAR_CHEAT)
   Convars:RegisterCommand("hvh_roquelaire", Dynamic_Wrap(self, "Teleport"), "Teleports.", FCVAR_CHEAT)
+  Convars:RegisterCommand("hvh_sniper_select", Dynamic_Wrap(self, "SniperSelect"), "Choose ability.", FCVAR_CHEAT)
+end
+
+function HVHConvars:SniperSelect()
+  local humanPlayer = Convars:GetCommandClient()
+  HVHSniperSelect:MakeMenuVisible(humanPlayer, SNIPER_SELECT_REASON_FREEBIE)
 end
 
 function HVHConvars:Teleport()
