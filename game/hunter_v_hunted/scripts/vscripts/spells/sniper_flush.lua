@@ -17,6 +17,14 @@ function OnSpellStart(keys)
 		end
 	end
 
+	local voiceStrings = {
+		"lycan_lycan_ability_howl_01", "lycan_lycan_ability_howl_02", "lycan_lycan_ability_howl_03",
+		"lycan_lycan_ability_howl_04", "lycan_lycan_ability_howl_05"
+	}
+
+	local r = RandomInt(1, #voiceStrings)
+	EmitSoundOn(voiceStrings[r], caster)
+
 	-- apply flush modifier and create loyalty to houndmaster
 	for _,hound in pairs(houndList) do
 		flushAbility:ApplyDataDrivenModifier(caster, hound, "modifier_flush", { duration = flushDuration })
