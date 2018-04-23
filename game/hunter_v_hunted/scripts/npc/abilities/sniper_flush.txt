@@ -23,6 +23,8 @@
 	//-------------------------------------------------------------------------------------------------------------
 	"precache"
 	{
+		"soundfile"			"soundevents/voscripts/game_sounds_vo_lycan.vsndevts"
+		"particle"			"particles/units/heroes/hero_lycan/lycan_howl_cast.vpcf"
 	}
 
 	// Special
@@ -38,6 +40,13 @@
 
 	"OnSpellStart"
 	{
+		"FireEffect"
+		{
+			"EffectName"        "particles/units/heroes/hero_lycan/lycan_howl_cast.vpcf"
+			"EffectAttachType"  "follow_origin"
+			"Target"            "CASTER"
+		}
+
 		"RunScript"
 		{
 			"ScriptFile"	"spells/sniper_flush.lua"
