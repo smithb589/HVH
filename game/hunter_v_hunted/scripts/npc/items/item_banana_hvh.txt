@@ -1,0 +1,13 @@
+"item_banana_hvh" 
+{
+    "ID"           "1200"
+    "BaseClass"    "item_datadriven"
+    "AbilityTextureName" "item_banana"
+    "ItemQuality"  "artifact"
+	"Model"							"models/props_gameplay/boots_of_speed.vmdl"
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+	"ItemSellable" "0"
+	"ItemDroppable" "0"
+}

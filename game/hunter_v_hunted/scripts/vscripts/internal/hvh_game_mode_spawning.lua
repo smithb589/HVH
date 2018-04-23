@@ -105,7 +105,7 @@ end
 
 function HVHGameMode:DetermineRespawn(unit)
   local team = unit:GetTeam()
-  local respawnTime = self:GetRespawnTime()
+  local respawnTime = self:GetRespawnTime(unit)
   unit:SetTimeUntilRespawn(respawnTime)
 
   Timers:CreateTimer(respawnTime - 1.0, function() 
@@ -121,8 +121,18 @@ function HVHGameMode:DetermineRespawn(unit)
 end
 
 -- random time between MIN and MAX
-function HVHGameMode:GetRespawnTime()
-  return RandomInt(MIN_RESPAWN_TIME, MAX_RESPAWN_TIME)
+function HVHGameMode:GetRespawnTime(unit)
+  local unit = unit or nil
+  local disconnectPenalty = 0
+
+  if unit then 
+    local player = unit:GetPlayerOwner()
+    if player then
+      disconnectPenalty = DC_RESPAWN_EXTRA_TIME
+    end
+  end
+
+  return RandomInt(MIN_RESPAWN_TIME, MAX_RESPAWN_TIME) + disconnectPenalty
 end
 
 -------------------------------------------------------------------

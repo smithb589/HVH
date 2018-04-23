@@ -117,3 +117,22 @@ function HVHItemUtils:AddItemOrLaunchIt(unit, itemName)
 	    return item
 	end
 end
+
+function HVHItemUtils:FreeUpInventorySlots(hero, slots)
+  local slots = slots or 1
+
+  local inventoryTable = {}
+  for i = DOTA_ITEM_SLOT_1, DOTA_ITEM_SLOT_6 do
+    local item = hero:GetItemInSlot(i)
+    if item then
+      table.insert(inventoryTable, item)
+    end
+  end
+
+  while (6 - hero:GetNumItemsInInventory()) < slots do
+    print("Have " .. hero:GetNumItemsInInventory() .. " items, need " .. slots .. " slots.")
+    local r = RandomInt(1, #inventoryTable)
+    hero:DropItemAtPositionImmediate(inventoryTable[r], hero:GetAbsOrigin())
+    table.remove(inventoryTable, r)
+  end
+end

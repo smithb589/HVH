@@ -242,5 +242,7 @@ PRECACHE_SOUNDFILES = {
 	"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts",
 	"soundevents/game_sounds_heroes/game_sounds_shredder.vsndevts",
 	"soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts",
-	"soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts"
+	"soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts",
+	"soundevents/voscripts/game_sounds_vo_lycan.vsndevts",
+	"soundevents/soundevents_conquest.vsndevts"
 }

@@ -19,6 +19,7 @@ function HVHGameMode:OnGameRulesStateChange()
   elseif state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
     self:StartTeamAbandonmentListener(DOTA_TEAM_GOODGUYS)
     self:StartTeamAbandonmentListener(DOTA_TEAM_BADGUYS)
+    self:StartNightstalkerHandicapListener()
     self:BackpackDisabler()
     self:DisplayHostOptions()
     self:SpawnStartingDogs()
@@ -53,19 +54,13 @@ function HVHGameMode:DecrementDisconnectTimeRemaining(seconds, losingTeam)
   end
 end
 
+--LISTENERS-----------------------------------------------------------------------------
+
 function HVHGameMode:StartTeamAbandonmentListener(team)
   local checkEvery = 5.0
+  local teamTotal = PlayerResource:GetPlayerCountForTeam(team)
   Timers:CreateTimer(function()
-    local teamTotal = PlayerResource:GetPlayerCountForTeam(team)
-    local teamConnected = 0
-    for i = 1, teamTotal do
-      local playerID = PlayerResource:GetNthPlayerIDOnTeam(team, i)
-      local state = PlayerResource:GetConnectionState(playerID) 
-      if state == CONNECTION_STATE_BOT or state == CONNECTION_STATE_PLAYER then
-        teamConnected = teamConnected + 1
-      end
-      --print("T"..team.." " .. PlayerResource:GetPlayerName(playerID) .. " ID: " .. playerID .. ", ConnState: " .. state)
-    end
+    local teamConnected = GetConnectedPlayerCountOnTeam(team)
 
     --  (intentional!) 0/0 can happen in single-player so there's no auto-quit
     if teamTotal ~= 0 and (teamConnected / teamTotal) == 0 then
@@ -78,6 +73,78 @@ function HVHGameMode:StartTeamAbandonmentListener(team)
     return checkEvery
   end)
 end
+
+function HVHGameMode:StartNightstalkerHandicapListener()
+  local checkEvery = 5.0
+  local totalSniperPlayers = GameRules:GetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS)
+  Timers:CreateTimer(function()
+    local teamConnected = GetConnectedPlayerCountOnTeam(DOTA_TEAM_GOODGUYS)
+    print(totalSniperPlayers .. " vs " .. teamConnected)
+    if teamConnected ~= totalSniperPlayers then
+      self:SetNightstalkerHandicap(teamConnected)
+    end
+
+    totalSniperPlayers = teamConnected
+    return checkEvery
+  end)
+end
+
+function HVHGameMode:SetNightstalkerHandicap(sniperTeamCount)
+  local heroList = HeroList:GetAllHeroes()
+  for _,hero in pairs(heroList) do
+    if not IsEntityNightStalker(hero) then return end
+    local player = hero:GetPlayerOwner()
+
+    hero:RemoveItem(hero:FindItemInInventory("item_phase_boots"))
+    hero:RemoveItem(hero:FindItemInInventory("item_boots"))
+    hero:RemoveItem(hero:FindItemInInventory("item_banana_hvh"))
+    hero:RemoveItem(hero:FindItemInInventory("item_banana_hvh"))
+    hero:RemoveItem(hero:FindItemInInventory("item_banana_hvh"))
+    hero:RemoveItem(hero:FindItemInInventory("item_banana_hvh"))
+    hero:RemoveItem(hero:FindItemInInventory("item_banana_hvh"))
+
+    if sniperTeamCount >= 4 then
+      HVHErrorUtils:SendNoteToScreenBottom(player, "#Handicap_4")
+      HVHItemUtils:FreeUpInventorySlots(hero)
+      hero:AddItemByName("item_phase_boots")
+    elseif sniperTeamCount == 3 then
+      HVHErrorUtils:SendNoteToScreenBottom(player, "#Handicap_3")
+      HVHItemUtils:FreeUpInventorySlots(hero)
+      hero:AddItemByName("item_boots")
+    elseif sniperTeamCount == 2 then
+      HVHErrorUtils:SendNoteToScreenBottom(player, "#Handicap_2")
+      HVHItemUtils:FreeUpInventorySlots(hero, 2)
+      hero:AddItemByName("item_banana_hvh")
+      hero:AddItemByName("item_banana_hvh")
+    else
+      HVHErrorUtils:SendNoteToScreenBottom(player, "#Handicap_1")
+      HVHItemUtils:FreeUpInventorySlots(hero, 5)  
+      hero:AddItemByName("item_banana_hvh")
+      hero:AddItemByName("item_banana_hvh")
+      hero:AddItemByName("item_banana_hvh")
+      hero:AddItemByName("item_banana_hvh")
+      hero:AddItemByName("item_banana_hvh")
+    end
+  end
+end
+
+function GetConnectedPlayerCountOnTeam(team)
+  local teamTotal = PlayerResource:GetPlayerCountForTeam(team)
+  local teamConnected = 0
+  for i = 1, teamTotal do
+    local playerID = PlayerResource:GetNthPlayerIDOnTeam(team, i)
+    local state = PlayerResource:GetConnectionState(playerID) 
+    if state == CONNECTION_STATE_BOT or state == CONNECTION_STATE_PLAYER then
+      teamConnected = teamConnected + 1
+    end
+    --print("T"..team.." " .. PlayerResource:GetPlayerName(playerID) .. " ID: " .. playerID .. ", ConnState: " .. state)
+  end
+  return teamConnected
+end
+
+
+-------------------------------------------------------------------------------
+
 
 -- triggers after hero is force picked, or fake heroes are made
 -- will keep repeating until successful
