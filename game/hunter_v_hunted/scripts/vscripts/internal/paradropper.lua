@@ -1,9 +1,9 @@
 PARADROPPER_HEIGHT = 2200.0
 PARADROPPER_HEIGHT_WHEN_CAMERA_RESETS = 800.0
 
-PARADROPPER_MAX_VELOCITY = 350.0
-PARADROPPER_FORWARD_ACCEL_PER_FRAME = 25.0
-PARADROPPER_MAX_HORIZONTAL_ACCEL = 300
+PARADROPPER_MAX_VELOCITY = 450.0
+PARADROPPER_FORWARD_ACCEL_PER_FRAME = 40.0
+PARADROPPER_MAX_HORIZONTAL_ACCEL = 400
 PARADROPPER_CONSTANT_VERTICAL_ACCEL = 200
 
 if HVHParadropper == nil then
@@ -26,9 +26,7 @@ end
 
 -- called from outside
 function HVHParadropper:Begin(unit)
-	--print("ParadropBegin")	
 	Timers:CreateTimer(0.25, function()
-		--print("Trying to drop")
 		if not unit.Paradropper then
 			unit.Paradropper = HVHParadropper(unit)
 		end
@@ -68,7 +66,8 @@ function HVHParadropper:Think()
 	local groundHeight = GetGroundHeight(pos, self.unit)
 	local distanceToGround = pos.z - groundHeight - 16.0 -- slight offset
 
-	--print(tostring(self.unit:GetPhysicsAcceleration()))
+	--print("Accel: " .. tostring(self.unit:GetPhysicsAcceleration()))
+	print("Veloc: " .. tostring(self.unit:GetPhysicsVelocity()))
 
 	-- died en route
 	if self.unit:IsNull() or not self.unit:IsAlive() then
@@ -208,7 +207,6 @@ end
 ------- END / CLEANUP ------------------
 ----------------------------------------
 function HVHParadropper:ParadropEnd()
-	--print("ParadropEnd")
 	GridNav:DestroyTreesAroundPoint(self.unit:GetAbsOrigin(), 100.0, true)
 	self.paradropDummy:ForceKill(false)
 	self.unit:SetAcquisitionRange(self.defaultAcquisitionRange)
