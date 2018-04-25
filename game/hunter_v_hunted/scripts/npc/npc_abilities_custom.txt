@@ -1505,9 +1505,35 @@
 		"AbilityTextureName"	"rubick_empty1"
 		"MaxLevel"				"1"
 	
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"pushback_radius"			"250"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"pushback_duration"			"0.75"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"pushback_distance"			"500"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"pushback_height"			"125"
+			}
+		}
+	
 		"precache"
 		{
-			"particle"	"particles/dev/library/base_item_attachment_trail_rope.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+			"particle"	"particles/paradropping.vpcf"
+			"particle"	"particles/paradropimpact.vpcf"
 		}
 	
 		"Modifiers"
@@ -1543,7 +1569,7 @@
 				"Passive" "1"
 				"IsHidden" "0"
 	
-				"EffectName"	"particles/dev/library/base_item_attachment_trail_rope.vpcf"
+				"EffectName"	"particles/paradropping.vpcf"
 				"EffectAttachType"		"follow_origin"
 	
 				"States"
@@ -1553,8 +1579,41 @@
 					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
-			}
 	
+				"OnDestroy"
+				{
+					"DestroyTrees"
+					{
+						"Target" 		"CASTER"
+						"Radius"		"%pushback_radius"
+					}
+	
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"%pushback_radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_BOTH"
+							"Types" 	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+						}
+					
+						"Action"    
+						{
+							"Knockback"
+							{
+								"Target"            "TARGET"
+								"Center" 	        "CASTER"
+								"Distance"	        "%pushback_distance"
+								"Duration"	        "%pushback_duration"
+								"Height"	        "%pushback_height"
+								"IsFixedDistance"	"0"
+								"ShouldStun"        "0"
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 	"phoenix_passives"

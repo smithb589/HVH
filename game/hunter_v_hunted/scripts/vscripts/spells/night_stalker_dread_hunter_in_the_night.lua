@@ -36,10 +36,11 @@ function IsValidVisionTarget(caster, target, nv_radius)
     if  caster ~= target and
     	target:IsAlive() and
     	caster:GetRangeToUnit(target) < nv_radius and
+      not target:HasModifier("modifier_paradropped_unit") and
     	not caster:CanEntityBeSeenByMyTeam(target) then
     		return true
     else
-      		return false
+        return false
 	end
 end
 

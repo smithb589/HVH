@@ -2,9 +2,10 @@ PARADROPPER_HEIGHT = 2200.0
 PARADROPPER_HEIGHT_WHEN_CAMERA_RESETS = 800.0
 
 PARADROPPER_MAX_VELOCITY = 450.0
-PARADROPPER_FORWARD_ACCEL_PER_FRAME = 40.0
-PARADROPPER_MAX_HORIZONTAL_ACCEL = 400
+PARADROPPER_FORWARD_ACCEL_PER_FRAME = 50.0
+PARADROPPER_MAX_HORIZONTAL_ACCEL = 600
 PARADROPPER_CONSTANT_VERTICAL_ACCEL = 200
+PARADROPPER_FASTER_DROP_COEFFICIENT = 64
 
 if HVHParadropper == nil then
 	HVHParadropper = DeclareClass({}, function(self, unit)
@@ -41,6 +42,7 @@ function HVHParadropper:initialize()
 	self.player = nil
 	self.playerID = nil
 	self.paradropDummy = nil
+	self.paradropAbility = nil
 	self.defaultAcquisitionRange = self.unit:GetAcquisitionRange()
 	self.cameraStarted = false
 
@@ -67,7 +69,7 @@ function HVHParadropper:Think()
 	local distanceToGround = pos.z - groundHeight - 16.0 -- slight offset
 
 	--print("Accel: " .. tostring(self.unit:GetPhysicsAcceleration()))
-	print("Veloc: " .. tostring(self.unit:GetPhysicsVelocity()))
+	--print("Veloc: " .. tostring(self.unit:GetPhysicsVelocity()))
 
 	-- died en route
 	if self.unit:IsNull() or not self.unit:IsAlive() then
@@ -131,18 +133,25 @@ function HVHParadropper:StartPhysics()
 
 	self.paradropDummy = CreateUnitByName("npc_dummy_paradropper", self.unit:GetAbsOrigin(),
 	  false, nil, nil, DOTA_TEAM_GOODGUYS)
+	self.paradropAbility = self.paradropDummy:FindAbilityByName("paradropper")
 end
 
 function HVHParadropper:StartPhysicsUpdater()
 	local pos = nil
+	local fasterDropCoefficient = 1
 
 	self.unit:OnPhysicsFrame(function()
 		--DebugSpeed(self.unit)
 		pos = self.unit:GetAbsOrigin()
 		self.paradropDummy:SetOrigin(pos)
 
+		-- update camera constantly if we're still plummeting
 		if self.cameraStarted then
 			CustomGameEventManager:Send_ServerToPlayer(self.player, "paradropCam_onPhysicsFrame", { height = pos.z })
+		-- after the camera changes, increase speed dramatically
+		else
+			self.unit:SetPhysicsVelocityMax(0.0)
+			fasterDropCoefficient = PARADROPPER_FASTER_DROP_COEFFICIENT
 		end
 
 		-- apply acceleration from faced direction with constant downward acceleration
@@ -151,7 +160,7 @@ function HVHParadropper:StartPhysicsUpdater()
 		a = a + newAccel
 		a.x = ClampToRange(a.x, -PARADROPPER_MAX_HORIZONTAL_ACCEL, PARADROPPER_MAX_HORIZONTAL_ACCEL) -- clamp xy accel
 		a.y = ClampToRange(a.y, -PARADROPPER_MAX_HORIZONTAL_ACCEL, PARADROPPER_MAX_HORIZONTAL_ACCEL) -- clamp xy accel
-		a.z = -PARADROPPER_CONSTANT_VERTICAL_ACCEL -- negative because we're going down
+		a.z = -PARADROPPER_CONSTANT_VERTICAL_ACCEL * fasterDropCoefficient -- negative because we're going down
 		self.unit:SetPhysicsAcceleration(a)
 	end)
 end
@@ -191,14 +200,15 @@ end
 ----------------------------------------
 
 function HVHParadropper:ApplyModifiers()
-	local paradropAbility = self.paradropDummy:FindAbilityByName("paradropper")
-	paradropAbility:ApplyDataDrivenModifier(self.paradropDummy, self.unit, "modifier_paradropped_unit", nil)
+	EmitSoundOnClient("WhooshingSound", self.player)
+	self.paradropAbility:ApplyDataDrivenModifier(self.paradropDummy, self.unit, "modifier_paradropped_unit", nil)
 	StartAnimation(self.unit, {duration=999, activity=ACT_DOTA_FLAIL, rate=1.0})
 	self.unit:SetAcquisitionRange(0.0)
 end
 
 function HVHParadropper:RemoveModifiers()
 	-- End paradrop modifiers and animation
+	StopSoundOn("WhooshingSound", self.player)
 	self.unit:RemoveModifierByName("modifier_paradropped_unit")
 	EndAnimation(self.unit)
 end
@@ -207,7 +217,11 @@ end
 ------- END / CLEANUP ------------------
 ----------------------------------------
 function HVHParadropper:ParadropEnd()
-	GridNav:DestroyTreesAroundPoint(self.unit:GetAbsOrigin(), 100.0, true)
+	--GridNav:DestroyTreesAroundPoint(self.unit:GetAbsOrigin(), 200.0, true)
+	local impactParticle = ParticleManager:CreateParticle( "particles/paradropimpact.vpcf", PATTACH_ABSORIGIN, self.unit )
+    ParticleManager:SetParticleControl(impactParticle, 3, GetGroundPosition(self.unit:GetAbsOrigin(), self.unit))
+	EmitSoundOn("Hero_Techies.Suicide", self.unit)
+
 	self.paradropDummy:ForceKill(false)
 	self.unit:SetAcquisitionRange(self.defaultAcquisitionRange)
 	self:EndPhysics()
