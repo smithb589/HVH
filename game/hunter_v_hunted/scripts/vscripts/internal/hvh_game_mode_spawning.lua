@@ -128,6 +128,7 @@ function HVHGameMode:GetRespawnTime(unit)
   if unit then 
     local player = unit:GetPlayerOwner()
     if player and PlayerResource:GetConnectionState(player:GetPlayerID()) == CONNECTION_STATE_DISCONNECTED then
+      print("Connection state: " .. PlayerResource:GetConnectionState(player:GetPlayerID()))
       disconnectPenalty = DC_RESPAWN_EXTRA_TIME
     end
   end
