@@ -79,7 +79,7 @@ function HVHGameMode:StartNightstalkerHandicapListener()
   local totalSniperPlayers = GameRules:GetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS)
   Timers:CreateTimer(function()
     local teamConnected = GetConnectedPlayerCountOnTeam(DOTA_TEAM_GOODGUYS)
-    print(totalSniperPlayers .. " vs " .. teamConnected)
+    --print(totalSniperPlayers .. " vs " .. teamConnected)
     if teamConnected ~= totalSniperPlayers then
       self:SetNightstalkerHandicap(teamConnected)
     end
