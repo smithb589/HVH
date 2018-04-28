@@ -117,6 +117,7 @@ function AddNotification(msg, panel) {
   GameEvents.Subscribe( "bottom_remove_notification", BottomRemoveNotification );
 
   // disable the radar scan element
+  $.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse('GlyphScanContainer').style.visibility = 'collapse';
   //$.GetContextPanel().GetParent().GetParent().GetParent().FindChild("HUDElements").FindChild("RadarButton").DeleteAsync(0);
 })();
 
