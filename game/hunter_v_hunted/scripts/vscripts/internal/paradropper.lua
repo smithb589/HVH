@@ -1,37 +1,27 @@
-PARADROPPER_HEIGHT = 2200.0
+PARADROPPER_HEIGHT = 2200.0 -- 2200
 PARADROPPER_HEIGHT_WHEN_CAMERA_RESETS = 800.0
+PARADROPPER_GYRO_SPEED = 315
 
 PARADROPPER_MAX_VELOCITY = 450.0
 PARADROPPER_FORWARD_ACCEL_PER_FRAME = 50.0
 PARADROPPER_MAX_HORIZONTAL_ACCEL = 600
 PARADROPPER_CONSTANT_VERTICAL_ACCEL = 200
 PARADROPPER_FASTER_DROP_COEFFICIENT = 64
+PARADROP_GYRO_PRESPAWN = 5.0			-- How many seconds before respawn the gyrocopter spawns (Sniper team only)
 
 if HVHParadropper == nil then
-	HVHParadropper = DeclareClass({}, function(self, unit)
+	HVHParadropper = DeclareClass({}, function(self, unit, spawnPos)
 		self.unit = unit
+		self.spawnPos = spawnPos
 		self.initialize(self)
 	end)
 end
 
--- game mode setup
-function HVHParadropper:Setup()
-	local heroList = HeroList:GetAllHeroes()
-	for _,hero in pairs(heroList) do
-		local team = hero:GetTeam()
-		if team == DOTA_TEAM_GOODGUYS then
-		  HVHParadropper:Begin(hero)
-		end
-	end
-end
-
 -- called from outside
-function HVHParadropper:Begin(unit)
-	Timers:CreateTimer(0.25, function()
-		if not unit.Paradropper then
-			unit.Paradropper = HVHParadropper(unit)
-		end
-	end)
+function HVHParadropper:Begin(unit, spawnPos)
+	if not unit.Paradropper then
+		unit.Paradropper = HVHParadropper(unit, spawnPos)
+	end
 end
 
 ----------------------------------------
@@ -47,8 +37,130 @@ function HVHParadropper:initialize()
 	self.cameraStarted = false
 
 	self:CheckForPlayerOwner()
+	self:DoGyrocopter()
+
+	self.unit:AddNoDraw()
+	Timers:CreateTimer(PARADROP_GYRO_PRESPAWN + 0.25, function()
+		self:DoParadrop()
+		self.unit:RemoveNoDraw()
+	end)
+end
+
+function HVHParadropper:CheckForPlayerOwner()
+	if self.unit:IsHero() then
+		self.player = self.unit:GetPlayerOwner()
+		if self.player then
+			self.playerID = self.player:GetPlayerID()
+		else
+			self.player = nil
+			self.playerID = nil
+		end
+	else
+		self.player = nil
+		self.playerID = nil
+	end
+end
+
+function HVHParadropper:DoGyrocopter()
+	local gyroSpawnVector, r = nil
+	local i = 0 -- break if 10 loops exceeded
+	while IsVectorOffMap(gyroSpawnVector) do
+		r = RandomVector(PARADROPPER_GYRO_SPEED * PARADROP_GYRO_PRESPAWN) -- gyro's MS times X seconds
+		gyroSpawnVector = self.spawnPos + r
+		i = i + 1
+		if i > 10 then break end
+	end
+
+	local gyro = CreateUnitByName("npc_hvh_gyro", gyroSpawnVector, false, nil, nil, DOTA_TEAM_GOODGUYS)
+
+	-- cross through unit's respawn point and continue trajectory
+	Timers:CreateTimer(0.1, function()
+		gyro:SetForwardVector( (self.spawnPos - gyro:GetAbsOrigin() ):Normalized() )
+		Physics:Unit(gyro)
+		-- Clears any current command
+		gyro:Stop()
+		gyro:PreventDI(true)
+		gyro:SetAutoUnstuck(false)
+		gyro:SetNavCollisionType(PHYSICS_NAV_NOTHING)
+		gyro:FollowNavMesh(true) 
+		gyro:SetFriction(0.0)
+		gyro:SetGroundBehavior(PHYSICS_GROUND_NOTHING) 
+		gyro:SetAbsOrigin(gyro:GetAbsOrigin() + (gyro:GetUpVector() * PARADROPPER_HEIGHT))
+
+		gyro:SetPhysicsVelocityMax(PARADROPPER_GYRO_SPEED)
+		gyro:SetPhysicsAcceleration(self.spawnPos - gyroSpawnVector) -- from gyro toward unit
+
+		self:PlayRandomGyroVoiceLine(gyro)
+
+		if self.player then 
+			self:StartCamera(gyro)
+			CustomGameEventManager:Send_ServerToPlayer(self.player, "paradropCam_onPhysicsFrame", { height = gyro:GetAbsOrigin().z })
+		end
+	end)
+
+	Timers:CreateTimer(PARADROP_GYRO_PRESPAWN * 2, function()
+		gyro:OnPhysicsFrame(nil)
+		UTIL_Remove(gyro)
+	end)
+end
+
+function HVHParadropper:PlayRandomGyroVoiceLine(gyro)
+	-- sound effects
+	local voiceStrings = {
+		"gyrocopter_gyro_ally_08",
+		"gyrocopter_gyro_attack_04", 
+		"gyrocopter_gyro_attack_06", 
+		"gyrocopter_gyro_attack_09", 
+		"gyrocopter_gyro_begins_02", 
+		"gyrocopter_gyro_call_down_01", 
+		"gyrocopter_gyro_call_down_03", 
+		"gyrocopter_gyro_call_down_07", 
+		"gyrocopter_gyro_call_down_11", 
+		"gyrocopter_gyro_cast_02", 
+		"gyrocopter_gyro_death_10", 
+		"gyrocopter_gyro_death_11", 
+		"gyrocopter_gyro_death_12", 
+		"gyrocopter_gyro_death_13", 
+		"gyrocopter_gyro_death_15", 
+		"gyrocopter_gyro_deny_05", 
+		"gyrocopter_gyro_fastres_01", 
+		"gyrocopter_gyro_flak_cannon_01", 
+		"gyrocopter_gyro_flak_cannon_04", 
+		"gyrocopter_gyro_homing_missile_fire_01", 
+		"gyrocopter_gyro_homing_missile_impact_09", 
+		"gyrocopter_gyro_illus_03", 
+		"gyrocopter_gyro_kill_02", 
+		"gyrocopter_gyro_kill_01", 
+		"gyrocopter_gyro_kill_09", 
+		"gyrocopter_gyro_kill_11", 
+		"gyrocopter_gyro_kill_17", 
+		"gyrocopter_gyro_lasthit_01", 
+		"gyrocopter_gyro_lasthit_05", 
+		"gyrocopter_gyro_level_01", 
+		"gyrocopter_gyro_level_03", 
+		"gyrocopter_gyro_level_07", 
+		"gyrocopter_gyro_level_08", 
+		"gyrocopter_gyro_level_09", 
+		"gyrocopter_gyro_level_10", 
+		"gyrocopter_gyro_level_12", 
+		"gyrocopter_gyro_level_13", 
+		"gyrocopter_gyro_move_08", 
+		"gyrocopter_gyro_move_10", 
+		"gyrocopter_gyro_respawn_01", 
+		"gyrocopter_gyro_respawn_12", 
+		"gyrocopter_gyro_rival_08", 
+		"gyrocopter_gyro_spawn_02", 
+		"gyrocopter_gyro_spawn_03"
+	}
+
+	local r = RandomInt(1, #voiceStrings)
+	EmitSoundOn(voiceStrings[r], gyro)
+end
+
+
+function HVHParadropper:DoParadrop()
 	self:StartPhysics()
-	self:StartCamera()
+	self:StartCamera(self.unit)
 	self:ApplyModifiers()
 	self:StartPhysicsUpdater()
 
@@ -86,29 +198,20 @@ function HVHParadropper:Think()
 		self:ParadropEnd()
 	end
 
-	if HasFallenOffWorld(groundHeight, pos.z) then
+	if HasFallenOffWorld(self.unit) then
 		-- center of map
 		self.unit:SetAbsOrigin(Vector(-3600,3400,PARADROPPER_HEIGHT_WHEN_CAMERA_RESETS+100))
 	end
 end
 
-function HVHParadropper:CheckForPlayerOwner()
-	if self.unit:IsHero() then
-		self.player = self.unit:GetPlayerOwner()
-		if self.player then
-			self.playerID = self.player:GetPlayerID()
-		else
-			self.player = nil
-			self.playerID = nil
-		end
-	else
-		self.player = nil
-		self.playerID = nil
-	end
+function IsVectorOffMap(vec)
+	if not vec then return true end
+	return GetGroundHeight(vec, nil) < -16000
 end
 
-function HasFallenOffWorld(groundHeight, posZ)
-	return (groundHeight < -16000 and posZ < PARADROPPER_HEIGHT_WHEN_CAMERA_RESETS)
+function HasFallenOffWorld(unit)
+	local pos = unit:GetAbsOrigin()
+	return (IsVectorOffMap(pos) and pos.z < PARADROPPER_HEIGHT_WHEN_CAMERA_RESETS)
 end
 
 ----------------------------------------
@@ -181,9 +284,9 @@ end
 ----------------------------------------
 ------- CAMERA -------------------------
 ----------------------------------------
-function HVHParadropper:StartCamera()
+function HVHParadropper:StartCamera(target)
 	if not self.player then return end
-	PlayerResource:SetCameraTarget(self.playerID, self.unit)
+	PlayerResource:SetCameraTarget(self.playerID, target)
 	CustomGameEventManager:Send_ServerToPlayer(self.player, "paradropCam_start", {})
 	self.cameraStarted = true
 end

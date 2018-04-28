@@ -108,16 +108,21 @@ function HVHGameMode:DetermineRespawn(unit)
   local respawnTime = self:GetRespawnTime(unit)
   unit:SetTimeUntilRespawn(respawnTime)
 
-  Timers:CreateTimer(respawnTime - 1.0, function() 
+  local preRespawnTime = nil
+  if team == DOTA_TEAM_GOODGUYS then
+    preRespawnTime = respawnTime - PARADROP_GYRO_PRESPAWN
+  else
+    preRespawnTime = respawnTime - 1.0
+  end
+
+  Timers:CreateTimer(preRespawnTime, function() 
     local pos = HVHGameMode:ChooseFarSpawn(team)
     unit:SetRespawnPosition(pos)
+    if team == DOTA_TEAM_GOODGUYS then
+      HVHParadropper:Begin(unit, pos)
+    end
   end)
 
-  if team == DOTA_TEAM_GOODGUYS then
-    Timers:CreateTimer(respawnTime, function() 
-      HVHParadropper:Begin(unit)
-    end)
-  end
 end
 
 -- random time between MIN and MAX
@@ -182,7 +187,7 @@ function HVHGameMode:SpawnDog(random_spawn)
   --end)
 
   if random_spawn then 
-    HVHParadropper:Begin(dog)
+    HVHParadropper:Begin(dog, position)
   end
 end
 

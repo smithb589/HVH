@@ -482,6 +482,123 @@
 	
 	
 	
+	
+	//=================================================================================
+	// Sniper ally: Gyrocopter
+	//=================================================================================
+	"npc_hvh_gyro"
+	{
+		// HVH	
+		"BaseClass"					"npc_dota_creature"	
+		"vscripts"                  "ai/ai_gyro.lua"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
+	
+		// General
+		//----------------------------------------------------------------
+		"Model"		"models/heroes/gyro/gyro.vmdl"
+		"Portrait"		"vgui/hud/heroportraits/portrait_gyrocopter"
+		"SoundSet"		"Hero_Gyrocopter"
+		"IdleSoundLoop"		"Hero_Gyrocopter.IdleLoop"
+		"Level"						"5"
+		"ModelScale"		"0.840000"
+	
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"		"phoenix_passives"
+		"Ability2"		""
+		"Ability3"		""
+		"Ability4"		""
+	
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"0"			// Physical protection.
+		"MagicalResistance"			"75"		// Magical protection.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"RingRadius"				"70"
+		"HealthBarOffset"			"240"
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
+		"MovementSpeed"				"315"		// Speed.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"350"		// Base health.
+		"StatusHealthRegen"			"1"			// Health regeneration rate.
+		"StatusMana"				"300"		// Base mana.
+		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"800"		// Range of vision during day light.
+		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+	
+		// Team
+		//----------------------------------------------------------------
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	
+		"particle_folder"		"particles/units/heroes/hero_gyrocopter"
+		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
+		"VoiceFile"		"soundevents/voscripts/game_sounds_vo_gyrocopter.vsndevts"
+	
+		"precache"
+		{
+			"model"		"models/heroes/gyro/gyro.vmdl"
+			"particle"	"particles/units/heroes/hero_gyrocopter/gyro_ambient.vpcf"
+		}
+	
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"Wearable1"	{ "ItemDef" "126" } //???
+				"Wearable2"	{ "ItemDef" "131" } //Head
+				"Wearable3"	{ "ItemDef"	"176" } //Goggles
+				"Wearable4" { "ItemDef"	"177" } //Guns
+				"Wearable5" { "ItemDef"	"178" } //Propeller
+				"Wearable6" { "ItemDef" "179" } //Homing missile
+			}
+		}
+	
+	
+		"Particles"
+		{
+			"gyro_ambient"
+			{
+				"0"
+				{
+					"type"		"follow_origin"
+					"location"		"attach_hitloc"
+				}
+				"1"
+				{
+					"type"		"follow_attachment"
+					"location"		"attach_prop1"
+				}
+				"2"
+				{
+					"type"		"follow_attachment"
+					"location"		"attach_prop2"
+				}
+				"3"
+				{
+					"type"		"follow_attachment"
+					"location"		"attach_exhaust"
+				}
+			}
+		}
+	
+	}	
 	//=================================================================================
 	// Neutral: Hellbear Dancer
 	//=================================================================================

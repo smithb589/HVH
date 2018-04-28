@@ -36,7 +36,6 @@ function HVHConvars:RegisterCommands()
   Convars:RegisterCommand("hvh_test_anim", Dynamic_Wrap(self, "TestAnimation"), "Tests animation.", FCVAR_CHEAT)
   Convars:RegisterCommand("hvh_team_swap", Dynamic_Wrap(self, "TeamSwap"), "Swaps team.", FCVAR_CHEAT)
   Convars:RegisterCommand("hvh_paradrop", Dynamic_Wrap(self, "Paradrop"), "Paradrops.", FCVAR_CHEAT)
-  Convars:RegisterCommand("hvh_roquelaire", Dynamic_Wrap(self, "Teleport"), "Teleports.", FCVAR_CHEAT)
   Convars:RegisterCommand("hvh_sniper_select", Dynamic_Wrap(self, "SniperSelect"), "Choose ability.", FCVAR_CHEAT)
 end
 
@@ -45,22 +44,10 @@ function HVHConvars:SniperSelect()
   HVHSniperSelect:MakeMenuVisible(humanPlayer, SNIPER_SELECT_REASON_FREEBIE)
 end
 
-function HVHConvars:Teleport()
-  local humanPlayer = Convars:GetCommandClient()
-  local humanPlayerID = humanPlayer:GetPlayerID()
-  local hero = humanPlayer:GetAssignedHero()
-
-  local ship = Entities:FindByName(nil, "ShipSpawn")
-
-  print(ship)
-  hero:SetAbsOrigin(ship:GetAbsOrigin())
-  PlayerResource:SetCameraTarget(humanPlayerID, hero)
-end
-
 function HVHConvars:Paradrop()
   local humanPlayer = Convars:GetCommandClient()
   local hero = humanPlayer:GetAssignedHero()
-  HVHParadropper:Begin(hero)
+  HVHParadropper:Begin(hero, hero:GetAbsOrigin())
 
   local creatureList = Entities:FindAllByClassname("npc_dota_creature")
   local houndList = {}
@@ -70,10 +57,9 @@ function HVHConvars:Paradrop()
     end
   end
 
-  -- apply flush modifier and create loyalty to houndmaster
-  for _,hound in pairs(houndList) do
-    HVHParadropper:Begin(hound)
-  end
+  --for _,hound in pairs(houndList) do
+  --  HVHParadropper:Begin(hound, hound:GetAbsOrigin())
+  --end
 end
 
 -- ability level issues

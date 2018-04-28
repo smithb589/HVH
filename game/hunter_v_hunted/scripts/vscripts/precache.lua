@@ -160,6 +160,7 @@ PRECACHE_UNITS = {
 	"npc_hvh_megacreep_siege",
 	"npc_hvh_eidolon",
 	"npc_hvh_enigma",
+	"npc_hvh_gyro",
 	"npc_hvh_tiny",
 	"npc_dota_good_guy_dog"
 }
