@@ -53,6 +53,7 @@ function HVHItemUtils:ExpendCharge(item)
     item:SetCurrentCharges(newCharges)
 
 	Timers:CreateTimer(0.25, function() -- SINGLE_FRAME_TIME too short for item_manta
+		if item:IsNull() then return end
 		if item:GetCurrentCharges() <= 0 then -- recheck in case the charge was refunded
 	    	hero:RemoveItem(item)
 	    end
