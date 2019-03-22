@@ -1,9 +1,12 @@
-Version 1.7.0
+Version 1.7.1
 
-Simplified Chinese (简体中文) and Russian (Русский) translations available!
-
-[b]WHAT'S NEW WITH 1.7.0?[/b]
-I fixed that bug where Phoenix was creating an endless day, due to a recent DOTA 2 patch. In addition, you can finally disable Phoenix if you'd like to play the game in a more classic way. I'd like to spend some more time on balancing this game so I'll be playing it more in the coming days. Finally, there's a secret new feature that you'll just have to play to discover. Hopefully it will make this mod as popular as That Other Game(tm).
+[b]WHAT'S NEW WITH 1.7.1?[/b]
+This patch overhauls the paradropping feature and adds a new set of constraints surrounding disconnected players. Basically:
+- You still have control over disconnected heroes.
+- Killing DC'd players doesn't give you a point anymore.
+- DC'd Snipers take longer to respawn.
+- Night Stalker respawns faster.
+- Depending on how low the Sniper player count drops, Night Stalker first loses his Phase Boots, and then his inventory becomes clogged with bananas. This makes it harder for NS to run away, and he can't pick up as many items as before. See the Update Notes for more information.
 
 ---
 
@@ -24,8 +27,8 @@ While playing, click the GameInfo tab on the left to read about game mechanics a
 Snicker-snag, veggiesama
 
 [b]LOCALIZATIONS:[/b]
-Arche & Tsar Kapsky (Russian)
-Rabbitism (Simplified Chinese)
+Arche & Tsar Kapsky (Russian) (Русский)
+Rabbitism (Simplified Chinese) (简体中文)
 
 [b]SPECIAL THANKS:[/b]
 [url=http://store.valvesoftware.com/product.php?i=S0205]Valve[/url], Pizzalol ([url=https://github.com/Pizzalol/SpellLibrary]SpellLibrary[/url]), kritth (Shrapnel Lua/KV), BMD ([url=https://github.com/bmddota/barebones]Barebones modkit[/url]), Noya (code tutorials/reference at the [url=https://moddota.com/forums/]ModDota[/url] forums), Dotabuff ([url=https://github.com/dotabuff/d2vpk]d2vpk[/url] reference), [url=https://www.reddit.com/r/dota2modding]/r/dota2modding/[/url], Sinistar, the various playtesters, and anyone else I forgot.

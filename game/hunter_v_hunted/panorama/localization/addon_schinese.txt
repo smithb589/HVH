@@ -190,4 +190,11 @@
 
 	// 1.6.5
 	"ItemReject_BackpackDisabled"	"背包插槽7-9已禁用"
+
+	// 1.7.1
+	"Handicap_4" "Night Stalker Handicap (4p): Phase boots"
+	"Handicap_3" "Night Stalker Handicap (3p): Boots of speed"
+	"Handicap_2" "Night Stalker Handicap (2p): No boots, 3 bananas"
+	"Handicap_1" "Night Stalker Handicap (1p): No boots, 5 bananas"
+	"DisconnectedPlayerKill" "Kill not counted because player is disconnected."
 }

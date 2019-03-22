@@ -129,16 +129,18 @@ end
 function HVHGameMode:GetRespawnTime(unit)
   local unit = unit or nil
   local disconnectPenalty = 0
+  local respawnTimeMultiplier = 1
 
   if unit then 
     local player = unit:GetPlayerOwner()
-    if player and PlayerResource:GetConnectionState(player:GetPlayerID()) == CONNECTION_STATE_DISCONNECTED then
-      print("Connection state: " .. PlayerResource:GetConnectionState(player:GetPlayerID()))
-      disconnectPenalty = DC_RESPAWN_EXTRA_TIME
+    if player and unit:GetTeam() == DOTA_TEAM_GOODGUYS and PlayerResource:GetConnectionState(player:GetPlayerID()) == CONNECTION_STATE_DISCONNECTED then
+      respawnTimeMultiplier = RESPAWN_DISCONNECT_MULTIPLIER
+    elseif unit:GetTeam() == DOTA_TEAM_BADGUYS then
+      respawnTimeMultiplier = RESPAWN_BADGUYTEAM_MULTIPLIER
     end
   end
 
-  return RandomInt(MIN_RESPAWN_TIME, MAX_RESPAWN_TIME) + disconnectPenalty
+  return RandomFloat(MIN_RESPAWN_TIME, MAX_RESPAWN_TIME) * respawnTimeMultiplier
 end
 
 -------------------------------------------------------------------

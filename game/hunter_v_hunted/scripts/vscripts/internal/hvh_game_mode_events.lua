@@ -104,20 +104,21 @@ function HVHGameMode:SetNightstalkerHandicap(sniperTeamCount)
     hero:RemoveItem(hero:FindItemInInventory("item_banana_hvh"))
 
     if sniperTeamCount >= 4 then
-      HVHErrorUtils:SendNoteToScreenBottom(player, "#Handicap_4")
+      HVHErrorUtils:SendNoteToScreenBottomAll("#Handicap_4")
       HVHItemUtils:FreeUpInventorySlots(hero)
       hero:AddItemByName("item_phase_boots")
     elseif sniperTeamCount == 3 then
-      HVHErrorUtils:SendNoteToScreenBottom(player, "#Handicap_3")
+      HVHErrorUtils:SendNoteToScreenBottomAll("#Handicap_3")
       HVHItemUtils:FreeUpInventorySlots(hero)
       hero:AddItemByName("item_boots")
     elseif sniperTeamCount == 2 then
-      HVHErrorUtils:SendNoteToScreenBottom(player, "#Handicap_2")
-      HVHItemUtils:FreeUpInventorySlots(hero, 2)
+      HVHErrorUtils:SendNoteToScreenBottomAll("#Handicap_2")
+      HVHItemUtils:FreeUpInventorySlots(hero, 3)
+      hero:AddItemByName("item_banana_hvh")
       hero:AddItemByName("item_banana_hvh")
       hero:AddItemByName("item_banana_hvh")
     else
-      HVHErrorUtils:SendNoteToScreenBottom(player, "#Handicap_1")
+      HVHErrorUtils:SendNoteToScreenBottomAll("#Handicap_1")
       HVHItemUtils:FreeUpInventorySlots(hero, 5)  
       hero:AddItemByName("item_banana_hvh")
       hero:AddItemByName("item_banana_hvh")

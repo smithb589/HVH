@@ -1,3 +1,21 @@
+1.7.1
+----
+QUALITY OF LIFE
+-- Updated paradropping effects and behavior (Gyro!)
+-- Snipers no longer begin the game paradropping, but respawns continue to paradrop
+-- Fix for wisp tether not breaking
+-- New sfx/particles for Houndmaster ability
+-- Night Stalker's respawn speed is halved
+-- Miscellaneous fixes
+LOW PLAYER COUNT RE-BALANCE
+-- When a disconnected character is killed, their team no longer loses a point.
+-- When a disconnected Sniper dies, their respawn timer is tripled.
+-- When the game begins with fewer than 4 Snipers, or Sniper players disconnect during gameplay, the Night Stalker's inventory will be handicapped to make for a more balanced game experience. Items will be dropped to make room for bananas, if necessary. A banana does nothing and cannot be dropped until the Sniper reconnects. The Night Stalker's inventory will be affected in the following ways:
+---- 4 Snipers: Phase boots
+---- 3 Snipers: Boots of speed
+---- 2 Snipers: No boots, 3 bananas
+---- 1 Sniper: No boots, 5 bananas
+
 1.7.0
 ----
 -- Phoenix-related endless day bug fixed

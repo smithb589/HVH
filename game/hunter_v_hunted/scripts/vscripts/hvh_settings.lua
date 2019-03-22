@@ -17,14 +17,16 @@ NIGHT_SECONDS_RANDOM_EXTRA = 0.0	-- randomly increase/decrease each half-cycle b
 PRE_GAME_TIME = 30.0                -- How long after people select their heroes should the horn blow and the game start?
 PREGAME_SLEEP = true 				-- play the tutorial and put players to sleep for first ~30 seconds
 DC_TIME_ALLOWANCE	= 60.0			-- How much time is given after a whole team DCs before victory is declared
-DC_RESPAWN_EXTRA_TIME = 40.0		-- How much extra time a disconnected player's hero takes to respawn
 
 -- HVH Respawn
 BADGUY_LIVES  = 6
 GOODGUY_LIVES = 18
 MIN_RESPAWN_TIME = 18
 MAX_RESPAWN_TIME = 23
+RESPAWN_DISCONNECT_MULTIPLIER = 3
+RESPAWN_BADGUYTEAM_MULTIPLIER = 0.5
 MINIMUM_RESPAWN_RANGE = 2500		-- if no respawn points are found outside this range, the least worst will be used
+
 
 -- HVH Neutral Creeps
 NEUTRAL_CREEPS 				   = true  		-- enable neutral creep spawns?

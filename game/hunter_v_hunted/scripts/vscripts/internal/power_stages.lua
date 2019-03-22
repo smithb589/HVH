@@ -28,18 +28,26 @@ function HVHPowerStages:OnEntityKilled(killedArgs)
 end
 
 function HVHPowerStages:HandlePlayerDeath(unit)
+	local decrementLivesBy = 1
 	local team = unit:GetTeam()
 	local mode = GameRules:GetGameModeEntity()
+	local player = unit:GetPlayerOwner()
+
+	-- don't count the deaths of disconnected players
+	if player and PlayerResource:GetConnectionState(player:GetPlayerID()) == CONNECTION_STATE_DISCONNECTED then
+		HVHErrorUtils:SendNoteToScreenBottomAll("#DisconnectedPlayerKill")
+		decrementLivesBy = 0
+	end
 
 	-- decrement remaining lives and set respawn timers
 	if team == DOTA_TEAM_GOODGUYS then
-		mode.GoodGuyLives = mode.GoodGuyLives - 1
+		mode.GoodGuyLives = mode.GoodGuyLives - decrementLivesBy
 		mode:SetTopBarTeamValue(DOTA_TEAM_GOODGUYS, mode.GoodGuyLives)
     	HVHGameMode:PushScoreToCustomNetTable()
     	HVHGameMode:DetermineRespawn(unit)
     	self:NotifyLivesRemaining(DOTA_TEAM_GOODGUYS)
 	elseif team == DOTA_TEAM_BADGUYS then
-		mode.BadGuyLives = mode.BadGuyLives - 1
+		mode.BadGuyLives = mode.BadGuyLives - decrementLivesBy
 		mode:SetTopBarTeamValue(DOTA_TEAM_BADGUYS, mode.BadGuyLives)
 		HVHGameMode:PushScoreToCustomNetTable()
 		HVHGameMode:DetermineRespawn(unit)

@@ -12,12 +12,11 @@ function HVHErrorUtils:SendErrorToScreenTop(player, message)
 	EmitSoundOnClient("General.InvalidTarget_Shop", player)
 end
 
-function HVHErrorUtils:SendNoteToScreenBottom(player, message)
+function HVHErrorUtils:SendNoteToScreenBottomAll(message)
 	local payload = {}
 	payload.style = { color = "orange" }
 	payload.text = message
 
-	Notifications:ClearBottom(player)
-	Notifications:Bottom(player, payload)
-	EmitSoundOnClient("Conquest.capture_point_timer", player)
+	Notifications:ClearBottomFromAll()
+	Notifications:BottomToAll(payload)
 end
